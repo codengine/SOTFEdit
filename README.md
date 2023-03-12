@@ -1,4 +1,4 @@
-# SOTFEdit
+# SOTFEdit - Sons of The Forest Savegame Editor
 
 ![Screenshot](https://abload.de/img/sotfeditdrdoh.jpg)
 
