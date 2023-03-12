@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -17,6 +18,7 @@ public partial class InventoryPageViewModel : ObservableObject
     private readonly ObservableCollection<InventoryItem> _inventory = new();
     private readonly ItemList _itemList;
     private readonly ObservableCollection<InventoryItem> _unassignedItems = new();
+    private readonly ReaderWriterLockSlim _readerWriterLock = new();
     [ObservableProperty] private string _inventoryFilter = "";
     [ObservableProperty] private string _unassignedItemsFilter = "";
 
@@ -54,20 +56,30 @@ public partial class InventoryPageViewModel : ObservableObject
     [RelayCommand]
     public void RemoveItemFromInventory(InventoryItem inventoryItem)
     {
-        lock (this)
+        _readerWriterLock.EnterWriteLock();
+        try
         {
             _unassignedItems.Add(inventoryItem);
             _inventory.Remove(inventoryItem);
+        }
+        finally
+        {
+            _readerWriterLock.ExitWriteLock();
         }
     }
 
     [RelayCommand]
     public void AddUnassignedItem(InventoryItem inventoryItem)
     {
-        lock (this)
+        _readerWriterLock.EnterWriteLock();
+        try
         {
             _inventory.Add(inventoryItem);
             _unassignedItems.Remove(inventoryItem);
+        }
+        finally
+        {
+            _readerWriterLock.ExitWriteLock();
         }
     }
 
@@ -110,7 +122,8 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChanged m)
     {
-        lock (this)
+        _readerWriterLock.EnterWriteLock();
+        try
         {
             _inventory.Clear();
             _unassignedItems.Clear();
@@ -141,6 +154,10 @@ public partial class InventoryPageViewModel : ObservableObject
                 }
             }
         }
+        finally
+        {
+            _readerWriterLock.ExitWriteLock();
+        }
     }
 
     private static InventoryItem BuildUnassignedItem(Item item)
@@ -158,7 +175,8 @@ public partial class InventoryPageViewModel : ObservableObject
             return;
         }
 
-        lock (this)
+        _readerWriterLock.EnterReadLock();
+        try
         {
             var selectedItems = _inventory
                 .Select(item => item.ItemBlock)
@@ -168,10 +186,14 @@ public partial class InventoryPageViewModel : ObservableObject
             {
                 return;
             }
-
-            savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerInventorySaveData, playerInventoryData,
-                createBackup);
         }
+        finally
+        {
+            _readerWriterLock.ExitReadLock();
+        }
+
+        savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerInventorySaveData, playerInventoryData,
+            createBackup);
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Model;
@@ -11,6 +12,7 @@ namespace SOTFEdit.ViewModel;
 public class GameSetupPageViewModel : ObservableObject
 {
     private readonly Dictionary<string, GameSettingLight> _gameSettings = new();
+    private readonly ReaderWriterLockSlim _readerWriterLock = new();
 
     public GameSetupPageViewModel()
     {
@@ -79,7 +81,8 @@ public class GameSetupPageViewModel : ObservableObject
 
     private void SetModelProperty(string key, string? value)
     {
-        lock (_gameSettings)
+        _readerWriterLock.EnterWriteLock();
+        try
         {
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -90,13 +93,22 @@ public class GameSetupPageViewModel : ObservableObject
                 _gameSettings[key] = new GameSettingLight(key, value);
             }
         }
+        finally
+        {
+            _readerWriterLock.ExitWriteLock();
+        }
     }
 
     private GameSettingLight? GetModelProperty(string key)
     {
-        lock (_gameSettings)
+        _readerWriterLock.EnterReadLock();
+        try
         {
             return _gameSettings.TryGetValue(key, out var value) ? value : null;
+        }
+        finally
+        {
+            _readerWriterLock.ExitReadLock();
         }
     }
 
@@ -108,7 +120,8 @@ public class GameSetupPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChanged m)
     {
-        lock (_gameSettings)
+        _readerWriterLock.EnterWriteLock();
+        try
         {
             _gameSettings.Clear();
             foreach (var setting in m.SelectedSavegame?.SavegameStore
@@ -118,43 +131,50 @@ public class GameSetupPageViewModel : ObservableObject
             {
                 _gameSettings.Add(setting.Name, setting);
             }
-
-            //saveData?.Data.GameSetup.Settings.ForEach(setting => _gameSettings.Add(setting.Name, setting));
-
-            OnPropertyChanged(nameof(SelectedMode));
-            OnPropertyChanged(nameof(Uid));
-            OnPropertyChanged(nameof(SelectedEnemyHealth));
-            OnPropertyChanged(nameof(SelectedEnemyDamage));
-            OnPropertyChanged(nameof(SelectedEnemyArmour));
-            OnPropertyChanged(nameof(SelectedEnemyAggression));
-            OnPropertyChanged(nameof(SelectedAnimalSpawnRate));
-            OnPropertyChanged(nameof(SelectedStartingSeason));
-            OnPropertyChanged(nameof(SelectedSeasonLength));
-            OnPropertyChanged(nameof(SelectedDayLength));
         }
+        finally
+        {
+            _readerWriterLock.ExitWriteLock();
+        }
+
+        OnPropertyChanged(nameof(SelectedMode));
+        OnPropertyChanged(nameof(Uid));
+        OnPropertyChanged(nameof(SelectedEnemyHealth));
+        OnPropertyChanged(nameof(SelectedEnemyDamage));
+        OnPropertyChanged(nameof(SelectedEnemyArmour));
+        OnPropertyChanged(nameof(SelectedEnemyAggression));
+        OnPropertyChanged(nameof(SelectedAnimalSpawnRate));
+        OnPropertyChanged(nameof(SelectedStartingSeason));
+        OnPropertyChanged(nameof(SelectedSeasonLength));
+        OnPropertyChanged(nameof(SelectedDayLength));
     }
 
     public void Update(Savegame savegame, bool createBackup)
     {
-        lock (_gameSettings)
+        var saveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData);
+        if (saveData == null)
         {
-            var saveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData);
-            if (saveData == null)
-            {
-                return;
-            }
+            return;
+        }
 
+        _readerWriterLock.EnterReadLock();
+        try
+        {
             if (!GameSetupData.Merge(saveData, _gameSettings.Values))
             {
                 return;
             }
-
-            savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameSetupSaveData, saveData, createBackup);
-
-            savegame.ModifyGameState(new Dictionary<string, object>
-            {
-                { "GameType", SelectedMode ?? "" }
-            }, createBackup);
         }
+        finally
+        {
+            _readerWriterLock.ExitReadLock();
+        }
+
+        savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameSetupSaveData, saveData, createBackup);
+
+        savegame.ModifyGameState(new Dictionary<string, object>
+        {
+            { "GameType", SelectedMode ?? "" }
+        }, createBackup);
     }
 }

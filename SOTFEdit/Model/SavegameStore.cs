@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 
@@ -19,6 +20,7 @@ public class SavegameStore
     }
 
     private readonly string _path;
+    private readonly ReaderWriterLockSlim _readerWriterLock = new();
 
     public SavegameStore(string path)
     {
@@ -35,8 +37,16 @@ public class SavegameStore
 
     public T? LoadJson<T>(FileType fileType)
     {
-        var path = ResolvePath(fileType.GetFilename());
-        return !File.Exists(path) ? default : JsonConverter.DeserializeFromFile<T>(path);
+        _readerWriterLock.EnterReadLock();
+        try
+        {
+            var path = ResolvePath(fileType.GetFilename());
+            return !File.Exists(path) ? default : JsonConverter.DeserializeFromFile<T>(path);
+        }
+        finally
+        {
+            _readerWriterLock.ExitReadLock();
+        }
     }
 
     internal string ResolvePath(string fileName)
@@ -51,7 +61,8 @@ public class SavegameStore
 
     public void StoreJson(FileType fileType, object model, bool createBackup)
     {
-        lock (this)
+        _readerWriterLock.EnterWriteLock();
+        try
         {
             var fullPath = ResolvePath(fileType.GetFilename());
 
@@ -61,6 +72,10 @@ public class SavegameStore
             }
 
             JsonConverter.Serialize(fullPath, model);
+        }
+        finally
+        {
+            _readerWriterLock.ExitWriteLock();
         }
     }
 
