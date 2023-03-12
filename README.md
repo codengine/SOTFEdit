@@ -1,5 +1,7 @@
 # SOTFEdit
 
+![Screenshot](https://abload.de/img/sotfeditdrdoh.jpg)
+
 A savegame editor for "Sons of The Forest". 
 
 - [SOTFEdit](#sotfedit)
