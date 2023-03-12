@@ -7,7 +7,6 @@ using System.Threading;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
-using SOTFEdit.Model.SaveData;
 
 namespace SOTFEdit.ViewModel;
 
@@ -145,21 +144,6 @@ public class WeatherPageViewModel
 
     private static bool Merge(JToken weatherSystem, IEnumerable<GenericSetting> settings)
     {
-        var hasChanges = false;
-
-        foreach (var setting in settings)
-        {
-            var newToken = setting.GetValue() is { } value ? JToken.FromObject(value) : JValue.CreateNull();
-
-            if (weatherSystem[setting.DataPath] is not { } token || newToken.Equals(token))
-            {
-                continue;
-            }
-
-            token.Replace(newToken);
-            hasChanges = true;
-        }
-
-        return hasChanges;
+        return settings.Aggregate(false, (current, setting) => setting.MergeTo(weatherSystem) || current);
     }
 }

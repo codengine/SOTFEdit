@@ -29,6 +29,7 @@ public partial class MainViewModel : ObservableObject
     public InventoryPage InventoryPage { get; } = new();
     public ArmorPage ArmorPage { get; } = new();
     public WeatherPage WeatherPage { get; } = new();
+    public GameStatePage GameStatePage { get; } = new();
 
     public object? SelectedTab { get; set; }
 
@@ -71,6 +72,7 @@ public partial class MainViewModel : ObservableObject
             InventoryPage.Update(SelectedSavegame, createBackup);
             ArmorPage.Update(SelectedSavegame, createBackup);
             WeatherPage.Update(SelectedSavegame, createBackup);
+            GameStatePage.Update(SelectedSavegame, createBackup);
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved successfully"));
         }));
     }

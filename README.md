@@ -4,15 +4,19 @@
 
 A savegame editor for "Sons of The Forest". 
 
-- [SOTFEdit](#sotfedit)
+- [SOTFEdit - Sons of The Forest Savegame Editor](#sotfedit---sons-of-the-forest-savegame-editor)
 - [Disclaimer](#disclaimer)
 - [Features](#features)
 - [Download](#download)
+- [Requirements](#requirements)
 - [Usage](#usage)
-- [Hints](#hints)
+- [Inventory](#inventory)
+- [Armor](#armor)
+- [Weather](#weather)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [Final Words](#final-words)
+- [Links and Credits](#links-and-credits)
 
 # Disclaimer
 
@@ -23,15 +27,19 @@ This project is in no way or form associated with the developers of the game. It
 - Edit Game Setup (Game Mode, Spawn Rate etc.)
 - Edit Inventory (Add/Remove items, change quantities)
 - Edit Armor Data (Add Armor Pieces, change durability)
+- Edit Weather Data (Weather, Seasons...)
+- Edit Game State Data (Playtime,..)
 - Revive Virginia & Kelvin
 - Regrow Trees
 - Backup changed files automatically
 - ... more features are planned
 
 # Download
+
 - You can find the newest version at the [Releases page](https://github.com/codengine/SOTFEdit/releases)
 
 # Requirements
+
 - Windows 7+ (I guess...)
 - [.net 6.0+ Runtime](https://dotnet.microsoft.com/en-us/download/dotnet)
 
@@ -44,9 +52,39 @@ This project is in no way or form associated with the developers of the game. It
 
 If you use one of the "Tools" this will trigger a reload of the savegames, which will discard any pending changes. I'd recommend to use the tools after you're done with editing.
 
-# Hints
+# Inventory
 
-There is no sanity check on the values entered at the player's inventory. So something like "100" for backpack will most likely lead to undesired behaviors.
+- In order to add or remove items, just double click on the row
+- There is no sanity check on the values entered at the player's inventory. So something like "100" for backpack will most likely lead to undesired behaviors.
+
+# Armor
+
+Armor protects you from most hazards. However you are still going to drown and die from fall damage.
+
+# Weather
+
+There is one very important thing. If you only change the season, it will be reverted immediately when the game progresses.
+To fix that, you also have to adjust the played time at "Game State". It is calculated based on the length of the season. Here is an example:
+
+- Starting Season: Spring
+- Season Length: Long
+- Played Time: 31 Days
+
+The in-game season will be winter, because:
+
+- Day 0-9 = Spring
+- Day 10-19 = Summer
+- Day 20-29 = Autumn
+- Day 30-39 = Winter
+
+So if you want to change the weather to Summer, you need to adjust the playtime days to something between 10 and 19.
+
+Here is a list of number of days per season per season length setting:
+
+- Short: ???
+- Default (non-custom games): 5 days
+- Long: 10 days
+- Realistig: 90 days
 
 # Troubleshooting
 
@@ -58,6 +96,9 @@ My game does not work anymore?
 
 I get errors and the application does strange things
 - Please upload any logs to https://pastebin.com and create an issue
+
+I can not change "IsRobbyDead" or "IsVirginiaDead"
+- In order to revive both there is a special button at "Tools" that does the job
 
 # Contributing
 

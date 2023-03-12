@@ -31,6 +31,11 @@ public class GenericSettingTypeToVisibilityConverter : IValueConverter
             {
                 return Visibility.Visible;
             }
+
+            if (type == GenericSetting.DataType.ReadOnly && paramStr == "ReadOnly")
+            {
+                return Visibility.Visible;
+            }
         }
 
         return Visibility.Hidden;

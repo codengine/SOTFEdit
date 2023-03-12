@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SOTFEdit.Model;
@@ -10,6 +9,7 @@ public partial class GenericSetting
 {
     public enum DataType
     {
+        ReadOnly,
         String,
         Boolean,
         Integer,
@@ -21,12 +21,12 @@ public partial class GenericSetting
     public DataType Type { get; }
 
     [ObservableProperty] private string? _stringValue;
-    [ObservableProperty] private int? _intValue;
+    [ObservableProperty] private int? _intValue = 0;
     [ObservableProperty] private bool? _boolValue;
 
     public Dictionary<object, string> PossibleValues { get; init; } = new();
     public int MinInt { get; init; } = 0;
-    public int MaxInt { get; init; } = 0;
+    public int MaxInt { get; init; } = 1;
 
     [ObservableProperty] private object? _selectedItem;
 
@@ -41,6 +41,7 @@ public partial class GenericSetting
     {
         return Type switch
         {
+            DataType.ReadOnly => StringValue,
             DataType.String => StringValue,
             DataType.Boolean => BoolValue,
             DataType.Integer => IntValue,
