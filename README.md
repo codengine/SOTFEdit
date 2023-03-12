@@ -1,6 +1,6 @@
 # SOTFEdit - Sons of The Forest Savegame Editor
 
-![Screenshot](https://abload.de/img/sotfeditdrdoh.jpg)
+![Screenshot](https://abload.de/img/sotfedit_newdjivv.jpg)
 
 A savegame editor for "Sons of The Forest". 
 
