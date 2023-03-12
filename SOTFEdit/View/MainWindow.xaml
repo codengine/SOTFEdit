@@ -35,7 +35,7 @@
                             <iconPacks:PackIconMaterialDesign Kind="Refresh" />
                         </Button>
                         <Button DockPanel.Dock="Right" Margin="5 5" Foreground="Orange"
-                                ToolTip="Refresh all savegames, discarding changes" Cursor="Hand"
+                                ToolTip="Select the savegame directory" Cursor="Hand"
                                 Command="{Binding Path=Data.SelectSavegameDirCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
                             <iconPacks:PackIconMaterialDesign Kind="FolderOpen" />
                         </Button>
