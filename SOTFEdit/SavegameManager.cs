@@ -42,22 +42,6 @@ public class SavegameManager : ObservableObject
             : GetSavegamePathFromAppData();
         Logger.Info($"Detected savegame path: {savesPath}");
 
-        if (!Directory.Exists(savesPath))
-        {
-            var folderBrowser = new FolderPicker
-            {
-                Title = "Select Sons of the Forest \"Saves\" Directory"
-            };
-
-            if (folderBrowser.ShowDialog() == true)
-            {
-                savesPath = folderBrowser.ResultPath;
-            }
-        }
-
-        Settings.Default.SavegamePath = savesPath;
-        Settings.Default.Save();
-
         _readerWriterLockSlim.EnterWriteLock();
         try
         {
@@ -77,11 +61,26 @@ public class SavegameManager : ObservableObject
 
     private static Dictionary<string, Savegame> FindSaveGames(string savesPath)
     {
-        var fileInfos = new DirectoryInfo(savesPath).GetFiles("SaveData.json", SearchOption.AllDirectories);
-        return fileInfos.Select(file => CreateSaveInfo(file.Directory))
-            .Where(savegame => savegame != null)
-            .Select(savegame => savegame!)
-            .ToDictionary(savegame => savegame.Title, savegame => savegame);
+        Logger.Info($"Reading savegames from {savesPath}");
+        if (!Directory.Exists(savesPath))
+        {
+            return new Dictionary<string, Savegame>();
+        }
+
+        try
+        {
+            var fileInfos = new DirectoryInfo(savesPath).GetFiles("SaveData.json", SearchOption.AllDirectories);
+            return fileInfos.Select(file => CreateSaveInfo(file.Directory))
+                .Where(savegame => savegame != null)
+                .Select(savegame => savegame!)
+                .ToDictionary(savegame => savegame.Title, savegame => savegame);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error($"Unable to read savegames from {savesPath}", ex);
+        }
+
+        return new Dictionary<string, Savegame>();
     }
 
     private static Savegame? CreateSaveInfo(DirectoryInfo? directory)

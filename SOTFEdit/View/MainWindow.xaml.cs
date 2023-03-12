@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.ViewModel;
 
@@ -33,6 +35,31 @@ public partial class MainWindow
             (_, message) => { OnRequestReviveFollowersEvent(message); });
         WeakReferenceMessenger.Default.Register<RequestSaveChangesEvent>(this,
             (_, message) => { OnRequestSaveChanges(message); });
+        WeakReferenceMessenger.Default.Register<SelectSavegameDirEvent>(this,
+            (_, message) => { OnSelectSavegameDir(); });
+    }
+
+    private static void OnSelectSavegameDir()
+    {
+        var folderBrowser = new FolderPicker
+        {
+            Title = "Select Sons of the Forest \"Saves\" Directory"
+        };
+
+        if (folderBrowser.ShowDialog() != true)
+        {
+            return;
+        }
+
+        var savesPath = folderBrowser.ResultPath;
+        if (string.IsNullOrWhiteSpace(savesPath) || !Directory.Exists(savesPath))
+        {
+            return;
+        }
+
+        Settings.Default.SavegamePath = savesPath;
+        Settings.Default.Save();
+        Ioc.Default.GetRequiredService<SavegameManager>().LoadSavegames();
     }
 
     private static void OnRequestSaveChanges(RequestSaveChangesEvent message)

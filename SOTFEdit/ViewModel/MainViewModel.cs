@@ -49,6 +49,12 @@ public partial class MainViewModel : ObservableObject
         SavegameManager.LoadSavegames();
     }
 
+    [RelayCommand]
+    public void SelectSavegameDir()
+    {
+        WeakReferenceMessenger.Default.Send(new SelectSavegameDirEvent());
+    }
+
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     public void SaveChanges()
     {

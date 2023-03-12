@@ -28,10 +28,16 @@
                                 Command="{Binding Path=Data.SaveChangesCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
                             <iconPacks:PackIconMaterialDesign Kind="Save" Foreground="GreenYellow" />
                         </Button>
+
                         <Button DockPanel.Dock="Right" Margin="5 5" Foreground="Red"
                                 ToolTip="Refresh all savegames, discarding changes" Cursor="Hand"
                                 Command="{Binding Path=Data.ReloadSavegamesCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
                             <iconPacks:PackIconMaterialDesign Kind="Refresh" />
+                        </Button>
+                        <Button DockPanel.Dock="Right" Margin="5 5" Foreground="Orange"
+                                ToolTip="Refresh all savegames, discarding changes" Cursor="Hand"
+                                Command="{Binding Path=Data.SelectSavegameDirCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
+                            <iconPacks:PackIconMaterialDesign Kind="FolderOpen" />
                         </Button>
                         <CheckBox DockPanel.Dock="Right"
                                   ToolTip="When selected, will create a backup of each changed file"
