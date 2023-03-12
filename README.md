@@ -31,6 +31,10 @@ This project is in no way or form associated with the developers of the game. It
 # Download
 - You can find the newest version at the [Releases page](https://github.com/codengine/SOTFEdit/releases)
 
+# Requirements
+- Windows 7+ (I guess...)
+- [.net 6.0+ Runtime] https://dotnet.microsoft.com/en-us/download/dotnet
+
 # Usage
 
 - Start the application using SOTFEdit.exe
