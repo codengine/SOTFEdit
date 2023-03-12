@@ -54,8 +54,13 @@ public partial class InventoryPageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void RemoveItemFromInventory(InventoryItem inventoryItem)
+    public void RemoveItemFromInventory(InventoryItem? inventoryItem)
     {
+        if (inventoryItem == null)
+        {
+            return;
+        }
+
         _readerWriterLock.EnterWriteLock();
         try
         {
@@ -69,8 +74,13 @@ public partial class InventoryPageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void AddUnassignedItem(InventoryItem inventoryItem)
+    public void AddUnassignedItem(InventoryItem? inventoryItem)
     {
+        if (inventoryItem == null)
+        {
+            return;
+        }
+
         _readerWriterLock.EnterWriteLock();
         try
         {
@@ -148,7 +158,7 @@ public partial class InventoryPageViewModel : ObservableObject
 
             foreach (var item in _itemList)
             {
-                if (!assignedItems.Contains(item.Key))
+                if (!assignedItems.Contains(item.Key) && item.Value.IsInventoryItem)
                 {
                     _unassignedItems.Add(BuildUnassignedItem(item.Value));
                 }
