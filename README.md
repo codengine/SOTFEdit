@@ -33,7 +33,7 @@ This project is in no way or form associated with the developers of the game. It
 
 # Requirements
 - Windows 7+ (I guess...)
-- [.net 6.0+ Runtime] https://dotnet.microsoft.com/en-us/download/dotnet
+- [.net 6.0+ Runtime](https://dotnet.microsoft.com/en-us/download/dotnet)
 
 # Usage
 
