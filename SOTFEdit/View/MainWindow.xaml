@@ -48,7 +48,7 @@
                 </DataTemplate>
             </GroupBox.HeaderTemplate>
             <ListView HorizontalAlignment="Center" ItemsSource="{Binding SavegameManager.Savegames}"
-                      SelectedItem="{Binding SelectedSavegame, Mode=TwoWay}">
+                      SelectedItem="{Binding SelectedSavegame, Mode=TwoWay}" MinHeight="160">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="10">
