@@ -27,7 +27,7 @@ This project is in no way or form associated with the developers of the game. It
 - ... more features are planned
 
 # Download
-- You can find the newest version at the Releases page
+- You can find the newest version at the [Releases page](https://github.com/codengine/SOTFEdit/releases)
 
 # Usage
 
