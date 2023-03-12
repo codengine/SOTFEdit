@@ -90,7 +90,10 @@ public class SavegameStore
 
     public string GetThumbPath()
     {
-        return ResolvePath(FileType.SaveDataThumbnail.GetFilename());
+        var thumbPath = ResolvePath(FileType.SaveDataThumbnail.GetFilename());
+        return File.Exists(thumbPath)
+            ? thumbPath
+            : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "default_screenshot.png");
     }
 
     public void Delete(FileType fileType)
@@ -114,6 +117,11 @@ public class SavegameStore
 
         var targetPath = GetFilenameForBackup(path);
         File.Move(path, targetPath);
+    }
+
+    public bool IsMultiplayer()
+    {
+        return !(new DirectoryInfo(_path).Parent?.Name.Equals("SinglePlayer") ?? false);
     }
 }
 

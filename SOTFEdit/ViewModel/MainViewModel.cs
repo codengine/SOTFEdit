@@ -33,7 +33,7 @@ public partial class MainViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
-            (_, _) => { SavegameManager.Reload(); });
+            (_, _) => { SavegameManager.LoadSavegames(); });
     }
 
     partial void OnBackupFilesChanged(bool value)
@@ -46,7 +46,7 @@ public partial class MainViewModel : ObservableObject
     public void ReloadSavegames()
     {
         SelectedSavegame = null;
-        SavegameManager.Reload();
+        SavegameManager.LoadSavegames();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]

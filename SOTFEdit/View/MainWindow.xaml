@@ -53,14 +53,19 @@
                                     <Setter Property="HorizontalAlignment" Value="Center" />
                                 </Style>
                             </StackPanel.Resources>
-                            <TextBlock Text="{Binding Id, Mode=OneWay}" />
-                            <Image>
-                                <Image.Source>
-                                    <BitmapImage UriSource="{Binding ThumbPath, Mode=OneWay}" DecodePixelHeight="160"
-                                                 DecodePixelWidth="256" CacheOption="OnLoad"
-                                                 CreateOptions="IgnoreImageCache" />
-                                </Image.Source>
-                            </Image>
+                            <TextBlock Text="{Binding Title, Mode=OneWay}" />
+                            <Viewbox>
+                                <Border BorderThickness="2" BorderBrush="#0b0b0b" Margin="0 5">
+                                    <Image Width="256" Height="160">
+                                        <Image.Source>
+                                            <BitmapImage UriSource="{Binding ThumbPath, Mode=OneWay}" DecodePixelHeight="160"
+                                                         DecodePixelWidth="256" CacheOption="OnLoad"
+                                                         CreateOptions="IgnoreImageCache">
+                                            </BitmapImage>
+                                        </Image.Source>
+                                    </Image>
+                                </Border>
+                            </Viewbox>
                             <TextBlock Text="{Binding SavegameStore.LastWriteTime, Mode=OneWay}"
                                        ToolTip="Last write time of the savegame directory" />
                         </StackPanel>

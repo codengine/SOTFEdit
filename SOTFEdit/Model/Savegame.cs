@@ -8,17 +8,21 @@ namespace SOTFEdit.Model;
 
 public class Savegame
 {
+    private readonly string _id;
+
     public Savegame(string id, SavegameStore savegameStore)
     {
         SavegameStore = savegameStore;
-        Id = id;
+        _id = id;
     }
 
     public SavegameStore SavegameStore { get; }
 
-    public string Id { get; }
+    public string Title => _id + (IsMultiplayer ? " (MP)" : " (SP)");
 
     public string ThumbPath => SavegameStore.GetThumbPath();
+
+    public bool IsMultiplayer => SavegameStore.IsMultiplayer();
 
     public void RegrowTrees(bool createBackup)
     {
