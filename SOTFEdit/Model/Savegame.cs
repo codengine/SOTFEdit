@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
@@ -72,21 +73,17 @@ public class Savegame
                 continue;
             }
 
-            var stateToken = actor["State"];
-            if (stateToken != null && stateToken.ToObject<int>() != StateAlive)
-            {
-                stateToken.Replace(StateAlive);
-                hasChanges = true;
-            }
+            hasChanges = CompareAndModify(actor["State"], StateAlive);
 
-            var healthToken = actor.SelectToken("Stats.Health");
-            if (healthToken == null || !(healthToken.ToObject<float>() < FullHealth))
+            var stats = actor["Stats"];
+            if (stats == null)
             {
                 continue;
             }
 
-            healthToken.Replace(FullHealth);
-            hasChanges = true;
+            hasChanges = CompareAndModify(stats["Health"], f => f < FullHealth, FullHealth) || hasChanges;
+            hasChanges = CompareAndModify(stats["Fear"], f => f > NoFear, NoFear) || hasChanges;
+            hasChanges = CompareAndModify(stats["Anger"], f => f > NoAnger, NoAnger) || hasChanges;
         }
 
         if (!hasChanges)
@@ -97,6 +94,40 @@ public class Savegame
         vailWorldSimToken.Replace(JsonConverter.Serialize(vailWorldSim));
         SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveData, createBackup);
 
+        return true;
+    }
+
+    private static bool CompareAndModify(JToken? token, Func<float, bool> comparator, float newValue)
+    {
+        if (token == null)
+        {
+            return false;
+        }
+
+        var oldValue = token.ToObject<float>();
+        if (!comparator.Invoke(oldValue))
+        {
+            return false;
+        }
+
+        token.Replace(newValue);
+        return true;
+    }
+
+    private static bool CompareAndModify(JToken? token, int expectedValue)
+    {
+        if (token == null)
+        {
+            return false;
+        }
+
+        var oldValue = token.ToObject<int>();
+        if (oldValue == expectedValue)
+        {
+            return false;
+        }
+
+        token.Replace(expectedValue);
         return true;
     }
 

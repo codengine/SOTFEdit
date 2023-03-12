@@ -8,5 +8,7 @@ public static class Constants
         public const int VirginiaTypeId = 10;
         public const int StateAlive = 2;
         public const float FullHealth = 100.0f;
+        public const float NoAnger = 0.0f;
+        public const float NoFear = 0.0f;
     }
 }
