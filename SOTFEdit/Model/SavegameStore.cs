@@ -16,7 +16,8 @@ public class SavegameStore
         PlayerArmourSystemSaveData,
         SaveData,
         GameStateSaveData,
-        WorldObjectLocatorManagerSaveData
+        WorldObjectLocatorManagerSaveData,
+        WeatherSystemSaveData
     }
 
     private readonly string _path;

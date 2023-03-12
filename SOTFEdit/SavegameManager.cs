@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NLog;
-using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 
 namespace SOTFEdit;
@@ -69,7 +68,8 @@ public class SavegameManager : ObservableObject
 
         try
         {
-            var fileInfos = new DirectoryInfo(savesPath).GetFiles("SaveData.json", SearchOption.AllDirectories);
+            var fileInfos =
+                new DirectoryInfo(savesPath).GetFiles("GameStateSaveData.json", SearchOption.AllDirectories);
             return fileInfos.Select(file => CreateSaveInfo(file.Directory))
                 .Where(savegame => savegame != null)
                 .Select(savegame => savegame!)

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SOTFEdit.Model;
+namespace SOTFEdit.Model.Events;
 
 public class RequestSaveChangesEvent
 {

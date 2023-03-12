@@ -4,6 +4,7 @@ using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData;
 using static SOTFEdit.Model.SaveData.GameSetup;
 
@@ -114,11 +115,11 @@ public class GameSetupPageViewModel : ObservableObject
 
     private void SetupListeners()
     {
-        WeakReferenceMessenger.Default.Register<SelectedSavegameChanged>(this,
+        WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
             (_, m) => { OnSelectedSavegameChanged(m); });
     }
 
-    private void OnSelectedSavegameChanged(SelectedSavegameChanged m)
+    private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
         _readerWriterLock.EnterWriteLock();
         try

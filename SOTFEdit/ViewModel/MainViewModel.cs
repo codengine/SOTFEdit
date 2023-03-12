@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 using SOTFEdit.View;
 
 namespace SOTFEdit.ViewModel;
@@ -27,6 +28,7 @@ public partial class MainViewModel : ObservableObject
     public GameSetupPage GameSetupPage { get; } = new();
     public InventoryPage InventoryPage { get; } = new();
     public ArmorPage ArmorPage { get; } = new();
+    public WeatherPage WeatherPage { get; } = new();
 
     public object? SelectedTab { get; set; }
 
@@ -68,6 +70,7 @@ public partial class MainViewModel : ObservableObject
             GameSetupPage.Update(SelectedSavegame, createBackup);
             InventoryPage.Update(SelectedSavegame, createBackup);
             ArmorPage.Update(SelectedSavegame, createBackup);
+            WeatherPage.Update(SelectedSavegame, createBackup);
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved successfully"));
         }));
     }
@@ -79,7 +82,7 @@ public partial class MainViewModel : ObservableObject
 
     partial void OnSelectedSavegameChanged(Savegame? value)
     {
-        WeakReferenceMessenger.Default.Send(new SelectedSavegameChanged(value));
+        WeakReferenceMessenger.Default.Send(new SelectedSavegameChangedEvent(value));
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
@@ -103,14 +106,4 @@ public partial class MainViewModel : ObservableObject
 
         WeakReferenceMessenger.Default.Send(new RequestReviveFollowersEvent(SelectedSavegame, BackupFiles));
     }
-}
-
-public class SelectedSavegameChanged
-{
-    public SelectedSavegameChanged(Savegame? selectedSavegame)
-    {
-        SelectedSavegame = selectedSavegame;
-    }
-
-    public Savegame? SelectedSavegame { get; }
 }

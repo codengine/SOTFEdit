@@ -43,6 +43,7 @@ public partial class App
         services.AddTransient<MainViewModel>();
         services.AddSingleton<GameSetupPageViewModel>();
         services.AddSingleton<InventoryPageViewModel>();
+        services.AddSingleton<WeatherPageViewModel>();
         services.AddSingleton(_ => BuildItemListInstance());
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }

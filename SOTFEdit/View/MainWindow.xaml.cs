@@ -5,7 +5,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
-using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
@@ -22,7 +22,8 @@ public partial class MainWindow
         InitializeComponent();
 
         var assemblyName = Assembly.GetExecutingAssembly().GetName();
-        Title = $"{assemblyName.Name} v{assemblyName.Version?.Major}.{assemblyName.Version?.Minor}";
+        Title =
+            $"{assemblyName.Name} v{assemblyName.Version?.Major}.{assemblyName.Version?.Minor}.{assemblyName.Version?.Build}";
     }
 
     private void SetupListeners()

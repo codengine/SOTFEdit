@@ -88,6 +88,7 @@
             <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Armor" Content="{Binding ArmorPage, Mode=OneTime}" />
+            <TabItem Foreground="White" Header="Weather" Content="{Binding WeatherPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Tools">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <StackPanel.Resources>

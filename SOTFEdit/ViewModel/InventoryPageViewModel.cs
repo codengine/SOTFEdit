@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData;
 
 namespace SOTFEdit.ViewModel;
@@ -126,11 +127,11 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private void SetupListeners()
     {
-        WeakReferenceMessenger.Default.Register<SelectedSavegameChanged>(this,
+        WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
             (_, m) => { OnSelectedSavegameChanged(m); });
     }
 
-    private void OnSelectedSavegameChanged(SelectedSavegameChanged m)
+    private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
         _readerWriterLock.EnterWriteLock();
         try
