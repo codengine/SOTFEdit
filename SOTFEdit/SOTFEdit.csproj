@@ -7,20 +7,20 @@
     <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationIcon>icons8-kleine-axt-doodle-96.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="icons8-kleine-axt-doodle-96.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-    <PackageReference Include="Costura.Fody" Version="5.7.0">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Fody" Version="6.6.4">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLog" Version="5.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +34,9 @@
   <ItemGroup>
     <None Update="items.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

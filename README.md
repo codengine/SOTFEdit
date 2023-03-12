@@ -63,3 +63,7 @@ Feel free to report any unknown items or any feature requests. PRs are also welc
 # Final Words
 
 Big thanks to [Gronkh](https://gronkh.tv) for your many years of "Influenz". Especially without your "The Forest" streams I would have never known anything about that game.
+
+# Links and Credits
+
+- [Kleine Axt icon by Icons8](https://icons8.com/icon/81685/kleine-axt)
