@@ -1,4 +1,4 @@
-# SOTFEdit
+# SOTFEdit - Sons of The Forest Savegame Editor
 
 ![Screenshot](https://abload.de/img/sotfeditdrdoh.jpg)
 
@@ -38,7 +38,7 @@ This project is in no way or form associated with the developers of the game. It
 # Usage
 
 - Start the application using SOTFEdit.exe
-- You will get a prompt if the application could not identify your savegame directory, else it will be selected automatically
+- It should autodetect your savegame location. If it doesn't, you can click the orange "folder" button at the savegame chooser to select the savegame folder, which is usually at "C:\Users\[YourUser]\AppData\LocalLow\Endnight\SonsOfTheForest\Saves"
 - You'll get a list of all savegames, ordered by the last write time
 - Do some changes and save them using the button at the top right
 
@@ -46,7 +46,7 @@ If you use one of the "Tools" this will trigger a reload of the savegames, which
 
 # Hints
 
-- There is no sanity check on the values entered at the player's inventory. So something like "100" for backpack will most likely lead to undesired behaviors.
+There is no sanity check on the values entered at the player's inventory. So something like "100" for backpack will most likely lead to undesired behaviors.
 
 # Troubleshooting
 
@@ -55,6 +55,9 @@ One of the items in inventory is listed as "Unknown"?
 
 My game does not work anymore?
 - If you have selected to create backups before saving, you can just delete the old files and restore the files that are suffixed with ".bak*".
+
+I get errors and the application does strange things
+- Please upload any logs to https://pastebin.com and create an issue
 
 # Contributing
 
