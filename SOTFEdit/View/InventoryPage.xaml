@@ -17,6 +17,14 @@
         </Grid.ColumnDefinitions>
         <GroupBox Header="Items in Inventory" Margin="0 0 5 0">
             <DockPanel Margin="10">
+                <DockPanel.Resources>
+                    <DataTemplate x:Key="DataTemplate">
+                        <mah:NumericUpDown Minimum="0"
+                                           Maximum="65535"
+                                           Interval="100"
+                                           Value="{Binding}" />
+                    </DataTemplate>
+                </DockPanel.Resources>
                 <TextBox
                     Margin="0,0,0,10"
                     DockPanel.Dock="Top"
@@ -32,13 +40,7 @@
                         <DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" Header="Name" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding NameDe, Mode=OneWay}" Header="Name (De)" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Type, Mode=OneWay}" Header="Type" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding TotalCount, Mode=TwoWay}" Header="Count">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
+                        <mah:DataGridNumericUpDownColumn Binding="{Binding TotalCount, Mode=TwoWay}" Header="Count" Minimum="0" Maximum="65535" />
                     </DataGrid.Columns>
                     <DataGrid.InputBindings>
                         <MouseBinding MouseAction="LeftDoubleClick"

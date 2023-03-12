@@ -25,14 +25,7 @@
                         <DataGridTextColumn Binding="{Binding Id, Mode=OneWay}" Header="ID" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" Header="Name" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding NameDe, Mode=OneWay}" Header="Name (De)" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding RemainingArmourpoints, Mode=TwoWay}"
-                                            Header="Remaining Durability">
-                            <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </DataGridTextColumn>
+                        <mah:DataGridNumericUpDownColumn Binding="{Binding ArmourPiece.RemainingArmourpoints, Mode=TwoWay}" Header="Durability" Minimum="0.1" Maximum="65535" />
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
