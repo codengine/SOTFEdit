@@ -6,4 +6,5 @@ public record Item
     public string Name { get; init; }
     public string? NameDe { get; init; }
     public string Type { get; init; }
+    public bool IsInventoryItem { get; init; } = true;
 }
