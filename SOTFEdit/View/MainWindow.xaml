@@ -1,0 +1,93 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 mc:Ignorable="d"
+                 Title="Sons of the Forest Savegame Editor" Height="800" Width="1200"
+                 Style="{DynamicResource MyStyle}"
+                 d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
+                 WindowTransitionsEnabled="False">
+    <DockPanel Margin="15">
+        <DockPanel.Resources>
+            <infrastructure:BindingProxy x:Key="DataSourceProxy" Data="{Binding}" />
+        </DockPanel.Resources>
+        <GroupBox Header="Savegames" DockPanel.Dock="Top">
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <DataTemplate.Resources>
+
+                    </DataTemplate.Resources>
+                    <DockPanel LastChildFill="False">
+                        <TextBlock DockPanel.Dock="Left" Text="{Binding}" VerticalAlignment="Center" />
+                        <Button DockPanel.Dock="Right" Margin="5 5" ToolTip="Save all pending changes" Cursor="Hand"
+                                Command="{Binding Path=Data.SaveChangesCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
+                            <iconPacks:PackIconMaterialDesign Kind="Save" Foreground="GreenYellow" />
+                        </Button>
+                        <Button DockPanel.Dock="Right" Margin="5 5" Foreground="Red"
+                                ToolTip="Refresh all savegames, discarding changes" Cursor="Hand"
+                                Command="{Binding Path=Data.ReloadSavegamesCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
+                            <iconPacks:PackIconMaterialDesign Kind="Refresh" />
+                        </Button>
+                        <CheckBox DockPanel.Dock="Right"
+                                  ToolTip="When selected, will create a backup of each changed file"
+                                  IsChecked="{Binding Path=Data.BackupFiles, Source={StaticResource DataSourceProxy}, Mode=TwoWay}">
+                            Backup Files
+                        </CheckBox>
+                    </DockPanel>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+            <ListView HorizontalAlignment="Center" ItemsSource="{Binding SavegameManager.Savegames}"
+                      SelectedItem="{Binding SelectedSavegame, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="Cyan" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock Text="{Binding Id, Mode=OneWay}" />
+                            <Image>
+                                <Image.Source>
+                                    <BitmapImage UriSource="{Binding ThumbPath, Mode=OneWay}" DecodePixelHeight="160"
+                                                 DecodePixelWidth="256" CacheOption="OnLoad"
+                                                 CreateOptions="IgnoreImageCache" />
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Text="{Binding SavegameStore.LastWriteTime, Mode=OneWay}"
+                                       ToolTip="Last write time of the savegame directory" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Background="Black" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </GroupBox>
+        <TabControl DockPanel.Dock="Top" SelectedItem="{Binding SelectedTab, Mode=TwoWay}">
+            <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage, Mode=OneTime}" />
+            <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage, Mode=OneTime}" />
+            <TabItem Foreground="White" Header="Armor" Content="{Binding ArmorPage, Mode=OneTime}" />
+            <TabItem Foreground="White" Header="Tools">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button}">
+                            <Setter Property="Margin" Value="0,10,0,0" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Padding="20" Command="{Binding RegrowTreesCommand, Mode=OneTime}">Regrow Trees</Button>
+                    <Button Padding="20" Command="{Binding ReviveFollowersCommand, Mode=OneTime}">Revive Virginia and Kelvin</Button>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</mah:MetroWindow>
