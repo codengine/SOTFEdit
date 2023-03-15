@@ -41,9 +41,9 @@ public partial class MainViewModel : ObservableObject
 
     public bool VegetationStateIsAllSelected
     {
-        get => _vegetationStateSelected.HasFlag(VegetationState.Gone) &&
-               _vegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
-               _vegetationStateSelected.HasFlag(VegetationState.Stumps);
+        get => VegetationStateSelected.HasFlag(VegetationState.Gone) &&
+               VegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
+               VegetationStateSelected.HasFlag(VegetationState.Stumps);
         set
         {
             var vegetationState = value == false
@@ -115,7 +115,7 @@ public partial class MainViewModel : ObservableObject
 
     private bool CanRegrowTrees()
     {
-        return CanSaveChanges() && _vegetationStateSelected != VegetationState.None;
+        return CanSaveChanges() && VegetationStateSelected != VegetationState.None;
     }
 
     [RelayCommand(CanExecute = nameof(CanRegrowTrees))]
