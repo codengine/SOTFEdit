@@ -6,12 +6,12 @@ public class SavegameStoredEvent
     {
     }
 
-    public SavegameStoredEvent(string message, bool reloadSavegames)
+    public SavegameStoredEvent(string message, bool reloadSavegame)
     {
         Message = message;
-        ReloadSavegames = reloadSavegames;
+        ReloadSavegame = reloadSavegame;
     }
 
     public string Message { get; }
-    public bool ReloadSavegames { get; }
+    public bool ReloadSavegame { get; }
 }

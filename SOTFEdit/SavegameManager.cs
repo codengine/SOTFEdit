@@ -34,6 +34,31 @@ public class SavegameManager : ObservableObject
         }
     }
 
+    public Savegame? ReloadSavegame(Savegame savegame)
+    {
+        var savesPath = !string.IsNullOrWhiteSpace(Settings.Default.SavegamePath)
+            ? Settings.Default.SavegamePath
+            : GetSavegamePathFromAppData();
+        Logger.Info($"Detected savegame path: {savesPath}");
+
+        _readerWriterLockSlim.EnterWriteLock();
+        try
+        {
+            if (FindSaveGames(savesPath).TryGetValue(savegame.Title, out var foundSavegame))
+            {
+                _savegames[savegame.Title] = foundSavegame;
+                return foundSavegame;
+            }
+        }
+        finally
+        {
+            _readerWriterLockSlim.ExitWriteLock();
+            OnPropertyChanged(nameof(Savegames));
+        }
+
+        return null;
+    }
+
     public void LoadSavegames()
     {
         var savesPath = !string.IsNullOrWhiteSpace(Settings.Default.SavegamePath)
@@ -58,7 +83,7 @@ public class SavegameManager : ObservableObject
         OnPropertyChanged(nameof(Savegames));
     }
 
-    private static Dictionary<string, Savegame> FindSaveGames(string savesPath)
+    private static Dictionary<string, Savegame> FindSaveGames(string savesPath, string? titleFilter = null)
     {
         Logger.Info($"Reading savegames from {savesPath}");
         if (!Directory.Exists(savesPath))
@@ -73,6 +98,7 @@ public class SavegameManager : ObservableObject
             return fileInfos.Select(file => CreateSaveInfo(file.Directory))
                 .Where(savegame => savegame != null)
                 .Select(savegame => savegame!)
+                .Where(savegame => titleFilter == null || titleFilter == savegame.Title)
                 .ToDictionary(savegame => savegame.Title, savegame => savegame);
         }
         catch (Exception ex)

@@ -58,7 +58,17 @@ public partial class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
             (_, message) =>
             {
-                if (message.ReloadSavegames)
+                if (!message.ReloadSavegame)
+                {
+                    return;
+                }
+
+                if (SelectedSavegame != null)
+                {
+                    var replacementSavegame = SavegameManager.ReloadSavegame(SelectedSavegame);
+                    SelectedSavegame = replacementSavegame;
+                }
+                else
                 {
                     SavegameManager.LoadSavegames();
                 }
