@@ -84,8 +84,12 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(message.SelectedSavegame, message.BackupFiles,
             createBackup =>
             {
-                message.SelectedSavegame.RegrowTrees(createBackup);
-                WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Trees should now have regrown"));
+                var countRegrown = message.SelectedSavegame.RegrowTrees(createBackup, message.VegetationStateSelected);
+                var resultMessage =
+                    countRegrown == 0
+                        ? $"No trees to regrow found with state \"{message.VegetationStateSelected}\""
+                        : $"{countRegrown} trees with previous state \"{message.VegetationStateSelected}\" should now have regrown";
+                WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(resultMessage, countRegrown > 0));
             }));
     }
 
@@ -94,11 +98,12 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(message.SelectedSavegame, message.BackupFiles,
             createBackup =>
             {
-                WeakReferenceMessenger.Default.Send(
-                    message.SelectedSavegame.ReviveFollowers(createBackup)
-                        ? new SavegameStoredEvent("Virginia and Kelvin should now be back again")
-                        : new SavegameStoredEvent("Virginia and Kelvin should be alive already")
-                );
+                var hasChanges = message.SelectedSavegame.ReviveFollowers(createBackup);
+
+                var resultMessage = hasChanges
+                    ? "Virginia and Kelvin should now be back again"
+                    : "Virginia and Kelvin should be alive already";
+                WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(resultMessage, hasChanges));
             }));
     }
 

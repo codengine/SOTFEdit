@@ -4,6 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:model="clr-namespace:SOTFEdit.Model"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
@@ -91,15 +92,39 @@
             <TabItem Foreground="White" Header="Weather" Content="{Binding WeatherPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Game State" Content="{Binding GameStatePage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Tools">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <StackPanel.Resources>
-                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button}">
-                            <Setter Property="Margin" Value="0,10,0,0" />
-                        </Style>
-                    </StackPanel.Resources>
-                    <Button Padding="20" Command="{Binding RegrowTreesCommand, Mode=OneTime}">Regrow Trees</Button>
-                    <Button Padding="20" Command="{Binding ReviveFollowersCommand, Mode=OneTime}">Revive Virginia and Kelvin</Button>
-                </StackPanel>
+                <Grid HorizontalAlignment="Center" Margin="0 20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Regrow Trees" Grid.Row="0" Margin="0 0 0 20" Padding="20">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <StackPanel.Resources>
+                                <infrastructure:VegetationStateToBooleanConverter x:Key="VegetationStateToBooleanConverter" />
+                                <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MahApps.Styles.CheckBox}">
+                                    <Setter Property="Margin" Value="0 0 10 0" /> 
+                                </Style>
+                            </StackPanel.Resources>
+                            <CheckBox IsChecked="{Binding VegetationStateIsAllSelected}" VerticalAlignment="Center" VerticalContentAlignment="Center">All</CheckBox>
+                            <CheckBox Content="Gone" IsChecked="{Binding 
+                                Path=VegetationStateSelected,
+                                Converter={StaticResource VegetationStateToBooleanConverter},
+                                ConverterParameter={x:Static model:VegetationState.Gone}}" />
+                            <CheckBox Content="HalfChopped" IsChecked="{Binding 
+                                Path=VegetationStateSelected,
+                                Converter={StaticResource VegetationStateToBooleanConverter},
+                                ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
+                            <CheckBox Content="Stumps" IsChecked="{Binding 
+                                Path=VegetationStateSelected,
+                                Converter={StaticResource VegetationStateToBooleanConverter},
+                                ConverterParameter={x:Static model:VegetationState.Stumps}}" />
+                            <Button Command="{Binding RegrowTreesCommand, Mode=OneTime}" Padding="10" FontSize="14">Regrow Trees</Button>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Header="Other" Padding="20">
+                        <Button Padding="20" Command="{Binding ReviveFollowersCommand, Mode=OneTime}" FontSize="14">Revive Virginia and Kelvin</Button>
+                    </GroupBox>
+                </Grid>
             </TabItem>
         </TabControl>
     </DockPanel>

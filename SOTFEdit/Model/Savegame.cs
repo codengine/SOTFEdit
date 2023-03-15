@@ -25,16 +25,57 @@ public class Savegame
 
     public bool IsMultiplayer => SavegameStore.IsMultiplayer();
 
-    public void RegrowTrees(bool createBackup)
+    public long RegrowTrees(bool createBackup, VegetationState vegetationStateSelected)
     {
-        if (createBackup)
+        if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldObjectLocatorManagerSaveData) is not JObject
+            objectLocatorSaveData)
         {
-            SavegameStore.MoveToBackup(SavegameStore.FileType.WorldObjectLocatorManagerSaveData);
+            return 0;
         }
-        else
+
+        var countRegrown = 0;
+
+        var worldObjectLocatorManagerToken = objectLocatorSaveData.SelectToken("Data.WorldObjectLocatorManager");
+        if (worldObjectLocatorManagerToken?.ToObject<string>() is not { } worldObjectLocatorManagerJson ||
+            JsonConverter.DeserializeRaw(worldObjectLocatorManagerJson) is not JObject worldObjectLocatorManager)
         {
-            SavegameStore.Delete(SavegameStore.FileType.WorldObjectLocatorManagerSaveData);
+            return 0;
         }
+
+        var serializedStates = worldObjectLocatorManager["SerializedStates"]?.ToList() ?? Enumerable.Empty<JToken>();
+
+        foreach (var serializedState in serializedStates)
+        {
+            var valueToken = serializedState["Value"];
+            var value = valueToken?.ToObject<short>();
+            if (value == null)
+            {
+                continue;
+            }
+
+            var shiftedValue = (short)(1 << (value - 1));
+
+            if (!Enum.IsDefined(typeof(VegetationState), shiftedValue) ||
+                !vegetationStateSelected.HasFlag((VegetationState)shiftedValue))
+            {
+                continue;
+            }
+
+            serializedState.Remove();
+            countRegrown++;
+        }
+
+        if (countRegrown == 0)
+        {
+            return 0;
+        }
+
+        worldObjectLocatorManagerToken.Replace(JsonConverter.Serialize(worldObjectLocatorManager));
+
+        SavegameStore.StoreJson(SavegameStore.FileType.WorldObjectLocatorManagerSaveData, objectLocatorSaveData,
+            createBackup);
+
+        return countRegrown;
     }
 
     public bool ReviveFollowers(bool createBackup)

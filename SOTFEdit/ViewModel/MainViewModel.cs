@@ -33,10 +33,36 @@ public partial class MainViewModel : ObservableObject
 
     public object? SelectedTab { get; set; }
 
+    [NotifyCanExecuteChangedFor(nameof(RegrowTreesCommand))]
+    [NotifyPropertyChangedFor(nameof(VegetationStateIsAllSelected))]
+    [ObservableProperty]
+    private VegetationState _vegetationStateSelected =
+        VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
+
+    public bool VegetationStateIsAllSelected
+    {
+        get => _vegetationStateSelected.HasFlag(VegetationState.Gone) &&
+               _vegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
+               _vegetationStateSelected.HasFlag(VegetationState.Stumps);
+        set
+        {
+            var vegetationState = value == false
+                ? VegetationState.None
+                : VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
+            VegetationStateSelected = vegetationState;
+        }
+    }
+
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
-            (_, _) => { SavegameManager.LoadSavegames(); });
+            (_, message) =>
+            {
+                if (message.ReloadSavegames)
+                {
+                    SavegameManager.LoadSavegames();
+                }
+            });
     }
 
     partial void OnBackupFilesChanged(bool value)
@@ -87,7 +113,12 @@ public partial class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new SelectedSavegameChangedEvent(value));
     }
 
-    [RelayCommand(CanExecute = nameof(CanSaveChanges))]
+    private bool CanRegrowTrees()
+    {
+        return CanSaveChanges() && _vegetationStateSelected != VegetationState.None;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanRegrowTrees))]
     public void RegrowTrees()
     {
         if (SelectedSavegame == null)
@@ -95,7 +126,8 @@ public partial class MainViewModel : ObservableObject
             return;
         }
 
-        WeakReferenceMessenger.Default.Send(new RequestRegrowTreesEvent(SelectedSavegame, BackupFiles));
+        WeakReferenceMessenger.Default.Send(new RequestRegrowTreesEvent(SelectedSavegame, BackupFiles,
+            VegetationStateSelected));
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
