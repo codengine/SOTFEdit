@@ -3,8 +3,8 @@
 ![Screenshot](https://abload.de/img/sotfedit_newdjivv.jpg)
 
 [![Build](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/codengine/SOTFEdit)
-![GitHub all releases](https://img.shields.io/github/downloads/codengine/SOTFEdit/total)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/codengine/SOTFEdit)](https://github.com/codengine/SOTFEdit/releases)
+[![GitHub all releases](https://img.shields.io/github/downloads/codengine/SOTFEdit/total)](https://github.com/codengine/SOTFEdit/releases)
 ![GitHub](https://img.shields.io/github/license/codengine/SOTFEdit)
 
 A savegame editor for "Sons of The Forest". 
@@ -35,7 +35,7 @@ This project is in no way or form associated with the developers of the game. It
 - Edit Weather Data (Weather, Seasons...)
 - Edit Game State Data (Playtime,..)
 - Revive Virginia & Kelvin
-- Regrow Trees
+- Regrow Trees selectively (All, Removed, Half-Chopped, Stumps)
 - Backup changed files automatically
 - ... more features are planned
 
