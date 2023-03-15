@@ -2,6 +2,8 @@
 
 ![Screenshot](https://abload.de/img/sotfedit_newdjivv.jpg)
 
+[![Build](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml)
+
 A savegame editor for "Sons of The Forest". 
 
 - [SOTFEdit - Sons of The Forest Savegame Editor](#sotfedit---sons-of-the-forest-savegame-editor)
