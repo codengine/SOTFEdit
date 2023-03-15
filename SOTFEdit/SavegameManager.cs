@@ -24,7 +24,7 @@ public class SavegameManager : ObservableObject
         try
         {
             return _savegames
-                .OrderByDescending(savegame => savegame.Value.SavegameStore.LastWriteTime)
+                .OrderByDescending(savegame => savegame.Value.LastSaveTime)
                 .Select(pair => pair.Value)
                 .ToList();
         }

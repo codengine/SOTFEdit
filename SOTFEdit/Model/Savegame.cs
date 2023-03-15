@@ -25,6 +25,8 @@ public class Savegame
 
     public bool IsMultiplayer => SavegameStore.IsMultiplayer();
 
+    public DateTime LastSaveTime => ReadLastSaveTime();
+
     public long RegrowTrees(bool createBackup, VegetationState vegetationStateSelected)
     {
         if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldObjectLocatorManagerSaveData) is not JObject
@@ -170,6 +172,23 @@ public class Savegame
 
         token.Replace(expectedValue);
         return true;
+    }
+
+    private DateTime ReadLastSaveTime()
+    {
+        if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData) is not JObject gameStateData)
+        {
+            return SavegameStore.LastWriteTime;
+        }
+
+        var gameStateToken = gameStateData.SelectToken("Data.GameState");
+        if (gameStateToken?.ToObject<string>() is not { } gameStateString ||
+            JsonConverter.DeserializeRaw(gameStateString) is not JObject gameState)
+        {
+            return SavegameStore.LastWriteTime;
+        }
+
+        return gameState["SaveTime"]?.ToObject<DateTime>() ?? SavegameStore.LastWriteTime;
     }
 
     public bool ModifyGameState(Dictionary<string, object> values, bool createBackup)

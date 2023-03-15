@@ -73,7 +73,7 @@
                                     </Image>
                                 </Border>
                             </Viewbox>
-                            <TextBlock Text="{Binding SavegameStore.LastWriteTime, Mode=OneWay}"
+                            <TextBlock Text="{Binding LastSaveTime, Mode=OneWay}"
                                        ToolTip="Last write time of the savegame directory" />
                         </StackPanel>
                     </DataTemplate>
