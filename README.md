@@ -3,6 +3,9 @@
 ![Screenshot](https://abload.de/img/sotfedit_newdjivv.jpg)
 
 [![Build](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/codengine/SOTFEdit)
+![GitHub all releases](https://img.shields.io/github/downloads/codengine/SOTFEdit/total)
+![GitHub](https://img.shields.io/github/license/codengine/SOTFEdit)
 
 A savegame editor for "Sons of The Forest". 
 
