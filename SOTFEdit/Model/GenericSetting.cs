@@ -4,8 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SOTFEdit.Model;
 
-[ObservableObject]
-public partial class GenericSetting
+public partial class GenericSetting : ObservableObject
 {
     public enum DataType
     {
