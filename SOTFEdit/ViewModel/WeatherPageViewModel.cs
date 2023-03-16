@@ -113,7 +113,7 @@ public class WeatherPageViewModel
         }
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
         var weatherSaveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
 
@@ -121,7 +121,7 @@ public class WeatherPageViewModel
             weatherSystemToken?.ToObject<string>() is not { } weatherSystemJson ||
             JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
         {
-            return;
+            return false;
         }
 
         _readerWriterLock.EnterReadLock();
@@ -129,7 +129,7 @@ public class WeatherPageViewModel
         {
             if (!Merge(weatherSystem, Settings))
             {
-                return;
+                return false;
             }
 
             weatherSystemToken.Replace(JsonConverter.Serialize(weatherSystem));
@@ -140,6 +140,7 @@ public class WeatherPageViewModel
         }
 
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.WeatherSystemSaveData, weatherSaveData, createBackup);
+        return true;
     }
 
     private static bool Merge(JToken weatherSystem, IEnumerable<GenericSetting> settings)

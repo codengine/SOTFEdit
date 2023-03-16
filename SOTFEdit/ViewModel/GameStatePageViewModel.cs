@@ -118,7 +118,7 @@ public class GameStatePageViewModel
         }
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
         var gameStateData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
 
@@ -126,7 +126,7 @@ public class GameStatePageViewModel
             gameStateToken?.ToObject<string>() is not { } gameStateJson ||
             JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
         {
-            return;
+            return false;
         }
 
         _readerWriterLock.EnterReadLock();
@@ -134,7 +134,7 @@ public class GameStatePageViewModel
         {
             if (!Merge(gameState, Settings))
             {
-                return;
+                return false;
             }
 
             gameStateToken.Replace(JsonConverter.Serialize(gameState));
@@ -145,6 +145,7 @@ public class GameStatePageViewModel
         }
 
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameStateSaveData, gameStateData, createBackup);
+        return true;
     }
 
     private static bool Merge(JToken gameState, IEnumerable<GenericSetting> settings)

@@ -15,8 +15,8 @@ public partial class GameStatePage
         InitializeComponent();
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
-        ((GameStatePageViewModel)DataContext).Update(savegame, createBackup);
+        return ((GameStatePageViewModel)DataContext).Update(savegame, createBackup);
     }
 }

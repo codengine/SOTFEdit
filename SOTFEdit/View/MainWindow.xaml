@@ -9,7 +9,9 @@
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  mc:Ignorable="d"
-                 Title="Sons of the Forest Savegame Editor" Height="800" Width="1200"
+                 SaveWindowPosition="True"
+                 WindowStartupLocation="CenterScreen"
+                 Title="Sons of the Forest Savegame Editor" Height="850" Width="1200"
                  Style="{DynamicResource MyStyle}"
                  d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
                  WindowTransitionsEnabled="False">
@@ -89,6 +91,7 @@
             <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Armor" Content="{Binding ArmorPage, Mode=OneTime}" />
+            <TabItem Foreground="White" Header="Followers" Content="{Binding FollowersPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Weather" Content="{Binding WeatherPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Game State" Content="{Binding GameStatePage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Tools">
@@ -120,9 +123,6 @@
                                 ConverterParameter={x:Static model:VegetationState.Stumps}}" />
                             <Button Command="{Binding RegrowTreesCommand, Mode=OneTime}" Padding="10" FontSize="14">Regrow Trees</Button>
                         </StackPanel>
-                    </GroupBox>
-                    <GroupBox Grid.Row="1" Header="Other" Padding="20">
-                        <Button Padding="20" Command="{Binding ReviveFollowersCommand, Mode=OneTime}" FontSize="14">Revive Virginia and Kelvin</Button>
                     </GroupBox>
                 </Grid>
             </TabItem>

@@ -177,13 +177,13 @@ public partial class InventoryPageViewModel : ObservableObject
         return new InventoryItem(itemBlock, item);
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
         var playerInventoryData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerInventorySaveData);
 
         if (playerInventoryData == null)
         {
-            return;
+            return false;
         }
 
         _readerWriterLock.EnterReadLock();
@@ -195,7 +195,7 @@ public partial class InventoryPageViewModel : ObservableObject
 
             if (!PlayerInventoryData.Merge(playerInventoryData, selectedItems))
             {
-                return;
+                return false;
             }
         }
         finally
@@ -205,6 +205,8 @@ public partial class InventoryPageViewModel : ObservableObject
 
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerInventorySaveData, playerInventoryData,
             createBackup);
+
+        return true;
     }
 }
 

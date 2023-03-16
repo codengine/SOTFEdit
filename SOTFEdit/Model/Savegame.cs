@@ -80,19 +80,20 @@ public class Savegame
         return countRegrown;
     }
 
-    public bool ReviveFollowers(bool createBackup)
+    public bool ReviveFollower(int typeId, bool createBackup)
     {
-        var reviveResult = ReviveFollowersInSaveData(createBackup);
+        var reviveResult = ReviveFollowerInSaveData(typeId, createBackup);
+        var gameStateKey = typeId == KelvinTypeId ? "IsRobbyDead" : "IsVirginiaDead";
+
         var modifyGameStateResult = ModifyGameState(new Dictionary<string, object>
         {
-            { "IsRobbyDead", false },
-            { "IsVirginiaDead", false }
+            { gameStateKey, false }
         }, createBackup);
 
         return reviveResult || modifyGameStateResult;
     }
 
-    private bool ReviveFollowersInSaveData(bool createBackup)
+    private bool ReviveFollowerInSaveData(int typeId, bool createBackup)
     {
         if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not JObject saveData)
         {
@@ -110,8 +111,8 @@ public class Savegame
 
         foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
         {
-            var typeId = actor["TypeId"]?.ToObject<int>();
-            if (typeId is not (KelvinTypeId or VirginiaTypeId))
+            var actorTypeId = actor["TypeId"]?.ToObject<int>();
+            if (actorTypeId != typeId)
             {
                 continue;
             }

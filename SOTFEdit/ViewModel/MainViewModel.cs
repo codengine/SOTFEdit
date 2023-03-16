@@ -14,7 +14,6 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SaveChangesCommand))]
     [NotifyCanExecuteChangedFor(nameof(RegrowTreesCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ReviveFollowersCommand))]
     private Savegame? _selectedSavegame;
 
     public MainViewModel(SavegameManager savegameManager)
@@ -30,6 +29,7 @@ public partial class MainViewModel : ObservableObject
     public ArmorPage ArmorPage { get; } = new();
     public WeatherPage WeatherPage { get; } = new();
     public GameStatePage GameStatePage { get; } = new();
+    public FollowersPage FollowersPage { get; } = new();
 
     public object? SelectedTab { get; set; }
 
@@ -104,12 +104,16 @@ public partial class MainViewModel : ObservableObject
 
         WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(SelectedSavegame, BackupFiles, createBackup =>
         {
-            GameSetupPage.Update(SelectedSavegame, createBackup);
-            InventoryPage.Update(SelectedSavegame, createBackup);
-            ArmorPage.Update(SelectedSavegame, createBackup);
-            WeatherPage.Update(SelectedSavegame, createBackup);
-            GameStatePage.Update(SelectedSavegame, createBackup);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved successfully"));
+            var hasChanges = GameSetupPage.Update(SelectedSavegame, createBackup);
+            hasChanges = InventoryPage.Update(SelectedSavegame, createBackup) || hasChanges;
+            hasChanges = ArmorPage.Update(SelectedSavegame, createBackup) || hasChanges;
+            hasChanges = WeatherPage.Update(SelectedSavegame, createBackup) || hasChanges;
+            hasChanges = GameStatePage.Update(SelectedSavegame, createBackup) || hasChanges;
+            hasChanges = FollowersPage.Update(SelectedSavegame, createBackup) || hasChanges;
+
+            var message = hasChanges ? "Changes saved successfully" : "No changes - Nothing saved";
+
+            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(message, hasChanges));
         }));
     }
 
@@ -138,16 +142,5 @@ public partial class MainViewModel : ObservableObject
 
         WeakReferenceMessenger.Default.Send(new RequestRegrowTreesEvent(SelectedSavegame, BackupFiles,
             VegetationStateSelected));
-    }
-
-    [RelayCommand(CanExecute = nameof(CanSaveChanges))]
-    public void ReviveFollowers()
-    {
-        if (SelectedSavegame == null)
-        {
-            return;
-        }
-
-        WeakReferenceMessenger.Default.Send(new RequestReviveFollowersEvent(SelectedSavegame, BackupFiles));
     }
 }

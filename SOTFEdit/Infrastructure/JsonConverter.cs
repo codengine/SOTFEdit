@@ -33,9 +33,9 @@ public static class JsonConverter
         File.WriteAllText(targetFullPath, json, JsonEncoding);
     }
 
-    public static JToken DeserializeRaw(string gameSetupJson)
+    public static JToken DeserializeRaw(string json)
     {
-        return JToken.Parse(gameSetupJson);
+        return JToken.Parse(json);
     }
 
     public static object? DeserializeObject(string json, Type objectType)

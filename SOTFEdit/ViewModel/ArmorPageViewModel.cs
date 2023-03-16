@@ -69,13 +69,13 @@ public partial class ArmorPageViewModel
         NewArmour.AddArmorCommand.NotifyCanExecuteChanged();
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
         var playerArmourData =
             savegame.SavegameStore.LoadJson<PlayerArmourData>(SavegameStore.FileType.PlayerArmourSystemSaveData);
         if (playerArmourData == null)
         {
-            return;
+            return false;
         }
 
         _readerWriterLock.EnterReadLock();
@@ -86,12 +86,15 @@ public partial class ArmorPageViewModel
             {
                 savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerArmourSystemSaveData, playerArmourData,
                     createBackup);
+                return true;
             }
         }
         finally
         {
             _readerWriterLock.ExitReadLock();
         }
+
+        return false;
     }
 
     public partial class NewArmourPiece : ObservableObject

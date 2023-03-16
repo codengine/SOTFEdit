@@ -15,8 +15,8 @@ public partial class WeatherPage
         InitializeComponent();
     }
 
-    public void Update(Savegame selectedSavegame, bool createBackup)
+    public bool Update(Savegame selectedSavegame, bool createBackup)
     {
-        ((WeatherPageViewModel)DataContext).Update(selectedSavegame, createBackup);
+        return ((WeatherPageViewModel)DataContext).Update(selectedSavegame, createBackup);
     }
 }

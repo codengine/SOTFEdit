@@ -5,6 +5,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.ViewModel;
 
@@ -98,11 +99,14 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(message.SelectedSavegame, message.BackupFiles,
             createBackup =>
             {
-                var hasChanges = message.SelectedSavegame.ReviveFollowers(createBackup);
+                var hasChanges = message.SelectedSavegame.ReviveFollower(message.TypeId, createBackup);
+
+                var actorName = message.TypeId == Constants.Actors.KelvinTypeId ? "Kelvin" : "Virginia";
 
                 var resultMessage = hasChanges
-                    ? "Virginia and Kelvin should now be back again"
-                    : "Virginia and Kelvin should be alive already";
+                    ? $"{actorName} should now be back again"
+                    : $"{actorName} should be alive already";
+
                 WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(resultMessage, hasChanges));
             }));
     }

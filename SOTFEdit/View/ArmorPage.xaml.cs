@@ -13,8 +13,8 @@ public partial class ArmorPage
         InitializeComponent();
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
-        ((ArmorPageViewModel)DataContext).Update(savegame, createBackup);
+        return ((ArmorPageViewModel)DataContext).Update(savegame, createBackup);
     }
 }

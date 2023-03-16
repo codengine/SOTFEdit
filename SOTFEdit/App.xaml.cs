@@ -40,7 +40,7 @@ public partial class App
     {
         var services = new ServiceCollection();
         services.AddSingleton(new SavegameManager());
-        services.AddTransient<MainViewModel>();
+        services.AddSingleton<MainViewModel>();
         services.AddSingleton<GameSetupPageViewModel>();
         services.AddSingleton<InventoryPageViewModel>();
         services.AddSingleton<WeatherPageViewModel>();

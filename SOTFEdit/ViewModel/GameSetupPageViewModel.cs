@@ -150,12 +150,12 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedDayLength));
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
         var saveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData);
         if (saveData == null)
         {
-            return;
+            return false;
         }
 
         _readerWriterLock.EnterReadLock();
@@ -163,7 +163,7 @@ public class GameSetupPageViewModel : ObservableObject
         {
             if (!GameSetupData.Merge(saveData, _gameSettings.Values))
             {
-                return;
+                return false;
             }
         }
         finally
@@ -177,5 +177,7 @@ public class GameSetupPageViewModel : ObservableObject
         {
             { "GameType", SelectedMode ?? "" }
         }, createBackup);
+
+        return true;
     }
 }

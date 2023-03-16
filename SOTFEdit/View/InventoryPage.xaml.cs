@@ -13,8 +13,8 @@ public partial class InventoryPage
         InitializeComponent();
     }
 
-    public void Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame, bool createBackup)
     {
-        ((InventoryPageViewModel)DataContext).Update(savegame, createBackup);
+        return ((InventoryPageViewModel)DataContext).Update(savegame, createBackup);
     }
 }
