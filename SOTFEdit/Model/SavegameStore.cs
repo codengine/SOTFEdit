@@ -136,9 +136,21 @@ public class SavegameStore
         File.Move(path, targetPath);
     }
 
-    public bool IsMultiplayer()
+    public string? GetParentDirectory()
     {
-        return !(new DirectoryInfo(_path).Parent?.Name.Equals("SinglePlayer") ?? false);
+        var parent = new DirectoryInfo(_path).Parent;
+        if (parent == null)
+        {
+            return null;
+        }
+
+        return parent.Name.ToLower() switch
+        {
+            "singleplayer" => "SP",
+            "multiplayer" => "MP",
+            "multiplayerclient" => "MP_Client",
+            _ => parent.Name
+        };
     }
 }
 

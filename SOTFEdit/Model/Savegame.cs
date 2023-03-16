@@ -9,21 +9,21 @@ namespace SOTFEdit.Model;
 
 public class Savegame
 {
-    private readonly string _id;
+    public string FullPath { get; }
+    private readonly string _dirName;
 
-    public Savegame(string id, SavegameStore savegameStore)
+    public Savegame(string fullPath, string dirName, SavegameStore savegameStore)
     {
         SavegameStore = savegameStore;
-        _id = id;
+        FullPath = fullPath;
+        _dirName = dirName;
     }
 
     public SavegameStore SavegameStore { get; }
 
-    public string Title => _id + (IsMultiplayer ? " (MP)" : " (SP)");
+    public string Title => $"{_dirName} ({SavegameStore.GetParentDirectory()})";
 
     public string ThumbPath => SavegameStore.GetThumbPath();
-
-    public bool IsMultiplayer => SavegameStore.IsMultiplayer();
 
     public DateTime LastSaveTime => ReadLastSaveTime();
 

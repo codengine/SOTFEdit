@@ -44,9 +44,9 @@ public class SavegameManager : ObservableObject
         _readerWriterLockSlim.EnterWriteLock();
         try
         {
-            if (FindSaveGames(savesPath).TryGetValue(savegame.Title, out var foundSavegame))
+            if (FindSaveGames(savesPath).TryGetValue(savegame.FullPath, out var foundSavegame))
             {
-                _savegames[savegame.Title] = foundSavegame;
+                _savegames[savegame.FullPath] = foundSavegame;
                 return foundSavegame;
             }
         }
@@ -83,7 +83,7 @@ public class SavegameManager : ObservableObject
         OnPropertyChanged(nameof(Savegames));
     }
 
-    private static Dictionary<string, Savegame> FindSaveGames(string savesPath, string? titleFilter = null)
+    private static Dictionary<string, Savegame> FindSaveGames(string savesPath, string? idFilter = null)
     {
         Logger.Info($"Reading savegames from {savesPath}");
         if (!Directory.Exists(savesPath))
@@ -98,8 +98,8 @@ public class SavegameManager : ObservableObject
             return fileInfos.Select(file => CreateSaveInfo(file.Directory))
                 .Where(savegame => savegame != null)
                 .Select(savegame => savegame!)
-                .Where(savegame => titleFilter == null || titleFilter == savegame.Title)
-                .ToDictionary(savegame => savegame.Title, savegame => savegame);
+                .Where(savegame => idFilter == null || idFilter == savegame.FullPath)
+                .ToDictionary(savegame => savegame.FullPath, savegame => savegame);
         }
         catch (Exception ex)
         {
@@ -112,7 +112,7 @@ public class SavegameManager : ObservableObject
     private static Savegame? CreateSaveInfo(DirectoryInfo? directory)
     {
         return directory is { Exists: true }
-            ? new Savegame(directory.Name, new SavegameStore(directory.FullName))
+            ? new Savegame(directory.FullName, directory.Name, new SavegameStore(directory.FullName))
             : null;
     }
 
