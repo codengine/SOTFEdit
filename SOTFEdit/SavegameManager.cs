@@ -103,7 +103,7 @@ public class SavegameManager : ObservableObject
         }
         catch (Exception ex)
         {
-            Logger.Error($"Unable to read savegames from {savesPath}", ex);
+            Logger.Error(ex, $"Unable to read savegames from {savesPath}");
         }
 
         return new Dictionary<string, Savegame>();
