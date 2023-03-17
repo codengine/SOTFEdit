@@ -93,7 +93,7 @@ Here is a list of number of days per season per season length setting:
 - Short: ???
 - Default (non-custom games): 5 days
 - Long: 10 days
-- Realistig: 90 days
+- Realistic: 90 days
 
 # Troubleshooting
 
