@@ -29,6 +29,8 @@ This project is in no way or form associated with the developers of the game. It
 
 # Features
 
+- Edit Player Stats (Strength, MaxHealth, CurrentHealth, Fullness etc.)
+- Move Player to Virginia & Kelvin
 - Edit Game Setup (Game Mode, Spawn Rate etc.)
 - Edit Inventory (Add/Remove items, change quantities)
 - Edit Armor Data (Add Armor Pieces, change durability)

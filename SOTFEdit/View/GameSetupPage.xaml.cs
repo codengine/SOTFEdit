@@ -1,4 +1,5 @@
-﻿using SOTFEdit.Model;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using SOTFEdit.Model;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
@@ -10,11 +11,12 @@ public partial class GameSetupPage
 {
     public GameSetupPage()
     {
+        DataContext = Ioc.Default.GetRequiredService<GameSetupPageViewModel>();
         InitializeComponent();
     }
 
     public bool Update(Savegame savegame, bool createBackup)
     {
-        return ((GameSetupPageViewModel)DataContext).Update(savegame, createBackup);
+        return Ioc.Default.GetRequiredService<GameSetupPageViewModel>().Update(savegame, createBackup);
     }
 }

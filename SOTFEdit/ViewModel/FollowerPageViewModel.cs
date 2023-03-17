@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using System.Linq;
-using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -15,8 +14,6 @@ namespace SOTFEdit.ViewModel;
 
 public partial class FollowerPageViewModel : ObservableObject
 {
-    private readonly ReaderWriterLockSlim _readerWriterLock = new();
-
     public FollowerState KelvinState { get; } = new(KelvinTypeId);
     public FollowerState VirginiaState { get; } = new(VirginiaTypeId);
 
@@ -26,8 +23,6 @@ public partial class FollowerPageViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(MoveToVirginiaCommand))]
     [NotifyCanExecuteChangedFor(nameof(MoveToPlayerCommand))]
     private Savegame? _selectedSavegame;
-
-    private Position? _playerPosition;
 
     public FollowerPageViewModel()
     {
@@ -42,7 +37,6 @@ public partial class FollowerPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
-        _playerPosition = null;
         SelectedSavegame = m.SelectedSavegame;
         KelvinState.Reset();
         VirginiaState.Reset();
@@ -58,55 +52,19 @@ public partial class FollowerPageViewModel : ObservableObject
             return;
         }
 
-        if (_playerPosition != null)
-        {
-            follower.Position = _playerPosition;
-            return;
-        }
-
-        follower.Position = _playerPosition ?? (GetPlayerPosition(SelectedSavegame) ?? new Position(0, 0, 0));
-    }
-
-    private Position? GetPlayerPosition(Savegame savegame)
-    {
-        if (_playerPosition != null)
-        {
-            return _playerPosition;
-        }
-
-        var playerStateSaveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerStateSaveData);
-        var playerStateToken = playerStateSaveData?.SelectToken("Data.PlayerState");
-        if (playerStateToken?.ToObject<string>() is not { } playerStateJson ||
-            JsonConverter.DeserializeRaw(playerStateJson) is not JObject playerState ||
-            playerState["_entries"] is not JArray entries)
-        {
-            return null;
-        }
-
-        var playerPosition = entries
-            .FirstOrDefault(entry => entry["Name"]?.ToObject<string>() == "player.position");
-
-        var playerPosFloatArray = playerPosition?["FloatArrayValue"]?.ToObject<float[]>();
-
-        if (playerPosFloatArray is not { Length: 3 })
-        {
-            return null;
-        }
-
-        _playerPosition = new Position(playerPosFloatArray[0], playerPosFloatArray[1], playerPosFloatArray[2]);
-        return _playerPosition;
+        follower.Position = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Position.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     public void MoveToKelvin(FollowerState follower)
     {
-        follower.Position = KelvinState.Position;
+        follower.Position = KelvinState.Position.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     public void MoveToVirginia(FollowerState follower)
     {
-        follower.Position = VirginiaState.Position;
+        follower.Position = VirginiaState.Position.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
@@ -179,12 +137,7 @@ public partial class FollowerPageViewModel : ObservableObject
 
     public bool Update(Savegame? savegame, bool createBackup)
     {
-        if (savegame is not { } selectedSavegame)
-        {
-            return false;
-        }
-
-        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not JObject saveData)
+        if (savegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not JObject saveData)
         {
             return false;
         }

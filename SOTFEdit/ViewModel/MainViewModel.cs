@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Model;
@@ -26,10 +27,10 @@ public partial class MainViewModel : ObservableObject
     public SavegameManager SavegameManager { get; }
     public GameSetupPage GameSetupPage { get; } = new();
     public InventoryPage InventoryPage { get; } = new();
-    public ArmorPage ArmorPage { get; } = new();
     public WeatherPage WeatherPage { get; } = new();
     public GameStatePage GameStatePage { get; } = new();
     public FollowersPage FollowersPage { get; } = new();
+    public PlayerPage PlayerPage { get; } = new();
 
     public object? SelectedTab { get; set; }
 
@@ -106,10 +107,12 @@ public partial class MainViewModel : ObservableObject
         {
             var hasChanges = GameSetupPage.Update(SelectedSavegame, createBackup);
             hasChanges = InventoryPage.Update(SelectedSavegame, createBackup) || hasChanges;
-            hasChanges = ArmorPage.Update(SelectedSavegame, createBackup) || hasChanges;
+            hasChanges = Ioc.Default.GetRequiredService<ArmorPageViewModel>().Update(SelectedSavegame, createBackup) ||
+                         hasChanges;
             hasChanges = WeatherPage.Update(SelectedSavegame, createBackup) || hasChanges;
             hasChanges = GameStatePage.Update(SelectedSavegame, createBackup) || hasChanges;
             hasChanges = FollowersPage.Update(SelectedSavegame, createBackup) || hasChanges;
+            hasChanges = PlayerPage.Update(SelectedSavegame, createBackup) || hasChanges;
 
             var message = hasChanges ? "Changes saved successfully" : "No changes - Nothing saved";
 

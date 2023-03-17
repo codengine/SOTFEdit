@@ -88,11 +88,11 @@
             </ListView>
         </GroupBox>
         <TabControl DockPanel.Dock="Top" SelectedItem="{Binding SelectedTab, Mode=TwoWay}">
-            <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage, Mode=OneTime}" />
+            <TabItem Foreground="White" Header="Player" Content="{Binding PlayerPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage, Mode=OneTime}" />
-            <TabItem Foreground="White" Header="Armor" Content="{Binding ArmorPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Followers" Content="{Binding FollowersPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Weather" Content="{Binding WeatherPage, Mode=OneTime}" />
+            <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Game State" Content="{Binding GameStatePage, Mode=OneTime}" />
             <TabItem Foreground="White" Header="Tools">
                 <Grid HorizontalAlignment="Center" Margin="0 20">

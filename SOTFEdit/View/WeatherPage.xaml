@@ -6,10 +6,8 @@
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModel:WeatherPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewModel:WeatherPageViewModel />
-    </UserControl.DataContext>
     <UserControl.Resources>
         <infrastructure:GenericSettingTypeToVisibilityConverter x:Key="GenericSettingTypeToVisibilityConverter" />
     </UserControl.Resources>

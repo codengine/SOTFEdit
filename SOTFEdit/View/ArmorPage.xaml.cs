@@ -1,4 +1,4 @@
-﻿using SOTFEdit.Model;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
@@ -10,11 +10,7 @@ public partial class ArmorPage
 {
     public ArmorPage()
     {
+        DataContext = Ioc.Default.GetRequiredService<ArmorPageViewModel>();
         InitializeComponent();
-    }
-
-    public bool Update(Savegame savegame, bool createBackup)
-    {
-        return ((ArmorPageViewModel)DataContext).Update(savegame, createBackup);
     }
 }

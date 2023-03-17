@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4.0
+- add player tab, allowing editing of player stats as well as positioning
+- move armor tab to player tab
+- improve performance of savegame loading, also reducing memory consumption
+
 ## v0.3.1
 - fix logging of exceptions during savegame loading
 - fix non-uniqueness of savegame parent directories

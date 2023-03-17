@@ -6,22 +6,23 @@
              xmlns:local="clr-namespace:SOTFEdit.View"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModel:FollowerPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewModel:FollowerPageViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.Resources>
             <Style x:Key="FollowerTextBlockStyleLeft" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
                 <Setter Property="Margin" Value="0 0 10 10" />
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
             </Style>
             <Style x:Key="FollowerTextBlockStyleRight" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
                 <Setter Property="Margin" Value="0 0 0 10" />
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
             </Style>
             <Style x:Key="FollowerSliderStyle" TargetType="{x:Type Slider}" BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
                 <Setter Property="Margin" Value="0 0 10 10" />
                 <Setter Property="TickFrequency" Value="1" />
                 <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
             </Style>
             <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
                 <Setter Property="Margin" Value="0 0 0 10" />

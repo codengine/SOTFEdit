@@ -41,10 +41,13 @@ public partial class App
         var services = new ServiceCollection();
         services.AddSingleton(new SavegameManager());
         services.AddSingleton<MainViewModel>();
+        services.AddSingleton<ArmorPageViewModel>();
+        services.AddSingleton<FollowerPageViewModel>();
         services.AddSingleton<GameSetupPageViewModel>();
-        services.AddSingleton<InventoryPageViewModel>();
-        services.AddSingleton<WeatherPageViewModel>();
         services.AddSingleton<GameStatePageViewModel>();
+        services.AddSingleton<InventoryPageViewModel>();
+        services.AddSingleton<PlayerPageViewModel>();
+        services.AddSingleton<WeatherPageViewModel>();
         services.AddSingleton(_ => BuildItemListInstance());
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }

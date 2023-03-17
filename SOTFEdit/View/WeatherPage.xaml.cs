@@ -17,6 +17,6 @@ public partial class WeatherPage
 
     public bool Update(Savegame selectedSavegame, bool createBackup)
     {
-        return ((WeatherPageViewModel)DataContext).Update(selectedSavegame, createBackup);
+        return Ioc.Default.GetRequiredService<WeatherPageViewModel>().Update(selectedSavegame, createBackup);
     }
 }

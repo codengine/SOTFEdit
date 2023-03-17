@@ -17,6 +17,6 @@ public partial class GameStatePage
 
     public bool Update(Savegame savegame, bool createBackup)
     {
-        return ((GameStatePageViewModel)DataContext).Update(savegame, createBackup);
+        return Ioc.Default.GetRequiredService<GameStatePageViewModel>().Update(savegame, createBackup);
     }
 }
