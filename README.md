@@ -107,7 +107,7 @@ I get errors and the application does strange things
 - Please upload any logs to https://pastebin.com and create an issue
 
 I can not change "IsRobbyDead" or "IsVirginiaDead"
-- In order to revive both there is a special button at "Tools" that does the job
+- In order to revive both there is a special button at "Followers" that does the job
 
 # Contributing
 
