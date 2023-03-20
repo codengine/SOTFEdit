@@ -13,10 +13,8 @@
   <ItemGroup>
     <None Remove="images\default_screenshot.png" />
     <None Remove="images\kv.jpg" />
-    <None Remove="images\kv.png" />
     <None Remove="images\player.jpg" />
     <None Remove="images\vg.jpg" />
-    <None Remove="images\vg.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,15 +28,22 @@
     <Content Include="images\vg.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\CHANGELOG.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLog" Version="5.1.2" />
+    <PackageReference Include="Semver" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,7 +61,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="items.json">
+    <None Update="data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="NLog.config">

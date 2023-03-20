@@ -1,93 +1,108 @@
 ﻿<UserControl x:Class="SOTFEdit.View.PlayerPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SOTFEdit.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:PlayerPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.Resources>
-            <Style x:Key="PlayerTextBlockStyleLeft" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Style x:Key="PlayerTextBlockStyleLeft" TargetType="{x:Type TextBlock}"
+                   BasedOn="{StaticResource MahApps.Styles.TextBlock}">
                 <Setter Property="Margin" Value="0 0 10 10" />
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            <Style x:Key="PlayerTextBlockStyleRight" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Style x:Key="PlayerTextBlockStyleRight" TargetType="{x:Type TextBlock}"
+                   BasedOn="{StaticResource MahApps.Styles.TextBlock}">
                 <Setter Property="Margin" Value="0 0 0 10" />
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            <Style x:Key="PlayerSliderStyle" TargetType="{x:Type Slider}" BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
+            <Style x:Key="PlayerSliderStyle" TargetType="{x:Type Slider}"
+                   BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
                 <Setter Property="Margin" Value="0 0 10 10" />
                 <Setter Property="TickFrequency" Value="1" />
                 <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style x:Key="PlayerNumericUpDownStyle" TargetType="{x:Type mah:NumericUpDown}">
                 <Setter Property="Margin" Value="0 0 0 10" />
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
                 <Setter Property="Margin" Value="0 0 0 10" />
             </Style>
         </Grid.Resources>
-        <GroupBox Header="Player" Margin="0 0 5 0">
+        <GroupBox Header="Player" Margin="0 0 5 0" VerticalAlignment="Top">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
-                        <Image Source="/images/player.jpg" Width="197" Height="246" Margin="0 0 0 10"></Image>
+                        <Image Source="/images/player.jpg" Width="197" Height="246" Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToKelvinCommand}">Move to Kelvin</Button>
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToVirginiaCommand}">Move to Virginia</Button>
                     </StackPanel>
                     <Grid Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource PlayerTextBlockStyleLeft}">Position</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource PlayerTextBlockStyleRight}" Text="{Binding PlayerState.PositionPrintable}" />
+                        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource PlayerTextBlockStyleRight}"
+                                   Text="{Binding PlayerState.PositionPrintable}" />
                         <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource PlayerTextBlockStyleLeft}">Strength Level</TextBlock>
-                        <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1" Grid.Row="3" Minimum="0" Interval="1" NumericInputMode="Numbers" Value="{Binding PlayerState.StrengthLevel}" />
+                        <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
+                                           Grid.Row="3" Minimum="0" Interval="1" NumericInputMode="Numbers"
+                                           Value="{Binding PlayerState.StrengthLevel}" />
                         <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource PlayerTextBlockStyleLeft}">Max Health</TextBlock>
-                        <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1" Grid.Row="4" Minimum="0" Interval="1" NumericInputMode="Decimal" Value="{Binding PlayerState.MaxHealth}" />
+                        <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
+                                           Grid.Row="4" Minimum="0" Interval="1" NumericInputMode="Decimal"
+                                           Value="{Binding PlayerState.MaxHealth}" />
                         <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource PlayerTextBlockStyleLeft}">Current Health</TextBlock>
-                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.1" Maximum="{Binding PlayerState.MaxHealth}" Value="{Binding PlayerState.CurrentHealth}"></Slider>
+                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.1"
+                                Maximum="{Binding PlayerState.MaxHealth}" Value="{Binding PlayerState.CurrentHealth}" />
                         <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource PlayerTextBlockStyleLeft}">Fullness</TextBlock>
-                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0" Maximum="100" Interval="10" Value="{Binding PlayerState.Fullness}"></Slider>
+                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0"
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Fullness}" />
                         <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource PlayerTextBlockStyleLeft}">Hydration</TextBlock>
-                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0" Maximum="100" Interval="10" Value="{Binding PlayerState.Hydration}"></Slider>
+                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0"
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Hydration}" />
                         <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource PlayerTextBlockStyleLeft}">Rest</TextBlock>
-                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0" Maximum="100" Interval="10" Value="{Binding PlayerState.Rest}"></Slider>
+                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0"
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Rest}" />
                         <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource PlayerTextBlockStyleLeft}">Stamina</TextBlock>
-                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0" Maximum="100" Interval="10" Value="{Binding PlayerState.Stamina}"></Slider>
-                        <Button Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center" Command="{Binding FillAllBarsCommand}">Fill all bars</Button>
+                        <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Stamina}" />
+                        <Button Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center"
+                                Command="{Binding FillAllBarsCommand}">
+                            Fill all bars
+                        </Button>
                     </Grid>
                 </Grid>
             </ScrollViewer>
         </GroupBox>
-        <ContentPresenter Grid.Column="1" Content="{Binding ArmorPage}" Margin="5 0 0 0"></ContentPresenter>
+        <ContentPresenter Grid.Column="1" Content="{Binding ArmorPage}" Margin="5 0 0 0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

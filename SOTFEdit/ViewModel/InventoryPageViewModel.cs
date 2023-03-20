@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
-using SOTFEdit.Model.SaveData;
+using SOTFEdit.Model.SaveData.Inventory;
 
 namespace SOTFEdit.ViewModel;
 
@@ -19,11 +17,10 @@ public partial class InventoryPageViewModel : ObservableObject
     private readonly ObservableCollection<InventoryItem> _inventory = new();
     private readonly ItemList _itemList;
     private readonly ObservableCollection<InventoryItem> _unassignedItems = new();
-    private readonly ReaderWriterLockSlim _readerWriterLock = new();
     [ObservableProperty] private string _inventoryFilter = "";
     [ObservableProperty] private string _unassignedItemsFilter = "";
 
-    public InventoryPageViewModel()
+    public InventoryPageViewModel(GameData gameData)
     {
         InventoryCollectionView =
             new GenericCollectionView<InventoryItem>(
@@ -37,7 +34,7 @@ public partial class InventoryPageViewModel : ObservableObject
             {
                 Filter = OnFilterUnassignedItems
             };
-        _itemList = Ioc.Default.GetRequiredService<ItemList>();
+        _itemList = gameData.Items;
         SetupListeners();
     }
 
@@ -62,16 +59,8 @@ public partial class InventoryPageViewModel : ObservableObject
             return;
         }
 
-        _readerWriterLock.EnterWriteLock();
-        try
-        {
-            _unassignedItems.Add(inventoryItem);
-            _inventory.Remove(inventoryItem);
-        }
-        finally
-        {
-            _readerWriterLock.ExitWriteLock();
-        }
+        _unassignedItems.Add(inventoryItem);
+        _inventory.Remove(inventoryItem);
     }
 
     [RelayCommand]
@@ -82,16 +71,8 @@ public partial class InventoryPageViewModel : ObservableObject
             return;
         }
 
-        _readerWriterLock.EnterWriteLock();
-        try
-        {
-            _inventory.Add(inventoryItem);
-            _unassignedItems.Remove(inventoryItem);
-        }
-        finally
-        {
-            _readerWriterLock.ExitWriteLock();
-        }
+        _inventory.Add(inventoryItem);
+        _unassignedItems.Remove(inventoryItem);
     }
 
     private bool OnFilterUnassignedItems(object? obj)
@@ -133,47 +114,39 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
-        _readerWriterLock.EnterWriteLock();
-        try
+        _inventory.Clear();
+        _unassignedItems.Clear();
+        if (m.SelectedSavegame == null)
         {
-            _inventory.Clear();
-            _unassignedItems.Clear();
-            if (m.SelectedSavegame == null)
-            {
-                return;
-            }
+            return;
+        }
 
-            HashSet<int> assignedItems = new();
+        HashSet<int> assignedItems = new();
 
-            var saveData =
-                m.SelectedSavegame.SavegameStore.LoadJson<PlayerInventoryData>(SavegameStore.FileType
-                    .PlayerInventorySaveData);
-            if (saveData != null)
+        var saveData =
+            m.SelectedSavegame.SavegameStore.LoadJson<PlayerInventoryDataModel>(SavegameStore.FileType
+                .PlayerInventorySaveData);
+        if (saveData != null)
+        {
+            foreach (var itemBlock in saveData.Data.PlayerInventory.ItemInstanceManagerData.ItemBlocks)
             {
-                foreach (var itemBlock in saveData.Data.PlayerInventory.ItemInstanceManagerData.ItemBlocks)
-                {
-                    _inventory.Add(new InventoryItem(itemBlock, _itemList.GetItem(itemBlock.ItemId)));
-                    assignedItems.Add(itemBlock.ItemId);
-                }
-            }
-
-            foreach (var item in _itemList)
-            {
-                if (!assignedItems.Contains(item.Key) && item.Value.IsInventoryItem)
-                {
-                    _unassignedItems.Add(BuildUnassignedItem(item.Value));
-                }
+                _inventory.Add(new InventoryItem(itemBlock, _itemList.GetItem(itemBlock.ItemId)));
+                assignedItems.Add(itemBlock.ItemId);
             }
         }
-        finally
+
+        foreach (var item in _itemList)
         {
-            _readerWriterLock.ExitWriteLock();
+            if (!assignedItems.Contains(item.Key) && item.Value.IsInventoryItem)
+            {
+                _unassignedItems.Add(BuildUnassignedItem(item.Value));
+            }
         }
     }
 
     private static InventoryItem BuildUnassignedItem(Item item)
     {
-        var itemBlock = ItemInstanceManagerData.ItemBlock.Unassigned(item.Id);
+        var itemBlock = ItemBlockModel.Unassigned(item.Id);
         return new InventoryItem(itemBlock, item);
     }
 
@@ -186,21 +159,13 @@ public partial class InventoryPageViewModel : ObservableObject
             return false;
         }
 
-        _readerWriterLock.EnterReadLock();
-        try
-        {
-            var selectedItems = _inventory
-                .Select(item => item.ItemBlock)
-                .ToList();
+        var selectedItems = _inventory
+            .Select(item => item.ItemBlock)
+            .ToList();
 
-            if (!PlayerInventoryData.Merge(playerInventoryData, selectedItems))
-            {
-                return false;
-            }
-        }
-        finally
+        if (!PlayerInventoryDataModel.Merge(playerInventoryData, selectedItems))
         {
-            _readerWriterLock.ExitReadLock();
+            return false;
         }
 
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerInventorySaveData, playerInventoryData,
@@ -214,13 +179,13 @@ public class InventoryItem
 {
     private readonly Item? _item;
 
-    public InventoryItem(ItemInstanceManagerData.ItemBlock itemBlock, Item? item)
+    public InventoryItem(ItemBlockModel itemBlock, Item? item)
     {
         ItemBlock = itemBlock;
         _item = item;
     }
 
-    public ItemInstanceManagerData.ItemBlock ItemBlock { get; }
+    public ItemBlockModel ItemBlock { get; }
 
     public string Type => _item?.Type ?? "";
 

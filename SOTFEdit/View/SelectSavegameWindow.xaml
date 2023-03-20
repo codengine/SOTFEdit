@@ -1,0 +1,144 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.SelectSavegameWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 mc:Ignorable="d"
+                 d:DataContext="{d:DesignInstance viewModel:SelectSavegameViewModel}"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 TitleCharacterCasing="Normal"
+                 Title="Select Savegame..." Height="800" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <GroupBox Header="Location" VerticalAlignment="Top" Margin="10" Padding="10">
+            <WrapPanel>
+                <Label>Selected Path: </Label>
+                <TextBox
+                    ToolTip="Usually the Savegames are stored at C:\Users\[user]\AppData\LocalLow\Endnight\SonsOfTheForest\Saves"
+                    Text="{Binding SaveDir, Mode=OneWay}" IsReadOnly="True" />
+                <Button Margin="10 0 0 0" Command="{Binding SelectSavegameDirCommand}"> Change...</Button>
+            </WrapPanel>
+        </GroupBox>
+        <mah:MetroTabControl Padding="20 5 5 5" Grid.Row="1">
+            <mah:MetroTabItem Header="SinglePlayer" Padding="10">
+                <ListView ItemsSource="{Binding SinglePlayerSaves}" Name="SpLv">
+                    <b:Interaction.Behaviors>
+                        <infrastructure:ItemDoubleClickBehavior />
+                    </b:Interaction.Behaviors>
+                    <ListBox.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding SelectSavegameCommand}"
+                                      CommandParameter="{Binding ElementName=SpLv, Path=SelectedItem}" />
+                    </ListBox.InputBindings>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid VerticalAlignment="Top" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="Cyan" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="{Binding Title, Mode=OneTime}" />
+                                <Viewbox>
+                                    <Border BorderThickness="2" BorderBrush="#0b0b0b" Margin="0 5">
+                                        <Image Width="256" Height="160" Source="{Binding Thumbnail, Mode=OneTime}" />
+                                    </Border>
+                                </Viewbox>
+                                <TextBlock Text="{Binding LastSaveTime, Mode=OneTime}"
+                                           ToolTip="Last write time of the savegame directory" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </mah:MetroTabItem>
+            <mah:MetroTabItem Padding="10" Header="Multiplayer">
+                <ListView ItemsSource="{Binding MultiPlayerSaves}" Name="MpLv">
+                    <b:Interaction.Behaviors>
+                        <infrastructure:ItemDoubleClickBehavior />
+                    </b:Interaction.Behaviors>
+                    <ListBox.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding SelectSavegameCommand}"
+                                      CommandParameter="{Binding ElementName=MpLv, Path=SelectedItem}" />
+                    </ListBox.InputBindings>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid VerticalAlignment="Top" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="Cyan" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="{Binding Title, Mode=OneTime}" />
+                                <Viewbox>
+                                    <Border BorderThickness="2" BorderBrush="#0b0b0b" Margin="0 5">
+                                        <Image Width="256" Height="160" Source="{Binding Thumbnail, Mode=OneTime}" />
+                                    </Border>
+                                </Viewbox>
+                                <TextBlock Text="{Binding LastSaveTime, Mode=OneTime}"
+                                           ToolTip="Last write time of the savegame directory" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </mah:MetroTabItem>
+            <mah:MetroTabItem Padding="10" Header="Multiplayer (Client)">
+                <ListView ItemsSource="{Binding MultiPlayerClientSaves}" Name="MpClLv">
+                    <b:Interaction.Behaviors>
+                        <infrastructure:ItemDoubleClickBehavior />
+                    </b:Interaction.Behaviors>
+                    <ListBox.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding SelectSavegameCommand}"
+                                      CommandParameter="{Binding ElementName=MpClLv, Path=SelectedItem}" />
+                    </ListBox.InputBindings>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid VerticalAlignment="Top" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="Cyan" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="{Binding Title, Mode=OneTime}" />
+                                <Viewbox>
+                                    <Border BorderThickness="2" BorderBrush="#0b0b0b" Margin="0 5">
+                                        <Image Width="256" Height="160" Source="{Binding Thumbnail, Mode=OneTime}" />
+                                    </Border>
+                                </Viewbox>
+                                <TextBlock Text="{Binding LastSaveTime, Mode=OneTime}"
+                                           ToolTip="Last write time of the savegame directory" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </mah:MetroTabItem>
+        </mah:MetroTabControl>
+    </Grid>
+</mah:MetroWindow>

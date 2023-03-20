@@ -1,5 +1,5 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class SelectSavegameDirEvent
+public class RequestSelectSavegameEvent
 {
 }

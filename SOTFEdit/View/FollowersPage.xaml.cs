@@ -5,18 +5,20 @@ using SOTFEdit.ViewModel;
 namespace SOTFEdit.View;
 
 /// <summary>
-/// Interaction logic for UserControl1.xaml
+///     Interaction logic for UserControl1.xaml
 /// </summary>
 public partial class FollowersPage
 {
+    private readonly FollowerPageViewModel _dataContext;
+
     public FollowersPage()
     {
-        DataContext = Ioc.Default.GetRequiredService<FollowerPageViewModel>();
+        DataContext = _dataContext = Ioc.Default.GetRequiredService<FollowerPageViewModel>();
         InitializeComponent();
     }
 
     public bool Update(Savegame savegame, bool createBackup)
     {
-        return Ioc.Default.GetRequiredService<FollowerPageViewModel>().Update(savegame, createBackup);
+        return _dataContext.Update(savegame, createBackup);
     }
 }

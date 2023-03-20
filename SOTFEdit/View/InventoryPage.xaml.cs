@@ -9,14 +9,16 @@ namespace SOTFEdit.View;
 /// </summary>
 public partial class InventoryPage
 {
+    private readonly InventoryPageViewModel _dataContext;
+
     public InventoryPage()
     {
-        DataContext = Ioc.Default.GetRequiredService<InventoryPageViewModel>();
+        DataContext = _dataContext = Ioc.Default.GetRequiredService<InventoryPageViewModel>();
         InitializeComponent();
     }
 
     public bool Update(Savegame savegame, bool createBackup)
     {
-        return Ioc.Default.GetRequiredService<InventoryPageViewModel>().Update(savegame, createBackup);
+        return _dataContext.Update(savegame, createBackup);
     }
 }

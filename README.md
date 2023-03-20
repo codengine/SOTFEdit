@@ -36,6 +36,11 @@ This project is in no way or form associated with the developers of the game. It
 - Edit Armor Data (Add Armor Pieces, change durability)
 - Edit Weather Data (Weather, Seasons...)
 - Edit Game State Data (Playtime,..)
+- Edit Storage Data (Unlimited Logs, sticks etc.)
+- Edit Influences of Players towards Kelvin and Virginia
+- Modify Virginias equipped items
+- Change Virginias and Kelvins outfits
+- Several experiments
 - Revive Virginia & Kelvin
 - Set stats for Virginia & Kelvin
 - Move Kelvin & Virginia to Player or each other

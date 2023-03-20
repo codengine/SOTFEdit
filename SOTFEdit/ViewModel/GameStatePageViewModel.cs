@@ -2,24 +2,21 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.Messaging;
-using SOTFEdit.Model.Events;
-using System.Threading;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.ViewModel;
 
 public class GameStatePageViewModel
 {
-    private readonly ReaderWriterLockSlim _readerWriterLock = new();
-
-    public ObservableCollection<GenericSetting> Settings { get; } = new();
-
     public GameStatePageViewModel()
     {
         SetupListeners();
     }
+
+    public ObservableCollection<GenericSetting> Settings { get; } = new();
 
     private void SetupListeners()
     {
@@ -29,25 +26,17 @@ public class GameStatePageViewModel
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
     {
-        _readerWriterLock.EnterWriteLock();
-        try
+        Settings.Clear();
+        var gameStateData =
+            message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
+        var gameStateToken = gameStateData?.SelectToken("Data.GameState");
+        if (gameStateToken?.ToObject<string>() is not { } gameStateJson ||
+            JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
         {
-            Settings.Clear();
-            var gameStateData =
-                message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
-            var gameStateToken = gameStateData?.SelectToken("Data.GameState");
-            if (gameStateToken?.ToObject<string>() is not { } gameStateJson ||
-                JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
-            {
-                return;
-            }
+            return;
+        }
 
-            LoadSettings(gameState);
-        }
-        finally
-        {
-            _readerWriterLock.ExitWriteLock();
-        }
+        LoadSettings(gameState);
     }
 
     private void LoadSettings(JToken gameState)
@@ -123,26 +112,18 @@ public class GameStatePageViewModel
         var gameStateData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
 
         if (gameStateData?.SelectToken("Data.GameState") is not { } gameStateToken ||
-            gameStateToken?.ToObject<string>() is not { } gameStateJson ||
+            gameStateToken.ToObject<string>() is not { } gameStateJson ||
             JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
         {
             return false;
         }
 
-        _readerWriterLock.EnterReadLock();
-        try
+        if (!Merge(gameState, Settings))
         {
-            if (!Merge(gameState, Settings))
-            {
-                return false;
-            }
+            return false;
+        }
 
-            gameStateToken.Replace(JsonConverter.Serialize(gameState));
-        }
-        finally
-        {
-            _readerWriterLock.ExitReadLock();
-        }
+        gameStateToken.Replace(JsonConverter.Serialize(gameState));
 
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameStateSaveData, gameStateData, createBackup);
         return true;

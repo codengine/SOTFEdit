@@ -1,142 +1,315 @@
 ﻿<UserControl x:Class="SOTFEdit.View.FollowersPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SOTFEdit.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
-             mc:Ignorable="d" 
+             xmlns:model="clr-namespace:SOTFEdit.Model"
+             mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:FollowerPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
-            <Style x:Key="FollowerTextBlockStyleLeft" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Style x:Key="FollowerTextBlockStyleLeft" TargetType="{x:Type TextBlock}"
+                   BasedOn="{StaticResource MahApps.Styles.TextBlock}">
                 <Setter Property="Margin" Value="0 0 10 10" />
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            <Style x:Key="FollowerTextBlockStyleRight" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Style x:Key="FollowerTextBlockStyleRight" TargetType="{x:Type TextBlock}"
+                   BasedOn="{StaticResource MahApps.Styles.TextBlock}">
                 <Setter Property="Margin" Value="0 0 0 10" />
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            <Style x:Key="FollowerSliderStyle" TargetType="{x:Type Slider}" BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
+            <Style x:Key="FollowerSliderStyle" TargetType="{x:Type Slider}"
+                   BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
                 <Setter Property="Margin" Value="0 0 10 10" />
                 <Setter Property="TickFrequency" Value="1" />
                 <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
             <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
                 <Setter Property="Margin" Value="0 0 0 10" />
             </Style>
+            <Style x:Key="FollowerCheckboxStyle" TargetType="CheckBox"
+                   BasedOn="{StaticResource MahApps.Styles.CheckBox}">
+                <Setter Property="Margin" Value="0  0 10 0" />
+            </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Kelvin" Margin="0 0 5 0">
+        <GroupBox Header="Kelvin" Margin="0 0 5 0" VerticalAlignment="Top">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
-                        <Image Source="/images/kv.jpg" Width="197" Height="246" Margin="0 0 0 10"></Image>
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}" CommandParameter="{Binding KelvinState}">Move to Player</Button>
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToVirginiaCommand}" CommandParameter="{Binding KelvinState}">Move to Virginia</Button>
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}" CommandParameter="{Binding KelvinState}">Revive</Button>
+                        <Image Source="/images/kv.jpg" Width="197" Height="246" Margin="0 0 0 10" />
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}"
+                                CommandParameter="{Binding KelvinState}">
+                            Move to Player
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToVirginiaCommand}"
+                                CommandParameter="{Binding KelvinState}">
+                            Move to Virginia
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}"
+                                CommandParameter="{Binding KelvinState}">
+                            Revive
+                        </Button>
                     </StackPanel>
-                    <Grid Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
+                    <Grid Grid.Row="0" Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Name:</TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleRight}">Kelvin aka Robby</TextBlock>
-                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Status</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleRight}" Text="{Binding KelvinState.Status}" />
-                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Position</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleRight}" Text="{Binding KelvinState.PositionPrintable}" />
-                        <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource FollowerTextBlockStyleLeft}">Health</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="3" Minimum="0.0" Maximum="100" Value="{Binding KelvinState.Health}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="4" Minimum="0.0" Maximum="100" Value="{Binding KelvinState.Anger}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.0" Maximum="100" Value="{Binding KelvinState.Fear}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Fullness</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0" Maximum="100" Value="{Binding KelvinState.Fullness}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0" Maximum="100" Value="{Binding KelvinState.Hydration}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0" Maximum="100" Value="{Binding KelvinState.Energy}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource FollowerTextBlockStyleLeft}">Affection</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0" Maximum="100" Value="{Binding KelvinState.Affection}"></Slider>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Unique ID</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleRight}"
+                                   Text="{Binding KelvinState.UniqueId}" />
+                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Status</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleRight}"
+                                   Text="{Binding KelvinState.Status}" />
+                        <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource FollowerTextBlockStyleLeft}">Position</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource FollowerTextBlockStyleRight}"
+                                   Text="{Binding KelvinState.PositionPrintable}" />
+                        <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource FollowerTextBlockStyleLeft}">Health</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="4" Minimum="0.0"
+                                Maximum="100" Value="{Binding KelvinState.Health}" />
+                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.0"
+                                Maximum="100" Value="{Binding KelvinState.Anger}" />
+                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0"
+                                Maximum="100" Value="{Binding KelvinState.Fear}" />
+                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Fullness</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0"
+                                Maximum="100" Value="{Binding KelvinState.Fullness}" />
+                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0"
+                                Maximum="100" Value="{Binding KelvinState.Hydration}" />
+                        <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
+                                Maximum="100" Value="{Binding KelvinState.Energy}" />
+                        <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource FollowerTextBlockStyleLeft}">Affection</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="10" Minimum="0.0"
+                                Maximum="100" Value="{Binding KelvinState.Affection}" />
+                        <TextBlock Margin="0" Grid.Column="0" Grid.Row="11"
+                                   Style="{StaticResource FollowerTextBlockStyleLeft}">
+                            Outfit
+                        </TextBlock>
+                        <ComboBox Grid.Column="1" Grid.Row="11" ItemsSource="{Binding KelvinState.Outfits}"
+                                  SelectedItem="{Binding KelvinState.Outfit}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type model:Item}">
+                                    <TextBlock Text="{Binding Name, Mode=OneTime}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </Grid>
+                    <ItemsControl ItemsSource="{Binding KelvinState.Influences}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <ItemsControl.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <GroupBox Header="Influences" Margin="10" Padding="10">
+                                    <ItemsPresenter/>
+                                </GroupBox>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type model:Influence}">
+                                <GroupBox Header="{Binding TypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Sentiment</TextBlock>
+                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="0.0"
+                                                Maximum="100" Value="{Binding Sentiment}" />
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
+                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1" Minimum="0.0"
+                                                Maximum="100" Value="{Binding Anger}" />
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
+                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2" Minimum="0.0"
+                                                Maximum="100" Value="{Binding Fear}" />
+                                    </Grid>
+                                </GroupBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </ScrollViewer>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Virginia" Margin="5 0 0 0">
+        <GroupBox Grid.Column="1" Header="Virginia" Margin="5 0 0 0" VerticalAlignment="Top">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
-                        <Image Source="/images/vg.jpg" Width="197" Height="246" Margin="0 0 0 10"></Image>
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}" CommandParameter="{Binding VirginiaState}">Move to Player</Button>
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToKelvinCommand}" CommandParameter="{Binding VirginiaState}">Move to Kelvin</Button>
-                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}" CommandParameter="{Binding VirginiaState}">Revive</Button>
+                        <Image Source="/images/vg.jpg" Width="197" Height="246" Margin="0 0 0 10" />
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}"
+                                CommandParameter="{Binding VirginiaState}">
+                            Move to Player
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToKelvinCommand}"
+                                CommandParameter="{Binding VirginiaState}">
+                            Move to Kelvin
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}"
+                                CommandParameter="{Binding VirginiaState}">
+                            Revive
+                        </Button>
                     </StackPanel>
-                    <Grid Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
+                    <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Name:</TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleRight}">Virginia</TextBlock>
-                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Status</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleRight}" Text="{Binding VirginiaState.Status}" />
-                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Position</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleRight}" Text="{Binding VirginiaState.PositionPrintable}" />
-                        <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource FollowerTextBlockStyleLeft}">Health</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="3" Minimum="0.0" Maximum="120" Value="{Binding VirginiaState.Health}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="4" Minimum="0.0" Maximum="100" Value="{Binding VirginiaState.Anger}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.0" Maximum="100" Value="{Binding VirginiaState.Fear}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Fullness</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0" Maximum="100" Value="{Binding VirginiaState.Fullness}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0" Maximum="100" Value="{Binding VirginiaState.Hydration}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0" Maximum="100" Value="{Binding VirginiaState.Energy}"></Slider>
-                        <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource FollowerTextBlockStyleLeft}">Affection</TextBlock>
-                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0" Maximum="100" Value="{Binding VirginiaState.Affection}"></Slider>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Unique ID</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleRight}"
+                                   Text="{Binding VirginiaState.UniqueId}" />
+                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Status</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleRight}"
+                                   Text="{Binding VirginiaState.Status}" />
+                        <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource FollowerTextBlockStyleLeft}">Position</TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource FollowerTextBlockStyleRight}"
+                                   Text="{Binding VirginiaState.PositionPrintable}" />
+                        <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource FollowerTextBlockStyleLeft}">Health</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="4" Minimum="0.0"
+                                Maximum="120" Value="{Binding VirginiaState.Health}" />
+                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.0"
+                                Maximum="100" Value="{Binding VirginiaState.Anger}" />
+                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0"
+                                Maximum="100" Value="{Binding VirginiaState.Fear}" />
+                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Fullness</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0"
+                                Maximum="100" Value="{Binding VirginiaState.Fullness}" />
+                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0"
+                                Maximum="100" Value="{Binding VirginiaState.Hydration}" />
+                        <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
+                                Maximum="100" Value="{Binding VirginiaState.Energy}" />
+                        <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource FollowerTextBlockStyleLeft}">Affection</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="10" Minimum="0.0"
+                                Maximum="100" Value="{Binding VirginiaState.Affection}" />
+                        <TextBlock Grid.Column="0" Grid.Row="11" Style="{StaticResource FollowerTextBlockStyleLeft}">Equipment</TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="11">
+                            <ItemsControl ItemsSource="{Binding VirginiaState.Inventory}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type model:EquippableItem}">
+                                        <CheckBox Style="{StaticResource FollowerCheckboxStyle}"
+                                                  Content="{Binding Name, Mode=OneTime}"
+                                                  IsChecked="{Binding Selected}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                        <TextBlock Grid.Column="0" Grid.Row="12" Margin="0"
+                                   Style="{StaticResource FollowerTextBlockStyleLeft}">
+                            Outfit
+                        </TextBlock>
+                        <ComboBox Grid.Column="1" Grid.Row="12" ItemsSource="{Binding VirginiaState.Outfits}"
+                                  SelectedItem="{Binding VirginiaState.Outfit}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type model:Outfit}">
+                                    <TextBlock Text="{Binding Name, Mode=OneTime}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </Grid>
+                    <ItemsControl ItemsSource="{Binding VirginiaState.Influences}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <ItemsControl.Template>
+                            <ControlTemplate TargetType="ItemsControl">
+                                <GroupBox Header="Influences" Margin="10" Padding="10">
+                                    <ItemsPresenter/>
+                                </GroupBox>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type model:Influence}">
+                                <GroupBox Header="{Binding TypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Sentiment</TextBlock>
+                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="0.0"
+                                                Maximum="100" Value="{Binding Sentiment}" />
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
+                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1" Minimum="0.0"
+                                                Maximum="100" Value="{Binding Anger}" />
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
+                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2" Minimum="0.0"
+                                                Maximum="100" Value="{Binding Fear}" />
+                                    </Grid>
+                                </GroupBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </ScrollViewer>
         </GroupBox>

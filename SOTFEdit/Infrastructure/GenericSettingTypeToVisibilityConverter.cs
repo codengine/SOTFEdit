@@ -10,35 +10,22 @@ public class GenericSettingTypeToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is GenericSetting.DataType type && parameter is string paramStr)
+        if (value is not GenericSetting.DataType type || parameter is not string paramStr)
         {
-            if (type == GenericSetting.DataType.Boolean && paramStr == "Bool")
-            {
-                return Visibility.Visible;
-            }
-
-            if (type == GenericSetting.DataType.Integer && paramStr == "Int")
-            {
-                return Visibility.Visible;
-            }
-
-            if (type == GenericSetting.DataType.Enum && paramStr == "Combo")
-            {
-                return Visibility.Visible;
-            }
-
-            if (type == GenericSetting.DataType.String && paramStr == "String")
-            {
-                return Visibility.Visible;
-            }
-
-            if (type == GenericSetting.DataType.ReadOnly && paramStr == "ReadOnly")
-            {
-                return Visibility.Visible;
-            }
+            return Visibility.Hidden;
         }
 
-        return Visibility.Hidden;
+        switch (type)
+        {
+            case GenericSetting.DataType.Boolean when paramStr == "Bool":
+            case GenericSetting.DataType.Integer when paramStr == "Int":
+            case GenericSetting.DataType.Enum when paramStr == "Combo":
+            case GenericSetting.DataType.String when paramStr == "String":
+            case GenericSetting.DataType.ReadOnly when paramStr == "ReadOnly":
+                return Visibility.Visible;
+            default:
+                return Visibility.Hidden;
+        }
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

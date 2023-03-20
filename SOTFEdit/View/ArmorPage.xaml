@@ -10,23 +10,26 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <GroupBox Header="Equipped Armor (Max. 10)" Margin="0 0 5 0">
         <DockPanel Margin="10">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="0 10 0 20">
-                <ComboBox ItemsSource="{Binding ArmourTypes, Mode=OneTime}"
-                          SelectedItem="{Binding NewArmour.Item, Mode=TwoWay}" DisplayMemberPath="Name" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left"
+                        DockPanel.Dock="Top" Margin="0 10 0 20">
+                <ComboBox ItemsSource="{Binding ArmourTypes}"
+                          SelectedItem="{Binding NewArmour.SelectedItem}" DisplayMemberPath="Name" />
                 <TextBox mah:TextBoxHelper.Watermark="Durability"
-                         Text="{Binding NewArmour.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         Text="{Binding NewArmour.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}"
                          Width="70" MaxLength="5" />
-                <Button Command="{Binding NewArmour.AddArmorCommand, Mode=OneTime}">Add</Button>
+                <Button Command="{Binding NewArmour.AddArmorCommand}">Add</Button>
             </StackPanel>
             <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False" x:Name="InventoryGrid"
-                      SelectionMode="Single" ItemsSource="{Binding Armour, Mode=OneWay, IsAsync=True}" CanUserAddRows="false"
+                      SelectionMode="Single" ItemsSource="{Binding Armour}"
+                      CanUserAddRows="false"
                       CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Slot, Mode=OneWay}" Header="Slot" IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Id, Mode=OneWay}" Header="ID" IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" Header="Name" IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding NameDe, Mode=OneWay}" Header="Name (De)" IsReadOnly="True" />
-                    <mah:DataGridNumericUpDownColumn Binding="{Binding ArmourPiece.RemainingArmourpoints, Mode=TwoWay}" Header="Durability" Minimum="0.1" Maximum="65535" />
+                    <DataGridTextColumn Binding="{Binding Slot, Mode=OneTime}" Header="Slot" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}" Header="ID" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Name" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding NameDe, Mode=OneTime}" Header="Name (De)" IsReadOnly="True" />
+                    <mah:DataGridNumericUpDownColumn Binding="{Binding ArmourPiece.RemainingArmourpoints}"
+                                                     Header="Durability" Minimum="0.1" Maximum="65535" />
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

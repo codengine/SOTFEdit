@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
-using SOTFEdit.Model.SaveData;
+using SOTFEdit.Model.SaveData.Armour;
 
 namespace SOTFEdit.ViewModel;
 
@@ -16,12 +14,11 @@ public partial class ArmorPageViewModel
 {
     private readonly ItemList _itemList;
     private Savegame? _selectedSavegame;
-    private readonly ReaderWriterLockSlim _readerWriterLock = new();
 
-    public ArmorPageViewModel()
+    public ArmorPageViewModel(GameData gameData)
     {
         NewArmour = new NewArmourPiece(Armour, () => _selectedSavegame != null);
-        _itemList = Ioc.Default.GetRequiredService<ItemList>();
+        _itemList = gameData.Items;
         foreach (var armorItem in _itemList.Where(item => item.Value.Type == "armor").OrderBy(item => item.Value.Name))
         {
             ArmourTypes.Add(armorItem.Value);
@@ -43,28 +40,20 @@ public partial class ArmorPageViewModel
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
-        _readerWriterLock.EnterWriteLock();
-        try
-        {
-            Armour.Clear();
-            var armour =
-                m.SelectedSavegame?.SavegameStore.LoadJson<PlayerArmourData>(SavegameStore.FileType
-                    .PlayerArmourSystemSaveData);
+        Armour.Clear();
+        var armour =
+            m.SelectedSavegame?.SavegameStore.LoadJson<PlayerArmourDataModel>(SavegameStore.FileType
+                .PlayerArmourSystemSaveData);
 
-            if (armour != null)
+        if (armour != null)
+        {
+            foreach (var armourPiece in armour.Data.PlayerArmourSystem.ArmourPieces)
             {
-                foreach (var armourPiece in armour.Data.PlayerArmourSystem.ArmourPieces)
-                {
-                    Armour.Add(new ArmourData(armourPiece, _itemList.GetItem(armourPiece.ItemId)));
-                }
+                Armour.Add(new ArmourData(armourPiece, _itemList.GetItem(armourPiece.ItemId)));
             }
+        }
 
-            _selectedSavegame = m.SelectedSavegame;
-        }
-        finally
-        {
-            _readerWriterLock.ExitWriteLock();
-        }
+        _selectedSavegame = m.SelectedSavegame;
 
         NewArmour.AddArmorCommand.NotifyCanExecuteChanged();
     }
@@ -72,42 +61,33 @@ public partial class ArmorPageViewModel
     public bool Update(Savegame savegame, bool createBackup)
     {
         var playerArmourData =
-            savegame.SavegameStore.LoadJson<PlayerArmourData>(SavegameStore.FileType.PlayerArmourSystemSaveData);
+            savegame.SavegameStore.LoadJson<PlayerArmourDataModel>(SavegameStore.FileType.PlayerArmourSystemSaveData);
         if (playerArmourData == null)
         {
             return false;
         }
 
-        _readerWriterLock.EnterReadLock();
-        try
+        var selectedArmorPieces = Armour.Select(a => a.ArmourPiece).ToList();
+        if (!PlayerArmourSystemModel.Merge(playerArmourData.Data.PlayerArmourSystem, selectedArmorPieces))
         {
-            var selectedArmorPieces = Armour.Select(a => a.ArmourPiece).ToList();
-            if (PlayerArmourSystem.Merge(playerArmourData.Data.PlayerArmourSystem, selectedArmorPieces))
-            {
-                savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerArmourSystemSaveData, playerArmourData,
-                    createBackup);
-                return true;
-            }
-        }
-        finally
-        {
-            _readerWriterLock.ExitReadLock();
+            return false;
         }
 
-        return false;
+        savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerArmourSystemSaveData, playerArmourData,
+            createBackup);
+        return true;
     }
 
     public partial class NewArmourPiece : ObservableObject
     {
         private readonly Func<bool> _savegameSelected;
         private readonly Collection<ArmourData> _sink;
-        private readonly ReaderWriterLockSlim _readerWriterLock = new();
 
         [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(AddArmorCommand))]
-        private Item? _item = null;
+        private int _remainingArmourpoints;
 
         [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(AddArmorCommand))]
-        private int _remainingArmourpoints = 0;
+        private Item? _selectedItem;
 
         internal NewArmourPiece(Collection<ArmourData> sink, Func<bool> savegameSelected)
         {
@@ -118,48 +98,32 @@ public partial class ArmorPageViewModel
         [RelayCommand(CanExecute = nameof(CanAddArmor))]
         public void AddArmor()
         {
-            _readerWriterLock.EnterWriteLock();
-            try
+            if (_sink.Count == 10)
             {
-                if (_sink.Count == 10)
-                {
-                    return;
-                }
-
-                var maxSlot = _sink.Select(piece => piece.Slot)
-                    .DefaultIfEmpty(-1)
-                    .Max();
-
-                var nextSlot = maxSlot == 1 ? 4 : maxSlot + 1;
-
-                var armourPiece = new ArmourPiece
-                {
-                    ItemId = Item!.Id,
-                    RemainingArmourpoints = RemainingArmourpoints,
-                    Slot = nextSlot
-                };
-                _sink.Add(new ArmourData(armourPiece, Item));
+                return;
             }
-            finally
+
+            var maxSlot = _sink.Select(piece => piece.Slot)
+                .DefaultIfEmpty(-1)
+                .Max();
+
+            var nextSlot = maxSlot == 1 ? 4 : maxSlot + 1;
+
+            var armourPiece = new ArmourPieceModel
             {
-                _readerWriterLock.ExitWriteLock();
-            }
+                ItemId = SelectedItem!.Id,
+                RemainingArmourpoints = RemainingArmourpoints,
+                Slot = nextSlot
+            };
+            _sink.Add(new ArmourData(armourPiece, SelectedItem));
 
             AddArmorCommand.NotifyCanExecuteChanged();
         }
 
         public bool CanAddArmor()
         {
-            _readerWriterLock.EnterReadLock();
-            try
-            {
-                return Item != null && RemainingArmourpoints > 0 &&
-                       _sink.Count < 10 && _savegameSelected.Invoke();
-            }
-            finally
-            {
-                _readerWriterLock.ExitReadLock();
-            }
+            return SelectedItem != null && RemainingArmourpoints > 0 &&
+                   _sink.Count < 10 && _savegameSelected.Invoke();
         }
     }
 }
@@ -168,16 +132,17 @@ public record ArmourData
 {
     private readonly Item? _item;
 
-    public ArmourData(ArmourPiece armourPiece, Item? item)
+    public ArmourData(ArmourPieceModel armourPieceModel, Item? item)
     {
-        ArmourPiece = armourPiece;
+        ArmourPiece = armourPieceModel;
         _item = item;
     }
 
-    public ArmourPiece ArmourPiece { get; }
+    public ArmourPieceModel ArmourPiece { get; }
 
     public int Id => _item?.Id ?? ArmourPiece.ItemId;
 
+    // ReSharper disable once UnusedMember.Global
     public float RemainingArmourpoints
     {
         get => ArmourPiece.RemainingArmourpoints;

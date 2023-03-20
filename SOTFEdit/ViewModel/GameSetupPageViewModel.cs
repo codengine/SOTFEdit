@@ -1,19 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
-using SOTFEdit.Model.SaveData;
-using static SOTFEdit.Model.SaveData.GameSetup;
+using SOTFEdit.Model.SaveData.Settings;
+using SOTFEdit.Model.SaveData.Setup;
 
 namespace SOTFEdit.ViewModel;
 
 public class GameSetupPageViewModel : ObservableObject
 {
-    private readonly Dictionary<string, GameSettingLight> _gameSettings = new();
-    private readonly ReaderWriterLockSlim _readerWriterLock = new();
+    private readonly Dictionary<string, GameSettingLightModel> _gameSettings = new();
 
     public GameSetupPageViewModel()
     {
@@ -82,35 +80,19 @@ public class GameSetupPageViewModel : ObservableObject
 
     private void SetModelProperty(string key, string? value)
     {
-        _readerWriterLock.EnterWriteLock();
-        try
+        if (string.IsNullOrWhiteSpace(value))
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                _gameSettings.Remove(key);
-            }
-            else
-            {
-                _gameSettings[key] = new GameSettingLight(key, value);
-            }
+            _gameSettings.Remove(key);
         }
-        finally
+        else
         {
-            _readerWriterLock.ExitWriteLock();
+            _gameSettings[key] = new GameSettingLightModel(key, value);
         }
     }
 
-    private GameSettingLight? GetModelProperty(string key)
+    private GameSettingLightModel? GetModelProperty(string key)
     {
-        _readerWriterLock.EnterReadLock();
-        try
-        {
-            return _gameSettings.TryGetValue(key, out var value) ? value : null;
-        }
-        finally
-        {
-            _readerWriterLock.ExitReadLock();
-        }
+        return _gameSettings.TryGetValue(key, out var value) ? value : null;
     }
 
     private void SetupListeners()
@@ -121,21 +103,13 @@ public class GameSetupPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
-        _readerWriterLock.EnterWriteLock();
-        try
+        _gameSettings.Clear();
+        foreach (var setting in m.SelectedSavegame?.SavegameStore
+                                    .LoadJson<GameSetupDataModel>(SavegameStore.FileType.GameSetupSaveData)?.Data
+                                    .GameSetup.Settings ??
+                                Enumerable.Empty<GameSettingLightModel>())
         {
-            _gameSettings.Clear();
-            foreach (var setting in m.SelectedSavegame?.SavegameStore
-                                        .LoadJson<GameSetupData>(SavegameStore.FileType.GameSetupSaveData)?.Data
-                                        .GameSetup.Settings ??
-                                    Enumerable.Empty<GameSettingLight>())
-            {
-                _gameSettings.Add(setting.Name, setting);
-            }
-        }
-        finally
-        {
-            _readerWriterLock.ExitWriteLock();
+            _gameSettings.Add(setting.Name, setting);
         }
 
         OnPropertyChanged(nameof(SelectedMode));
@@ -158,17 +132,9 @@ public class GameSetupPageViewModel : ObservableObject
             return false;
         }
 
-        _readerWriterLock.EnterReadLock();
-        try
+        if (!GameSetupDataModel.Merge(saveData, _gameSettings.Values))
         {
-            if (!GameSetupData.Merge(saveData, _gameSettings.Values))
-            {
-                return false;
-            }
-        }
-        finally
-        {
-            _readerWriterLock.ExitReadLock();
+            return false;
         }
 
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameSetupSaveData, saveData, createBackup);

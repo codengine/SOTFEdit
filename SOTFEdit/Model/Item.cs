@@ -1,10 +1,18 @@
-﻿namespace SOTFEdit.Model;
+﻿using System.Collections.Generic;
 
-public record Item
+namespace SOTFEdit.Model;
+
+public class Item
 {
     public int Id { get; init; }
     public string Name { get; init; }
     public string? NameDe { get; init; }
     public string Type { get; init; }
+    public List<ItemModule>? Modules { get; init; }
     public bool IsInventoryItem { get; init; } = true;
+    public int Max { get; init; } = 1000;
 }
+
+public record ItemModule(int ModuleId, List<ItemVariant> Variants);
+
+public record ItemVariant(int State, string Name);

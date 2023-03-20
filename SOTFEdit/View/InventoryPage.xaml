@@ -15,34 +15,29 @@
         </Grid.ColumnDefinitions>
         <GroupBox Header="Items in Inventory" Margin="0 0 5 0">
             <DockPanel Margin="10">
-                <DockPanel.Resources>
-                    <DataTemplate x:Key="DataTemplate">
-                        <mah:NumericUpDown Minimum="0"
-                                           Maximum="65535"
-                                           Interval="100"
-                                           Value="{Binding}" />
-                    </DataTemplate>
-                </DockPanel.Resources>
                 <TextBox
                     Margin="0,0,0,10"
                     DockPanel.Dock="Top"
                     Padding="5"
-                    Text="{Binding InventoryFilter, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding InventoryFilter, UpdateSourceTrigger=PropertyChanged}"
                     mah:TextBoxHelper.Watermark="Filter..." />
-                <DataGrid Height="Auto" DockPanel.Dock="Top" EnableRowVirtualization="True" AutoGenerateColumns="False"
+                <DataGrid Height="Auto" DockPanel.Dock="Top" EnableRowVirtualization="True"
+                          EnableColumnVirtualization="True" AutoGenerateColumns="False"
                           x:Name="InventoryGrid" SelectionMode="Single"
-                          ItemsSource="{Binding InventoryCollectionView}" CanUserAddRows="false"
+                          ItemsSource="{Binding InventoryCollectionView, IsAsync=True}" CanUserAddRows="False"
                           CanUserDeleteRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Id, Mode=OneWay}" Header="ID" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" Header="Name" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding NameDe, Mode=OneWay}" Header="Name (De)" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Type, Mode=OneWay}" Header="Type" IsReadOnly="True" />
-                        <mah:DataGridNumericUpDownColumn Binding="{Binding TotalCount, Mode=TwoWay}" Header="Count" Minimum="0" Maximum="65535" />
+                        <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}" Header="ID" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Name" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding NameDe, Mode=OneTime}" Header="Name (De)"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Type, Mode=OneTime}" Header="Type" IsReadOnly="True" />
+                        <mah:DataGridNumericUpDownColumn Binding="{Binding TotalCount}" Header="Count"
+                                                         Minimum="0" Maximum="65535" />
                     </DataGrid.Columns>
                     <DataGrid.InputBindings>
                         <MouseBinding MouseAction="LeftDoubleClick"
-                                      Command="{Binding RemoveItemFromInventoryCommand, Mode=OneTime}"
+                                      Command="{Binding RemoveItemFromInventoryCommand}"
                                       CommandParameter="{Binding ElementName=InventoryGrid, Path=SelectedItem}" />
                     </DataGrid.InputBindings>
                 </DataGrid>
@@ -54,17 +49,19 @@
                     Margin="0,0,0,10"
                     DockPanel.Dock="Top"
                     Padding="5"
-                    Text="{Binding UnassignedItemsFilter, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding UnassignedItemsFilter, UpdateSourceTrigger=PropertyChanged}"
                     mah:TextBoxHelper.Watermark="Filter..." />
-                <DataGrid DockPanel.Dock="Top" Height="Auto" EnableRowVirtualization="True" AutoGenerateColumns="False"
+                <DataGrid DockPanel.Dock="Top" Height="Auto" EnableRowVirtualization="True"
+                          EnableColumnVirtualization="True" AutoGenerateColumns="False"
                           x:Name="UnassignedItemsGrid" SelectionMode="Single"
-                          ItemsSource="{Binding UnassignedItemsCollectionView}" IsReadOnly="True">
+                          ItemsSource="{Binding UnassignedItemsCollectionView, IsAsync=True}" IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Id, Mode=OneWay}" Header="ID" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" Header="Name" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding NameDe, Mode=OneWay}" Header="Name (De)" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Type, Mode=OneWay}" Header="Type" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding TotalCount, Mode=TwoWay}" Header="Count">
+                        <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}" Header="ID" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Name" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding NameDe, Mode=OneTime}" Header="Name (De)"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Type, Mode=OneTime}" Header="Type" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding TotalCount, Mode=OneTime}" Header="Count">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -74,7 +71,7 @@
                     </DataGrid.Columns>
                     <DataGrid.InputBindings>
                         <MouseBinding MouseAction="LeftDoubleClick"
-                                      Command="{Binding AddUnassignedItemCommand, Mode=OneTime}"
+                                      Command="{Binding AddUnassignedItemCommand}"
                                       CommandParameter="{Binding ElementName=UnassignedItemsGrid, Path=SelectedItem}" />
                     </DataGrid.InputBindings>
                 </DataGrid>

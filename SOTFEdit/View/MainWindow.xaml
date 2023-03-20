@@ -11,118 +11,118 @@
                  mc:Ignorable="d"
                  SaveWindowPosition="True"
                  WindowStartupLocation="CenterScreen"
-                 Title="Sons of the Forest Savegame Editor" Height="850" Width="1200"
+                 Title="Sons of the Forest Savegame Editor" Height="850" Width="1280"
+                 TitleCharacterCasing="Normal"
                  Style="{DynamicResource MyStyle}"
                  d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
                  WindowTransitionsEnabled="False">
-    <DockPanel Margin="15">
-        <DockPanel.Resources>
-            <infrastructure:BindingProxy x:Key="DataSourceProxy" Data="{Binding}" />
-        </DockPanel.Resources>
-        <GroupBox Header="Savegames" DockPanel.Dock="Top">
-            <GroupBox.HeaderTemplate>
-                <DataTemplate>
-                    <DataTemplate.Resources>
-
-                    </DataTemplate.Resources>
-                    <DockPanel LastChildFill="False">
-                        <TextBlock DockPanel.Dock="Left" Text="{Binding}" VerticalAlignment="Center" />
-                        <Button DockPanel.Dock="Right" Margin="5 5" ToolTip="Save all pending changes" Cursor="Hand"
-                                Command="{Binding Path=Data.SaveChangesCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
-                            <iconPacks:PackIconMaterialDesign Kind="Save" Foreground="GreenYellow" />
-                        </Button>
-
-                        <Button DockPanel.Dock="Right" Margin="5 5" Foreground="Red"
-                                ToolTip="Refresh all savegames, discarding changes" Cursor="Hand"
-                                Command="{Binding Path=Data.ReloadSavegamesCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
-                            <iconPacks:PackIconMaterialDesign Kind="Refresh" />
-                        </Button>
-                        <Button DockPanel.Dock="Right" Margin="5 5" Foreground="Orange"
-                                ToolTip="Select the savegame directory" Cursor="Hand"
-                                Command="{Binding Path=Data.SelectSavegameDirCommand, Source={StaticResource DataSourceProxy}, Mode=OneTime}">
-                            <iconPacks:PackIconMaterialDesign Kind="FolderOpen" />
-                        </Button>
-                        <CheckBox DockPanel.Dock="Right"
-                                  ToolTip="When selected, will create a backup of each changed file"
-                                  IsChecked="{Binding Path=Data.BackupFiles, Source={StaticResource DataSourceProxy}, Mode=TwoWay}">
-                            Backup Files
-                        </CheckBox>
-                    </DockPanel>
-                </DataTemplate>
-            </GroupBox.HeaderTemplate>
-            <ListView HorizontalAlignment="Center" ItemsSource="{Binding SavegameManager.Savegames}"
-                      SelectedItem="{Binding SelectedSavegame, Mode=TwoWay}" MinHeight="160">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Foreground" Value="Cyan" />
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock Text="{Binding Title, Mode=OneWay}" />
-                            <Viewbox>
-                                <Border BorderThickness="2" BorderBrush="#0b0b0b" Margin="0 5">
-                                    <Image Width="256" Height="160">
-                                        <Image.Source>
-                                            <BitmapImage UriSource="{Binding ThumbPath, Mode=OneWay}" DecodePixelHeight="160"
-                                                         DecodePixelWidth="256" CacheOption="OnLoad"
-                                                         CreateOptions="IgnoreImageCache">
-                                            </BitmapImage>
-                                        </Image.Source>
-                                    </Image>
-                                </Border>
-                            </Viewbox>
-                            <TextBlock Text="{Binding LastSaveTime, Mode=OneWay}"
-                                       ToolTip="Last write time of the savegame directory" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" Background="Black" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </GroupBox>
-        <TabControl DockPanel.Dock="Top" SelectedItem="{Binding SelectedTab, Mode=TwoWay}">
-            <TabItem Foreground="White" Header="Player" Content="{Binding PlayerPage, Mode=OneTime}" />
-            <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage, Mode=OneTime}" />
-            <TabItem Foreground="White" Header="Followers" Content="{Binding FollowersPage, Mode=OneTime}" />
-            <TabItem Foreground="White" Header="Weather" Content="{Binding WeatherPage, Mode=OneTime}" />
-            <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage, Mode=OneTime}" />
-            <TabItem Foreground="White" Header="Game State" Content="{Binding GameStatePage, Mode=OneTime}" />
+    <DockPanel>
+        <Border BorderThickness="0 0 0 1" BorderBrush="Black" DockPanel.Dock="Top">
+            <Menu Background="{DynamicResource MahApps.Brushes.MenuItem.Background}" Padding="3">
+                <MenuItem Header="File">
+                    <MenuItem Header="Open Savegame..." Command="{Binding SelectSavegameCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:MaterialDesign Kind="FolderOpen" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Save" Command="{Binding SaveChangesCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:MaterialDesign Kind="Save" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Reload Current Savegame" Command="{Binding ReloadSavegameCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:MaterialDesign Kind="Refresh" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Open Savegame Dir in Explorer" Command="{Binding OpenSavegameDirCommand}" />
+                    <Separator />
+                    <CheckBox IsChecked="{Binding BackupFiles}">Backup Files</CheckBox>
+                    <MenuItem Header="Delete all backups (*.bak*)" Command="{Binding DeleteBackupsCommand}" />
+                    <Separator />
+                    <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
+                </MenuItem>
+                <MenuItem Header="?">
+                    <MenuItem Header="GitHub Project" Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/codengine/SOTFEdit">
+                        <MenuItem.Icon>
+                            <iconPacks:MaterialDesign Kind="Code" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="NexusMods" Command="{Binding OpenUrlCommand}" CommandParameter="https://www.nexusmods.com/sonsoftheforest/mods/41" />
+                    <MenuItem Header="thunderstore.io" Command="{Binding OpenUrlCommand}" CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/SOTFEdit/" />
+                    <Separator />
+                    <MenuItem Header="Updates">
+                        <MenuItem Header="Check now" Command="{Binding CheckForUpdatesCommand}" />
+                        <CheckBox IsChecked="{Binding CheckVersionOnStartup}">Check on Startup</CheckBox>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+        </Border>
+        <TabControl DockPanel.Dock="Top" SelectedItem="{Binding SelectedTab}" Margin="15 0 15 15">
+            <TabItem Foreground="White" Header="Player" Content="{Binding PlayerPage}" />
+            <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage}" />
+            <TabItem Foreground="White" Header="Storage" Content="{Binding StoragePage}" />
+            <TabItem Foreground="White" Header="Followers" Content="{Binding FollowersPage}" />
+            <TabItem Foreground="White" Header="Weather" Content="{Binding WeatherPage}" />
+            <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage}" />
+            <TabItem Foreground="White" Header="Game State" Content="{Binding GameStatePage}" />
             <TabItem Foreground="White" Header="Tools">
                 <Grid HorizontalAlignment="Center" Margin="0 20">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <GroupBox Header="Regrow Trees" Grid.Row="0" Margin="0 0 0 20" Padding="20">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <GroupBox Header="Regrow Trees" Grid.Row="0" Padding="10" Margin="0 0 0 15">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <StackPanel.Resources>
-                                <infrastructure:VegetationStateToBooleanConverter x:Key="VegetationStateToBooleanConverter" />
-                                <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MahApps.Styles.CheckBox}">
-                                    <Setter Property="Margin" Value="0 0 10 0" /> 
+                                <infrastructure:VegetationStateToBooleanConverter
+                                    x:Key="VegetationStateToBooleanConverter" />
+                                <Style TargetType="{x:Type CheckBox}"
+                                       BasedOn="{StaticResource MahApps.Styles.CheckBox}">
+                                    <Setter Property="Margin" Value="0 0 10 0" />
                                 </Style>
                             </StackPanel.Resources>
-                            <CheckBox IsChecked="{Binding VegetationStateIsAllSelected}" VerticalAlignment="Center" VerticalContentAlignment="Center">All</CheckBox>
-                            <CheckBox Content="Gone" IsChecked="{Binding 
+                            <mah:ToggleSwitch OnContent="All" OffContent="All"
+                                              IsOn="{Binding VegetationStateIsAllSelected}" />
+                            <mah:ToggleSwitch OnContent="Gone" OffContent="Gone"
+                                              IsOn="{Binding 
                                 Path=VegetationStateSelected,
                                 Converter={StaticResource VegetationStateToBooleanConverter},
                                 ConverterParameter={x:Static model:VegetationState.Gone}}" />
-                            <CheckBox Content="HalfChopped" IsChecked="{Binding 
+                            <mah:ToggleSwitch OnContent="HalfChopped" OffContent="HalfChopped"
+                                              IsOn="{Binding 
                                 Path=VegetationStateSelected,
                                 Converter={StaticResource VegetationStateToBooleanConverter},
                                 ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
-                            <CheckBox Content="Stumps" IsChecked="{Binding 
+                            <mah:ToggleSwitch OnContent="Stumps" OffContent="Stumps"
+                                              IsOn="{Binding 
                                 Path=VegetationStateSelected,
                                 Converter={StaticResource VegetationStateToBooleanConverter},
                                 ConverterParameter={x:Static model:VegetationState.Stumps}}" />
-                            <Button Command="{Binding RegrowTreesCommand, Mode=OneTime}" Padding="10" FontSize="14">Regrow Trees</Button>
+                            <Button Command="{Binding RegrowTreesCommand}" Padding="10" FontSize="14">Regrow Trees</Button>
                         </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Padding="10" Header="Experimental Area">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <WrapPanel Margin="0 0 0 10">
+                                <iconPacks:PackIconMaterialDesign Kind="Warning" Foreground="Red" />
+                                <TextBlock Padding="5 0 0 0" xml:space="preserve">Use these tools at your own risk. They might destroy your game, they might also yield something. Ensure to enable backups before.
+Each button has a tooltip, please read it carefully.
+                                </TextBlock>
+                            </WrapPanel>
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetKillStatisticsCommand}" Padding="10" FontSize="14" ToolTip="Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?">Reset Kill Statistics</Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetNumberCutTreesCommand}" Padding="10" FontSize="14" ToolTip="This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number">Reset Number of Cut Trees</Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesFearThePlayerCommand}" Padding="10" FontSize="14" ToolTip="Will set the Fear level to max and the Anger level to min towards the player, so that they might be less intimidating">Enemies fear the Player</Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesNoFearNoRemorceCommand}" Padding="10" FontSize="14" ToolTip="Will set the Fear level to min and the Anger level to max towards the player, so that they might be more intimidating">No Fear, No Remorse</Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentRemoveAllActorsAndSpawnsCommand}" Padding="10" FontSize="14" ToolTip="This might clear the game from enemies. Virginia and Kelvin are not effected. Highly Dangerous!">Remove All Actors and Spawners</Button>
+                            </StackPanel>
+                        </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>

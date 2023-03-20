@@ -10,5 +10,6 @@ public static class Constants
         public const float FullHealth = 100.0f;
         public const float NoAnger = 0.0f;
         public const float NoFear = 0.0f;
+        public const float FullSentiment = 100.0f;
     }
 }

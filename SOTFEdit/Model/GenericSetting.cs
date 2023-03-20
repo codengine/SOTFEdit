@@ -15,19 +15,12 @@ public partial class GenericSetting : ObservableObject
         Enum
     }
 
-    public string Name { get; }
-    public string DataPath { get; }
-    public DataType Type { get; }
-
-    [ObservableProperty] private string? _stringValue;
-    [ObservableProperty] private int? _intValue = 0;
     [ObservableProperty] private bool? _boolValue;
-
-    public Dictionary<object, string> PossibleValues { get; init; } = new();
-    public int MinInt { get; init; } = 0;
-    public int MaxInt { get; init; } = 1;
+    [ObservableProperty] private int? _intValue = 0;
 
     [ObservableProperty] private object? _selectedItem;
+
+    [ObservableProperty] private string? _stringValue;
 
     public GenericSetting(string name, string dataPath, DataType type)
     {
@@ -35,6 +28,14 @@ public partial class GenericSetting : ObservableObject
         DataPath = dataPath;
         Type = type;
     }
+
+    public string Name { get; }
+    public string DataPath { get; }
+    public DataType Type { get; }
+
+    public Dictionary<object, string> PossibleValues { get; init; } = new();
+    public int MinInt { get; init; } = 0;
+    public int MaxInt { get; init; } = 1;
 
     public object? GetValue()
     {

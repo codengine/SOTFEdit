@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="SOTFEdit.View.StoragePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+             xmlns:storage="clr-namespace:SOTFEdit.Model.Storage"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModel:StoragePageViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Storage Types">
+            <TreeView ItemsSource="{Binding StorageCollections}" Name="StorageTreeView">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type viewModel:StorageCollection}"
+                                              ItemsSource="{Binding Storages}">
+                        <TextBlock Text="{Binding StorageDefinition.Name, Mode=OneTime}" />
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type storage:ItemsStorage}">
+                        <TextBlock Text="{Binding Description}" />
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type storage:FoodStorage}">
+                        <TextBlock Text="{Binding Description}" />
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type storage:StorageWithModulePerItem}">
+                        <TextBlock Text="{Binding Description}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="SelectedItemChanged">
+                        <b:InvokeCommandAction
+                            Command="{Binding SelectedItemChangedCommand}"
+                            CommandParameter="{Binding SelectedItem, ElementName=StorageTreeView}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </TreeView>
+        </GroupBox>
+        <GridSplitter Grid.Column="1" Width="5" />
+        <GroupBox Grid.Column="2" Header="Stored items">
+            <ContentPresenter Content="{Binding Selected}" />
+        </GroupBox>
+    </Grid>
+</UserControl>

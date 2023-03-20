@@ -1,22 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using SOTFEdit.ViewModel;
 using SOTFEdit.Model;
+using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
 
 /// <summary>
-/// Interaction logic for GameStatePage.xaml
+///     Interaction logic for GameStatePage.xaml
 /// </summary>
 public partial class GameStatePage
 {
+    private readonly GameStatePageViewModel _dataContext;
+
     public GameStatePage()
     {
-        DataContext = Ioc.Default.GetRequiredService<GameStatePageViewModel>();
+        DataContext = _dataContext = Ioc.Default.GetRequiredService<GameStatePageViewModel>();
         InitializeComponent();
     }
 
     public bool Update(Savegame savegame, bool createBackup)
     {
-        return Ioc.Default.GetRequiredService<GameStatePageViewModel>().Update(savegame, createBackup);
+        return _dataContext.Update(savegame, createBackup);
     }
 }

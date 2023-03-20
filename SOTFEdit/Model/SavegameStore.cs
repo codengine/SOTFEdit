@@ -1,13 +1,15 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 using Newtonsoft.Json.Linq;
+using NLog;
 using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.Model;
 
 public class SavegameStore
 {
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
     public enum FileType
     {
         SaveDataThumbnail,
@@ -18,11 +20,11 @@ public class SavegameStore
         GameStateSaveData,
         WorldObjectLocatorManagerSaveData,
         WeatherSystemSaveData,
-        PlayerStateSaveData
+        PlayerStateSaveData,
+        ScrewStructureInstancesSaveData
     }
 
     private readonly string _path;
-    private readonly ReaderWriterLockSlim _readerWriterLock = new();
 
     public SavegameStore(string path)
     {
@@ -39,16 +41,8 @@ public class SavegameStore
 
     public T? LoadJson<T>(FileType fileType)
     {
-        _readerWriterLock.EnterReadLock();
-        try
-        {
-            var path = ResolvePath(fileType.GetFilename());
-            return !File.Exists(path) ? default : JsonConverter.DeserializeFromFile<T>(path);
-        }
-        finally
-        {
-            _readerWriterLock.ExitReadLock();
-        }
+        var path = ResolvePath(fileType.GetFilename());
+        return !File.Exists(path) ? default : JsonConverter.DeserializeFromFile<T>(path);
     }
 
     internal string ResolvePath(string fileName)
@@ -63,22 +57,14 @@ public class SavegameStore
 
     public void StoreJson(FileType fileType, object model, bool createBackup)
     {
-        _readerWriterLock.EnterWriteLock();
-        try
-        {
-            var fullPath = ResolvePath(fileType.GetFilename());
+        var fullPath = ResolvePath(fileType.GetFilename());
 
-            if (createBackup)
-            {
-                CreateBackup(fullPath);
-            }
-
-            JsonConverter.Serialize(fullPath, model);
-        }
-        finally
+        if (createBackup)
         {
-            _readerWriterLock.ExitWriteLock();
+            CreateBackup(fullPath);
         }
+
+        JsonConverter.Serialize(fullPath, model);
     }
 
     private static void CreateBackup(string fullPath)
@@ -105,52 +91,33 @@ public class SavegameStore
         return backupFn;
     }
 
-    public string GetThumbPath()
+    public string? GetThumbPath()
     {
         var thumbPath = ResolvePath(FileType.SaveDataThumbnail.GetFilename());
         return File.Exists(thumbPath)
             ? thumbPath
-            : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "default_screenshot.png");
+            : null;
     }
 
-    public void Delete(FileType fileType)
+    public DirectoryInfo? GetParentDirectory()
     {
-        var path = ResolvePath(fileType.GetFilename());
-        if (!File.Exists(path))
-        {
-            return;
-        }
-
-        File.Delete(path);
+        return new DirectoryInfo(_path).Parent;
     }
 
-    public void MoveToBackup(FileType fileType)
+    public int DeleteBackups()
     {
-        var path = ResolvePath(fileType.GetFilename());
-        if (!File.Exists(path))
+        if (!Directory.Exists(_path))
         {
-            return;
+            return 0;
         }
 
-        var targetPath = GetFilenameForBackup(path);
-        File.Move(path, targetPath);
-    }
-
-    public string? GetParentDirectory()
-    {
-        var parent = new DirectoryInfo(_path).Parent;
-        if (parent == null)
+        var fileInfos = new DirectoryInfo(_path).GetFiles("*.bak*", SearchOption.TopDirectoryOnly);
+        foreach (var fileInfo in fileInfos)
         {
-            return null;
+            Logger.Info($"Deleting backup {fileInfo.FullName}...");
         }
 
-        return parent.Name.ToLower() switch
-        {
-            "singleplayer" => "SP",
-            "multiplayer" => "MP",
-            "multiplayerclient" => "MP_Client",
-            _ => parent.Name
-        };
+        return fileInfos.Length;
     }
 }
 

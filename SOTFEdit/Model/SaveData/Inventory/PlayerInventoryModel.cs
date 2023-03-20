@@ -1,45 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using JsonConverter = SOTFEdit.Infrastructure.JsonConverter;
 
-namespace SOTFEdit.Model.SaveData;
+namespace SOTFEdit.Model.SaveData.Inventory;
 
-public record PlayerInventoryData
+public record PlayerInventoryModel
 {
-    public DataModel Data { get; set; }
+    public ItemInstanceManagerDataModel ItemInstanceManagerData { get; set; }
 
-    public static bool Merge(JToken target, List<ItemInstanceManagerData.ItemBlock> selectedItems)
-    {
-        var playerInventoryToken = target.SelectToken("Data.PlayerInventory");
-        if (playerInventoryToken?.ToObject<string>() is not { } playerInventoryJson)
-        {
-            return false;
-        }
-
-        var playerInventory = JsonConverter.DeserializeRaw(playerInventoryJson);
-        if (!PlayerInventory.Merge(playerInventory, selectedItems))
-        {
-            return false;
-        }
-
-        playerInventoryToken.Replace(JsonConverter.Serialize(playerInventory));
-        return true;
-    }
-
-    public class DataModel
-    {
-        [JsonConverter(typeof(StringTypeConverter))]
-        public PlayerInventory PlayerInventory { get; set; }
-    }
-}
-
-public record PlayerInventory
-{
-    public ItemInstanceManagerData ItemInstanceManagerData { get; set; }
-
-    public static bool Merge(JToken playerInventory, List<ItemInstanceManagerData.ItemBlock> selectedItems)
+    public static bool Merge(JToken playerInventory, List<ItemBlockModel> selectedItems)
     {
         var selectedItemsDict = selectedItems.ToDictionary(itemBlock => itemBlock.ItemId);
 
@@ -99,26 +68,5 @@ public record PlayerInventory
         }
 
         return hasChanges;
-    }
-}
-
-public record ItemInstanceManagerData : SotfBaseModel
-{
-    public List<ItemBlock> ItemBlocks { get; set; }
-
-    public class ItemBlock
-    {
-        public List<JToken> UniqueItems = new();
-        public int ItemId { get; set; }
-        public int TotalCount { get; set; }
-
-        public static ItemBlock Unassigned(int itemId)
-        {
-            return new ItemBlock
-            {
-                ItemId = itemId,
-                TotalCount = 1
-            };
-        }
     }
 }

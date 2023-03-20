@@ -1,17 +1,18 @@
 ﻿<UserControl x:Class="SOTFEdit.View.WeatherPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
-             mc:Ignorable="d" 
+             xmlns:model="clr-namespace:SOTFEdit.Model"
+             mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:WeatherPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <infrastructure:GenericSettingTypeToVisibilityConverter x:Key="GenericSettingTypeToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid>
+    <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -19,28 +20,25 @@
         <GroupBox Header="Settings" Margin="0 0 5 0">
             <DockPanel Margin="10">
                 <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False" x:Name="WeatherGrid"
-                          SelectionMode="Single" ItemsSource="{Binding Settings, Mode=OneWay}" CanUserAddRows="false"
+                          SelectionMode="Single" ItemsSource="{Binding Settings}" CanUserAddRows="false"
                           CanUserDeleteRows="False">
                     <DataGrid.Resources>
-                        <DataTemplate x:Key="DataTemplate">
+                        <DataTemplate x:Key="DataTemplate" DataType="{x:Type model:GenericSetting}">
                             <Grid>
                                 <TextBox Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"
                                          Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=String}" />
                                 <CheckBox IsChecked="{Binding BoolValue, UpdateSourceTrigger=PropertyChanged}"
-                                          Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Bool}">
-                                </CheckBox>
+                                          Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Bool}" />
                                 <ComboBox ItemsSource="{Binding PossibleValues}"
                                           DisplayMemberPath="Value"
                                           SelectedValuePath="Key"
                                           SelectedValue="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
-                                          Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Combo}">
-
-                                </ComboBox>
+                                          Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Combo}" />
                             </Grid>
                         </DataTemplate>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneWay}" Header="Setting" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Setting" IsReadOnly="True" />
                         <DataGridTemplateColumn Header="Value" CellTemplate="{StaticResource DataTemplate}" />
                     </DataGrid.Columns>
                 </DataGrid>

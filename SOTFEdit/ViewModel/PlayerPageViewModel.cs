@@ -19,13 +19,13 @@ public partial class PlayerPageViewModel : ObservableObject
     [ObservableProperty]
     private Savegame? _selectedSavegame;
 
-    public PlayerState PlayerState { get; } = new();
-    public ArmorPage ArmorPage { get; } = new();
-
     public PlayerPageViewModel()
     {
         SetupListeners();
     }
+
+    public PlayerState PlayerState { get; } = new();
+    public ArmorPage ArmorPage { get; } = new();
 
     private void SetupListeners()
     {
@@ -54,15 +54,15 @@ public partial class PlayerPageViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     public void MoveToVirginia()
     {
-        PlayerState.Position = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
-            .VirginiaState.Position.Copy();
+        PlayerState.Pos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
+            .VirginiaState.Pos.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     public void MoveToKelvin()
     {
-        PlayerState.Position = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
-            .KelvinState.Position.Copy();
+        PlayerState.Pos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
+            .KelvinState.Pos.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
@@ -97,7 +97,7 @@ public partial class PlayerPageViewModel : ObservableObject
 
                     if (playerPosFloatArray is { Length: 3 })
                     {
-                        PlayerState.Position = new Position(playerPosFloatArray[0], playerPosFloatArray[1],
+                        PlayerState.Pos = new Position(playerPosFloatArray[0], playerPosFloatArray[1],
                             playerPosFloatArray[2]);
                     }
 
@@ -157,10 +157,10 @@ public partial class PlayerPageViewModel : ObservableObject
                     {
                         var oldPlayerPos = new Position(playerPosFloatArray[0], playerPosFloatArray[1],
                             playerPosFloatArray[2]);
-                        if (!oldPlayerPos.Equals(PlayerState.Position))
+                        if (!oldPlayerPos.Equals(PlayerState.Pos))
                         {
                             floatArrayToken.Replace(JToken.FromObject(new[]
-                                { PlayerState.Position.X, PlayerState.Position.Y, PlayerState.Position.Z }));
+                                { PlayerState.Pos.X, PlayerState.Pos.Y, PlayerState.Pos.Z }));
                             hasChanges = true;
                         }
                     }
@@ -209,7 +209,7 @@ public partial class PlayerPageViewModel : ObservableObject
             return false;
         }
 
-        targetToken.Replace(JToken.FromObject(newValue));
+        targetToken.Replace(newValue);
         return true;
     }
 
@@ -220,7 +220,7 @@ public partial class PlayerPageViewModel : ObservableObject
             return false;
         }
 
-        targetToken.Replace(JToken.FromObject(newValue));
+        targetToken.Replace(newValue);
         return true;
     }
 

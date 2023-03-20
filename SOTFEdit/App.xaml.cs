@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NLog;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Storage;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit;
@@ -19,7 +20,7 @@ namespace SOTFEdit;
 /// </summary>
 public partial class App
 {
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     public App()
     {
@@ -48,15 +49,19 @@ public partial class App
         services.AddSingleton<InventoryPageViewModel>();
         services.AddSingleton<PlayerPageViewModel>();
         services.AddSingleton<WeatherPageViewModel>();
-        services.AddSingleton(_ => BuildItemListInstance());
+        services.AddSingleton<StoragePageViewModel>();
+        services.AddSingleton(_ => BuildGameDataInstance() ?? throw new Exception("Unable to load Game Data"));
+        services.AddSingleton<StorageFactory>();
+        services.AddSingleton<UpdateChecker>();
+        services.AddSingleton<LabExperiments>();
+        services.AddTransient<SelectSavegameViewModel>();
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }
 
-    private static ItemList BuildItemListInstance()
+    private static GameData? BuildGameDataInstance()
     {
-        var json = File.ReadAllText(@"items.json");
-        var items = JsonConvert.DeserializeObject<Item[]>(json);
-        return items != null ? new ItemList(items) : new ItemList();
+        var json = File.ReadAllText(@"data.json");
+        return JsonConvert.DeserializeObject<GameData>(json);
     }
 
     protected override void OnStartup(StartupEventArgs e)
@@ -69,16 +74,16 @@ public partial class App
 
     private void SetupExceptionHandling()
     {
-        AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+        AppDomain.CurrentDomain.UnhandledException += (_, e) =>
             LogUnhandledException((Exception)e.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
 
-        DispatcherUnhandledException += (s, e) =>
+        DispatcherUnhandledException += (_, e) =>
         {
             LogUnhandledException(e.Exception, "Application.Current.DispatcherUnhandledException");
             e.Handled = true;
         };
 
-        TaskScheduler.UnobservedTaskException += (s, e) =>
+        TaskScheduler.UnobservedTaskException += (_, e) =>
         {
             LogUnhandledException(e.Exception, "TaskScheduler.UnobservedTaskException");
             e.SetObserved();

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NLog;
 using SOTFEdit.Model;
@@ -11,79 +10,24 @@ namespace SOTFEdit;
 
 public class SavegameManager : ObservableObject
 {
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-    private readonly Dictionary<string, Savegame> _savegames = new();
-    private readonly ReaderWriterLockSlim _readerWriterLockSlim = new();
-
-    public IEnumerable<Savegame> Savegames => GetSavegameList();
-
-    private IEnumerable<Savegame> GetSavegameList()
+    public Dictionary<string, Savegame> GetSavegames()
     {
-        _readerWriterLockSlim.EnterReadLock();
-        try
-        {
-            return _savegames
-                .OrderByDescending(savegame => savegame.Value.LastSaveTime)
-                .Select(pair => pair.Value)
-                .ToList();
-        }
-        finally
-        {
-            _readerWriterLockSlim.ExitReadLock();
-        }
+        var savesPath = GetSavePath();
+        Logger.Info($"Detected savegame path: {savesPath}");
+        return FindSaveGames(savesPath);
     }
 
-    public Savegame? ReloadSavegame(Savegame savegame)
+    public static string GetSavePath()
     {
         var savesPath = !string.IsNullOrWhiteSpace(Settings.Default.SavegamePath)
             ? Settings.Default.SavegamePath
             : GetSavegamePathFromAppData();
-        Logger.Info($"Detected savegame path: {savesPath}");
-
-        _readerWriterLockSlim.EnterWriteLock();
-        try
-        {
-            if (FindSaveGames(savesPath).TryGetValue(savegame.FullPath, out var foundSavegame))
-            {
-                _savegames[savegame.FullPath] = foundSavegame;
-                return foundSavegame;
-            }
-        }
-        finally
-        {
-            _readerWriterLockSlim.ExitWriteLock();
-            OnPropertyChanged(nameof(Savegames));
-        }
-
-        return null;
+        return savesPath;
     }
 
-    public void LoadSavegames()
-    {
-        var savesPath = !string.IsNullOrWhiteSpace(Settings.Default.SavegamePath)
-            ? Settings.Default.SavegamePath
-            : GetSavegamePathFromAppData();
-        Logger.Info($"Detected savegame path: {savesPath}");
-
-        _readerWriterLockSlim.EnterWriteLock();
-        try
-        {
-            _savegames.Clear();
-            foreach (var savegame in FindSaveGames(savesPath))
-            {
-                _savegames.Add(savegame.Key, savegame.Value);
-            }
-        }
-        finally
-        {
-            _readerWriterLockSlim.ExitWriteLock();
-        }
-
-        OnPropertyChanged(nameof(Savegames));
-    }
-
-    private static Dictionary<string, Savegame> FindSaveGames(string savesPath, string? idFilter = null)
+    private static Dictionary<string, Savegame> FindSaveGames(string? savesPath, string? idFilter = null)
     {
         Logger.Info($"Reading savegames from {savesPath}");
         if (!Directory.Exists(savesPath))
@@ -99,6 +43,7 @@ public class SavegameManager : ObservableObject
                 .Where(savegame => savegame != null)
                 .Select(savegame => savegame!)
                 .Where(savegame => idFilter == null || idFilter == savegame.FullPath)
+                .OrderByDescending(savegame => savegame.LastSaveTime)
                 .ToDictionary(savegame => savegame.FullPath, savegame => savegame);
         }
         catch (Exception ex)
@@ -121,5 +66,12 @@ public class SavegameManager : ObservableObject
         var localLowPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
             .Replace("Roaming", "LocalLow");
         return Path.Combine(localLowPath, "Endnight", "SonsOfTheForest", "Saves");
+    }
+
+    public Savegame? ReloadSavegame(Savegame selectedSavegame)
+    {
+        var directoryInfo = new DirectoryInfo(selectedSavegame.FullPath);
+
+        return !directoryInfo.Exists ? null : CreateSaveInfo(directoryInfo);
     }
 }

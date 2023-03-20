@@ -1,31 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Windows.Media.Imaging;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.Model;
 
-public class Savegame
+public class Savegame : ObservableObject
 {
-    public string FullPath { get; }
-    private readonly string _dirName;
-
     public Savegame(string fullPath, string dirName, SavegameStore savegameStore)
     {
         SavegameStore = savegameStore;
         FullPath = fullPath;
-        _dirName = dirName;
+        Title = dirName;
     }
+
+    public string FullPath { get; }
 
     public SavegameStore SavegameStore { get; }
 
-    public string Title => $"{_dirName} ({SavegameStore.GetParentDirectory()})";
-
-    public string ThumbPath => SavegameStore.GetThumbPath();
+    public string Title { get; }
 
     public DateTime LastSaveTime => ReadLastSaveTime();
+    public BitmapImage Thumbnail => BuildThumbnail();
+
+    public string PrintableType
+    {
+        get
+        {
+            if (IsSinglePlayer())
+            {
+                return "SP";
+            }
+
+            if (IsMultiPlayer())
+            {
+                return "MP";
+            }
+
+            if (IsMultiPlayerClient())
+            {
+                return "MP_Client";
+            }
+
+            return "Unknown";
+        }
+    }
+
+    private BitmapImage BuildThumbnail()
+    {
+        var thumbPath = SavegameStore.GetThumbPath() ??
+                        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "default_screenshot.png");
+
+        var image = new BitmapImage();
+        image.BeginInit();
+        image.UriSource = new Uri(thumbPath);
+        image.CacheOption = BitmapCacheOption.OnLoad;
+        image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+        image.EndInit();
+        return image;
+    }
 
     public long RegrowTrees(bool createBackup, VegetationState vegetationStateSelected)
     {
@@ -108,6 +146,7 @@ public class Savegame
         }
 
         var hasChanges = false;
+        int? uniqueId = null;
 
         foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
         {
@@ -115,6 +154,11 @@ public class Savegame
             if (actorTypeId != typeId)
             {
                 continue;
+            }
+
+            if (actor["UniqueId"]?.ToObject<int>() is { } actorUniqueId)
+            {
+                uniqueId = actorUniqueId;
             }
 
             hasChanges = CompareAndModify(actor["State"], StateAlive);
@@ -128,6 +172,42 @@ public class Savegame
             hasChanges = CompareAndModify(stats["Health"], f => f < FullHealth, FullHealth) || hasChanges;
             hasChanges = CompareAndModify(stats["Fear"], f => f > NoFear, NoFear) || hasChanges;
             hasChanges = CompareAndModify(stats["Anger"], f => f > NoAnger, NoAnger) || hasChanges;
+        }
+
+        foreach (var killStat in vailWorldSim["KillStatsList"] ?? Enumerable.Empty<JToken>())
+        {
+            if (killStat["TypeId"]?.ToObject<int>() != typeId ||
+                killStat["PlayerKilled"] is not { } playerKilledToken || playerKilledToken.ToObject<int>() <= 0)
+            {
+                continue;
+            }
+
+            playerKilledToken.Replace(0);
+            hasChanges = true;
+        }
+
+        if (uniqueId != null)
+        {
+            foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
+            {
+                if (influenceMemory["UniqueId"]?.ToObject<int>() != uniqueId)
+                {
+                    continue;
+                }
+
+                foreach (var influenceToken in influenceMemory["Influences"] ?? Enumerable.Empty<JToken>())
+                {
+                    if (influenceToken["TypeId"]?.ToObject<string>() != "Player")
+                    {
+                        continue;
+                    }
+
+                    hasChanges = CompareAndModify(influenceToken["Sentiment"], f => f < FullSentiment, FullSentiment) ||
+                                 hasChanges;
+                    hasChanges = CompareAndModify(influenceToken["Anger"], f => f > NoAnger, NoAnger) || hasChanges;
+                    hasChanges = CompareAndModify(influenceToken["Fear"], f => f > NoFear, NoFear) || hasChanges;
+                }
+            }
         }
 
         if (!hasChanges)
@@ -230,5 +310,25 @@ public class Savegame
         SavegameStore.StoreJson(SavegameStore.FileType.GameStateSaveData, gameStateData, createBackup);
 
         return true;
+    }
+
+    public bool IsSinglePlayer()
+    {
+        return ParentDirIs("singleplayer");
+    }
+
+    public bool IsMultiPlayer()
+    {
+        return ParentDirIs("multiplayer");
+    }
+
+    public bool IsMultiPlayerClient()
+    {
+        return ParentDirIs("multiplayerclient");
+    }
+
+    private bool ParentDirIs(string value)
+    {
+        return SavegameStore.GetParentDirectory()?.Name.ToLower().Equals(value) ?? false;
     }
 }

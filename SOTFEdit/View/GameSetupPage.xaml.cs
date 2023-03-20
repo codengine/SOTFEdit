@@ -9,14 +9,16 @@ namespace SOTFEdit.View;
 /// </summary>
 public partial class GameSetupPage
 {
+    private readonly GameSetupPageViewModel _dataContext;
+
     public GameSetupPage()
     {
-        DataContext = Ioc.Default.GetRequiredService<GameSetupPageViewModel>();
+        DataContext = _dataContext = Ioc.Default.GetRequiredService<GameSetupPageViewModel>();
         InitializeComponent();
     }
 
     public bool Update(Savegame savegame, bool createBackup)
     {
-        return Ioc.Default.GetRequiredService<GameSetupPageViewModel>().Update(savegame, createBackup);
+        return _dataContext.Update(savegame, createBackup);
     }
 }

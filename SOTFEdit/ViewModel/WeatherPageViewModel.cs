@@ -2,24 +2,21 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.Messaging;
-using SOTFEdit.Model.Events;
-using System.Threading;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.ViewModel;
 
 public class WeatherPageViewModel
 {
-    private readonly ReaderWriterLockSlim _readerWriterLock = new();
-
-    public ObservableCollection<GenericSetting> Settings { get; } = new();
-
     public WeatherPageViewModel()
     {
         SetupListeners();
     }
+
+    public ObservableCollection<GenericSetting> Settings { get; } = new();
 
     private void SetupListeners()
     {
@@ -29,25 +26,17 @@ public class WeatherPageViewModel
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
     {
-        _readerWriterLock.EnterWriteLock();
-        try
+        Settings.Clear();
+        var weatherSaveData =
+            message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
+        var weatherSystemToken = weatherSaveData?.SelectToken("Data.WeatherSystem");
+        if (weatherSystemToken?.ToObject<string>() is not { } weatherSystemJson ||
+            JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
         {
-            Settings.Clear();
-            var weatherSaveData =
-                message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
-            var weatherSystemToken = weatherSaveData?.SelectToken("Data.WeatherSystem");
-            if (weatherSystemToken?.ToObject<string>() is not { } weatherSystemJson ||
-                JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
-            {
-                return;
-            }
+            return;
+        }
 
-            LoadSettings(weatherSystem);
-        }
-        finally
-        {
-            _readerWriterLock.ExitWriteLock();
-        }
+        LoadSettings(weatherSystem);
     }
 
     private void LoadSettings(JToken weatherSystem)
@@ -118,26 +107,18 @@ public class WeatherPageViewModel
         var weatherSaveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
 
         if (weatherSaveData?.SelectToken("Data.WeatherSystem") is not { } weatherSystemToken ||
-            weatherSystemToken?.ToObject<string>() is not { } weatherSystemJson ||
+            weatherSystemToken.ToObject<string>() is not { } weatherSystemJson ||
             JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
         {
             return false;
         }
 
-        _readerWriterLock.EnterReadLock();
-        try
+        if (!Merge(weatherSystem, Settings))
         {
-            if (!Merge(weatherSystem, Settings))
-            {
-                return false;
-            }
+            return false;
+        }
 
-            weatherSystemToken.Replace(JsonConverter.Serialize(weatherSystem));
-        }
-        finally
-        {
-            _readerWriterLock.ExitReadLock();
-        }
+        weatherSystemToken.Replace(JsonConverter.Serialize(weatherSystem));
 
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.WeatherSystemSaveData, weatherSaveData, createBackup);
         return true;

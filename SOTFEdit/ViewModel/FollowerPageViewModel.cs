@@ -1,21 +1,22 @@
 ﻿using System;
-using CommunityToolkit.Mvvm.Messaging;
-using SOTFEdit.Model;
-using SOTFEdit.Model.Events;
+using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
+using NLog;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.ViewModel;
 
 public partial class FollowerPageViewModel : ObservableObject
 {
-    public FollowerState KelvinState { get; } = new(KelvinTypeId);
-    public FollowerState VirginiaState { get; } = new(VirginiaTypeId);
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(ReviveCommand))]
@@ -24,9 +25,24 @@ public partial class FollowerPageViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(MoveToPlayerCommand))]
     private Savegame? _selectedSavegame;
 
-    public FollowerPageViewModel()
+    public FollowerPageViewModel(GameData gameData)
     {
         SetupListeners();
+
+        KelvinState = BuildFollowerState(gameData, KelvinTypeId);
+        VirginiaState = BuildFollowerState(gameData, VirginiaTypeId);
+    }
+
+    public FollowerState KelvinState { get; set; }
+    public FollowerState VirginiaState { get; }
+
+    private static FollowerState BuildFollowerState(GameData gameData, int typeId)
+    {
+        return new FollowerState(
+            typeId,
+            gameData.FollowerData.GetOutfits(typeId),
+            gameData.FollowerData.GetEquippableItems(typeId, gameData.Items)
+        );
     }
 
     private void SetupListeners()
@@ -52,19 +68,19 @@ public partial class FollowerPageViewModel : ObservableObject
             return;
         }
 
-        follower.Position = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Position.Copy();
+        follower.Pos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     public void MoveToKelvin(FollowerState follower)
     {
-        follower.Position = KelvinState.Position.Copy();
+        follower.Pos = KelvinState.Pos.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     public void MoveToVirginia(FollowerState follower)
     {
-        follower.Position = VirginiaState.Position.Copy();
+        follower.Pos = VirginiaState.Pos.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
@@ -110,6 +126,12 @@ public partial class FollowerPageViewModel : ObservableObject
             }
 
             var followerModel = typeId == KelvinTypeId ? KelvinState : VirginiaState;
+
+            if (actor["UniqueId"]?.ToObject<int>() is { } uniqueId)
+            {
+                followerModel.UniqueId = uniqueId;
+            }
+
             followerModel.Status = actor["State"]?.ToObject<int>() switch
             {
                 2 => "Alive",
@@ -119,7 +141,7 @@ public partial class FollowerPageViewModel : ObservableObject
 
             if (actor["Position"] is { } position)
             {
-                followerModel.Position = position.ToObject<Position>() ?? new Position(0, 0, 0);
+                followerModel.Pos = position.ToObject<Position>() ?? new Position(0, 0, 0);
             }
 
             if (actor["Stats"] is { } stats)
@@ -131,6 +153,67 @@ public partial class FollowerPageViewModel : ObservableObject
                 followerModel.Hydration = stats["Hydration"]?.ToObject<float>() ?? 0f;
                 followerModel.Energy = stats["Energy"]?.ToObject<float>() ?? 0f;
                 followerModel.Affection = stats["Affection"]?.ToObject<float>() ?? 0f;
+            }
+
+            if (actor["EquippedItems"] is JArray equippedItems && equippedItems.ToObject<int[]>() is { } itemIds)
+            {
+                foreach (var itemId in itemIds)
+                {
+                    if (followerModel.Inventory.FirstOrDefault(item => item.ItemId == itemId) is not { } inventoryItem)
+                    {
+                        Logger.Warn($"Unknown item found in inventory for follower {typeId}: {itemId}");
+                        var item = new Item
+                        {
+                            Id = itemId,
+                            Name = "???"
+                        };
+                        followerModel.Inventory.Add(new EquippableItem(item, true)
+                        {
+                            Selected = true
+                        });
+                        continue;
+                    }
+
+                    inventoryItem.Selected = true;
+                }
+            }
+
+            if (actor["OutfitId"]?.ToObject<int>() is { } outfitId)
+            {
+                followerModel.Outfit = followerModel.Outfits.FirstOrDefault(outfit => outfit.Id == outfitId);
+            }
+            else
+            {
+                followerModel.Outfit = followerModel.Outfits.FirstOrDefault(outfit => outfit.Id == 0);
+            }
+        }
+
+        foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
+        {
+            if (influenceMemory["UniqueId"]?.ToObject<int>() is not { } uniqueId)
+            {
+                continue;
+            }
+
+            FollowerState followerState;
+
+            if (uniqueId == KelvinState.UniqueId)
+            {
+                followerState = KelvinState;
+            }
+            else if (uniqueId == VirginiaState.UniqueId)
+            {
+                followerState = VirginiaState;
+            }
+            else
+            {
+                continue;
+            }
+
+            foreach (var influence in influenceMemory["Influences"]?.ToObject<List<Influence>>() ??
+                                      Enumerable.Empty<Influence>())
+            {
+                followerState.Influences.Add(influence);
             }
         }
     }
@@ -151,7 +234,7 @@ public partial class FollowerPageViewModel : ObservableObject
 
         var hasChanges = false;
 
-        foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
+        foreach (var actor in vailWorldSim["Actors"]?.ToList() ?? Enumerable.Empty<JToken>())
         {
             var typeId = actor["TypeId"]?.ToObject<int>();
             if (typeId is not (KelvinTypeId or VirginiaTypeId))
@@ -165,11 +248,48 @@ public partial class FollowerPageViewModel : ObservableObject
             {
                 var oldPosition = position.ToObject<Position>();
 
-                if (oldPosition != null && !oldPosition.Equals(followerModel.Position))
+                if (oldPosition != null && !oldPosition.Equals(followerModel.Pos))
                 {
-                    position.Replace(JToken.FromObject(followerModel.Position));
+                    position.Replace(JToken.FromObject(followerModel.Pos));
                     hasChanges = true;
                 }
+            }
+
+            var itemIdsFromFollowerModel = followerModel.Inventory.Where(item => item.Selected)
+                .Select(item => item.ItemId)
+                .ToHashSet();
+
+            if (actor["EquippedItems"] is { } oldEquippedItemsToken &&
+                !(oldEquippedItemsToken.ToObject<HashSet<int>>()?.SetEquals(itemIdsFromFollowerModel) ?? false))
+            {
+                oldEquippedItemsToken.Replace(JToken.FromObject(itemIdsFromFollowerModel));
+                hasChanges = true;
+            }
+
+            var outfitIdToken = actor["OutfitId"];
+            var oldOutfitId = outfitIdToken?.ToObject<int>() ?? 0;
+            var newOutfitId = followerModel.Outfit?.Id ?? 0;
+
+            if (oldOutfitId != newOutfitId)
+            {
+                if (newOutfitId == 0)
+                {
+                    actor.Children<JToken>().OfType<JProperty>().FirstOrDefault(token => token.Name == "OutfitId")
+                        ?.Remove();
+                }
+                else
+                {
+                    if (outfitIdToken == null)
+                    {
+                        actor["OutfitId"] = newOutfitId;
+                    }
+                    else
+                    {
+                        outfitIdToken.Replace(newOutfitId);
+                    }
+                }
+
+                hasChanges = true;
             }
 
             if (actor["Stats"] is not { } stats)
@@ -186,6 +306,48 @@ public partial class FollowerPageViewModel : ObservableObject
             hasChanges = ModifyStat(stats, "Affection", followerModel.Affection) || hasChanges;
         }
 
+        foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
+        {
+            if (influenceMemory["UniqueId"]?.ToObject<int>() is not { } uniqueId)
+            {
+                continue;
+            }
+
+            FollowerState followerState;
+
+            if (uniqueId == KelvinState.UniqueId)
+            {
+                followerState = KelvinState;
+            }
+            else if (uniqueId == VirginiaState.UniqueId)
+            {
+                followerState = VirginiaState;
+            }
+            else
+            {
+                continue;
+            }
+
+            foreach (var influenceToken in influenceMemory["Influences"] ?? Enumerable.Empty<JToken>())
+            {
+                if (influenceToken["TypeId"]?.ToObject<string>() is not { } typeId)
+                {
+                    continue;
+                }
+
+                var newInfluence =
+                    followerState.Influences.FirstOrDefault(newInfluence => newInfluence.TypeId == typeId);
+                if (newInfluence == null)
+                {
+                    continue;
+                }
+
+                hasChanges = ModifyStat(influenceToken, "Sentiment", newInfluence.Sentiment) || hasChanges;
+                hasChanges = ModifyStat(influenceToken, "Anger", newInfluence.Anger) || hasChanges;
+                hasChanges = ModifyStat(influenceToken, "Fear", newInfluence.Fear) || hasChanges;
+            }
+        }
+
         if (!hasChanges)
         {
             return false;
@@ -199,8 +361,7 @@ public partial class FollowerPageViewModel : ObservableObject
 
     private static bool ModifyStat(JToken stats, string key, float newValue)
     {
-        if (stats[key] is not { } oldValueToken || oldValueToken?.ToObject<float>() is not { } oldValue ||
-            Math.Abs(oldValue - newValue) < 0.001)
+        if (stats[key] is not { } oldValueToken || Math.Abs(oldValueToken.ToObject<float>() - newValue) < 0.001)
         {
             return false;
         }

@@ -5,18 +5,20 @@ using SOTFEdit.ViewModel;
 namespace SOTFEdit.View;
 
 /// <summary>
-/// Interaction logic for WeatherPage.xaml
+///     Interaction logic for WeatherPage.xaml
 /// </summary>
 public partial class WeatherPage
 {
+    private readonly WeatherPageViewModel _dataContext;
+
     public WeatherPage()
     {
-        DataContext = Ioc.Default.GetRequiredService<WeatherPageViewModel>();
+        DataContext = _dataContext = Ioc.Default.GetRequiredService<WeatherPageViewModel>();
         InitializeComponent();
     }
 
     public bool Update(Savegame selectedSavegame, bool createBackup)
     {
-        return Ioc.Default.GetRequiredService<WeatherPageViewModel>().Update(selectedSavegame, createBackup);
+        return _dataContext.Update(selectedSavegame, createBackup);
     }
 }

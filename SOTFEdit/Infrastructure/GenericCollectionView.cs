@@ -41,9 +41,11 @@ public class GenericCollectionView<T> : ICollectionView<T>, IEditableCollectionV
 
     public bool CanGroup => _collectionView.CanGroup;
 
-    public ObservableCollection<GroupDescription> GroupDescriptions => _collectionView.GroupDescriptions;
+    public ObservableCollection<GroupDescription> GroupDescriptions =>
+        _collectionView.GroupDescriptions ?? new ObservableCollection<GroupDescription>();
 
-    public ReadOnlyObservableCollection<object> Groups => _collectionView.Groups;
+    public ReadOnlyObservableCollection<object> Groups =>
+        _collectionView.Groups ?? throw new InvalidOperationException();
 
     public bool IsEmpty => _collectionView.IsEmpty;
 
@@ -193,6 +195,7 @@ public interface ICollectionView<out T> : IEnumerable<T>, ICollectionView
 {
 }
 
+// ReSharper disable once UnusedTypeParameter
 public interface IEditableCollectionView<T> : IEditableCollectionView
 {
 }
