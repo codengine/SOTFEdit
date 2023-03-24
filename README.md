@@ -61,9 +61,10 @@ This project is in no way or form associated with the developers of the game. It
 # Usage
 
 - Start the application using SOTFEdit.exe
-- It should autodetect your savegame location. If it doesn't, you can click the orange "folder" button at the savegame chooser to select the savegame folder, which is usually at "C:\Users\[YourUser]\AppData\LocalLow\Endnight\SonsOfTheForest\Saves"
-- You'll get a list of all savegames, ordered by the last write time
-- Do some changes and save them using the button at the top right
+- Click on "File" -> "Open Savegame"
+- Select your savegame
+- Edit
+- Save with "File" -> "Save"
 
 If you use one of the "Tools" this will trigger a reload of the savegames, which will discard any pending changes. I'd recommend to use the tools after you're done with editing.
 

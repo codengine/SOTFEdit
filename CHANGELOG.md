@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.2
+- reviving a follower should now also work when the body is completely gone
+- small improvements to followers inventory editing
+
 ## v0.5.1
 - add tool at "Game State" to reset containers, crates and pickups in caves and open world
 
