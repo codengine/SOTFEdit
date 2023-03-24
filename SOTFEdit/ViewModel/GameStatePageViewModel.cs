@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
@@ -9,14 +13,20 @@ using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.ViewModel;
 
-public class GameStatePageViewModel
+public partial class GameStatePageViewModel : ObservableObject
 {
+    private readonly Regex _resetCrateNameIdPattern =
+        new(@"(\..*Crate.*\.)|(\..*Storage.*\.)|(\..*Case.*\.)|(.*\.Meds\..*)");
+
     public GameStatePageViewModel()
     {
         SetupListeners();
     }
 
     public ObservableCollection<GenericSetting> Settings { get; } = new();
+
+    [NotifyCanExecuteChangedFor(nameof(ResetContainersCommand))] [ObservableProperty]
+    private Savegame? _selectedSavegame;
 
     private void SetupListeners()
     {
@@ -26,6 +36,7 @@ public class GameStatePageViewModel
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
     {
+        SelectedSavegame = message.SelectedSavegame;
         Settings.Clear();
         var gameStateData =
             message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
@@ -37,6 +48,60 @@ public class GameStatePageViewModel
         }
 
         LoadSettings(gameState);
+    }
+
+    private bool HasSavegame()
+    {
+        return _selectedSavegame != null;
+    }
+
+    [RelayCommand(CanExecute = nameof(HasSavegame))]
+    public void ResetContainers()
+    {
+        if (SelectedSavegame is not { } savegame)
+        {
+            return;
+        }
+
+        var gameStateData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
+
+        if (gameStateData?.SelectToken("Data.GameState") is not { } gameStateToken ||
+            gameStateToken.ToObject<string>() is not { } gameStateJson ||
+            JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState ||
+            gameState["NamedIntDatas"] is not { } namedIntDatas)
+        {
+            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Nothing to be reset", false));
+            return;
+        }
+
+        var countFixed = 0;
+
+        foreach (var data in namedIntDatas)
+        {
+            if (data["SaveObjectNameId"]?.ToObject<string>() is not { } nameId ||
+                !_resetCrateNameIdPattern.Match(nameId).Success || data["SaveValue"] is not { } saveValueToken)
+            {
+                continue;
+            }
+
+            var oldSaveValue = saveValueToken.ToObject<int>();
+
+            if (oldSaveValue != 1)
+            {
+                continue;
+            }
+
+            saveValueToken.Replace(0);
+            countFixed++;
+        }
+
+        gameStateToken.Replace(JsonConverter.Serialize(gameState));
+
+        var createBackups = Ioc.Default.GetRequiredService<MainViewModel>().BackupFiles;
+        savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameStateSaveData, gameStateData, createBackups);
+
+        WeakReferenceMessenger.Default.Send(
+            new SavegameStoredEvent($"Reset {countFixed} containers, creates and pickups", true));
     }
 
     private void LoadSettings(JToken gameState)

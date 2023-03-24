@@ -45,6 +45,7 @@ This project is in no way or form associated with the developers of the game. It
 - Set stats for Virginia & Kelvin
 - Move Kelvin & Virginia to Player or each other
 - Regrow Trees selectively (All, Removed, Half-Chopped, Stumps)
+- Reset containers, crates and pickups in caves and open world
 - Backup changed files automatically
 - ... more features are planned
 

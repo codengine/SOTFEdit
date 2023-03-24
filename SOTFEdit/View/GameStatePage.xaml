@@ -50,5 +50,8 @@
                 </DataGrid>
             </DockPanel>
         </GroupBox>
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="Tools" VerticalAlignment="Top" Margin="0 0 5 0" Padding="15">
+            <Button ToolTip="Resets crates, boxes and cases in caves and the open world" Command="{Binding ResetContainersCommand}" FontSize="14">Reset Crates and Containers</Button>
+        </GroupBox>
     </Grid>
 </UserControl>

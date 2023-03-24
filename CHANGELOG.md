@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.5.1
+- add tool at "Game State" to reset containers, crates and pickups in caves and open world
+
 ## v0.5.0
 - add storage editing (unlimited logs, sticks etc.)
 - add selection of Kelvin's and Virginia's outfit
