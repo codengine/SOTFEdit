@@ -10,6 +10,7 @@ using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.SaveData;
 using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.ViewModel;
@@ -232,6 +233,12 @@ public partial class FollowerPageViewModel : ObservableObject
             return false;
         }
 
+        var npcItemInstancesToken = saveData.SelectToken("Data.NpcItemInstances");
+        var npcItemInstances = npcItemInstancesToken?.ToObject<string>() is { } npcItemInstancesJson
+            ? JsonConverter.DeserializeRaw(npcItemInstancesJson)
+            : null;
+
+
         var hasChanges = false;
 
         foreach (var actor in vailWorldSim["Actors"]?.ToList() ?? Enumerable.Empty<JToken>())
@@ -264,6 +271,66 @@ public partial class FollowerPageViewModel : ObservableObject
             {
                 oldEquippedItemsToken.Replace(JToken.FromObject(itemIdsFromFollowerModel));
                 hasChanges = true;
+            }
+
+            if (npcItemInstances != null && actor["UniqueId"] is { } uniqueId)
+            {
+                npcItemInstances["ActorItems"] ??= new JArray();
+
+
+                var actorItemsForActor = (npcItemInstances["ActorItems"]
+                    ?.Children() ?? Enumerable.Empty<JToken>()).FirstOrDefault(token =>
+                    token["UniqueId"]?.ToObject<int>() == uniqueId.ToObject<int>());
+
+                if (actorItemsForActor is not { })
+                {
+                    actorItemsForActor = new JObject()
+                    {
+                        ["UniqueId"] = uniqueId,
+                        ["Items"] = new JObject
+                        {
+                            ["Version"] = "0.0.0",
+                            ["ItemBlocks"] = new JArray()
+                        }
+                    };
+
+                    if (npcItemInstances["ActorItems"] is JArray actorItems)
+                    {
+                        actorItems.Add(actorItemsForActor);
+                    }
+                }
+
+                if (actorItemsForActor.SelectToken("Items.ItemBlocks") is JArray itemBlocks)
+                {
+                    var actorItemsToBeRemoved = itemBlocks.Where(token =>
+                            token["ItemId"]?.ToObject<int>() is { } itemId &&
+                            !itemIdsFromFollowerModel.Contains(itemId))
+                        .ToList();
+                    actorItemsToBeRemoved.ForEach(token => token.Remove());
+                    hasChanges = actorItemsToBeRemoved.Count > 0 || hasChanges;
+
+                    var itemIdsExisting = new HashSet<int>();
+
+                    foreach (var itemBlock in itemBlocks)
+                    {
+                        if (itemBlock["TotalCount"] is { } totalCountToken && totalCountToken.ToObject<int>() < 1)
+                        {
+                            itemBlock["TotalCount"]?.Replace(1);
+                            hasChanges = true;
+                        }
+
+                        if (itemBlock["ItemId"]?.ToObject<int>() is { } itemId)
+                        {
+                            itemIdsExisting.Add(itemId);
+                        }
+                    }
+
+                    foreach (var itemId in itemIdsFromFollowerModel.Where(itemId => !itemIdsExisting.Contains(itemId)))
+                    {
+                        itemBlocks.Add(JToken.FromObject(new ActorItemBlock(itemId, 1, new List<JToken>())));
+                        hasChanges = true;
+                    }
+                }
             }
 
             var outfitIdToken = actor["OutfitId"];
@@ -304,6 +371,12 @@ public partial class FollowerPageViewModel : ObservableObject
             hasChanges = ModifyStat(stats, "Hydration", followerModel.Hydration) || hasChanges;
             hasChanges = ModifyStat(stats, "Energy", followerModel.Energy) || hasChanges;
             hasChanges = ModifyStat(stats, "Affection", followerModel.Affection) || hasChanges;
+        }
+
+        if (npcItemInstances != null && npcItemInstancesToken != null)
+        {
+            var newNpcItemInstancesJson = JsonConverter.Serialize(npcItemInstances);
+            npcItemInstancesToken.Replace(newNpcItemInstancesJson);
         }
 
         foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
