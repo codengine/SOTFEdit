@@ -18,6 +18,7 @@ A savegame editor for "Sons of The Forest".
 - [Inventory](#inventory)
 - [Armor](#armor)
 - [Weather](#weather)
+- [Reviving](#reviving)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [Final Words](#final-words)
@@ -101,6 +102,15 @@ Here is a list of number of days per season per season length setting:
 - Default (non-custom games): 5 days
 - Long: 10 days
 - Realistic: 90 days
+
+# Reviving
+
+If you want to revive either or both followers, there are some things to consider:
+- If the body is completely missing, the follower will spawn at the players location
+- Make sure to be outside of buildings, else you might glitch into the building sometimes
+- The followers will be at maximum stats and should be friendly towards players
+- They will not have any items, but you can easily use the other Editors to change that after reviving
+- Virginia is shy as a lamb when she was revived. I haven't tested it thoroughly but to me it appears that you have to regain her trust, like in the beginning of a session. I'm still trying to figure out which setting determines her trust.
 
 # Troubleshooting
 

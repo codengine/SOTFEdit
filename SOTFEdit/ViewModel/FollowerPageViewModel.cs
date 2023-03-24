@@ -275,8 +275,11 @@ public partial class FollowerPageViewModel : ObservableObject
 
             if (npcItemInstances != null && actor["UniqueId"] is { } uniqueId)
             {
-                npcItemInstances["ActorItems"] ??= new JArray();
-
+                if (npcItemInstances["ActorItems"] == null)
+                {
+                    npcItemInstances["ActorItems"] = new JArray();
+                    hasChanges = true;
+                }
 
                 var actorItemsForActor = (npcItemInstances["ActorItems"]
                     ?.Children() ?? Enumerable.Empty<JToken>()).FirstOrDefault(token =>
@@ -297,6 +300,7 @@ public partial class FollowerPageViewModel : ObservableObject
                     if (npcItemInstances["ActorItems"] is JArray actorItems)
                     {
                         actorItems.Add(actorItemsForActor);
+                        hasChanges = true;
                     }
                 }
 

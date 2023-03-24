@@ -38,7 +38,7 @@
       "Influences": [
         {
           "TypeId": "Player",
-          "Sentiment": -100.0,
+          "Sentiment": 100.0,
           "Anger": 0.0,
           "Fear": 0.0
         },
@@ -62,6 +62,12 @@
             "Version": "0.0.0",
             "ItemBlocks": []
         }
+    },
+    "spawner": {
+        "UniqueId": {spawnerId},
+        "Count": 1,
+        "SpawnedCount": 1,
+        "LastSpawnTime": 0.0
     }
   }
   

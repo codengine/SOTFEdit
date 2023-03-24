@@ -240,10 +240,18 @@ public class Savegame : ObservableObject
         }
 
         var rnd = new Random();
-        var spawnerId = rnd.Next();
-        while (allSpawnerIds.Contains(spawnerId))
+        int spawnerId;
+        if (typeId == KelvinTypeId)
+        {
+            spawnerId = 0;
+        }
+        else
         {
             spawnerId = rnd.Next();
+            while (allSpawnerIds.Contains(spawnerId))
+            {
+                spawnerId = rnd.Next();
+            }
         }
 
         var templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "followerTemplate.txt");
@@ -259,7 +267,7 @@ public class Savegame : ObservableObject
             var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
             if (!playerPos.IsDefault())
             {
-                actorTemplate["Position"]?.Replace(JToken.FromObject(playerPos with { Y = playerPos.Y + 2 }));
+                actorTemplate["Position"]?.Replace(JToken.FromObject(playerPos));
             }
 
             if (typeId == VirginiaTypeId)
@@ -275,15 +283,19 @@ public class Savegame : ObservableObject
             influenceMemory.Add(influenceTemplate);
         }
 
-        if (template["actorItems"] is not { } actorItemTemplate || npcItemInstancesToken?.ToObject<string>() is not
-                { } npcItemInstancesJson ||
-            JsonConverter.DeserializeRaw(npcItemInstancesJson) is not JArray npcItemInstances)
+        if (template["actorItems"] is { } actorItemTemplate && npcItemInstancesToken?.ToObject<string>() is
+                { } npcItemInstancesJson &&
+            JsonConverter.DeserializeRaw(npcItemInstancesJson) is JArray npcItemInstances)
         {
-            return;
+            npcItemInstances.Add(actorItemTemplate);
+            npcItemInstancesToken.Replace(JsonConverter.Serialize(npcItemInstances));
         }
 
-        npcItemInstances.Add(actorItemTemplate);
-        npcItemInstancesToken.Replace(JsonConverter.Serialize(npcItemInstances));
+        if (typeId == VirginiaTypeId && template["spawner"] is { } spawnerTemplate &&
+            vailWorldSim["Spawners"] is JArray spawners)
+        {
+            spawners.Add(spawnerTemplate);
+        }
     }
 
     private static bool ModifyFollowerData(JToken vailWorldSim, int uniqueId)

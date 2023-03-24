@@ -61,7 +61,7 @@
                             Move to Virginia
                         </Button>
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}"
-                                CommandParameter="{Binding KelvinState}">
+                                CommandParameter="{Binding KelvinState}" ToolTip="Make sure you do this outside of buildings when the body is missing, else you might glitch into the building">
                             Revive
                         </Button>
                     </StackPanel>
@@ -189,7 +189,7 @@
                             Move to Kelvin
                         </Button>
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}"
-                                CommandParameter="{Binding VirginiaState}">
+                                CommandParameter="{Binding VirginiaState}" ToolTip="Make sure you do this outside of buildings when the body is missing, else you might glitch into the building">
                             Revive
                         </Button>
                     </StackPanel>
