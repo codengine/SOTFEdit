@@ -95,6 +95,12 @@ public partial class GameStatePageViewModel : ObservableObject
             countFixed++;
         }
 
+        if (countFixed == 0)
+        {
+            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Nothing to be reset", false));
+            return;
+        }
+
         gameStateToken.Replace(JsonConverter.Serialize(gameState));
 
         var createBackups = Ioc.Default.GetRequiredService<MainViewModel>().BackupFiles;
