@@ -61,7 +61,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="data.json">
+    <None Update="data\data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="data\followerTemplate.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="NLog.config">

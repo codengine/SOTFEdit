@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.ViewModel;
 using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.Model;
@@ -148,18 +151,30 @@ public class Savegame : ObservableObject
         var hasChanges = false;
         int? uniqueId = null;
 
+        var allUniqueIds = new HashSet<int>();
+        var allSpawnerIds = new HashSet<int>();
+
         foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
         {
+            if (actor["UniqueId"]?.ToObject<int>() is not { } actorUniqueId)
+            {
+                continue;
+            }
+
+            allUniqueIds.Add(actorUniqueId);
+
+            if (actor["SpawnerId"]?.ToObject<int>() is { } spawnerId)
+            {
+                allSpawnerIds.Add(spawnerId);
+            }
+
             var actorTypeId = actor["TypeId"]?.ToObject<int>();
             if (actorTypeId != typeId)
             {
                 continue;
             }
 
-            if (actor["UniqueId"]?.ToObject<int>() is { } actorUniqueId)
-            {
-                uniqueId = actorUniqueId;
-            }
+            uniqueId = actorUniqueId;
 
             hasChanges = CompareAndModify(actor["State"], StateAlive);
 
@@ -172,6 +187,7 @@ public class Savegame : ObservableObject
             hasChanges = CompareAndModify(stats["Health"], f => f < FullHealth, FullHealth) || hasChanges;
             hasChanges = CompareAndModify(stats["Fear"], f => f > NoFear, NoFear) || hasChanges;
             hasChanges = CompareAndModify(stats["Anger"], f => f > NoAnger, NoAnger) || hasChanges;
+            break;
         }
 
         foreach (var killStat in vailWorldSim["KillStatsList"] ?? Enumerable.Empty<JToken>())
@@ -182,32 +198,24 @@ public class Savegame : ObservableObject
                 continue;
             }
 
-            playerKilledToken.Replace(0);
-            hasChanges = true;
+            if (playerKilledToken.ToObject<int>() != 0)
+            {
+                playerKilledToken.Replace(0);
+                hasChanges = true;
+            }
+
+            break;
         }
 
-        if (uniqueId != null)
+        if (uniqueId is { } theUniqueId)
         {
-            foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
-            {
-                if (influenceMemory["UniqueId"]?.ToObject<int>() != uniqueId)
-                {
-                    continue;
-                }
-
-                foreach (var influenceToken in influenceMemory["Influences"] ?? Enumerable.Empty<JToken>())
-                {
-                    if (influenceToken["TypeId"]?.ToObject<string>() != "Player")
-                    {
-                        continue;
-                    }
-
-                    hasChanges = CompareAndModify(influenceToken["Sentiment"], f => f < FullSentiment, FullSentiment) ||
-                                 hasChanges;
-                    hasChanges = CompareAndModify(influenceToken["Anger"], f => f > NoAnger, NoAnger) || hasChanges;
-                    hasChanges = CompareAndModify(influenceToken["Fear"], f => f > NoFear, NoFear) || hasChanges;
-                }
-            }
+            hasChanges = ModifyFollowerData(vailWorldSim, theUniqueId) || hasChanges;
+        }
+        else
+        {
+            var npcItemInstancesToken = saveData.SelectToken("Data.NpcItemInstances");
+            CreateFollowerData(vailWorldSim, npcItemInstancesToken, typeId, allUniqueIds, allSpawnerIds);
+            hasChanges = true;
         }
 
         if (!hasChanges)
@@ -219,6 +227,94 @@ public class Savegame : ObservableObject
         SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveData, createBackup);
 
         return true;
+    }
+
+    private static void CreateFollowerData(JObject vailWorldSim, JToken? npcItemInstancesToken, int typeId,
+        IReadOnlySet<int> allUniqueIds,
+        IReadOnlySet<int> allSpawnerIds)
+    {
+        var uniqueId = 1;
+        while (allUniqueIds.Contains(uniqueId))
+        {
+            uniqueId++;
+        }
+
+        var rnd = new Random();
+        var spawnerId = rnd.Next();
+        while (allSpawnerIds.Contains(spawnerId))
+        {
+            spawnerId = rnd.Next();
+        }
+
+        var templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "followerTemplate.txt");
+        var templateText = File.ReadAllText(templatePath, Encoding.UTF8);
+        templateText = templateText.Replace(@"{uniqueId}", uniqueId.ToString());
+        templateText = templateText.Replace(@"{typeId}", typeId.ToString());
+        templateText = templateText.Replace(@"{spawnerId}", spawnerId.ToString());
+        templateText = templateText.Replace(@"{actorSeed}", spawnerId.ToString());
+        var template = JToken.Parse(templateText);
+
+        if (template["actor"] is { } actorTemplate && vailWorldSim["Actors"] is JArray actorArray)
+        {
+            var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
+            if (!playerPos.IsDefault())
+            {
+                actorTemplate["Position"]?.Replace(JToken.FromObject(playerPos with { Y = playerPos.Y + 2 }));
+            }
+
+            if (typeId == VirginiaTypeId)
+            {
+                actorTemplate["NextGiftTime"]?.Replace("1000.0");
+            }
+
+            actorArray.Add(actorTemplate);
+        }
+
+        if (template["influence"] is { } influenceTemplate && vailWorldSim["InfluenceMemory"] is JArray influenceMemory)
+        {
+            influenceMemory.Add(influenceTemplate);
+        }
+
+        if (template["actorItems"] is not { } actorItemTemplate || npcItemInstancesToken?.ToObject<string>() is not
+                { } npcItemInstancesJson ||
+            JsonConverter.DeserializeRaw(npcItemInstancesJson) is not JArray npcItemInstances)
+        {
+            return;
+        }
+
+        npcItemInstances.Add(actorItemTemplate);
+        npcItemInstancesToken.Replace(JsonConverter.Serialize(npcItemInstances));
+    }
+
+    private static bool ModifyFollowerData(JToken vailWorldSim, int uniqueId)
+    {
+        var hasChanges = false;
+
+        foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
+        {
+            if (influenceMemory["UniqueId"]?.ToObject<int>() != uniqueId)
+            {
+                continue;
+            }
+
+            foreach (var influenceToken in influenceMemory["Influences"] ?? Enumerable.Empty<JToken>())
+            {
+                if (influenceToken["TypeId"]?.ToObject<string>() != "Player")
+                {
+                    continue;
+                }
+
+                hasChanges = CompareAndModify(influenceToken["Sentiment"], f => f < FullSentiment, FullSentiment) ||
+                             hasChanges;
+                hasChanges = CompareAndModify(influenceToken["Anger"], f => f > NoAnger, NoAnger) || hasChanges;
+                hasChanges = CompareAndModify(influenceToken["Fear"], f => f > NoFear, NoFear) || hasChanges;
+                break;
+            }
+
+            break;
+        }
+
+        return hasChanges;
     }
 
     private static bool CompareAndModify(JToken? token, Func<float, bool> comparator, float newValue)

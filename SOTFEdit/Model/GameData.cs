@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using SOTFEdit.Model.Storage;
@@ -33,7 +34,7 @@ public record FollowerData(Dictionary<int, List<Outfit>> Outfits, Dictionary<int
 
     public List<Item> GetEquippableItems(int typeId, ItemList items)
     {
-        return (EquippableItems.GetValueOrDefault(typeId) ?? new int[] { })
+        return (EquippableItems.GetValueOrDefault(typeId) ?? Array.Empty<int>())
             .Select(items.GetItem)
             .Where(item => item is { })
             .Select(item => item!)

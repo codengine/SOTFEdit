@@ -60,7 +60,7 @@ public partial class App
 
     private static GameData? BuildGameDataInstance()
     {
-        var json = File.ReadAllText(@"data.json");
+        var json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "data.json"));
         return JsonConvert.DeserializeObject<GameData>(json);
     }
 
