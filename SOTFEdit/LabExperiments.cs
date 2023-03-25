@@ -6,9 +6,9 @@ using SOTFEdit.Model;
 
 namespace SOTFEdit;
 
-public class LabExperiments
+public static class LabExperiments
 {
-    public void ResetKillStatistics(Savegame selectedSavegame, bool createBackup)
+    public static void ResetKillStatistics(Savegame selectedSavegame, bool createBackup)
     {
         LoadVeilWorldSim(selectedSavegame, out var saveDataToken, out var vailWorldSimToken, out var vailWorldSim);
         if (saveDataToken == null || vailWorldSimToken == null || vailWorldSim == null)
@@ -16,10 +16,7 @@ public class LabExperiments
             return;
         }
 
-        foreach (var killStat in vailWorldSim["KillStatsList"] ?? Enumerable.Empty<JToken>())
-        {
-            killStat["PlayerKilled"]?.Replace(0);
-        }
+        foreach (var killStat in vailWorldSim["KillStatsList"] ?? Enumerable.Empty<JToken>()) killStat["PlayerKilled"]?.Replace(0);
 
         vailWorldSimToken.Replace(JsonConverter.Serialize(vailWorldSim));
         selectedSavegame.SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveDataToken, createBackup);
@@ -40,7 +37,7 @@ public class LabExperiments
         oSaveData = saveData;
 
         var vailWorldSimToken = saveData.SelectToken("Data.VailWorldSim");
-        if (vailWorldSimToken?.ToObject<string>() is not { } vailWorldSimJson ||
+        if (vailWorldSimToken?.ToString() is not { } vailWorldSimJson ||
             JsonConverter.DeserializeRaw(vailWorldSimJson) is not JObject vailWorldSim)
         {
             return;
@@ -50,7 +47,7 @@ public class LabExperiments
         oVailWorldSim = vailWorldSim;
     }
 
-    public void ResetNumberCutTrees(Savegame selectedSavegame, bool createBackup)
+    public static void ResetNumberCutTrees(Savegame selectedSavegame, bool createBackup)
     {
         LoadVeilWorldSim(selectedSavegame, out var saveDataToken, out var vailWorldSimToken, out var vailWorldSim);
         if (saveDataToken == null || vailWorldSimToken == null || vailWorldSim == null)
@@ -64,7 +61,7 @@ public class LabExperiments
         selectedSavegame.SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveDataToken, createBackup);
     }
 
-    public void EnemiesFearThePlayer(Savegame selectedSavegame, bool createBackup)
+    public static void EnemiesFearThePlayer(Savegame selectedSavegame, bool createBackup)
     {
         ModifyActors(selectedSavegame, createBackup, 0, 100);
     }
@@ -82,15 +79,15 @@ public class LabExperiments
 
         foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
         {
-            var typeId = actor["TypeId"]?.ToObject<int>();
+            var typeId = actor["TypeId"]?.Value<int>();
 
             switch (typeId)
             {
                 case Constants.Actors.KelvinTypeId:
-                    kelvinUniqueId = actor["UniqueId"]?.ToObject<int>();
+                    kelvinUniqueId = actor["UniqueId"]?.Value<int>();
                     continue;
                 case Constants.Actors.VirginiaTypeId:
-                    virginiaUniqueId = actor["UniqueId"]?.ToObject<int>();
+                    virginiaUniqueId = actor["UniqueId"]?.Value<int>();
                     continue;
             }
 
@@ -101,17 +98,15 @@ public class LabExperiments
         if (kelvinUniqueId != null && virginiaUniqueId != null)
         {
             foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
+            foreach (var influence in influenceMemory["Influences"] ?? Enumerable.Empty<JToken>())
             {
-                foreach (var influence in influenceMemory["Influences"] ?? Enumerable.Empty<JToken>())
+                if (influence["TypeId"]?.ToString() != "Player")
                 {
-                    if (influence["TypeId"]?.ToObject<string>() != "Player")
-                    {
-                        continue;
-                    }
-
-                    influence["Anger"]?.Replace(anger);
-                    influence["Fear"]?.Replace(fear);
+                    continue;
                 }
+
+                influence["Anger"]?.Replace(anger);
+                influence["Fear"]?.Replace(fear);
             }
         }
 
@@ -119,12 +114,12 @@ public class LabExperiments
         selectedSavegame.SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveDataToken, createBackup);
     }
 
-    public void EnemiesNoFearNoRemorce(Savegame selectedSavegame, bool createBackup)
+    public static void EnemiesNoFearNoRemorce(Savegame selectedSavegame, bool createBackup)
     {
         ModifyActors(selectedSavegame, createBackup, 100, 0);
     }
 
-    public void ExperimentRemoveAllActorsAndSpawns(Savegame selectedSavegame, bool createBackup)
+    public static void ExperimentRemoveAllActorsAndSpawns(Savegame selectedSavegame, bool createBackup)
     {
         LoadVeilWorldSim(selectedSavegame, out var saveDataToken, out var vailWorldSimToken, out var vailWorldSim);
         if (saveDataToken == null || vailWorldSimToken == null || vailWorldSim == null)
@@ -139,9 +134,9 @@ public class LabExperiments
 
         foreach (var actor in vailWorldSim["Actors"]?.ToList() ?? Enumerable.Empty<JToken>())
         {
-            var typeId = actor["TypeId"]?.ToObject<int>();
+            var typeId = actor["TypeId"]?.Value<int>();
 
-            var spawnerId = actor["SpawnerId"]?.ToObject<int>();
+            var spawnerId = actor["SpawnerId"]?.Value<int>();
 
             switch (typeId)
             {
@@ -167,7 +162,7 @@ public class LabExperiments
         {
             foreach (var spawner in vailWorldSim["Spawners"]?.ToList() ?? Enumerable.Empty<JToken>())
             {
-                if (spawner["UniqueId"]?.ToObject<long>() is not { } spawnerUniqueId ||
+                if (spawner["UniqueId"]?.Value<long>() is not { } spawnerUniqueId ||
                     spawnerUniqueId == kelvinSpawnerId || spawnerUniqueId == virginiaSpawnerId ||
                     !spawnerIds.Contains(spawnerUniqueId))
                 {

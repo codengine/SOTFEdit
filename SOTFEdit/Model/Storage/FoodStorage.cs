@@ -45,7 +45,7 @@ public class FoodStorage : RestrictedStorage
             {
                 if (currentSlot >= Slots.Count)
                 {
-                    Slots.Add(new StorageSlot(currentSlot));
+                    Slots.Add(new StorageSlot());
                 }
 
                 if (uniqueItem.Modules.Count == 0)
@@ -96,7 +96,7 @@ public class FoodStorage : RestrictedStorage
         OnPropertyChanged(nameof(Description));
     }
 
-    public override List<ItemWrapper> GetSupportedItems()
+    protected override List<ItemWrapper> GetSupportedItems()
     {
         return _effectiveSupportedItems;
     }

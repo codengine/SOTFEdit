@@ -33,8 +33,8 @@ public partial class GenericSetting : ObservableObject
     public string DataPath { get; }
     public DataType Type { get; }
 
-    public Dictionary<object, string> PossibleValues { get; init; } = new();
-    public int MinInt { get; init; } = 0;
+    public Dictionary<object, string> PossibleValues { get; } = new();
+    public int MinInt { get; init; }
     public int MaxInt { get; init; } = 1;
 
     public object? GetValue()

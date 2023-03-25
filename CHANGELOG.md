@@ -1,13 +1,34 @@
 # Changelog
 
+## v0.6.0
+
+### New Features
+
+- added tools to spawn an army of Kelvins and Virginias (at "Followers")
+- improvements for reviving (e.g. they will now get the items and outfits that you have selected)
+- added feature in menu to restore from oldest/newest backup
+
+### Improvements
+
+- check for update will now notify only once until the next version is released
+- improved loading performance
+- some code beautification, cleanups and refactorings
+
+### Fixes
+
+- fixed deletion of backups
+
 ## v0.5.2
+
 - reviving a follower should now also work when the body is completely gone
 - small improvements to followers inventory editing
 
 ## v0.5.1
-- add tool at "Game State" to reset containers, crates and pickups in caves and open world
+
+- added tool at "Game State" to reset containers, crates and pickups in caves and open world
 
 ## v0.5.0
+
 - add storage editing (unlimited logs, sticks etc.)
 - add selection of Kelvin's and Virginia's outfit
 - add editing of Virginias equipped items
@@ -33,25 +54,30 @@
 - Downgrade MVVM Toolkit to 8.0.0 due to compilation issues
 
 ## v0.4.0
+
 - add player tab, allowing editing of player stats as well as positioning
 - move armor tab to player tab
 - improve performance of savegame loading, also reducing memory consumption
 
 ## v0.3.1
+
 - fix logging of exceptions during savegame loading
 - fix non-uniqueness of savegame parent directories
 
 ## v0.3.0
+
 - replace displaying of save-time instead of last-write-time, resolves #2
 - the currently selected savegame now stays selected after saving
 - add follower tab
-  - allows changing Kelvin and Virginias stats
-  - allows moving Kelvin and Virginia to the player or each other
+    - allows changing Kelvin and Virginias stats
+    - allows moving Kelvin and Virginia to the player or each other
 
 ## v0.2.1
+
 - add detailed options to regrow trees instead of reviving all, resolves
 
 ## v0.2.0
+
 - misc fixes
 - add markers for non-inventory items
 - better rendering for numeric columns

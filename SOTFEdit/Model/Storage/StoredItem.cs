@@ -41,7 +41,7 @@ public partial class StoredItem : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(HasItem))]
-    public void SetToMax()
+    private void SetToMax()
     {
         if (SelectedItem is { })
         {

@@ -46,7 +46,6 @@ public class StorageWithModulePerItem : RestrictedStorage
                 };
 
                 for (var i = 0; i < storedItem.Count; i++)
-                {
                     storageItemBlock.UniqueItems.Add(new UniqueItem
                     {
                         Modules = new List<IStorageModule>
@@ -54,7 +53,6 @@ public class StorageWithModulePerItem : RestrictedStorage
                             _moduleFactory.Invoke()
                         }
                     });
-                }
 
                 storageBlock.ItemBlocks.Add(storageItemBlock);
             }
@@ -63,12 +61,10 @@ public class StorageWithModulePerItem : RestrictedStorage
         }
 
         foreach (var storageSlot in Slots)
-        {
             if (storageSlot.StoredItems.Count == 0)
             {
                 storageSlot.StoredItems.Add(new StoredItem(null, 0, GetSupportedItems(), Definition.MaxPerSlot));
             }
-        }
 
         return storageSaveData;
     }

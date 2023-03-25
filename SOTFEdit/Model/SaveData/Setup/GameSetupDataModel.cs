@@ -6,6 +6,7 @@ using JsonConverter = SOTFEdit.Infrastructure.JsonConverter;
 
 namespace SOTFEdit.Model.SaveData.Setup;
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record GameSetupDataModel
 {
     public DataModel Data { get; init; }
@@ -17,7 +18,7 @@ public record GameSetupDataModel
             return false;
         }
 
-        if (gameSetupToken.ToObject<string>() is not { } gameSetupJson ||
+        if (gameSetupToken.ToString() is not { } gameSetupJson ||
             JsonConverter.DeserializeRaw(gameSetupJson) is not JObject gameSetup)
         {
             return false;
@@ -32,6 +33,7 @@ public record GameSetupDataModel
         return true;
     }
 
+    // ReSharper disable once ClassNeverInstantiated.Global
     public record DataModel
     {
         [JsonConverter(typeof(StringTypeConverter))]

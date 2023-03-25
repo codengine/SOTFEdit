@@ -7,7 +7,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace SOTFEdit.Infrastructure;
 
-public class JsonConverter
+public static class JsonConverter
 {
     private static readonly JsonSerializerSettings JsonSerializerSettings = BuildSerializerSettings();
     private static readonly Encoding JsonEncoding = new UTF8Encoding(false);

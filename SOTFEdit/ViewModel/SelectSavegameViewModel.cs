@@ -12,11 +12,13 @@ public partial class SelectSavegameViewModel : ObservableObject
 {
     private readonly List<Savegame> _savegames;
 
-    public SelectSavegameViewModel(SavegameManager savegameManager)
-    {
-        _savegames = new List<Savegame>(savegameManager.GetSavegames().Values);
+    [ObservableProperty] private string? _saveDir = SavegameManager.GetSavePath();
 
-        SetupListeners(savegameManager);
+    public SelectSavegameViewModel()
+    {
+        _savegames = new List<Savegame>(SavegameManager.GetSavegames().Values);
+
+        SetupListeners();
     }
 
     public List<Savegame> SinglePlayerSaves => _savegames
@@ -31,32 +33,28 @@ public partial class SelectSavegameViewModel : ObservableObject
         .Where(savegame => savegame.IsMultiPlayerClient())
         .ToList();
 
-    public string SaveDir => SavegameManager.GetSavePath();
-
     [RelayCommand]
-    public void SelectSavegame(Savegame savegame)
+    private void SelectSavegame(Savegame savegame)
     {
         WeakReferenceMessenger.Default.Send(new SelectedSavegameChangedEvent(savegame));
     }
 
     [RelayCommand]
-    public void SelectSavegameDir()
+    private void SelectSavegameDir()
     {
         WeakReferenceMessenger.Default.Send(new RequestSelectSavegameDirEvent());
     }
 
-    private void SetupListeners(SavegameManager savegameManager)
+    private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameDirChangedEvent>(this,
-            (_, _) =>
+            (_, message) =>
             {
-                OnPropertyChanged(nameof(SaveDir));
+                SaveDir = message.NewPath;
                 _savegames.Clear();
-                foreach (var savegame in savegameManager.GetSavegames()
+                foreach (var savegame in SavegameManager.GetSavegames()
                              .Values)
-                {
                     _savegames.Add(savegame);
-                }
 
                 OnPropertyChanged(nameof(SinglePlayerSaves));
                 OnPropertyChanged(nameof(MultiPlayerSaves));

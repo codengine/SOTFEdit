@@ -11,8 +11,8 @@ namespace SOTFEdit.Model.Storage;
 
 public abstract class BaseStorage : ObservableObject, IStorage
 {
-    private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
     private readonly int _index;
+    private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
 
     protected readonly StorageDefinition Definition;
 
@@ -22,7 +22,7 @@ public abstract class BaseStorage : ObservableObject, IStorage
         _index = index;
         for (var i = 0; i < definition.Slots; i++)
         {
-            var storageSlot = new StorageSlot(i);
+            var storageSlot = new StorageSlot();
             Slots.Add(storageSlot);
         }
     }
@@ -43,7 +43,7 @@ public abstract class BaseStorage : ObservableObject, IStorage
         {
             if (currentSlot >= Slots.Count)
             {
-                Slots.Add(new StorageSlot(currentSlot));
+                Slots.Add(new StorageSlot());
             }
 
             if (storageBlock.ItemBlocks.Count == 0)
@@ -93,7 +93,7 @@ public abstract class BaseStorage : ObservableObject, IStorage
             .Sum();
     }
 
-    public abstract List<ItemWrapper> GetSupportedItems();
+    protected abstract List<ItemWrapper> GetSupportedItems();
 
     protected void OnStoredItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {

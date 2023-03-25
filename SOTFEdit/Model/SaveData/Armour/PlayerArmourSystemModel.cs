@@ -3,9 +3,10 @@ using System.Linq;
 
 namespace SOTFEdit.Model.SaveData.Armour;
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record PlayerArmourSystemModel : SotfBaseModel
 {
-    public List<ArmourPieceModel> ArmourPieces { get; set; } = new();
+    public List<ArmourPieceModel> ArmourPieces { get; private set; } = new();
 
     public static bool Merge(PlayerArmourSystemModel armourSystemModel,
         List<ArmourPieceModel> selectedArmorPieces)

@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:storage="clr-namespace:SOTFEdit.Model.Storage"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:model="clr-namespace:SOTFEdit.Model"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+             xmlns:storageViewModels="clr-namespace:SOTFEdit.View.Storage"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:ItemStorageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -27,7 +27,7 @@
                         <ComboBox ItemsSource="{Binding ItemsStorage.SupportedItems}"
                                   SelectedItem="{Binding SelectedItemForAll}" Margin="0 0 10 0">
                             <ComboBox.ItemTemplate>
-                                <DataTemplate DataType="{x:Type model:Item}">
+                                <DataTemplate DataType="{x:Type storageViewModels:ItemWrapper}">
                                     <TextBlock Text="{Binding Name, Mode=OneTime}" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
@@ -65,7 +65,7 @@
                                                       SelectedItem="{Binding SelectedItem}"
                                                       ItemsSource="{Binding SupportedItems}">
                                                 <ComboBox.ItemTemplate>
-                                                    <DataTemplate DataType="{x:Type model:Item}">
+                                                    <DataTemplate DataType="{x:Type storageViewModels:ItemWrapper}">
                                                         <TextBlock Text="{Binding Name, Mode=OneTime}" />
                                                     </DataTemplate>
                                                 </ComboBox.ItemTemplate>

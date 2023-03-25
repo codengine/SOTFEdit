@@ -13,11 +13,6 @@ public class ItemList : IEnumerable<KeyValuePair<int, Item>>
         _items = items.ToDictionary(item => item.Id, item => item);
     }
 
-    public ItemList()
-    {
-        _items = new Dictionary<int, Item>();
-    }
-
     public IEnumerator<KeyValuePair<int, Item>> GetEnumerator()
     {
         return _items.GetEnumerator();

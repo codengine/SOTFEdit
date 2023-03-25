@@ -5,14 +5,15 @@ using JsonConverter = SOTFEdit.Infrastructure.JsonConverter;
 
 namespace SOTFEdit.Model.SaveData.Inventory;
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record PlayerInventoryDataModel
 {
     public DataModel Data { get; set; }
 
-    public static bool Merge(JToken target, List<ItemBlockModel> selectedItems)
+    public static bool Merge(JToken target, IEnumerable<ItemBlockModel> selectedItems)
     {
         var playerInventoryToken = target.SelectToken("Data.PlayerInventory");
-        if (playerInventoryToken?.ToObject<string>() is not { } playerInventoryJson)
+        if (playerInventoryToken?.ToString() is not { } playerInventoryJson)
         {
             return false;
         }
@@ -27,6 +28,7 @@ public record PlayerInventoryDataModel
         return true;
     }
 
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class DataModel
     {
         [JsonConverter(typeof(StringTypeConverter))]

@@ -1,1789 +1,1799 @@
 {
-	"config": {
-		"latestTagUrl": "https://api.github.com/repos/codengine/SOTFEdit/releases/latest",
-		"latestReleaseUrl": "https://github.com/codengine/SOTFEdit/releases"
-	},
-	"items": [
-		{
-			"id": "568",
-			"name": "VIP Key",
-			"type": "key",
-			"nameDe": "VIP-Schlüsselkarte"
-		},
-		{
-			"id": "566",
-			"name": "Maintenance Key",
-			"type": "key",
-			"nameDe": "Wartungsschlüsselkarte"
-		},
-		{
-			"id": "567",
-			"name": "Guest Key",
-			"type": "key",
-			"nameDe": "Gästeschlüsselkarte"
-		},
-		{
-			"id": "469",
-			"name": "Air Canister",
-			"type": "misc",
-			"nameDe": "Lufttank"
-		},
-		{
-			"id": "527",
-			"name": "Batteries",
-			"type": "misc",
-			"nameDe": "Batterien"
-		},
-		{
-			"id": "458",
-			"name": "Battery Charger",
-			"type": "misc",
-			"nameDe": "Ladegerät"
-		},
-		{
-			"id": "460",
-			"name": "Battery Pack",
-			"type": "misc"
-		},
-		{
-			"id": "471",
-			"name": "Flashlight",
-			"type": "misc",
-			"nameDe": "Taschenlampe"
-		},
-		{
-			"id": "435",
-			"name": "Gold Mask",
-			"type": "misc",
-			"nameDe": "Goldmaske"
-		},
-		{
-			"id": "524",
-			"name": "Golf Ball",
-			"type": "misc",
-			"nameDe": "Golfball"
-		},
-		{
-			"id": "529",
-			"name": "GPS Locator",
-			"type": "misc",
-			"nameDe": "GPS-Peilsender"
-		},
-		{
-			"id": "412",
-			"name": "GPS Tracker",
-			"type": "misc",
-			"nameDe": "GPS-Gerät"
-		},
-		{
-			"id": "432",
-			"name": "Can Opener",
-			"type": "misc",
-			"nameDe": "Dosenöffner"
-		},
-		{
-			"id": "341",
-			"name": "Binoculars",
-			"type": "misc",
-			"nameDe": "Fernglas"
-		},
-		{
-			"id": "420",
-			"name": "C4 Brick",
-			"type": "misc",
-			"nameDe": "C4-Ladung"
-		},
-		{
-			"id": "419",
-			"name": "Duct Tape",
-			"type": "misc",
-			"nameDe": "Klebeband"
-		},
-		{
-			"id": "479",
-			"name": "Feather",
-			"type": "misc",
-			"nameDe": "Feder"
-		},
-		{
-			"id": "440",
-			"name": "Flare",
-			"type": "misc",
-			"nameDe": "Leuchtfackel"
-		},
-		{
-			"id": "486",
-			"name": "Walkie Talkie",
-			"type": "misc",
-			"nameDe": "Walkie-Talkie"
-		},
-		{
-			"id": "418",
-			"name": "Wire",
-			"type": "misc",
-			"nameDe": "Draht"
-		},
-		{
-			"id": "410",
-			"name": "Watch",
-			"type": "misc",
-			"nameDe": "Armbanduhr"
-		},
-		{
-			"id": "590",
-			"name": "Radio",
-			"type": "misc",
-			"nameDe": "Radio"
-		},
-		{
-			"id": "444",
-			"name": "Rebreather",
-			"type": "misc",
-			"nameDe": "Tauchgerät"
-		},
-		{
-			"id": "391",
-			"name": "Red Mask",
-			"type": "misc",
-			"nameDe": "Rote Maske"
-		},
-		{
-			"id": "393",
-			"name": "Rock",
-			"type": "misc",
-			"nameDe": "Stein"
-		},
-		{
-			"id": "403",
-			"name": "Rope",
-			"type": "misc",
-			"nameDe": "Seil"
-		},
-		{
-			"id": "480",
-			"name": "Severed Arm",
-			"type": "misc",
-			"nameDe": "Arm"
-		},
-		{
-			"id": "481",
-			"name": "Severed Leg",
-			"type": "misc",
-			"nameDe": "Bein"
-		},
-		{
-			"id": "482",
-			"name": "Severed Head",
-			"type": "misc",
-			"nameDe": "Kopf"
-		},
-		{
-			"id": "508",
-			"name": "Skin Pouch",
-			"type": "misc",
-			"nameDe": "Lederbeutel"
-		},
-		{
-			"id": "430",
-			"name": "Skull",
-			"type": "misc",
-			"nameDe": "Schädel"
-		},
-		{
-			"id": "573",
-			"name": "Sleeping Bag",
-			"type": "misc",
-			"nameDe": "Schlafsack"
-		},
-		{
-			"id": "476",
-			"name": "Small Rock",
-			"type": "misc",
-			"nameDe": "Kleiner Stein"
-		},
-		{
-			"id": "416",
-			"name": "Circuit Board",
-			"type": "misc",
-			"nameDe": "Leiterplatte"
-		},
-		{
-			"id": "415",
-			"name": "Cloth",
-			"type": "misc",
-			"nameDe": "Stoff"
-		},
-		{
-			"id": "405",
-			"name": "Bone",
-			"type": "misc",
-			"nameDe": "Knochen"
-		},
-		{
-			"id": "502",
-			"name": "Coins",
-			"type": "misc",
-			"nameDe": "Münzen"
-		},
-		{
-			"id": "517",
-			"name": "Cooking Pot",
-			"type": "misc"
-		},
-		{
-			"id": "392",
-			"name": "Stick",
-			"type": "misc",
-			"nameDe": "Stock"
-		},
-		{
-			"id": "504",
-			"name": "Tarp",
-			"type": "misc",
-			"nameDe": "Plane"
-		},
-		{
-			"id": "553",
-			"name": "Tech Mesh",
-			"type": "misc",
-			"nameDe": "Tech Mesh"
-		},
-		{
-			"id": "503",
-			"name": "Torch",
-			"type": "misc",
-			"nameDe": "Fackel"
-		},
-		{
-			"id": "401",
-			"name": "Turtle Egg",
-			"type": "misc",
-			"nameDe": "Schildkrötenei"
-		},
-		{
-			"id": "506",
-			"name": "Turtle Shell",
-			"type": "misc",
-			"nameDe": "Schildkrötenpanzer"
-		},
-		{
-			"id": "414",
-			"name": "Vodka Bottle",
-			"type": "misc",
-			"nameDe": "Wodka-Flasche"
-		},
-		{
-			"id": "437",
-			"name": "Meds",
-			"type": "misc",
-			"nameDe": "Medizin"
-		},
-		{
-			"id": "496",
-			"name": "Money",
-			"type": "misc",
-			"nameDe": "Geld"
-		},
-		{
-			"id": "518",
-			"name": "Paper Target",
-			"type": "misc",
-			"nameDe": "Papierzielscheibe"
-		},
-		{
-			"id": "484",
-			"name": "Leaf",
-			"type": "misc",
-			"nameDe": "Blatt"
-		},
-		{
-			"id": "618",
-			"name": "Printed Arrow",
-			"type": "printed",
-			"nameDe": "3D-gedruckter Pfeil"
-		},
-		{
-			"id": "559",
-			"name": "Printed Arrow Heads",
-			"type": "printed"
-		},
-		{
-			"id": "561",
-			"name": "Printed Flower Pot",
-			"type": "printed"
-		},
-		{
-			"id": "560",
-			"name": "Printed Grappling Hook",
-			"type": "printed",
-			"nameDe": "Gedruckter Enterhaken"
-		},
-		{
-			"id": "413",
-			"name": "Plasma Lighter",
-			"type": "printed",
-			"nameDe": "Feuerzeug"
-		},
-		{
-			"id": "426",
-			"name": "Printed Flask",
-			"type": "printed",
-			"nameDe": "Gedruckte Trinkflasche"
-		},
-		{
-			"id": "427",
-			"name": "Printed Knife",
-			"type": "printed"
-		},
-		{
-			"id": "428",
-			"name": "Printed Sled",
-			"type": "printed",
-			"nameDe": "Gedruckter Schlitten"
-		},
-		{
-			"id": "390",
-			"name": "Printer Resin",
-			"type": "printed",
-			"nameDe": "Druckerharz"
-		},
-		{
-			"id": "429",
-			"name": "Printed Scuba Mask",
-			"type": "printed"
-		},
-		{
-			"id": "569",
-			"name": "Brain Bite",
-			"type": "food",
-			"nameDe": "Gehirnstück"
-		},
-		{
-			"id": "434",
-			"name": "Canned Food",
-			"type": "food",
-			"nameDe": "Konserven"
-		},
-		{
-			"id": "464",
-			"name": "Cat Food",
-			"type": "food",
-			"nameDe": "Katzenfutter"
-		},
-		{
-			"id": "483",
-			"name": "Emergency Pack",
-			"type": "food",
-			"nameDe": "Notfallpaket"
-		},
-		{
-			"id": "436",
-			"name": "Fish",
-			"type": "food",
-			"nameDe": "Fisch",
-			"modules": [{
-				"moduleId": 3,
-				"variants": [
-					{
-						"state": 1,
-						"name": "Raw Fish"
-					},
-					{
-						"state": 2,
-						"name": "Unknown Fish"
-					},
-					{
-						"state": 3,
-						"name": "Spoiled Fish"
-					},
-					{
-						"state": 4,
-						"name": "Dried Fish"
-					},
-					{
-						"state": 5,
-						"name": "Cooked Fish"
-					},
-					{
-						"state": 6,
-						"name": "Burned Fish"
-					}
-				]
-			}]
-		},
-		{
-			"id": "439",
-			"name": "Energy Drink",
-			"type": "food",
-			"nameDe": "Energydrink"
-		},
-		{
-			"id": "512",
-			"name": "Food Tray Filled",
-			"type": "food"
-		},
-		{
-			"id": "497",
-			"name": "Food Tray",
-			"type": "food"
-		},
-		{
-			"id": "438",
-			"name": "MRE Pack",
-			"type": "food",
-			"nameDe": "Feldration"
-		},
-		{
-			"id": "421",
-			"name": "Ramen Noodles",
-			"type": "food",
-			"nameDe": "Ramen-Nudeln"
-		},
-		{
-			"id": "570",
-			"name": "Steak Bite",
-			"type": "food",
-			"nameDe": "Steakstück"
-		},
-		{
-			"id": "571",
-			"name": "Steak and Bacon Bite",
-			"type": "food",
-			"nameDe": "Speckstück"
-		},
-		{
-			"id": "494",
-			"name": "Bone Armour",
-			"type": "armor",
-			"nameDe": "Knochenrüstung"
-		},
-		{
-			"id": "593",
-			"name": "Creepy Armour",
-			"type": "armor",
-			"nameDe": "Mutantenrüstung"
-		},
-		{
-			"id": "519",
-			"name": "Deer Hide Armour",
-			"type": "armor",
-			"nameDe": "Tierhautrüstung"
-		},
-		{
-			"id": "572",
-			"name": "Golden Armour",
-			"type": "armor",
-			"nameDe": "Goldrüstung"
-		},
-		{
-			"id": "473",
-			"name": "Leaf Armour",
-			"type": "armor",
-			"nameDe": "Blätterrüstung"
-		},
-		{
-			"id": "492",
-			"name": "Tuxedo",
-			"type": "clothes",
-			"nameDe": "Tuxedo"
-		},
-		{
-			"id": "554",
-			"name": "Tech Armour",
-			"type": "armor",
-			"nameDe": "Tech-Rüstung"
-		},
-		{
-			"id": "491",
-			"name": "Blazer",
-			"type": "clothes",
-			"nameDe": "Jackett"
-		},
-		{
-			"id": "488",
-			"name": "Blue T-shirt",
-			"type": "clothes"
-		},
-		{
-			"id": "558",
-			"name": "Camoflage Suit",
-			"type": "clothes",
-			"nameDe": "Tarnanzug"
-		},
-		{
-			"id": "490",
-			"name": "Hoodie",
-			"type": "clothes",
-			"nameDe": "Kapuzenpullover"
-		},
-		{
-			"id": "499",
-			"name": "Wetsuit",
-			"type": "clothes",
-			"nameDe": "Neoprenanzug"
-		},
-		{
-			"id": "463",
-			"name": "Flippers",
-			"type": "clothes"
-		},
-		{
-			"id": "493",
-			"name": "Leather Jacket",
-			"type": "clothes",
-			"nameDe": "Lederjacke"
-		},
-		{
-			"id": "487",
-			"name": "Silk Pyjamas",
-			"type": "clothes",
-			"nameDe": "Schlafanzug"
-		},
-		{
-			"id": "619",
-			"name": "Swim Suit",
-			"type": "clothes",
-			"nameDe": "Badeanzug"
-		},
-		{
-			"id": "500",
-			"name": "Puffy Jacket",
-			"type": "clothes",
-			"nameDe": "Winterjacke"
-		},
-		{
-			"id": "501",
-			"name": "Tactical Boots",
-			"type": "clothes",
-			"nameDe": "Stiefel"
-		},
-		{
-			"id": "489",
-			"name": "Tactical Pants",
-			"type": "clothes",
-			"nameDe": "Taktische Hose"
-		},
-		{
-			"id": "555",
-			"name": "Track Suit",
-			"type": "clothes",
-			"nameDe": "Trainingsanzug"
-		},
-		{
-			"id": "354",
-			"name": "Night Vision Goggles",
-			"type": "weapon"
-		},
-		{
-			"id": "357",
-			"name": "Airgun",
-			"type": "weapon",
-			"nameDe": "Luftgewehr"
-		},
-		{
-			"id": "361",
-			"name": "Rifle",
-			"type": "weapon",
-			"nameDe": "Gewehr"
-		},
-		{
-			"id": "364",
-			"name": "Shotgun Buckshot",
-			"type": "weapon",
-			"nameDe": "Schrotkugeln"
-		},
-		{
-			"id": "394",
-			"name": "Chainsaw",
-			"type": "weapon",
-			"nameDe": "Kettensäge"
-		},
-		{
-			"id": "478",
-			"name": "Climbing Axe",
-			"type": "weapon",
-			"nameDe": "Kletteraxt"
-		},
-		{
-			"id": "380",
-			"name": "Combat Knife",
-			"type": "weapon"
-		},
-		{
-			"id": "355",
-			"name": "Compact Pistol",
-			"type": "weapon",
-			"nameDe": "Pistole"
-		},
-		{
-			"id": "443",
-			"name": "Crafted Bow",
-			"type": "weapon",
-			"nameDe": "Handgemachter Bogen"
-		},
-		{
-			"id": "477",
-			"name": "Crafted Club",
-			"type": "weapon",
-			"nameDe": "Handgefertigte Keule"
-		},
-		{
-			"id": "507",
-			"name": "Crafted Arrow",
-			"type": "weapon",
-			"nameDe": "Steinpfeil"
-		},
-		{
-			"id": "474",
-			"name": "Crafted Spear",
-			"type": "weapon",
-			"nameDe": "Handgefertigter Speer"
-		},
-		{
-			"id": "365",
-			"name": "Crossbow",
-			"type": "weapon",
-			"nameDe": "Armbrust"
-		},
-		{
-			"id": "431",
-			"name": "Firefighter Axe",
-			"type": "weapon",
-			"nameDe": "Feuerwehraxt"
-		},
-		{
-			"id": "525",
-			"name": "Putter",
-			"type": "weapon",
-			"nameDe": "Putter"
-		},
-		{
-			"id": "381",
-			"name": "Grenade",
-			"type": "weapon",
-			"nameDe": "Granate"
-		},
-		{
-			"id": "382",
-			"name": "GrenadeAmmo",
-			"type": "weapon",
-			"nameDe": "Granate"
-		},
-		{
-			"id": "340",
-			"name": "Guitar",
-			"type": "weapon",
-			"nameDe": "Gitarre"
-		},
-		{
-			"id": "367",
-			"name": "Katana",
-			"type": "weapon",
-			"nameDe": "Katana"
-		},
-		{
-			"id": "388",
-			"name": "Molotov",
-			"type": "weapon",
-			"nameDe": "Molotowcocktail"
-		},
-		{
-			"id": "389",
-			"name": "MolotovAmmo",
-			"type": "weapon",
-			"nameDe": "Molotow"
-		},
-		{
-			"id": "356",
-			"name": "Modern Axe",
-			"type": "weapon",
-			"nameDe": "Moderne Axt"
-		},
-		{
-			"id": "362",
-			"name": "Pistol Ammo",
-			"type": "weapon",
-			"nameDe": "9-mm-Munition"
-		},
-		{
-			"id": "422",
-			"name": "Repair Tool",
-			"type": "weapon",
-			"nameDe": "Reparaturwerkzeug"
-		},
-		{
-			"id": "522",
-			"name": "RopeGun",
-			"type": "weapon",
-			"nameDe": "Seilgewehr"
-		},
-		{
-			"id": "377",
-			"name": "Scope",
-			"type": "weapon",
-			"nameDe": "Zielfernrohr"
-		},
-		{
-			"id": "485",
-			"name": "Shovel",
-			"type": "weapon",
-			"nameDe": "Schaufel"
-		},
-		{
-			"id": "374",
-			"name": "Silencer",
-			"type": "weapon",
-			"nameDe": "Schalldämpfer"
-		},
-		{
-			"id": "358",
-			"name": "Shotgun",
-			"type": "weapon",
-			"nameDe": "Schrotflinte"
-		},
-		{
-			"id": "459",
-			"name": "Slingshot",
-			"type": "weapon",
-			"nameDe": "Schleuder"
-		},
-		{
-			"id": "363",
-			"name": "Shotgun Slug",
-			"type": "weapon",
-			"nameDe": "Flintenlaufgeschoss"
-		},
-		{
-			"id": "369",
-			"name": "Stun Gun Ammo",
-			"type": "weapon",
-			"nameDe": "Betäubungsgewehrmunition"
-		},
-		{
-			"id": "379",
-			"name": "Tactical Axe",
-			"type": "weapon",
-			"nameDe": "Taktische Axt"
-		},
-		{
-			"id": "417",
-			"name": "Time Bomb",
-			"type": "weapon",
-			"nameDe": "Zeitbombe"
-		},
-		{
-			"id": "470",
-			"name": "Airgun Scope",
-			"type": "weapon",
-			"nameDe": "Zielfernrohr für Luftgewehr"
-		},
-		{
-			"id": "523",
-			"name": "Zipline Rope",
-			"type": "weapon",
-			"nameDe": "Seilrutschenseil"
-		},
-		{
-			"id": "373",
-			"name": "Tactical Arrow",
-			"type": "weapon",
-			"nameDe": "Kohlefaserpfeil"
-		},
-		{
-			"id": "378",
-			"name": "Flashlight Attachment",
-			"type": "weapon",
-			"nameDe": "Taschenlampenvorrichtung"
-		},
-		{
-			"id": "384",
-			"name": "Crossbow Quiver",
-			"type": "weapon",
-			"nameDe": "Armbrustköcher"
-		},
-		{
-			"id": "375",
-			"name": "Laser Sight",
-			"type": "weapon",
-			"nameDe": "Laservisier"
-		},
-		{
-			"id": "376",
-			"name": "Pistol Rail",
-			"type": "weapon",
-			"nameDe": "Pistolenaufsatz"
-		},
-		{
-			"id": "346",
-			"name": "Shotgun Rail",
-			"type": "weapon",
-			"nameDe": "Schrotflintenaufsatz"
-		},
-		{
-			"id": "509",
-			"name": "Holosprings Pamphlet",
-			"type": "document",
-			"nameDe": "Holosprings-Broschüre"
-		},
-		{
-			"id": "467",
-			"name": "Album Cover",
-			"type": "document",
-			"nameDe": "Plattencover"
-		},
-		{
-			"id": "521",
-			"name": "Cave Lighting Email",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"id": "448",
-			"name": "Snowberries",
-			"type": "plant",
-			"nameDe": "Schneebeeren"
-		},
-		{
-			"id": "446",
-			"name": "Twinberries",
-			"type": "plant",
-			"nameDe": "Heckenkirsche"
-		},
-		{
-			"id": "451",
-			"name": "Aloe Vera",
-			"type": "plant",
-			"nameDe": "Aloe-Vera"
-		},
-		{
-			"id": "596",
-			"name": "AloeVera Seed",
-			"type": "plant",
-			"nameDe": "Aloe-Vera-Same"
-		},
-		{
-			"id": "595",
-			"name": "Blackberries",
-			"type": "plant",
-			"nameDe": "Brombeeren"
-		},
-		{
-			"id": "598",
-			"name": "Blackberry Seed",
-			"type": "plant",
-			"nameDe": "Brombeere"
-		},
-		{
-			"id": "454",
-			"name": "Arrowleaf",
-			"type": "plant",
-			"nameDe": "Pfeilblatt"
-		},
-		{
-			"id": "597",
-			"name": "Arrowleaf Seed",
-			"type": "plant",
-			"nameDe": "Pfeilblattsamen"
-		},
-		{
-			"id": "445",
-			"name": "Blueberries",
-			"type": "plant",
-			"nameDe": "Heidelbeeren"
-		},
-		{
-			"id": "599",
-			"name": "Blueberry Seed",
-			"type": "plant",
-			"nameDe": "Heidelbeerstrauchsame"
-		},
-		{
-			"id": "465",
-			"name": "Chicory",
-			"type": "plant",
-			"nameDe": "Chicorée"
-		},
-		{
-			"id": "605",
-			"name": "Chicory Seed",
-			"type": "plant",
-			"nameDe": "Wegwarte"
-		},
-		{
-			"id": "449",
-			"name": "Devil's Club",
-			"type": "plant",
-			"nameDe": "Igelkraftwurz"
-		},
-		{
-			"id": "600",
-			"name": "DevilsClub Seed",
-			"type": "plant",
-			"nameDe": "Igelkraftwurzsamen"
-		},
-		{
-			"id": "461",
-			"name": "Energy Mix",
-			"type": "plant",
-			"nameDe": "Energiemischung"
-		},
-		{
-			"id": "462",
-			"name": "Energy Mix+",
-			"type": "plant",
-			"nameDe": "Energiemischung +"
-		},
-		{
-			"id": "453",
-			"name": "Fireweed",
-			"type": "plant",
-			"nameDe": "WEIDENRÖSCHEN"
-		},
-		{
-			"id": "601",
-			"name": "Fireweed Seed",
-			"type": "plant",
-			"nameDe": "Weidenröschensamen"
-		},
-		{
-			"id": "594",
-			"name": "Guarana Berries",
-			"type": "plant",
-			"nameDe": "Guarana-Beeren"
-		},
-		{
-			"id": "602",
-			"name": "Guarana Seed",
-			"type": "plant",
-			"nameDe": "Guarana-Samen"
-		},
-		{
-			"id": "455",
-			"name": "Health Mix",
-			"type": "plant",
-			"nameDe": "Gesundheitsmischung"
-		},
-		{
-			"id": "456",
-			"name": "Health Mix+",
-			"type": "plant",
-			"nameDe": "Health Mix +"
-		},
-		{
-			"id": "450",
-			"name": "Horsetail",
-			"type": "plant",
-			"nameDe": "SCHACHTELHALM"
-		},
-		{
-			"id": "603",
-			"name": "Horsetail Seed",
-			"type": "plant",
-			"nameDe": "Schachtelhalmsamen"
-		},
-		{
-			"id": "447",
-			"name": "Salmonberries",
-			"type": "plant",
-			"nameDe": "Lachsbeeren"
-		},
-		{
-			"id": "604",
-			"name": "Salmonberry Seed",
-			"type": "plant",
-			"nameDe": "Lachsbeersamen"
-		},
-		{
-			"id": "452",
-			"name": "Yarrow",
-			"type": "plant",
-			"nameDe": "Schafgarbe"
-		},
-		{
-			"id": "606",
-			"name": "Yarro Seed",
-			"type": "plant",
-			"nameDe": "Schafgarbensamen"
-		},
-		{
-			"id": "402",
-			"name": "Backpack",
-			"type": "container",
-			"nameDe": "Rucksack"
-		},
-		{
-			"id": "468",
-			"name": "Cross",
-			"type": "weapon",
-			"nameDe": "Kreuz"
-		},
-		{
-			"id": "368",
-			"name": "Crossbow Bolt",
-			"type": "weapon",
-			"nameDe": "Armbrustbolzen"
-		},
-		{
-			"id": "441",
-			"name": "Energy Bar",
-			"type": "food",
-			"nameDe": "Energieriegel"
-		},
-		{
-			"id": "400",
-			"name": "Fly Amanita",
-			"type": "misc",
-			"nameDe": "Knollenblätterpilz"
-		},
-		{
-			"id": "526",
-			"name": "Mr Puffy Will",
-			"type": "key",
-			"nameDe": "Testament von Hr. Puffy"
-		},
-		{
-			"id": "589",
-			"name": "S.C.R.E.W. / Tutorials",
-			"type": "document",
-			"nameDe": "Handbuch"
-		},
-		{
-			"id": "398",
-			"name": "King Oyster",
-			"type": "food",
-			"nameDe": "Kräuterseitling"
-		},
-		{
-			"id": "78",
-			"name": "Log",
-			"type": "log",
-			"nameDe": "Baumstamm",
-			"isInventoryItem": false
-		},
-		{
-			"id": "466",
-			"name": "Oyster",
-			"type": "food",
-			"nameDe": "Auster"
-		},
-		{
-			"id": "433",
-			"name": "Meat",
-			"type": "food",
-			"nameDe": "Fleisch",
-			"modules": [{
-				"moduleId": 3,
-				"variants": [
-					{
-						"state": 1,
-						"name": "Raw Meat"
-					},
-					{
-						"state": 2,
-						"name": "Unknown Meat"
-					},
-					{
-						"state": 3,
-						"name": "Spoiled Meat"
-					},
-					{
-						"state": 4,
-						"name": "Dried Meat"
-					},
-					{
-						"state": 5,
-						"name": "Cooked Meat"
-					},
-					{
-						"state": 6,
-						"name": "Burned Meat"
-					}
-				]
-			}]
-		},
-		{
-			"id": "386",
-			"name": "Revolver",
-			"type": "weapon",
-			"nameDe": "Revolver"
-		},
-		{
-			"id": "353",
-			"name": "Stun Gun",
-			"type": "weapon",
-			"nameDe": "Betäubungsgewehr"
-		},
-		{
-			"id": "552",
-			"name": "Blueprint Book",
-			"type": "document"
-		},
-		{
-			"id": "351",
-			"name": "Grab Bag",
-			"type": "container",
-			"nameDe": "Notgepäck"
-		},
-		{
-			"name": "Pistol Ammo",
-			"id": "370",
-			"type": "weapon",
-			"nameDe": "9-mm-Munition"
-		},
-		{
-			"name": "Stock Price",
-			"id": "617",
-			"type": "document",
-			"nameDe": "Aktienkurs-Chart"
-		},
-		{
-			"name": "BlueprintStorageBox",
-			"id": "583",
-			"type": "container",
-			"nameDe": "Aufbewahrungskiste"
-		},
-		{
-			"name": "Stun Gun Ammo",
-			"id": "457",
-			"type": "weapon",
-			"nameDe": "Betäubungsgewehrmunition"
-		},
-		{
-			"name": "Stick Bed Blueprint",
-			"id": "532",
-			"type": "blueprint",
-			"nameDe": "Bett aus Stöcken"
-		},
-		{
-			"name": "Log Plank",
-			"id": "395",
-			"type": "log",
-			"nameDe": "Brett",
-			"isInventoryItem": false
-		},
-		{
-			"name": "Half Log plank",
-			"id": "577",
-			"type": "log",
-			"nameDe": "Bretthälfte",
-			"isInventoryItem": false
-		},
-		{
-			"name": "Novel A",
-			"id": "423",
-			"type": "document",
-			"nameDe": "Buch „Fähnchenbanner”"
-		},
-		{
-			"name": "Novel C",
-			"id": "574",
-			"type": "document",
-			"nameDe": "Buch „Gerettet”"
-		},
-		{
-			"name": "Novel D",
-			"id": "575",
-			"type": "document",
-			"nameDe": "Buch „Parallelwelten”"
-		},
-		{
-			"name": "Novel B",
-			"id": "424",
-			"type": "document",
-			"nameDe": "Buch „Tiefschlaf”"
-		},
-		{
-			"name": "Crunchie Wunchies",
-			"id": "425",
-			"type": "food",
-			"nameDe": "Crunchie Wunchies"
-		},
-		{
-			"name": "Three Quarter Log Plank",
-			"id": "578",
-			"type": "log",
-			"nameDe": "Dreiviertelbrett",
-			"isInventoryItem": false
-		},
-		{
-			"name": "Three Quarter Log",
-			"id": "409",
-			"type": "log",
-			"nameDe": "Dreiviertelstamm",
-			"isInventoryItem": false
-		},
-		{
-			"name": "Golf Email Pt 1",
-			"id": "534",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Politician Email Pt 1",
-			"id": "542",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Email",
-			"id": "614",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Ballet Email",
-			"id": "545",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Politician Email Pt 2",
-			"id": "543",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Email",
-			"id": "615",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Squeaky Shoes Email Pt 3",
-			"id": "548",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Squeaky Shoes Email Pt 2",
-			"id": "547",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Squeaky Shoes Email Pt 1",
-			"id": "546",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Email",
-			"id": "616",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Astrology Email Pt 2",
-			"id": "540",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Politician Email Pt 3",
-			"id": "544",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Golf Email Pt 2",
-			"id": "535",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Golf Email Pt 3",
-			"id": "536",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Golf Email Pt 4",
-			"id": "537",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Painting Email",
-			"id": "538",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Astrology Email Pt 3",
-			"id": "541",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Astrology Email Pt 1",
-			"id": "539",
-			"type": "document",
-			"nameDe": "E-Mail"
-		},
-		{
-			"name": "Stun Baton",
-			"id": "396",
-			"type": "weapon",
-			"nameDe": "Elektroschocker"
-		},
-		{
-			"name": "Spring",
-			"id": "513",
-			"type": "misc",
-			"nameDe": "Feder"
-		},
-		{
-			"name": "MrPuffy Financials",
-			"id": "528",
-			"type": "document",
-			"nameDe": "Finanzdaten von Hr. Puffy"
-		},
-		{
-			"name": "BlueprintFishTrap",
-			"id": "582",
-			"type": "blueprint",
-			"nameDe": "Fischreuse"
-		},
-		{
-			"name": "Fly Swatter Blueprint",
-			"id": "550",
-			"type": "blueprint",
-			"nameDe": "Fliegenklatsche-Falle"
-		},
-		{
-			"name": "Shotgun Slug",
-			"id": "372",
-			"type": "weapon",
-			"nameDe": "Flintenlaufgeschoss"
-		},
-		{
-			"name": "Rifle Rail Mod",
-			"id": "383",
-			"type": "weapon",
-			"nameDe": "Gewehraufsatz"
-		},
-		{
-			"name": "RifleAmmo",
-			"id": "387",
-			"type": "weapon",
-			"nameDe": "Gewehrmunition"
-		},
-		{
-			"name": "HolovilleNoticeA",
-			"id": "562",
-			"type": "document",
-			"nameDe": "Holoville-Hinweis"
-		},
-		{
-			"name": "HolovilleNoticeD",
-			"id": "565",
-			"type": "document",
-			"nameDe": "Holoville-Hinweis"
-		},
-		{
-			"name": "HolovilleNoticeB",
-			"id": "563",
-			"type": "document",
-			"nameDe": "Holoville-Hinweis"
-		},
-		{
-			"name": "HolovilleNoticeC",
-			"id": "564",
-			"type": "document",
-			"nameDe": "Holoville-Hinweis"
-		},
-		{
-			"name": "Dress",
-			"id": "556",
-			"type": "clothes",
-			"nameDe": "Kleid"
-		},
-		{
-			"name": "BlueprintSmallLogCabin",
-			"id": "591",
-			"type": "blueprint",
-			"nameDe": "Kleine Blockhütte"
-		},
-		{
-			"name": "Small Animal Catcher Blueprint",
-			"id": "551",
-			"type": "blueprint",
-			"nameDe": "Kleintierfalle"
-		},
-		{
-			"name": "BlueprintStorageBones",
-			"id": "608",
-			"type": "blueprint",
-			"nameDe": "Knochenlager"
-		},
-		{
-			"name": "BlueprintBoneChandelier",
-			"id": "588",
-			"type": "blueprint",
-			"nameDe": "Knochenleuchter"
-		},
-		{
-			"name": "Bone Maker Blueprint",
-			"id": "549",
-			"type": "blueprint",
-			"nameDe": "Knochenmacherfalle"
-		},
-		{
-			"name": "BlueprintBoneChair",
-			"id": "579",
-			"type": "blueprint",
-			"nameDe": "Knochenstuhl"
-		},
-		{
-			"name": "Tactical Bow",
-			"id": "360",
-			"type": "weapon",
-			"nameDe": "Kompositbogen"
-		},
-		{
-			"name": "Structure Element",
-			"id": "520",
-			"type": "misc",
-			"nameDe": "Konstruktionselement"
-		},
-		{
-			"name": "Contact Trigger",
-			"id": "511",
-			"type": "misc",
-			"nameDe": "Kontaktauslöser"
-		},
-		{
-			"name": "Contact Spring Trigger",
-			"id": "514",
-			"type": "misc",
-			"nameDe": "Kontaktfederauslöser"
-		},
-		{
-			"name": "Leather Suit",
-			"id": "557",
-			"type": "clothes",
-			"nameDe": "Lederanzug"
-		},
-		{
-			"name": "Machete",
-			"id": "359",
-			"type": "weapon",
-			"nameDe": "Machete"
-		},
-		{
-			"name": "Tracker Dart",
-			"id": "366",
-			"type": "weapon",
-			"nameDe": "Ortungspfeil"
-		},
-		{
-			"name": "BlueprintPlanterFloor",
-			"id": "587",
-			"type": "blueprint",
-			"nameDe": "Pflanzgefäß"
-		},
-		{
-			"name": "BlueprintMannequin",
-			"id": "584",
-			"type": "blueprint",
-			"nameDe": "Schaufensterfigur"
-		},
-		{
-			"name": "Shotgun Buckshot",
-			"id": "371",
-			"type": "weapon",
-			"nameDe": "Schrotkugeln"
-		},
-		{
-			"name": "Hydnum Repandum",
-			"id": "399",
-			"type": "plant",
-			"nameDe": "Semmel-Stoppelpilz"
-		},
-		{
-			"name": "Shiitake",
-			"id": "397",
-			"type": "plant",
-			"nameDe": "Shiitake"
-		},
-		{
-			"name": "BlueprintStickLadder",
-			"id": "580",
-			"type": "blueprint",
-			"nameDe": "Sprossenleiter"
-		},
-		{
-			"name": "Half Log",
-			"id": "408",
-			"type": "log",
-			"nameDe": "Stammhälfte",
-			"isInventoryItem": false
-		},
-		{
-			"name": "BlueprintStorageLogs",
-			"id": "609",
-			"type": "blueprint",
-			"nameDe": "Stammlager"
-		},
-		{
-			"name": "BlueprintStorageRocks",
-			"id": "607",
-			"type": "blueprint",
-			"nameDe": "Steinlager"
-		},
-		{
-			"name": "BlueprintStorageSticks",
-			"id": "610",
-			"type": "blueprint",
-			"nameDe": "Stocklager"
-		},
-		{
-			"name": "Stick Chair Blueprint",
-			"id": "531",
-			"type": "blueprint",
-			"nameDe": "Stühle aus Stöcken"
-		},
-		{
-			"name": "Tactical Jacket",
-			"id": "495",
-			"type": "clothes",
-			"nameDe": "Taktische Jacke"
-		},
-		{
-			"name": "Deer Hide",
-			"id": "472",
-			"type": "misc",
-			"nameDe": "Tierhaut"
-		},
-		{
-			"name": "Drying Rack Blueprint",
-			"id": "530",
-			"type": "blueprint",
-			"nameDe": "Trockengestell"
-		},
-		{
-			"name": "Basic Building Tutorial Page",
-			"id": "515",
-			"type": "document",
-			"nameDe": "Tutorial-Seite"
-		},
-		{
-			"name": "Tarp Tent Tutorial Page",
-			"id": "516",
-			"type": "document",
-			"nameDe": "Tutorial-Seite"
-		},
-		{
-			"name": "Creepy Skin",
-			"id": "592",
-			"type": "armor",
-			"nameDe": "Unheimliche Haut"
-		},
-		{
-			"name": "Quarter Log plank",
-			"id": "576",
-			"type": "log",
-			"nameDe": "Viertelbrett",
-			"isInventoryItem": false
-		},
-		{
-			"name": "Quarter Log",
-			"id": "406",
-			"type": "log",
-			"nameDe": "Viertelstamm",
-			"isInventoryItem": false
-		},
-		{
-			"name": "BlueprintBirdHouse",
-			"id": "581",
-			"type": "blueprint",
-			"nameDe": "Vogelhaus"
-		},
-		{
-			"name": "BlueprintScarecrow",
-			"id": "585",
-			"type": "blueprint",
-			"nameDe": "Vogelscheuche"
-		},
-		{
-			"name": "BlueprintWeaponRack",
-			"id": "533",
-			"type": "blueprint",
-			"nameDe": "Waffenregal"
-		},
-		{
-			"name": "BlueprintPlanterWall",
-			"id": "586",
-			"type": "blueprint",
-			"nameDe": "Wandpflanzkasten"
-		},
-		{
-			"name": "Numbers Printout",
-			"id": "611",
-			"type": "document",
-			"nameDe": "Zahlenübersetzung"
-		},
-		{
-			"name": "Newspaper Cutout",
-			"id": "612",
-			"type": "document",
-			"nameDe": "Zeitungsausschnitt"
-		},
-		{
-			"name": "Newspaper Cutout",
-			"id": "613",
-			"type": "document",
-			"nameDe": "Zeitungsausschnitt"
-		},
-		{
-			"name": "Hang Glider",
-			"nameDe": "Hang Glider",
-			"id": "626",
-			"type": "misc",
-			"isInventoryItem": false
-		},
-		{
-			"name": "Laser Measure Tool",
-			"id": "505",
-			"type": "Misc"
-		}
-	],
-	"storages": [
-		{
-			"id": 49,
-			"name": "Shelf",
-			"slots": 12
-		},
-		{
-			"id": 29,
-			"name": "Stick Storage",
-			"slots": 1,
-			"restrictedItemIds": [
-				392
-			],
-			"type": "Sticks"
-		},
-		{
-			"id": 31,
-			"name": "Stone Storage",
-			"slots": 1,
-			"restrictedItemIds": [
-				393
-			],
-			"type": "Stones"
-		},
-		{
-			"id": 32,
-			"name": "Bone Storage",
-			"slots": 1,
-			"restrictedItemIds": [
-				405
-			],
-			"type": "Bones"
-		},
-		{
-			"id": 51,
-			"name": "Wall Shelf",
-			"slots": 5
-		},
-		{
-			"id": 27,
-			"name": "Drying Rack",
-			"slots": 6,
-			"maxPerSlot": 1,
-			"type": "Food",
-			"restrictedItemIds": [
-				433,
-				436
-			]
-		},
-		{
-			"id": 37,
-			"name": "Log Holder",
-			"slots": 1,
-			"maxPerSlot": 1000,
-			"restrictedItemIds": [
-				78
-			],
-			"type": "Logs"
-		},
-		{
-			"id": 36,
-			"name": "Mannequin",
-			"slots": 0
-		},
-		{
-			"id": 39,
-			"name": "Scarecrow",
-			"slots": 0
-		}
-	],
-	"followers": {
-		"outfits": {
-			"9": [
-				{
-					"id": -1,
-					"name": "Default"
-				},
-				{
-					"id": 0,
-					"name": "Tactical Jacket"
-				},
-				{
-					"id": 1,
-					"name": "Tuxedo"
-				},
-				{
-					"id": 2,
-					"name": "Pyjamas"
-				},
-				{
-					"id": 3,
-					"name": "Leather Jacket"
-				},
-				{
-					"id": 4,
-					"name": "Hoody"
-				},
-				{
-					"id": 5,
-					"name": "Unknown"
-				},
-				{
-					"id": 6,
-					"name": "Blazer"
-				}																					
-			],
-			"10": [
-				{
-					"id": -1,
-					"name": "Default"
-				},
-				{
-					"id": 0,
-					"name": "Swim Suit"
-				},
-				{
-					"id": 1,
-					"name": "Track Suit"
-				},
-				{
-					"id": 2,
-					"name": "Leather Suit"
-				},
-				{
-					"id": 3,
-					"name": "Camouflage Suit"
-				},
-				{
-					"id": 4,
-					"name": "Dress"
-				}																					
-			]		
-		},
-		"equippableItems": {
-			"9": [504],
-			"10": [529,355,358]
-		}
-	}
+  "config": {
+    "latestTagUrl": "https://api.github.com/repos/codengine/SOTFEdit/releases/latest",
+    "latestReleaseUrl": "https://github.com/codengine/SOTFEdit/releases"
+  },
+  "items": [
+    {
+      "id": "568",
+      "name": "VIP Key",
+      "type": "key",
+      "nameDe": "VIP-Schlüsselkarte"
+    },
+    {
+      "id": "566",
+      "name": "Maintenance Key",
+      "type": "key",
+      "nameDe": "Wartungsschlüsselkarte"
+    },
+    {
+      "id": "567",
+      "name": "Guest Key",
+      "type": "key",
+      "nameDe": "Gästeschlüsselkarte"
+    },
+    {
+      "id": "469",
+      "name": "Air Canister",
+      "type": "misc",
+      "nameDe": "Lufttank"
+    },
+    {
+      "id": "527",
+      "name": "Batteries",
+      "type": "misc",
+      "nameDe": "Batterien"
+    },
+    {
+      "id": "458",
+      "name": "Battery Charger",
+      "type": "misc",
+      "nameDe": "Ladegerät"
+    },
+    {
+      "id": "460",
+      "name": "Battery Pack",
+      "type": "misc"
+    },
+    {
+      "id": "471",
+      "name": "Flashlight",
+      "type": "misc",
+      "nameDe": "Taschenlampe"
+    },
+    {
+      "id": "435",
+      "name": "Gold Mask",
+      "type": "misc",
+      "nameDe": "Goldmaske"
+    },
+    {
+      "id": "524",
+      "name": "Golf Ball",
+      "type": "misc",
+      "nameDe": "Golfball"
+    },
+    {
+      "id": "529",
+      "name": "GPS Locator",
+      "type": "misc",
+      "nameDe": "GPS-Peilsender"
+    },
+    {
+      "id": "412",
+      "name": "GPS Tracker",
+      "type": "misc",
+      "nameDe": "GPS-Gerät"
+    },
+    {
+      "id": "432",
+      "name": "Can Opener",
+      "type": "misc",
+      "nameDe": "Dosenöffner"
+    },
+    {
+      "id": "341",
+      "name": "Binoculars",
+      "type": "misc",
+      "nameDe": "Fernglas"
+    },
+    {
+      "id": "420",
+      "name": "C4 Brick",
+      "type": "misc",
+      "nameDe": "C4-Ladung"
+    },
+    {
+      "id": "419",
+      "name": "Duct Tape",
+      "type": "misc",
+      "nameDe": "Klebeband"
+    },
+    {
+      "id": "479",
+      "name": "Feather",
+      "type": "misc",
+      "nameDe": "Feder"
+    },
+    {
+      "id": "440",
+      "name": "Flare",
+      "type": "misc",
+      "nameDe": "Leuchtfackel"
+    },
+    {
+      "id": "486",
+      "name": "Walkie Talkie",
+      "type": "misc",
+      "nameDe": "Walkie-Talkie"
+    },
+    {
+      "id": "418",
+      "name": "Wire",
+      "type": "misc",
+      "nameDe": "Draht"
+    },
+    {
+      "id": "410",
+      "name": "Watch",
+      "type": "misc",
+      "nameDe": "Armbanduhr"
+    },
+    {
+      "id": "590",
+      "name": "Radio",
+      "type": "misc",
+      "nameDe": "Radio"
+    },
+    {
+      "id": "444",
+      "name": "Rebreather",
+      "type": "misc",
+      "nameDe": "Tauchgerät"
+    },
+    {
+      "id": "391",
+      "name": "Red Mask",
+      "type": "misc",
+      "nameDe": "Rote Maske"
+    },
+    {
+      "id": "393",
+      "name": "Rock",
+      "type": "misc",
+      "nameDe": "Stein"
+    },
+    {
+      "id": "403",
+      "name": "Rope",
+      "type": "misc",
+      "nameDe": "Seil"
+    },
+    {
+      "id": "480",
+      "name": "Severed Arm",
+      "type": "misc",
+      "nameDe": "Arm"
+    },
+    {
+      "id": "481",
+      "name": "Severed Leg",
+      "type": "misc",
+      "nameDe": "Bein"
+    },
+    {
+      "id": "482",
+      "name": "Severed Head",
+      "type": "misc",
+      "nameDe": "Kopf"
+    },
+    {
+      "id": "508",
+      "name": "Skin Pouch",
+      "type": "misc",
+      "nameDe": "Lederbeutel"
+    },
+    {
+      "id": "430",
+      "name": "Skull",
+      "type": "misc",
+      "nameDe": "Schädel"
+    },
+    {
+      "id": "573",
+      "name": "Sleeping Bag",
+      "type": "misc",
+      "nameDe": "Schlafsack"
+    },
+    {
+      "id": "476",
+      "name": "Small Rock",
+      "type": "misc",
+      "nameDe": "Kleiner Stein"
+    },
+    {
+      "id": "416",
+      "name": "Circuit Board",
+      "type": "misc",
+      "nameDe": "Leiterplatte"
+    },
+    {
+      "id": "415",
+      "name": "Cloth",
+      "type": "misc",
+      "nameDe": "Stoff"
+    },
+    {
+      "id": "405",
+      "name": "Bone",
+      "type": "misc",
+      "nameDe": "Knochen"
+    },
+    {
+      "id": "502",
+      "name": "Coins",
+      "type": "misc",
+      "nameDe": "Münzen"
+    },
+    {
+      "id": "517",
+      "name": "Cooking Pot",
+      "type": "misc"
+    },
+    {
+      "id": "392",
+      "name": "Stick",
+      "type": "misc",
+      "nameDe": "Stock"
+    },
+    {
+      "id": "504",
+      "name": "Tarp",
+      "type": "misc",
+      "nameDe": "Plane"
+    },
+    {
+      "id": "553",
+      "name": "Tech Mesh",
+      "type": "misc",
+      "nameDe": "Tech Mesh"
+    },
+    {
+      "id": "503",
+      "name": "Torch",
+      "type": "misc",
+      "nameDe": "Fackel"
+    },
+    {
+      "id": "401",
+      "name": "Turtle Egg",
+      "type": "misc",
+      "nameDe": "Schildkrötenei"
+    },
+    {
+      "id": "506",
+      "name": "Turtle Shell",
+      "type": "misc",
+      "nameDe": "Schildkrötenpanzer"
+    },
+    {
+      "id": "414",
+      "name": "Vodka Bottle",
+      "type": "misc",
+      "nameDe": "Wodka-Flasche"
+    },
+    {
+      "id": "437",
+      "name": "Meds",
+      "type": "misc",
+      "nameDe": "Medizin"
+    },
+    {
+      "id": "496",
+      "name": "Money",
+      "type": "misc",
+      "nameDe": "Geld"
+    },
+    {
+      "id": "518",
+      "name": "Paper Target",
+      "type": "misc",
+      "nameDe": "Papierzielscheibe"
+    },
+    {
+      "id": "484",
+      "name": "Leaf",
+      "type": "misc",
+      "nameDe": "Blatt"
+    },
+    {
+      "id": "618",
+      "name": "Printed Arrow",
+      "type": "printed",
+      "nameDe": "3D-gedruckter Pfeil"
+    },
+    {
+      "id": "559",
+      "name": "Printed Arrow Heads",
+      "type": "printed"
+    },
+    {
+      "id": "561",
+      "name": "Printed Flower Pot",
+      "type": "printed"
+    },
+    {
+      "id": "560",
+      "name": "Printed Grappling Hook",
+      "type": "printed",
+      "nameDe": "Gedruckter Enterhaken"
+    },
+    {
+      "id": "413",
+      "name": "Plasma Lighter",
+      "type": "printed",
+      "nameDe": "Feuerzeug"
+    },
+    {
+      "id": "426",
+      "name": "Printed Flask",
+      "type": "printed",
+      "nameDe": "Gedruckte Trinkflasche"
+    },
+    {
+      "id": "427",
+      "name": "Printed Knife",
+      "type": "printed"
+    },
+    {
+      "id": "428",
+      "name": "Printed Sled",
+      "type": "printed",
+      "nameDe": "Gedruckter Schlitten"
+    },
+    {
+      "id": "390",
+      "name": "Printer Resin",
+      "type": "printed",
+      "nameDe": "Druckerharz"
+    },
+    {
+      "id": "429",
+      "name": "Printed Scuba Mask",
+      "type": "printed"
+    },
+    {
+      "id": "569",
+      "name": "Brain Bite",
+      "type": "food",
+      "nameDe": "Gehirnstück"
+    },
+    {
+      "id": "434",
+      "name": "Canned Food",
+      "type": "food",
+      "nameDe": "Konserven"
+    },
+    {
+      "id": "464",
+      "name": "Cat Food",
+      "type": "food",
+      "nameDe": "Katzenfutter"
+    },
+    {
+      "id": "483",
+      "name": "Emergency Pack",
+      "type": "food",
+      "nameDe": "Notfallpaket"
+    },
+    {
+      "id": "436",
+      "name": "Fish",
+      "type": "food",
+      "nameDe": "Fisch",
+      "modules": [
+        {
+          "moduleId": 3,
+          "variants": [
+            {
+              "state": 1,
+              "name": "Raw Fish"
+            },
+            {
+              "state": 2,
+              "name": "Unknown Fish"
+            },
+            {
+              "state": 3,
+              "name": "Spoiled Fish"
+            },
+            {
+              "state": 4,
+              "name": "Dried Fish"
+            },
+            {
+              "state": 5,
+              "name": "Cooked Fish"
+            },
+            {
+              "state": 6,
+              "name": "Burned Fish"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "439",
+      "name": "Energy Drink",
+      "type": "food",
+      "nameDe": "Energydrink"
+    },
+    {
+      "id": "512",
+      "name": "Food Tray Filled",
+      "type": "food"
+    },
+    {
+      "id": "497",
+      "name": "Food Tray",
+      "type": "food"
+    },
+    {
+      "id": "438",
+      "name": "MRE Pack",
+      "type": "food",
+      "nameDe": "Feldration"
+    },
+    {
+      "id": "421",
+      "name": "Ramen Noodles",
+      "type": "food",
+      "nameDe": "Ramen-Nudeln"
+    },
+    {
+      "id": "570",
+      "name": "Steak Bite",
+      "type": "food",
+      "nameDe": "Steakstück"
+    },
+    {
+      "id": "571",
+      "name": "Steak and Bacon Bite",
+      "type": "food",
+      "nameDe": "Speckstück"
+    },
+    {
+      "id": "494",
+      "name": "Bone Armour",
+      "type": "armor",
+      "nameDe": "Knochenrüstung"
+    },
+    {
+      "id": "593",
+      "name": "Creepy Armour",
+      "type": "armor",
+      "nameDe": "Mutantenrüstung"
+    },
+    {
+      "id": "519",
+      "name": "Deer Hide Armour",
+      "type": "armor",
+      "nameDe": "Tierhautrüstung"
+    },
+    {
+      "id": "572",
+      "name": "Golden Armour",
+      "type": "armor",
+      "nameDe": "Goldrüstung"
+    },
+    {
+      "id": "473",
+      "name": "Leaf Armour",
+      "type": "armor",
+      "nameDe": "Blätterrüstung"
+    },
+    {
+      "id": "492",
+      "name": "Tuxedo",
+      "type": "clothes",
+      "nameDe": "Tuxedo"
+    },
+    {
+      "id": "554",
+      "name": "Tech Armour",
+      "type": "armor",
+      "nameDe": "Tech-Rüstung"
+    },
+    {
+      "id": "491",
+      "name": "Blazer",
+      "type": "clothes",
+      "nameDe": "Jackett"
+    },
+    {
+      "id": "488",
+      "name": "Blue T-shirt",
+      "type": "clothes"
+    },
+    {
+      "id": "558",
+      "name": "Camoflage Suit",
+      "type": "clothes",
+      "nameDe": "Tarnanzug"
+    },
+    {
+      "id": "490",
+      "name": "Hoodie",
+      "type": "clothes",
+      "nameDe": "Kapuzenpullover"
+    },
+    {
+      "id": "499",
+      "name": "Wetsuit",
+      "type": "clothes",
+      "nameDe": "Neoprenanzug"
+    },
+    {
+      "id": "463",
+      "name": "Flippers",
+      "type": "clothes"
+    },
+    {
+      "id": "493",
+      "name": "Leather Jacket",
+      "type": "clothes",
+      "nameDe": "Lederjacke"
+    },
+    {
+      "id": "487",
+      "name": "Silk Pyjamas",
+      "type": "clothes",
+      "nameDe": "Schlafanzug"
+    },
+    {
+      "id": "619",
+      "name": "Swim Suit",
+      "type": "clothes",
+      "nameDe": "Badeanzug"
+    },
+    {
+      "id": "500",
+      "name": "Puffy Jacket",
+      "type": "clothes",
+      "nameDe": "Winterjacke"
+    },
+    {
+      "id": "501",
+      "name": "Tactical Boots",
+      "type": "clothes",
+      "nameDe": "Stiefel"
+    },
+    {
+      "id": "489",
+      "name": "Tactical Pants",
+      "type": "clothes",
+      "nameDe": "Taktische Hose"
+    },
+    {
+      "id": "555",
+      "name": "Track Suit",
+      "type": "clothes",
+      "nameDe": "Trainingsanzug"
+    },
+    {
+      "id": "354",
+      "name": "Night Vision Goggles",
+      "type": "weapon"
+    },
+    {
+      "id": "357",
+      "name": "Airgun",
+      "type": "weapon",
+      "nameDe": "Luftgewehr"
+    },
+    {
+      "id": "361",
+      "name": "Rifle",
+      "type": "weapon",
+      "nameDe": "Gewehr"
+    },
+    {
+      "id": "364",
+      "name": "Shotgun Buckshot",
+      "type": "weapon",
+      "nameDe": "Schrotkugeln"
+    },
+    {
+      "id": "394",
+      "name": "Chainsaw",
+      "type": "weapon",
+      "nameDe": "Kettensäge"
+    },
+    {
+      "id": "478",
+      "name": "Climbing Axe",
+      "type": "weapon",
+      "nameDe": "Kletteraxt"
+    },
+    {
+      "id": "380",
+      "name": "Combat Knife",
+      "type": "weapon"
+    },
+    {
+      "id": "355",
+      "name": "Compact Pistol",
+      "type": "weapon",
+      "nameDe": "Pistole"
+    },
+    {
+      "id": "443",
+      "name": "Crafted Bow",
+      "type": "weapon",
+      "nameDe": "Handgemachter Bogen"
+    },
+    {
+      "id": "477",
+      "name": "Crafted Club",
+      "type": "weapon",
+      "nameDe": "Handgefertigte Keule"
+    },
+    {
+      "id": "507",
+      "name": "Crafted Arrow",
+      "type": "weapon",
+      "nameDe": "Steinpfeil"
+    },
+    {
+      "id": "474",
+      "name": "Crafted Spear",
+      "type": "weapon",
+      "nameDe": "Handgefertigter Speer"
+    },
+    {
+      "id": "365",
+      "name": "Crossbow",
+      "type": "weapon",
+      "nameDe": "Armbrust"
+    },
+    {
+      "id": "431",
+      "name": "Firefighter Axe",
+      "type": "weapon",
+      "nameDe": "Feuerwehraxt"
+    },
+    {
+      "id": "525",
+      "name": "Putter",
+      "type": "weapon",
+      "nameDe": "Putter"
+    },
+    {
+      "id": "381",
+      "name": "Grenade",
+      "type": "weapon",
+      "nameDe": "Granate"
+    },
+    {
+      "id": "382",
+      "name": "GrenadeAmmo",
+      "type": "weapon",
+      "nameDe": "Granate"
+    },
+    {
+      "id": "340",
+      "name": "Guitar",
+      "type": "weapon",
+      "nameDe": "Gitarre"
+    },
+    {
+      "id": "367",
+      "name": "Katana",
+      "type": "weapon",
+      "nameDe": "Katana"
+    },
+    {
+      "id": "388",
+      "name": "Molotov",
+      "type": "weapon",
+      "nameDe": "Molotowcocktail"
+    },
+    {
+      "id": "389",
+      "name": "MolotovAmmo",
+      "type": "weapon",
+      "nameDe": "Molotow"
+    },
+    {
+      "id": "356",
+      "name": "Modern Axe",
+      "type": "weapon",
+      "nameDe": "Moderne Axt"
+    },
+    {
+      "id": "362",
+      "name": "Pistol Ammo",
+      "type": "weapon",
+      "nameDe": "9-mm-Munition"
+    },
+    {
+      "id": "422",
+      "name": "Repair Tool",
+      "type": "weapon",
+      "nameDe": "Reparaturwerkzeug"
+    },
+    {
+      "id": "522",
+      "name": "RopeGun",
+      "type": "weapon",
+      "nameDe": "Seilgewehr"
+    },
+    {
+      "id": "377",
+      "name": "Scope",
+      "type": "weapon",
+      "nameDe": "Zielfernrohr"
+    },
+    {
+      "id": "485",
+      "name": "Shovel",
+      "type": "weapon",
+      "nameDe": "Schaufel"
+    },
+    {
+      "id": "374",
+      "name": "Silencer",
+      "type": "weapon",
+      "nameDe": "Schalldämpfer"
+    },
+    {
+      "id": "358",
+      "name": "Shotgun",
+      "type": "weapon",
+      "nameDe": "Schrotflinte"
+    },
+    {
+      "id": "459",
+      "name": "Slingshot",
+      "type": "weapon",
+      "nameDe": "Schleuder"
+    },
+    {
+      "id": "363",
+      "name": "Shotgun Slug",
+      "type": "weapon",
+      "nameDe": "Flintenlaufgeschoss"
+    },
+    {
+      "id": "369",
+      "name": "Stun Gun Ammo",
+      "type": "weapon",
+      "nameDe": "Betäubungsgewehrmunition"
+    },
+    {
+      "id": "379",
+      "name": "Tactical Axe",
+      "type": "weapon",
+      "nameDe": "Taktische Axt"
+    },
+    {
+      "id": "417",
+      "name": "Time Bomb",
+      "type": "weapon",
+      "nameDe": "Zeitbombe"
+    },
+    {
+      "id": "470",
+      "name": "Airgun Scope",
+      "type": "weapon",
+      "nameDe": "Zielfernrohr für Luftgewehr"
+    },
+    {
+      "id": "523",
+      "name": "Zipline Rope",
+      "type": "weapon",
+      "nameDe": "Seilrutschenseil"
+    },
+    {
+      "id": "373",
+      "name": "Tactical Arrow",
+      "type": "weapon",
+      "nameDe": "Kohlefaserpfeil"
+    },
+    {
+      "id": "378",
+      "name": "Flashlight Attachment",
+      "type": "weapon",
+      "nameDe": "Taschenlampenvorrichtung"
+    },
+    {
+      "id": "384",
+      "name": "Crossbow Quiver",
+      "type": "weapon",
+      "nameDe": "Armbrustköcher"
+    },
+    {
+      "id": "375",
+      "name": "Laser Sight",
+      "type": "weapon",
+      "nameDe": "Laservisier"
+    },
+    {
+      "id": "376",
+      "name": "Pistol Rail",
+      "type": "weapon",
+      "nameDe": "Pistolenaufsatz"
+    },
+    {
+      "id": "346",
+      "name": "Shotgun Rail",
+      "type": "weapon",
+      "nameDe": "Schrotflintenaufsatz"
+    },
+    {
+      "id": "509",
+      "name": "Holosprings Pamphlet",
+      "type": "document",
+      "nameDe": "Holosprings-Broschüre"
+    },
+    {
+      "id": "467",
+      "name": "Album Cover",
+      "type": "document",
+      "nameDe": "Plattencover"
+    },
+    {
+      "id": "521",
+      "name": "Cave Lighting Email",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "id": "448",
+      "name": "Snowberries",
+      "type": "plant",
+      "nameDe": "Schneebeeren"
+    },
+    {
+      "id": "446",
+      "name": "Twinberries",
+      "type": "plant",
+      "nameDe": "Heckenkirsche"
+    },
+    {
+      "id": "451",
+      "name": "Aloe Vera",
+      "type": "plant",
+      "nameDe": "Aloe-Vera"
+    },
+    {
+      "id": "596",
+      "name": "AloeVera Seed",
+      "type": "plant",
+      "nameDe": "Aloe-Vera-Same"
+    },
+    {
+      "id": "595",
+      "name": "Blackberries",
+      "type": "plant",
+      "nameDe": "Brombeeren"
+    },
+    {
+      "id": "598",
+      "name": "Blackberry Seed",
+      "type": "plant",
+      "nameDe": "Brombeere"
+    },
+    {
+      "id": "454",
+      "name": "Arrowleaf",
+      "type": "plant",
+      "nameDe": "Pfeilblatt"
+    },
+    {
+      "id": "597",
+      "name": "Arrowleaf Seed",
+      "type": "plant",
+      "nameDe": "Pfeilblattsamen"
+    },
+    {
+      "id": "445",
+      "name": "Blueberries",
+      "type": "plant",
+      "nameDe": "Heidelbeeren"
+    },
+    {
+      "id": "599",
+      "name": "Blueberry Seed",
+      "type": "plant",
+      "nameDe": "Heidelbeerstrauchsame"
+    },
+    {
+      "id": "465",
+      "name": "Chicory",
+      "type": "plant",
+      "nameDe": "Chicorée"
+    },
+    {
+      "id": "605",
+      "name": "Chicory Seed",
+      "type": "plant",
+      "nameDe": "Wegwarte"
+    },
+    {
+      "id": "449",
+      "name": "Devil's Club",
+      "type": "plant",
+      "nameDe": "Igelkraftwurz"
+    },
+    {
+      "id": "600",
+      "name": "DevilsClub Seed",
+      "type": "plant",
+      "nameDe": "Igelkraftwurzsamen"
+    },
+    {
+      "id": "461",
+      "name": "Energy Mix",
+      "type": "plant",
+      "nameDe": "Energiemischung"
+    },
+    {
+      "id": "462",
+      "name": "Energy Mix+",
+      "type": "plant",
+      "nameDe": "Energiemischung +"
+    },
+    {
+      "id": "453",
+      "name": "Fireweed",
+      "type": "plant",
+      "nameDe": "WEIDENRÖSCHEN"
+    },
+    {
+      "id": "601",
+      "name": "Fireweed Seed",
+      "type": "plant",
+      "nameDe": "Weidenröschensamen"
+    },
+    {
+      "id": "594",
+      "name": "Guarana Berries",
+      "type": "plant",
+      "nameDe": "Guarana-Beeren"
+    },
+    {
+      "id": "602",
+      "name": "Guarana Seed",
+      "type": "plant",
+      "nameDe": "Guarana-Samen"
+    },
+    {
+      "id": "455",
+      "name": "Health Mix",
+      "type": "plant",
+      "nameDe": "Gesundheitsmischung"
+    },
+    {
+      "id": "456",
+      "name": "Health Mix+",
+      "type": "plant",
+      "nameDe": "Health Mix +"
+    },
+    {
+      "id": "450",
+      "name": "Horsetail",
+      "type": "plant",
+      "nameDe": "SCHACHTELHALM"
+    },
+    {
+      "id": "603",
+      "name": "Horsetail Seed",
+      "type": "plant",
+      "nameDe": "Schachtelhalmsamen"
+    },
+    {
+      "id": "447",
+      "name": "Salmonberries",
+      "type": "plant",
+      "nameDe": "Lachsbeeren"
+    },
+    {
+      "id": "604",
+      "name": "Salmonberry Seed",
+      "type": "plant",
+      "nameDe": "Lachsbeersamen"
+    },
+    {
+      "id": "452",
+      "name": "Yarrow",
+      "type": "plant",
+      "nameDe": "Schafgarbe"
+    },
+    {
+      "id": "606",
+      "name": "Yarro Seed",
+      "type": "plant",
+      "nameDe": "Schafgarbensamen"
+    },
+    {
+      "id": "402",
+      "name": "Backpack",
+      "type": "container",
+      "nameDe": "Rucksack"
+    },
+    {
+      "id": "468",
+      "name": "Cross",
+      "type": "weapon",
+      "nameDe": "Kreuz"
+    },
+    {
+      "id": "368",
+      "name": "Crossbow Bolt",
+      "type": "weapon",
+      "nameDe": "Armbrustbolzen"
+    },
+    {
+      "id": "441",
+      "name": "Energy Bar",
+      "type": "food",
+      "nameDe": "Energieriegel"
+    },
+    {
+      "id": "400",
+      "name": "Fly Amanita",
+      "type": "misc",
+      "nameDe": "Knollenblätterpilz"
+    },
+    {
+      "id": "526",
+      "name": "Mr Puffy Will",
+      "type": "key",
+      "nameDe": "Testament von Hr. Puffy"
+    },
+    {
+      "id": "589",
+      "name": "S.C.R.E.W. / Tutorials",
+      "type": "document",
+      "nameDe": "Handbuch"
+    },
+    {
+      "id": "398",
+      "name": "King Oyster",
+      "type": "food",
+      "nameDe": "Kräuterseitling"
+    },
+    {
+      "id": "78",
+      "name": "Log",
+      "type": "log",
+      "nameDe": "Baumstamm",
+      "isInventoryItem": false
+    },
+    {
+      "id": "466",
+      "name": "Oyster",
+      "type": "food",
+      "nameDe": "Auster"
+    },
+    {
+      "id": "433",
+      "name": "Meat",
+      "type": "food",
+      "nameDe": "Fleisch",
+      "modules": [
+        {
+          "moduleId": 3,
+          "variants": [
+            {
+              "state": 1,
+              "name": "Raw Meat"
+            },
+            {
+              "state": 2,
+              "name": "Unknown Meat"
+            },
+            {
+              "state": 3,
+              "name": "Spoiled Meat"
+            },
+            {
+              "state": 4,
+              "name": "Dried Meat"
+            },
+            {
+              "state": 5,
+              "name": "Cooked Meat"
+            },
+            {
+              "state": 6,
+              "name": "Burned Meat"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "386",
+      "name": "Revolver",
+      "type": "weapon",
+      "nameDe": "Revolver"
+    },
+    {
+      "id": "353",
+      "name": "Stun Gun",
+      "type": "weapon",
+      "nameDe": "Betäubungsgewehr"
+    },
+    {
+      "id": "552",
+      "name": "Blueprint Book",
+      "type": "document"
+    },
+    {
+      "id": "351",
+      "name": "Grab Bag",
+      "type": "container",
+      "nameDe": "Notgepäck"
+    },
+    {
+      "name": "Pistol Ammo",
+      "id": "370",
+      "type": "weapon",
+      "nameDe": "9-mm-Munition"
+    },
+    {
+      "name": "Stock Price",
+      "id": "617",
+      "type": "document",
+      "nameDe": "Aktienkurs-Chart"
+    },
+    {
+      "name": "BlueprintStorageBox",
+      "id": "583",
+      "type": "container",
+      "nameDe": "Aufbewahrungskiste"
+    },
+    {
+      "name": "Stun Gun Ammo",
+      "id": "457",
+      "type": "weapon",
+      "nameDe": "Betäubungsgewehrmunition"
+    },
+    {
+      "name": "Stick Bed Blueprint",
+      "id": "532",
+      "type": "blueprint",
+      "nameDe": "Bett aus Stöcken"
+    },
+    {
+      "name": "Log Plank",
+      "id": "395",
+      "type": "log",
+      "nameDe": "Brett",
+      "isInventoryItem": false
+    },
+    {
+      "name": "Half Log plank",
+      "id": "577",
+      "type": "log",
+      "nameDe": "Bretthälfte",
+      "isInventoryItem": false
+    },
+    {
+      "name": "Novel A",
+      "id": "423",
+      "type": "document",
+      "nameDe": "Buch „Fähnchenbanner”"
+    },
+    {
+      "name": "Novel C",
+      "id": "574",
+      "type": "document",
+      "nameDe": "Buch „Gerettet”"
+    },
+    {
+      "name": "Novel D",
+      "id": "575",
+      "type": "document",
+      "nameDe": "Buch „Parallelwelten”"
+    },
+    {
+      "name": "Novel B",
+      "id": "424",
+      "type": "document",
+      "nameDe": "Buch „Tiefschlaf”"
+    },
+    {
+      "name": "Crunchie Wunchies",
+      "id": "425",
+      "type": "food",
+      "nameDe": "Crunchie Wunchies"
+    },
+    {
+      "name": "Three Quarter Log Plank",
+      "id": "578",
+      "type": "log",
+      "nameDe": "Dreiviertelbrett",
+      "isInventoryItem": false
+    },
+    {
+      "name": "Three Quarter Log",
+      "id": "409",
+      "type": "log",
+      "nameDe": "Dreiviertelstamm",
+      "isInventoryItem": false
+    },
+    {
+      "name": "Golf Email Pt 1",
+      "id": "534",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Politician Email Pt 1",
+      "id": "542",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Email",
+      "id": "614",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Ballet Email",
+      "id": "545",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Politician Email Pt 2",
+      "id": "543",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Email",
+      "id": "615",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Squeaky Shoes Email Pt 3",
+      "id": "548",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Squeaky Shoes Email Pt 2",
+      "id": "547",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Squeaky Shoes Email Pt 1",
+      "id": "546",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Email",
+      "id": "616",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Astrology Email Pt 2",
+      "id": "540",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Politician Email Pt 3",
+      "id": "544",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Golf Email Pt 2",
+      "id": "535",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Golf Email Pt 3",
+      "id": "536",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Golf Email Pt 4",
+      "id": "537",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Painting Email",
+      "id": "538",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Astrology Email Pt 3",
+      "id": "541",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Astrology Email Pt 1",
+      "id": "539",
+      "type": "document",
+      "nameDe": "E-Mail"
+    },
+    {
+      "name": "Stun Baton",
+      "id": "396",
+      "type": "weapon",
+      "nameDe": "Elektroschocker"
+    },
+    {
+      "name": "Spring",
+      "id": "513",
+      "type": "misc",
+      "nameDe": "Feder"
+    },
+    {
+      "name": "MrPuffy Financials",
+      "id": "528",
+      "type": "document",
+      "nameDe": "Finanzdaten von Hr. Puffy"
+    },
+    {
+      "name": "BlueprintFishTrap",
+      "id": "582",
+      "type": "blueprint",
+      "nameDe": "Fischreuse"
+    },
+    {
+      "name": "Fly Swatter Blueprint",
+      "id": "550",
+      "type": "blueprint",
+      "nameDe": "Fliegenklatsche-Falle"
+    },
+    {
+      "name": "Shotgun Slug",
+      "id": "372",
+      "type": "weapon",
+      "nameDe": "Flintenlaufgeschoss"
+    },
+    {
+      "name": "Rifle Rail Mod",
+      "id": "383",
+      "type": "weapon",
+      "nameDe": "Gewehraufsatz"
+    },
+    {
+      "name": "RifleAmmo",
+      "id": "387",
+      "type": "weapon",
+      "nameDe": "Gewehrmunition"
+    },
+    {
+      "name": "HolovilleNoticeA",
+      "id": "562",
+      "type": "document",
+      "nameDe": "Holoville-Hinweis"
+    },
+    {
+      "name": "HolovilleNoticeD",
+      "id": "565",
+      "type": "document",
+      "nameDe": "Holoville-Hinweis"
+    },
+    {
+      "name": "HolovilleNoticeB",
+      "id": "563",
+      "type": "document",
+      "nameDe": "Holoville-Hinweis"
+    },
+    {
+      "name": "HolovilleNoticeC",
+      "id": "564",
+      "type": "document",
+      "nameDe": "Holoville-Hinweis"
+    },
+    {
+      "name": "Dress",
+      "id": "556",
+      "type": "clothes",
+      "nameDe": "Kleid"
+    },
+    {
+      "name": "BlueprintSmallLogCabin",
+      "id": "591",
+      "type": "blueprint",
+      "nameDe": "Kleine Blockhütte"
+    },
+    {
+      "name": "Small Animal Catcher Blueprint",
+      "id": "551",
+      "type": "blueprint",
+      "nameDe": "Kleintierfalle"
+    },
+    {
+      "name": "BlueprintStorageBones",
+      "id": "608",
+      "type": "blueprint",
+      "nameDe": "Knochenlager"
+    },
+    {
+      "name": "BlueprintBoneChandelier",
+      "id": "588",
+      "type": "blueprint",
+      "nameDe": "Knochenleuchter"
+    },
+    {
+      "name": "Bone Maker Blueprint",
+      "id": "549",
+      "type": "blueprint",
+      "nameDe": "Knochenmacherfalle"
+    },
+    {
+      "name": "BlueprintBoneChair",
+      "id": "579",
+      "type": "blueprint",
+      "nameDe": "Knochenstuhl"
+    },
+    {
+      "name": "Tactical Bow",
+      "id": "360",
+      "type": "weapon",
+      "nameDe": "Kompositbogen"
+    },
+    {
+      "name": "Structure Element",
+      "id": "520",
+      "type": "misc",
+      "nameDe": "Konstruktionselement"
+    },
+    {
+      "name": "Contact Trigger",
+      "id": "511",
+      "type": "misc",
+      "nameDe": "Kontaktauslöser"
+    },
+    {
+      "name": "Contact Spring Trigger",
+      "id": "514",
+      "type": "misc",
+      "nameDe": "Kontaktfederauslöser"
+    },
+    {
+      "name": "Leather Suit",
+      "id": "557",
+      "type": "clothes",
+      "nameDe": "Lederanzug"
+    },
+    {
+      "name": "Machete",
+      "id": "359",
+      "type": "weapon",
+      "nameDe": "Machete"
+    },
+    {
+      "name": "Tracker Dart",
+      "id": "366",
+      "type": "weapon",
+      "nameDe": "Ortungspfeil"
+    },
+    {
+      "name": "BlueprintPlanterFloor",
+      "id": "587",
+      "type": "blueprint",
+      "nameDe": "Pflanzgefäß"
+    },
+    {
+      "name": "BlueprintMannequin",
+      "id": "584",
+      "type": "blueprint",
+      "nameDe": "Schaufensterfigur"
+    },
+    {
+      "name": "Shotgun Buckshot",
+      "id": "371",
+      "type": "weapon",
+      "nameDe": "Schrotkugeln"
+    },
+    {
+      "name": "Hydnum Repandum",
+      "id": "399",
+      "type": "plant",
+      "nameDe": "Semmel-Stoppelpilz"
+    },
+    {
+      "name": "Shiitake",
+      "id": "397",
+      "type": "plant",
+      "nameDe": "Shiitake"
+    },
+    {
+      "name": "BlueprintStickLadder",
+      "id": "580",
+      "type": "blueprint",
+      "nameDe": "Sprossenleiter"
+    },
+    {
+      "name": "Half Log",
+      "id": "408",
+      "type": "log",
+      "nameDe": "Stammhälfte",
+      "isInventoryItem": false
+    },
+    {
+      "name": "BlueprintStorageLogs",
+      "id": "609",
+      "type": "blueprint",
+      "nameDe": "Stammlager"
+    },
+    {
+      "name": "BlueprintStorageRocks",
+      "id": "607",
+      "type": "blueprint",
+      "nameDe": "Steinlager"
+    },
+    {
+      "name": "BlueprintStorageSticks",
+      "id": "610",
+      "type": "blueprint",
+      "nameDe": "Stocklager"
+    },
+    {
+      "name": "Stick Chair Blueprint",
+      "id": "531",
+      "type": "blueprint",
+      "nameDe": "Stühle aus Stöcken"
+    },
+    {
+      "name": "Tactical Jacket",
+      "id": "495",
+      "type": "clothes",
+      "nameDe": "Taktische Jacke"
+    },
+    {
+      "name": "Deer Hide",
+      "id": "472",
+      "type": "misc",
+      "nameDe": "Tierhaut"
+    },
+    {
+      "name": "Drying Rack Blueprint",
+      "id": "530",
+      "type": "blueprint",
+      "nameDe": "Trockengestell"
+    },
+    {
+      "name": "Basic Building Tutorial Page",
+      "id": "515",
+      "type": "document",
+      "nameDe": "Tutorial-Seite"
+    },
+    {
+      "name": "Tarp Tent Tutorial Page",
+      "id": "516",
+      "type": "document",
+      "nameDe": "Tutorial-Seite"
+    },
+    {
+      "name": "Creepy Skin",
+      "id": "592",
+      "type": "armor",
+      "nameDe": "Unheimliche Haut"
+    },
+    {
+      "name": "Quarter Log plank",
+      "id": "576",
+      "type": "log",
+      "nameDe": "Viertelbrett",
+      "isInventoryItem": false
+    },
+    {
+      "name": "Quarter Log",
+      "id": "406",
+      "type": "log",
+      "nameDe": "Viertelstamm",
+      "isInventoryItem": false
+    },
+    {
+      "name": "BlueprintBirdHouse",
+      "id": "581",
+      "type": "blueprint",
+      "nameDe": "Vogelhaus"
+    },
+    {
+      "name": "BlueprintScarecrow",
+      "id": "585",
+      "type": "blueprint",
+      "nameDe": "Vogelscheuche"
+    },
+    {
+      "name": "BlueprintWeaponRack",
+      "id": "533",
+      "type": "blueprint",
+      "nameDe": "Waffenregal"
+    },
+    {
+      "name": "BlueprintPlanterWall",
+      "id": "586",
+      "type": "blueprint",
+      "nameDe": "Wandpflanzkasten"
+    },
+    {
+      "name": "Numbers Printout",
+      "id": "611",
+      "type": "document",
+      "nameDe": "Zahlenübersetzung"
+    },
+    {
+      "name": "Newspaper Cutout",
+      "id": "612",
+      "type": "document",
+      "nameDe": "Zeitungsausschnitt"
+    },
+    {
+      "name": "Newspaper Cutout",
+      "id": "613",
+      "type": "document",
+      "nameDe": "Zeitungsausschnitt"
+    },
+    {
+      "name": "Hang Glider",
+      "nameDe": "Hang Glider",
+      "id": "626",
+      "type": "misc",
+      "isInventoryItem": false
+    },
+    {
+      "name": "Laser Measure Tool",
+      "id": "505",
+      "type": "Misc"
+    }
+  ],
+  "storages": [
+    {
+      "id": 49,
+      "name": "Shelf",
+      "slots": 12
+    },
+    {
+      "id": 29,
+      "name": "Stick Storage",
+      "slots": 1,
+      "restrictedItemIds": [
+        392
+      ],
+      "type": "Sticks"
+    },
+    {
+      "id": 31,
+      "name": "Stone Storage",
+      "slots": 1,
+      "restrictedItemIds": [
+        393
+      ],
+      "type": "Stones"
+    },
+    {
+      "id": 32,
+      "name": "Bone Storage",
+      "slots": 1,
+      "restrictedItemIds": [
+        405
+      ],
+      "type": "Bones"
+    },
+    {
+      "id": 51,
+      "name": "Wall Shelf",
+      "slots": 5
+    },
+    {
+      "id": 27,
+      "name": "Drying Rack",
+      "slots": 6,
+      "maxPerSlot": 1,
+      "type": "Food",
+      "restrictedItemIds": [
+        433,
+        436
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Log Holder",
+      "slots": 1,
+      "maxPerSlot": 1000,
+      "restrictedItemIds": [
+        78
+      ],
+      "type": "Logs"
+    },
+    {
+      "id": 36,
+      "name": "Mannequin",
+      "slots": 0
+    },
+    {
+      "id": 39,
+      "name": "Scarecrow",
+      "slots": 0
+    }
+  ],
+  "followers": {
+    "outfits": {
+      "9": [
+        {
+          "id": -1,
+          "name": "Default"
+        },
+        {
+          "id": 0,
+          "name": "Tactical Jacket"
+        },
+        {
+          "id": 1,
+          "name": "Tuxedo"
+        },
+        {
+          "id": 2,
+          "name": "Pyjamas"
+        },
+        {
+          "id": 3,
+          "name": "Leather Jacket"
+        },
+        {
+          "id": 4,
+          "name": "Hoody"
+        },
+        {
+          "id": 5,
+          "name": "Unknown"
+        },
+        {
+          "id": 6,
+          "name": "Blazer"
+        }
+      ],
+      "10": [
+        {
+          "id": -1,
+          "name": "Default"
+        },
+        {
+          "id": 0,
+          "name": "Swim Suit"
+        },
+        {
+          "id": 1,
+          "name": "Track Suit"
+        },
+        {
+          "id": 2,
+          "name": "Leather Suit"
+        },
+        {
+          "id": 3,
+          "name": "Camouflage Suit"
+        },
+        {
+          "id": 4,
+          "name": "Dress"
+        }
+      ]
+    },
+    "equippableItems": {
+      "9": [
+        504
+      ],
+      "10": [
+        529,
+        355,
+        358
+      ]
+    }
+  }
 }

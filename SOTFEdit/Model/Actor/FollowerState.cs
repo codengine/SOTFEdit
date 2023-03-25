@@ -2,8 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using SOTFEdit.Model.SaveData.Actor;
 
-namespace SOTFEdit.Model;
+namespace SOTFEdit.Model.Actor;
 
 public partial class FollowerState : ObservableObject
 {
@@ -29,10 +30,7 @@ public partial class FollowerState : ObservableObject
     {
         TypeId = typeId;
         Outfits = outfits;
-        foreach (var equippableItem in equippableItems.Select(item => new EquippableItem(item)))
-        {
-            Inventory.Add(equippableItem);
-        }
+        foreach (var equippableItem in equippableItems.Select(item => new EquippableItem(item))) Inventory.Add(equippableItem);
     }
 
     public int TypeId { get; }
@@ -53,10 +51,7 @@ public partial class FollowerState : ObservableObject
         Hydration = 0.0f;
         Energy = 0.0f;
         Affection = 0.0f;
-        foreach (var equippableItem in Inventory)
-        {
-            equippableItem.Selected = false;
-        }
+        foreach (var equippableItem in Inventory) equippableItem.Selected = false;
 
         var temporaryItems = Inventory.Where(item => item.IsTemporary).ToList();
         temporaryItems.ForEach(temporaryItem => Inventory.Remove(temporaryItem));
@@ -65,53 +60,11 @@ public partial class FollowerState : ObservableObject
         UniqueId = null;
         Influences.Clear();
     }
-}
 
-public partial class Influence : ObservableObject
-{
-    public string TypeId { get; set; }
-    [ObservableProperty] private float _sentiment;
-    [ObservableProperty] private float _anger;
-    [ObservableProperty] private float _fear;
-}
-
-public partial class EquippableItem : ObservableObject
-{
-    [ObservableProperty] private bool _selected;
-
-    public EquippableItem(Item item, bool isTemporary = false)
+    public HashSet<int> GetSelectedInventoryItemIds()
     {
-        IsTemporary = isTemporary;
-        ItemId = item.Id;
-        Name = item.Name;
-    }
-
-    public bool IsTemporary { get; }
-    public int ItemId { get; }
-    public string Name { get; }
-
-    protected bool Equals(EquippableItem other)
-    {
-        return ItemId == other.ItemId;
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (ReferenceEquals(null, obj))
-        {
-            return false;
-        }
-
-        if (ReferenceEquals(this, obj))
-        {
-            return true;
-        }
-
-        return obj.GetType() == GetType() && Equals((EquippableItem)obj);
-    }
-
-    public override int GetHashCode()
-    {
-        return ItemId;
+        return Inventory.Where(item => item.Selected)
+            .Select(item => item.ItemId)
+            .ToHashSet();
     }
 }

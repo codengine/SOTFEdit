@@ -38,6 +38,10 @@
                     <MenuItem Header="Open Savegame Dir in Explorer" Command="{Binding OpenSavegameDirCommand}" />
                     <Separator />
                     <CheckBox IsChecked="{Binding BackupFiles}">Backup Files</CheckBox>
+                    <MenuItem Header="Restore from Backups">
+                        <MenuItem Header="From oldest backup" Command="{Binding RestoreBackupsCommand}" CommandParameter="false" />
+                        <MenuItem Header="From newest backup" Command="{Binding RestoreBackupsCommand}" CommandParameter="true" />
+                    </MenuItem>
                     <MenuItem Header="Delete all backups (*.bak*)" Command="{Binding DeleteBackupsCommand}" />
                     <Separator />
                     <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
@@ -48,9 +52,16 @@
                             <iconPacks:MaterialDesign Kind="Code" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="Download Latest Version" Command="{Binding OpenUrlCommand}"
+                              CommandParameter="https://github.com/codengine/SOTFEdit/releases">
+                        <MenuItem.Icon>
+                            <iconPacks:MaterialDesign Kind="Code" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
                     <MenuItem Header="NexusMods" Command="{Binding OpenUrlCommand}" CommandParameter="https://www.nexusmods.com/sonsoftheforest/mods/41" />
-                    <MenuItem Header="thunderstore.io" Command="{Binding OpenUrlCommand}" CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/SOTFEdit/" />
+                    <MenuItem Header="thunderstore.io" Command="{Binding OpenUrlCommand}"
+                              CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/SOTFEdit/" />
                     <Separator />
                     <MenuItem Header="Updates">
                         <MenuItem Header="Check now" Command="{Binding CheckForUpdatesCommand}" />
@@ -106,8 +117,8 @@
                     <GroupBox Grid.Row="1" Padding="10" Header="Experimental Area">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <WrapPanel Margin="0 0 0 10">
                                 <iconPacks:PackIconMaterialDesign Kind="Warning" Foreground="Red" />
@@ -116,11 +127,26 @@ Each button has a tooltip, please read it carefully.
                                 </TextBlock>
                             </WrapPanel>
                             <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetKillStatisticsCommand}" Padding="10" FontSize="14" ToolTip="Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?">Reset Kill Statistics</Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetNumberCutTreesCommand}" Padding="10" FontSize="14" ToolTip="This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number">Reset Number of Cut Trees</Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesFearThePlayerCommand}" Padding="10" FontSize="14" ToolTip="Will set the Fear level to max and the Anger level to min towards the player, so that they might be less intimidating">Enemies fear the Player</Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesNoFearNoRemorceCommand}" Padding="10" FontSize="14" ToolTip="Will set the Fear level to min and the Anger level to max towards the player, so that they might be more intimidating">No Fear, No Remorse</Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentRemoveAllActorsAndSpawnsCommand}" Padding="10" FontSize="14" ToolTip="This might clear the game from enemies. Virginia and Kelvin are not effected. Highly Dangerous!">Remove All Actors and Spawners</Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetKillStatisticsCommand}" Padding="10" FontSize="14"
+                                        ToolTip="Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?">
+                                    Reset Kill Statistics
+                                </Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetNumberCutTreesCommand}" Padding="10" FontSize="14"
+                                        ToolTip="This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number">
+                                    Reset Number of Cut Trees
+                                </Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesFearThePlayerCommand}" Padding="10" FontSize="14"
+                                        ToolTip="Will set the Fear level to max and the Anger level to min towards the player, so that they might be less intimidating">
+                                    Enemies fear the Player
+                                </Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesNoFearNoRemorceCommand}" Padding="10" FontSize="14"
+                                        ToolTip="Will set the Fear level to min and the Anger level to max towards the player, so that they might be more intimidating">
+                                    No Fear, No Remorse
+                                </Button>
+                                <Button Margin="0 0 0 10" Command="{Binding ExperimentRemoveAllActorsAndSpawnsCommand}" Padding="10" FontSize="14"
+                                        ToolTip="This might clear the game from enemies. Virginia and Kelvin are not effected. Highly Dangerous!">
+                                    Remove All Actors and Spawners
+                                </Button>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

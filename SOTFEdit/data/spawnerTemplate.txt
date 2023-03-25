@@ -1,0 +1,6 @@
+﻿    {
+        "UniqueId": {spawnerId},
+        "Count": 1,
+        "SpawnedCount": 1,
+        "LastSpawnTime": 0.0
+    }

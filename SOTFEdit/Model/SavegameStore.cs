@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using Microsoft.VisualBasic.FileIO;
 using Newtonsoft.Json.Linq;
 using NLog;
 using SOTFEdit.Infrastructure;
+using SearchOption = System.IO.SearchOption;
 
 namespace SOTFEdit.Model;
 
 public class SavegameStore
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-
     public enum FileType
     {
         SaveDataThumbnail,
@@ -24,15 +26,22 @@ public class SavegameStore
         ScrewStructureInstancesSaveData
     }
 
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
     private readonly string _path;
 
     public SavegameStore(string path)
     {
         _path = path;
-        LastWriteTime = Directory.GetLastWriteTime(_path);
+        LastWriteTime = ReadLastWriteTime();
     }
 
-    public DateTime LastWriteTime { get; }
+    public DateTime LastWriteTime { get; private set; }
+
+    private DateTime ReadLastWriteTime()
+    {
+        return Directory.GetLastWriteTime(_path);
+    }
 
     public JToken? LoadJsonRaw(FileType fileType)
     {
@@ -45,7 +54,7 @@ public class SavegameStore
         return !File.Exists(path) ? default : JsonConverter.DeserializeFromFile<T>(path);
     }
 
-    internal string ResolvePath(string fileName)
+    private string ResolvePath(string fileName)
     {
         return Path.Combine(_path, fileName);
     }
@@ -111,13 +120,69 @@ public class SavegameStore
             return 0;
         }
 
-        var fileInfos = new DirectoryInfo(_path).GetFiles("*.bak*", SearchOption.TopDirectoryOnly);
-        foreach (var fileInfo in fileInfos)
+        var countDeleted = 0;
+
+        foreach (var fileType in Enum.GetValues<FileType>())
         {
-            Logger.Info($"Deleting backup {fileInfo.FullName}...");
+            var backupFiles = GetBackupFiles(fileType.GetFilename());
+            foreach (var backupFile in backupFiles)
+            {
+                Logger.Info($"Deleting backup {backupFile.FullName}...");
+                FileSystem.DeleteFile(backupFile.FullName, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+                countDeleted++;
+            }
         }
 
-        return fileInfos.Length;
+        RereadLastWriteTime();
+
+        return countDeleted;
+    }
+
+    private void RereadLastWriteTime()
+    {
+        LastWriteTime = ReadLastWriteTime();
+    }
+
+    private IEnumerable<FileInfo> GetBackupFiles(string prefix = "*")
+    {
+        return new DirectoryInfo(_path).GetFiles($"{prefix}.bak*", SearchOption.TopDirectoryOnly);
+    }
+
+    private FileInfo? GetBackupFile(FileType fileType, bool newestFile)
+    {
+        return (newestFile
+            ? GetBackupFiles(fileType.GetFilename()).OrderByDescending(fileInfo => fileInfo.CreationTimeUtc)
+            : GetBackupFiles(fileType.GetFilename()).OrderBy(fileInfo => fileInfo.CreationTimeUtc)).FirstOrDefault();
+    }
+
+    public int RestoreBackups(bool restoreFromNewest)
+    {
+        var restored = 0;
+        foreach (var fileType in Enum.GetValues<FileType>())
+        {
+            if (GetBackupFile(fileType, restoreFromNewest) is not { } fileInfo)
+            {
+                continue;
+            }
+
+            RestoreBackup(fileType, fileInfo);
+            restored++;
+        }
+
+        return restored;
+    }
+
+    private void RestoreBackup(FileType fileType, FileSystemInfo backupFile)
+    {
+        var originalFilePath = Path.Combine(_path, fileType.GetFilename());
+        if (File.Exists(originalFilePath))
+        {
+            Logger.Info($"Deleting original file {originalFilePath}");
+            FileSystem.DeleteFile(originalFilePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+        }
+
+        Logger.Info($"Copying backup {backupFile.FullName} to {originalFilePath}");
+        File.Copy(backupFile.FullName, originalFilePath);
     }
 }
 

@@ -18,15 +18,15 @@ public partial class GameStatePageViewModel : ObservableObject
     private readonly Regex _resetCrateNameIdPattern =
         new(@"(\..*Crate.*\.)|(\..*Storage.*\.)|(\..*Case.*\.)|(.*\.Meds\..*)");
 
+    [NotifyCanExecuteChangedFor(nameof(ResetContainersCommand))] [ObservableProperty]
+    private Savegame? _selectedSavegame;
+
     public GameStatePageViewModel()
     {
         SetupListeners();
     }
 
     public ObservableCollection<GenericSetting> Settings { get; } = new();
-
-    [NotifyCanExecuteChangedFor(nameof(ResetContainersCommand))] [ObservableProperty]
-    private Savegame? _selectedSavegame;
 
     private void SetupListeners()
     {
@@ -41,7 +41,7 @@ public partial class GameStatePageViewModel : ObservableObject
         var gameStateData =
             message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
         var gameStateToken = gameStateData?.SelectToken("Data.GameState");
-        if (gameStateToken?.ToObject<string>() is not { } gameStateJson ||
+        if (gameStateToken?.ToString() is not { } gameStateJson ||
             JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
         {
             return;
@@ -56,7 +56,7 @@ public partial class GameStatePageViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(HasSavegame))]
-    public void ResetContainers()
+    private void ResetContainers()
     {
         if (SelectedSavegame is not { } savegame)
         {
@@ -66,7 +66,7 @@ public partial class GameStatePageViewModel : ObservableObject
         var gameStateData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
 
         if (gameStateData?.SelectToken("Data.GameState") is not { } gameStateToken ||
-            gameStateToken.ToObject<string>() is not { } gameStateJson ||
+            gameStateToken.ToString() is not { } gameStateJson ||
             JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState ||
             gameState["NamedIntDatas"] is not { } namedIntDatas)
         {
@@ -78,13 +78,13 @@ public partial class GameStatePageViewModel : ObservableObject
 
         foreach (var data in namedIntDatas)
         {
-            if (data["SaveObjectNameId"]?.ToObject<string>() is not { } nameId ||
+            if (data["SaveObjectNameId"]?.ToString() is not { } nameId ||
                 !_resetCrateNameIdPattern.Match(nameId).Success || data["SaveValue"] is not { } saveValueToken)
             {
                 continue;
             }
 
-            var oldSaveValue = saveValueToken.ToObject<int>();
+            var oldSaveValue = saveValueToken.Value<int>();
 
             if (oldSaveValue != 1)
             {
@@ -107,7 +107,7 @@ public partial class GameStatePageViewModel : ObservableObject
         savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameStateSaveData, gameStateData, createBackups);
 
         WeakReferenceMessenger.Default.Send(
-            new SavegameStoredEvent($"Reset {countFixed} containers, creates and pickups", true));
+            new SavegameStoredEvent($"Reset {countFixed} containers, creates and pickups"));
     }
 
     private void LoadSettings(JToken gameState)
@@ -125,13 +125,13 @@ public partial class GameStatePageViewModel : ObservableObject
                 case "IsRobbyDead":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.ReadOnly)
                     {
-                        StringValue = child.Value.ToObject<string>()
+                        StringValue = child.Value.ToString()
                     };
                     break;
                 case "GameDays":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
                     {
-                        IntValue = child.Value.ToObject<int>(),
+                        IntValue = child.Value.Value<int>(),
                         MinInt = 0,
                         MaxInt = 999999
                     };
@@ -139,7 +139,7 @@ public partial class GameStatePageViewModel : ObservableObject
                 case "GameHours":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
                     {
-                        IntValue = child.Value.ToObject<int>(),
+                        IntValue = child.Value.Value<int>(),
                         MinInt = 0,
                         MaxInt = 23
                     };
@@ -148,7 +148,7 @@ public partial class GameStatePageViewModel : ObservableObject
                 case "GameSeconds":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
                     {
-                        IntValue = child.Value.ToObject<int>(),
+                        IntValue = child.Value.Value<int>(),
                         MinInt = 0,
                         MaxInt = 59
                     };
@@ -156,7 +156,7 @@ public partial class GameStatePageViewModel : ObservableObject
                 case "GameMilliseconds":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
                     {
-                        IntValue = child.Value.ToObject<int>(),
+                        IntValue = child.Value.Value<int>(),
                         MinInt = 0,
                         MaxInt = 999
                     };
@@ -166,7 +166,7 @@ public partial class GameStatePageViewModel : ObservableObject
                 case "StayedOnIsland":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Boolean)
                     {
-                        BoolValue = child.Value.ToObject<bool>()
+                        BoolValue = child.Value.Value<bool>()
                     };
                     break;
             }
@@ -183,7 +183,7 @@ public partial class GameStatePageViewModel : ObservableObject
         var gameStateData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
 
         if (gameStateData?.SelectToken("Data.GameState") is not { } gameStateToken ||
-            gameStateToken.ToObject<string>() is not { } gameStateJson ||
+            gameStateToken.ToString() is not { } gameStateJson ||
             JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
         {
             return false;

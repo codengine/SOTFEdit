@@ -12,7 +12,7 @@ public class SavegameManager : ObservableObject
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-    public Dictionary<string, Savegame> GetSavegames()
+    public static Dictionary<string, Savegame> GetSavegames()
     {
         var savesPath = GetSavePath();
         Logger.Info($"Detected savegame path: {savesPath}");
@@ -68,7 +68,7 @@ public class SavegameManager : ObservableObject
         return Path.Combine(localLowPath, "Endnight", "SonsOfTheForest", "Saves");
     }
 
-    public Savegame? ReloadSavegame(Savegame selectedSavegame)
+    public static Savegame? ReloadSavegame(Savegame selectedSavegame)
     {
         var directoryInfo = new DirectoryInfo(selectedSavegame.FullPath);
 

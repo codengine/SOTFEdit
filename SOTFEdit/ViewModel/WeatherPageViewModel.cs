@@ -30,7 +30,7 @@ public class WeatherPageViewModel
         var weatherSaveData =
             message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
         var weatherSystemToken = weatherSaveData?.SelectToken("Data.WeatherSystem");
-        if (weatherSystemToken?.ToObject<string>() is not { } weatherSystemJson ||
+        if (weatherSystemToken?.ToString() is not { } weatherSystemJson ||
             JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
         {
             return;
@@ -51,13 +51,13 @@ public class WeatherPageViewModel
                 case "_rainBlocked":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Boolean)
                     {
-                        BoolValue = child.Value.ToObject<bool>()
+                        BoolValue = child.Value.Value<bool>()
                     };
                     break;
                 case "_cloudState":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Enum)
                     {
-                        SelectedItem = child.Value.ToObject<int>(),
+                        SelectedItem = child.Value.Value<int>(),
                         PossibleValues =
                         {
                             { 0, "Idle" },
@@ -70,7 +70,7 @@ public class WeatherPageViewModel
                 case "_currentRainType":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Enum)
                     {
-                        SelectedItem = child.Value.ToObject<int>(),
+                        SelectedItem = child.Value.Value<int>(),
                         PossibleValues =
                         {
                             { 0, "None" },
@@ -83,7 +83,7 @@ public class WeatherPageViewModel
                 case "_currentSeason":
                     setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Enum)
                     {
-                        SelectedItem = child.Value.ToObject<int>(),
+                        SelectedItem = child.Value.Value<int>(),
                         PossibleValues =
                         {
                             { 0, "Spring" },
@@ -107,7 +107,7 @@ public class WeatherPageViewModel
         var weatherSaveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
 
         if (weatherSaveData?.SelectToken("Data.WeatherSystem") is not { } weatherSystemToken ||
-            weatherSystemToken.ToObject<string>() is not { } weatherSystemJson ||
+            weatherSystemToken.ToString() is not { } weatherSystemJson ||
             JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
         {
             return false;

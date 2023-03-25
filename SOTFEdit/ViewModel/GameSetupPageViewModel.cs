@@ -108,9 +108,7 @@ public class GameSetupPageViewModel : ObservableObject
                                     .LoadJson<GameSetupDataModel>(SavegameStore.FileType.GameSetupSaveData)?.Data
                                     .GameSetup.Settings ??
                                 Enumerable.Empty<GameSettingLightModel>())
-        {
             _gameSettings.Add(setting.Name, setting);
-        }
 
         OnPropertyChanged(nameof(SelectedMode));
         OnPropertyChanged(nameof(Uid));

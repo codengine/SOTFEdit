@@ -19,10 +19,7 @@ public partial class ArmorPageViewModel
     {
         NewArmour = new NewArmourPiece(Armour, () => _selectedSavegame != null);
         _itemList = gameData.Items;
-        foreach (var armorItem in _itemList.Where(item => item.Value.Type == "armor").OrderBy(item => item.Value.Name))
-        {
-            ArmourTypes.Add(armorItem.Value);
-        }
+        foreach (var armorItem in _itemList.Where(item => item.Value.Type == "armor").OrderBy(item => item.Value.Name)) ArmourTypes.Add(armorItem.Value);
 
         SetupListeners();
     }
@@ -48,9 +45,7 @@ public partial class ArmorPageViewModel
         if (armour != null)
         {
             foreach (var armourPiece in armour.Data.PlayerArmourSystem.ArmourPieces)
-            {
                 Armour.Add(new ArmourData(armourPiece, _itemList.GetItem(armourPiece.ItemId)));
-            }
         }
 
         _selectedSavegame = m.SelectedSavegame;
@@ -96,7 +91,7 @@ public partial class ArmorPageViewModel
         }
 
         [RelayCommand(CanExecute = nameof(CanAddArmor))]
-        public void AddArmor()
+        private void AddArmor()
         {
             if (_sink.Count == 10)
             {
@@ -126,31 +121,4 @@ public partial class ArmorPageViewModel
                    _sink.Count < 10 && _savegameSelected.Invoke();
         }
     }
-}
-
-public record ArmourData
-{
-    private readonly Item? _item;
-
-    public ArmourData(ArmourPieceModel armourPieceModel, Item? item)
-    {
-        ArmourPiece = armourPieceModel;
-        _item = item;
-    }
-
-    public ArmourPieceModel ArmourPiece { get; }
-
-    public int Id => _item?.Id ?? ArmourPiece.ItemId;
-
-    // ReSharper disable once UnusedMember.Global
-    public float RemainingArmourpoints
-    {
-        get => ArmourPiece.RemainingArmourpoints;
-        set => ArmourPiece.RemainingArmourpoints = value;
-    }
-
-    public string Name => _item?.Name ?? "??? Unknown Item";
-    public string NameDe => _item?.NameDe ?? "";
-
-    public int Slot => ArmourPiece.Slot;
 }

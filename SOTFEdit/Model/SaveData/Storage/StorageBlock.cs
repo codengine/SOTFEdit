@@ -7,7 +7,7 @@ public class StorageBlock
 {
     public List<StorageItemBlock> ItemBlocks { get; init; } = new();
 
-    protected bool Equals(StorageBlock other)
+    private bool Equals(StorageBlock other)
     {
         return ItemBlocks.SequenceEqual(other.ItemBlocks);
     }

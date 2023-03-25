@@ -14,10 +14,10 @@ namespace SOTFEdit;
 public class UpdateChecker
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-    private volatile bool _isLoading;
-    private readonly string _latestTagUrl;
-    private readonly HttpClient _client;
     private readonly SemVersion _assemblyVersion;
+    private readonly HttpClient _client;
+    private readonly string _latestTagUrl;
+    private volatile bool _isLoading;
 
     public UpdateChecker(GameData gameData)
     {
@@ -26,7 +26,7 @@ public class UpdateChecker
             .GetName();
         _assemblyVersion = SemVersion.FromVersion(assemblyInfo.Version);
 
-        _client = new HttpClient()
+        _client = new HttpClient
         {
             DefaultRequestHeaders =
             {
@@ -35,12 +35,12 @@ public class UpdateChecker
         };
     }
 
-    public void CheckForUpdates(bool notifyOnSameVersion, bool notifyOnError)
+    public void CheckForUpdates(bool notifyOnSameVersion, bool notifyOnError, bool invokedManually)
     {
-        Task.Run(() => DoCheckForUpdates(notifyOnSameVersion, notifyOnError));
+        Task.Run(() => DoCheckForUpdates(notifyOnSameVersion, notifyOnError, invokedManually));
     }
 
-    private async Task DoCheckForUpdates(bool notifyOnSameVersion, bool notifyOnError)
+    private async Task DoCheckForUpdates(bool notifyOnSameVersion, bool notifyOnError, bool invokedManually)
     {
         if (_isLoading)
         {
@@ -57,17 +57,17 @@ public class UpdateChecker
             if (!result.IsSuccessStatusCode)
             {
                 Logger.Warn($"Got a failure response: {result.StatusCode}");
-                NotifyOnError(notifyOnError);
+                NotifyOnError(notifyOnError, invokedManually);
                 return;
             }
 
             var json = await result.Content.ReadAsStringAsync();
 
             var doc = JToken.Parse(json);
-            if (doc["tag_name"]?.ToObject<string>() is not { } tagName)
+            if (doc["tag_name"]?.ToString() is not { } tagName)
             {
                 Logger.Warn("Tag version not found in response");
-                NotifyOnError(notifyOnError);
+                NotifyOnError(notifyOnError, invokedManually);
                 return;
             }
 
@@ -75,18 +75,18 @@ public class UpdateChecker
             switch (latestTagVersion.ComparePrecedenceTo(_assemblyVersion))
             {
                 case 1:
-                    var link = doc["html_url"]?.ToObject<string>();
-                    NotifyOnNewerVersion(latestTagVersion, link);
+                    var link = doc["html_url"]?.ToString();
+                    NotifyOnNewerVersion(latestTagVersion, link, invokedManually);
                     break;
-                case 0 when notifyOnSameVersion:
-                    NotifyOnSameVersion(latestTagVersion);
+                case 0 or -1 when notifyOnSameVersion:
+                    NotifyOnSameVersion(latestTagVersion, invokedManually);
                     break;
             }
         }
         catch (Exception ex)
         {
             Logger.Error(ex, "Error while checking for updates");
-            NotifyOnError(notifyOnError);
+            NotifyOnError(notifyOnError, invokedManually);
         }
         finally
         {
@@ -94,26 +94,26 @@ public class UpdateChecker
         }
     }
 
-    private static void NotifyOnSameVersion(SemVersion latestTagVersion)
+    private static void NotifyOnSameVersion(SemVersion latestTagVersion, bool invokedManually)
     {
         Logger.Info("No update found");
-        SendResult(new VersionCheckResultEvent(latestTagVersion, false));
+        SendResult(new VersionCheckResultEvent(latestTagVersion, false, invokedManually));
     }
 
-    private static void NotifyOnNewerVersion(SemVersion latestTagVersion, string? link)
+    private static void NotifyOnNewerVersion(SemVersion latestTagVersion, string? link, bool invokedManually)
     {
         Logger.Info($"Newer version found ({latestTagVersion})");
-        SendResult(new VersionCheckResultEvent(latestTagVersion, true)
+        SendResult(new VersionCheckResultEvent(latestTagVersion, true, invokedManually)
         {
             Link = link
         });
     }
 
-    private static void NotifyOnError(bool notifyOnError)
+    private static void NotifyOnError(bool notifyOnError, bool invokedManually)
     {
         if (notifyOnError)
         {
-            SendResult(new VersionCheckResultEvent(null, false, true));
+            SendResult(new VersionCheckResultEvent(null, false, invokedManually, true));
         }
     }
 

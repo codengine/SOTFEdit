@@ -52,21 +52,21 @@ public partial class PlayerPageViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
-    public void MoveToVirginia()
+    private void MoveToVirginia()
     {
         PlayerState.Pos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
             .VirginiaState.Pos.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
-    public void MoveToKelvin()
+    private void MoveToKelvin()
     {
         PlayerState.Pos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
             .KelvinState.Pos.Copy();
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
-    public void FillAllBars()
+    private void FillAllBars()
     {
         PlayerState.CurrentHealth = PlayerState.MaxHealth;
         PlayerState.Fullness = 100;
@@ -79,7 +79,7 @@ public partial class PlayerPageViewModel : ObservableObject
     {
         var playerStateSaveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerStateSaveData);
         var playerStateToken = playerStateSaveData?.SelectToken("Data.PlayerState");
-        if (playerStateToken?.ToObject<string>() is not { } playerStateJson ||
+        if (playerStateToken?.ToString() is not { } playerStateJson ||
             JsonConverter.DeserializeRaw(playerStateJson) is not JObject playerState ||
             playerState["_entries"] is not JArray entries)
         {
@@ -88,7 +88,7 @@ public partial class PlayerPageViewModel : ObservableObject
 
         foreach (var entry in entries)
         {
-            var name = entry["Name"]?.ToObject<string>();
+            var name = entry["Name"]?.ToString();
 
             switch (name)
             {
@@ -136,7 +136,7 @@ public partial class PlayerPageViewModel : ObservableObject
         }
 
         var playerStateToken = playerStateSaveData.SelectToken("Data.PlayerState");
-        if (playerStateToken?.ToObject<string>() is not { } playerStateJson ||
+        if (playerStateToken?.ToString() is not { } playerStateJson ||
             JsonConverter.DeserializeRaw(playerStateJson) is not JObject playerState ||
             playerState["_entries"] is not JArray entries)
         {
@@ -147,7 +147,7 @@ public partial class PlayerPageViewModel : ObservableObject
 
         foreach (var entry in entries)
         {
-            var name = entry["Name"]?.ToObject<string>();
+            var name = entry["Name"]?.ToString();
 
             switch (name)
             {
@@ -226,11 +226,11 @@ public partial class PlayerPageViewModel : ObservableObject
 
     private static float? ReadFloat(JToken? token)
     {
-        return token?["FloatValue"]?.ToObject<float>();
+        return token?["FloatValue"]?.Value<float>();
     }
 
     private static int? ReadInt(JToken? token)
     {
-        return token?["IntValue"]?.ToObject<int>();
+        return token?["IntValue"]?.Value<int>();
     }
 }

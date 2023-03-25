@@ -27,19 +27,15 @@ public partial class ItemStorageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void ClearAll()
+    private void ClearAll()
     {
         foreach (var slot in ItemsStorage.Slots)
-        {
-            foreach (var storedItem in slot.StoredItems)
-            {
-                storedItem.Clear();
-            }
-        }
+        foreach (var storedItem in slot.StoredItems)
+            storedItem.Clear();
     }
 
     [RelayCommand(CanExecute = nameof(HasItemSelected))]
-    public void FillAll()
+    private void FillAll()
     {
         if (SelectedItemForAll is not { } selectedItem)
         {
@@ -47,28 +43,22 @@ public partial class ItemStorageViewModel : ObservableObject
         }
 
         foreach (var slot in ItemsStorage.Slots)
+        foreach (var storedItem in slot.StoredItems)
         {
-            foreach (var storedItem in slot.StoredItems)
-            {
-                storedItem.SelectedItem = selectedItem;
-                storedItem.Count = Count;
-            }
+            storedItem.SelectedItem = selectedItem;
+            storedItem.Count = Count;
         }
     }
 
     [RelayCommand]
-    public void SetAllToMax()
+    private void SetAllToMax()
     {
         foreach (var slot in ItemsStorage.Slots)
-        {
-            foreach (var storedItem in slot.StoredItems)
+        foreach (var storedItem in slot.StoredItems)
+            if (storedItem.SelectedItem != null)
             {
-                if (storedItem.SelectedItem != null)
-                {
-                    storedItem.Count = storedItem.Max;
-                }
+                storedItem.Count = storedItem.Max;
             }
-        }
     }
 
     public bool HasItemSelected()

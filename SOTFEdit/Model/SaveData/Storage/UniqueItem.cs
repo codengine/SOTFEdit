@@ -8,7 +8,7 @@ public class UniqueItem
 {
     public List<IStorageModule> Modules { get; init; } = new();
 
-    protected bool Equals(UniqueItem other)
+    private bool Equals(UniqueItem other)
     {
         return Modules.SequenceEqual(other.Modules);
     }

@@ -4,8 +4,10 @@ using System.Reflection;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
+using Newtonsoft.Json.Linq;
 using NLog;
 using Semver;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.ViewModel;
@@ -66,10 +68,81 @@ public partial class MainWindow
             (_, message) => { OnRequestCheckForUpdatesEvent(message); });
         WeakReferenceMessenger.Default.Register<VersionCheckResultEvent>(this,
             (_, message) => { OnVersionCheckResultEvent(message); });
+        WeakReferenceMessenger.Default.Register<RequestSpawnFollowerEvent>(this,
+            (_, message) => { OnRequestSpawnFollowerEvent(message); });
+        WeakReferenceMessenger.Default.Register<RequestRestoreBackupsEvent>(this,
+            (_, message) => { OnRequestRestoreBackupsEvent(message); });
+    }
+
+    private static void OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)
+    {
+        var result = MessageBox.Show("Are you sure that you want to restore backups?", "Restore backups", MessageBoxButton.YesNo);
+        if (result != MessageBoxResult.Yes)
+        {
+            return;
+        }
+
+        var countRestored = message.Savegame.SavegameStore.RestoreBackups(message.RestoreFromNewest);
+
+        if (countRestored > 0)
+        {
+            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(null));
+        }
+
+        MessageBox.Show($"{countRestored} backups have been restored. Deleted files were moved to the recycle bin");
+    }
+
+    private void OnRequestSpawnFollowerEvent(RequestSpawnFollowerEvent message)
+    {
+        var dialog = new SpawnFollowerInputDialog(this)
+        {
+            Max = message.TypeId switch
+            {
+                Constants.Actors.KelvinTypeId => 20,
+                Constants.Actors.VirginiaTypeId => 4,
+                _ => 1
+            }
+        };
+
+        if (dialog.ShowDialog() is not true || dialog.Count is not { } count || count < 1)
+        {
+            return;
+        }
+
+        if (message.Savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not JObject saveData)
+        {
+            Logger.Warn("Save data could not be loaded");
+            MessageBox.Show("Unable to spawn followers");
+            return;
+        }
+
+        var saveDataWrapper = new SaveDataWrapper(saveData);
+        var followerModifier = new FollowerModifier(saveDataWrapper);
+        var hasChanges = followerModifier.CreateFollowers(message.TypeId, count, message.ItemIds, message.Outfit, message.Pos);
+
+        if (hasChanges)
+        {
+            saveDataWrapper.SerializeAllModified();
+            message.Savegame.SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveData, message.CreateBackup);
+            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(null));
+        }
+
+        MessageBox.Show($"{count} followers have been created");
     }
 
     private void OnVersionCheckResultEvent(VersionCheckResultEvent message)
     {
+        if (!message.InvokedManually && message.LatestTagVersion?.ToString() is { } latestTagVersionAsString)
+        {
+            if (!message.InvokedManually && latestTagVersionAsString.Equals(Settings.Default.LastFoundVersion))
+            {
+                return;
+            }
+
+            Settings.Default.LastFoundVersion = latestTagVersionAsString;
+            Settings.Default.Save();
+        }
+
         if (message.IsError)
         {
             Application.Current.Dispatcher.Invoke(() =>
@@ -95,7 +168,7 @@ public partial class MainWindow
 
         var link = message.Link ?? Ioc.Default.GetRequiredService<GameData>().Config.LatestReleaseUrl;
 
-        Process.Start(new ProcessStartInfo()
+        Process.Start(new ProcessStartInfo
         {
             FileName = link,
             UseShellExecute = true
@@ -106,19 +179,19 @@ public partial class MainWindow
     {
         if (Settings.Default.CheckForUpdates)
         {
-            CheckForUpdate(false, false);
+            CheckForUpdate(false, false, false);
         }
     }
 
     private static void OnRequestCheckForUpdatesEvent(RequestCheckForUpdatesEvent message)
     {
-        CheckForUpdate(message.NotifyOnSameVersion, message.NotifyOnError);
+        CheckForUpdate(message.NotifyOnSameVersion, message.NotifyOnError, true);
     }
 
-    private static void CheckForUpdate(bool notifyOnSameVersion, bool notifyOnError)
+    private static void CheckForUpdate(bool notifyOnSameVersion, bool notifyOnError, bool invokedManually)
     {
         Ioc.Default.GetRequiredService<UpdateChecker>()
-            .CheckForUpdates(notifyOnSameVersion, notifyOnError);
+            .CheckForUpdates(notifyOnSameVersion, notifyOnError, invokedManually);
     }
 
     private void OnRequestDeleteBackupsEvent(RequestDeleteBackupsEvent message)
@@ -207,7 +280,7 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(message.SelectedSavegame, message.BackupFiles,
             createBackup =>
             {
-                var hasChanges = message.SelectedSavegame.ReviveFollower(message.TypeId, createBackup);
+                var hasChanges = message.SelectedSavegame.ReviveFollower(message.TypeId, message.ItemIds, message.Outfit, message.Pos, createBackup);
 
                 var actorName = message.TypeId == Constants.Actors.KelvinTypeId ? "Kelvin" : "Virginia";
 
@@ -221,6 +294,9 @@ public partial class MainWindow
 
     private void OnSavegameStored(SavegameStoredEvent message)
     {
-        MessageBox.Show(this, message.Message);
+        if (message.Message is { } text)
+        {
+            MessageBox.Show(this, text);
+        }
     }
 }

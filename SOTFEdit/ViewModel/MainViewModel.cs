@@ -1,6 +1,5 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using NLog;
@@ -17,6 +16,8 @@ public partial class MainViewModel : ObservableObject
     private readonly ArmorPageViewModel _armorPageViewModel;
     [ObservableProperty] private bool _backupFiles;
 
+    [ObservableProperty] private bool _checkVersionOnStartup;
+
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(SaveChangesCommand))]
     [NotifyCanExecuteChangedFor(nameof(RegrowTreesCommand))]
@@ -28,11 +29,10 @@ public partial class MainViewModel : ObservableObject
     [NotifyCanExecuteChangedFor(nameof(ExperimentRemoveAllActorsAndSpawnsCommand))]
     [NotifyCanExecuteChangedFor(nameof(ExperimentResetKillStatisticsCommand))]
     [NotifyCanExecuteChangedFor(nameof(ExperimentResetNumberCutTreesCommand))]
+    [NotifyCanExecuteChangedFor(nameof(RestoreBackupsCommand))]
     private Savegame? _selectedSavegame;
 
-    [NotifyCanExecuteChangedFor(nameof(RegrowTreesCommand))]
-    [NotifyPropertyChangedFor(nameof(VegetationStateIsAllSelected))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(RegrowTreesCommand))] [NotifyPropertyChangedFor(nameof(VegetationStateIsAllSelected))] [ObservableProperty]
     private VegetationState _vegetationStateSelected =
         VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
 
@@ -45,7 +45,7 @@ public partial class MainViewModel : ObservableObject
         SetupListeners();
     }
 
-    public SavegameManager SavegameManager { get; }
+    private SavegameManager SavegameManager { get; }
     public GameSetupPage GameSetupPage { get; } = new();
     public InventoryPage InventoryPage { get; } = new();
     public WeatherPage WeatherPage { get; } = new();
@@ -70,8 +70,6 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    [ObservableProperty] private bool _checkVersionOnStartup;
-
     partial void OnCheckVersionOnStartupChanged(bool value)
     {
         Settings.Default.CheckForUpdates = value;
@@ -79,7 +77,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void ReloadSavegame()
+    private void ReloadSavegame()
     {
         if (SelectedSavegame is not { } selectedSavegame)
         {
@@ -91,13 +89,13 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void SelectSavegame()
+    private static void SelectSavegame()
     {
         WeakReferenceMessenger.Default.Send(new RequestSelectSavegameEvent());
     }
 
     [RelayCommand]
-    public void ExitApplication()
+    private static void ExitApplication()
     {
         WeakReferenceMessenger.Default.Send(new RequestApplicationExitEvent());
     }
@@ -126,7 +124,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void SaveChanges()
+    private void SaveChanges()
     {
         if (SelectedSavegame == null)
         {
@@ -161,13 +159,13 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void OpenUrl(string url)
+    private static void OpenUrl(string url)
     {
         WeakReferenceMessenger.Default.Send(RequestStartProcessEvent.ForUrl(url));
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void OpenSavegameDir()
+    private void OpenSavegameDir()
     {
         if (_selectedSavegame is not { } selectedSavegame)
         {
@@ -178,7 +176,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void DeleteBackups()
+    private void DeleteBackups()
     {
         if (_selectedSavegame is not { } selectedSavegame)
         {
@@ -189,7 +187,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(CanRegrowTrees))]
-    public void RegrowTrees()
+    private void RegrowTrees()
     {
         if (SelectedSavegame == null)
         {
@@ -201,13 +199,13 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void CheckForUpdates()
+    private static void CheckForUpdates()
     {
         WeakReferenceMessenger.Default.Send(new RequestCheckForUpdatesEvent(true, true));
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void ExperimentResetKillStatistics()
+    private void ExperimentResetKillStatistics()
     {
         if (SelectedSavegame == null)
         {
@@ -216,8 +214,7 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
-            Ioc.Default.GetRequiredService<LabExperiments>()
-                .ResetKillStatistics(SelectedSavegame, BackupFiles);
+            LabExperiments.ResetKillStatistics(SelectedSavegame, BackupFiles);
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
         }
         catch (Exception ex)
@@ -229,7 +226,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void ExperimentResetNumberCutTrees()
+    private void ExperimentResetNumberCutTrees()
     {
         if (SelectedSavegame == null)
         {
@@ -238,8 +235,7 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
-            Ioc.Default.GetRequiredService<LabExperiments>()
-                .ResetNumberCutTrees(SelectedSavegame, BackupFiles);
+            LabExperiments.ResetNumberCutTrees(SelectedSavegame, BackupFiles);
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
         }
         catch (Exception ex)
@@ -251,7 +247,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void ExperimentEnemiesFearThePlayer()
+    private void ExperimentEnemiesFearThePlayer()
     {
         if (SelectedSavegame == null)
         {
@@ -260,8 +256,7 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
-            Ioc.Default.GetRequiredService<LabExperiments>()
-                .EnemiesFearThePlayer(SelectedSavegame, BackupFiles);
+            LabExperiments.EnemiesFearThePlayer(SelectedSavegame, BackupFiles);
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
         }
         catch (Exception ex)
@@ -273,7 +268,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void ExperimentEnemiesNoFearNoRemorce()
+    private void ExperimentEnemiesNoFearNoRemorce()
     {
         if (SelectedSavegame == null)
         {
@@ -282,8 +277,7 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
-            Ioc.Default.GetRequiredService<LabExperiments>()
-                .EnemiesNoFearNoRemorce(SelectedSavegame, BackupFiles);
+            LabExperiments.EnemiesNoFearNoRemorce(SelectedSavegame, BackupFiles);
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
         }
         catch (Exception ex)
@@ -295,7 +289,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    public void ExperimentRemoveAllActorsAndSpawns()
+    private void ExperimentRemoveAllActorsAndSpawns()
     {
         if (SelectedSavegame == null)
         {
@@ -304,8 +298,7 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
-            Ioc.Default.GetRequiredService<LabExperiments>()
-                .ExperimentRemoveAllActorsAndSpawns(SelectedSavegame, BackupFiles);
+            LabExperiments.ExperimentRemoveAllActorsAndSpawns(SelectedSavegame, BackupFiles);
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
         }
         catch (Exception ex)
@@ -314,5 +307,16 @@ public partial class MainViewModel : ObservableObject
             WeakReferenceMessenger.Default.Send(new SavegameStoredEvent($"An exception has occured: {ex.Message}",
                 false));
         }
+    }
+
+    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    private void RestoreBackups(string restoreFromNewest)
+    {
+        if (SelectedSavegame == null)
+        {
+            return;
+        }
+
+        WeakReferenceMessenger.Default.Send(new RequestRestoreBackupsEvent(SelectedSavegame, bool.Parse(restoreFromNewest)));
     }
 }

@@ -26,7 +26,7 @@ public class StorageFactory
                 () => new GenericModuleWithWeights(new ChannelWeightsModel(0, 0, 0, 0))),
             StorageType.Bones => new StorageWithModulePerItem(storageDefinition, _items, index,
                 () => new GenericModuleWithWeights(new ChannelWeightsModel(0, 0, 0, 0))),
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(storageDefinition.Type.ToString())
         };
     }
 }

@@ -5,6 +5,8 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Windows;
 using System.Windows.Interop;
 
+// ReSharper disable All
+
 namespace SOTFEdit.Infrastructure;
 
 //Source: https://stackoverflow.com/questions/11624298/how-do-i-use-openfiledialog-to-select-a-folder

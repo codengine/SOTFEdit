@@ -41,18 +41,20 @@ public partial class InventoryPageViewModel : ObservableObject
     public GenericCollectionView<InventoryItem> InventoryCollectionView { get; }
     public GenericCollectionView<InventoryItem> UnassignedItemsCollectionView { get; }
 
+    // ReSharper disable once UnusedParameterInPartialMethod
     partial void OnInventoryFilterChanged(string value)
     {
         InventoryCollectionView.Refresh();
     }
 
+    // ReSharper disable once UnusedParameterInPartialMethod
     partial void OnUnassignedItemsFilterChanged(string value)
     {
         UnassignedItemsCollectionView.Refresh();
     }
 
     [RelayCommand]
-    public void RemoveItemFromInventory(InventoryItem? inventoryItem)
+    private void RemoveItemFromInventory(InventoryItem? inventoryItem)
     {
         if (inventoryItem == null)
         {
@@ -64,7 +66,7 @@ public partial class InventoryPageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void AddUnassignedItem(InventoryItem? inventoryItem)
+    private void AddUnassignedItem(InventoryItem? inventoryItem)
     {
         if (inventoryItem == null)
         {
@@ -136,12 +138,10 @@ public partial class InventoryPageViewModel : ObservableObject
         }
 
         foreach (var item in _itemList)
-        {
             if (!assignedItems.Contains(item.Key) && item.Value.IsInventoryItem)
             {
                 _unassignedItems.Add(BuildUnassignedItem(item.Value));
             }
-        }
     }
 
     private static InventoryItem BuildUnassignedItem(Item item)
@@ -173,30 +173,4 @@ public partial class InventoryPageViewModel : ObservableObject
 
         return true;
     }
-}
-
-public class InventoryItem
-{
-    private readonly Item? _item;
-
-    public InventoryItem(ItemBlockModel itemBlock, Item? item)
-    {
-        ItemBlock = itemBlock;
-        _item = item;
-    }
-
-    public ItemBlockModel ItemBlock { get; }
-
-    public string Type => _item?.Type ?? "";
-
-    public int Id => _item?.Id ?? ItemBlock.ItemId;
-
-    public int TotalCount
-    {
-        get => ItemBlock.TotalCount;
-        set => ItemBlock.TotalCount = value;
-    }
-
-    public string Name => _item?.Name ?? "??? Unknown Item";
-    public string NameDe => _item?.NameDe ?? "";
 }

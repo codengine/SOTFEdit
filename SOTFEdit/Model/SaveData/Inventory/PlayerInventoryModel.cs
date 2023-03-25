@@ -4,11 +4,12 @@ using Newtonsoft.Json.Linq;
 
 namespace SOTFEdit.Model.SaveData.Inventory;
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record PlayerInventoryModel
 {
     public ItemInstanceManagerDataModel ItemInstanceManagerData { get; set; }
 
-    public static bool Merge(JToken playerInventory, List<ItemBlockModel> selectedItems)
+    public static bool Merge(JToken playerInventory, IEnumerable<ItemBlockModel> selectedItems)
     {
         var selectedItemsDict = selectedItems.ToDictionary(itemBlock => itemBlock.ItemId);
 
@@ -23,8 +24,7 @@ public record PlayerInventoryModel
         var hasChanges = false;
 
         foreach (var itemBlock in itemBlocks)
-        {
-            if (itemBlock["ItemId"]?.ToObject<int>() is { } itemId)
+            if (itemBlock["ItemId"]?.Value<int>() is { } itemId)
             {
                 if (selectedItemsDict.TryGetValue(itemId, out var selectedItem))
                 {
@@ -52,7 +52,6 @@ public record PlayerInventoryModel
             {
                 finalTokens.Add(itemBlock);
             }
-        }
 
         var newItemsFromDict = selectedItemsDict.Values.Where(item => !processedItemIds.Contains(item.ItemId))
             .Select(JToken.FromObject)

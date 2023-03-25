@@ -1,0 +1,34 @@
+﻿{
+  "UniqueId": {uniqueId},
+  "TypeId": {typeId},
+  "FamilyId": 0,
+  "Position": {
+    "x": -596.614563,
+    "y": 93.51845,
+    "z": 575.3273
+  },
+  "Rotation": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0,
+    "w": 0.0
+  },
+  "SpawnerId": {spawnerId},
+  "ActorSeed": {spawnerId},
+  "VariationId": -1,
+  "State": 2,
+  "GraphMask": 1,
+  "EquippedItems": [],
+  "NextGiftTime": 0.0,
+  "LastVisitTime": 0,
+  "Stats": {
+    "Health": 100.0,
+    "Anger": 0.0,
+    "Fear": 0.0,
+    "Fullness": 100.0,
+    "Hydration": 100.0,
+    "Energy": 100.0,
+    "Affection": 100.0
+  },
+  "StateFlags": 0
+}

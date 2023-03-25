@@ -23,8 +23,10 @@ public class GameData
     public Configuration Config { get; }
 }
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record Configuration(string LatestTagUrl, string LatestReleaseUrl);
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record FollowerData(Dictionary<int, List<Outfit>> Outfits, Dictionary<int, int[]> EquippableItems)
 {
     public List<Outfit> GetOutfits(int typeId)
@@ -32,7 +34,7 @@ public record FollowerData(Dictionary<int, List<Outfit>> Outfits, Dictionary<int
         return Outfits.GetValueOrDefault(typeId) ?? new List<Outfit>();
     }
 
-    public List<Item> GetEquippableItems(int typeId, ItemList items)
+    public IEnumerable<Item> GetEquippableItems(int typeId, ItemList items)
     {
         return (EquippableItems.GetValueOrDefault(typeId) ?? Array.Empty<int>())
             .Select(items.GetItem)
@@ -42,4 +44,5 @@ public record FollowerData(Dictionary<int, List<Outfit>> Outfits, Dictionary<int
     }
 }
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record Outfit(int Id, string Name);

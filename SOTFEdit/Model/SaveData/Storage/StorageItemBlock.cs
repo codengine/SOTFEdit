@@ -10,7 +10,7 @@ public class StorageItemBlock
     public int TotalCount { get; init; }
     public List<UniqueItem> UniqueItems { get; init; } = new();
 
-    protected bool Equals(StorageItemBlock other)
+    private bool Equals(StorageItemBlock other)
     {
         return ItemId == other.ItemId && TotalCount == other.TotalCount && UniqueItems.SequenceEqual(other.UniqueItems);
     }

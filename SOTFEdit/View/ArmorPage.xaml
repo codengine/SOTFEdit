@@ -19,7 +19,7 @@
                          Width="70" MaxLength="5" />
                 <Button Command="{Binding NewArmour.AddArmorCommand}">Add</Button>
             </StackPanel>
-            <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False" x:Name="InventoryGrid"
+            <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False"
                       SelectionMode="Single" ItemsSource="{Binding Armour}"
                       CanUserAddRows="false"
                       CanUserDeleteRows="False">

@@ -24,7 +24,7 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
         }
 
         var obj = JObject.Load(reader); // Throws an exception if the current token is not an object.
-        if (obj["ModuleId"]?.ToObject<int>() is not { } moduleId)
+        if (obj["ModuleId"]?.Value<int>() is not { } moduleId)
         {
             return null;
         }
@@ -57,7 +57,7 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
 
     private static IStorageModule BuildLogStorageModule(int moduleId, JObject obj)
     {
-        return new LogStorageModule(obj["VariantNumber"]?.ToObject<int>() ??
+        return new LogStorageModule(obj["VariantNumber"]?.Value<int>() ??
                                     throw new Exception($"VariantNumber not defined for moduleId {moduleId}"));
     }
 
@@ -65,10 +65,10 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
     {
         return new FoodSpoilStorageModule(
             moduleId,
-            obj["CurrentState"]?.ToObject<int>() ??
+            obj["CurrentState"]?.Value<int>() ??
             throw new Exception($"CurrentState not defined for moduleId {moduleId}"),
-            obj["TimeRemainingInState"]?.ToObject<long>() ?? default,
-            obj["PauseDecay"]?.ToObject<bool>() ?? default
+            obj["TimeRemainingInState"]?.Value<long>() ?? default,
+            obj["PauseDecay"]?.Value<bool>() ?? default
         );
     }
 }

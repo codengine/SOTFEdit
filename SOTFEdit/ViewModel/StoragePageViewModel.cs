@@ -40,7 +40,7 @@ public partial class StoragePageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void SelectedItemChanged(object? item)
+    private void SelectedItemChanged(object? item)
     {
         if (item is not IStorage)
         {
@@ -71,17 +71,14 @@ public partial class StoragePageViewModel : ObservableObject
             return;
         }
 
-        foreach (var storageCollection in storageCollectionsById.Values)
-        {
-            StorageCollections.Add(storageCollection);
-        }
+        foreach (var storageCollection in storageCollectionsById.Values) StorageCollections.Add(storageCollection);
     }
 
     private List<StorageSaveData>? LoadStorageSaveData(Savegame selectedSavegame)
     {
         var screwStructureJson =
             selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.ScrewStructureInstancesSaveData)?["Data"]?
-                ["ScrewStructureInstances"]?.ToObject<string>();
+                ["ScrewStructureInstances"]?.ToString();
 
         if (screwStructureJson is not { } || JsonConverter.DeserializeRaw(screwStructureJson) is not
                 { } screwStructure || screwStructure["_structures"] is not JArray structures)
@@ -152,7 +149,7 @@ public partial class StoragePageViewModel : ObservableObject
 
         var screwStructureInstancesToken = screwStructureInstancesSaveData["Data"]?["ScrewStructureInstances"];
 
-        if (screwStructureInstancesToken?.ToObject<string>() is not { } screwStructureJson ||
+        if (screwStructureInstancesToken?.ToString() is not { } screwStructureJson ||
             JsonConverter.DeserializeRaw(screwStructureJson) is not
                 { } screwStructure || screwStructure["_structures"] is not JArray structures)
         {
@@ -170,7 +167,7 @@ public partial class StoragePageViewModel : ObservableObject
 
         foreach (var structureToken in structures)
         {
-            if (structureToken["Id"]?.ToObject<int>() is not { } structureId ||
+            if (structureToken["Id"]?.Value<int>() is not { } structureId ||
                 !_storageDefinitions.ContainsKey(structureId))
             {
                 continue;
@@ -231,15 +228,4 @@ public partial class StoragePageViewModel : ObservableObject
         storagesToken.Replace(JToken.FromObject(newData.Storages));
         return true;
     }
-}
-
-public class StorageCollection
-{
-    public StorageCollection(StorageDefinition storageDefinition)
-    {
-        StorageDefinition = storageDefinition;
-    }
-
-    public StorageDefinition StorageDefinition { get; }
-    public ObservableCollection<IStorage> Storages { get; } = new();
 }

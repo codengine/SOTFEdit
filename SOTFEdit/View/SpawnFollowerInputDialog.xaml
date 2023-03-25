@@ -1,0 +1,42 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.SpawnFollowerInputDialog"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:local="clr-namespace:SOTFEdit.View"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 mc:Ignorable="d"
+                 Title="Spawn Follower"
+                 d:DataContext="{d:DesignInstance local:SpawnFollowerInputDialog}"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 Width="500"
+                 SizeToContent="Height"
+                 TitleCharacterCasing="Normal">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Margin="0 0 0 5" Padding="5">
+            If you want to spawn followers, you have to make sure that you are at an open space. The followers will be spawned at the players position above the players current height and a slight offset.
+            <LineBreak />
+            <LineBreak />
+            I tried many things for Virginia but only could get a maximum of 4 to spawn. It was better with Kelvin.
+            <LineBreak />
+            <LineBreak />
+            <iconPacks:PackIconMaterialDesign Kind="Warning" Foreground="Red" /> This might kill your FPS and the long term consequences are also not known right now.
+            <LineBreak />
+            <LineBreak />
+            If you want to have more, you should load the game, let everything spawn, save the game, spawn followers and so on.
+        </TextBlock>
+        <mah:NumericUpDown Grid.Row="1" Value="{Binding Count}" Interval="1" Minimum="1" Maximum="{Binding Max}" Margin="0 0 0 5" />
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="OK" IsDefault="True" Margin="0 0 5 0" Command="{Binding OkCommand}" Padding="20 10" Background="DarkGreen" />
+            <Button Content="Cancel" IsCancel="True" Command="{Binding CancelCommand}" Padding="20 10" Background="DarkRed" />
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>

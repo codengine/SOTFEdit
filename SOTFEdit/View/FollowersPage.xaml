@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:model="clr-namespace:SOTFEdit.Model"
+             xmlns:actor="clr-namespace:SOTFEdit.Model.Actor"
+             xmlns:actor1="clr-namespace:SOTFEdit.Model.SaveData.Actor"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:FollowerPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -34,6 +36,10 @@
                    BasedOn="{StaticResource MahApps.Styles.CheckBox}">
                 <Setter Property="Margin" Value="0  0 10 0" />
             </Style>
+            <ToolTip x:Key="ReviveFollowerTooltip">
+                Make sure you do this outside of buildings when the body is missing, else you might glitch into the building\n
+                The follower will spawn at the players position and will have the items and outfit equipped as configured at the right
+            </ToolTip>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -47,8 +53,8 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
                         <Image Source="/images/kv.jpg" Width="197" Height="246" Margin="0 0 0 10" />
@@ -61,8 +67,13 @@
                             Move to Virginia
                         </Button>
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}"
-                                CommandParameter="{Binding KelvinState}" ToolTip="Make sure you do this outside of buildings when the body is missing, else you might glitch into the building">
+                                CommandParameter="{Binding KelvinState}"
+                                ToolTip="{StaticResource ReviveFollowerTooltip}">
                             Revive
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding SpawnCommand}"
+                                CommandParameter="{Binding KelvinState}">
+                            Spawn
                         </Button>
                     </StackPanel>
                     <Grid Grid.Row="0" Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
@@ -133,22 +144,22 @@
                         <ItemsControl.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <GroupBox Header="Influences" Margin="10" Padding="10">
-                                    <ItemsPresenter/>
+                                    <ItemsPresenter />
                                 </GroupBox>
                             </ControlTemplate>
                         </ItemsControl.Template>
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type model:Influence}">
+                            <DataTemplate DataType="{x:Type actor1:Influence}">
                                 <GroupBox Header="{Binding TypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Sentiment</TextBlock>
                                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="0.0"
@@ -175,8 +186,8 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
                         <Image Source="/images/vg.jpg" Width="197" Height="246" Margin="0 0 0 10" />
@@ -189,8 +200,13 @@
                             Move to Kelvin
                         </Button>
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding ReviveCommand}"
-                                CommandParameter="{Binding VirginiaState}" ToolTip="Make sure you do this outside of buildings when the body is missing, else you might glitch into the building">
+                                CommandParameter="{Binding VirginiaState}"
+                                ToolTip="{StaticResource ReviveFollowerTooltip}">
                             Revive
+                        </Button>
+                        <Button Style="{StaticResource ButtonStyle}" Command="{Binding SpawnCommand}"
+                                CommandParameter="{Binding VirginiaState}">
+                            Spawn
                         </Button>
                     </StackPanel>
                     <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
@@ -254,7 +270,7 @@
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
-                                    <DataTemplate DataType="{x:Type model:EquippableItem}">
+                                    <DataTemplate DataType="{x:Type actor:EquippableItem}">
                                         <CheckBox Style="{StaticResource FollowerCheckboxStyle}"
                                                   Content="{Binding Name, Mode=OneTime}"
                                                   IsChecked="{Binding Selected}" />
@@ -279,22 +295,22 @@
                         <ItemsControl.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <GroupBox Header="Influences" Margin="10" Padding="10">
-                                    <ItemsPresenter/>
+                                    <ItemsPresenter />
                                 </GroupBox>
                             </ControlTemplate>
                         </ItemsControl.Template>
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type model:Influence}">
+                            <DataTemplate DataType="{x:Type actor1:Influence}">
                                 <GroupBox Header="{Binding TypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Sentiment</TextBlock>
                                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="0.0"

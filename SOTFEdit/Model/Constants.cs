@@ -11,5 +11,8 @@ public static class Constants
         public const float NoAnger = 0.0f;
         public const float NoFear = 0.0f;
         public const float FullSentiment = 100.0f;
+        public const float FullAnger = 100.0f;
+        public const float FullFear = 100.0f;
+        public const float LowestSentiment = -100.0f;
     }
 }

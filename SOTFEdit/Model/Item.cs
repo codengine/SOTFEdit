@@ -13,6 +13,8 @@ public class Item
     public int Max { get; init; } = 1000;
 }
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record ItemModule(int ModuleId, List<ItemVariant> Variants);
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record ItemVariant(int State, string Name);

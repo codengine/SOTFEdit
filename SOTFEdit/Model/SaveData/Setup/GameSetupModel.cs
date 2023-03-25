@@ -26,7 +26,7 @@ public record GameSetupModel
 
         foreach (var setting in settings)
         {
-            var name = setting["Name"]?.ToObject<string>();
+            var name = setting["Name"]?.ToString();
             if (name == null)
             {
                 finalSettings.Add(setting); //we don't know what it is, so we just keep it

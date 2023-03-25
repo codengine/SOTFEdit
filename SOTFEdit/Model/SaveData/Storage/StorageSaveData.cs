@@ -9,7 +9,7 @@ public class StorageSaveData
     public int Id { get; init; }
     public List<StorageBlock> Storages { get; init; } = new();
 
-    protected bool Equals(StorageSaveData other)
+    private bool Equals(StorageSaveData other)
     {
         return Id == other.Id && Storages.SequenceEqual(other.Storages);
     }

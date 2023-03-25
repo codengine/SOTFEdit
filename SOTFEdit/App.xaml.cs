@@ -53,7 +53,6 @@ public partial class App
         services.AddSingleton(_ => BuildGameDataInstance() ?? throw new Exception("Unable to load Game Data"));
         services.AddSingleton<StorageFactory>();
         services.AddSingleton<UpdateChecker>();
-        services.AddSingleton<LabExperiments>();
         services.AddTransient<SelectSavegameViewModel>();
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }

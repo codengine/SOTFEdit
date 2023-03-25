@@ -28,7 +28,7 @@ public class ItemsStorage : BaseStorage
         return baseQ.Select(item => new ItemWrapper(item, storageDefinition.MaxPerSlot)).ToList();
     }
 
-    public override List<ItemWrapper> GetSupportedItems()
+    protected override List<ItemWrapper> GetSupportedItems()
     {
         return _supportedItems;
     }

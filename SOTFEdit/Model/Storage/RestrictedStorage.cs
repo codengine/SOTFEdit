@@ -14,7 +14,7 @@ public abstract class RestrictedStorage : BaseStorage
         _supportedItems = GetSupportedItems(itemList, definition);
     }
 
-    protected List<ItemWrapper> GetSupportedItems(ItemList itemList, StorageDefinition storageDefinition)
+    private List<ItemWrapper> GetSupportedItems(ItemList itemList, StorageDefinition storageDefinition)
     {
         var baseQ = itemList.Select(item => item.Value);
 
@@ -26,7 +26,7 @@ public abstract class RestrictedStorage : BaseStorage
         return baseQ.Select(item => new ItemWrapper(item, storageDefinition.MaxPerSlot)).ToList();
     }
 
-    public override List<ItemWrapper> GetSupportedItems()
+    protected override List<ItemWrapper> GetSupportedItems()
     {
         return _supportedItems;
     }
