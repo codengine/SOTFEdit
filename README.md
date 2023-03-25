@@ -41,6 +41,7 @@ This project is in no way or form associated with the developers of the game. It
 - Edit Influences of Players towards Kelvin and Virginia
 - Modify Virginias equipped items
 - Change Virginias and Kelvins outfits
+- Spawn an army of Virginias and Kelvins
 - Several experiments
 - Revive Virginia & Kelvin
 - Set stats for Virginia & Kelvin
