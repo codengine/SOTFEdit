@@ -9,6 +9,7 @@
 
 A savegame editor for "Sons of The Forest".
 
+[![Discord](https://abload.de/img/discordc7csi.png)](https://discord.gg/867UDYvvqE)
 - [SOTFEdit - Sons of The Forest Savegame Editor](#sotfedit---sons-of-the-forest-savegame-editor)
 - [Disclaimer](#disclaimer)
 - [Features](#features)
