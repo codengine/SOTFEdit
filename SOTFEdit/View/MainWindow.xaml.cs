@@ -72,6 +72,17 @@ public partial class MainWindow
             (_, message) => { OnRequestSpawnFollowerEvent(message); });
         WeakReferenceMessenger.Default.Register<RequestRestoreBackupsEvent>(this,
             (_, message) => { OnRequestRestoreBackupsEvent(message); });
+        WeakReferenceMessenger.Default.Register<UnhandledExceptionEvent>(this,
+            (_, message) => { OnUnhandledExceptionEvent(message); });
+    }
+
+    private void OnUnhandledExceptionEvent(UnhandledExceptionEvent message)
+    {
+        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+        {
+            var unhandledExceptionWindow = new UnhandledExceptionWindow(this, message.Exception);
+            unhandledExceptionWindow.ShowDialog();
+        }));
     }
 
     private static void OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)

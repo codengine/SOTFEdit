@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NLog;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Storage;
 using SOTFEdit.View;
 using SOTFEdit.ViewModel;
@@ -111,5 +113,7 @@ public partial class App
         {
             Logger.Error(exception, message);
         }
+
+        WeakReferenceMessenger.Default.Send(new UnhandledExceptionEvent(exception));
     }
 }

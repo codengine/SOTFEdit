@@ -14,10 +14,12 @@
 ### Improvements
 
 - merge game setup, game state and weather into one page
+- A window is now displayed on exceptions, giving you an opportunity to easily report the issue
 
 ### Fixes
 
 - fixed saving of game settings and game setup
+- Minimum Sentiment Value changed from 0 to -100
 
 ## v0.6.0
 

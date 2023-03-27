@@ -1,0 +1,76 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.UnhandledExceptionWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 d:DataContext="{d:DesignInstance viewModel:UnhandledExceptionViewModel}"
+                 mc:Ignorable="d"
+                 Padding="15"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 TitleCharacterCasing="Normal"
+                 Title="Unhandled Exception" Height="800" Width="800">
+    <Window.Resources>
+        <Style x:Key="Label"
+               TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,8,0,4" />
+        </Style>
+        <Style x:Key="Content"
+               TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,4,0,8" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--  Info  -->
+            <RowDefinition Height="auto" />
+            <!--  Exception details  -->
+            <RowDefinition Height="*" />
+            <!--  Button  -->
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Info  -->
+        <TextBlock Margin="16"
+                   FontSize="14"
+                   Text="An unexpected error occured. The application state might be corrupted."
+                   TextWrapping="Wrap" />
+
+        <!--  Exception details  -->
+        <GroupBox Grid.Row="1" Header="Exception Details" Margin="16,8,16,8">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <!--  Exception Message  -->
+                    <TextBlock Style="{StaticResource Label}"
+                               Text="Exception message" />
+                    <TextBlock
+                        Text="{Binding Exception.Message, Mode=OneWay, TargetNullValue=-}"
+                        TextWrapping="Wrap" />
+                    <!--  Exception Type  -->
+                    <TextBlock Style="{StaticResource Label}"
+                               Text="Exception type" />
+                    <TextBlock Style="{StaticResource Content}"
+                               Text="{Binding ExceptionType, Mode=OneWay, TargetNullValue=-}" />
+                    <!--  Callstack  -->
+                    <TextBlock Style="{StaticResource Label}"
+                               Text="Callstack" />
+                    <TextBlock Style="{StaticResource Content}"
+                               Text="{Binding Exception.StackTrace, Mode=OneWay, TargetNullValue=-}" />
+                    <!--  Inner exception  -->
+                    <TextBlock Style="{StaticResource Label}"
+                               Text="Inner exception" />
+                    <TextBlock Style="{StaticResource Content}"
+                               Text="{Binding Exception.InnerException, Mode=OneWay, TargetNullValue=-}" />
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="15">
+            <Button Background="DarkGreen" Padding="10" Margin="0 0 10 0" Command="{Binding CopyToClipboardCommand}">Copy Error to Clipboard</Button>
+            <Button Background="DarkRed" Padding="10" Command="{Binding ExitApplicationCommand}">Exit Application</Button>
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>
