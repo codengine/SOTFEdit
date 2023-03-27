@@ -10,6 +10,7 @@
 A savegame editor for "Sons of The Forest".
 
 [![Discord](https://abload.de/img/discordc7csi.png)](https://discord.gg/867UDYvvqE)
+
 - [SOTFEdit - Sons of The Forest Savegame Editor](#sotfedit---sons-of-the-forest-savegame-editor)
 - [Disclaimer](#disclaimer)
 - [Features](#features)
@@ -33,11 +34,11 @@ This project is in no way or form associated with the developers of the game. It
 
 - Edit Player Stats (Strength, MaxHealth, CurrentHealth, Fullness etc.)
 - Move Player to Virginia & Kelvin
-- Edit Game Setup (Game Mode, Spawn Rate etc.)
+- Edit Game Setup (Game Mode, Spawn Rate, Survival Damage etc.)
 - Edit Inventory (Add/Remove items, change quantities)
 - Edit Armor Data (Add Armor Pieces, change durability)
 - Edit Weather Data (Weather, Seasons...)
-- Edit Game State Data (Playtime,..)
+- Edit Game State Data (Playtime, Doors open/closed, Bunkers opened/closed)
 - Edit Storage Data (Unlimited Logs, sticks etc.)
 - Edit Influences of Players towards Kelvin and Virginia
 - Modify Virginias equipped items

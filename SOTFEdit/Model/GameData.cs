@@ -9,18 +9,20 @@ namespace SOTFEdit.Model;
 public class GameData
 {
     public GameData(IEnumerable<Item> items, [JsonProperty("storages")] List<StorageDefinition> storageDefinitions,
-        [JsonProperty("followers")] FollowerData followerData, Configuration config)
+        [JsonProperty("followers")] FollowerData followerData, Configuration config, List<string> namedIntKeys)
     {
         Items = new ItemList(items.OrderBy(item => item.Name));
         StorageDefinitions = storageDefinitions;
         FollowerData = followerData;
         Config = config;
+        NamedIntKeys = namedIntKeys.OrderBy(key => key).ToList();
     }
 
     public ItemList Items { get; }
     public List<StorageDefinition> StorageDefinitions { get; }
     public FollowerData FollowerData { get; }
     public Configuration Config { get; }
+    public List<string> NamedIntKeys { get; }
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global

@@ -6,7 +6,7 @@ public static class GenericSettingExtensions
 {
     public static bool MergeTo(this GenericSetting setting, JToken target)
     {
-        if (setting.Type == GenericSetting.DataType.ReadOnly)
+        if (setting.Type == GenericSetting.DataType.ReadOnly || setting.DataPath == null)
         {
             return false;
         }
@@ -20,5 +20,17 @@ public static class GenericSettingExtensions
 
         token.Replace(newToken);
         return true;
+    }
+
+    public static bool MergeNamedIntSettingTo(this GenericSetting setting, JToken target)
+    {
+        if (setting.Type == GenericSetting.DataType.ReadOnly)
+        {
+            return false;
+        }
+
+        var newToken = setting.GetValue() is { } value ? JToken.FromObject(value) : JValue.CreateNull();
+
+        return false;
     }
 }

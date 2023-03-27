@@ -49,13 +49,13 @@ public class WeatherPageViewModel
             {
                 case "_isRaining":
                 case "_rainBlocked":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Boolean)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Boolean, child.Path)
                     {
                         BoolValue = child.Value.Value<bool>()
                     };
                     break;
                 case "_cloudState":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Enum)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
                     {
                         SelectedItem = child.Value.Value<int>(),
                         PossibleValues =
@@ -68,7 +68,7 @@ public class WeatherPageViewModel
                     };
                     break;
                 case "_currentRainType":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Enum)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
                     {
                         SelectedItem = child.Value.Value<int>(),
                         PossibleValues =
@@ -81,7 +81,7 @@ public class WeatherPageViewModel
                     };
                     break;
                 case "_currentSeason":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Enum)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
                     {
                         SelectedItem = child.Value.Value<int>(),
                         PossibleValues =

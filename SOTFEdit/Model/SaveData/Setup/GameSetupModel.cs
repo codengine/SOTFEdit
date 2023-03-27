@@ -3,6 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Model.SaveData.Settings;
+using static SOTFEdit.Model.Constants.Settings;
 
 namespace SOTFEdit.Model.SaveData.Setup;
 
@@ -27,7 +28,13 @@ public record GameSetupModel
         foreach (var setting in settings)
         {
             var name = setting["Name"]?.ToString();
-            if (name == null)
+            if (name != null)
+            {
+                processedKeys.Add(name);
+            }
+
+            var settingType = setting["SettingType"]?.Value<int>();
+            if (name == null || settingType is not (SettingTypeString or SettingTypeBool))
             {
                 finalSettings.Add(setting); //we don't know what it is, so we just keep it
                 hasChanges = true;
@@ -36,11 +43,28 @@ public record GameSetupModel
 
             if (newSettingsDict.TryGetValue(name, out var value))
             {
-                var stringValueToken = setting["StringValue"];
-                var newStringValueToken = JToken.FromObject(value.StringValue);
-                if (stringValueToken != null && !stringValueToken.Equals(newStringValueToken))
+                JToken? valueToken;
+                JToken newTokenValue;
+
+                switch (settingType)
                 {
-                    stringValueToken.Replace(newStringValueToken);
+                    case SettingTypeBool:
+                        valueToken = setting["BoolValue"];
+                        newTokenValue = JToken.FromObject(value.BoolValue ?? false);
+                        break;
+                    case SettingTypeString:
+                        valueToken = setting["StringValue"];
+                        newTokenValue = JToken.FromObject(value.StringValue ?? "");
+                        break;
+                    default:
+                        finalSettings.Add(setting);
+                        continue;
+                }
+
+
+                if (valueToken != null && !valueToken.Equals(newTokenValue))
+                {
+                    valueToken.Replace(newTokenValue);
                     hasChanges = true;
                 }
 
@@ -50,17 +74,35 @@ public record GameSetupModel
             {
                 hasChanges = true;
             }
-
-            processedKeys.Add(name);
         }
 
         var newSettingsFromDict = newSettingsDict.Where(kvp => !processedKeys.Contains(kvp.Key))
             .Select(kvp => kvp.Value)
-            .Select(setting => JToken.FromObject(new GameSettingFullModel
+            .Select(setting =>
             {
-                Name = setting.Name,
-                StringValue = setting.StringValue
-            })).ToList();
+                if (setting.StringValue is { } stringValue)
+                {
+                    return JToken.FromObject(new GameSettingFullModel
+                    {
+                        Name = setting.Name,
+                        StringValue = stringValue
+                    });
+                }
+
+                if (setting.BoolValue is { } boolValue)
+                {
+                    return JToken.FromObject(new GameSettingFullModel
+                    {
+                        Name = setting.Name,
+                        SettingsType = SettingTypeBool,
+                        BoolValue = boolValue
+                    });
+                }
+
+                return null;
+            }).Where(setting => setting != null)
+            .Select(setting => setting!)
+            .ToList();
 
         hasChanges = hasChanges || newSettingsFromDict.Any();
 

@@ -78,6 +78,30 @@ public class GameSetupPageViewModel : ObservableObject
         set => SetModelProperty("GameSetting.Environment.DayLength", value);
     }
 
+    public bool SelectedEnemySpawn
+    {
+        get => GetModelProperty("GameSetting.Vail.EnemySpawn")?.BoolValue ?? true;
+        set => SetModelProperty("GameSetting.Vail.EnemySpawn", value);
+    }
+
+    public string? SelectedConsumableEffects
+    {
+        get => GetModelProperty("GameSetting.Survival.ConsumableEffects")?.StringValue ?? "Normal";
+        set => SetModelProperty("GameSetting.Survival.ConsumableEffects", value);
+    }
+
+    public string? SelectedPlayerStatsDamage
+    {
+        get => GetModelProperty("GameSetting.Survival.PlayerStatsDamage")?.StringValue ?? "";
+        set => SetModelProperty("GameSetting.Survival.PlayerStatsDamage", value);
+    }
+
+    public string? SelectedPrecipitationFrequency
+    {
+        get => GetModelProperty("GameSetting.Environment.PrecipitationFrequency")?.StringValue ?? "Default";
+        set => SetModelProperty("GameSetting.Environment.PrecipitationFrequency", value);
+    }
+
     private void SetModelProperty(string key, string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
@@ -88,6 +112,11 @@ public class GameSetupPageViewModel : ObservableObject
         {
             _gameSettings[key] = new GameSettingLightModel(key, value);
         }
+    }
+
+    private void SetModelProperty(string key, bool? value)
+    {
+        _gameSettings[key] = new GameSettingLightModel(key, BoolValue: value);
     }
 
     private GameSettingLightModel? GetModelProperty(string key)
@@ -120,6 +149,10 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedStartingSeason));
         OnPropertyChanged(nameof(SelectedSeasonLength));
         OnPropertyChanged(nameof(SelectedDayLength));
+        OnPropertyChanged(nameof(SelectedEnemySpawn));
+        OnPropertyChanged(nameof(SelectedConsumableEffects));
+        OnPropertyChanged(nameof(SelectedPlayerStatsDamage));
+        OnPropertyChanged(nameof(SelectedPrecipitationFrequency));
     }
 
     public bool Update(Savegame savegame, bool createBackup)

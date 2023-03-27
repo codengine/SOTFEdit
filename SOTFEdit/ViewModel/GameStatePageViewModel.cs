@@ -1,32 +1,42 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.DependencyInjection;
-using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
+using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.SaveData;
 
 namespace SOTFEdit.ViewModel;
 
 public partial class GameStatePageViewModel : ObservableObject
 {
-    private readonly Regex _resetCrateNameIdPattern =
-        new(@"(\..*Crate.*\.)|(\..*Storage.*\.)|(\..*Case.*\.)|(.*\.Meds\..*)");
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private readonly GameData _gameData;
 
-    [NotifyCanExecuteChangedFor(nameof(ResetContainersCommand))] [ObservableProperty]
-    private Savegame? _selectedSavegame;
+    [ObservableProperty] private Savegame? _selectedSavegame;
 
-    public GameStatePageViewModel()
+    public GameStatePageViewModel(GameData gameData)
     {
+        _gameData = gameData;
+        PrefillNamedIntDatas(gameData.NamedIntKeys);
         SetupListeners();
     }
 
     public ObservableCollection<GenericSetting> Settings { get; } = new();
+    public ObservableCollection<GenericSetting> NamedIntDatas { get; } = new();
+
+    private void PrefillNamedIntDatas(List<string> namedIntKeys)
+    {
+        foreach (var namedIntKey in namedIntKeys)
+            NamedIntDatas.Add(new GenericSetting(namedIntKey, GenericSetting.DataType.Integer)
+            {
+                IntValue = null
+            });
+    }
 
     private void SetupListeners()
     {
@@ -38,6 +48,8 @@ public partial class GameStatePageViewModel : ObservableObject
     {
         SelectedSavegame = message.SelectedSavegame;
         Settings.Clear();
+        NamedIntDatas.Clear();
+        PrefillNamedIntDatas(_gameData.NamedIntKeys);
         var gameStateData =
             message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
         var gameStateToken = gameStateData?.SelectToken("Data.GameState");
@@ -50,66 +62,6 @@ public partial class GameStatePageViewModel : ObservableObject
         LoadSettings(gameState);
     }
 
-    private bool HasSavegame()
-    {
-        return _selectedSavegame != null;
-    }
-
-    [RelayCommand(CanExecute = nameof(HasSavegame))]
-    private void ResetContainers()
-    {
-        if (SelectedSavegame is not { } savegame)
-        {
-            return;
-        }
-
-        var gameStateData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
-
-        if (gameStateData?.SelectToken("Data.GameState") is not { } gameStateToken ||
-            gameStateToken.ToString() is not { } gameStateJson ||
-            JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState ||
-            gameState["NamedIntDatas"] is not { } namedIntDatas)
-        {
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Nothing to be reset", false));
-            return;
-        }
-
-        var countFixed = 0;
-
-        foreach (var data in namedIntDatas)
-        {
-            if (data["SaveObjectNameId"]?.ToString() is not { } nameId ||
-                !_resetCrateNameIdPattern.Match(nameId).Success || data["SaveValue"] is not { } saveValueToken)
-            {
-                continue;
-            }
-
-            var oldSaveValue = saveValueToken.Value<int>();
-
-            if (oldSaveValue != 1)
-            {
-                continue;
-            }
-
-            saveValueToken.Replace(0);
-            countFixed++;
-        }
-
-        if (countFixed == 0)
-        {
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Nothing to be reset", false));
-            return;
-        }
-
-        gameStateToken.Replace(JsonConverter.Serialize(gameState));
-
-        var createBackups = Ioc.Default.GetRequiredService<MainViewModel>().BackupFiles;
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameStateSaveData, gameStateData, createBackups);
-
-        WeakReferenceMessenger.Default.Send(
-            new SavegameStoredEvent($"Reset {countFixed} containers, creates and pickups"));
-    }
-
     private void LoadSettings(JToken gameState)
     {
         var children = gameState.Children();
@@ -118,18 +70,31 @@ public partial class GameStatePageViewModel : ObservableObject
             GenericSetting? setting = null;
             switch (child.Name)
             {
+                case "CrashSite":
+                    var selectedItem = child.Value.ToString();
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
+                    {
+                        StringValue = selectedItem,
+                        SelectedItem = selectedItem,
+                        PossibleValues =
+                        {
+                            { "tree", "tree" },
+                            { "ocean", "ocean" },
+                            { "snow", "snow" }
+                        }
+                    };
+                    break;
                 case "SaveTime":
                 case "GameType":
-                case "CrashSite":
                 case "IsVirginiaDead":
                 case "IsRobbyDead":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.ReadOnly)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.ReadOnly, child.Path)
                     {
                         StringValue = child.Value.ToString()
                     };
                     break;
                 case "GameDays":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Integer, child.Path)
                     {
                         IntValue = child.Value.Value<int>(),
                         MinInt = 0,
@@ -137,7 +102,7 @@ public partial class GameStatePageViewModel : ObservableObject
                     };
                     break;
                 case "GameHours":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Integer, child.Path)
                     {
                         IntValue = child.Value.Value<int>(),
                         MinInt = 0,
@@ -146,7 +111,7 @@ public partial class GameStatePageViewModel : ObservableObject
                     break;
                 case "GameMinutes":
                 case "GameSeconds":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Integer, child.Path)
                     {
                         IntValue = child.Value.Value<int>(),
                         MinInt = 0,
@@ -154,7 +119,7 @@ public partial class GameStatePageViewModel : ObservableObject
                     };
                     break;
                 case "GameMilliseconds":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Integer)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Integer, child.Path)
                     {
                         IntValue = child.Value.Value<int>(),
                         MinInt = 0,
@@ -164,7 +129,7 @@ public partial class GameStatePageViewModel : ObservableObject
                 case "CoreGameCompleted":
                 case "EscapedIsland":
                 case "StayedOnIsland":
-                    setting = new GenericSetting(child.Name, child.Path, GenericSetting.DataType.Boolean)
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Boolean, child.Path)
                     {
                         BoolValue = child.Value.Value<bool>()
                     };
@@ -175,6 +140,37 @@ public partial class GameStatePageViewModel : ObservableObject
             {
                 Settings.Add(setting);
             }
+        }
+
+        if (gameState["NamedIntDatas"] is { } namedIntDatas)
+        {
+            var storedNamedIntSettings = new List<GenericSetting>();
+
+            foreach (var namedIntData in namedIntDatas)
+            {
+                var nameId = namedIntData["SaveObjectNameId"]?.Value<string>();
+                var value = namedIntData["SaveValue"]?.Value<int>();
+                if (nameId != null && value != null)
+                {
+                    storedNamedIntSettings.Add(new GenericSetting(nameId, GenericSetting.DataType.Integer, namedIntData.Path)
+                    {
+                        IntValue = value
+                    });
+                }
+            }
+
+            var namedIntDatasByName = NamedIntDatas.ToDictionary(setting => setting.Name);
+
+            foreach (var storedNamedIntSetting in storedNamedIntSettings)
+                if (!namedIntDatasByName.ContainsKey(storedNamedIntSetting.Name))
+                {
+                    Logger.Info($"New NamedIntData found: {storedNamedIntSetting.Name}");
+                    NamedIntDatas.Add(storedNamedIntSetting);
+                }
+                else
+                {
+                    namedIntDatasByName[storedNamedIntSetting.Name].IntValue = storedNamedIntSetting.IntValue;
+                }
         }
     }
 
@@ -189,7 +185,7 @@ public partial class GameStatePageViewModel : ObservableObject
             return false;
         }
 
-        if (!Merge(gameState, Settings))
+        if (!Merge(gameState, Settings, NamedIntDatas))
         {
             return false;
         }
@@ -200,8 +196,34 @@ public partial class GameStatePageViewModel : ObservableObject
         return true;
     }
 
-    private static bool Merge(JToken gameState, IEnumerable<GenericSetting> settings)
+    private static bool Merge(JToken gameState, IEnumerable<GenericSetting> newSettings, IEnumerable<GenericSetting> newNamedIntDatas)
     {
-        return settings.Aggregate(false, (current, setting) => setting.MergeTo(gameState) || current);
+        var hasChanges = false;
+        hasChanges = newSettings.Aggregate(false, (current, setting) => setting.MergeTo(gameState) || current) || hasChanges;
+
+        if (gameState["NamedIntDatas"] is { } namedIntDataToken)
+        {
+            hasChanges = MergeNamedIntDatas(newNamedIntDatas, namedIntDataToken) || hasChanges;
+        }
+
+        return hasChanges;
+    }
+
+    private static bool MergeNamedIntDatas(IEnumerable<GenericSetting> newNamedIntDatas, JToken namedIntDataToken)
+    {
+        var existingNamedIntData = namedIntDataToken.ToObject<List<NamedIntData>>() ?? Enumerable.Empty<NamedIntData>()
+            .ToList();
+        var newNamedIntData = newNamedIntDatas.Where(setting => setting.IntValue != null)
+            .Select(setting => new NamedIntData(setting.Name, setting.IntValue!.Value))
+            .ToList();
+
+        if (newNamedIntData.SequenceEqual(existingNamedIntData))
+        {
+            return false;
+        }
+
+        namedIntDataToken.Replace(JToken.FromObject(newNamedIntData));
+
+        return true;
     }
 }

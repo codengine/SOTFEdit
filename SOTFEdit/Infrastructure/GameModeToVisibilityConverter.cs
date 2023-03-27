@@ -11,7 +11,7 @@ public class GameModeToVisibilityConverter : IValueConverter
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         var strValue = value as string;
-        return strValue == "Custom" ? Visibility.Visible : Visibility.Hidden;
+        return strValue == "Custom" ? Visibility.Visible : Visibility.Collapsed;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

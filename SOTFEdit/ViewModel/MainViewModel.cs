@@ -1,5 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using NLog;
@@ -36,9 +37,10 @@ public partial class MainViewModel : ObservableObject
     private VegetationState _vegetationStateSelected =
         VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
 
-    public MainViewModel(SavegameManager savegameManager, ArmorPageViewModel armorPageViewModel)
+    public MainViewModel(SavegameManager savegameManager, ArmorPageViewModel armorPageViewModel, GamePage gamePage)
     {
         _armorPageViewModel = armorPageViewModel;
+        GamePage = gamePage;
         SavegameManager = savegameManager;
         BackupFiles = Settings.Default.BackupFiles;
         CheckVersionOnStartup = Settings.Default.CheckForUpdates;
@@ -46,10 +48,8 @@ public partial class MainViewModel : ObservableObject
     }
 
     private SavegameManager SavegameManager { get; }
-    public GameSetupPage GameSetupPage { get; } = new();
+    public GamePage GamePage { get; }
     public InventoryPage InventoryPage { get; } = new();
-    public WeatherPage WeatherPage { get; } = new();
-    public GameStatePage GameStatePage { get; } = new();
     public FollowersPage FollowersPage { get; } = new();
     public PlayerPage PlayerPage { get; } = new();
     public StoragePage StoragePage { get; } = new();
@@ -133,11 +133,9 @@ public partial class MainViewModel : ObservableObject
 
         WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(SelectedSavegame, BackupFiles, createBackup =>
         {
-            var hasChanges = GameSetupPage.Update(SelectedSavegame, createBackup);
+            var hasChanges = Ioc.Default.GetRequiredService<GamePage>().Update(SelectedSavegame, createBackup);
             hasChanges = InventoryPage.Update(SelectedSavegame, createBackup) || hasChanges;
             hasChanges = _armorPageViewModel.Update(SelectedSavegame, createBackup) || hasChanges;
-            hasChanges = WeatherPage.Update(SelectedSavegame, createBackup) || hasChanges;
-            hasChanges = GameStatePage.Update(SelectedSavegame, createBackup) || hasChanges;
             hasChanges = FollowersPage.Update(SelectedSavegame, createBackup) || hasChanges;
             hasChanges = PlayerPage.Update(SelectedSavegame, createBackup) || hasChanges;
             hasChanges = StoragePage.Update(SelectedSavegame, createBackup) || hasChanges;

@@ -1795,5 +1795,29 @@
         358
       ]
     }
-  }
+  },
+  "namedIntKeys": [
+    "LuxuryBunker.EntranceDoor",
+    "LuxuryBunker.HellDoorCaveEntrance",
+    "HangingTacticalGpsPickedUp",
+    "BuriedTacticalGpsPickedUp",
+    "RaftTacticalGpsPickeUp",
+    "BunkerA.EntranceHatch",
+    "BunkerB.EntranceHatch",
+    "BunkerC.EntranceHatch",
+    "HangingTactical",
+    "HangingTacticalCutDown",
+    "BunkerFoodAndDining.EntranceHatch",
+    "BunkerFoodAndDining.DiningDoor",
+    "BunkerFoodAndDining.EntranceDoor",
+    "CaveC.Sluggy",
+    "EntertainmentBunker.ExitDoor",
+    "EntertainmentBunker.EntranceDoor",
+    "EntertainmentBunker.ComputerRoomDoor",
+    "CaveB.Sluggy",
+    "BunkerResidential.ExitDoor",
+    "BunkerResidential.EntranceDoor",
+    "BunkerFoodAndDining.PufftonBossSpawn",
+    "HellCave.MutantDemonBossIntro"
+  ]
 }

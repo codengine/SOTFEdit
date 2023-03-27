@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.7.0
+
+### New Features
+
+- added settings for enemy spawn
+- added setting for consumable effects damage options
+- added setting for survival damage option
+- added setting for weather change frequency
+- added setting to modify the crash location
+- added settings for various World Object States, e.g. if Bunker Doors are open, events have happened etc.
+
+### Improvements
+
+- merge game setup, game state and weather into one page
+
+### Fixes
+
+- fixed saving of game settings and game setup
+
 ## v0.6.0
 
 ### New Features

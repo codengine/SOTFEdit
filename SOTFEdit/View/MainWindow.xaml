@@ -75,9 +75,7 @@
             <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage}" />
             <TabItem Foreground="White" Header="Storage" Content="{Binding StoragePage}" />
             <TabItem Foreground="White" Header="Followers" Content="{Binding FollowersPage}" />
-            <TabItem Foreground="White" Header="Weather" Content="{Binding WeatherPage}" />
-            <TabItem Foreground="White" Header="Game Setup" Content="{Binding GameSetupPage}" />
-            <TabItem Foreground="White" Header="Game State" Content="{Binding GameStatePage}" />
+            <TabItem Foreground="White" Header="Game" Content="{Binding GamePage}" />
             <TabItem Foreground="White" Header="Tools">
                 <Grid HorizontalAlignment="Center" Margin="0 20">
                     <Grid.RowDefinitions>

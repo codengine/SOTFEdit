@@ -12,37 +12,29 @@
     <UserControl.Resources>
         <infrastructure:GenericSettingTypeToVisibilityConverter x:Key="GenericSettingTypeToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid VerticalAlignment="Top">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <GroupBox Header="Settings" Margin="0 0 5 0">
-            <DockPanel Margin="10">
-                <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False"
-                          SelectionMode="Single" ItemsSource="{Binding Settings}" CanUserAddRows="false"
-                          CanUserDeleteRows="False">
-                    <DataGrid.Resources>
-                        <DataTemplate x:Key="DataTemplate" DataType="{x:Type model:GenericSetting}">
-                            <Grid>
-                                <TextBox Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"
-                                         Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=String}" />
-                                <CheckBox IsChecked="{Binding BoolValue, UpdateSourceTrigger=PropertyChanged}"
-                                          Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Bool}" />
-                                <ComboBox ItemsSource="{Binding PossibleValues}"
-                                          DisplayMemberPath="Value"
-                                          SelectedValuePath="Key"
-                                          SelectedValue="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
-                                          Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Combo}" />
-                            </Grid>
-                        </DataTemplate>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Setting" IsReadOnly="True" />
-                        <DataGridTemplateColumn Header="Value" CellTemplate="{StaticResource DataTemplate}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </DockPanel>
-        </GroupBox>
-    </Grid>
+    <GroupBox Header="Weather State" Padding="10">
+        <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False"
+                  SelectionMode="Single" ItemsSource="{Binding Settings}" CanUserAddRows="false"
+                  CanUserDeleteRows="False">
+            <DataGrid.Resources>
+                <DataTemplate x:Key="DataTemplate" DataType="{x:Type model:GenericSetting}">
+                    <Grid>
+                        <TextBox Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"
+                                 Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=String}" />
+                        <CheckBox IsChecked="{Binding BoolValue, UpdateSourceTrigger=PropertyChanged}"
+                                  Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Bool}" />
+                        <ComboBox ItemsSource="{Binding PossibleValues}"
+                                  DisplayMemberPath="Value"
+                                  SelectedValuePath="Key"
+                                  SelectedValue="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                                  Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Combo}" />
+                    </Grid>
+                </DataTemplate>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Setting" IsReadOnly="True" />
+                <DataGridTemplateColumn Header="Value" CellTemplate="{StaticResource DataTemplate}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </GroupBox>
 </UserControl>

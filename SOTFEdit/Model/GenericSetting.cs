@@ -22,7 +22,7 @@ public partial class GenericSetting : ObservableObject
 
     [ObservableProperty] private string? _stringValue;
 
-    public GenericSetting(string name, string dataPath, DataType type)
+    public GenericSetting(string name, DataType type, string? dataPath = null)
     {
         Name = name;
         DataPath = dataPath;
@@ -30,7 +30,7 @@ public partial class GenericSetting : ObservableObject
     }
 
     public string Name { get; }
-    public string DataPath { get; }
+    public string? DataPath { get; }
     public DataType Type { get; }
 
     public Dictionary<object, string> PossibleValues { get; } = new();

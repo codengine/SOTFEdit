@@ -11,124 +11,184 @@
     <UserControl.Resources>
         <infrastructure:GameModeToVisibilityConverter x:Key="GameModeToVisibilityConverter" />
     </UserControl.Resources>
-    <Grid VerticalAlignment="Top">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <GroupBox Header="Settings" Margin="0 0 5 0">
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+        <Grid.Resources>
+            <Style x:Key="LabelStyle" TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}">
+                <Setter Property="Margin" Value="0 0 10 0" />
+                <Setter Property="MinWidth" Value="180" />
+            </Style>
+            <Style x:Key="LabelTopStyle" TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                <Setter Property="Margin" Value="10 0" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 0 0 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Style="{StaticResource LabelTopStyle}" Grid.Row="0">Mode</Label>
+            <ComboBox Grid.Column="1" Grid.Row="0"
+                      Text="{Binding SelectedMode, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem>Normal</ComboBoxItem>
+                <ComboBoxItem>Hard</ComboBoxItem>
+                <ComboBoxItem>Hard Survival</ComboBoxItem>
+                <ComboBoxItem>Peaceful</ComboBoxItem>
+                <ComboBoxItem>Creative</ComboBoxItem>
+                <ComboBoxItem>Custom</ComboBoxItem>
+            </ComboBox>
+            <Label Style="{StaticResource LabelTopStyle}" Grid.Column="0" Grid.Row="1">UID</Label>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Uid}" Foreground="White" />
+        </Grid>
+        <GroupBox Margin="0 0 0 10" Header="Custom Settings" Grid.Row="1" Padding="10"
+                  Visibility="{Binding SelectedMode, Converter={StaticResource GameModeToVisibilityConverter}}">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" ToolTip="How much damage you take eating bad food">Consumable Effects</Label>
+                <ComboBox Grid.Column="1" Grid.Row="0" ToolTip="How much damage you take eating bad food"
+                          Text="{Binding SelectedConsumableEffects, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>Off</ComboBoxItem>
+                    <ComboBoxItem>Normal</ComboBoxItem>
+                    <ComboBoxItem>Hard</ComboBoxItem>
+                </ComboBox>
 
-            <WrapPanel>
-                <WrapPanel.Resources>
-                    <Style x:Key="GameModeCheckboxStyle" TargetType="{x:Type ComboBox}"
-                           BasedOn="{StaticResource MahApps.Styles.ComboBox}">
-                        <Setter Property="Visibility"
-                                Value="{Binding SelectedMode, Converter={StaticResource GameModeToVisibilityConverter}}" />
-                    </Style>
-                    <Style x:Key="GameModeLabelStyle" TargetType="{x:Type Label}"
-                           BasedOn="{StaticResource MahApps.Styles.Label}">
-                        <Setter Property="Visibility"
-                                Value="{Binding SelectedMode, Converter={StaticResource GameModeToVisibilityConverter}}" />
-                    </Style>
-                </WrapPanel.Resources>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0">Mode</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="0"
-                              Text="{Binding SelectedMode, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem>Normal</ComboBoxItem>
-                        <ComboBoxItem>Hard</ComboBoxItem>
-                        <ComboBoxItem>Hard Survival</ComboBoxItem>
-                        <ComboBoxItem>Peaceful</ComboBoxItem>
-                        <ComboBoxItem>Creative</ComboBoxItem>
-                        <ComboBoxItem>Custom</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="1">UID</Label>
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Uid}" Foreground="White" />
-                    <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource GameModeLabelStyle}">Enemy Health</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="2" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedEnemyHealth, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>LOW</ComboBoxItem>
-                        <ComboBoxItem>NORMAL</ComboBoxItem>
-                        <ComboBoxItem>High</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource GameModeLabelStyle}">Enemy Damage</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="3" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedEnemyDamage, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>LOW</ComboBoxItem>
-                        <ComboBoxItem>NORMAL</ComboBoxItem>
-                        <ComboBoxItem>High</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource GameModeLabelStyle}">Enemy Armour</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="4" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedEnemyArmour, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>LOW</ComboBoxItem>
-                        <ComboBoxItem>NORMAL</ComboBoxItem>
-                        <ComboBoxItem>High</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource GameModeLabelStyle}">Enemy Aggression</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="5" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedEnemyAggression, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>LOW</ComboBoxItem>
-                        <ComboBoxItem>NORMAL</ComboBoxItem>
-                        <ComboBoxItem>High</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="6" Style="{StaticResource GameModeLabelStyle}">Animal Spawn Rate</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="6" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedAnimalSpawnRate, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>LOW</ComboBoxItem>
-                        <ComboBoxItem>NORMAL</ComboBoxItem>
-                        <ComboBoxItem>High</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="7" Style="{StaticResource GameModeLabelStyle}">Starting Season</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="7" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedStartingSeason, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>Spring</ComboBoxItem>
-                        <ComboBoxItem>Summer</ComboBoxItem>
-                        <ComboBoxItem>Autumn</ComboBoxItem>
-                        <ComboBoxItem>Winter</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="8" Style="{StaticResource GameModeLabelStyle}">Season Length</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="8" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedSeasonLength, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>Short</ComboBoxItem>
-                        <ComboBoxItem>Default</ComboBoxItem>
-                        <ComboBoxItem>Long</ComboBoxItem>
-                        <ComboBoxItem>Realistic</ComboBoxItem>
-                    </ComboBox>
-                    <Label Grid.Column="0" Grid.Row="9" Style="{StaticResource GameModeLabelStyle}">Day Length</Label>
-                    <ComboBox Grid.Column="1" Grid.Row="9" Style="{StaticResource GameModeCheckboxStyle}"
-                              Text="{Binding SelectedDayLength, UpdateSourceTrigger=PropertyChanged}">
-                        <ComboBoxItem />
-                        <ComboBoxItem>Short</ComboBoxItem>
-                        <ComboBoxItem>Default</ComboBoxItem>
-                        <ComboBoxItem>Long</ComboBoxItem>
-                        <ComboBoxItem>Realistic</ComboBoxItem>
-                    </ComboBox>
-                </Grid>
-            </WrapPanel>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="1" ToolTip="How much damage you take from starvation and etc.">Survival Damage</Label>
+                <ComboBox Grid.Column="1" Grid.Row="1" ToolTip="How much damage you take from starvation and etc."
+                          Text="{Binding SelectedPlayerStatsDamage, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>Off</ComboBoxItem>
+                    <ComboBoxItem>Normal</ComboBoxItem>
+                    <ComboBoxItem>Hard</ComboBoxItem>
+                </ComboBox>
+
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="2">Animal Spawn Rate</Label>
+                <ComboBox Grid.Column="1" Grid.Row="2"
+                          Text="{Binding SelectedAnimalSpawnRate, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>LOW</ComboBoxItem>
+                    <ComboBoxItem>NORMAL</ComboBoxItem>
+                    <ComboBoxItem>High</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Margin="0 0 0 10" Header="Enemies (Custom)" Grid.Row="2" Padding="10"
+                  Visibility="{Binding SelectedMode, Converter={StaticResource GameModeToVisibilityConverter}}">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="0">Spawn Enemies</Label>
+                <CheckBox IsChecked="{Binding SelectedEnemySpawn}" Grid.Row="0" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="1">Enemy Health</Label>
+                <ComboBox Grid.Column="1" Grid.Row="1"
+                          Text="{Binding SelectedEnemyHealth, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>LOW</ComboBoxItem>
+                    <ComboBoxItem>NORMAL</ComboBoxItem>
+                    <ComboBoxItem>High</ComboBoxItem>
+                </ComboBox>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="2">Enemy Damage</Label>
+                <ComboBox Grid.Column="1" Grid.Row="2"
+                          Text="{Binding SelectedEnemyDamage, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>LOW</ComboBoxItem>
+                    <ComboBoxItem>NORMAL</ComboBoxItem>
+                    <ComboBoxItem>High</ComboBoxItem>
+                </ComboBox>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="3">Enemy Armour</Label>
+                <ComboBox Grid.Column="1" Grid.Row="3"
+                          Text="{Binding SelectedEnemyArmour, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>LOW</ComboBoxItem>
+                    <ComboBoxItem>NORMAL</ComboBoxItem>
+                    <ComboBoxItem>High</ComboBoxItem>
+                </ComboBox>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="4">Enemy Aggression</Label>
+                <ComboBox Grid.Column="1" Grid.Row="4"
+                          Text="{Binding SelectedEnemyAggression, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>LOW</ComboBoxItem>
+                    <ComboBoxItem>NORMAL</ComboBoxItem>
+                    <ComboBoxItem>High</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Weather (Custom)" Padding="10" Grid.Row="3"
+                  Visibility="{Binding SelectedMode, Converter={StaticResource GameModeToVisibilityConverter}}">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="0">Starting Season</Label>
+                <ComboBox Grid.Column="1" Grid.Row="0"
+                          Text="{Binding SelectedStartingSeason, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>Spring</ComboBoxItem>
+                    <ComboBoxItem>Summer</ComboBoxItem>
+                    <ComboBoxItem>Autumn</ComboBoxItem>
+                    <ComboBoxItem>Winter</ComboBoxItem>
+                </ComboBox>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="1">Season Length</Label>
+                <ComboBox Grid.Column="1" Grid.Row="1"
+                          Text="{Binding SelectedSeasonLength, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>Short</ComboBoxItem>
+                    <ComboBoxItem>Default</ComboBoxItem>
+                    <ComboBoxItem>Long</ComboBoxItem>
+                    <ComboBoxItem>Realistic</ComboBoxItem>
+                </ComboBox>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="2">Day Length</Label>
+                <ComboBox Grid.Column="1" Grid.Row="2"
+                          Text="{Binding SelectedDayLength, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>Short</ComboBoxItem>
+                    <ComboBoxItem>Default</ComboBoxItem>
+                    <ComboBoxItem>Long</ComboBoxItem>
+                    <ComboBoxItem>Realistic</ComboBoxItem>
+                </ComboBox>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="3" ToolTip="How often does the weather change">Weather Change Frequency</Label>
+                <ComboBox Grid.Column="1" Grid.Row="3" ToolTip="How often does the weather change"
+                          Text="{Binding SelectedPrecipitationFrequency, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBoxItem />
+                    <ComboBoxItem>Low</ComboBoxItem>
+                    <ComboBoxItem>Default</ComboBoxItem>
+                    <ComboBoxItem>High</ComboBoxItem>
+                </ComboBox>
+            </Grid>
         </GroupBox>
     </Grid>
 </UserControl>

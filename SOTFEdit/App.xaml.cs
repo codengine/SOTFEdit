@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using NLog;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Storage;
+using SOTFEdit.View;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit;
@@ -47,6 +48,7 @@ public partial class App
         services.AddSingleton<GameSetupPageViewModel>();
         services.AddSingleton<GameStatePageViewModel>();
         services.AddSingleton<InventoryPageViewModel>();
+        services.AddSingleton<GamePageViewModel>();
         services.AddSingleton<PlayerPageViewModel>();
         services.AddSingleton<WeatherPageViewModel>();
         services.AddSingleton<StoragePageViewModel>();
@@ -54,6 +56,10 @@ public partial class App
         services.AddSingleton<StorageFactory>();
         services.AddSingleton<UpdateChecker>();
         services.AddTransient<SelectSavegameViewModel>();
+        services.AddSingleton<GamePage>();
+        services.AddSingleton<GameStatePage>();
+        services.AddSingleton<GameSetupPage>();
+        services.AddSingleton<WeatherPage>();
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }
 

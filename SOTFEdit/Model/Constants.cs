@@ -15,4 +15,10 @@ public static class Constants
         public const float FullFear = 100.0f;
         public const float LowestSentiment = -100.0f;
     }
+
+    public static class Settings
+    {
+        public const int SettingTypeBool = 0;
+        public const int SettingTypeString = 3;
+    }
 }

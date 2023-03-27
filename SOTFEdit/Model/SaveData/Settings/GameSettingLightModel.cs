@@ -1,3 +1,3 @@
 ﻿namespace SOTFEdit.Model.SaveData.Settings;
 
-public record GameSettingLightModel(string Name, string StringValue);
+public record GameSettingLightModel(string Name, string? StringValue = null, bool? BoolValue = null);

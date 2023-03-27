@@ -162,7 +162,7 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Sentiment</TextBlock>
-                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="0.0"
+                                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="-100.0"
                                                 Maximum="100" Value="{Binding Sentiment}" />
                                         <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
                                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1" Minimum="0.0"

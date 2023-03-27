@@ -7,7 +7,7 @@ namespace SOTFEdit.Model.SaveData.Settings;
 public record GameSettingFullModel
 {
     public string Name { get; set; }
-    public int SettingsType { get; set; } = 3;
+    public int SettingsType { get; set; } = Constants.Settings.SettingTypeString;
     public int Version { get; set; } = 0;
     public bool BoolValue { get; set; } = false;
     public int IntValue { get; set; } = 0;
