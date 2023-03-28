@@ -19,7 +19,7 @@ public partial class ArmorPageViewModel
     {
         NewArmour = new NewArmourPiece(Armour, () => _selectedSavegame != null);
         _itemList = gameData.Items;
-        foreach (var armorItem in _itemList.Where(item => item.Value.Type == "armor").OrderBy(item => item.Value.Name)) ArmourTypes.Add(armorItem.Value);
+        foreach (var armorItem in _itemList.Where(item => item.Value.IsEquippableArmor).OrderBy(item => item.Value.Name)) ArmourTypes.Add(armorItem.Value);
 
         SetupListeners();
     }

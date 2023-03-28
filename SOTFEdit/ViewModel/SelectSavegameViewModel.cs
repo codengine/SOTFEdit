@@ -22,7 +22,7 @@ public partial class SelectSavegameViewModel : ObservableObject
     }
 
     public List<Savegame> SinglePlayerSaves => _savegames
-        .Where(savegame => savegame.IsSinglePlayer())
+        .Where(savegame => savegame.IsSinglePlayer() || savegame.HasUnknownParentDir())
         .ToList();
 
     public List<Savegame> MultiPlayerSaves => _savegames

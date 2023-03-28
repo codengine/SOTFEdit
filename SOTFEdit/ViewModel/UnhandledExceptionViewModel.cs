@@ -17,10 +17,21 @@ public partial class UnhandledExceptionViewModel : ObservableObject
     public Exception Exception { get; }
     public string? ExceptionType => Exception.GetType().FullName;
 
+    public string ApplicationVersion
+    {
+        get
+        {
+            App.GetAssemblyVersion(out _, out var assemblyVersion);
+            return assemblyVersion.ToString();
+        }
+    }
+
     [RelayCommand]
     private void CopyToClipboard()
     {
         var text = new StringBuilder();
+        App.GetAssemblyVersion(out _, out var assemblyVersion);
+        text.AppendLine($"Version: {assemblyVersion}");
         text.AppendLine($"Message: {Exception.Message}");
         text.AppendLine($"Exception Type: {ExceptionType}");
         text.AppendLine($"Callstack: {Exception.StackTrace}");

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using NLog;
-using Semver;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
@@ -30,18 +28,10 @@ public partial class MainWindow
         DataContext = Ioc.Default.GetRequiredService<MainViewModel>();
         InitializeComponent();
 
-        GetAssemblyVersion(out var assemblyName, out var assemblyVersion);
+        App.GetAssemblyVersion(out var assemblyName, out var assemblyVersion);
 
         _baseTitle = $"{assemblyName} v{assemblyVersion}";
         Title = _baseTitle;
-    }
-
-    private static void GetAssemblyVersion(out string assemblyName, out SemVersion assemblyVersion)
-    {
-        var assemblyInfo = Assembly.GetExecutingAssembly()
-            .GetName();
-        assemblyName = assemblyInfo.Name ?? "SOTFEdit";
-        assemblyVersion = SemVersion.FromVersion(assemblyInfo.Version);
     }
 
     private void SetupListeners()

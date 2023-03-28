@@ -28,7 +28,7 @@ public partial class SelectSavegameWindow
             (_, _) => { OnRequestSelectSavegameDirEvent(); });
     }
 
-    private static void OnRequestSelectSavegameDirEvent()
+    private void OnRequestSelectSavegameDirEvent()
     {
         var folderBrowser = new FolderPicker
         {
@@ -36,7 +36,7 @@ public partial class SelectSavegameWindow
             InputPath = SavegameManager.GetSavePath()
         };
 
-        if (folderBrowser.ShowDialog() != true)
+        if (folderBrowser.ShowDialog(this) != true)
         {
             return;
         }

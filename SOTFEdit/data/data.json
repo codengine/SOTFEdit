@@ -457,31 +457,36 @@
       "id": "494",
       "name": "Bone Armour",
       "type": "armor",
-      "nameDe": "Knochenrüstung"
+      "nameDe": "Knochenrüstung",
+      "isEquippableArmor": true
     },
     {
       "id": "593",
       "name": "Creepy Armour",
       "type": "armor",
-      "nameDe": "Mutantenrüstung"
+      "nameDe": "Mutantenrüstung",
+      "isEquippableArmor": true
     },
     {
       "id": "519",
       "name": "Deer Hide Armour",
       "type": "armor",
-      "nameDe": "Tierhautrüstung"
+      "nameDe": "Tierhautrüstung",
+      "isEquippableArmor": true
     },
     {
       "id": "572",
       "name": "Golden Armour",
       "type": "armor",
-      "nameDe": "Goldrüstung"
+      "nameDe": "Goldrüstung",
+      "isEquippableArmor": true
     },
     {
       "id": "473",
       "name": "Leaf Armour",
       "type": "armor",
-      "nameDe": "Blätterrüstung"
+      "nameDe": "Blätterrüstung",
+      "isEquippableArmor": true
     },
     {
       "id": "492",
@@ -493,7 +498,8 @@
       "id": "554",
       "name": "Tech Armour",
       "type": "armor",
-      "nameDe": "Tech-Rüstung"
+      "nameDe": "Tech-Rüstung",
+      "isEquippableArmor": true
     },
     {
       "id": "491",

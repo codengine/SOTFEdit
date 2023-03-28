@@ -44,6 +44,10 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel>
+                    <TextBlock Style="{StaticResource Label}"
+                               Text="Application Version" />
+                    <TextBlock Style="{StaticResource Content}"
+                               Text="{Binding ApplicationVersion, Mode=OneWay, TargetNullValue=-}" />
                     <!--  Exception Message  -->
                     <TextBlock Style="{StaticResource Label}"
                                Text="Exception message" />

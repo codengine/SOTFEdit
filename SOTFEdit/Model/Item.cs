@@ -10,6 +10,7 @@ public class Item
     public string Type { get; init; }
     public List<ItemModule>? Modules { get; init; }
     public bool IsInventoryItem { get; init; } = true;
+    public bool IsEquippableArmor { get; init; } = false;
     public int Max { get; init; } = 1000;
 }
 

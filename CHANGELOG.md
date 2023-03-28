@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.7.1
+
+### Improvements
+
+- bug reports now contain the application version (window + clipboard)
+- you can now load savegames from any location
+
+### Fixes
+
+- fix follower equipment editing
+- savegame selector was not working properly
+- removed "creepy skin" from the armor page
+
 ## v0.7.0
 
 ### New Features

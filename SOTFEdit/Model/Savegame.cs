@@ -225,6 +225,11 @@ public class Savegame : ObservableObject
         return ParentDirIs("multiplayerclient");
     }
 
+    public bool HasUnknownParentDir()
+    {
+        return !IsSinglePlayer() && !IsMultiPlayer() && !IsMultiPlayerClient();
+    }
+
     private bool ParentDirIs(string value)
     {
         return SavegameStore.GetParentDirectory()?.Name.ToLower().Equals(value) ?? false;

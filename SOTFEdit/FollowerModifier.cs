@@ -79,7 +79,12 @@ public class FollowerModifier
 
         foreach (var (uniqueId, actor) in uniqueIdToActorTokenForType)
         {
-            hasChangesInNpcItemInstances = EquipItems(actor, uniqueId, itemIds) || hasChangesInNpcItemInstances;
+            hasChangesInVailWorldSim = EquipItemsInActor(actor, itemIds) || hasChangesInVailWorldSim;
+            if (uniqueId is { })
+            {
+                hasChangesInNpcItemInstances = EquipItemsInNpcItemInstances(uniqueId, itemIds) || hasChangesInNpcItemInstances;
+            }
+
             hasChangesInVailWorldSim = EquipOutfit(actor, outfit) || hasChangesInVailWorldSim;
         }
 
@@ -133,18 +138,6 @@ public class FollowerModifier
         }
 
         influenceMemoryToken.Add(JToken.FromObject(new InfluenceMemory(uniqueId, influences)));
-    }
-
-    private bool EquipItems(JToken actor, int? uniqueId, IReadOnlySet<int> itemIds)
-    {
-        var hasChanges = false;
-        hasChanges = EquipItemsInActor(actor, itemIds) || hasChanges;
-        if (uniqueId is { } theUniqueId)
-        {
-            hasChanges = EquipItemsInNpcItemInstances(theUniqueId, itemIds) || hasChanges;
-        }
-
-        return hasChanges;
     }
 
     private static bool EquipItemsInActor(JToken actor, IReadOnlySet<int> itemIds)
@@ -360,7 +353,14 @@ public class FollowerModifier
 
             var uniqueId = actor["UniqueId"]?.Value<int>();
 
-            hasChangesInNpcItemInstances = EquipItems(actor, uniqueId, followerModel.GetSelectedInventoryItemIds()) || hasChangesInNpcItemInstances;
+            var itemIds = followerModel.GetSelectedInventoryItemIds();
+            hasChangesInVailWorldSim = EquipItemsInActor(actor, itemIds) || hasChangesInVailWorldSim;
+            if (uniqueId is { } theUniqueId)
+            {
+                hasChangesInNpcItemInstances = EquipItemsInNpcItemInstances(theUniqueId, itemIds) || hasChangesInNpcItemInstances;
+                hasChangesInVailWorldSim = UpdateInfluenceMemory(vailWorldSim, followerModel.Influences, theUniqueId) || hasChangesInVailWorldSim;
+            }
+
             hasChangesInVailWorldSim = EquipOutfit(actor, followerModel.Outfit) || hasChangesInVailWorldSim;
 
             if (actor["Stats"] is not { } stats)
@@ -375,10 +375,6 @@ public class FollowerModifier
             hasChangesInVailWorldSim = ModifyStat(stats, "Hydration", followerModel.Hydration) || hasChangesInVailWorldSim;
             hasChangesInVailWorldSim = ModifyStat(stats, "Energy", followerModel.Energy) || hasChangesInVailWorldSim;
             hasChangesInVailWorldSim = ModifyStat(stats, "Affection", followerModel.Affection) || hasChangesInVailWorldSim;
-            if (uniqueId is { } theUniqueId)
-            {
-                hasChangesInVailWorldSim = UpdateInfluenceMemory(vailWorldSim, followerModel.Influences, theUniqueId) || hasChangesInVailWorldSim;
-            }
         }
 
         if (hasChangesInVailWorldSim)
@@ -467,7 +463,10 @@ public class FollowerModifier
             hasChangesInVailWorldSim = true;
             AddInfluencesForNewFollower(vailWorldSim, kvp.Key);
 
-            hasChangesInNpcItemInstances = EquipItems(kvp.Value, kvp.Key, itemIds) || hasChangesInNpcItemInstances;
+            hasChangesInVailWorldSim = EquipItemsInActor(kvp.Value, itemIds) || hasChangesInVailWorldSim;
+            hasChangesInNpcItemInstances = EquipItemsInNpcItemInstances(kvp.Key, itemIds) || hasChangesInNpcItemInstances;
+            hasChangesInVailWorldSim = EquipOutfit(kvp.Value, outfit) || hasChangesInVailWorldSim;
+
             hasChangesInVailWorldSim = EquipOutfit(kvp.Value, outfit) || hasChangesInVailWorldSim;
         }
 
