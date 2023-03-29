@@ -29,9 +29,9 @@ public abstract class BaseStorage : ObservableObject, IStorage
 
     public ObservableCollection<StorageSlot> Slots { get; } = new();
 
-    public string Description => $"{Definition.Name} #{_index} ({GetTotalStored()})";
-
     public List<ItemWrapper> SupportedItems => GetSupportedItems();
+
+    public string Description => $"{Definition.Name} #{_index} ({GetTotalStored()})";
 
     public virtual void SetItemsFromJson(StorageSaveData saveData)
     {
@@ -85,6 +85,20 @@ public abstract class BaseStorage : ObservableObject, IStorage
     }
 
     public abstract StorageSaveData ToStorageSaveData();
+
+    public virtual void SetAllToMax()
+    {
+        foreach (var slot in Slots)
+        foreach (var storedItem in slot.StoredItems)
+            if (!storedItem.HasItem() && storedItem.SupportedItems.Count == 1)
+            {
+                storedItem.SelectedItem = storedItem.SupportedItems[0];
+            }
+            else if (storedItem.HasItem())
+            {
+                storedItem.Count = storedItem.Max;
+            }
+    }
 
     private int GetTotalStored()
     {

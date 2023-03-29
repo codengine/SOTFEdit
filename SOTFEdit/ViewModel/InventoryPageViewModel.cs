@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -14,9 +14,9 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryPageViewModel : ObservableObject
 {
-    private readonly ObservableCollection<InventoryItem> _inventory = new();
+    private readonly WpfObservableRangeCollection<InventoryItem> _inventory = new();
     private readonly ItemList _itemList;
-    private readonly ObservableCollection<InventoryItem> _unassignedItems = new();
+    private readonly WpfObservableRangeCollection<InventoryItem> _unassignedItems = new();
     [ObservableProperty] private string _inventoryFilter = "";
     [ObservableProperty] private string _unassignedItemsFilter = "";
 
@@ -35,8 +35,29 @@ public partial class InventoryPageViewModel : ObservableObject
                 Filter = OnFilterUnassignedItems
             };
         _itemList = gameData.Items;
+
+        var categories = gameData.Items
+            .Where(item => item.Value.IsInventoryItem)
+            .Select(item => item.Value.Type)
+            .Distinct()
+            .OrderBy(type => type)
+            .Select(type => new Category(type));
+
+        Categories.AddRange(categories);
+
+        _inventory.CollectionChanged += (_, _) =>
+        {
+            RemoveAllEquippedCommand.NotifyCanExecuteChanged();
+            SetAllEquippedToMaxCommand.NotifyCanExecuteChanged();
+            SetAllEquippedToMinCommand.NotifyCanExecuteChanged();
+        };
+
+        _unassignedItems.CollectionChanged += (_, _) => { AddAllFromCategoryCommand.NotifyCanExecuteChanged(); };
+
         SetupListeners();
     }
+
+    public WpfObservableRangeCollection<Category> Categories { get; } = new();
 
     public GenericCollectionView<InventoryItem> InventoryCollectionView { get; }
     public GenericCollectionView<InventoryItem> UnassignedItemsCollectionView { get; }
@@ -80,13 +101,13 @@ public partial class InventoryPageViewModel : ObservableObject
     private bool OnFilterUnassignedItems(object? obj)
     {
         var filter = UnassignedItemsFilter;
-        if (string.IsNullOrWhiteSpace(UnassignedItemsFilter) || obj == null)
+        if (string.IsNullOrWhiteSpace(filter) || obj == null)
         {
             return true;
         }
 
         var item = (InventoryItem)obj;
-        return FilterItem(item, filter.ToLower());
+        return FilterItem(item, filter);
     }
 
     private bool OnFilterInventory(object? obj)
@@ -98,14 +119,15 @@ public partial class InventoryPageViewModel : ObservableObject
         }
 
         var item = (InventoryItem)obj;
-        return FilterItem(item, filter.ToLower());
+        return FilterItem(item, filter);
     }
 
     private static bool FilterItem(InventoryItem item, string filter)
     {
-        return item.Name.ToLower().Contains(filter) || item.NameDe.ToLower().Contains(filter) ||
-               item.Id.ToString().Contains(filter) || item.Type
-                   .Contains(filter) || item.TotalCount.ToString().Contains(filter);
+        return item.Name.Contains(filter, StringComparison.InvariantCultureIgnoreCase) ||
+               item.NameDe.Contains(filter, StringComparison.InvariantCultureIgnoreCase) ||
+               item.Type.Contains(filter, StringComparison.InvariantCultureIgnoreCase) ||
+               item.Id.ToString().Contains(filter);
     }
 
     private void SetupListeners()
@@ -116,10 +138,10 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
-        _inventory.Clear();
-        _unassignedItems.Clear();
         if (m.SelectedSavegame == null)
         {
+            _inventory.Clear();
+            _unassignedItems.Clear();
             return;
         }
 
@@ -130,23 +152,23 @@ public partial class InventoryPageViewModel : ObservableObject
                 .PlayerInventorySaveData);
         if (saveData != null)
         {
-            foreach (var itemBlock in saveData.Data.PlayerInventory.ItemInstanceManagerData.ItemBlocks)
-            {
-                _inventory.Add(new InventoryItem(itemBlock, _itemList.GetItem(itemBlock.ItemId)));
-                assignedItems.Add(itemBlock.ItemId);
-            }
+            var inventoryItems = saveData.Data.PlayerInventory.ItemInstanceManagerData.ItemBlocks
+                .Select(itemBlock => new InventoryItem(itemBlock, _itemList.GetItem(itemBlock.ItemId)))
+                .ToList();
+            _inventory.ReplaceRange(inventoryItems);
+
+            foreach (var inventoryItem in inventoryItems) assignedItems.Add(inventoryItem.Id);
         }
 
-        foreach (var item in _itemList)
-            if (!assignedItems.Contains(item.Key) && item.Value.IsInventoryItem)
-            {
-                _unassignedItems.Add(BuildUnassignedItem(item.Value));
-            }
+        var unassignedItems = _itemList.Where(item => !assignedItems.Contains(item.Value.Id))
+            .Select(item => BuildUnassignedItem(item.Value));
+
+        _unassignedItems.AddRange(unassignedItems);
     }
 
     private static InventoryItem BuildUnassignedItem(Item item)
     {
-        var itemBlock = ItemBlockModel.Unassigned(item.Id);
+        var itemBlock = ItemBlockModel.Unassigned(item);
         return new InventoryItem(itemBlock, item);
     }
 
@@ -173,4 +195,53 @@ public partial class InventoryPageViewModel : ObservableObject
 
         return true;
     }
+
+    [RelayCommand(CanExecute = nameof(HasInventoryItems))]
+    private void SetAllEquippedToMin()
+    {
+        foreach (var inventoryItem in _inventory) inventoryItem.TotalCount = 1;
+    }
+
+    [RelayCommand(CanExecute = nameof(HasInventoryItems))]
+    private void SetAllEquippedToMax()
+    {
+        foreach (var inventoryItem in _inventory) inventoryItem.TotalCount = inventoryItem.Max;
+    }
+
+    [RelayCommand(CanExecute = nameof(HasInventoryItems))]
+    private void RemoveAllEquipped()
+    {
+        foreach (var inventoryItem in _inventory.ToList()) RemoveItemFromInventory(inventoryItem);
+    }
+
+    private bool HasInventoryItems()
+    {
+        return _inventory.Count > 0;
+    }
+
+    private bool HasUnassignedItems()
+    {
+        return _unassignedItems.Count > 0;
+    }
+
+    [RelayCommand(CanExecute = nameof(HasUnassignedItems))]
+    private void AddAllFromCategory(Category category)
+    {
+        var items = _unassignedItems.Where(item => item.Type == category.Type).ToList();
+        _unassignedItems.RemoveRange(items);
+        _inventory.AddRange(items);
+    }
+}
+
+public class Category
+{
+    public Category(string type)
+    {
+        Type = type;
+    }
+
+    public string Type { get; }
+
+    // ReSharper disable once UnusedMember.Global
+    public string TypeRendered => Type.FirstCharToUpper();
 }

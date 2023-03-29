@@ -23,7 +23,8 @@ public class SavegameStore
         WorldObjectLocatorManagerSaveData,
         WeatherSystemSaveData,
         PlayerStateSaveData,
-        ScrewStructureInstancesSaveData
+        ScrewStructureInstancesSaveData,
+        PlayerClothingSystemSaveData
     }
 
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();

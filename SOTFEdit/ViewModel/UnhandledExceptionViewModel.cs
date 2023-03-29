@@ -17,7 +17,7 @@ public partial class UnhandledExceptionViewModel : ObservableObject
     public Exception Exception { get; }
     public string? ExceptionType => Exception.GetType().FullName;
 
-    public string ApplicationVersion
+    public static string ApplicationVersion
     {
         get
         {

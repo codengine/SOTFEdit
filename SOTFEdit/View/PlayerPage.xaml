@@ -39,8 +39,8 @@
                 <Setter Property="Margin" Value="0 0 0 10" />
             </Style>
         </Grid.Resources>
-        <GroupBox Header="Player" Margin="0 0 5 0" VerticalAlignment="Top">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer>
+            <GroupBox Header="Player" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 0 0 10">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -57,6 +57,7 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
@@ -95,14 +96,17 @@
                         <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource PlayerTextBlockStyleLeft}">Stamina</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
                                 Maximum="100" Interval="10" Value="{Binding PlayerState.Stamina}" />
-                        <Button Grid.Row="10" Grid.Column="1" HorizontalAlignment="Center"
-                                Command="{Binding FillAllBarsCommand}">
+                        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                                Command="{Binding FillAllBarsCommand}" Margin="0 0 0 10">
                             Fill all bars
                         </Button>
+                        <TextBlock Grid.Column="0" Grid.Row="11" Style="{StaticResource PlayerTextBlockStyleLeft}">Outfit</TextBlock>
+                        <ComboBox IsEditable="False" Grid.Column="1" Grid.Row="11" ItemsSource="{Binding AvailableClothesView}" DisplayMemberPath="Name"
+                                  SelectedItem="{Binding PlayerState.SelectedCloth}" />
                     </Grid>
                 </Grid>
-            </ScrollViewer>
-        </GroupBox>
+            </GroupBox>
+        </ScrollViewer>
         <ContentPresenter Grid.Column="1" Content="{Binding ArmorPage}" Margin="5 0 0 0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

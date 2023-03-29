@@ -12,7 +12,7 @@ public record PlayerArmourSystemModel : SotfBaseModel
         List<ArmourPieceModel> selectedArmorPieces)
     {
         var hasChanges = !armourSystemModel.ArmourPieces.OrderBy(piece => piece.Slot)
-            .SequenceEqual(selectedArmorPieces.OrderBy(piece => piece.Slot));
+            .SequenceEqual(selectedArmorPieces.OrderBy(piece => piece.Slot), ArmourPieceModel.ArmourPieceModelComparer);
         if (hasChanges)
         {
             armourSystemModel.ArmourPieces = new List<ArmourPieceModel>(selectedArmorPieces);

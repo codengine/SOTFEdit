@@ -22,6 +22,8 @@ public partial class MainWindow
 
     private readonly string _baseTitle;
 
+    private Window? _exceptionWindowOwner = null;
+
     public MainWindow()
     {
         SetupListeners();
@@ -32,6 +34,8 @@ public partial class MainWindow
 
         _baseTitle = $"{assemblyName} v{assemblyVersion}";
         Title = _baseTitle;
+
+        Loaded += OnLoaded;
     }
 
     private void SetupListeners()
@@ -70,7 +74,7 @@ public partial class MainWindow
     {
         Application.Current.Dispatcher.BeginInvoke(new Action(() =>
         {
-            var unhandledExceptionWindow = new UnhandledExceptionWindow(this, message.Exception);
+            var unhandledExceptionWindow = new UnhandledExceptionWindow(_exceptionWindowOwner, message.Exception);
             unhandledExceptionWindow.ShowDialog();
         }));
     }
@@ -176,8 +180,9 @@ public partial class MainWindow
         });
     }
 
-    protected override void OnContentRendered(EventArgs e)
+    private void OnLoaded(object sender, RoutedEventArgs e)
     {
+        _exceptionWindowOwner = this;
         if (Settings.Default.CheckForUpdates)
         {
             CheckForUpdate(false, false, false);

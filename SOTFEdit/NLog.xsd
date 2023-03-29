@@ -44,7 +44,8 @@
         </xs:attribute>
         <xs:attribute name="throwExceptions" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Throw an exception when there is an internal error. Default value is: false. Not recommend to set to true in production!
+                <xs:documentation>
+                    Throw an exception when there is an internal error. Default value is: false. Not recommend to set to true in production!
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -55,7 +56,8 @@
         </xs:attribute>
         <xs:attribute name="keepVariablesOnReload" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Gets or sets a value indicating whether Variables should be kept on configuration reload. Default value is: false.
+                <xs:documentation>
+                    Gets or sets a value indicating whether Variables should be kept on configuration reload. Default value is: false.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -76,7 +78,8 @@
         </xs:attribute>
         <xs:attribute name="parseMessageTemplates" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Perform message template parsing and formatting of LogEvent messages (true = Always, false = Never, empty = Auto Detect).
+                <xs:documentation>
+                    Perform message template parsing and formatting of LogEvent messages (true = Always, false = Never, empty = Auto Detect).
                     Default value is: empty.
                 </xs:documentation>
             </xs:annotation>
@@ -92,7 +95,8 @@
         </xs:choice>
         <xs:attribute name="async" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Make all targets within this section asynchronous (creates additional threads but the calling thread isn't blocked by any
+                <xs:documentation>
+                    Make all targets within this section asynchronous (creates additional threads but the calling thread isn't blocked by any
                     target writes).
                 </xs:documentation>
             </xs:annotation>
@@ -223,7 +227,8 @@
     <xs:complexType name="NLogInclude">
         <xs:attribute name="file" type="SimpleLayoutAttribute" use="required">
             <xs:annotation>
-                <xs:documentation>Name of the file to be included. You could use * wildcard. The name is relative to the name of the current config file.
+                <xs:documentation>
+                    Name of the file to be included. You could use * wildcard. The name is relative to the name of the current config file.
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -341,7 +346,8 @@
                 </xs:attribute>
                 <xs:attribute name="fullBatchSizeWriteLimit" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Number of batches of P:NLog.Targets.Wrappers.AsyncTargetWrapper.BatchSize to write before yielding into
+                        <xs:documentation>
+                            Number of batches of P:NLog.Targets.Wrappers.AsyncTargetWrapper.BatchSize to write before yielding into
                             P:NLog.Targets.Wrappers.AsyncTargetWrapper.TimeToSleepBetweenBatches
                         </xs:documentation>
                     </xs:annotation>
@@ -387,7 +393,8 @@
                 </xs:attribute>
                 <xs:attribute name="flushOnConditionOnly" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Only flush when LogEvent matches condition. Ignore explicit-flush, config-reload-flush and shutdown-flush
+                        <xs:documentation>
+                            Only flush when LogEvent matches condition. Ignore explicit-flush, config-reload-flush and shutdown-flush
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -422,7 +429,8 @@
                 </xs:attribute>
                 <xs:attribute name="flushTimeout" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Timeout (in milliseconds) after which the contents of buffer will be flushed if there's no write in the specified
+                        <xs:documentation>
+                            Timeout (in milliseconds) after which the contents of buffer will be flushed if there's no write in the specified
                             period of time. Use -1 to disable timed flushes.
                         </xs:documentation>
                     </xs:annotation>
@@ -513,7 +521,8 @@
                 </xs:attribute>
                 <xs:attribute name="includeSourceInfo" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to include source info (file name and line number) in the information sent over the network.
+                        <xs:documentation>
+                            Indicates whether to include source info (file name and line number) in the information sent over the network.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -529,7 +538,8 @@
                 </xs:attribute>
                 <xs:attribute name="includeCallSite" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to include call site (class and method name) in the information sent over the network.
+                        <xs:documentation>
+                            Indicates whether to include call site (class and method name) in the information sent over the network.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -550,7 +560,8 @@
                 </xs:attribute>
                 <xs:attribute name="onConnectionOverflow" type="NLog.Targets.NetworkTargetConnectionsOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken, when more connections than P:NLog.Targets.NetworkTarget.MaxConnections.
+                        <xs:documentation>
+                            Action that should be taken, when more connections than P:NLog.Targets.NetworkTarget.MaxConnections.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -561,19 +572,22 @@
                 </xs:attribute>
                 <xs:attribute name="onQueueOverflow" type="NLog.Targets.NetworkTargetQueueOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken, when more pending messages than P:NLog.Targets.NetworkTarget.MaxQueueSize.
+                        <xs:documentation>
+                            Action that should be taken, when more pending messages than P:NLog.Targets.NetworkTarget.MaxQueueSize.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="onOverflow" type="NLog.Targets.NetworkTargetOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken if the message is larger than P:NLog.Targets.NetworkTarget.MaxMessageSize
+                        <xs:documentation>
+                            Action that should be taken if the message is larger than P:NLog.Targets.NetworkTarget.MaxMessageSize
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="maxQueueSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Maximum queue size for a single connection. Requires P:NLog.Targets.NetworkTarget.KeepConnection = true
+                        <xs:documentation>
+                            Maximum queue size for a single connection. Requires P:NLog.Targets.NetworkTarget.KeepConnection = true
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -594,7 +608,8 @@
                 </xs:attribute>
                 <xs:attribute name="connectionCacheSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Size of the connection cache (number of connections which are kept alive). Requires
+                        <xs:documentation>
+                            Size of the connection cache (number of connections which are kept alive). Requires
                             P:NLog.Targets.NetworkTarget.KeepConnection = true
                         </xs:documentation>
                     </xs:annotation>
@@ -611,13 +626,15 @@
                 </xs:attribute>
                 <xs:attribute name="compressMinBytes" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
+                        <xs:documentation>
+                            Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="maxMessageSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Maximum message size in bytes. On limit breach then P:NLog.Targets.NetworkTarget.OnOverflow action is activated.
+                        <xs:documentation>
+                            Maximum message size in bytes. On limit breach then P:NLog.Targets.NetworkTarget.OnOverflow action is activated.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -628,7 +645,8 @@
                 </xs:attribute>
                 <xs:attribute name="lineEnding" type="LineEndingMode">
                     <xs:annotation>
-                        <xs:documentation>End of line value if a newline is appended at the end of log message P:NLog.Targets.NetworkTarget.NewLine.
+                        <xs:documentation>
+                            End of line value if a newline is appended at the end of log message P:NLog.Targets.NetworkTarget.NewLine.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -747,7 +765,8 @@
                 </xs:attribute>
                 <xs:attribute name="detectConsoleAvailable" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to auto-check if the console is available. - Disables console writing if Environment.UserInteractive
+                        <xs:documentation>
+                            Indicates whether to auto-check if the console is available. - Disables console writing if Environment.UserInteractive
                             = False (Windows Service) - Disables console writing if Console Standard Input is not available (Non-Console-App)
                         </xs:documentation>
                     </xs:annotation>
@@ -774,7 +793,8 @@
                 </xs:attribute>
                 <xs:attribute name="detectOutputRedirected" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to auto-check if the console has been redirected to file - Disables coloring logic when
+                        <xs:documentation>
+                            Indicates whether to auto-check if the console has been redirected to file - Disables coloring logic when
                             System.Console.IsOutputRedirected = true
                         </xs:documentation>
                     </xs:annotation>
@@ -852,7 +872,8 @@
         </xs:attribute>
         <xs:attribute name="compileRegex" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation>Compile the P:NLog.Targets.ConsoleWordHighlightingRule.Regex? This can improve the performance, but at the costs of more
+                <xs:documentation>
+                    Compile the P:NLog.Targets.ConsoleWordHighlightingRule.Regex? This can improve the performance, but at the costs of more
                     memory usage. If false, the Regex Cache is used.
                 </xs:documentation>
             </xs:annotation>
@@ -929,7 +950,8 @@
                 </xs:attribute>
                 <xs:attribute name="detectConsoleAvailable" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to auto-check if the console is available - Disables console writing if Environment.UserInteractive
+                        <xs:documentation>
+                            Indicates whether to auto-check if the console is available - Disables console writing if Environment.UserInteractive
                             = False (Windows Service) - Disables console writing if Console Standard Input is not available (Non-Console-App)
                         </xs:documentation>
                     </xs:annotation>
@@ -946,7 +968,8 @@
                 </xs:attribute>
                 <xs:attribute name="writeBuffer" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Whether to activate internal buffering to allow batch writing, instead of using M:System.Console.WriteLine
+                        <xs:documentation>
+                            Whether to activate internal buffering to allow batch writing, instead of using M:System.Console.WriteLine
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -987,21 +1010,24 @@
                 </xs:attribute>
                 <xs:attribute name="dbUserName" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Database user name. If the ConnectionString is not provided this value will be used to construct the "User ID=" part
+                        <xs:documentation>
+                            Database user name. If the ConnectionString is not provided this value will be used to construct the "User ID=" part
                             of the connection string.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="dbPassword" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Database password. If the ConnectionString is not provided this value will be used to construct the "Password=" part
+                        <xs:documentation>
+                            Database password. If the ConnectionString is not provided this value will be used to construct the "Password=" part
                             of the connection string.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="dbDatabase" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Database name. If the ConnectionString is not provided this value will be used to construct the "Database=" part of
+                        <xs:documentation>
+                            Database name. If the ConnectionString is not provided this value will be used to construct the "Database=" part of
                             the connection string.
                         </xs:documentation>
                     </xs:annotation>
@@ -1013,7 +1039,8 @@
                 </xs:attribute>
                 <xs:attribute name="dbHost" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Database host name. If the ConnectionString is not provided this value will be used to construct the "Server=" part of
+                        <xs:documentation>
+                            Database host name. If the ConnectionString is not provided this value will be used to construct the "Server=" part of
                             the connection string.
                         </xs:documentation>
                     </xs:annotation>
@@ -1030,20 +1057,23 @@
                 </xs:attribute>
                 <xs:attribute name="connectionString" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Connection string. When provided, it overrides the values specified in DBHost, DBUserName, DBPassword, DBDatabase.
+                        <xs:documentation>
+                            Connection string. When provided, it overrides the values specified in DBHost, DBUserName, DBPassword, DBDatabase.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="installConnectionString" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Connection string using for installation and uninstallation. If not provided, regular ConnectionString is being
+                        <xs:documentation>
+                            Connection string using for installation and uninstallation. If not provided, regular ConnectionString is being
                             used.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="isolationLevel" type="System.Data.IsolationLevel">
                     <xs:annotation>
-                        <xs:documentation>Configures isolated transaction batch writing. If supported by the database, then it will improve insert
+                        <xs:documentation>
+                            Configures isolated transaction batch writing. If supported by the database, then it will improve insert
                             performance.
                         </xs:documentation>
                     </xs:annotation>
@@ -1330,7 +1360,8 @@
                 </xs:attribute>
                 <xs:attribute name="entryType" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Optional entry type. When not set, or when not convertible to T:System.Diagnostics.EventLogEntryType then determined
+                        <xs:documentation>
+                            Optional entry type. When not set, or when not convertible to T:System.Diagnostics.EventLogEntryType then determined
                             by T:NLog.LogLevel
                         </xs:documentation>
                     </xs:annotation>
@@ -1367,7 +1398,8 @@
                 </xs:attribute>
                 <xs:attribute name="onOverflow" type="NLog.Targets.EventLogTargetOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action to take if the message is larger than the P:NLog.Targets.EventLogTarget.MaxMessageLength option.
+                        <xs:documentation>
+                            Action to take if the message is larger than the P:NLog.Targets.EventLogTarget.MaxMessageLength option.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -1555,7 +1587,8 @@
                 </xs:attribute>
                 <xs:attribute name="forceManaged" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
+                        <xs:documentation>
+                            Gets or set a value indicating whether a managed file stream is forced, instead of using the native implementation.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -1571,14 +1604,16 @@
                 </xs:attribute>
                 <xs:attribute name="cleanupFileName" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Cleanup invalid values in a filename, e.g. slashes in a filename. If set to true, this can impact the performance of
+                        <xs:documentation>
+                            Cleanup invalid values in a filename, e.g. slashes in a filename. If set to true, this can impact the performance of
                             massive writes. If set to false, nothing gets written when the filename is wrong.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="writeBom" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to write BOM (byte order mark) in created files. Defaults to true for UTF-16 and UTF-32
+                        <xs:documentation>
+                            Indicates whether to write BOM (byte order mark) in created files. Defaults to true for UTF-16 and UTF-32
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -1599,7 +1634,8 @@
                 </xs:attribute>
                 <xs:attribute name="replaceFileContentsOnEachWrite" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to replace file contents on each write instead of appending log message at the end.
+                        <xs:documentation>
+                            Indicates whether to replace file contents on each write instead of appending log message at the end.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -1630,7 +1666,8 @@
                 </xs:attribute>
                 <xs:attribute name="networkWrites" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether concurrent writes to the log file by multiple processes on different network hosts.
+                        <xs:documentation>
+                            Indicates whether concurrent writes to the log file by multiple processes on different network hosts.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -1656,14 +1693,16 @@
                 </xs:attribute>
                 <xs:attribute name="discardAll" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Whether or not this target should just discard all data that its asked to write. Mostly used for when testing NLog
+                        <xs:documentation>
+                            Whether or not this target should just discard all data that its asked to write. Mostly used for when testing NLog
                             Stack except final write
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="openFileCacheSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Number of files to be kept open. Setting this to a higher value may improve performance in a situation where a single
+                        <xs:documentation>
+                            Number of files to be kept open. Setting this to a higher value may improve performance in a situation where a single
                             File target is writing to many files (such as splitting by level or by logger).
                         </xs:documentation>
                     </xs:annotation>
@@ -1812,7 +1851,8 @@
                 </xs:attribute>
                 <xs:attribute name="revertToSelf" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to revert to the credentials of the process instead of impersonating another user.
+                        <xs:documentation>
+                            Indicates whether to revert to the credentials of the process instead of impersonating another user.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -1862,14 +1902,16 @@
                 </xs:attribute>
                 <xs:attribute name="interval" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Interval in which messages will be written up to the P:NLog.Targets.Wrappers.LimitingTargetWrapper.MessageLimit number
+                        <xs:documentation>
+                            Interval in which messages will be written up to the P:NLog.Targets.Wrappers.LimitingTargetWrapper.MessageLimit number
                             of messages.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="messageLimit" type="SimpleLayoutAttribute">
                     <xs:annotation>
-                        <xs:documentation>Maximum allowed number of messages written per P:NLog.Targets.Wrappers.LimitingTargetWrapper.Interval.
+                        <xs:documentation>
+                            Maximum allowed number of messages written per P:NLog.Targets.Wrappers.LimitingTargetWrapper.Interval.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2110,7 +2152,8 @@
                 </xs:attribute>
                 <xs:attribute name="methodName" type="xs:string">
                     <xs:annotation>
-                        <xs:documentation>Method name. The method must be public and static. Use the AssemblyQualifiedName ,
+                        <xs:documentation>
+                            Method name. The method must be public and static. Use the AssemblyQualifiedName ,
                             https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname(v=vs.110).aspx e.g.
                         </xs:documentation>
                     </xs:annotation>
@@ -2191,25 +2234,29 @@
                 </xs:attribute>
                 <xs:attribute name="onQueueOverflow" type="NLog.Targets.NetworkTargetQueueOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken, when more pending messages than P:NLog.Targets.NetworkTarget.MaxQueueSize.
+                        <xs:documentation>
+                            Action that should be taken, when more pending messages than P:NLog.Targets.NetworkTarget.MaxQueueSize.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="onOverflow" type="NLog.Targets.NetworkTargetOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken if the message is larger than P:NLog.Targets.NetworkTarget.MaxMessageSize
+                        <xs:documentation>
+                            Action that should be taken if the message is larger than P:NLog.Targets.NetworkTarget.MaxMessageSize
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="maxQueueSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Maximum queue size for a single connection. Requires P:NLog.Targets.NetworkTarget.KeepConnection = true
+                        <xs:documentation>
+                            Maximum queue size for a single connection. Requires P:NLog.Targets.NetworkTarget.KeepConnection = true
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="onConnectionOverflow" type="NLog.Targets.NetworkTargetConnectionsOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken, when more connections than P:NLog.Targets.NetworkTarget.MaxConnections.
+                        <xs:documentation>
+                            Action that should be taken, when more connections than P:NLog.Targets.NetworkTarget.MaxConnections.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2225,7 +2272,8 @@
                 </xs:attribute>
                 <xs:attribute name="connectionCacheSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Size of the connection cache (number of connections which are kept alive). Requires
+                        <xs:documentation>
+                            Size of the connection cache (number of connections which are kept alive). Requires
                             P:NLog.Targets.NetworkTarget.KeepConnection = true
                         </xs:documentation>
                     </xs:annotation>
@@ -2247,13 +2295,15 @@
                 </xs:attribute>
                 <xs:attribute name="compressMinBytes" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
+                        <xs:documentation>
+                            Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="maxMessageSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Maximum message size in bytes. On limit breach then P:NLog.Targets.NetworkTarget.OnOverflow action is activated.
+                        <xs:documentation>
+                            Maximum message size in bytes. On limit breach then P:NLog.Targets.NetworkTarget.OnOverflow action is activated.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2264,7 +2314,8 @@
                 </xs:attribute>
                 <xs:attribute name="lineEnding" type="LineEndingMode">
                     <xs:annotation>
-                        <xs:documentation>End of line value if a newline is appended at the end of log message P:NLog.Targets.NetworkTarget.NewLine.
+                        <xs:documentation>
+                            End of line value if a newline is appended at the end of log message P:NLog.Targets.NetworkTarget.NewLine.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2348,7 +2399,8 @@
                 </xs:attribute>
                 <xs:attribute name="includeSourceInfo" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to include source info (file name and line number) in the information sent over the network.
+                        <xs:documentation>
+                            Indicates whether to include source info (file name and line number) in the information sent over the network.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2364,7 +2416,8 @@
                 </xs:attribute>
                 <xs:attribute name="includeCallSite" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to include call site (class and method name) in the information sent over the network.
+                        <xs:documentation>
+                            Indicates whether to include call site (class and method name) in the information sent over the network.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2385,7 +2438,8 @@
                 </xs:attribute>
                 <xs:attribute name="onConnectionOverflow" type="NLog.Targets.NetworkTargetConnectionsOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken, when more connections than P:NLog.Targets.NetworkTarget.MaxConnections.
+                        <xs:documentation>
+                            Action that should be taken, when more connections than P:NLog.Targets.NetworkTarget.MaxConnections.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2396,19 +2450,22 @@
                 </xs:attribute>
                 <xs:attribute name="onQueueOverflow" type="NLog.Targets.NetworkTargetQueueOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken, when more pending messages than P:NLog.Targets.NetworkTarget.MaxQueueSize.
+                        <xs:documentation>
+                            Action that should be taken, when more pending messages than P:NLog.Targets.NetworkTarget.MaxQueueSize.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="onOverflow" type="NLog.Targets.NetworkTargetOverflowAction">
                     <xs:annotation>
-                        <xs:documentation>Action that should be taken if the message is larger than P:NLog.Targets.NetworkTarget.MaxMessageSize
+                        <xs:documentation>
+                            Action that should be taken if the message is larger than P:NLog.Targets.NetworkTarget.MaxMessageSize
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="maxQueueSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Maximum queue size for a single connection. Requires P:NLog.Targets.NetworkTarget.KeepConnection = true
+                        <xs:documentation>
+                            Maximum queue size for a single connection. Requires P:NLog.Targets.NetworkTarget.KeepConnection = true
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2429,7 +2486,8 @@
                 </xs:attribute>
                 <xs:attribute name="connectionCacheSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Size of the connection cache (number of connections which are kept alive). Requires
+                        <xs:documentation>
+                            Size of the connection cache (number of connections which are kept alive). Requires
                             P:NLog.Targets.NetworkTarget.KeepConnection = true
                         </xs:documentation>
                     </xs:annotation>
@@ -2446,13 +2504,15 @@
                 </xs:attribute>
                 <xs:attribute name="compressMinBytes" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
+                        <xs:documentation>
+                            Skip compression when protocol payload is below limit to reduce overhead in cpu-usage and additional headers
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="maxMessageSize" type="xs:integer">
                     <xs:annotation>
-                        <xs:documentation>Maximum message size in bytes. On limit breach then P:NLog.Targets.NetworkTarget.OnOverflow action is activated.
+                        <xs:documentation>
+                            Maximum message size in bytes. On limit breach then P:NLog.Targets.NetworkTarget.OnOverflow action is activated.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2463,7 +2523,8 @@
                 </xs:attribute>
                 <xs:attribute name="lineEnding" type="LineEndingMode">
                     <xs:annotation>
-                        <xs:documentation>End of line value if a newline is appended at the end of log message P:NLog.Targets.NetworkTarget.NewLine.
+                        <xs:documentation>
+                            End of line value if a newline is appended at the end of log message P:NLog.Targets.NetworkTarget.NewLine.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2665,7 +2726,8 @@
                 </xs:attribute>
                 <xs:attribute name="enableTraceFail" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Forward F:NLog.LogLevel.Fatal to M:System.Diagnostics.Trace.Fail(System.String) (Instead of
+                        <xs:documentation>
+                            Forward F:NLog.LogLevel.Fatal to M:System.Diagnostics.Trace.Fail(System.String) (Instead of
                             M:System.Diagnostics.Trace.TraceError(System.String))
                         </xs:documentation>
                     </xs:annotation>
@@ -2709,14 +2771,16 @@
                 </xs:attribute>
                 <xs:attribute name="preAuthenticate" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in
+                        <xs:documentation>
+                            Indicates whether to pre-authenticate the HttpWebRequest (Requires 'Authorization' in
                             P:NLog.Targets.WebServiceTarget.Headers parameters)
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="escapeDataRfc3986" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
+                        <xs:documentation>
+                            Value whether escaping be done according to Rfc3986 (Supports Internationalized Resource Identifiers - IRIs)
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -2762,7 +2826,8 @@
                 </xs:attribute>
                 <xs:attribute name="includeBOM" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Should we include the BOM (Byte-order-mark) for UTF? Influences the P:NLog.Targets.WebServiceTarget.Encoding property.
+                        <xs:documentation>
+                            Should we include the BOM (Byte-order-mark) for UTF? Influences the P:NLog.Targets.WebServiceTarget.Encoding property.
                             This will only work for UTF-8.
                         </xs:documentation>
                     </xs:annotation>
@@ -2774,14 +2839,16 @@
                 </xs:attribute>
                 <xs:attribute name="xmlRoot" type="xs:string">
                     <xs:annotation>
-                        <xs:documentation>Name of the root XML element, if POST of XML document chosen. If so, this property must not be null. (see
+                        <xs:documentation>
+                            Name of the root XML element, if POST of XML document chosen. If so, this property must not be null. (see
                             P:NLog.Targets.WebServiceTarget.Protocol and F:NLog.Targets.WebServiceProtocol.XmlPost).
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="xmlRootNamespace" type="xs:string">
                     <xs:annotation>
-                        <xs:documentation>(optional) root namespace of the XML document, if POST of XML document chosen. (see
+                        <xs:documentation>
+                            (optional) root namespace of the XML document, if POST of XML document chosen. (see
                             P:NLog.Targets.WebServiceTarget.Protocol and F:NLog.Targets.WebServiceProtocol.XmlPost).
                         </xs:documentation>
                     </xs:annotation>
@@ -3121,13 +3188,15 @@
                 </xs:attribute>
                 <xs:attribute name="includeCallSite" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to include call site (class and method name) in the information sent over the network.
+                        <xs:documentation>
+                            Indicates whether to include call site (class and method name) in the information sent over the network.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
                 <xs:attribute name="includeSourceInfo" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Indicates whether to include source info (file name and line number) in the information sent over the network.
+                        <xs:documentation>
+                            Indicates whether to include source info (file name and line number) in the information sent over the network.
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -3225,7 +3294,8 @@
                 </xs:attribute>
                 <xs:attribute name="propertiesElementKeyAttribute" type="xs:string">
                     <xs:annotation>
-                        <xs:documentation>XML attribute name to use when rendering property-key When null (or empty) then key-attribute is not included
+                        <xs:documentation>
+                            XML attribute name to use when rendering property-key When null (or empty) then key-attribute is not included
                         </xs:documentation>
                     </xs:annotation>
                 </xs:attribute>
@@ -3236,7 +3306,8 @@
                 </xs:attribute>
                 <xs:attribute name="propertiesElementValueAttribute" type="xs:string">
                     <xs:annotation>
-                        <xs:documentation>XML attribute name to use when rendering property-value When null (or empty) then value-attribute is not included and
+                        <xs:documentation>
+                            XML attribute name to use when rendering property-value When null (or empty) then value-attribute is not included and
                             value is formatted as XML-element-value
                         </xs:documentation>
                     </xs:annotation>
@@ -3354,7 +3425,8 @@
         </xs:attribute>
         <xs:attribute name="propertiesElementKeyAttribute" type="xs:string">
             <xs:annotation>
-                <xs:documentation>XML attribute name to use when rendering property-key When null (or empty) then key-attribute is not included
+                <xs:documentation>
+                    XML attribute name to use when rendering property-key When null (or empty) then key-attribute is not included
                 </xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -3365,7 +3437,8 @@
         </xs:attribute>
         <xs:attribute name="propertiesElementValueAttribute" type="xs:string">
             <xs:annotation>
-                <xs:documentation>XML attribute name to use when rendering property-value When null (or empty) then value-attribute is not included and value is
+                <xs:documentation>
+                    XML attribute name to use when rendering property-value When null (or empty) then value-attribute is not included and value is
                     formatted as XML-element-value
                 </xs:documentation>
             </xs:annotation>
@@ -3565,7 +3638,8 @@
                 </xs:attribute>
                 <xs:attribute name="includeFirst" type="xs:boolean">
                     <xs:annotation>
-                        <xs:documentation>Applies the configured action to the initial logevent that starts the timeout period. Used to configure that it should
+                        <xs:documentation>
+                            Applies the configured action to the initial logevent that starts the timeout period. Used to configure that it should
                             ignore all events until timeout.
                         </xs:documentation>
                     </xs:annotation>

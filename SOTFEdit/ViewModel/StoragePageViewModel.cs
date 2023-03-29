@@ -21,7 +21,8 @@ public partial class StoragePageViewModel : ObservableObject
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     private readonly Dictionary<int, StorageDefinition> _storageDefinitions;
     private readonly StorageFactory _storageFactory;
-    [ObservableProperty] private UserControl? _selected;
+    [ObservableProperty] private IStorage? _selectedStorage;
+    [ObservableProperty] private UserControl? _selectedUserControl;
 
     public StoragePageViewModel(StorageFactory storageFactory, GameData gameData)
     {
@@ -39,26 +40,45 @@ public partial class StoragePageViewModel : ObservableObject
             (_, m) => { OnSelectedSavegameChanged(m); });
     }
 
+    private bool HasStorages()
+    {
+        return StorageCollections.Any(storageCollection => storageCollection.Storages.Count > 0);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasStorages))]
+    private void FillAllStorages()
+    {
+        foreach (var storageCollection in StorageCollections)
+        {
+            foreach (var storage in storageCollection.Storages)
+            {
+                storage.SetAllToMax();
+            }
+        }
+    }
+
     [RelayCommand]
     private void SelectedItemChanged(object? item)
     {
-        if (item is not IStorage)
+        if (item is not IStorage iStorage)
         {
             return;
         }
 
-        Selected = item switch
+        SelectedUserControl = iStorage switch
         {
             ItemsStorage itemsStorage => new ItemStorageUserControl(itemsStorage),
             StorageWithModulePerItem logStorage => new ItemStorageUserControl(logStorage),
             FoodStorage foodStorage => new ItemStorageUserControl(foodStorage),
-            _ => Selected
+            _ => SelectedUserControl
         };
+        SelectedStorage = iStorage;
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
     {
-        Selected = null;
+        SelectedUserControl = null;
+        SelectedStorage = null;
         StorageCollections.Clear();
 
         if (message.SelectedSavegame is not { } selectedSavegame)
@@ -72,6 +92,7 @@ public partial class StoragePageViewModel : ObservableObject
         }
 
         foreach (var storageCollection in storageCollectionsById.Values) StorageCollections.Add(storageCollection);
+        FillAllStoragesCommand.NotifyCanExecuteChanged();
     }
 
     private List<StorageSaveData>? LoadStorageSaveData(Savegame selectedSavegame)

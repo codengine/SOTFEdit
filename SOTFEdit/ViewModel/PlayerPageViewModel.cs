@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
+using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
@@ -13,19 +19,36 @@ namespace SOTFEdit.ViewModel;
 
 public partial class PlayerPageViewModel : ObservableObject
 {
+    private const int TeleportYoffset = 1;
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private readonly ObservableCollection<Item> _availableClothes = new();
+
+    private readonly GameData _gameData;
+
     [NotifyCanExecuteChangedFor(nameof(MoveToKelvinCommand))]
     [NotifyCanExecuteChangedFor(nameof(MoveToVirginiaCommand))]
     [NotifyCanExecuteChangedFor(nameof(FillAllBarsCommand))]
     [ObservableProperty]
     private Savegame? _selectedSavegame;
 
-    public PlayerPageViewModel()
+    public PlayerPageViewModel(GameData gameData)
     {
+        AvailableClothesView = new GenericCollectionView<Item>(
+            (ListCollectionView)CollectionViewSource.GetDefaultView(_availableClothes))
+        {
+            SortDescriptions =
+            {
+                new SortDescription("Name", ListSortDirection.Ascending)
+            }
+        };
+
+        _gameData = gameData;
         SetupListeners();
     }
 
     public PlayerState PlayerState { get; } = new();
     public ArmorPage ArmorPage { get; } = new();
+    public ICollectionView<Item> AvailableClothesView { get; }
 
     private void SetupListeners()
     {
@@ -39,11 +62,64 @@ public partial class PlayerPageViewModel : ObservableObject
         if (SelectedSavegame is { } selectedSavegame)
         {
             LoadPlayerData(selectedSavegame);
+            LoadClothes(selectedSavegame);
         }
         else
         {
             PlayerState.Reset();
         }
+    }
+
+    private void LoadClothes(Savegame savegame)
+    {
+        _availableClothes.Clear();
+        var newAvailableClothes = GetDefaultAvailableClothes()
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+        var playerClothingSystemSaveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerClothingSystemSaveData);
+        if (playerClothingSystemSaveData == null)
+        {
+            return;
+        }
+
+        var saveDataWrapper = new SaveDataWrapper(playerClothingSystemSaveData);
+        var playerClothingSystemToken = saveDataWrapper.GetJsonBasedToken("Data.PlayerClothingSystem");
+
+        if (playerClothingSystemToken?["Clothing"] is JArray clothing)
+        {
+            foreach (var itemId in clothing.Select(token => token.Value<int>()))
+            {
+                var item = _gameData.Items.GetItem(itemId);
+                if (item == null)
+                {
+                    Logger.Info($"No item found for itemId {itemId}");
+                }
+                else
+                {
+                    var itemInAvailableClothes = newAvailableClothes.GetValueOrDefault(itemId);
+                    if (itemInAvailableClothes != null)
+                    {
+                        PlayerState.SelectedCloth = itemInAvailableClothes;
+                    }
+                    else
+                    {
+                        newAvailableClothes.Add(itemId, item);
+                    }
+                }
+            }
+        }
+
+        _availableClothes.Add(new Item
+        {
+            Id = -1,
+            Name = ""
+        });
+        foreach (var kvp in newAvailableClothes) _availableClothes.Add(kvp.Value);
+    }
+
+    private IEnumerable<KeyValuePair<int, Item>> GetDefaultAvailableClothes()
+    {
+        return _gameData.Items.Where(item => item.Value.Type == "clothes" || item.Value.IsWearableCloth);
     }
 
     public bool CanSaveChanges()
@@ -54,15 +130,17 @@ public partial class PlayerPageViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToVirginia()
     {
-        PlayerState.Pos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
-            .VirginiaState.Pos.Copy();
+        var virginiaPos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
+            .VirginiaState.Pos;
+        PlayerState.Pos = virginiaPos with { Y = virginiaPos.Y + TeleportYoffset };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToKelvin()
     {
-        PlayerState.Pos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
-            .KelvinState.Pos.Copy();
+        var kelvinPos = Ioc.Default.GetRequiredService<FollowerPageViewModel>()
+            .KelvinState.Pos;
+        PlayerState.Pos = kelvinPos with { Y = kelvinPos.Y + TeleportYoffset };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
@@ -128,6 +206,68 @@ public partial class PlayerPageViewModel : ObservableObject
     }
 
     public bool Update(Savegame? savegame, bool createBackup)
+    {
+        var hasChanges = UpdatePlayerState(savegame, createBackup);
+        hasChanges = UpdateClothes(savegame, createBackup) || hasChanges;
+        return hasChanges;
+    }
+
+    private bool UpdateClothes(Savegame? savegame, bool createBackup)
+    {
+        var playerClothingSystemSaveData = savegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerClothingSystemSaveData);
+        if (savegame == null || playerClothingSystemSaveData == null)
+        {
+            return false;
+        }
+
+        var saveDataWrapper = new SaveDataWrapper(playerClothingSystemSaveData);
+        var playerClothingSystemToken = saveDataWrapper.GetJsonBasedToken("Data.PlayerClothingSystem");
+        if (playerClothingSystemToken?["Clothing"] is not JArray clothing)
+        {
+            return false;
+        }
+
+        var newClothings = clothing.ToList();
+        if (newClothings.Count > 1)
+        {
+            var oldClothingIds = newClothings.Select(token => token.Value<int>());
+            Logger.Warn($"More than one cloth found in clothings ({oldClothingIds}) - will not update");
+            return false;
+        }
+
+        var existingClothing = newClothings.FirstOrDefault();
+
+        if (PlayerState.SelectedCloth is { } selectedCloth && selectedCloth.Id != -1)
+        {
+            if (existingClothing?.Value<int>() is { } existingItemId)
+            {
+                if (existingItemId == selectedCloth.Id)
+                {
+                    return false;
+                }
+            }
+
+            clothing.ReplaceAll(new JValue(PlayerState.SelectedCloth.Id));
+        }
+        else
+        {
+            if (clothing.Count == 0)
+            {
+                return false;
+            }
+
+            clothing.Clear();
+        }
+
+        saveDataWrapper.MarkAsModified("Data.PlayerClothingSystem");
+        saveDataWrapper.SerializeAllModified();
+
+        savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerClothingSystemSaveData, playerClothingSystemSaveData, createBackup);
+
+        return true;
+    }
+
+    private bool UpdatePlayerState(Savegame? savegame, bool createBackup)
     {
         if (savegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerStateSaveData) is not JObject
             playerStateSaveData)

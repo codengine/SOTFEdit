@@ -6,7 +6,7 @@ namespace SOTFEdit.View;
 
 public partial class UnhandledExceptionWindow
 {
-    public UnhandledExceptionWindow(Window owner, Exception exception)
+    public UnhandledExceptionWindow(Window? owner, Exception exception)
     {
         Owner = owner;
         DataContext = new UnhandledExceptionViewModel(exception);

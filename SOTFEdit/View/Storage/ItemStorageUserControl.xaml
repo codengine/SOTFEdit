@@ -17,7 +17,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <GroupBox Header="All Items" Margin="0 0 0 20" Padding="10" HorizontalAlignment="Stretch">
+                <GroupBox Header="All Slots" Margin="0 0 0 20" Padding="10" HorizontalAlignment="Stretch">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -71,7 +71,7 @@
                                                 </ComboBox.ItemTemplate>
                                             </ComboBox>
                                             <mah:NumericUpDown Margin="0 0 10 0" Grid.Column="1" Minimum="0"
-                                                               Maximum="{Binding Max, Mode=OneTime}"
+                                                               Maximum="{Binding Max, Mode=OneWay}"
                                                                Value="{Binding Count, UpdateSourceTrigger=PropertyChanged}" />
                                             <Grid Grid.Column="2" Margin="0 0 10 0">
                                                 <Grid.ColumnDefinitions>

@@ -37,17 +37,15 @@ public partial class MainViewModel : ObservableObject
     private VegetationState _vegetationStateSelected =
         VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
 
-    public MainViewModel(SavegameManager savegameManager, ArmorPageViewModel armorPageViewModel, GamePage gamePage)
+    public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage)
     {
         _armorPageViewModel = armorPageViewModel;
         GamePage = gamePage;
-        SavegameManager = savegameManager;
         BackupFiles = Settings.Default.BackupFiles;
         CheckVersionOnStartup = Settings.Default.CheckForUpdates;
         SetupListeners();
     }
 
-    private SavegameManager SavegameManager { get; }
     public GamePage GamePage { get; }
     public InventoryPage InventoryPage { get; } = new();
     public FollowersPage FollowersPage { get; } = new();

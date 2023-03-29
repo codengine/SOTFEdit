@@ -1,9 +1,11 @@
-﻿using SOTFEdit.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using SOTFEdit.Model;
 using SOTFEdit.Model.SaveData.Armour;
 
 namespace SOTFEdit.ViewModel;
 
-public record ArmourData
+public partial class ArmourData : ObservableObject
 {
     private readonly Item? _item;
 
@@ -17,15 +19,18 @@ public record ArmourData
 
     public int Id => _item?.Id ?? ArmourPiece.ItemId;
 
-    // ReSharper disable once UnusedMember.Global
-    public float RemainingArmourpoints
-    {
-        get => ArmourPiece.RemainingArmourpoints;
-        set => ArmourPiece.RemainingArmourpoints = value;
-    }
-
     public string Name => _item?.Name ?? "??? Unknown Item";
     public string NameDe => _item?.NameDe ?? "";
 
     public int Slot => ArmourPiece.Slot;
+
+    public int MinDurability => _item?.Durability?.Min ?? 1;
+    public int MaxDurability => _item?.Durability?.Max ?? 65535;
+    public int DefaultDurability => _item?.Durability?.Default ?? 1;
+
+    [RelayCommand]
+    private void SetDurability(int? amount)
+    {
+        ArmourPiece.RemainingArmourpoints = amount ?? _item?.Durability?.Min ?? 1;
+    }
 }

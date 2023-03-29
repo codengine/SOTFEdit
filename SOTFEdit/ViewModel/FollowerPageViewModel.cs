@@ -17,6 +17,7 @@ namespace SOTFEdit.ViewModel;
 
 public partial class FollowerPageViewModel : ObservableObject
 {
+    private const int TeleportYoffset = 1;
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     [ObservableProperty]
@@ -70,19 +71,22 @@ public partial class FollowerPageViewModel : ObservableObject
             return;
         }
 
-        follower.Pos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos.Copy();
+        var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
+        follower.Pos = playerPos with { Y = playerPos.Y + TeleportYoffset };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToKelvin(FollowerState follower)
     {
-        follower.Pos = KelvinState.Pos.Copy();
+        var kelvinPos = KelvinState.Pos;
+        follower.Pos = kelvinPos with { Y = kelvinPos.Y + TeleportYoffset };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToVirginia(FollowerState follower)
     {
-        follower.Pos = VirginiaState.Pos.Copy();
+        var virginiaPos = VirginiaState.Pos;
+        follower.Pos = virginiaPos with { Y = virginiaPos.Y + TeleportYoffset };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]

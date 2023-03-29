@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.8.0
+
+### New Features
+
+- add Outfit selector on Player page
+- armor: add buttons to remove / set to default durability / set to max durability
+- armor: add buttons to set all armor items to default/max durability
+- inventory: add button to add all items from a category (weapon, ammo etc.)
+- inventory: add button to remove/set item count to max (for all and single)
+- inventory: add max count for items
+- storage: add button to fill all storages
+- storage: add max count for items
+
+### Improvements
+
+- inventory: instead of double click, items are now added and removed from inventory using buttons
+- inventory: new items are now added with their max value by default
+- storage: in the upper "all slots" box, the first available item is now selected by default
+- storage: all items for mannequin and scarecrow are now hidden
+- teleporting will now add a small offset on the Y-Axis to prevent glitching into the ground
+- Some performance improvements
+
+### Fixes
+
+- Golden Armor is now an outfit, removed from Armor Box
+- Remove Creepy Skin from Armor selector
+- Items that can not be stored in inventory/shelves are now disabled
+
 ## v0.7.1
 
 ### Improvements

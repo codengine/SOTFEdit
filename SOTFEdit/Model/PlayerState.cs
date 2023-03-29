@@ -13,6 +13,9 @@ public partial class PlayerState : ObservableObject
     private Position _pos = new(0, 0, 0);
 
     [ObservableProperty] private float _rest;
+
+    [ObservableProperty] private Item? _selectedCloth;
+
     [ObservableProperty] private float _stamina;
 
     [ObservableProperty] private int _strengthLevel;
@@ -37,5 +40,6 @@ public partial class PlayerState : ObservableObject
         Hydration = 0;
         Rest = 0;
         Stamina = 0;
+        SelectedCloth = null;
     }
 }

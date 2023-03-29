@@ -20,5 +20,5 @@ public class ItemWrapper
 
     public string Name => Variant?.Name ?? Item.Name;
 
-    public int Max => _maxPerSlot ?? Item.Max;
+    public int Max => _maxPerSlot ?? Item.StorageMax?.Shelf ?? 1;
 }

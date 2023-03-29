@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SOTFEdit.Model.Storage;
 using SOTFEdit.View.Storage;
@@ -15,6 +16,7 @@ public partial class ItemStorageViewModel : ObservableObject
     public ItemStorageViewModel(BaseStorage itemsStorage)
     {
         ItemsStorage = itemsStorage;
+        SelectedItemForAll = ItemsStorage.SupportedItems.FirstOrDefault();
     }
 
     public BaseStorage ItemsStorage { get; }

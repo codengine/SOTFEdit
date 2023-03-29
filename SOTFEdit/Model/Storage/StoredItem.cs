@@ -31,7 +31,7 @@ public partial class StoredItem : ObservableObject
 
     partial void OnSelectedItemChanged(ItemWrapper? value)
     {
-        Count = value == null ? 0 : 1;
+        Count = value == null ? 0 : Max;
     }
 
     [RelayCommand(CanExecute = nameof(HasItem))]
@@ -43,7 +43,7 @@ public partial class StoredItem : ObservableObject
     [RelayCommand(CanExecute = nameof(HasItem))]
     private void SetToMax()
     {
-        if (SelectedItem is { })
+        if (HasItem())
         {
             Count = Max;
         }

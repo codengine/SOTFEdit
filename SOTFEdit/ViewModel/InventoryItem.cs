@@ -1,9 +1,11 @@
-﻿using SOTFEdit.Model;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using SOTFEdit.Model;
 using SOTFEdit.Model.SaveData.Inventory;
 
 namespace SOTFEdit.ViewModel;
 
-public class InventoryItem
+public partial class InventoryItem : ObservableObject
 {
     private readonly Item? _item;
 
@@ -22,9 +24,26 @@ public class InventoryItem
     public int TotalCount
     {
         get => ItemBlock.TotalCount;
-        set => ItemBlock.TotalCount = value;
+        set
+        {
+            if (ItemBlock.TotalCount == value)
+            {
+                return;
+            }
+
+            ItemBlock.TotalCount = value;
+            OnPropertyChanged();
+        }
     }
 
     public string Name => _item?.Name ?? "??? Unknown Item";
     public string NameDe => _item?.NameDe ?? "";
+
+    public int Max => _item?.StorageMax?.Inventory ?? 1;
+
+    [RelayCommand]
+    private void SetToMax()
+    {
+        TotalCount = Max;
+    }
 }

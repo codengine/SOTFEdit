@@ -75,8 +75,8 @@ done with editing.
 
 ## Inventory
 
-- In order to add or remove items, just double click on the row
-- There is no sanity check on the values entered at the player's inventory. So something like "100" for backpack will most likely lead to undesired behaviors.
+- In order to add or remove items, click on the add or remove buttons
+- You can use the other buttons to modify the current count in a convenient way
 
 ## Armor
 

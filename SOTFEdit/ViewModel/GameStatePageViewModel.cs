@@ -34,7 +34,8 @@ public partial class GameStatePageViewModel : ObservableObject
         foreach (var namedIntKey in namedIntKeys)
             NamedIntDatas.Add(new GenericSetting(namedIntKey, GenericSetting.DataType.Integer)
             {
-                IntValue = null
+                IntValue = null,
+                MaxInt = 3
             });
     }
 
@@ -142,36 +143,51 @@ public partial class GameStatePageViewModel : ObservableObject
             }
         }
 
-        if (gameState["NamedIntDatas"] is { } namedIntDatas)
-        {
-            var storedNamedIntSettings = new List<GenericSetting>();
+        LoadNamedIntDatas(gameState);
+    }
 
-            foreach (var namedIntData in namedIntDatas)
+    private void LoadNamedIntDatas(JToken gameState)
+    {
+        if (gameState["NamedIntDatas"] is not { } namedIntDatas)
+        {
+            return;
+        }
+
+        var storedNamedIntSettings = new List<GenericSetting>();
+
+        foreach (var namedIntData in namedIntDatas)
+        {
+            var nameId = namedIntData["SaveObjectNameId"]?.Value<string>();
+            var value = namedIntData["SaveValue"]?.Value<int>();
+            if (nameId == null || value is not { } saveValue)
             {
-                var nameId = namedIntData["SaveObjectNameId"]?.Value<string>();
-                var value = namedIntData["SaveValue"]?.Value<int>();
-                if (nameId != null && value != null)
-                {
-                    storedNamedIntSettings.Add(new GenericSetting(nameId, GenericSetting.DataType.Integer, namedIntData.Path)
-                    {
-                        IntValue = value
-                    });
-                }
+                continue;
             }
 
-            var namedIntDatasByName = NamedIntDatas.ToDictionary(setting => setting.Name);
+            if (saveValue > 3)
+            {
+                Logger.Warn($"SaveValue for {nameId} is > 3 ({value}), please report");
+            }
 
-            foreach (var storedNamedIntSetting in storedNamedIntSettings)
-                if (!namedIntDatasByName.ContainsKey(storedNamedIntSetting.Name))
-                {
-                    Logger.Info($"New NamedIntData found: {storedNamedIntSetting.Name}");
-                    NamedIntDatas.Add(storedNamedIntSetting);
-                }
-                else
-                {
-                    namedIntDatasByName[storedNamedIntSetting.Name].IntValue = storedNamedIntSetting.IntValue;
-                }
+            storedNamedIntSettings.Add(new GenericSetting(nameId, GenericSetting.DataType.Integer, namedIntData.Path)
+            {
+                IntValue = value,
+                MaxInt = saveValue > 3 ? saveValue : 3
+            });
         }
+
+        var namedIntDatasByName = NamedIntDatas.ToDictionary(setting => setting.Name);
+
+        foreach (var storedNamedIntSetting in storedNamedIntSettings)
+            if (!namedIntDatasByName.ContainsKey(storedNamedIntSetting.Name))
+            {
+                Logger.Info($"New NamedIntData found: {storedNamedIntSetting.Name}");
+                NamedIntDatas.Add(storedNamedIntSetting);
+            }
+            else
+            {
+                namedIntDatasByName[storedNamedIntSetting.Name].IntValue = storedNamedIntSetting.IntValue;
+            }
     }
 
     public bool Update(Savegame savegame, bool createBackup)

@@ -17,8 +17,13 @@ public class ItemsStorage : BaseStorage
 
     private List<ItemWrapper> GetSupportedItems(ItemList itemList, StorageDefinition storageDefinition)
     {
+        if (Definition.RestrictedItemIds?.Count == 0)
+        {
+            return new List<ItemWrapper>();
+        }
+
         var baseQ = itemList.Select(item => item.Value)
-            .Where(item => item.IsInventoryItem);
+            .Where(item => item is { IsInventoryItem: true, StorageMax.Shelf: > 0 });
 
         if (Definition.RestrictedItemIds is { Count: > 0 } restrictedItemIds)
         {

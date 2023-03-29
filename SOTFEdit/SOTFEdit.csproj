@@ -11,20 +11,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="images\default_screenshot.png"/>
-        <None Remove="images\kv.jpg"/>
-        <None Remove="images\player.jpg"/>
-        <None Remove="images\vg.jpg"/>
+        <None Remove="images\default_screenshot.png" />
+        <None Remove="images\kv.jpg" />
+        <None Remove="images\player.jpg" />
+        <None Remove="images\vg.jpg" />
         <None Update="data\actorTemplate.txt">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="data\spawnerTemplate.txt">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="data\data.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="icons8-kleine-axt-doodle-96.ico"/>
+        <Content Include="icons8-kleine-axt-doodle-96.ico" />
         <Content Include="images\kv.jpg">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -43,13 +46,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
-        <PackageReference Include="MahApps.Metro" Version="2.4.9"/>
-        <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-        <PackageReference Include="NLog" Version="5.1.2"/>
-        <PackageReference Include="Semver" Version="2.3.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+        <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+        <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="NLog" Version="5.1.2" />
+        <PackageReference Include="Semver" Version="2.3.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -67,9 +70,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="data\data.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
         <None Update="NLog.config">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

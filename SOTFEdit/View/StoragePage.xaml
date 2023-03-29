@@ -16,34 +16,41 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <GroupBox Header="Storage Types">
-            <TreeView ItemsSource="{Binding StorageCollections}" Name="StorageTreeView">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type viewModel:StorageCollection}"
-                                              ItemsSource="{Binding Storages}">
-                        <TextBlock Text="{Binding StorageDefinition.Name, Mode=OneTime}" />
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type storage:ItemsStorage}">
-                        <TextBlock Text="{Binding Description}" />
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type storage:FoodStorage}">
-                        <TextBlock Text="{Binding Description}" />
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type storage:StorageWithModulePerItem}">
-                        <TextBlock Text="{Binding Description}" />
-                    </HierarchicalDataTemplate>
-                </TreeView.Resources>
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="SelectedItemChanged">
-                        <b:InvokeCommandAction
-                            Command="{Binding SelectedItemChangedCommand}"
-                            CommandParameter="{Binding SelectedItem, ElementName=StorageTreeView}" />
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-            </TreeView>
+            <Grid VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button FontSize="14" Margin="10 10 10 15" Background="DarkGreen" Padding="10" Command="{Binding FillAllStoragesCommand}">Fill all Storages</Button>
+                <TreeView ItemsSource="{Binding StorageCollections}" Grid.Row="1" Name="StorageTreeView">
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type viewModel:StorageCollection}"
+                                                  ItemsSource="{Binding Storages}">
+                            <TextBlock Text="{Binding StorageDefinition.Name, Mode=OneTime}" />
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type storage:ItemsStorage}">
+                            <TextBlock Text="{Binding Description}" />
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type storage:FoodStorage}">
+                            <TextBlock Text="{Binding Description}" />
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type storage:StorageWithModulePerItem}">
+                            <TextBlock Text="{Binding Description}" />
+                        </HierarchicalDataTemplate>
+                    </TreeView.Resources>
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectedItemChanged">
+                            <b:InvokeCommandAction
+                                Command="{Binding SelectedItemChangedCommand}"
+                                CommandParameter="{Binding SelectedItem, ElementName=StorageTreeView}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </TreeView>
+            </Grid>
         </GroupBox>
         <GridSplitter Grid.Column="1" Width="5" />
-        <GroupBox Grid.Column="2" Header="Stored items">
-            <ContentPresenter Content="{Binding Selected}" />
+        <GroupBox Grid.Column="2" Header="{Binding SelectedStorage.Description, FallbackValue='Select a storage'}">
+            <ContentPresenter Content="{Binding SelectedUserControl}" />
         </GroupBox>
     </Grid>
 </UserControl>

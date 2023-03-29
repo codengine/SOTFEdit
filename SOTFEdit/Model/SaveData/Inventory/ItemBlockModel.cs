@@ -10,12 +10,12 @@ public class ItemBlockModel
     public int ItemId { get; set; }
     public int TotalCount { get; set; }
 
-    public static ItemBlockModel Unassigned(int itemId)
+    public static ItemBlockModel Unassigned(Item item)
     {
         return new ItemBlockModel
         {
-            ItemId = itemId,
-            TotalCount = 1
+            ItemId = item.Id,
+            TotalCount = item.StorageMax?.Inventory ?? 1
         };
     }
 }

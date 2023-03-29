@@ -10,6 +10,8 @@ namespace SOTFEdit.Model.Storage;
 
 public class FoodStorage : RestrictedStorage
 {
+    private const int DefaultItemIdForUnselectedSlot = 436; //fish
+    private const int DefaultVariantForUnselectedSlot = 4; //dried
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     private readonly List<ItemWrapper> _effectiveSupportedItems;
 
@@ -168,5 +170,20 @@ public class FoodStorage : RestrictedStorage
         }
 
         return storageSaveData;
+    }
+
+    public override void SetAllToMax()
+    {
+        foreach (var slot in Slots)
+        foreach (var storedItem in slot.StoredItems)
+            if (!storedItem.HasItem() && storedItem.SupportedItems.Count > 0)
+            {
+                storedItem.SelectedItem = storedItem.SupportedItems
+                    .FirstOrDefault(wrapper => wrapper.Item.Id == DefaultItemIdForUnselectedSlot && wrapper.Variant?.State == DefaultVariantForUnselectedSlot);
+            }
+            else if (storedItem.HasItem())
+            {
+                storedItem.Count = storedItem.Max;
+            }
     }
 }
