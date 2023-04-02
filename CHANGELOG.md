@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.8.1
+
+### Fixes
+
+- fixed duplicate items in unassigned window on inventory page after reload
+
 ## v0.8.0
 
 ### New Features
