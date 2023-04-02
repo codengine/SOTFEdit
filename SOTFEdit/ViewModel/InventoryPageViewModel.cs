@@ -163,7 +163,7 @@ public partial class InventoryPageViewModel : ObservableObject
         var unassignedItems = _itemList.Where(item => !assignedItems.Contains(item.Value.Id))
             .Select(item => BuildUnassignedItem(item.Value));
 
-        _unassignedItems.AddRange(unassignedItems);
+        _unassignedItems.ReplaceRange(unassignedItems);
     }
 
     private static InventoryItem BuildUnassignedItem(Item item)
