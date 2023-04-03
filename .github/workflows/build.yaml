@@ -8,6 +8,7 @@ on:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
+      - '**/.github/workflows/release.yml'
   pull_request:
     branches:
       - master
@@ -15,6 +16,7 @@ on:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
+      - '**/.github/workflows/release.yml'
   workflow_dispatch:
 jobs:
   build:
