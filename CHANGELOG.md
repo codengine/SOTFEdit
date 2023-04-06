@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.8.2
+
+### New Features
+
+- Added support for armor rack
+- Added items that were added in patch 3: light bulb, solar panel, night vision goggles
+- Added some missing items, like small rocks, some documents and blueprints
+
+### Fixes
+
+- Fixed issue when loading savegames saved with Patch 3
+
 ## v0.8.1
 
 ### Fixes

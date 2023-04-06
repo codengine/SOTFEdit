@@ -925,7 +925,12 @@
     {
       "id": 354,
       "name": "Night Vision Goggles",
-      "type": "weapon"
+      "nameDe": "Nachtsichtgerät",
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     },
     {
       "id": 357,
@@ -983,7 +988,11 @@
       "id": 355,
       "name": "Compact Pistol",
       "type": "weapon",
-      "nameDe": "Pistole"
+      "nameDe": "Pistole",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     },
     {
       "id": 443,
@@ -2640,6 +2649,154 @@
       "name": "Laser Measure Tool",
       "id": 505,
       "type": "misc"
+    },
+    {
+      "name": "Cult Pamphlet",
+      "id": 633,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Small Rock",
+      "nameDe": "Kleiner Stein",
+      "id": 630,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 15,
+        "inventory": 30
+      }
+    },
+    {
+      "name": "Rain Catcher",
+      "nameDe": "Wassersammler",
+      "id": 629,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "The Realm Beyond",
+      "id": 631,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Solar Panel",
+      "nameDe": "Solarmodul",
+      "id": 634,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 3
+      }
+    },
+    {
+      "name": "Light Bulb",
+      "nameDe": "Glühbirne",
+      "id": 635,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 8
+      }
+    },
+    {
+      "name": "Blueprint Hanging Skull Light",
+      "id": 625,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Blueprint Rock Path",
+      "id": 622,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Blueprint Shelf",
+      "id": 621,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Blueprint Table",
+      "id": 620,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Blueprint Wall Shelf",
+      "id": 623,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Blueprint Wall Torch",
+      "id": 624,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Flask",
+      "id": 475,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "GRABS Laser Pointer",
+      "id": 498,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Mr. Puffton Table Card",
+      "id": 627,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "name": "Mrs. Puffton Table Card",
+      "id": 628,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     }
   ],
   "storages": [
@@ -2706,9 +2863,16 @@
     },
     {
       "id": 36,
-      "name": "Mannequin",
-      "slots": 0,
-      "restrictedItemIds": []
+      "name": "Armor Rack",
+      "slots": 10,
+      "maxPerSlot": 1,
+      "restrictedItemIds": [
+        494,
+        554,
+        593,
+        473,
+        519
+      ]
     },
     {
       "id": 39,

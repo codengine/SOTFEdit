@@ -33,7 +33,7 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
         {
             0 => BuildStickStorageModule(obj),
             3 => BuildFoodSpoilModule(moduleId, obj),
-            6 => BuildLogStorageModule(moduleId, obj),
+            6 => BuildLogStorageModule(),
             _ => BuildGenericModule(moduleId)
         };
 
@@ -55,10 +55,9 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
                                             new ChannelWeightsModel(0, 0, 0, 0));
     }
 
-    private static IStorageModule BuildLogStorageModule(int moduleId, JObject obj)
+    private static IStorageModule BuildLogStorageModule()
     {
-        return new LogStorageModule(obj["VariantNumber"]?.Value<int>() ??
-                                    throw new Exception($"VariantNumber not defined for moduleId {moduleId}"));
+        return new LogStorageModule();
     }
 
     private static IStorageModule BuildFoodSpoilModule(int moduleId, JObject obj)
