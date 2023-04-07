@@ -1,0 +1,77 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.WorldItemTeleportWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:model="clr-namespace:SOTFEdit.Model"
+                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 mc:Ignorable="d"
+                 Title="Settings" MinWidth="300"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 ResizeMode="NoResize"
+                 SizeToContent="WidthAndHeight"
+                 PreviewKeyDown="WorldItemTeleportWindow_OnPreviewKeyDown"
+                 ShowMaxRestoreButton="False"
+                 IsMaxRestoreButtonEnabled="False"
+                 ShowMinButton="False"
+                 IsMinButtonEnabled="False"
+                 d:DataContext="{d:DesignInstance viewModel:WorldItemTeleporterViewModel}"
+                 TitleCharacterCasing="Normal">
+    <st:AutoGrid Margin="20" Columns="Auto,*" Rows="Auto" VerticalAlignment="Top"
+                 HorizontalAlignment="Stretch" ChildMargin="3">
+        <st:AutoGrid.Resources>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        </st:AutoGrid.Resources>
+        <Label>
+            World Item
+        </Label>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                   ToolTip="Show Object Position on Map"
+                   VerticalAlignment="Center"
+                   Visibility="{Binding SelectedWorldItem, Converter={StaticResource NullToVisibilityConverter}}">
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick"
+                                  Command="{Binding OpenMapAtObjectPosCommand}" />
+                </Image.InputBindings>
+            </Image>
+            <ComboBox ItemsSource="{Binding WorldItemStates}"
+                      SelectedItem="{Binding SelectedWorldItem, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate DataType="{x:Type GroupItem}">
+                                <TextBlock Padding="3" Text="{Binding Name}"
+                                           Foreground="{DynamicResource MahApps.Brushes.AccentBase}"
+                                           FontWeight="Bold" />
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ComboBox.GroupStyle>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type model:WorldItemState}">
+                        <TextBlock Padding="8 3 3 3" Text="{Binding ObjectNameId}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <Button Command="{Binding RemoveAllOfThisTypeCommand}"
+                Background="DarkRed" Grid.ColumnSpan="2"
+                ToolTip="Removes all copies of this type from map">
+            Remove all copies from map
+        </Button>
+        <Button Command="{Binding CloneObjectAtPlayerPosCommand}"
+                Background="{DynamicResource MahApps.Brushes.Accent}" Grid.ColumnSpan="2"
+                ToolTip="Creates a clone of this object at the players position">
+            Clone at Player Position
+        </Button>
+        <Button Command="{Binding TeleportPlayerToObjectCommand}" Grid.ColumnSpan="2"
+                Background="{DynamicResource MahApps.Brushes.Accent}" ToolTip="Teleports the player to the object">
+            Teleport player to object
+        </Button>
+    </st:AutoGrid>
+</mah:MetroWindow>

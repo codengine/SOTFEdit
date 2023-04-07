@@ -1,0 +1,51 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.RegrowTreesWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:model="clr-namespace:SOTFEdit.Model"
+                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 mc:Ignorable="d"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 ResizeMode="NoResize"
+                 SizeToContent="WidthAndHeight"
+                 PreviewKeyDown="RegrowTreesWindow_OnPreviewKeyDown"
+                 ShowMaxRestoreButton="False"
+                 IsMaxRestoreButtonEnabled="False"
+                 ShowMinButton="False"
+                 IsMinButtonEnabled="False"
+                 d:DataContext="{d:DesignInstance viewModel:RegrowTreesViewModel}"
+                 TitleCharacterCasing="Normal"
+                 Title="Regrow Trees" Height="450" Width="800">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+        <StackPanel.Resources>
+            <converters:VegetationStateToBooleanConverter
+                x:Key="VegetationStateToBooleanConverter" />
+            <Style TargetType="{x:Type CheckBox}"
+                   BasedOn="{StaticResource MahApps.Styles.CheckBox}">
+                <Setter Property="Margin" Value="0 0 10 0" />
+            </Style>
+        </StackPanel.Resources>
+        <mah:ToggleSwitch OnContent="All" OffContent="All"
+                          IsOn="{Binding VegetationStateIsAllSelected}" />
+        <mah:ToggleSwitch OnContent="Gone" OffContent="Gone"
+                          IsOn="{Binding 
+                                Path=VegetationStateSelected,
+                                Converter={StaticResource VegetationStateToBooleanConverter},
+                                ConverterParameter={x:Static model:VegetationState.Gone}}" />
+        <mah:ToggleSwitch OnContent="HalfChopped" OffContent="HalfChopped"
+                          IsOn="{Binding 
+                                Path=VegetationStateSelected,
+                                Converter={StaticResource VegetationStateToBooleanConverter},
+                                ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
+        <mah:ToggleSwitch OnContent="Stumps" OffContent="Stumps"
+                          IsOn="{Binding 
+                                Path=VegetationStateSelected,
+                                Converter={StaticResource VegetationStateToBooleanConverter},
+                                ConverterParameter={x:Static model:VegetationState.Stumps}}" />
+        <Button Command="{Binding SaveCommand}" Padding="10" FontSize="14">Regrow Trees</Button>
+    </StackPanel>
+</mah:MetroWindow>

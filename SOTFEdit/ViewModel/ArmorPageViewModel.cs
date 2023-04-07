@@ -6,10 +6,11 @@ using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using SOTFEdit.Infrastructure;
+using Newtonsoft.Json.Linq;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData.Armour;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
@@ -17,16 +18,16 @@ public partial class ArmorPageViewModel
 {
     private readonly ObservableCollection<ArmourData> _armour = new();
     private readonly ItemList _itemList;
-    private Savegame? _selectedSavegame;
 
     public ArmorPageViewModel(GameData gameData)
     {
-        NewArmour = new NewArmourPiece(_armour, () => _selectedSavegame != null);
+        NewArmour = new NewArmourPiece(_armour, () => SavegameManager.SelectedSavegame != null);
         _itemList = gameData.Items;
-        foreach (var armorItem in _itemList.Where(item => item.Value.IsEquippableArmor).OrderBy(item => item.Value.Name)) ArmourTypes.Add(armorItem.Value);
+        foreach (var armorItem in
+                 _itemList.Where(item => item.Value.IsEquippableArmor).OrderBy(item => item.Value.Name))
+            ArmourTypes.Add(armorItem.Value);
 
-        ArmourView = new GenericCollectionView<ArmourData>(
-            (ListCollectionView)CollectionViewSource.GetDefaultView(_armour))
+        ArmourView = new ListCollectionView(_armour)
         {
             SortDescriptions =
             {
@@ -43,7 +44,7 @@ public partial class ArmorPageViewModel
         SetupListeners();
     }
 
-    public ICollectionView<ArmourData> ArmourView { get; }
+    public ICollectionView ArmourView { get; }
     public ObservableCollection<Item> ArmourTypes { get; } = new();
 
     public NewArmourPiece NewArmour { get; }
@@ -65,8 +66,8 @@ public partial class ArmorPageViewModel
     {
         _armour.Clear();
         var armour =
-            m.SelectedSavegame?.SavegameStore.LoadJson<PlayerArmourDataModel>(SavegameStore.FileType
-                .PlayerArmourSystemSaveData);
+            m.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType
+                .PlayerArmourSystemSaveData)?.Parent.ToObject<PlayerArmourDataModel>();
 
         if (armour != null)
         {
@@ -74,29 +75,32 @@ public partial class ArmorPageViewModel
                 _armour.Add(new ArmourData(armourPiece, _itemList.GetItem(armourPiece.ItemId)));
         }
 
-        _selectedSavegame = m.SelectedSavegame;
-
         NewArmour.AddArmorCommand.NotifyCanExecuteChanged();
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
-        var playerArmourData =
-            savegame.SavegameStore.LoadJson<PlayerArmourDataModel>(SavegameStore.FileType.PlayerArmourSystemSaveData);
-        if (playerArmourData == null)
+        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType
+                    .PlayerArmourSystemSaveData) is not
+                { } saveDataWrapper || saveDataWrapper.Parent.ToObject<PlayerArmourDataModel>() is not
+                { } playerArmourData)
         {
             return false;
         }
 
         var selectedArmorPieces = _armour.Select(a => a.ArmourPiece).ToList();
-        if (!PlayerArmourSystemModel.Merge(playerArmourData.Data.PlayerArmourSystem, selectedArmorPieces))
+        var hasChanges = PlayerArmourSystemModel.Merge(playerArmourData.Data.PlayerArmourSystem, selectedArmorPieces);
+
+        if (!hasChanges)
         {
-            return false;
+            return hasChanges;
         }
 
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerArmourSystemSaveData, playerArmourData,
-            createBackup);
-        return true;
+        saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.PlayerArmourSystem)?["ArmourPieces"]?
+            .Replace(JToken.FromObject(playerArmourData.Data.PlayerArmourSystem.ArmourPieces));
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.PlayerArmourSystem);
+
+        return hasChanges;
     }
 
     private bool HasArmorPieces()

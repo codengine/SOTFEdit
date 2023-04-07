@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:model="clr-namespace:SOTFEdit.Model">
+    <DataTemplate x:Key="ReadOnlyTemplate" DataType="{x:Type model:GenericSetting}">
+        <TextBlock VerticalAlignment="Center" Text="{Binding StringValue}" />
+    </DataTemplate>
+    <DataTemplate x:Key="StringValueTemplate" DataType="{x:Type model:GenericSetting}">
+        <TextBox Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+    <DataTemplate x:Key="BooleanValueTemplate" DataType="{x:Type model:GenericSetting}">
+        <CheckBox IsChecked="{Binding BoolValue, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+    <DataTemplate x:Key="ComboValueTemplate" DataType="{x:Type model:GenericSetting}">
+        <ComboBox ItemsSource="{Binding PossibleValues}"
+                  DisplayMemberPath="Value"
+                  SelectedValuePath="Key"
+                  SelectedValue="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+    <DataTemplate x:Key="NumericValueTemplate" DataType="{x:Type model:GenericSetting}">
+        <mah:NumericUpDown Minimum="{Binding MinInt}" Maximum="{Binding MaxInt}"
+                           Value="{Binding IntValue, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+    <infrastructure:SettingCellTemplateSelector
+        x:Key="SettingCellTemplateSelector"
+        ReadOnlyTemplate="{StaticResource ReadOnlyTemplate}"
+        StringValueTemplate="{StaticResource StringValueTemplate}"
+        BooleanValueTemplate="{StaticResource BooleanValueTemplate}"
+        ComboValueTemplate="{StaticResource ComboValueTemplate}"
+        NumericValueTemplate="{StaticResource NumericValueTemplate}" />
+</ResourceDictionary>

@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using SOTFEdit.Model;
+using SOTFEdit.Model.Savegame;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
@@ -17,8 +17,8 @@ public partial class InventoryPage
         InitializeComponent();
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
-        return _dataContext.Update(savegame, createBackup);
+        return _dataContext.Update(savegame);
     }
 }

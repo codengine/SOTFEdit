@@ -12,20 +12,30 @@
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
                  TitleCharacterCasing="Normal"
+                 PreviewKeyDown="SelectSavegameWindow_OnPreviewKeyDown"
                  Title="Select Savegame..." Height="800" Width="1024">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <GroupBox Header="Location" VerticalAlignment="Top" Margin="10" Padding="10">
-            <WrapPanel>
+        <GroupBox Header="Location" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10" Padding="10">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
                 <Label>Selected Path: </Label>
                 <TextBox
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
                     ToolTip="Usually the Savegames are stored at C:\Users\[user]\AppData\LocalLow\Endnight\SonsOfTheForest\Saves"
                     Text="{Binding SaveDir, Mode=OneWay}" IsReadOnly="True" />
-                <Button Margin="10 0 0 0" Command="{Binding SelectSavegameDirCommand}"> Change...</Button>
-            </WrapPanel>
+                <Button Grid.Column="2" Margin="10 0 0 0" Command="{Binding SelectSavegameDirCommand}"> Change...</Button>
+                <Button Grid.Column="3" Margin="10 0 0 0" Command="{Binding SetSavegameDirToDefaultCommand}"> Set to Default</Button>
+            </Grid>
         </GroupBox>
         <mah:MetroTabControl Padding="20 5 5 5" Grid.Row="1">
             <mah:MetroTabItem Header="SinglePlayer" Padding="10">
@@ -47,7 +57,7 @@
                             <StackPanel Margin="10">
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="Cyan" />
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                         <Setter Property="FontWeight" Value="Bold" />
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
@@ -84,7 +94,7 @@
                             <StackPanel Margin="10">
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="Cyan" />
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                         <Setter Property="FontWeight" Value="Bold" />
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
@@ -121,7 +131,7 @@
                             <StackPanel Margin="10">
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="Cyan" />
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                         <Setter Property="FontWeight" Value="Bold" />
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>

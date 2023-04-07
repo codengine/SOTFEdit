@@ -9,7 +9,7 @@ public record GameSettingFullModel
     public string Name { get; set; }
     public int SettingsType { get; set; } = Constants.Settings.SettingTypeString;
     public int Version { get; set; } = 0;
-    public bool BoolValue { get; set; } = false;
+    public bool BoolValue { get; set; }
     public int IntValue { get; set; } = 0;
     public decimal FloatValue { get; set; } = new(0.0);
     public string StringValue { get; set; }

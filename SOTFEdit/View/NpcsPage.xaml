@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="SOTFEdit.View.NpcsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModel:NpcsPageViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" MinWidth="250" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabControl TabStripPlacement="Top">
+                <TabItem Header="By Type" mah:HeaderedControlHelper.HeaderFontSize="18"
+                         mah:HeaderedControlHelper.HeaderBackground="{StaticResource MahApps.Brushes.Accent}">
+                    <ListView ItemsSource="{Binding ActorsByType}" DisplayMemberPath="Name" Name="ActorListView">
+                        <b:Interaction.Triggers>
+                            <b:EventTrigger EventName="SelectionChanged">
+                                <b:InvokeCommandAction
+                                    Command="{Binding SelectedItemChangedCommand}"
+                                    CommandParameter="{Binding SelectedItem, ElementName=ActorListView}" />
+                            </b:EventTrigger>
+                        </b:Interaction.Triggers>
+                    </ListView>
+
+                </TabItem>
+                <TabItem Header="By Family" mah:HeaderedControlHelper.HeaderFontSize="18"
+                         mah:HeaderedControlHelper.HeaderBackground="{StaticResource MahApps.Brushes.Accent}">
+                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Margin="0 0 0 10" TextWrapping="Wrap"
+                                   Text="A family represents a group of NPCs which belong to each other. In other words: A swarm, a tribe for example." />
+                        <TreeView Grid.Row="1" ItemsSource="{Binding ActorsByFamily}" Name="ActorTreeView">
+                            <TreeView.Resources>
+                                <HierarchicalDataTemplate DataType="{x:Type actors:ActorGrouping}"
+                                                          ItemsSource="{Binding ActorCollections}">
+                                    <TextBlock Text="{Binding Name, Mode=OneTime}" />
+                                </HierarchicalDataTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type actors:ActorCollection}">
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" />
+                                </HierarchicalDataTemplate>
+                            </TreeView.Resources>
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="SelectedItemChanged">
+                                    <b:InvokeCommandAction
+                                        Command="{Binding SelectedItemChangedCommand}"
+                                        CommandParameter="{Binding SelectedItem, ElementName=ActorTreeView}" />
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+                        </TreeView>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <GridSplitter Grid.Column="1" Width="5" />
+        <Grid Grid.Column="2" HorizontalAlignment="Stretch">
+            <ContentPresenter Content="{Binding ActorView}" />
+        </Grid>
+    </Grid>
+</UserControl>

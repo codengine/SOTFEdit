@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using NLog;
-using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit;
 
 public class SavegameManager : ObservableObject
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
+    private static Savegame? _selectedSavegame;
+
+    public static Savegame? SelectedSavegame
+    {
+        get => _selectedSavegame;
+        set
+        {
+            _selectedSavegame = value;
+            WeakReferenceMessenger.Default.Send(new SelectedSavegameChangedEvent(value));
+        }
+    }
 
     public static Dictionary<string, Savegame> GetSavegames()
     {
@@ -54,14 +68,14 @@ public class SavegameManager : ObservableObject
         return new Dictionary<string, Savegame>();
     }
 
-    private static Savegame? CreateSaveInfo(DirectoryInfo? directory)
+    public static Savegame? CreateSaveInfo(DirectoryInfo? directory)
     {
         return directory is { Exists: true }
             ? new Savegame(directory.FullName, directory.Name, new SavegameStore(directory.FullName))
             : null;
     }
 
-    private static string GetSavegamePathFromAppData()
+    public static string GetSavegamePathFromAppData()
     {
         var localLowPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
             .Replace("Roaming", "LocalLow");

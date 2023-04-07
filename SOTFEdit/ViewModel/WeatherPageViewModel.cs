@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
-using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
@@ -27,11 +27,9 @@ public class WeatherPageViewModel
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
     {
         Settings.Clear();
-        var weatherSaveData =
+        var saveDataWrapper =
             message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
-        var weatherSystemToken = weatherSaveData?.SelectToken("Data.WeatherSystem");
-        if (weatherSystemToken?.ToString() is not { } weatherSystemJson ||
-            JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
+        if (saveDataWrapper?.GetJsonBasedToken(Constants.JsonKeys.WeatherSystem) is not { } weatherSystem)
         {
             return;
         }
@@ -102,13 +100,10 @@ public class WeatherPageViewModel
         }
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
-        var weatherSaveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
-
-        if (weatherSaveData?.SelectToken("Data.WeatherSystem") is not { } weatherSystemToken ||
-            weatherSystemToken.ToString() is not { } weatherSystemJson ||
-            JsonConverter.DeserializeRaw(weatherSystemJson) is not { } weatherSystem)
+        var saveDataWrapper = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WeatherSystemSaveData);
+        if (saveDataWrapper?.GetJsonBasedToken(Constants.JsonKeys.WeatherSystem) is not { } weatherSystem)
         {
             return false;
         }
@@ -118,9 +113,7 @@ public class WeatherPageViewModel
             return false;
         }
 
-        weatherSystemToken.Replace(JsonConverter.Serialize(weatherSystem));
-
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.WeatherSystemSaveData, weatherSaveData, createBackup);
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.WeatherSystem);
         return true;
     }
 

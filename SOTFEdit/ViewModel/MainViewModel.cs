@@ -1,11 +1,15 @@
 ﻿using System;
+using System.IO;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Newtonsoft.Json.Linq;
 using NLog;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Savegame;
 using SOTFEdit.View;
 
 namespace SOTFEdit.ViewModel;
@@ -15,34 +19,28 @@ public partial class MainViewModel : ObservableObject
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly ArmorPageViewModel _armorPageViewModel;
-    [ObservableProperty] private bool _backupFiles;
 
     [ObservableProperty] private bool _checkVersionOnStartup;
 
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(SaveChangesCommand))]
-    [NotifyCanExecuteChangedFor(nameof(RegrowTreesCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ReloadSavegameCommand))]
-    [NotifyCanExecuteChangedFor(nameof(OpenSavegameDirCommand))]
-    [NotifyCanExecuteChangedFor(nameof(DeleteBackupsCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ExperimentEnemiesFearThePlayerCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ExperimentEnemiesNoFearNoRemorceCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ExperimentRemoveAllActorsAndSpawnsCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ExperimentResetKillStatisticsCommand))]
-    [NotifyCanExecuteChangedFor(nameof(ExperimentResetNumberCutTreesCommand))]
-    [NotifyCanExecuteChangedFor(nameof(RestoreBackupsCommand))]
-    private Savegame? _selectedSavegame;
+    [ObservableProperty] private string _lastSaveGameMenuItem = "Open last savegame...";
 
-    [NotifyCanExecuteChangedFor(nameof(RegrowTreesCommand))] [NotifyPropertyChangedFor(nameof(VegetationStateIsAllSelected))] [ObservableProperty]
-    private VegetationState _vegetationStateSelected =
-        VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
+    [ObservableProperty] private double? _pinLeft;
 
-    public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage)
+    [ObservableProperty] private Position? _pinPos;
+
+    [ObservableProperty] private double? _pinTop;
+
+    public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage, NpcsPage npcsPage,
+        StructuresPage structuresPage)
     {
         _armorPageViewModel = armorPageViewModel;
         GamePage = gamePage;
-        BackupFiles = Settings.Default.BackupFiles;
+        NpcsPage = npcsPage;
+        StructuresPage = structuresPage;
         CheckVersionOnStartup = Settings.Default.CheckForUpdates;
+
+        UpdateLastSaveGameMenuItem();
+
         SetupListeners();
     }
 
@@ -51,22 +49,11 @@ public partial class MainViewModel : ObservableObject
     public FollowersPage FollowersPage { get; } = new();
     public PlayerPage PlayerPage { get; } = new();
     public StoragePage StoragePage { get; } = new();
+    public NpcsPage NpcsPage { get; }
+    public StructuresPage StructuresPage { get; }
 
     public object? SelectedTab { get; set; }
 
-    public bool VegetationStateIsAllSelected
-    {
-        get => VegetationStateSelected.HasFlag(VegetationState.Gone) &&
-               VegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
-               VegetationStateSelected.HasFlag(VegetationState.Stumps);
-        set
-        {
-            var vegetationState = value == false
-                ? VegetationState.None
-                : VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
-            VegetationStateSelected = vegetationState;
-        }
-    }
 
     partial void OnCheckVersionOnStartupChanged(bool value)
     {
@@ -77,13 +64,13 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
     private void ReloadSavegame()
     {
-        if (SelectedSavegame is not { } selectedSavegame)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
         var replacementSavegame = SavegameManager.ReloadSavegame(selectedSavegame);
-        WeakReferenceMessenger.Default.Send(new SelectedSavegameChangedEvent(replacementSavegame));
+        SavegameManager.SelectedSavegame = replacementSavegame;
     }
 
     [RelayCommand]
@@ -101,57 +88,104 @@ public partial class MainViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
-            (_, message) =>
-            {
-                if (!message.ReloadSavegame)
-                {
-                    return;
-                }
-
-                ReloadSavegame();
-            });
+            (_, _) => { ReloadSavegame(); });
 
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, message) => { SelectedSavegame = message.SelectedSavegame; });
+            (_, message) => { OnSelectedSavegameChanged(message); });
     }
 
-    partial void OnBackupFilesChanged(bool value)
+    private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
     {
-        Settings.Default.BackupFiles = value;
+        SaveChangesCommand.NotifyCanExecuteChanged();
+        ReloadSavegameCommand.NotifyCanExecuteChanged();
+        OpenSavegameDirCommand.NotifyCanExecuteChanged();
+        DeleteBackupsCommand.NotifyCanExecuteChanged();
+        ExperimentResetKillStatisticsCommand.NotifyCanExecuteChanged();
+        ExperimentResetNumberCutTreesCommand.NotifyCanExecuteChanged();
+        RestoreBackupsCommand.NotifyCanExecuteChanged();
+        RegrowTreesCommand.NotifyCanExecuteChanged();
+        ModifyConsumedItemsCommand.NotifyCanExecuteChanged();
+        IgniteAndRefuelFiresCommand.NotifyCanExecuteChanged();
+        ResetStructureDamageCommand.NotifyCanExecuteChanged();
+        TeleportWorldItemCommand.NotifyCanExecuteChanged();
+        Settings.Default.LastSavegame = message.SelectedSavegame?.FullPath ?? "";
         Settings.Default.Save();
+        UpdateLastSaveGameMenuItem();
+        OpenLastSavegameCommand.NotifyCanExecuteChanged();
+    }
+
+    private void UpdateLastSaveGameMenuItem()
+    {
+        if (Settings.Default.LastSavegame is not { } lastSavegame)
+        {
+            LastSaveGameMenuItem = "Open last savegame...";
+            return;
+        }
+
+        var parts = lastSavegame.Split(Path.DirectorySeparatorChar);
+        if (parts.Length < 2)
+        {
+            LastSaveGameMenuItem = $"Open {lastSavegame}...";
+            return;
+        }
+
+        LastSaveGameMenuItem = $"Open {parts[^2]}{Path.DirectorySeparatorChar}{parts[^1]}...";
+    }
+
+    public static bool CanOpenLastSavegame()
+    {
+        return !string.IsNullOrEmpty(Settings.Default.LastSavegame) && Directory.Exists(Settings.Default.LastSavegame);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanOpenLastSavegame))]
+    private void OpenLastSavegame()
+    {
+        if (!CanOpenLastSavegame())
+        {
+            WeakReferenceMessenger.Default.Send(
+                new GenericMessageEvent("Unable to open the last savegame. Has it been deleted?", "Error"));
+        }
+
+        var directoryInfo = new DirectoryInfo(Settings.Default.LastSavegame);
+        SavegameManager.SelectedSavegame = SavegameManager.CreateSaveInfo(directoryInfo);
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
     private void SaveChanges()
     {
-        if (SelectedSavegame == null)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
-        WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(SelectedSavegame, BackupFiles, createBackup =>
+        WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(selectedSavegame, backupMode =>
         {
-            var hasChanges = Ioc.Default.GetRequiredService<GamePage>().Update(SelectedSavegame, createBackup);
-            hasChanges = InventoryPage.Update(SelectedSavegame, createBackup) || hasChanges;
-            hasChanges = _armorPageViewModel.Update(SelectedSavegame, createBackup) || hasChanges;
-            hasChanges = FollowersPage.Update(SelectedSavegame, createBackup) || hasChanges;
-            hasChanges = PlayerPage.Update(SelectedSavegame, createBackup) || hasChanges;
-            hasChanges = StoragePage.Update(SelectedSavegame, createBackup) || hasChanges;
+            var hasChanges = Ioc.Default.GetRequiredService<GamePage>().Update(selectedSavegame);
+            hasChanges = InventoryPage.Update(selectedSavegame) || hasChanges;
+            hasChanges = _armorPageViewModel.Update(selectedSavegame) || hasChanges;
+            hasChanges = FollowersPage.Update(selectedSavegame) || hasChanges;
+            hasChanges = PlayerPage.Update(selectedSavegame) || hasChanges;
+            hasChanges = StoragePage.Update(selectedSavegame) || hasChanges;
+            hasChanges = StructuresPage.Update(selectedSavegame) || hasChanges;
 
-            var message = hasChanges ? "Changes saved successfully" : "No changes - Nothing saved";
+            hasChanges = selectedSavegame.SavegameStore.SaveAllModified(backupMode,
+                ApplicationSettings.BackupFlags) || hasChanges;
 
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(message, hasChanges));
+            if (hasChanges)
+            {
+                WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved successfully"));
+            }
+            else
+            {
+                WeakReferenceMessenger.Default.Send(new GenericMessageEvent("No changes - Nothing saved",
+                    "No changes"));
+            }
         }));
     }
 
-    public bool IsSavegameSelected()
+    public static bool IsSavegameSelected()
     {
-        return SelectedSavegame != null;
-    }
-
-    private bool CanRegrowTrees()
-    {
-        return IsSavegameSelected() && VegetationStateSelected != VegetationState.None;
+        return SavegameManager.SelectedSavegame != null;
     }
 
     [RelayCommand]
@@ -163,7 +197,7 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
     private void OpenSavegameDir()
     {
-        if (_selectedSavegame is not { } selectedSavegame)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
@@ -174,24 +208,12 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
     private void DeleteBackups()
     {
-        if (_selectedSavegame is not { } selectedSavegame)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
         WeakReferenceMessenger.Default.Send(new RequestDeleteBackupsEvent(selectedSavegame));
-    }
-
-    [RelayCommand(CanExecute = nameof(CanRegrowTrees))]
-    private void RegrowTrees()
-    {
-        if (SelectedSavegame == null)
-        {
-            return;
-        }
-
-        WeakReferenceMessenger.Default.Send(new RequestRegrowTreesEvent(SelectedSavegame, BackupFiles,
-            VegetationStateSelected));
     }
 
     [RelayCommand]
@@ -203,116 +225,150 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
     private void ExperimentResetKillStatistics()
     {
-        if (SelectedSavegame == null)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
         try
         {
-            LabExperiments.ResetKillStatistics(SelectedSavegame, BackupFiles);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
+            LabExperiments.ResetKillStatistics(selectedSavegame);
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("Changes added. Please save to persist them",
+                "Changes added"));
         }
         catch (Exception ex)
         {
             Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent($"An exception has occured: {ex.Message}",
-                false));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"An exception has occured: {ex.Message}",
+                "Error"));
         }
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
     private void ExperimentResetNumberCutTrees()
     {
-        if (SelectedSavegame == null)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
         try
         {
-            LabExperiments.ResetNumberCutTrees(SelectedSavegame, BackupFiles);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
+            LabExperiments.ResetNumberCutTrees(selectedSavegame);
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("Changes added. Please save to persist them",
+                "Changes added"));
         }
         catch (Exception ex)
         {
             Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent($"An exception has occured: {ex.Message}",
-                false));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"An exception has occured: {ex.Message}",
+                "Error"));
         }
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    private void ExperimentEnemiesFearThePlayer()
+    private void ModifyConsumedItems()
     {
-        if (SelectedSavegame == null)
-        {
-            return;
-        }
-
-        try
-        {
-            LabExperiments.EnemiesFearThePlayer(SelectedSavegame, BackupFiles);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent($"An exception has occured: {ex.Message}",
-                false));
-        }
-    }
-
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    private void ExperimentEnemiesNoFearNoRemorce()
-    {
-        if (SelectedSavegame == null)
-        {
-            return;
-        }
-
-        try
-        {
-            LabExperiments.EnemiesNoFearNoRemorce(SelectedSavegame, BackupFiles);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent($"An exception has occured: {ex.Message}",
-                false));
-        }
-    }
-
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
-    private void ExperimentRemoveAllActorsAndSpawns()
-    {
-        if (SelectedSavegame == null)
-        {
-            return;
-        }
-
-        try
-        {
-            LabExperiments.ExperimentRemoveAllActorsAndSpawns(SelectedSavegame, BackupFiles);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved"));
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent($"An exception has occured: {ex.Message}",
-                false));
-        }
+        WeakReferenceMessenger.Default.Send(new RequestModifyConsumedItemsEvent());
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
     private void RestoreBackups(string restoreFromNewest)
     {
-        if (SelectedSavegame == null)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
-        WeakReferenceMessenger.Default.Send(new RequestRestoreBackupsEvent(SelectedSavegame, bool.Parse(restoreFromNewest)));
+        WeakReferenceMessenger.Default.Send(new RequestRestoreBackupsEvent(selectedSavegame,
+            bool.Parse(restoreFromNewest)));
+    }
+
+    [RelayCommand]
+    private static void ChangeSettings()
+    {
+        WeakReferenceMessenger.Default.Send(new RequestChangeSettingsEvent());
+    }
+
+    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    private void RegrowTrees()
+    {
+        WeakReferenceMessenger.Default.Send(new RequestRegrowTreesEvent());
+    }
+
+    public void OnPreviewKeyDown(KeyEventArgs e)
+    {
+        if (e.Key == Key.F5 && ReloadSavegameCommand.CanExecute(null))
+        {
+            e.Handled = true;
+            ReloadSavegameCommand.Execute(null);
+        }
+
+        if (e.Key != Key.S || Keyboard.Modifiers != ModifierKeys.Control || !SaveChangesCommand.CanExecute(null))
+        {
+            return;
+        }
+
+        e.Handled = true;
+        SaveChangesCommand.Execute(null);
+    }
+
+    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    private void ResetStructureDamage()
+    {
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame ||
+            selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.StructureDestructionSaveData) is not
+                { } saveDataWrapper ||
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.StructureDestruction) is not
+                { } structureDestruction ||
+            structureDestruction["Data"] is not JArray destructionData)
+        {
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("No structure damage has to be repaired",
+                "No structure damage"));
+            return;
+        }
+
+        var entryCount = destructionData.Count;
+        destructionData.Clear();
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.StructureDestruction);
+
+        WeakReferenceMessenger.Default.Send(
+            new GenericMessageEvent($"{entryCount} structural damages have been repaired", "Damages repaired"));
+    }
+
+    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    private void IgniteAndRefuelFires()
+    {
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame ||
+            selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.FiresSaveData) is not
+                { } saveDataWrapper ||
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.Fires) is not { } fires ||
+            fires["FiresPerStructureType"] is not { } firesPerStructureType)
+        {
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("No fires found to be modified", "No fires"));
+            return;
+        }
+
+        var countChanged = 0;
+
+        foreach (var fireType in firesPerStructureType)
+        foreach (var firesByType in fireType.Children())
+        foreach (var fire in firesByType)
+        {
+            fire["IsLit"]?.Replace(true);
+            fire["Fuel"]?.Replace(65535.0f);
+            fire["FuelDrainRate"]?.Replace(0.00001f);
+            countChanged++;
+        }
+
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.Fires);
+        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+            $"{countChanged} fires have been lit, refueled and their drain rate lowered", "Fires changed"));
+    }
+
+    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    private void TeleportWorldItem()
+    {
+        WeakReferenceMessenger.Default.Send(new RequestTeleportWorldItemEvent());
     }
 }

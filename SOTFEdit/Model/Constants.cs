@@ -24,4 +24,28 @@ public static class Constants
         public const int SettingTypeBool = 0;
         public const int SettingTypeString = 3;
     }
+
+    public static class JsonKeys
+    {
+        public const string PlayerInventory = "Data.PlayerInventory";
+        public const string GameSetup = "Data.GameSetup";
+        public const string GameState = "Data.GameState";
+        public const string VailWorldSim = "Data.VailWorldSim";
+        public const string NpcItemInstances = "Data.NpcItemInstances";
+        public const string PlayerClothingSystem = "Data.PlayerClothingSystem";
+        public const string PlayerState = "Data.PlayerState";
+        public const string WeatherSystem = "Data.WeatherSystem";
+        public const string ScrewStructureInstances = "Data.ScrewStructureInstances";
+        public const string WorldObjectLocatorManager = "Data.WorldObjectLocatorManager";
+        public const string PlayerArmourSystem = "Data.PlayerArmourSystem";
+        public const string Fires = "Data.Fires";
+        public const string ScrewStructureNodeInstances = "Data.ScrewStructureNodeInstances";
+        public const string StructureDestruction = "Data.StructureDestruction";
+        public const string WorldItemManager = "Data.WorldItemManager";
+    }
+
+    public static class Items
+    {
+        public const int DefaultPlayerClothItemId = 495;
+    }
 }

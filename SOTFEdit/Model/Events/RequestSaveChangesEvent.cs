@@ -4,20 +4,19 @@ namespace SOTFEdit.Model.Events;
 
 public class RequestSaveChangesEvent
 {
-    private readonly bool _createBackup;
-    private readonly Action<bool> _saveChangesCallback;
+    private readonly Action<ApplicationSettings.BackupMode> _saveChangesCallback;
 
-    public RequestSaveChangesEvent(Savegame selectedSavegame, bool createBackup, Action<bool> saveChangesCallback)
+    public RequestSaveChangesEvent(Savegame.Savegame selectedSavegame,
+        Action<ApplicationSettings.BackupMode> saveChangesCallback)
     {
-        _createBackup = createBackup;
         SelectedSavegame = selectedSavegame;
         _saveChangesCallback = saveChangesCallback;
     }
 
-    public Savegame SelectedSavegame { get; }
+    public Savegame.Savegame SelectedSavegame { get; }
 
-    public void InvokeCallback()
+    public void InvokeCallback(ApplicationSettings.BackupMode backupMode)
     {
-        _saveChangesCallback.Invoke(_createBackup);
+        _saveChangesCallback.Invoke(backupMode);
     }
 }

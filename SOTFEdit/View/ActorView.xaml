@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="SOTFEdit.View.ActorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+             xmlns:wpftk="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
+             xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
+             xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModel:ActorViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300" Padding="10">
+
+    <UserControl.Resources>
+        <Style x:Key="LabelStyle" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Setter Property="Margin" Value="0 0 8 0" />
+        </Style>
+        <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
+    </UserControl.Resources>
+    <wpftk:VirtualizingItemsControl ItemsSource="{Binding ActorCollection.Actors}"
+                                    VirtualizingPanel.VirtualizationMode="Recycling"
+                                    VirtualizingPanel.ScrollUnit="Pixel"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <wpftk:VirtualizingItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type actors:Actor}">
+                <Border BorderThickness="2" Margin="5" Padding="8"
+                        BorderBrush="{Binding ActorColor, Converter={StaticResource ColorToSolidColorBrushConverter}, ConverterParameter='0.7'}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding ActorImage}" Width="200" VerticalAlignment="Center"
+                               HorizontalAlignment="Center" Margin="0 0 0 10" />
+                        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                                    VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Image Source="/images/red-pin.png" Margin="0 0 5 0" Width="32" Height="32"
+                                   Cursor="Hand" VerticalAlignment="Center"
+                                   ToolTip="{Binding Position.Printable}">
+                                <Image.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick"
+                                                  Command="{Binding DataContext.OpenMapCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                                  CommandParameter="{Binding Position}" />
+                                </Image.InputBindings>
+                            </Image>
+                            <TextBlock Text="Position" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding PositionSuffix}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <Grid Grid.Row="2" Margin="0 0 0 6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"
+                                       Style="{StaticResource LabelStyle}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding ActorType.Name, FallbackValue='???'}"
+                                       Foreground="{Binding ActorColor, Converter={StaticResource ColorToSolidColorBrushConverter}}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Classification"
+                                       Style="{StaticResource LabelStyle}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding ActorType.PrintableClassification, FallbackValue='???'}" />
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Gender"
+                                       Style="{StaticResource LabelStyle}" />
+                            <TextBlock Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding ActorType.PrintableGender, FallbackValue='???'}" />
+                        </Grid>
+                        <Button Grid.Row="3" Content="Edit" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                Command="{Binding DataContext.EditActorCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </wpftk:VirtualizingItemsControl.ItemTemplate>
+        <wpftk:VirtualizingItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <wpftk:VirtualizingWrapPanel />
+            </ItemsPanelTemplate>
+        </wpftk:VirtualizingItemsControl.ItemsPanel>
+    </wpftk:VirtualizingItemsControl>
+</UserControl>

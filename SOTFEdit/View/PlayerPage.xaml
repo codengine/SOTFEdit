@@ -19,11 +19,6 @@
                 <Setter Property="Margin" Value="0 0 10 10" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            <Style x:Key="PlayerTextBlockStyleRight" TargetType="{x:Type TextBlock}"
-                   BasedOn="{StaticResource MahApps.Styles.TextBlock}">
-                <Setter Property="Margin" Value="0 0 0 10" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-            </Style>
             <Style x:Key="PlayerSliderStyle" TargetType="{x:Type Slider}"
                    BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
                 <Setter Property="Margin" Value="0 0 10 10" />
@@ -39,8 +34,8 @@
                 <Setter Property="Margin" Value="0 0 0 10" />
             </Style>
         </Grid.Resources>
-        <ScrollViewer>
-            <GroupBox Header="Player" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="0 0 0 10">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <GroupBox Header="Player" VerticalAlignment="Top" Margin="0 0 0 10">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -69,10 +64,24 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource PlayerTextBlockStyleLeft}">Position</TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource PlayerTextBlockStyleRight}"
-                                   Text="{Binding PlayerState.PositionPrintable}" />
+                        <Grid Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand">
+                                <Image.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding OpenMapAtPlayerPosCommand}" />
+                                </Image.InputBindings>
+                            </Image>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                                       Text="{Binding PlayerState.Pos.Printable}" />
+                        </Grid>
                         <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource PlayerTextBlockStyleLeft}">Strength Level</TextBlock>
                         <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
                                            Grid.Row="3" Minimum="0" Interval="1" NumericInputMode="Numbers"
@@ -83,25 +92,74 @@
                                            Value="{Binding PlayerState.MaxHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource PlayerTextBlockStyleLeft}">Current Health</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.1"
-                                Maximum="{Binding PlayerState.MaxHealth}" Value="{Binding PlayerState.CurrentHealth, UpdateSourceTrigger=PropertyChanged}" />
+                                Maximum="{Binding PlayerState.MaxHealth}"
+                                Value="{Binding PlayerState.CurrentHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource PlayerTextBlockStyleLeft}">Fullness</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
+                                Maximum="100" Interval="10"
+                                Value="{Binding PlayerState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource PlayerTextBlockStyleLeft}">Hydration</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
+                                Maximum="100" Interval="10"
+                                Value="{Binding PlayerState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource PlayerTextBlockStyleLeft}">Rest</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Rest, UpdateSourceTrigger=PropertyChanged}" />
+                                Maximum="100" Interval="10"
+                                Value="{Binding PlayerState.Rest, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource PlayerTextBlockStyleLeft}">Stamina</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Stamina, UpdateSourceTrigger=PropertyChanged}" />
-                        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                                Maximum="100" Interval="10"
+                                Value="{Binding PlayerState.Stamina, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource PlayerTextBlockStyleLeft}">Fullness Buff</TextBlock>
+                        <Grid Grid.Column="1" Grid.Row="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="-100.0"
+                                    Maximum="65535" Interval="1"
+                                    Value="{Binding PlayerState.FullnessBuff, UpdateSourceTrigger=PropertyChanged}" />
+                            <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
+                                               Minimum="-100.0" Maximum="65535" Interval="1" NumericInputMode="Numbers"
+                                               Value="{Binding PlayerState.FullnessBuff, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+
+                        <TextBlock Grid.Column="0" Grid.Row="11" Style="{StaticResource PlayerTextBlockStyleLeft}">Hydration Buff</TextBlock>
+                        <Grid Grid.Column="1" Grid.Row="11">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="-100.0"
+                                    Maximum="65535" Interval="1"
+                                    Value="{Binding PlayerState.HydrationBuff, UpdateSourceTrigger=PropertyChanged}" />
+                            <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
+                                               Minimum="-100.0" Maximum="65535" Interval="1" NumericInputMode="Numbers"
+                                               Value="{Binding PlayerState.HydrationBuff, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+
+                        <TextBlock Grid.Column="0" Grid.Row="12" Style="{StaticResource PlayerTextBlockStyleLeft}">Rest Buff</TextBlock>
+                        <Grid Grid.Column="1" Grid.Row="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="-100.0"
+                                    Maximum="65535" Interval="1"
+                                    Value="{Binding PlayerState.RestBuff, UpdateSourceTrigger=PropertyChanged}" />
+                            <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
+                                               Minimum="-100.0" Maximum="65535" Interval="1" NumericInputMode="Numbers"
+                                               Value="{Binding PlayerState.RestBuff, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+
+                        <Button Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                                Background="{DynamicResource MahApps.Brushes.Accent}" Padding="10"
                                 Command="{Binding FillAllBarsCommand}" Margin="0 0 0 10">
                             Fill all bars
                         </Button>
-                        <TextBlock Grid.Column="0" Grid.Row="11" Style="{StaticResource PlayerTextBlockStyleLeft}">Outfit</TextBlock>
-                        <ComboBox IsEditable="False" Grid.Column="1" Grid.Row="11"
+                        <TextBlock Grid.Column="0" Grid.Row="14" Style="{StaticResource PlayerTextBlockStyleLeft}">Outfit</TextBlock>
+                        <ComboBox IsEditable="False" Grid.Column="1" Grid.Row="14"
                                   ItemsSource="{Binding AvailableClothesView}" DisplayMemberPath="Name"
                                   SelectedItem="{Binding PlayerState.SelectedCloth}" />
                     </Grid>

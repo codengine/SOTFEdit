@@ -12,13 +12,14 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <GroupBox Padding="10" Header="Game Setup" Margin="0 0 5 0">
+        <GroupBox VerticalAlignment="Top" Padding="10" Header="Game Setup" Margin="0 0 5 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
                 <ContentPresenter Content="{Binding GameSetup}" />
             </ScrollViewer>
         </GroupBox>
-        <GroupBox Padding="10" Header="Game State" Grid.Column="1" Margin="5 0 0 0">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" PreviewMouseWheel="GameState_PreviewMouseWheel">
+        <GroupBox VerticalAlignment="Top" Padding="10" Header="Game State" Grid.Column="1" Margin="5 0 0 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top"
+                          PreviewMouseWheel="GameState_PreviewMouseWheel">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition />

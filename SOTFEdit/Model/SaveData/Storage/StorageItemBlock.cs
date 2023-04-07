@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SOTFEdit.Model.SaveData.Storage.Module;
 
 namespace SOTFEdit.Model.SaveData.Storage;
 
@@ -33,5 +34,10 @@ public class StorageItemBlock
     public override int GetHashCode()
     {
         return HashCode.Combine(ItemId, TotalCount, UniqueItems);
+    }
+
+    public bool FirstModuleIsEqualTo(IStorageModule storageModule)
+    {
+        return UniqueItems.FirstOrDefault()?.Modules.FirstOrDefault()?.IsEqualTo(storageModule) ?? false;
     }
 }

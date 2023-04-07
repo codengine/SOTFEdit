@@ -6,4 +6,9 @@ public abstract record BaseStorageModule(int ModuleId) : SotfBaseModel, IStorage
     {
         return ModuleId;
     }
+
+    public virtual bool IsEqualTo(IStorageModule? other)
+    {
+        return other != null && other.GetModuleId() == GetModuleId();
+    }
 }

@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Markup;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
+using ControlzEx.Theming;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NLog;
 using Semver;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Storage;
 using SOTFEdit.View;
@@ -68,6 +70,12 @@ public partial class App
         services.AddSingleton<GameStatePage>();
         services.AddSingleton<GameSetupPage>();
         services.AddSingleton<WeatherPage>();
+        services.AddSingleton<NpcsPageViewModel>();
+        services.AddSingleton<NpcsPage>();
+        services.AddSingleton<ActorModifier>();
+        services.AddSingleton<ApplicationSettings>();
+        services.AddSingleton<StructuresPageViewModel>();
+        services.AddSingleton<StructuresPage>();
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }
 
@@ -81,6 +89,11 @@ public partial class App
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+
+        if (!string.IsNullOrEmpty(Settings.Default.Theme) && !string.IsNullOrEmpty(Settings.Default.ThemeAccent))
+        {
+            ThemeManager.Current.ChangeTheme(this, $"{Settings.Default.Theme}.{Settings.Default.ThemeAccent}");
+        }
 
         Logger.Debug("OnStartup()");
         FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -28,6 +29,17 @@ public partial class SpawnFollowerInputDialog
     private void Cancel()
     {
         DialogResult = false;
+        Close();
+    }
+
+    private void SpawnFollowerInputDialog_OnPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.Escape)
+        {
+            return;
+        }
+
+        e.Handled = true;
         Close();
     }
 }

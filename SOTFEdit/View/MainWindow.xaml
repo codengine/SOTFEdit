@@ -4,10 +4,11 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
-                 xmlns:model="clr-namespace:SOTFEdit.Model"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:zoomControl="clr-namespace:Denxorz.ZoomControl;assembly=Denxorz.ZoomControl"
+                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 xmlns:st="http://schemas.spicytaco.io/"
                  mc:Ignorable="d"
                  SaveWindowPosition="True"
                  WindowStartupLocation="CenterScreen"
@@ -15,9 +16,53 @@
                  TitleCharacterCasing="Normal"
                  Style="{DynamicResource MyStyle}"
                  d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
+                 WindowButtonCommandsOverlayBehavior="Never"
+                 PreviewKeyDown="MainWindow_OnPreviewKeyDown"
                  WindowTransitionsEnabled="False">
-    <DockPanel>
-        <Border BorderThickness="0 0 0 1" BorderBrush="Black" DockPanel.Dock="Top">
+    <Window.Resources>
+        <converters:InverseZoomConverter x:Key="InverseZoomConverter" />
+    </Window.Resources>
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <mah:Flyout x:Name="MapFlyout" Header="Map" Position="Right" Width="400">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <zoomControl:ZoomControl x:Name="ZoomCtrl" Mode="Fill" MaxZoom="2">
+                        <Grid>
+                            <Image Source="/images/map.jpg" Width="4096" Height="4096" />
+                            <Canvas Width="4096" Height="4096">
+                                <Image Source="/images/red-pin.png" Width="32" Height="32"
+                                       Canvas.Top="{Binding PinTop}" Canvas.Left="{Binding PinLeft}">
+                                    <Image.RenderTransform>
+                                        <ScaleTransform
+                                            ScaleX="{Binding Converter={StaticResource InverseZoomConverter}, ElementName=ZoomCtrl, Path=Zoom}"
+                                            ScaleY="{Binding Converter={StaticResource InverseZoomConverter}, ElementName=ZoomCtrl, Path=Zoom}" />
+                                    </Image.RenderTransform>
+                                    <Image.RenderTransformOrigin>
+                                        <Point X="0.5" Y="0.5" />
+                                    </Image.RenderTransformOrigin>
+                                </Image>
+                            </Canvas>
+                        </Grid>
+                    </zoomControl:ZoomControl>
+                    <st:AutoGrid Grid.Row="1" Rows="Auto" Columns="Auto,*" ChildMargin="3" Orientation="Horizontal"
+                                 Margin="8" ChildHorizontalAlignment="Left" ChildVerticalAlignment="Center">
+                        <Label Content="Position" />
+                        <TextBox IsReadOnly="True" IsReadOnlyCaretVisible="False"
+                                 Text="{Binding PinPos.Printable, Mode=OneWay, FallbackValue='???'}" />
+                    </st:AutoGrid>
+                </Grid>
+            </mah:Flyout>
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
+    <st:AutoGrid Rows="Auto,*" Columns="*">
+        <Border BorderThickness="0 0 0 1" BorderBrush="Black">
             <Menu Background="{DynamicResource MahApps.Brushes.MenuItem.Background}" Padding="3">
                 <MenuItem Header="File">
                     <MenuItem Header="Open Savegame..." Command="{Binding SelectSavegameCommand}">
@@ -25,131 +70,97 @@
                             <iconPacks:MaterialDesign Kind="FolderOpen" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Save" Command="{Binding SaveChangesCommand}">
+                    <MenuItem Header="{Binding LastSaveGameMenuItem}" Command="{Binding OpenLastSavegameCommand}" />
+                    <Separator />
+                    <MenuItem Header="Save" Command="{Binding SaveChangesCommand}" InputGestureText="Ctrl+S">
                         <MenuItem.Icon>
                             <iconPacks:MaterialDesign Kind="Save" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Reload Current Savegame" Command="{Binding ReloadSavegameCommand}">
+                    <MenuItem Header="Reload Current Savegame" Command="{Binding ReloadSavegameCommand}"
+                              InputGestureText="F5">
                         <MenuItem.Icon>
                             <iconPacks:MaterialDesign Kind="Refresh" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Open Savegame Dir in Explorer" Command="{Binding OpenSavegameDirCommand}" />
                     <Separator />
-                    <CheckBox IsChecked="{Binding BackupFiles}">Backup Files</CheckBox>
                     <MenuItem Header="Restore from Backups">
-                        <MenuItem Header="From oldest backup" Command="{Binding RestoreBackupsCommand}" CommandParameter="false" />
-                        <MenuItem Header="From newest backup" Command="{Binding RestoreBackupsCommand}" CommandParameter="true" />
+                        <MenuItem Header="From oldest backup" Command="{Binding RestoreBackupsCommand}"
+                                  CommandParameter="false" />
+                        <MenuItem Header="From newest backup" Command="{Binding RestoreBackupsCommand}"
+                                  CommandParameter="true" />
                     </MenuItem>
-                    <MenuItem Header="Delete all backups (*.bak*)" Command="{Binding DeleteBackupsCommand}" />
+                    <MenuItem Header="Delete all backups" Command="{Binding DeleteBackupsCommand}" />
                     <Separator />
-                    <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
+                    <MenuItem Header="Settings" Command="{Binding ChangeSettingsCommand}" />
+                    <Separator />
+                    <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" InputGestureText="Ctrl+Q" />
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <MenuItem Command="{Binding RegrowTreesCommand}" Header="Regrow Trees..." />
+                    <MenuItem Header="Ignite and Refuel all Fires"
+                              ToolTip="Will ignite and refuel all fires as well as slowing down the drain rate of the fires fuel, which should make them burn almost eternally"
+                              Command="{Binding IgniteAndRefuelFiresCommand}" />
+                    <MenuItem Header="Reset Structure Damage" ToolTip="Lets you repair all structures"
+                              Command="{Binding ResetStructureDamageCommand}" />
+                    <MenuItem Header="Teleport/Clone Glider &amp; Knight V..."
+                              ToolTip="Teleport the objects to the player, or the player to the objects"
+                              Command="{Binding TeleportWorldItemCommand}" />
+                    <MenuItem Header="Modify Consumed Items..." Command="{Binding ModifyConsumedItemsCommand}"
+                              ToolTip="In case you want to purge your memory about items that you have consumed already" />
+                    <Separator />
+                    <MenuItem Header="Reset Kill Statistics" Command="{Binding ExperimentResetKillStatisticsCommand}"
+                              ToolTip="Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?" />
+                    <MenuItem Header="Reset Number of Cut Trees"
+                              Command="{Binding ExperimentResetNumberCutTreesCommand}"
+                              ToolTip="This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number" />
                 </MenuItem>
                 <MenuItem Header="?">
-                    <MenuItem Header="GitHub Project" Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/codengine/SOTFEdit">
-                        <MenuItem.Icon>
-                            <iconPacks:MaterialDesign Kind="Code" />
-                        </MenuItem.Icon>
+                    <MenuItem Header="Links">
+                        <MenuItem Header="GitHub Project" Command="{Binding OpenUrlCommand}"
+                                  CommandParameter="https://github.com/codengine/SOTFEdit">
+                            <MenuItem.Icon>
+                                <iconPacks:MaterialDesign Kind="Code" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Discord" Command="{Binding OpenUrlCommand}"
+                                  CommandParameter="https://discord.gg/867UDYvvqE">
+                            <MenuItem.Icon>
+                                <iconPacks:MaterialDesign Kind="Chat" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Download Latest Version" Command="{Binding OpenUrlCommand}"
+                                  CommandParameter="https://github.com/codengine/SOTFEdit/releases">
+                            <MenuItem.Icon>
+                                <iconPacks:MaterialDesign Kind="Code" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="NexusMods" Command="{Binding OpenUrlCommand}"
+                                  CommandParameter="https://www.nexusmods.com/sonsoftheforest/mods/41" />
+                        <MenuItem Header="thunderstore.io" Command="{Binding OpenUrlCommand}"
+                                  CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/SOTFEdit/" />
                     </MenuItem>
-                    <MenuItem Header="Download Latest Version" Command="{Binding OpenUrlCommand}"
-                              CommandParameter="https://github.com/codengine/SOTFEdit/releases">
-                        <MenuItem.Icon>
-                            <iconPacks:MaterialDesign Kind="Code" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator />
-                    <MenuItem Header="NexusMods" Command="{Binding OpenUrlCommand}" CommandParameter="https://www.nexusmods.com/sonsoftheforest/mods/41" />
-                    <MenuItem Header="thunderstore.io" Command="{Binding OpenUrlCommand}"
-                              CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/SOTFEdit/" />
-                    <Separator />
                     <MenuItem Header="Updates">
                         <MenuItem Header="Check now" Command="{Binding CheckForUpdatesCommand}" />
                         <CheckBox IsChecked="{Binding CheckVersionOnStartup}">Check on Startup</CheckBox>
                     </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Readme" Click="OpenReadme_Click" />
+                    <MenuItem Header="Changelog" Click="OpenChangelog_Click" />
+
                 </MenuItem>
             </Menu>
         </Border>
-        <TabControl DockPanel.Dock="Top" SelectedItem="{Binding SelectedTab}" Margin="15 0 15 15">
+        <TabControl SelectedItem="{Binding SelectedTab}" Margin="15 0 15 15">
             <TabItem Foreground="White" Header="Player" Content="{Binding PlayerPage}" />
             <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage}" />
             <TabItem Foreground="White" Header="Storage" Content="{Binding StoragePage}" />
             <TabItem Foreground="White" Header="Followers" Content="{Binding FollowersPage}" />
             <TabItem Foreground="White" Header="Game" Content="{Binding GamePage}" />
-            <TabItem Foreground="White" Header="Tools">
-                <Grid HorizontalAlignment="Center" Margin="0 20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <GroupBox Header="Regrow Trees" Grid.Row="0" Padding="10" Margin="0 0 0 15">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <StackPanel.Resources>
-                                <infrastructure:VegetationStateToBooleanConverter
-                                    x:Key="VegetationStateToBooleanConverter" />
-                                <Style TargetType="{x:Type CheckBox}"
-                                       BasedOn="{StaticResource MahApps.Styles.CheckBox}">
-                                    <Setter Property="Margin" Value="0 0 10 0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <mah:ToggleSwitch OnContent="All" OffContent="All"
-                                              IsOn="{Binding VegetationStateIsAllSelected}" />
-                            <mah:ToggleSwitch OnContent="Gone" OffContent="Gone"
-                                              IsOn="{Binding 
-                                Path=VegetationStateSelected,
-                                Converter={StaticResource VegetationStateToBooleanConverter},
-                                ConverterParameter={x:Static model:VegetationState.Gone}}" />
-                            <mah:ToggleSwitch OnContent="HalfChopped" OffContent="HalfChopped"
-                                              IsOn="{Binding 
-                                Path=VegetationStateSelected,
-                                Converter={StaticResource VegetationStateToBooleanConverter},
-                                ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
-                            <mah:ToggleSwitch OnContent="Stumps" OffContent="Stumps"
-                                              IsOn="{Binding 
-                                Path=VegetationStateSelected,
-                                Converter={StaticResource VegetationStateToBooleanConverter},
-                                ConverterParameter={x:Static model:VegetationState.Stumps}}" />
-                            <Button Command="{Binding RegrowTreesCommand}" Padding="10" FontSize="14">Regrow Trees</Button>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Grid.Row="1" Padding="10" Header="Experimental Area">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <WrapPanel Margin="0 0 0 10">
-                                <iconPacks:PackIconMaterialDesign Kind="Warning" Foreground="Red" />
-                                <TextBlock Padding="5 0 0 0" xml:space="preserve">Use these tools at your own risk. They might destroy your game, they might also yield something. Ensure to enable backups before.
-Each button has a tooltip, please read it carefully.
-                                </TextBlock>
-                            </WrapPanel>
-                            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetKillStatisticsCommand}" Padding="10" FontSize="14"
-                                        ToolTip="Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?">
-                                    Reset Kill Statistics
-                                </Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentResetNumberCutTreesCommand}" Padding="10" FontSize="14"
-                                        ToolTip="This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number">
-                                    Reset Number of Cut Trees
-                                </Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesFearThePlayerCommand}" Padding="10" FontSize="14"
-                                        ToolTip="Will set the Fear level to max and the Anger level to min towards the player, so that they might be less intimidating">
-                                    Enemies fear the Player
-                                </Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentEnemiesNoFearNoRemorceCommand}" Padding="10" FontSize="14"
-                                        ToolTip="Will set the Fear level to min and the Anger level to max towards the player, so that they might be more intimidating">
-                                    No Fear, No Remorse
-                                </Button>
-                                <Button Margin="0 0 0 10" Command="{Binding ExperimentRemoveAllActorsAndSpawnsCommand}" Padding="10" FontSize="14"
-                                        ToolTip="This might clear the game from enemies. Virginia and Kelvin are not effected. Highly Dangerous!">
-                                    Remove All Actors and Spawners
-                                </Button>
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-                </Grid>
-            </TabItem>
+            <TabItem Foreground="White" Header="NPCs" Content="{Binding NpcsPage}" />
+            <TabItem Foreground="White" Header="Structures" Content="{Binding StructuresPage}" />
         </TabControl>
-    </DockPanel>
+    </st:AutoGrid>
 </mah:MetroWindow>

@@ -1,23 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using NLog;
-using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
-public partial class GameStatePageViewModel : ObservableObject
+public class GameStatePageViewModel
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     private readonly GameData _gameData;
-
-    [ObservableProperty] private Savegame? _selectedSavegame;
 
     public GameStatePageViewModel(GameData gameData)
     {
@@ -47,15 +44,12 @@ public partial class GameStatePageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
     {
-        SelectedSavegame = message.SelectedSavegame;
         Settings.Clear();
         NamedIntDatas.Clear();
         PrefillNamedIntDatas(_gameData.NamedIntKeys);
-        var gameStateData =
+        var saveDataWrapper =
             message.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
-        var gameStateToken = gameStateData?.SelectToken("Data.GameState");
-        if (gameStateToken?.ToString() is not { } gameStateJson ||
-            JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
+        if (saveDataWrapper?.GetJsonBasedToken(Constants.JsonKeys.GameState) is not { } gameState)
         {
             return;
         }
@@ -190,13 +184,11 @@ public partial class GameStatePageViewModel : ObservableObject
             }
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
-        var gameStateData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
-
-        if (gameStateData?.SelectToken("Data.GameState") is not { } gameStateToken ||
-            gameStateToken.ToString() is not { } gameStateJson ||
-            JsonConverter.DeserializeRaw(gameStateJson) is not { } gameState)
+        var saveDataWrapper =
+            savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData);
+        if (saveDataWrapper?.GetJsonBasedToken(Constants.JsonKeys.GameState) is not { } gameState)
         {
             return false;
         }
@@ -206,16 +198,16 @@ public partial class GameStatePageViewModel : ObservableObject
             return false;
         }
 
-        gameStateToken.Replace(JsonConverter.Serialize(gameState));
-
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameStateSaveData, gameStateData, createBackup);
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.GameState);
         return true;
     }
 
-    private static bool Merge(JToken gameState, IEnumerable<GenericSetting> newSettings, IEnumerable<GenericSetting> newNamedIntDatas)
+    private static bool Merge(JToken gameState, IEnumerable<GenericSetting> newSettings,
+        IEnumerable<GenericSetting> newNamedIntDatas)
     {
         var hasChanges = false;
-        hasChanges = newSettings.Aggregate(false, (current, setting) => setting.MergeTo(gameState) || current) || hasChanges;
+        hasChanges = newSettings.Aggregate(false, (current, setting) => setting.MergeTo(gameState) || current) ||
+                     hasChanges;
 
         if (gameState["NamedIntDatas"] is { } namedIntDataToken)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SOTFEdit.Model.SaveData.Storage;
+using SOTFEdit.Model.SaveData.Storage.Module;
 using SOTFEdit.View.Storage;
 
 namespace SOTFEdit.Model.Storage;
@@ -17,9 +18,11 @@ public class ItemsStorage : BaseStorage
 
     private List<ItemWrapper> GetSupportedItems(ItemList itemList, StorageDefinition storageDefinition)
     {
+        var supportedItems = new List<ItemWrapper>();
+
         if (Definition.RestrictedItemIds?.Count == 0)
         {
-            return new List<ItemWrapper>();
+            return supportedItems;
         }
 
         var baseQ = itemList.Select(item => item.Value)
@@ -30,7 +33,9 @@ public class ItemsStorage : BaseStorage
             baseQ = baseQ.Where(item => restrictedItemIds.Contains(item.Id));
         }
 
-        return baseQ.Select(item => new ItemWrapper(item, storageDefinition.MaxPerSlot)).ToList();
+        foreach (var item in baseQ) AddEffectiveSupportedItem(item, storageDefinition, supportedItems);
+
+        return supportedItems.OrderBy(item => item.Name).ToList();
     }
 
     protected override List<ItemWrapper> GetSupportedItems()
@@ -65,6 +70,18 @@ public class ItemsStorage : BaseStorage
                     TotalCount = storedItem.Count,
                     ItemId = item.Item.Id
                 };
+
+                if (item.ModuleWrapper is { } moduleWrapper)
+                {
+                    for (var i = 0; i < storedItem.Count; i++)
+                        storageItemBlock.UniqueItems.Add(new UniqueItem
+                        {
+                            Modules = new List<IStorageModule>
+                            {
+                                moduleWrapper.Module
+                            }
+                        });
+                }
 
                 storageBlock.ItemBlocks.Add(storageItemBlock);
             }

@@ -221,7 +221,8 @@ public class RangeObservableCollection<T> : ObservableCollection<T>
 
 
     /// <summary>
-    ///     Removes the first occurence of each item in the specified collection from the <see cref="ObservableCollection{T}" />.
+    ///     Removes the first occurence of each item in the specified collection from the
+    ///     <see cref="ObservableCollection{T}" />.
     /// </summary>
     /// <param name="collection">The items to remove.</param>
     /// <exception cref="ArgumentNullException"><paramref name="collection" /> is null.</exception>
@@ -465,7 +466,8 @@ public class RangeObservableCollection<T> : ObservableCollection<T>
     }
 
     /// <summary>
-    ///     Removes the specified range and inserts the specified collection in its position, leaving equal items in equal positions intact.
+    ///     Removes the specified range and inserts the specified collection in its position, leaving equal items in equal
+    ///     positions intact.
     /// </summary>
     /// <param name="index">The index of where to start the replacement.</param>
     /// <param name="count">The number of items to be replaced.</param>
@@ -678,7 +680,7 @@ public class RangeObservableCollection<T> : ObservableCollection<T>
     /// </summary>
     /// <remarks>
     ///     When overriding this method, either call its base implementation
-    ///     or call <see cref="BlockReentrancy" /> to guard against reentrant collection changes.
+    ///     or call BlockReentrancy to guard against reentrant collection changes.
     /// </remarks>
     protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
@@ -771,7 +773,8 @@ public class RangeObservableCollection<T> : ObservableCollection<T>
 }
 
 /// <remarks>
-///     To be kept outside <see cref="ObservableCollection{T}" />, since otherwise, a new instance will be created for each generic type used.
+///     To be kept outside <see cref="ObservableCollection{T}" />, since otherwise, a new instance will be created for each
+///     generic type used.
 /// </remarks>
 internal static class EventArgsCache
 {
@@ -806,7 +809,7 @@ public class WpfObservableRangeCollection<T> : RangeObservableCollection<T>
     /// </summary>
     /// <remarks>
     ///     When overriding this method, either call its base implementation
-    ///     or call <see cref="BlockReentrancy" /> to guard against reentrant collection changes.
+    ///     or call BlockReentrancy to guard against reentrant collection changes.
     /// </remarks>
     protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
     {
@@ -836,7 +839,7 @@ public class WpfObservableRangeCollection<T> : RangeObservableCollection<T>
         return new DeferredEventsCollection(this);
     }
 
-    private bool IsRange(NotifyCollectionChangedEventArgs e)
+    private static bool IsRange(NotifyCollectionChangedEventArgs e)
     {
         return e.NewItems?.Count > 1 || e.OldItems?.Count > 1;
     }

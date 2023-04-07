@@ -16,6 +16,8 @@ public abstract class RestrictedStorage : BaseStorage
 
     private List<ItemWrapper> GetSupportedItems(ItemList itemList, StorageDefinition storageDefinition)
     {
+        var supportedItems = new List<ItemWrapper>();
+
         var baseQ = itemList.Select(item => item.Value);
 
         if (Definition.RestrictedItemIds is { Count: > 0 } restrictedItemIds)
@@ -23,8 +25,11 @@ public abstract class RestrictedStorage : BaseStorage
             baseQ = baseQ.Where(item => restrictedItemIds.Contains(item.Id));
         }
 
-        return baseQ.Select(item => new ItemWrapper(item, storageDefinition.MaxPerSlot)).ToList();
+        foreach (var item in baseQ) AddEffectiveSupportedItem(item, storageDefinition, supportedItems);
+
+        return supportedItems;
     }
+
 
     protected override List<ItemWrapper> GetSupportedItems()
     {

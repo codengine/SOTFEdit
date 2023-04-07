@@ -1,7 +1,6 @@
 {
   "config": {
-    "latestTagUrl": "https://api.github.com/repos/codengine/SOTFEdit/releases/latest",
-    "latestReleaseUrl": "https://github.com/codengine/SOTFEdit/releases"
+    "githubProject": "codengine/SOTFEdit"
   },
   "items": [
     {
@@ -1921,7 +1920,7 @@
       "type": "food",
       "nameDe": "Crunchie Wunchies",
       "storageMax": {
-        "shelf": 10,
+        "shelf": 4,
         "inventory": 4
       }
     },
@@ -2646,6 +2645,13 @@
       "isInventoryItem": false
     },
     {
+      "name": "Knight V",
+      "nameDe": "Knight V",
+      "id": 630,
+      "type": "misc",
+      "isInventoryItem": false
+    },
+    {
       "name": "Laser Measure Tool",
       "id": 505,
       "type": "misc"
@@ -2657,16 +2663,6 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
-    },
-    {
-      "name": "Small Rock",
-      "nameDe": "Kleiner Stein",
-      "id": 630,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 15,
-        "inventory": 30
       }
     },
     {
@@ -2817,7 +2813,7 @@
     },
     {
       "id": 31,
-      "name": "Stone Storage",
+      "name": "Rock Storage",
       "slots": 1,
       "maxPerSlot": 17,
       "restrictedItemIds": [
@@ -2838,7 +2834,7 @@
     {
       "id": 51,
       "name": "Wall Shelf",
-      "slots": 5
+      "slots": 4
     },
     {
       "id": 27,
@@ -2853,7 +2849,7 @@
     },
     {
       "id": 37,
-      "name": "Log Holder",
+      "name": "Log Storage",
       "slots": 1,
       "maxPerSlot": 6,
       "restrictedItemIds": [
@@ -2955,6 +2951,314 @@
       ]
     }
   },
+  "actorTypes": [
+    {
+      "name": "Rabbit",
+      "id": 1,
+      "classification": "animal",
+      "image": "rabbit.jpg"
+    },
+    {
+      "name": "Squirrel",
+      "id": 2,
+      "classification": "animal",
+      "image": "squirrel.jpg"
+    },
+    {
+      "name": "Turtle",
+      "id": 3,
+      "classification": "animal",
+      "image": "sea_turtle.jpg"
+    },
+    {
+      "name": "Shark",
+      "id": 4,
+      "classification": "animal",
+      "image": "shark.png"
+    },
+    {
+      "name": "Seagull",
+      "id": 5,
+      "classification": "animal",
+      "image": "seagull.png"
+    },
+    {
+      "name": "Eagle",
+      "id": 6,
+      "classification": "animal",
+      "image": "eagle.jpg"
+    },
+    {
+      "name": "Duck",
+      "id": 7,
+      "classification": "animal",
+      "image": "duck.png"
+    },
+    {
+      "name": "Timmy",
+      "id": 8,
+      "classification": "human",
+      "gender": "male",
+      "image": "timmy.jpg"
+    },
+    {
+      "name": "Kelvin / Robby",
+      "id": 9,
+      "classification": "human",
+      "gender": "male",
+      "image": "kelvin.jpg"
+    },
+    {
+      "name": "Virginia",
+      "id": 10,
+      "classification": "human",
+      "gender": "female",
+      "image": "virginia.jpg"
+    },
+    {
+      "name": "Fingers",
+      "id": 11,
+      "classification": "creep",
+      "image": "fingers.jpg"
+    },
+    {
+      "name": "Carl",
+      "id": 12,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "carl.jpg"
+    },
+    {
+      "name": "Andy",
+      "id": 13,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "andy.jpg"
+    },
+    {
+      "name": "Danny",
+      "id": 14,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "danny.jpg"
+    },
+    {
+      "name": "Billy",
+      "id": 15,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "billy.jpg"
+    },
+    {
+      "name": "GoldMask",
+      "classification": "cannibal",
+      "id": 16,
+      "gender": "male",
+      "image": "gold_mask.jpg"
+    },
+    {
+      "name": "Moose",
+      "id": 17,
+      "classification": "animal",
+      "image": "moose.jpg"
+    },
+    {
+      "name": "Baby",
+      "id": 18,
+      "classification": "creep",
+      "image": "baby.jpg"
+    },
+    {
+      "name": "Twins",
+      "id": 19,
+      "classification": "creep",
+      "image": "twins.jpg"
+    },
+    {
+      "name": "Mr. Puffy",
+      "id": 20,
+      "classification": "creep",
+      "gender": "male",
+      "image": "mr_puffy.jpg"
+    },
+    {
+      "name": "Mrs. Puffy",
+      "id": 21,
+      "classification": "creep",
+      "gender": "female",
+      "image": "mrs_puffy.jpg"
+    },
+    {
+      "name": "Slug",
+      "id": 22,
+      "classification": "creep",
+      "image": "slug.jpg"
+    },
+    {
+      "name": "Angel",
+      "classification": "cannibal",
+      "id": 23,
+      "gender": "female",
+      "image": "angel.jpg"
+    },
+    {
+      "name": "Salmon",
+      "id": 24,
+      "classification": "animal",
+      "image": "salmon.png"
+    },
+    {
+      "name": "Brandy",
+      "id": 25,
+      "classification": "cannibal",
+      "gender": "female",
+      "image": "brandy.jpg"
+    },
+    {
+      "name": "Crystal",
+      "id": 26,
+      "classification": "cannibal",
+      "gender": "female",
+      "image": "crystal.jpg"
+    },
+    {
+      "name": "Destiny",
+      "id": 27,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "destiny.jpg"
+    },
+    {
+      "name": "Muddy Female",
+      "id": 28,
+      "classification": "muddy_cannibal",
+      "gender": "female",
+      "image": "muddy_female.jpg"
+    },
+    {
+      "name": "Muddy Male",
+      "id": 29,
+      "classification": "muddy_cannibal",
+      "gender": "male",
+      "image": "muddy_male.jpg"
+    },
+    {
+      "name": "Heavy Male",
+      "id": 30,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "heavy_male.jpg"
+    },
+    {
+      "name": "Sponge Test",
+      "id": 31,
+      "classification": "misc"
+    },
+    {
+      "name": "Bat",
+      "id": 32,
+      "classification": "animal",
+      "image": "bat.png"
+    },
+    {
+      "name": "Deer",
+      "id": 33,
+      "classification": "animal",
+      "image": "deer.png"
+    },
+    {
+      "name": "Bluebird",
+      "id": 34,
+      "classification": "animal",
+      "image": "bluebird.jpg"
+    },
+    {
+      "name": "Hummingbird",
+      "id": 35,
+      "classification": "animal",
+      "image": "hummingbird.jpg"
+    },
+    {
+      "name": "Killer Whale",
+      "id": 36,
+      "classification": "animal",
+      "image": "killer_whale.png"
+    },
+    {
+      "name": "Land Turtle",
+      "id": 37,
+      "classification": "animal",
+      "image": "land_turtle.png"
+    },
+    {
+      "name": "Fat Male",
+      "id": 38,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "fat_male.jpg"
+    },
+    {
+      "name": "Fat Female",
+      "id": 39,
+      "classification": "cannibal",
+      "gender": "female",
+      "image": "fat_female.jpg"
+    },
+    {
+      "name": "John2",
+      "id": 40,
+      "classification": "creep",
+      "gender": "male",
+      "image": "john2.jpg"
+    },
+    {
+      "name": "Faceless Male",
+      "id": 41,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "faceless_male.jpg"
+    },
+    {
+      "name": "Demon",
+      "id": 42,
+      "classification": "creep",
+      "image": "demon_boss.jpg"
+    },
+    {
+      "name": "Painted Male",
+      "id": 43,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "painted_male.jpg"
+    },
+    {
+      "name": "Painted Female",
+      "id": 44,
+      "classification": "cannibal",
+      "gender": "female",
+      "image": "painted_male.jpg"
+    },
+    {
+      "name": "Demon Boss",
+      "id": 45,
+      "classification": "creep",
+      "image": "demon_boss.jpg"
+    },
+    {
+      "name": "Mr. Puffton",
+      "id": 46,
+      "classification": "creep",
+      "gender": "male",
+      "image": "mr_puffton.jpg"
+    },
+    {
+      "name": "Mrs. Puffton",
+      "id": 47,
+      "classification": "creep",
+      "gender": "female",
+      "image": "mrs_puffton.jpg"
+    }
+  ],
   "namedIntKeys": [
     "LuxuryBunker.EntranceDoor",
     "LuxuryBunker.HellDoorCaveEntrance",
@@ -2978,5 +3282,217 @@
     "BunkerResidential.EntranceDoor",
     "BunkerFoodAndDining.PufftonBossSpawn",
     "HellCave.MutantDemonBossIntro"
+  ],
+  "screwStructures": [
+    {
+      "name": "Hunting Shelter",
+      "id": 47,
+      "buildCost": 20,
+      "category": "Shelter"
+    },
+    {
+      "name": "Small Log Cabin",
+      "id": 34,
+      "buildCost": 95,
+      "category": "Shelter"
+    },
+    {
+      "name": "Lean-to",
+      "id": 26,
+      "buildCost": 72,
+      "category": "Shelter"
+    },
+    {
+      "name": "Look Out Tower",
+      "id": 38,
+      "buildCost": 74,
+      "category": "Shelter"
+    },
+    {
+      "name": "Tree Platform 1",
+      "id": 43,
+      "buildCost": 10,
+      "category": "Tree Shelter"
+    },
+    {
+      "name": "Tree Platform 2",
+      "id": 41,
+      "buildCost": 54,
+      "category": "Tree Shelter"
+    },
+    {
+      "name": "Tree Shelter 1",
+      "id": 44,
+      "buildCost": 97,
+      "category": "Tree Shelter"
+    },
+    {
+      "name": "Tree Shelter 2",
+      "id": 28,
+      "buildCost": 131,
+      "category": "Tree Shelter"
+    },
+    {
+      "name": "Stick Bed",
+      "id": 22,
+      "buildCost": 17,
+      "category": "Furniture"
+    },
+    {
+      "name": "Stick Chair",
+      "id": 20,
+      "buildCost": 14,
+      "category": "Furniture"
+    },
+    {
+      "name": "Bone Chair",
+      "id": 25,
+      "buildCost": 16,
+      "category": "Furniture"
+    },
+    {
+      "name": "Bone Chandelier",
+      "id": 24,
+      "buildCost": 28,
+      "category": "Furniture"
+    },
+    {
+      "name": "Wall Torch",
+      "id": 53,
+      "buildCost": 2,
+      "category": "Furniture"
+    },
+    {
+      "name": "Ceiling Skull Lamp",
+      "id": 54,
+      "buildCost": 2,
+      "category": "Furniture"
+    },
+    {
+      "name": "Bench",
+      "id": 52,
+      "buildCost": 3,
+      "category": "Furniture"
+    },
+    {
+      "name": "Table",
+      "id": 48,
+      "buildCost": 7,
+      "category": "Furniture"
+    },
+    {
+      "name": "Stick Storage",
+      "id": 29,
+      "buildCost": 6,
+      "category": "Storage"
+    },
+    {
+      "name": "Shelf",
+      "id": 49,
+      "buildCost": 5,
+      "category": "Storage"
+    },
+    {
+      "name": "Rock Storage",
+      "id": 31,
+      "buildCost": 7,
+      "category": "Storage"
+    },
+    {
+      "name": "Bone Storage",
+      "id": 32,
+      "buildCost": 8,
+      "category": "Storage"
+    },
+    {
+      "name": "Wall Shelf",
+      "id": 51,
+      "buildCost": 3,
+      "category": "Storage"
+    },
+    {
+      "name": "Drying Rack",
+      "id": 27,
+      "buildCost": 9,
+      "category": "Storage"
+    },
+    {
+      "name": "Log Storage",
+      "id": 37,
+      "buildCost": 8,
+      "category": "Storage"
+    },
+    {
+      "name": "Armor Rack",
+      "id": 36,
+      "buildCost": 21,
+      "category": "Storage"
+    },
+    {
+      "name": "Scarecrow",
+      "id": 39,
+      "buildCost": 18,
+      "category": "Utility"
+    },
+    {
+      "name": "Rock Path",
+      "id": 50,
+      "buildCost": 4,
+      "category": "Utility"
+    },
+    {
+      "name": "Stick Path",
+      "id": 46,
+      "buildCost": 4,
+      "category": "Utility"
+    },
+    {
+      "name": "Rain Catcher",
+      "id": 56,
+      "buildCost": 13,
+      "category": "Utility"
+    },
+    {
+      "name": "Standing Planter",
+      "id": 40,
+      "buildCost": 18,
+      "category": "Gardening"
+    },
+    {
+      "name": "Wall Planter",
+      "id": 23,
+      "buildCost": 16,
+      "category": "Gardening"
+    },
+    {
+      "name": "Small Animal Trap",
+      "id": 42,
+      "buildCost": 14,
+      "category": "Traps"
+    },
+    {
+      "name": "Fish Trap",
+      "id": 35,
+      "buildCost": 25,
+      "category": "Traps"
+    },
+    {
+      "name": "Bone Maker Trap",
+      "id": 21,
+      "buildCost": 10,
+      "category": "Traps"
+    },
+    {
+      "name": "Fly Swatter Trap",
+      "id": 45,
+      "buildCost": 14,
+      "category": "Traps"
+    },
+    {
+      "name": "Spring Trap",
+      "id": 57,
+      "buildCost": 10,
+      "category": "Traps"
+    }
   ]
 }

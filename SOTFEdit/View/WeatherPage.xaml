@@ -4,36 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
-             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
-             xmlns:model="clr-namespace:SOTFEdit.Model"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:WeatherPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <infrastructure:GenericSettingTypeToVisibilityConverter x:Key="GenericSettingTypeToVisibilityConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="GenericSettingDataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <GroupBox Header="Weather State" Padding="10">
-        <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False"
+        <DataGrid Height="Auto" AutoGenerateColumns="False"
                   SelectionMode="Single" ItemsSource="{Binding Settings}" CanUserAddRows="false"
                   CanUserDeleteRows="False">
-            <DataGrid.Resources>
-                <DataTemplate x:Key="DataTemplate" DataType="{x:Type model:GenericSetting}">
-                    <Grid>
-                        <TextBox Text="{Binding StringValue, UpdateSourceTrigger=PropertyChanged}"
-                                 Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=String}" />
-                        <CheckBox IsChecked="{Binding BoolValue, UpdateSourceTrigger=PropertyChanged}"
-                                  Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Bool}" />
-                        <ComboBox ItemsSource="{Binding PossibleValues}"
-                                  DisplayMemberPath="Value"
-                                  SelectedValuePath="Key"
-                                  SelectedValue="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
-                                  Visibility="{Binding Path=Type, Converter={StaticResource GenericSettingTypeToVisibilityConverter}, ConverterParameter=Combo}" />
-                    </Grid>
-                </DataTemplate>
-            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Setting" IsReadOnly="True" />
-                <DataGridTemplateColumn Header="Value" CellTemplate="{StaticResource DataTemplate}" />
+                <DataGridTemplateColumn Header="Value"
+                                        CellTemplateSelector="{StaticResource SettingCellTemplateSelector}" />
             </DataGrid.Columns>
         </DataGrid>
     </GroupBox>

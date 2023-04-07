@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
-using Newtonsoft.Json.Linq;
+using MahApps.Metro.Controls.Dialogs;
 using NLog;
-using SOTFEdit.Infrastructure;
+using SOTFEdit.Infrastructure.Converters;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Savegame;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
@@ -22,12 +28,16 @@ public partial class MainWindow
 
     private readonly string _baseTitle;
 
-    private Window? _exceptionWindowOwner = null;
+    private readonly CoordinateConverter _coordinateConverter = new();
+    private readonly MainViewModel _dataContext;
+
+    private Window? _exceptionWindowOwner;
+    private int? _selectedPosSenderHash;
 
     public MainWindow()
     {
         SetupListeners();
-        DataContext = Ioc.Default.GetRequiredService<MainViewModel>();
+        DataContext = _dataContext = Ioc.Default.GetRequiredService<MainViewModel>();
         InitializeComponent();
 
         App.GetAssemblyVersion(out var assemblyName, out var assemblyVersion);
@@ -43,7 +53,7 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
             (_, message) => { OnSavegameStored(message); });
         WeakReferenceMessenger.Default.Register<RequestRegrowTreesEvent>(this,
-            (_, message) => { OnRequestRegrowTreesEvent(message); });
+            (_, _) => { OnRequestRegrowTreesEvent(); });
         WeakReferenceMessenger.Default.Register<RequestReviveFollowersEvent>(this,
             (_, message) => { OnRequestReviveFollowersEvent(message); });
         WeakReferenceMessenger.Default.Register<RequestSaveChangesEvent>(this,
@@ -68,6 +78,81 @@ public partial class MainWindow
             (_, message) => { OnRequestRestoreBackupsEvent(message); });
         WeakReferenceMessenger.Default.Register<UnhandledExceptionEvent>(this,
             (_, message) => { OnUnhandledExceptionEvent(message); });
+
+        WeakReferenceMessenger.Default.Register<ZoomToPosEvent>(this, (_, message) => { OnZoomToPos(message); });
+        WeakReferenceMessenger.Default.Register<RequestChangeSettingsEvent>(this,
+            (_, _) => { OnRequestChangeSettingsEvent(); });
+        WeakReferenceMessenger.Default.Register<RequestEditActorEvent>(this,
+            (_, message) => { OnRequestEditActorEvent(message); });
+        WeakReferenceMessenger.Default.Register<GenericMessageEvent>(this,
+            (_, message) => { OnGenericMessageEvent(message); });
+        WeakReferenceMessenger.Default.Register<RequestModifyConsumedItemsEvent>(this,
+            (_, _) => OnRequestModifyConsumedItemsEvent());
+        WeakReferenceMessenger.Default.Register<RequestTeleportWorldItemEvent>(this,
+            (_, _) => OnRequestTeleportWorldItemEvent());
+    }
+
+    private void OnRequestTeleportWorldItemEvent()
+    {
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
+        {
+            return;
+        }
+
+        var window = new WorldItemTeleportWindow(this, Ioc.Default.GetRequiredService<GameData>(), selectedSavegame);
+        window.Show();
+    }
+
+    private void OnRequestModifyConsumedItemsEvent()
+    {
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
+        {
+            return;
+        }
+
+        var window = new ModifyConsumedItemsWindow(this, selectedSavegame, Ioc.Default.GetRequiredService<GameData>());
+        window.ShowDialog();
+    }
+
+    private async void OnGenericMessageEvent(GenericMessageEvent message)
+    {
+        await ShowMessageDialog(message.Message, message.Title);
+    }
+
+    private void OnRequestEditActorEvent(RequestEditActorEvent message)
+    {
+        var window = new EditActorWindow(this, message.Actor);
+        window.ShowDialog();
+    }
+
+    private void OnRequestChangeSettingsEvent()
+    {
+        var applicationSettings = Ioc.Default.GetRequiredService<ApplicationSettings>();
+        var dialog = new SettingsDialog(this, applicationSettings);
+        dialog.ShowDialog();
+    }
+
+    private void OnZoomToPos(ZoomToPosEvent message)
+    {
+        var senderHash = RuntimeHelpers.GetHashCode(message.Pos);
+
+        if (senderHash == _selectedPosSenderHash)
+        {
+            MapFlyout.IsOpen = false;
+            _selectedPosSenderHash = null;
+            return;
+        }
+
+        var ingameToPixel = _coordinateConverter.IngameToPixel(message.Pos.X, message.Pos.Z);
+        ZoomCtrl.Zoom = 2;
+        ZoomCtrl.TranslateX = -2 * ingameToPixel.Item1 + ZoomCtrl.ActualWidth;
+        ZoomCtrl.TranslateY = -2 * ingameToPixel.Item2 + ZoomCtrl.ActualHeight;
+        _dataContext.PinLeft = ingameToPixel.Item1 - 16;
+        _dataContext.PinTop = ingameToPixel.Item2 - 18;
+        _dataContext.PinPos = message.Pos;
+
+        _selectedPosSenderHash = senderHash;
+        MapFlyout.IsOpen = true;
     }
 
     private void OnUnhandledExceptionEvent(UnhandledExceptionEvent message)
@@ -79,25 +164,28 @@ public partial class MainWindow
         }));
     }
 
-    private static void OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)
+    private async void OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)
     {
-        var result = MessageBox.Show("Are you sure that you want to restore backups?", "Restore backups", MessageBoxButton.YesNo);
-        if (result != MessageBoxResult.Yes)
+        var result = await ShowConfirmDialog("Are you sure that you want to restore backups?", "Restore backups");
+        if (result != MessageDialogResult.Affirmative)
         {
             return;
         }
 
-        var countRestored = message.Savegame.SavegameStore.RestoreBackups(message.RestoreFromNewest);
+        var countRestored =
+            message.Savegame.SavegameStore.RestoreBackups(message.RestoreFromNewest, ApplicationSettings.BackupFlags);
 
         if (countRestored > 0)
         {
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(null));
+            _dataContext.ReloadSavegameCommand.Execute(null);
         }
 
-        MessageBox.Show($"{countRestored} backups have been restored. Deleted files were moved to the recycle bin");
+        await ShowMessageDialog(
+            string.Format(SOTFEdit.Resources.BackupsRestoredMessage, countRestored),
+            SOTFEdit.Resources.BackupsRestoredTitle);
     }
 
-    private void OnRequestSpawnFollowerEvent(RequestSpawnFollowerEvent message)
+    private async void OnRequestSpawnFollowerEvent(RequestSpawnFollowerEvent message)
     {
         var dialog = new SpawnFollowerInputDialog(this)
         {
@@ -114,28 +202,24 @@ public partial class MainWindow
             return;
         }
 
-        if (message.Savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not JObject saveData)
+        if (message.Savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not { } saveDataWrapper)
         {
             Logger.Warn("Save data could not be loaded");
-            MessageBox.Show("Unable to spawn followers");
+            await ShowMessageDialog("Unable to spawn followers", "Error");
             return;
         }
 
-        var saveDataWrapper = new SaveDataWrapper(saveData);
         var followerModifier = new FollowerModifier(saveDataWrapper);
-        var hasChanges = followerModifier.CreateFollowers(message.TypeId, count, message.ItemIds, message.Outfit, message.Pos);
+        var hasChanges =
+            followerModifier.CreateFollowers(message.TypeId, count, message.ItemIds, message.Outfit, message.Pos);
 
         if (hasChanges)
         {
-            saveDataWrapper.SerializeAllModified();
-            message.Savegame.SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveData, message.CreateBackup);
-            WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(null));
+            await ShowMessageDialog($"{count} followers have been created", "Followers created");
         }
-
-        MessageBox.Show($"{count} followers have been created");
     }
 
-    private void OnVersionCheckResultEvent(VersionCheckResultEvent message)
+    private async void OnVersionCheckResultEvent(VersionCheckResultEvent message)
     {
         if (!message.InvokedManually && message.LatestTagVersion?.ToString() is { } latestTagVersionAsString)
         {
@@ -150,33 +234,22 @@ public partial class MainWindow
 
         if (message.IsError)
         {
-            Application.Current.Dispatcher.Invoke(() =>
-                MessageBox.Show(this, "An error occured while checking for latest version", "Error"));
+            await Application.Current.Dispatcher.Invoke(async () =>
+                await ShowMessageDialog("An error occured while checking for latest version", "Error"));
             return;
         }
 
         if (!message.IsNewer)
         {
-            Application.Current.Dispatcher.Invoke(() =>
-                MessageBox.Show(this, "You are already using the latest version", "No update"));
+            await Application.Current.Dispatcher.Invoke(async () =>
+                await ShowMessageDialog("You are already using the latest version", "No update"));
             return;
         }
 
-        var result =
-            Application.Current.Dispatcher.Invoke(() => MessageBox.Show(this,
-                $"A new version is available: {message.LatestTagVersion}\nDo you want to go to the release page?",
-                "New Version available", MessageBoxButton.YesNo));
-        if (result != MessageBoxResult.Yes)
+        Application.Current.Dispatcher.Invoke(() =>
         {
-            return;
-        }
-
-        var link = message.Link ?? Ioc.Default.GetRequiredService<GameData>().Config.LatestReleaseUrl;
-
-        Process.Start(new ProcessStartInfo
-        {
-            FileName = link,
-            UseShellExecute = true
+            var window = new UpdateAvailableWindow(this, message);
+            window.ShowDialog();
         });
     }
 
@@ -200,24 +273,23 @@ public partial class MainWindow
             .CheckForUpdates(notifyOnSameVersion, notifyOnError, invokedManually);
     }
 
-    private void OnRequestDeleteBackupsEvent(RequestDeleteBackupsEvent message)
+    private async void OnRequestDeleteBackupsEvent(RequestDeleteBackupsEvent message)
     {
-        var result = MessageBox.Show(this, "Do you really want to delete all backups?", "Delete all backups",
-            MessageBoxButton.YesNo);
-        if (result != MessageBoxResult.Yes)
+        var result = await ShowConfirmDialog("Do you really want to delete all backups?", "Delete all backups");
+        if (result != MessageDialogResult.Affirmative)
         {
             return;
         }
 
         try
         {
-            var countDeleted = message.Savegame.SavegameStore.DeleteBackups();
-            MessageBox.Show(this, $"Deleted {countDeleted} backups", "Success");
+            var countDeleted = message.Savegame.SavegameStore.DeleteBackups(ApplicationSettings.BackupFlags);
+            await ShowMessageDialog($"Deleted {countDeleted} backups", "Success");
         }
         catch (Exception ex)
         {
             Logger.Error(ex, $"Unable to delete backups at {message.Savegame.FullPath}");
-            MessageBox.Show(this, $"Unable to delete backups: {ex.Message}");
+            await ShowMessageDialog($"Unable to delete backups: {ex.Message}", "Error");
         }
     }
 
@@ -231,7 +303,7 @@ public partial class MainWindow
         Application.Current.Dispatcher.Invoke(() =>
         {
             Title = _baseTitle + (selectedSavegame != null
-                ? $" (Selected: {selectedSavegame.Title}, {selectedSavegame.PrintableType} - Saved at: {selectedSavegame.LastSaveTime})"
+                ? $" (Selected: {selectedSavegame.Title}, {selectedSavegame.PrintableType} - Saved at: {selectedSavegame.LastSaveTime}, Last Modified: {selectedSavegame.SavegameStore.LastWriteTime})"
                 : "");
         });
     }
@@ -250,59 +322,150 @@ public partial class MainWindow
         window.ShowDialog();
     }
 
-    private void OnRequestSaveChangesEvent(RequestSaveChangesEvent message)
+    private async void OnRequestSaveChangesEvent(RequestSaveChangesEvent message)
     {
         if (message.SelectedSavegame.SavegameStore.HasChanged())
         {
             var overwriteResult =
-                MessageBox.Show(this,
+                await ShowConfirmDialog(
                     "The savegame has been modified outside. Do you really want to overwrite any changes?",
-                    "Overwrite Changes", MessageBoxButton.YesNo);
-            if (overwriteResult != MessageBoxResult.Yes)
+                    "Overwrite Changes");
+            if (overwriteResult != MessageDialogResult.Affirmative)
             {
                 return;
             }
         }
 
-        message.InvokeCallback();
+        var applicationSettings = Ioc.Default.GetRequiredService<ApplicationSettings>();
+        var effectiveBackupMode = applicationSettings.CurrentBackupMode;
+
+        if (applicationSettings.HasBackupFlag(ApplicationSettings.BackupFlag.ASK_FOR_BACKUP) &&
+            effectiveBackupMode != ApplicationSettings.BackupMode.None)
+        {
+            var dialogSettings = BuildDefaultDialogSettings();
+            dialogSettings.AffirmativeButtonText = "Yes";
+            dialogSettings.NegativeButtonText = "No";
+            dialogSettings.FirstAuxiliaryButtonText = "Cancel";
+            dialogSettings.DialogResultOnCancel = MessageDialogResult.Canceled;
+
+            var askResult = await ShowConfirmDialog("Do you want to create a backup?", "Create a backup?",
+                MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, dialogSettings);
+
+            switch (askResult)
+            {
+                case MessageDialogResult.Negative:
+                    effectiveBackupMode = ApplicationSettings.BackupMode.None;
+                    break;
+                case MessageDialogResult.Canceled:
+                case MessageDialogResult.FirstAuxiliary:
+                    return;
+            }
+        }
+
+        message.InvokeCallback(effectiveBackupMode);
     }
 
-    private static void OnRequestRegrowTreesEvent(RequestRegrowTreesEvent message)
+    private void OnRequestRegrowTreesEvent()
     {
-        WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(message.SelectedSavegame, message.BackupFiles,
-            createBackup =>
-            {
-                var countRegrown = message.SelectedSavegame.RegrowTrees(createBackup, message.VegetationStateSelected);
-                var resultMessage =
-                    countRegrown == 0
-                        ? $"No trees to regrow found with state \"{message.VegetationStateSelected}\""
-                        : $"{countRegrown} trees with previous state \"{message.VegetationStateSelected}\" should now have regrown";
-                WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(resultMessage, countRegrown > 0));
-            }));
+        var window = new RegrowTreesWindow(this);
+        window.ShowDialog();
     }
 
     private static void OnRequestReviveFollowersEvent(RequestReviveFollowersEvent message)
     {
-        WeakReferenceMessenger.Default.Send(new RequestSaveChangesEvent(message.SelectedSavegame, message.BackupFiles,
-            createBackup =>
-            {
-                var hasChanges = message.SelectedSavegame.ReviveFollower(message.TypeId, message.ItemIds, message.Outfit, message.Pos, createBackup);
+        var hasChanges =
+            message.SelectedSavegame.ReviveFollower(message.TypeId, message.ItemIds, message.Outfit, message.Pos);
 
-                var actorName = message.TypeId == Constants.Actors.KelvinTypeId ? "Kelvin" : "Virginia";
+        var actorName = message.TypeId == Constants.Actors.KelvinTypeId ? "Kelvin" : "Virginia";
 
-                var resultMessage = hasChanges
-                    ? $"{actorName} should now be back again"
-                    : $"{actorName} should be alive already";
-
-                WeakReferenceMessenger.Default.Send(new SavegameStoredEvent(resultMessage, hasChanges));
-            }));
+        if (hasChanges)
+        {
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"{actorName} should now be back again",
+                "Revived"));
+        }
+        else
+        {
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"{actorName} should be alive already",
+                "No changes"));
+        }
     }
 
-    private void OnSavegameStored(SavegameStoredEvent message)
+    private async void OnSavegameStored(SavegameStoredEvent message)
     {
         if (message.Message is { } text)
         {
-            MessageBox.Show(this, text);
+            await ShowMessageDialog(text, "Save Changes");
         }
+    }
+
+    private Task<MessageDialogResult> ShowMessageDialog(string message, string title)
+    {
+        return this.ShowMessageAsync(title, message, MessageDialogStyle.Affirmative, new MetroDialogSettings
+        {
+            AnimateShow = false,
+            AnimateHide = false,
+            ColorScheme = MetroDialogColorScheme.Theme
+        });
+    }
+
+    private Task<MessageDialogResult> ShowConfirmDialog(string message, string title)
+    {
+        return ShowConfirmDialog(message, title, MessageDialogStyle.AffirmativeAndNegative,
+            BuildDefaultDialogSettings());
+    }
+
+    private static MetroDialogSettings BuildDefaultDialogSettings()
+    {
+        return new MetroDialogSettings
+        {
+            AnimateShow = false,
+            AnimateHide = false,
+            ColorScheme = MetroDialogColorScheme.Theme
+        };
+    }
+
+    private Task<MessageDialogResult> ShowConfirmDialog(string message, string title, MessageDialogStyle dialogStyle,
+        MetroDialogSettings dialogSettings)
+    {
+        return this.ShowMessageAsync(title, message, dialogStyle, dialogSettings);
+    }
+
+    private void OpenReadme_Click(object sender, RoutedEventArgs e)
+    {
+        var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "README.md");
+        var markdownViewer = new MarkdownViewer(this, path, "Readme");
+        markdownViewer.ShowDialog();
+    }
+
+    private void OpenChangelog_Click(object sender, RoutedEventArgs e)
+    {
+        var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CHANGELOG.md");
+        var markdownViewer = new MarkdownViewer(this, path, "Changelog");
+        markdownViewer.ShowDialog();
+    }
+
+    private async void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Q && Keyboard.Modifiers == ModifierKeys.Control)
+        {
+            e.Handled = true;
+
+            if (await ShowConfirmDialog("Do you want to close the application?", "Close Application") ==
+                MessageDialogResult.Affirmative)
+            {
+                Close();
+            }
+        }
+
+        if (e.Key == Key.Escape)
+        {
+            if (MapFlyout.IsOpen)
+            {
+                MapFlyout.IsOpen = false;
+                e.Handled = true;
+            }
+        }
+
+        _dataContext.OnPreviewKeyDown(e);
     }
 }

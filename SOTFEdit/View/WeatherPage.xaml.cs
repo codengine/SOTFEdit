@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
-using SOTFEdit.Model;
+using SOTFEdit.Model.Savegame;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
@@ -17,8 +17,8 @@ public partial class WeatherPage
         InitializeComponent();
     }
 
-    public bool Update(Savegame selectedSavegame, bool createBackup)
+    public bool Update(Savegame selectedSavegame)
     {
-        return _dataContext.Update(selectedSavegame, createBackup);
+        return _dataContext.Update(selectedSavegame);
     }
 }

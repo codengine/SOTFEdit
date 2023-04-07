@@ -73,7 +73,10 @@
             </ScrollViewer>
         </GroupBox>
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="15">
-            <Button Background="DarkGreen" Padding="10" Margin="0 0 10 0" Command="{Binding CopyToClipboardCommand}">Copy Error to Clipboard</Button>
+            <Button Background="{DynamicResource MahApps.Brushes.Accent}" Padding="10" Margin="0 0 10 0"
+                    Command="{Binding CopyToClipboardCommand}">
+                Copy Error to Clipboard
+            </Button>
             <Button Background="DarkRed" Padding="10" Command="{Binding ExitApplicationCommand}">Exit Application</Button>
         </StackPanel>
     </Grid>

@@ -23,22 +23,15 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Items in Inventory" Margin="0 0 5 0">
-            <DockPanel Margin="10">
-                <DockPanel.Resources>
-                    <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:InventoryItem}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Margin="0,0,5,0" Background="DarkRed"
-                                    Command="{Binding DataContext.RemoveItemFromInventoryCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                    CommandParameter="{Binding}">
-                                Remove
-                            </Button>
-                            <Button Background="DarkGreen" Margin="0,0,5,0" Command="{Binding SetToMaxCommand}">Max</Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </DockPanel.Resources>
-                <DockPanel DockPanel.Dock="Top" Margin="0 0 0 10" HorizontalAlignment="Stretch">
-                    <Button DockPanel.Dock="Left" Name="AddAllFromCategoryButton" Margin="0 0 5 0">
+        <GroupBox Header="Items in Inventory" Margin="0 0 5 0" Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0 0 0 10">
+                    <Button Name="AddAllFromCategoryButton" Margin="0 0 5 0">
                         <Button.ContextMenu>
                             <ContextMenu VerticalContentAlignment="Top" ItemsSource="{Binding Categories}"
                                          DisplayMemberPath="TypeRendered">
@@ -66,29 +59,43 @@
                             </b:EventTrigger>
                         </b:Interaction.Triggers>
                     </Button>
-                    <DockPanel DockPanel.Dock="Right" LastChildFill="False">
-                        <Button DockPanel.Dock="Right" Background="DarkRed"
-                                Command="{Binding RemoveAllEquippedCommand}">
-                            Remove All
-                        </Button>
-                        <Button DockPanel.Dock="Right" Background="DarkGreen"
-                                Command="{Binding SetAllEquippedToMaxCommand}" Margin="0 0 5 0">
-                            Set All to Max
-                        </Button>
-                        <Button DockPanel.Dock="Right" Command="{Binding SetAllEquippedToMinCommand}" Margin="0 0 5 0">Set All to Min</Button>
-                    </DockPanel>
-                </DockPanel>
-                <TextBox
-                    Margin="0,0,0,10"
-                    DockPanel.Dock="Top"
-                    Padding="5"
-                    Text="{Binding InventoryFilter, UpdateSourceTrigger=PropertyChanged}"
-                    mah:TextBoxHelper.Watermark="Filter..." />
-                <DataGrid Height="Auto" DockPanel.Dock="Top" EnableRowVirtualization="True"
+                    <Button Command="{Binding SetAllEquippedToMinCommand}" Margin="0 0 5 0">Set All to Min</Button>
+                    <Button Background="{DynamicResource MahApps.Brushes.Accent}"
+                            Command="{Binding SetAllEquippedToMaxCommand}" Margin="0 0 5 0">
+                        Set All to Max
+                    </Button>
+                    <Button Background="DarkRed"
+                            Command="{Binding RemoveAllEquippedCommand}">
+                        Remove All
+                    </Button>
+                </StackPanel>
+                <TextBox Grid.Row="1"
+                         Margin="0,0,0,10"
+                         Padding="5"
+                         Text="{Binding InventoryFilter, UpdateSourceTrigger=PropertyChanged}"
+                         mah:TextBoxHelper.Watermark="Filter..." mah:TextBoxHelper.ClearTextButton="True" />
+                <DataGrid Grid.Row="2" EnableRowVirtualization="True"
                           EnableColumnVirtualization="True" AutoGenerateColumns="False"
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          VirtualizingPanel.IsVirtualizing="True"
                           SelectionMode="Single"
                           ItemsSource="{Binding InventoryCollectionView, IsAsync=True}" CanUserAddRows="False"
                           CanUserDeleteRows="False">
+                    <DataGrid.Resources>
+                        <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:InventoryItem}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Button Margin="0,0,5,0" Background="DarkRed"
+                                        Command="{Binding DataContext.RemoveItemFromInventoryCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        CommandParameter="{Binding}">
+                                    Remove
+                                </Button>
+                                <Button Background="{DynamicResource MahApps.Brushes.Accent}" Margin="0,0,5,0"
+                                        Command="{Binding SetToMaxCommand}">
+                                    Max
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}" Header="ID" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Name" IsReadOnly="True" />
@@ -97,35 +104,40 @@
                         <DataGridTextColumn Binding="{Binding Type, Mode=OneTime}" Header="Type" IsReadOnly="True" />
                         <DataGridTemplateColumn SortMemberPath="TotalCount" Header="Count"
                                                 CellTemplate="{StaticResource NumericUpDownTemplate}" />
-                        <DataGridTemplateColumn Width="*" Header="Actions"
+                        <DataGridTemplateColumn Header="Actions"
                                                 CellTemplate="{StaticResource ActionButtons}" />
                     </DataGrid.Columns>
                 </DataGrid>
-            </DockPanel>
+            </Grid>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Unassigned Items" Margin="5 0 0 0">
-            <DockPanel Margin="10">
-                <DockPanel.Resources>
-                    <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:InventoryItem}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Margin="0,0,5,0" Background="DarkGreen"
-                                    Command="{Binding DataContext.AddUnassignedItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                    CommandParameter="{Binding}">
-                                Add
-                            </Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </DockPanel.Resources>
+        <GroupBox Grid.Column="1" Header="Unassigned Items" Padding="10" Margin="5 0 0 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
                 <TextBox
                     Margin="0,0,0,10"
-                    DockPanel.Dock="Top"
                     Padding="5"
                     Text="{Binding UnassignedItemsFilter, UpdateSourceTrigger=PropertyChanged}"
-                    mah:TextBoxHelper.Watermark="Filter..." />
-                <DataGrid DockPanel.Dock="Top" Height="Auto" EnableRowVirtualization="True"
+                    mah:TextBoxHelper.Watermark="Filter..." mah:TextBoxHelper.ClearTextButton="True" />
+                <DataGrid Grid.Row="1" EnableRowVirtualization="True"
                           EnableColumnVirtualization="True" AutoGenerateColumns="False"
                           SelectionMode="Single"
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          VirtualizingPanel.IsVirtualizing="True"
                           ItemsSource="{Binding UnassignedItemsCollectionView, IsAsync=True}" IsReadOnly="True">
+                    <DataGrid.Resources>
+                        <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:InventoryItem}">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Button Margin="0,0,5,0" Background="{DynamicResource MahApps.Brushes.Accent}"
+                                        Command="{Binding DataContext.AddUnassignedItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        CommandParameter="{Binding}">
+                                    Add
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}" Header="ID" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Name" IsReadOnly="True" />
@@ -139,11 +151,11 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTemplateColumn Width="*" Header="Actions"
+                        <DataGridTemplateColumn Header="Actions"
                                                 CellTemplate="{StaticResource ActionButtons}" />
                     </DataGrid.Columns>
                 </DataGrid>
-            </DockPanel>
+            </Grid>
         </GroupBox>
     </Grid>
 </UserControl>

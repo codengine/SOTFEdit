@@ -8,26 +8,17 @@ using Newtonsoft.Json.Linq;
 using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
-using SOTFEdit.Model.Actor;
+using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData.Actor;
+using SOTFEdit.Model.Savegame;
 using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.ViewModel;
 
 public partial class FollowerPageViewModel : ObservableObject
 {
-    private const int TeleportXoffset = 3;
-    private const int TeleportXoffsetForPlayer = 1;
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-
-    [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(ReviveCommand))]
-    [NotifyCanExecuteChangedFor(nameof(MoveToKelvinCommand))]
-    [NotifyCanExecuteChangedFor(nameof(MoveToVirginiaCommand))]
-    [NotifyCanExecuteChangedFor(nameof(MoveToPlayerCommand))]
-    [NotifyCanExecuteChangedFor(nameof(SpawnCommand))]
-    private Savegame? _selectedSavegame;
 
     public FollowerPageViewModel(GameData gameData)
     {
@@ -39,6 +30,16 @@ public partial class FollowerPageViewModel : ObservableObject
 
     public FollowerState KelvinState { get; }
     public FollowerState VirginiaState { get; }
+
+    [RelayCommand(CanExecute = nameof(CanSaveChanges))]
+    private void FillAllBars(FollowerState followerState)
+    {
+        followerState.Health = 100;
+        followerState.Fullness = 100;
+        followerState.Hydration = 100;
+        followerState.Energy = 100;
+        followerState.Affection = 100;
+    }
 
     private static FollowerState BuildFollowerState(GameData gameData, int typeId)
     {
@@ -53,89 +54,104 @@ public partial class FollowerPageViewModel : ObservableObject
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
             (_, m) => { OnSelectedSavegameChanged(m); });
+        WeakReferenceMessenger.Default.Register<JsonModelChangedEvent>(this,
+            (_, message) => { OnJsonModelChangedEvent(message); });
+    }
+
+    private void OnJsonModelChangedEvent(JsonModelChangedEvent message)
+    {
+        if (message.FileType != SavegameStore.FileType.SaveData)
+        {
+            return;
+        }
+
+        Update(SavegameManager.SelectedSavegame);
+        Reload(SavegameManager.SelectedSavegame);
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
-        SelectedSavegame = m.SelectedSavegame;
+        Reload(m.SelectedSavegame);
+        ReviveCommand.NotifyCanExecuteChanged();
+        MoveToPlayerCommand.NotifyCanExecuteChanged();
+        MoveToKelvinCommand.NotifyCanExecuteChanged();
+        MoveToVirginiaCommand.NotifyCanExecuteChanged();
+        SpawnCommand.NotifyCanExecuteChanged();
+        FillAllBarsCommand.NotifyCanExecuteChanged();
+    }
+
+    private void Reload(Savegame? selectedSavegame)
+    {
         KelvinState.Reset();
         VirginiaState.Reset();
 
-        LoadFollowerData(m);
+        if (selectedSavegame != null)
+        {
+            LoadFollowerData(selectedSavegame);
+        }
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToPlayer(FollowerState follower)
     {
-        if (SelectedSavegame == null)
+        if (SavegameManager.SelectedSavegame == null)
         {
             return;
         }
 
         var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
-        follower.Pos = playerPos with { Y = playerPos.Y + TeleportXoffsetForPlayer };
+        follower.Pos = Teleporter.MoveToPos(playerPos);
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToKelvin(FollowerState follower)
     {
-        var kelvinPos = KelvinState.Pos;
-        follower.Pos = kelvinPos with { Y = kelvinPos.Y + TeleportXoffset };
+        follower.Pos = Teleporter.MoveToPos(KelvinState.Pos);
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToVirginia(FollowerState follower)
     {
-        var virginiaPos = VirginiaState.Pos;
-        follower.Pos = virginiaPos with { Y = virginiaPos.Y + TeleportXoffset };
+        follower.Pos = Teleporter.MoveToPos(VirginiaState.Pos);
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void Revive(FollowerState follower)
     {
-        if (SelectedSavegame == null)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
-        var backupFiles = Ioc.Default.GetRequiredService<MainViewModel>().BackupFiles;
         var pos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
-        WeakReferenceMessenger.Default.Send(new RequestReviveFollowersEvent(SelectedSavegame, backupFiles,
-            follower.TypeId, follower.GetSelectedInventoryItemIds(), follower.Outfit, pos));
+        WeakReferenceMessenger.Default.Send(new RequestReviveFollowersEvent(selectedSavegame, follower.TypeId,
+            follower.GetSelectedInventoryItemIds(), follower.Outfit, pos));
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void Spawn(FollowerState follower)
     {
-        if (SelectedSavegame == null)
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
         var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
-        var createBackup = Ioc.Default.GetRequiredService<MainViewModel>().BackupFiles;
 
-        WeakReferenceMessenger.Default.Send(new RequestSpawnFollowerEvent(SelectedSavegame,
-            follower.TypeId, follower.GetSelectedInventoryItemIds(), follower.Outfit, playerPos, createBackup));
+        WeakReferenceMessenger.Default.Send(new RequestSpawnFollowerEvent(selectedSavegame,
+            follower.TypeId, follower.GetSelectedInventoryItemIds(), follower.Outfit, playerPos));
     }
 
-    public bool CanSaveChanges()
+    public static bool CanSaveChanges()
     {
-        return SelectedSavegame != null;
+        return SavegameManager.SelectedSavegame != null;
     }
 
-    private void LoadFollowerData(SelectedSavegameChangedEvent m)
+    private void LoadFollowerData(Savegame savegame)
     {
-        if (m.SelectedSavegame is not { } selectedSavegame)
-        {
-            return;
-        }
+        var saveDataWrapper = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData);
 
-        var saveData = selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData);
-
-        var vailWorldSimToken = saveData?.SelectToken("Data.VailWorldSim");
-        if (vailWorldSimToken?.ToString() is not { } vailWorldSimJson ||
-            JsonConverter.DeserializeRaw(vailWorldSimJson) is not JObject vailWorldSim)
+        if (saveDataWrapper?.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim) is not JObject vailWorldSim)
         {
             return;
         }
@@ -239,24 +255,20 @@ public partial class FollowerPageViewModel : ObservableObject
         }
     }
 
-    public bool Update(Savegame? savegame, bool createBackup)
+    public bool Update(Savegame? savegame)
     {
-        if (savegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not JObject saveData)
+        if (savegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not { } saveDataWrapper)
         {
             return false;
         }
 
-        var saveDataWrapper = new SaveDataWrapper(saveData);
         var followerModifier = new FollowerModifier(saveDataWrapper);
-        var hasChanges = followerModifier.Update(new[] { KelvinState, VirginiaState }) &&
-                         saveDataWrapper.SerializeAllModified();
+        return followerModifier.Update(new[] { KelvinState, VirginiaState });
+    }
 
-        if (!hasChanges)
-        {
-            return false;
-        }
-
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.SaveData, saveData, createBackup);
-        return true;
+    [RelayCommand]
+    private static void OpenMapAtFollower(Position pos)
+    {
+        WeakReferenceMessenger.Default.Send(new ZoomToPosEvent(pos));
     }
 }

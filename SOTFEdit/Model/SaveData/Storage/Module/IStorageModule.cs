@@ -6,4 +6,5 @@ namespace SOTFEdit.Model.SaveData.Storage.Module;
 public interface IStorageModule
 {
     public int GetModuleId();
+    bool IsEqualTo(IStorageModule? other);
 }

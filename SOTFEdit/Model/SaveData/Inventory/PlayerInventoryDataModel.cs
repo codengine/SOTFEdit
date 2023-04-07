@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using JsonConverter = SOTFEdit.Infrastructure.JsonConverter;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.Model.SaveData.Inventory;
 
@@ -10,21 +9,19 @@ public record PlayerInventoryDataModel
 {
     public DataModel Data { get; set; }
 
-    public static bool Merge(JToken target, IEnumerable<ItemBlockModel> selectedItems)
+    public static bool Merge(SaveDataWrapper saveDataWrapper, IEnumerable<ItemBlockModel> selectedItems)
     {
-        var playerInventoryToken = target.SelectToken("Data.PlayerInventory");
-        if (playerInventoryToken?.ToString() is not { } playerInventoryJson)
+        if (saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.PlayerInventory) is not { } playerInventory)
         {
             return false;
         }
 
-        var playerInventory = JsonConverter.DeserializeRaw(playerInventoryJson);
         if (!PlayerInventoryModel.Merge(playerInventory, selectedItems))
         {
             return false;
         }
 
-        playerInventoryToken.Replace(JsonConverter.Serialize(playerInventory));
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.PlayerInventory);
         return true;
     }
 

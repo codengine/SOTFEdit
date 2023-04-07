@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="SOTFEdit.View.StructuresPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+             xmlns:st="http://schemas.spicytaco.io/"
+             xmlns:model="clr-namespace:SOTFEdit.Model"
+             mc:Ignorable="d"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Top"
+             d:DataContext="{d:DesignInstance viewModel:StructuresPageViewModel}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <GroupBox Padding="10" Margin="0 0 10 0" Header="Unfinished Structures" VerticalAlignment="Top" MinWidth="500"
+                  HorizontalAlignment="Stretch">
+            <GroupBox.Resources>
+                <Style x:Key="CellStyleTextBlock" TargetType="{x:Type TextBlock}"
+                       BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+                <Style TargetType="{x:Type DataGridColumnHeader}"
+                       BasedOn="{StaticResource MahApps.Styles.DataGridColumnHeader}" x:Key="HeaderStyle">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </GroupBox.Resources>
+            <DataGrid EnableRowVirtualization="True"
+                      EnableColumnVirtualization="True" AutoGenerateColumns="False"
+                      VirtualizingPanel.VirtualizationMode="Recycling"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      SelectionMode="Single"
+                      ItemsSource="{Binding Structures, IsAsync=True}" CanUserAddRows="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      CanUserDeleteRows="False">
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate DataType="{x:Type GroupItem}">
+                                <TextBlock Text="{Binding Name}"
+                                           Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Margin="3"
+                                           FontWeight="Bold" FontSize="14" />
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Name" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
+                                <TextBlock Text="{Binding Name}" Style="{StaticResource CellStyleTextBlock}"
+                                           HorizontalAlignment="Left" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Build Cost" IsReadOnly="True"
+                                            HeaderStyle="{StaticResource HeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
+                                <TextBlock Text="{Binding BuildCost}" Style="{StaticResource CellStyleTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Added" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
+                                <TextBlock Text="{Binding Added}" Style="{StaticResource CellStyleTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Percent Done" IsReadOnly="True"
+                                            HeaderStyle="{StaticResource HeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
+                                <TextBlock Text="{Binding PctDonePrintable}"
+                                           Style="{StaticResource CellStyleTextBlock}">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{Binding PctDoneColor}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn IsReadOnly="True" Header="Position"
+                                            HeaderStyle="{StaticResource HeaderStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                                           VerticalAlignment="Center">
+                                        <Image.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick"
+                                                          Command="{Binding OpenMapAtStructurePosCommand}" />
+                                        </Image.InputBindings>
+                                    </Image>
+                                    <TextBlock Style="{StaticResource CellStyleTextBlock}" xml:space="preserve">Position: </TextBlock>
+                                    <TextBlock Style="{StaticResource CellStyleTextBlock}"
+                                               Text="{Binding Position.PrintableShort, FallbackValue=???}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Modification">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
+                                <ComboBox SelectedValuePath="Content"
+                                          SelectedValue="{Binding ModificationMode, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBox.Items>
+                                        <ComboBoxItem Content="" />
+                                        <ComboBoxItem Content="Remove" />
+                                        <ComboBoxItem Content="Finish" />
+                                        <ComboBoxItem Content="Unfinish" />
+                                    </ComboBox.Items>
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox Header="Batch" VerticalAlignment="Top" Grid.Column="1">
+            <st:AutoGrid Columns="Auto" ChildMargin="3">
+                <TextBlock>
+                    If nothing is selected, all structures will be changed
+                </TextBlock>
+                <ComboBox ItemsSource="{Binding StructureTypes}"
+                          SelectedItem="{Binding BatchSelectedStructureType, UpdateSourceTrigger=PropertyChanged}">
+                    <ComboBox.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate DataType="{x:Type GroupItem}">
+                                    <TextBlock Padding="3" Text="{Binding Name}"
+                                               Foreground="{DynamicResource MahApps.Brushes.AccentBase}"
+                                               FontWeight="Bold" />
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ComboBox.GroupStyle>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type model:ScrewStructure}">
+                            <TextBlock Padding="8 3 3 3" Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Padding="10" Command="{Binding SetModificationModeCommand}" CommandParameter="">
+                    Un-Modify all
+                </Button>
+                <Button Padding="10" Background="DarkRed" Command="{Binding SetModificationModeCommand}"
+                        CommandParameter="Remove">
+                    Set all to "Remove"
+                </Button>
+                <Button Padding="10" Background="{DynamicResource MahApps.Brushes.Accent}"
+                        Command="{Binding SetModificationModeCommand}" CommandParameter="Finish">
+                    Set all to "Finish"
+                </Button>
+                <Button Padding="10" Command="{Binding SetModificationModeCommand}" CommandParameter="Unfinish">
+                    Set all to "Unfinish"
+                </Button>
+            </st:AutoGrid>
+        </GroupBox>
+    </Grid>
+</UserControl>

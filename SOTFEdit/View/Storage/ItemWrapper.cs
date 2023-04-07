@@ -1,4 +1,5 @@
 ﻿using SOTFEdit.Model;
+using SOTFEdit.Model.SaveData.Storage.Module;
 
 namespace SOTFEdit.View.Storage;
 
@@ -6,19 +7,17 @@ public class ItemWrapper
 {
     private readonly int? _maxPerSlot;
 
-    public ItemWrapper(Item item, int? maxPerSlot, ItemVariant? variant = null, int? moduleId = null)
+    public ItemWrapper(Item item, int? maxPerSlot, ModuleWrapper? moduleWrapper = null)
     {
         _maxPerSlot = maxPerSlot;
-        Variant = variant;
-        ModuleId = moduleId;
         Item = item;
+        ModuleWrapper = moduleWrapper;
     }
 
-    public ItemVariant? Variant { get; }
-    public int? ModuleId { get; }
     public Item Item { get; }
+    public ModuleWrapper? ModuleWrapper { get; }
 
-    public string Name => Variant?.Name ?? Item.Name;
+    public string Name => ModuleWrapper?.Name ?? Item.Name;
 
     public int Max => _maxPerSlot ?? Item.StorageMax?.Shelf ?? 1;
 }

@@ -2,10 +2,10 @@
 
 public class RequestDeleteBackupsEvent
 {
-    public RequestDeleteBackupsEvent(Savegame savegame)
+    public RequestDeleteBackupsEvent(Savegame.Savegame savegame)
     {
         Savegame = savegame;
     }
 
-    public Savegame Savegame { get; }
+    public Savegame.Savegame Savegame { get; }
 }

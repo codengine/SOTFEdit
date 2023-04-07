@@ -3,8 +3,8 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
@@ -34,9 +34,9 @@ public partial class SelectSavegameViewModel : ObservableObject
         .ToList();
 
     [RelayCommand]
-    private void SelectSavegame(Savegame savegame)
+    private static void SelectSavegame(Savegame savegame)
     {
-        WeakReferenceMessenger.Default.Send(new SelectedSavegameChangedEvent(savegame));
+        SavegameManager.SelectedSavegame = savegame;
     }
 
     [RelayCommand]
@@ -45,20 +45,35 @@ public partial class SelectSavegameViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new RequestSelectSavegameDirEvent());
     }
 
+    [RelayCommand]
+    private void SetSavegameDirToDefault()
+    {
+        OnSelectedSavegameDirChanged(SavegameManager.GetSavegamePathFromAppData());
+    }
+
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameDirChangedEvent>(this,
-            (_, message) =>
-            {
-                SaveDir = message.NewPath;
-                _savegames.Clear();
-                foreach (var savegame in SavegameManager.GetSavegames()
-                             .Values)
-                    _savegames.Add(savegame);
+            (_, message) => { OnSelectedSavegameDirChanged(message.NewPath); });
+    }
 
-                OnPropertyChanged(nameof(SinglePlayerSaves));
-                OnPropertyChanged(nameof(MultiPlayerSaves));
-                OnPropertyChanged(nameof(MultiPlayerClientSaves));
-            });
+    private void OnSelectedSavegameDirChanged(string? newPath)
+    {
+        if (string.IsNullOrEmpty(newPath))
+        {
+            return;
+        }
+
+        Settings.Default.SavegamePath = newPath;
+        Settings.Default.Save();
+        SaveDir = newPath;
+        _savegames.Clear();
+        foreach (var savegame in SavegameManager.GetSavegames()
+                     .Values)
+            _savegames.Add(savegame);
+
+        OnPropertyChanged(nameof(SinglePlayerSaves));
+        OnPropertyChanged(nameof(MultiPlayerSaves));
+        OnPropertyChanged(nameof(MultiPlayerClientSaves));
     }
 }

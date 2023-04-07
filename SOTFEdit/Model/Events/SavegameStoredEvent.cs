@@ -2,12 +2,10 @@
 
 public class SavegameStoredEvent
 {
-    public SavegameStoredEvent(string? message, bool reloadSavegame = true)
+    public SavegameStoredEvent(string message)
     {
         Message = message;
-        ReloadSavegame = reloadSavegame;
     }
 
-    public string? Message { get; }
-    public bool ReloadSavegame { get; }
+    public string Message { get; }
 }

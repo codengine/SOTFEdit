@@ -2,10 +2,10 @@
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
-using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData.Settings;
 using SOTFEdit.Model.SaveData.Setup;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
@@ -133,9 +133,10 @@ public class GameSetupPageViewModel : ObservableObject
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
         _gameSettings.Clear();
+
         foreach (var setting in m.SelectedSavegame?.SavegameStore
-                                    .LoadJson<GameSetupDataModel>(SavegameStore.FileType.GameSetupSaveData)?.Data
-                                    .GameSetup.Settings ??
+                                    .LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData)
+                                    ?.Parent.ToObject<GameSetupDataModel>()?.Data.GameSetup.Settings ??
                                 Enumerable.Empty<GameSettingLightModel>())
             _gameSettings.Add(setting.Name, setting);
 
@@ -155,26 +156,19 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedPrecipitationFrequency));
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
-        var saveData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData);
-        if (saveData == null)
+        var saveDataWrapper = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData);
+        if (saveDataWrapper == null)
         {
             return false;
         }
 
-        if (!GameSetupDataModel.Merge(saveData, _gameSettings.Values))
-        {
-            return false;
-        }
+        var hasChanges = GameSetupDataModel.Merge(saveDataWrapper, _gameSettings.Values);
 
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.GameSetupSaveData, saveData, createBackup);
-
-        savegame.ModifyGameState(new Dictionary<string, object>
+        return savegame.ModifyGameState(new Dictionary<string, object>
         {
             { "GameType", SelectedMode ?? "" }
-        }, createBackup);
-
-        return true;
+        }) || hasChanges;
     }
 }

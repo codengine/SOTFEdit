@@ -17,7 +17,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <GroupBox Header="All Slots" Margin="0 0 0 20" Padding="10" HorizontalAlignment="Stretch">
+                <GroupBox Header="All Slots" Margin="0 0 0 20" Padding="10" HorizontalAlignment="Center">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -35,11 +35,13 @@
                         <mah:NumericUpDown Margin="0 0 10 0" Grid.Column="1" Minimum="1" Maximum="{Binding Max}"
                                            Value="{Binding Count, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                            <Button Foreground="GreenYellow" Command="{Binding FillAllCommand}" Margin="0 0 10 0"
+                            <Button Background="{DynamicResource MahApps.Brushes.Accent}"
+                                    Command="{Binding FillAllCommand}" Margin="0 0 10 0"
                                     Padding="20 10">
                                 Fill all with
                             </Button>
-                            <Button Foreground="CornflowerBlue" Command="{Binding SetAllToMaxCommand}"
+                            <Button Foreground="{DynamicResource MahApps.Brushes.AccentBase}"
+                                    Command="{Binding SetAllToMaxCommand}"
                                     Margin="0 0 10 0" Padding="20 10">
                                 Set all to Max
                             </Button>
@@ -78,7 +80,8 @@
                                                     <ColumnDefinition />
                                                     <ColumnDefinition />
                                                 </Grid.ColumnDefinitions>
-                                                <Button Foreground="DarkOrange" Command="{Binding ClearCommand, Mode=OneTime}"
+                                                <Button Foreground="DarkOrange"
+                                                        Command="{Binding ClearCommand, Mode=OneTime}"
                                                         Margin="0 0 10 0">
                                                     Remove
                                                 </Button>

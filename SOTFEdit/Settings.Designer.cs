@@ -49,18 +49,6 @@ namespace SOTFEdit {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool BackupFiles {
-            get {
-                return ((bool)(this["BackupFiles"]));
-            }
-            set {
-                this["BackupFiles"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool CheckForUpdates {
             get {
                 return ((bool)(this["CheckForUpdates"]));
@@ -79,6 +67,66 @@ namespace SOTFEdit {
             }
             set {
                 this["LastFoundVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dark")]
+        public string Theme {
+            get {
+                return ((string)(this["Theme"]));
+            }
+            set {
+                this["Theme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
+        public string ThemeAccent {
+            get {
+                return ((string)(this["ThemeAccent"]));
+            }
+            set {
+                this["ThemeAccent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("InitialAndOne")]
+        public global::SOTFEdit.ApplicationSettings.BackupMode BackupMode {
+            get {
+                return ((global::SOTFEdit.ApplicationSettings.BackupMode)(this["BackupMode"]));
+            }
+            set {
+                this["BackupMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TYPE_ARCHIVE")]
+        public global::SOTFEdit.ApplicationSettings.BackupFlag BackupFlags {
+            get {
+                return ((global::SOTFEdit.ApplicationSettings.BackupFlag)(this["BackupFlags"]));
+            }
+            set {
+                this["BackupFlags"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSavegame {
+            get {
+                return ((string)(this["LastSavegame"]));
+            }
+            set {
+                this["LastSavegame"] = value;
             }
         }
     }

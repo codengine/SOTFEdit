@@ -10,7 +10,8 @@ public partial class ArmourPieceModel : ObservableObject
     public int ItemId { get; init; }
     public int Slot { get; init; }
 
-    public static IEqualityComparer<ArmourPieceModel> ArmourPieceModelComparer { get; } = new ArmourPieceModelEqualityComparer();
+    public static IEqualityComparer<ArmourPieceModel> ArmourPieceModelComparer { get; } =
+        new ArmourPieceModelEqualityComparer();
 
     private sealed class ArmourPieceModelEqualityComparer : IEqualityComparer<ArmourPieceModel>
     {
@@ -36,7 +37,8 @@ public partial class ArmourPieceModel : ObservableObject
                 return false;
             }
 
-            return x._remainingArmourpoints.Equals(y._remainingArmourpoints) && x.ItemId == y.ItemId && x.Slot == y.Slot;
+            return x._remainingArmourpoints.Equals(y._remainingArmourpoints) && x.ItemId == y.ItemId &&
+                   x.Slot == y.Slot;
         }
 
         public int GetHashCode(ArmourPieceModel obj)

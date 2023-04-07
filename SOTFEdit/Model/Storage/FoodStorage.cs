@@ -4,7 +4,6 @@ using System.Linq;
 using NLog;
 using SOTFEdit.Model.SaveData.Storage;
 using SOTFEdit.Model.SaveData.Storage.Module;
-using SOTFEdit.View.Storage;
 
 namespace SOTFEdit.Model.Storage;
 
@@ -13,17 +12,17 @@ public class FoodStorage : RestrictedStorage
     private const int DefaultItemIdForUnselectedSlot = 436; //fish
     private const int DefaultVariantForUnselectedSlot = 4; //dried
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-    private readonly List<ItemWrapper> _effectiveSupportedItems;
 
     public FoodStorage(StorageDefinition definition, ItemList itemList, int index) : base(definition,
         itemList, index)
     {
-        _effectiveSupportedItems = GetEffectiveSupportedItems(base.GetSupportedItems(), definition);
     }
 
-    public override void SetItemsFromJson(StorageSaveData saveData)
+    public override void SetSaveData(StorageSaveData saveData)
     {
         var currentSlot = 0;
+
+        Pos = saveData.Pos;
 
         var supportedItems = base.GetSupportedItems();
 
@@ -47,12 +46,13 @@ public class FoodStorage : RestrictedStorage
             {
                 if (currentSlot >= Slots.Count)
                 {
-                    Slots.Add(new StorageSlot());
+                    var storageSlot = new StorageSlot();
+                    Slots.Add(storageSlot);
                 }
 
                 if (uniqueItem.Modules.Count == 0)
                 {
-                    Slots[currentSlot++].StoredItems.Add(new StoredItem(null, 0, _effectiveSupportedItems,
+                    Slots[currentSlot++].StoredItems.Add(new StoredItem(null, 0, supportedItems,
                         Definition.MaxPerSlot));
                     continue;
                 }
@@ -70,12 +70,12 @@ public class FoodStorage : RestrictedStorage
                         throw new Exception($"Unexpected module type: {module.GetType().Name}");
                     }
 
-                    var selectedItem = _effectiveSupportedItems.FirstOrDefault(itemWrapper =>
+                    var selectedItem = supportedItems.FirstOrDefault(itemWrapper =>
                         itemWrapper.Item.Id == itemBlock.ItemId &&
-                        itemWrapper.Variant?.State == foodSpoilStorageModule.CurrentState);
+                        (itemWrapper.ModuleWrapper?.Module.IsEqualTo(foodSpoilStorageModule) ?? false));
 
                     var storedItem = new StoredItem(selectedItem, selectedItem == null ? 0 : 1,
-                        _effectiveSupportedItems, Definition.MaxPerSlot);
+                        supportedItems, Definition.MaxPerSlot);
                     storedItem.PropertyChanged += OnStoredItemPropertyChanged;
                     Slots[currentSlot++].StoredItems.Add(storedItem);
                 }
@@ -89,32 +89,13 @@ public class FoodStorage : RestrictedStorage
                 continue;
             }
 
-            var storedItem = new StoredItem(null, 0, _effectiveSupportedItems,
+            var storedItem = new StoredItem(null, 0, supportedItems,
                 Definition.MaxPerSlot);
             storedItem.PropertyChanged += OnStoredItemPropertyChanged;
             storageSlot.StoredItems.Add(storedItem);
         }
 
         OnPropertyChanged(nameof(Description));
-    }
-
-    protected override List<ItemWrapper> GetSupportedItems()
-    {
-        return _effectiveSupportedItems;
-    }
-
-    private static List<ItemWrapper> GetEffectiveSupportedItems(IEnumerable<ItemWrapper> supportedItems,
-        StorageDefinition storageDefinition)
-    {
-#pragma warning disable CS8603 // Possible null reference return.
-        return (
-            from supportedItem in supportedItems
-            where supportedItem.Item.Modules != null
-            from module in supportedItem.Item.Modules
-            from variant in module.Variants
-            select new ItemWrapper(supportedItem.Item, storageDefinition.MaxPerSlot, variant, module.ModuleId)
-        ).ToList();
-#pragma warning restore CS8603 // Possible null reference return.
     }
 
     public override StorageSaveData ToStorageSaveData()
@@ -126,7 +107,7 @@ public class FoodStorage : RestrictedStorage
         };
 
         var groupedByItemIds = Slots.SelectMany(slot => slot.StoredItems)
-            .Where(item => item is { Count: > 0, SelectedItem: { } })
+            .Where(item => item is { Count: > 0, SelectedItem: not null })
             .GroupBy(item => item.SelectedItem?.Item.Id ?? -1)
             .ToDictionary(items => items.Key, items => items.ToList());
 
@@ -161,7 +142,7 @@ public class FoodStorage : RestrictedStorage
                 {
                     Modules = new List<IStorageModule>
                     {
-                        new FoodSpoilStorageModule(item.ModuleId ?? 3, item.Variant?.State ?? 1)
+                        item.ModuleWrapper?.Module ?? new FoodSpoilStorageModule(3, 1)
                     }
                 });
             }
@@ -179,7 +160,12 @@ public class FoodStorage : RestrictedStorage
             if (!storedItem.HasItem() && storedItem.SupportedItems.Count > 0)
             {
                 storedItem.SelectedItem = storedItem.SupportedItems
-                    .FirstOrDefault(wrapper => wrapper.Item.Id == DefaultItemIdForUnselectedSlot && wrapper.Variant?.State == DefaultVariantForUnselectedSlot);
+                    .FirstOrDefault(wrapper =>
+                        wrapper.Item.Id == DefaultItemIdForUnselectedSlot &&
+                        wrapper.ModuleWrapper?.Module is FoodSpoilStorageModule
+                        {
+                            CurrentState: DefaultVariantForUnselectedSlot
+                        });
             }
             else if (storedItem.HasItem())
             {

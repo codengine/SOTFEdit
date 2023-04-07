@@ -1,4 +1,4 @@
-﻿using SOTFEdit.Model;
+﻿using SOTFEdit.Model.Savegame;
 using SOTFEdit.View;
 
 namespace SOTFEdit.ViewModel;
@@ -16,12 +16,12 @@ public class GamePageViewModel
     public GameStatePage GameState { get; }
     public WeatherPage Weather { get; }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
         var hasChanges = false;
-        hasChanges = GameSetup.Update(savegame, createBackup) || hasChanges;
-        hasChanges = GameState.Update(savegame, createBackup) || hasChanges;
-        hasChanges = Weather.Update(savegame, createBackup) || hasChanges;
+        hasChanges = GameSetup.Update(savegame) || hasChanges;
+        hasChanges = GameState.Update(savegame) || hasChanges;
+        hasChanges = Weather.Update(savegame) || hasChanges;
         return hasChanges;
     }
 }

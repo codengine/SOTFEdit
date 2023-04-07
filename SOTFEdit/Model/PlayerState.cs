@@ -6,21 +6,21 @@ public partial class PlayerState : ObservableObject
 {
     [ObservableProperty] private float _currentHealth;
     [ObservableProperty] private float _fullness;
+    [ObservableProperty] private float _fullnessBuff;
     [ObservableProperty] private float _hydration;
+    [ObservableProperty] private float _hydrationBuff;
     [ObservableProperty] private float _maxHealth;
 
-    [NotifyPropertyChangedFor(nameof(PositionPrintable))] [ObservableProperty]
-    private Position _pos = new(0, 0, 0);
+    [ObservableProperty] private Position _pos = new(0, 0, 0);
 
     [ObservableProperty] private float _rest;
+    [ObservableProperty] private float _restBuff;
 
     [ObservableProperty] private Item? _selectedCloth;
 
     [ObservableProperty] private float _stamina;
 
     [ObservableProperty] private int _strengthLevel;
-
-    public string PositionPrintable => $"X: {Pos.X}, Y: {Pos.Y}, Z: {Pos.Z}";
 
     partial void OnMaxHealthChanged(float value)
     {
@@ -37,7 +37,10 @@ public partial class PlayerState : ObservableObject
         CurrentHealth = 0;
         MaxHealth = 0;
         Fullness = 0;
+        FullnessBuff = 0;
         Hydration = 0;
+        HydrationBuff = 0;
+        RestBuff = 0;
         Rest = 0;
         Stamina = 0;
         SelectedCloth = null;

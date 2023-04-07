@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Windows;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
@@ -47,9 +48,17 @@ public partial class SelectSavegameWindow
             return;
         }
 
-        Settings.Default.SavegamePath = savesPath;
-        Settings.Default.Save();
-
         WeakReferenceMessenger.Default.Send(new SelectedSavegameDirChangedEvent(savesPath));
+    }
+
+    private void SelectSavegameWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.Escape)
+        {
+            return;
+        }
+
+        e.Handled = true;
+        Close();
     }
 }

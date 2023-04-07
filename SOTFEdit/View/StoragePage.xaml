@@ -9,19 +9,23 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:StoragePageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Storage Types">
+        <GroupBox Header="Storage Types" VerticalAlignment="Top" MinHeight="100">
             <Grid VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button FontSize="14" Margin="10 10 10 15" Background="DarkGreen" Padding="10" Command="{Binding FillAllStoragesCommand}">Fill all Storages</Button>
+                <Button FontSize="14" Margin="10 10 10 15" Background="{DynamicResource MahApps.Brushes.Accent}"
+                        Padding="10"
+                        Command="{Binding FillAllStoragesCommand}">
+                    Fill all Storages
+                </Button>
                 <TreeView ItemsSource="{Binding StorageCollections}" Grid.Row="1" Name="StorageTreeView">
                     <TreeView.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type viewModel:StorageCollection}"
@@ -29,13 +33,52 @@
                             <TextBlock Text="{Binding StorageDefinition.Name, Mode=OneTime}" />
                         </HierarchicalDataTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type storage:ItemsStorage}">
-                            <TextBlock Text="{Binding Description}" />
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                                       VerticalAlignment="Center">
+                                    <Image.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick"
+                                                      Command="{Binding OpenMapAtStoragePosCommand}" />
+                                    </Image.InputBindings>
+                                </Image>
+                                <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" />
+                            </Grid>
                         </HierarchicalDataTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type storage:FoodStorage}">
-                            <TextBlock Text="{Binding Description}" />
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                                       VerticalAlignment="Center">
+                                    <Image.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick"
+                                                      Command="{Binding OpenMapAtStoragePosCommand}" />
+                                    </Image.InputBindings>
+                                </Image>
+                                <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" />
+                            </Grid>
                         </HierarchicalDataTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type storage:StorageWithModulePerItem}">
-                            <TextBlock Text="{Binding Description}" />
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                                       VerticalAlignment="Center">
+                                    <Image.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick"
+                                                      Command="{Binding OpenMapAtStoragePosCommand}" />
+                                    </Image.InputBindings>
+                                </Image>
+                                <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" />
+                            </Grid>
                         </HierarchicalDataTemplate>
                     </TreeView.Resources>
                     <b:Interaction.Triggers>
@@ -49,7 +92,8 @@
             </Grid>
         </GroupBox>
         <GridSplitter Grid.Column="1" Width="5" />
-        <GroupBox Grid.Column="2" Header="{Binding SelectedStorage.Description, FallbackValue='Select a storage'}">
+        <GroupBox VerticalAlignment="Top" Grid.Column="2"
+                  Header="{Binding SelectedStorage.Description, FallbackValue='Select a storage'}" MinHeight="100">
             <ContentPresenter Content="{Binding SelectedUserControl}" />
         </GroupBox>
     </Grid>

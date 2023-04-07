@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -9,31 +11,51 @@ using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData.Inventory;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
 public partial class InventoryPageViewModel : ObservableObject
 {
     private readonly WpfObservableRangeCollection<InventoryItem> _inventory = new();
+
+    private readonly DispatcherTimer _inventoryFilterTimer = new()
+    {
+        Interval = TimeSpan.FromMilliseconds(300)
+    };
+
     private readonly ItemList _itemList;
     private readonly WpfObservableRangeCollection<InventoryItem> _unassignedItems = new();
+
+    private readonly DispatcherTimer _unassignedItemsFilterTimer = new()
+    {
+        Interval = TimeSpan.FromMilliseconds(300)
+    };
+
     [ObservableProperty] private string _inventoryFilter = "";
     [ObservableProperty] private string _unassignedItemsFilter = "";
 
     public InventoryPageViewModel(GameData gameData)
     {
-        InventoryCollectionView =
-            new GenericCollectionView<InventoryItem>(
-                (ListCollectionView)CollectionViewSource.GetDefaultView(_inventory))
+        _inventoryFilterTimer.Tick += OnInventoryFilterTimerTick;
+        _unassignedItemsFilterTimer.Tick += OnUnassignedItemsFilterTimerTick;
+
+        InventoryCollectionView = new ListCollectionView(_inventory)
+        {
+            Filter = OnFilterInventory,
+            SortDescriptions =
             {
-                Filter = OnFilterInventory
-            };
-        UnassignedItemsCollectionView =
-            new GenericCollectionView<InventoryItem>(
-                (ListCollectionView)CollectionViewSource.GetDefaultView(_unassignedItems))
+                new SortDescription("Name", ListSortDirection.Ascending)
+            }
+        };
+        UnassignedItemsCollectionView = new ListCollectionView(_unassignedItems)
+        {
+            Filter = OnFilterUnassignedItems,
+            SortDescriptions =
             {
-                Filter = OnFilterUnassignedItems
-            };
+                new SortDescription("Name", ListSortDirection.Ascending)
+            }
+        };
         _itemList = gameData.Items;
 
         var categories = gameData.Items
@@ -59,19 +81,33 @@ public partial class InventoryPageViewModel : ObservableObject
 
     public WpfObservableRangeCollection<Category> Categories { get; } = new();
 
-    public GenericCollectionView<InventoryItem> InventoryCollectionView { get; }
-    public GenericCollectionView<InventoryItem> UnassignedItemsCollectionView { get; }
+    public ICollectionView InventoryCollectionView { get; }
+    public ICollectionView UnassignedItemsCollectionView { get; }
+
+    private void OnInventoryFilterTimerTick(object? sender, EventArgs e)
+    {
+        _inventoryFilterTimer.Stop();
+        InventoryCollectionView.Refresh();
+    }
+
+    private void OnUnassignedItemsFilterTimerTick(object? sender, EventArgs e)
+    {
+        _unassignedItemsFilterTimer.Stop();
+        UnassignedItemsCollectionView.Refresh();
+    }
 
     // ReSharper disable once UnusedParameterInPartialMethod
     partial void OnInventoryFilterChanged(string value)
     {
-        InventoryCollectionView.Refresh();
+        _inventoryFilterTimer.Stop();
+        _inventoryFilterTimer.Start();
     }
 
     // ReSharper disable once UnusedParameterInPartialMethod
     partial void OnUnassignedItemsFilterChanged(string value)
     {
-        UnassignedItemsCollectionView.Refresh();
+        _unassignedItemsFilterTimer.Stop();
+        _unassignedItemsFilterTimer.Start();
     }
 
     [RelayCommand]
@@ -148,8 +184,8 @@ public partial class InventoryPageViewModel : ObservableObject
         HashSet<int> assignedItems = new();
 
         var saveData =
-            m.SelectedSavegame.SavegameStore.LoadJson<PlayerInventoryDataModel>(SavegameStore.FileType
-                .PlayerInventorySaveData);
+            m.SelectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType
+                .PlayerInventorySaveData)?.Parent.ToObject<PlayerInventoryDataModel>();
         if (saveData != null)
         {
             var inventoryItems = saveData.Data.PlayerInventory.ItemInstanceManagerData.ItemBlocks
@@ -172,11 +208,11 @@ public partial class InventoryPageViewModel : ObservableObject
         return new InventoryItem(itemBlock, item);
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
-        var playerInventoryData = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerInventorySaveData);
+        var saveDataWrapper = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerInventorySaveData);
 
-        if (playerInventoryData == null)
+        if (saveDataWrapper == null)
         {
             return false;
         }
@@ -185,15 +221,7 @@ public partial class InventoryPageViewModel : ObservableObject
             .Select(item => item.ItemBlock)
             .ToList();
 
-        if (!PlayerInventoryDataModel.Merge(playerInventoryData, selectedItems))
-        {
-            return false;
-        }
-
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.PlayerInventorySaveData, playerInventoryData,
-            createBackup);
-
-        return true;
+        return PlayerInventoryDataModel.Merge(saveDataWrapper, selectedItems);
     }
 
     [RelayCommand(CanExecute = nameof(HasInventoryItems))]

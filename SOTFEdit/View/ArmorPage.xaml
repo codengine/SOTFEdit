@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:st="http://schemas.spicytaco.io/"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:ArmorPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <GroupBox Header="Equipped Armor (Max. 10)" Margin="0 0 5 0">
-        <DockPanel Margin="10">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left"
-                        DockPanel.Dock="Top" Margin="0 10 0 20">
+        <st:AutoGrid Margin="10" Rows="Auto,*,Auto" Columns="*">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 10 0 20">
                 <ComboBox Margin="0,0,5,0" ItemsSource="{Binding ArmourTypes}"
                           SelectedItem="{Binding NewArmour.SelectedItem}" DisplayMemberPath="Name" />
                 <Button Margin="0,0,5,0" ToolTip="Set to the armors default durability"
@@ -28,9 +28,12 @@
                     mah:TextBoxHelper.Watermark="Durability" Interval="10"
                     Value="{Binding NewArmour.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}"
                     MinWidth="100" />
-                <Button Background="DarkGreen" Command="{Binding NewArmour.AddArmorCommand}">Add</Button>
+                <Button Background="{DynamicResource MahApps.Brushes.Accent}"
+                        Command="{Binding NewArmour.AddArmorCommand}">
+                    Add
+                </Button>
             </StackPanel>
-            <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False"
+            <DataGrid Height="Auto" AutoGenerateColumns="False"
                       SelectionMode="Single" ItemsSource="{Binding ArmourView}"
                       CanUserAddRows="false"
                       CanUserDeleteRows="False">
@@ -55,7 +58,8 @@
                                     CommandParameter="{Binding DefaultDurability}">
                                 Default
                             </Button>
-                            <Button Background="DarkGreen" Command="{Binding SetDurabilityCommand}"
+                            <Button Background="{DynamicResource MahApps.Brushes.Accent}"
+                                    Command="{Binding SetDurabilityCommand}"
                                     CommandParameter="{Binding MaxDurability}">
                                 Max
                             </Button>
@@ -71,17 +75,18 @@
                     <DataGridTemplateColumn Width="*" Header="Actions" CellTemplate="{StaticResource ActionButtons}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Top" Margin="0 20 0 0"
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0 20 0 0"
                         HorizontalAlignment="Right">
                 <Button Padding="10" ToolTip="Set durability of all armor pieces to default" Margin="0,0,10,0"
                         Command="{Binding SetAllToDefaultCommand}">
                     Set all to Default
                 </Button>
-                <Button Background="DarkGreen" ToolTip="Set durability of all armor pieces to max" Padding="10"
+                <Button Background="{DynamicResource MahApps.Brushes.Accent}"
+                        ToolTip="Set durability of all armor pieces to max" Padding="10"
                         Command="{Binding SetAllToMaxCommand}">
                     Set all to Max
                 </Button>
             </StackPanel>
-        </DockPanel>
+        </st:AutoGrid>
     </GroupBox>
 </UserControl>

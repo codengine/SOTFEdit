@@ -15,6 +15,7 @@ public class UpdateChecker
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     private readonly SemVersion _assemblyVersion;
+    private readonly string _changelogUrl;
     private readonly HttpClient _client;
     private readonly string _latestTagUrl;
     private volatile bool _isLoading;
@@ -22,6 +23,7 @@ public class UpdateChecker
     public UpdateChecker(GameData gameData)
     {
         _latestTagUrl = gameData.Config.LatestTagUrl;
+        _changelogUrl = gameData.Config.ChangelogUrl;
         var assemblyInfo = Assembly.GetExecutingAssembly()
             .GetName();
         _assemblyVersion = SemVersion.FromVersion(assemblyInfo.Version);
@@ -51,17 +53,10 @@ public class UpdateChecker
 
         try
         {
-            using var request = new HttpRequestMessage(HttpMethod.Get, _latestTagUrl);
-
-            using var result = await _client.SendAsync(request);
-            if (!result.IsSuccessStatusCode)
+            if (await Load(_latestTagUrl, notifyOnError, invokedManually) is not { } json)
             {
-                Logger.Warn($"Got a failure response: {result.StatusCode}");
-                NotifyOnError(notifyOnError, invokedManually);
                 return;
             }
-
-            var json = await result.Content.ReadAsStringAsync();
 
             var doc = JToken.Parse(json);
             if (doc["tag_name"]?.ToString() is not { } tagName)
@@ -94,26 +89,58 @@ public class UpdateChecker
         }
     }
 
+    private async Task<string?> Load(string url, bool notifyOnError, bool invokedManually)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+
+        using var result = await _client.SendAsync(request);
+        if (result.IsSuccessStatusCode)
+        {
+            return await result.Content.ReadAsStringAsync();
+        }
+
+        Logger.Warn($"Got a failure response: {result.StatusCode}");
+        NotifyOnError(notifyOnError, invokedManually);
+        return null;
+    }
+
     private static void NotifyOnSameVersion(SemVersion latestTagVersion, bool invokedManually)
     {
         Logger.Info("No update found");
         SendResult(new VersionCheckResultEvent(latestTagVersion, false, invokedManually));
     }
 
-    private static void NotifyOnNewerVersion(SemVersion latestTagVersion, string? link, bool invokedManually)
+    private async void NotifyOnNewerVersion(SemVersion latestTagVersion, string? link, bool invokedManually)
     {
         Logger.Info($"Newer version found ({latestTagVersion})");
-        SendResult(new VersionCheckResultEvent(latestTagVersion, true, invokedManually)
+
+        var changelog = await GetChangelog();
+
+        SendResult(new VersionCheckResultEvent(latestTagVersion, true, invokedManually, changelog)
         {
             Link = link
         });
+    }
+
+    private async Task<string?> GetChangelog()
+    {
+        try
+        {
+            return await Load(_changelogUrl, false, false);
+        }
+        catch (Exception ex)
+        {
+            Logger.Error(ex, "Error while loading the changelog");
+        }
+
+        return null;
     }
 
     private static void NotifyOnError(bool notifyOnError, bool invokedManually)
     {
         if (notifyOnError)
         {
-            SendResult(new VersionCheckResultEvent(null, false, invokedManually, true));
+            SendResult(new VersionCheckResultEvent(null, false, invokedManually, null, true));
         }
     }
 

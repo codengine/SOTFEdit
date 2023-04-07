@@ -2,10 +2,10 @@
 
 public class SelectedSavegameChangedEvent
 {
-    public SelectedSavegameChangedEvent(Savegame? selectedSavegame)
+    public SelectedSavegameChangedEvent(Savegame.Savegame? selectedSavegame)
     {
         SelectedSavegame = selectedSavegame;
     }
 
-    public Savegame? SelectedSavegame { get; }
+    public Savegame.Savegame? SelectedSavegame { get; }
 }

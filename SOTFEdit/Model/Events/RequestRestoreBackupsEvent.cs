@@ -2,12 +2,12 @@
 
 internal class RequestRestoreBackupsEvent
 {
-    public RequestRestoreBackupsEvent(Savegame savegame, bool restoreFromNewest)
+    public RequestRestoreBackupsEvent(Savegame.Savegame savegame, bool restoreFromNewest)
     {
         Savegame = savegame;
         RestoreFromNewest = restoreFromNewest;
     }
 
-    public Savegame Savegame { get; }
+    public Savegame.Savegame Savegame { get; }
     public bool RestoreFromNewest { get; }
 }

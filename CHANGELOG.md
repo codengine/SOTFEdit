@@ -1,5 +1,47 @@
 # Changelog
 
+## v0.9.0
+
+### Features
+
+- Added a brand new NPC page
+- Added a brand new structures page, which allows you to finish/remove blueprints and as a side effect also lets you
+  build inside bunkers and caves!
+- Added sliders for Fullness, Hydration and Rest Buffs
+- Added ability to change themes
+- Improved backup system. You can now create zip files as backups, which is the default, and have more flexibility in
+  configuring them
+- Added buttons to fill bars for followers
+- Added tool to reset consumed items
+- Added tool to ignite and refuel all fires as well as lowering their fuel drain rate
+- Added tool to reset structural damages
+- Added tool to teleport to and clone world objects like Glider and Knight V
+- Added a red pin to Coordinates which opens a zoomable map and displays their location
+- Added a red pin to Storages which opens a zoomable map and displays their location
+- Add in-app viewer for Readme and Changelog
+- Display changelog if new version is available
+- Added hotkeys to save (CTRL+S) and reload (F5) savegames
+- Added Escape as hotkey to close most windows
+- Added CTRL+Q as hotkey to close the application
+- Added menu option to select the last opened savegame
+
+### Improvements
+
+- Filtering in the inventory panel now happens with a delay, which improves responsiveness
+- Replaced normal message boxes with dialogs that are displayed within the application
+- Improve loading performance
+- Action Buttons on inventory page are now left-aligned
+- All modifications (including reviving) are now only saved when you actually save, which removes the need to reload on
+  things like reviving!
+- Added button on savegame selection to select the default directory
+- Improve responsiveness of some tabs which are resource-intense
+
+### Fixes
+
+- Wall Storages now only show 4 slots (although internally it has 5)
+- Storage manager will now keep the state of fish and meat (cooked meat will stay cooked, dried fish will stay dried)
+- Fixed a bug with player clothing for default outfit
+
 ## v0.8.5
 
 ### Fixes

@@ -1,0 +1,350 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.EditActorWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:actor1="clr-namespace:SOTFEdit.Model.SaveData.Actor"
+                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 mc:Ignorable="d"
+                 PreviewKeyDown="EditActorWindow_OnPreviewKeyDown"
+                 Title="{Binding Actor.PrintableTitle}"
+                 WindowTransitionsEnabled="False"
+                 ShowMaxRestoreButton="False"
+                 IsMaxRestoreButtonEnabled="False"
+                 ShowMinButton="False"
+                 IsMinButtonEnabled="False"
+                 ResizeMode="NoResize"
+                 HorizontalContentAlignment="Left"
+                 VerticalAlignment="Top"
+                 SizeToContent="WidthAndHeight"
+                 d:DataContext="{d:DesignInstance viewModel:EditActorViewModel}"
+                 TitleCharacterCasing="Normal">
+    <mah:MetroWindow.Resources>
+        <Style x:Key="LabelStyle" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Setter Property="Margin" Value="0 0 8 0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SliderLabelStyle" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Setter Property="Margin" Value="0 0 10 10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SliderStyle" TargetType="{x:Type Slider}"
+               BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
+            <Setter Property="Margin" Value="0 0 10 10" />
+            <Setter Property="TickFrequency" Value="1" />
+            <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        <converters:StringToBooleanConverter x:Key="StringToBooleanConverter" />
+        <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+    </mah:MetroWindow.Resources>
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <GroupBox Header="Info" Padding="10" Margin="0 0 10 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Image Source="{Binding Actor.ActorImage}" HorizontalAlignment="Left" VerticalAlignment="Top"
+                       Margin="0 0 0 10" />
+                <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 0 0 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1"
+                               Text="{Binding Actor.ActorType.Name, FallbackValue='???'}">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="{Binding Actor.ActorColor}" />
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Classification"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                               Text="{Binding Actor.ActorType.PrintableClassification, FallbackValue='???'}" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Gender"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="2" Grid.Column="1"
+                               Text="{Binding Actor.ActorType.PrintableGender, FallbackValue='???'}" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Last Visited Time"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="3" Grid.Column="1"
+                               Text="{Binding Actor.LastVisitTime, FallbackValue='???'}" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="SpawnerId"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="4" Grid.Column="1"
+                               Text="{Binding Actor.SpawnerId, FallbackValue='???'}" />
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Spawned Count"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="5" Grid.Column="1"
+                               Text="{Binding Actor.Spawner.Count, FallbackValue='???'}" />
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Last Spawn Time"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="6" Grid.Column="1"
+                               Text="{Binding Actor.Spawner.LastSpawnTime, FallbackValue='???'}" />
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="State"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="7" Grid.Column="1"
+                               Text="{Binding Actor.State, FallbackValue='???'}" />
+                    <TextBlock Grid.Row="8" Grid.Column="0" Text="VariationId"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="8" Grid.Column="1"
+                               Text="{Binding Actor.VariationId, FallbackValue='???'}" />
+                    <TextBlock Grid.Row="9" Grid.Column="0" Text="UniqueId"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="9" Grid.Column="1"
+                               Text="{Binding Actor.UniqueId, FallbackValue='???'}" />
+                    <TextBlock Grid.Row="10" Grid.Column="0" Text="OutfitId"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="10" Grid.Column="1"
+                               Text="{Binding Actor.OutfitId, FallbackValue='???'}" />
+                    <TextBlock Grid.Row="11" Grid.Column="0" Text="GraphMask"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="11" Grid.Column="1" Text="{Binding Actor.PositionSuffix}"
+                               VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="12" Grid.Column="0" Text="Position"
+                               Style="{StaticResource LabelStyle}" />
+                    <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding Actor.Position.PrintableShort}"
+                               TextWrapping="Wrap" VerticalAlignment="Top" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <Grid Grid.Row="0" Grid.Column="1" Margin="0 0 10 0" Width="300" VerticalAlignment="Top"
+              HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <GroupBox Header="Influences" VerticalAlignment="Top" HorizontalAlignment="Stretch" Padding="10"
+                      Margin="0 0 0 10">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock TextWrapping="Wrap" Margin="0 0 0 10">
+                        Sentiment defines the affection, yet it is not clear how this influences enemies.<LineBreak />
+                        When the Fear value is high, enemies run away more often.<LineBreak />
+                        A high value in Anger increases the likelyhood of attacks.
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Actor.Influences}" Grid.Row="1" VerticalAlignment="Top"
+                                  HorizontalAlignment="Stretch" Height="Auto">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type actor1:Influence}">
+                                <GroupBox Header="{Binding  PrintableTypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
+                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0"
+                                                   Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
+                                                   Style="{StaticResource SliderLabelStyle}" Foreground="HotPink">
+                                            Sentiment
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="0"
+                                            Minimum="-100.0"
+                                            Maximum="100"
+                                            Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Grid.Column="0" Grid.Row="1"
+                                            Style="{StaticResource SliderLabelStyle}" Foreground="Red">
+                                            Anger
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="1"
+                                            Minimum="0.0"
+                                            Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Grid.Column="0" Grid.Row="2" Foreground="DodgerBlue"
+                                            Style="{StaticResource SliderLabelStyle}">
+                                            Fear
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="2"
+                                            Minimum="0.0"
+                                            Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
+                                    </Grid>
+                                </GroupBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="Kill Statistics" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                      Padding="10">
+                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource LabelStyle}">Killed by Player</TextBlock>
+                    <TextBlock Grid.Column="1" Text="{Binding Actor.KillStats.PlayerKilled, FallbackValue='0'}" />
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <GroupBox Grid.Column="2" Width="400" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                  Header="Modifications"
+                  Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0" Header="Selection" Padding="10" Margin="0 0 0 10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                            <RadioButton GroupName="ModificationMode" Margin="0 0 8 0"
+                                         IsChecked="{Binding ModificationMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='Modify'}">
+                                Modify
+                            </RadioButton>
+                            <RadioButton GroupName="ModificationMode"
+                                         IsChecked="{Binding ModificationMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='Remove'}">
+                                Remove
+                            </RadioButton>
+                        </StackPanel>
+                        <ComboBox Grid.Row="1" ItemsSource="{Binding AllActorSelections}"
+                                  SelectedValue="{Binding ActorSelection}" DisplayMemberPath="Title"
+                                  SelectedValuePath="Value" Margin="0 0 0 10" />
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 0 0 10">
+                            <CheckBox Content="Skip Kelvin"
+                                      IsChecked="{Binding SkipKelvin}" Margin="0 0 8 0" />
+                            <CheckBox Content="Skip Virginia"
+                                      IsChecked="{Binding SkipVirginia}" />
+                        </StackPanel>
+                        <CheckBox Grid.Row="3" IsChecked="{Binding OnlyInSameAreaAsActor}">
+                            <CheckBox.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock>Only in the same area as this actor</TextBlock>
+                                    <TextBlock Text="{Binding Actor.PositionSuffix}" />
+                                </StackPanel>
+                            </CheckBox.Content>
+                        </CheckBox>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Row="1" Header="Stats" Padding="10" Margin="0 0 0 10"
+                          Visibility="{Binding ModificationMode, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter='Modify'}">
+                    <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource LabelStyle}">Energy</TextBlock>
+                        <mah:NumericUpDown Margin="0 0 10 0" Grid.Row="0" Grid.Column="1" Minimum="1" Maximum="100"
+                                           NumericInputMode="Numbers" Interval="10"
+                                           Value="{Binding ModifyOptions.ActorEnergy, UpdateSourceTrigger=PropertyChanged}" />
+                        <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding ModifyOptions.UpdateEnergy}"> Update</CheckBox>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}">Health</TextBlock>
+                        <mah:NumericUpDown Margin="0 0 10 0" Grid.Row="1" Grid.Column="1" Minimum="1" Maximum="100"
+                                           NumericInputMode="Numbers" Interval="10"
+                                           Value="{Binding ModifyOptions.ActorHealth, UpdateSourceTrigger=PropertyChanged}" />
+                        <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding ModifyOptions.UpdateHealth}"> Update</CheckBox>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Row="2" Header="Modify Options" Padding="10" Margin="0 0 0 10"
+                          Visibility="{Binding ModificationMode, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter='Modify'}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0 0 8 0">
+                            <CheckBox Content="Remove Spawner" IsChecked="{Binding ModifyOptions.RemoveSpawner}"
+                                      ToolTip="If selected the NPC should not spawn again" Margin="0 0 0 8" />
+                            <CheckBox Content="Update Influences" Margin="0 0 0 8"
+                                      IsChecked="{Binding ModifyOptions.UpdateInfluences}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource LabelStyle}">Replace Type</TextBlock>
+                                <ComboBox Grid.Column="1" SelectedItem="{Binding ModifyOptions.ReplaceType}"
+                                          ItemsSource="{Binding AllActorTypes}" DisplayMemberPath="Name" />
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock TextWrapping="Wrap" Margin="0 0 0 8">
+                                Be careful if you teleport multiple actors to the same location. This might crash your game!
+                            </TextBlock>
+                            <TextBlock Margin="0 0 0 8">Teleport:</TextBlock>
+                            <RadioButton GroupName="TeleportMode" Margin="0 0 0 8"
+                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter=''}">
+                                None
+                            </RadioButton>
+                            <RadioButton GroupName="TeleportMode" Margin="0 0 0 8"
+                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='PlayerToNpc'}">
+                                Player to NPC
+                            </RadioButton>
+                            <RadioButton GroupName="TeleportMode" Margin="0 0 0 8"
+                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='NpcToPlayer'}">
+                                NPC To Player
+                            </RadioButton>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <Button Grid.Row="3" Padding="10" Background="{StaticResource MahApps.Brushes.Accent}"
+                        Command="{Binding SaveCommand}">
+                    Save
+                </Button>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</mah:MetroWindow>

@@ -7,10 +7,10 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using NLog;
-using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData.Storage;
+using SOTFEdit.Model.Savegame;
 using SOTFEdit.Model.Storage;
 using SOTFEdit.View.Storage;
 
@@ -49,12 +49,8 @@ public partial class StoragePageViewModel : ObservableObject
     private void FillAllStorages()
     {
         foreach (var storageCollection in StorageCollections)
-        {
-            foreach (var storage in storageCollection.Storages)
-            {
-                storage.SetAllToMax();
-            }
-        }
+        foreach (var storage in storageCollection.Storages)
+            storage.SetAllToMax();
     }
 
     [RelayCommand]
@@ -97,12 +93,9 @@ public partial class StoragePageViewModel : ObservableObject
 
     private List<StorageSaveData>? LoadStorageSaveData(Savegame selectedSavegame)
     {
-        var screwStructureJson =
-            selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.ScrewStructureInstancesSaveData)?["Data"]?
-                ["ScrewStructureInstances"]?.ToString();
-
-        if (screwStructureJson is not { } || JsonConverter.DeserializeRaw(screwStructureJson) is not
-                { } screwStructure || screwStructure["_structures"] is not JArray structures)
+        if (selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.ScrewStructureInstancesSaveData)
+                ?.GetJsonBasedToken(Constants.JsonKeys.ScrewStructureInstances)?["_structures"] is not JArray
+            structures)
         {
             return null;
         }
@@ -152,7 +145,7 @@ public partial class StoragePageViewModel : ObservableObject
             }
 
             var storage = _storageFactory.Build(storageDefinition, storageCollection.Storages.Count + 1);
-            storage.SetItemsFromJson(saveData);
+            storage.SetSaveData(saveData);
 
             storageCollection.Storages.Add(storage);
         }
@@ -160,19 +153,12 @@ public partial class StoragePageViewModel : ObservableObject
         return storageCollectionsById;
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
         if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.ScrewStructureInstancesSaveData) is not
-            { } screwStructureInstancesSaveData)
-        {
-            return false;
-        }
-
-        var screwStructureInstancesToken = screwStructureInstancesSaveData["Data"]?["ScrewStructureInstances"];
-
-        if (screwStructureInstancesToken?.ToString() is not { } screwStructureJson ||
-            JsonConverter.DeserializeRaw(screwStructureJson) is not
-                { } screwStructure || screwStructure["_structures"] is not JArray structures)
+                { } saveDataWrapper ||
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.ScrewStructureInstances)?["_structures"] is not JArray
+                structures)
         {
             return false;
         }
@@ -227,14 +213,10 @@ public partial class StoragePageViewModel : ObservableObject
             numProcessedById[structureId] = numProcessed + 1;
         }
 
-        if (!hasChanges)
+        if (hasChanges)
         {
-            return hasChanges;
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.ScrewStructureInstances);
         }
-
-        screwStructureInstancesToken.Replace(JsonConverter.Serialize(screwStructure));
-        savegame.SavegameStore.StoreJson(SavegameStore.FileType.ScrewStructureInstancesSaveData,
-            screwStructureInstancesSaveData, createBackup);
 
         return hasChanges;
     }

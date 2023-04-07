@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using SOTFEdit.Model;
+using SOTFEdit.Model.Savegame;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
@@ -15,9 +15,9 @@ public partial class GamePage
         InitializeComponent();
     }
 
-    public bool Update(Savegame savegame, bool createBackup)
+    public bool Update(Savegame savegame)
     {
-        return _dataContext.Update(savegame, createBackup);
+        return _dataContext.Update(savegame);
     }
 
     private void GameState_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
