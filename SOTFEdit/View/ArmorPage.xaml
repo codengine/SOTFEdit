@@ -14,14 +14,20 @@
                         DockPanel.Dock="Top" Margin="0 10 0 20">
                 <ComboBox Margin="0,0,5,0" ItemsSource="{Binding ArmourTypes}"
                           SelectedItem="{Binding NewArmour.SelectedItem}" DisplayMemberPath="Name" />
-                <Button Margin="0,0,5,0" ToolTip="Set to the armors default durability" Command="{Binding NewArmour.SetDefaultDurabilityForNewArmourCommand}">Default</Button>
+                <Button Margin="0,0,5,0" ToolTip="Set to the armors default durability"
+                        Command="{Binding NewArmour.SetDefaultDurabilityForNewArmourCommand}">
+                    Default
+                </Button>
                 <Button Margin="0,0,5,0" ToolTip="Set the armors durability to an arbitrarily high number"
                         Command="{Binding NewArmour.SetMaxDurabilityForNewArmourCommand}">
                     Max
                 </Button>
-                <mah:NumericUpDown ToolTip="The durability of the armor. If it is 0, the armor breaks. Can be very high" Margin="0,0,5,0"
-                                   mah:TextBoxHelper.Watermark="Durability" Interval="10"
-                                   Value="{Binding NewArmour.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}" MinWidth="100" />
+                <mah:NumericUpDown
+                    ToolTip="The durability of the armor. If it is 0, the armor breaks. Can be very high"
+                    Margin="0,0,5,0"
+                    mah:TextBoxHelper.Watermark="Durability" Interval="10"
+                    Value="{Binding NewArmour.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}"
+                    MinWidth="100" />
                 <Button Background="DarkGreen" Command="{Binding NewArmour.AddArmorCommand}">Add</Button>
             </StackPanel>
             <DataGrid Height="Auto" DockPanel.Dock="Top" AutoGenerateColumns="False"
@@ -31,9 +37,11 @@
                 <DataGrid.Resources>
                     <DataTemplate x:Key="NumericUpDownTemplate" DataType="{x:Type viewModel:ArmourData}">
                         <Grid>
-                            <mah:NumericUpDown ToolTip="The durability of the armor. If it is 0, the armor breaks. Can be very high"
-                                               Value="{Binding ArmourPiece.RemainingArmourpoints}"
-                                               Minimum="{Binding MinDurability, Mode=OneWay}" Maximum="{Binding MaxDurability, Mode=OneWay}" />
+                            <mah:NumericUpDown
+                                ToolTip="The durability of the armor. If it is 0, the armor breaks. Can be very high"
+                                Value="{Binding ArmourPiece.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}"
+                                Minimum="{Binding MinDurability, Mode=OneWay}"
+                                Maximum="{Binding MaxDurability, Mode=OneWay}" />
                         </Grid>
                     </DataTemplate>
                     <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:ArmourData}">
@@ -43,8 +51,14 @@
                                     CommandParameter="{Binding}">
                                 Remove
                             </Button>
-                            <Button Margin="0,0,5,0" Command="{Binding SetDurabilityCommand}" CommandParameter="{Binding DefaultDurability}">Default</Button>
-                            <Button Background="DarkGreen" Command="{Binding SetDurabilityCommand}" CommandParameter="{Binding MaxDurability}">Max</Button>
+                            <Button Margin="0,0,5,0" Command="{Binding SetDurabilityCommand}"
+                                    CommandParameter="{Binding DefaultDurability}">
+                                Default
+                            </Button>
+                            <Button Background="DarkGreen" Command="{Binding SetDurabilityCommand}"
+                                    CommandParameter="{Binding MaxDurability}">
+                                Max
+                            </Button>
                         </StackPanel>
                     </DataTemplate>
                 </DataGrid.Resources>
@@ -57,9 +71,16 @@
                     <DataGridTemplateColumn Width="*" Header="Actions" CellTemplate="{StaticResource ActionButtons}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Top" Margin="0 20 0 0" HorizontalAlignment="Right">
-                <Button Padding="10" ToolTip="Set durability of all armor pieces to default" Margin="0,0,10,0" Command="{Binding SetAllToDefaultCommand}">Set all to Default</Button>
-                <Button Background="DarkGreen" ToolTip="Set durability of all armor pieces to max" Padding="10" Command="{Binding SetAllToMaxCommand}">Set all to Max</Button>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Top" Margin="0 20 0 0"
+                        HorizontalAlignment="Right">
+                <Button Padding="10" ToolTip="Set durability of all armor pieces to default" Margin="0,0,10,0"
+                        Command="{Binding SetAllToDefaultCommand}">
+                    Set all to Default
+                </Button>
+                <Button Background="DarkGreen" ToolTip="Set durability of all armor pieces to max" Padding="10"
+                        Command="{Binding SetAllToMaxCommand}">
+                    Set all to Max
+                </Button>
             </StackPanel>
         </DockPanel>
     </GroupBox>

@@ -33,7 +33,7 @@
             <LineBreak />
             If you want to have more, you should load the game, let everything spawn, save the game, spawn followers and so on.
         </TextBlock>
-        <mah:NumericUpDown Grid.Row="1" Value="{Binding Count}" Interval="1" Minimum="1" Maximum="{Binding Max}" Margin="0 0 0 5" />
+        <mah:NumericUpDown Grid.Row="1" Value="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Interval="1" Minimum="1" Maximum="{Binding Max}" Margin="0 0 0 5" />
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="OK" IsDefault="True" Margin="0 0 5 0" Command="{Binding OkCommand}" Padding="20 10" Background="DarkGreen" />
             <Button Content="Cancel" IsCancel="True" Command="{Binding CancelCommand}" Padding="20 10" Background="DarkRed" />

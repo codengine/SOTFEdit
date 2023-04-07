@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.8.3
+
+### Fixes
+
+- Fixed a couple of cases where the +/- button did not work properly
+
 ## v0.8.2
 
 ### New Features
@@ -112,7 +118,8 @@
 - add storage editing (unlimited logs, sticks etc.)
 - add selection of Kelvin's and Virginia's outfit
 - add editing of Virginias equipped items
-- add editing of influences that the player / enemies have to your followers (e.g.: "Player" brings "Fear" to her if the value is high)
+- add editing of influences that the player / enemies have to your followers (e.g.: "Player" brings "Fear" to her if the
+  value is high)
 - add experiment to reset kill statistics
 - add experiment to reset number of cut trees
 - add experiment so that enemies fear the player (hopefully...)

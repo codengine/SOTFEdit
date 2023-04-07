@@ -76,11 +76,11 @@
                         <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource PlayerTextBlockStyleLeft}">Strength Level</TextBlock>
                         <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
                                            Grid.Row="3" Minimum="0" Interval="1" NumericInputMode="Numbers"
-                                           Value="{Binding PlayerState.StrengthLevel}" />
+                                           Value="{Binding PlayerState.StrengthLevel, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource PlayerTextBlockStyleLeft}">Max Health</TextBlock>
                         <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Grid.Column="1"
                                            Grid.Row="4" Minimum="0" Interval="1" NumericInputMode="Decimal"
-                                           Value="{Binding PlayerState.MaxHealth}" />
+                                           Value="{Binding PlayerState.MaxHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource PlayerTextBlockStyleLeft}">Current Health</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.1"
                                 Maximum="{Binding PlayerState.MaxHealth}" Value="{Binding PlayerState.CurrentHealth}" />
@@ -101,7 +101,8 @@
                             Fill all bars
                         </Button>
                         <TextBlock Grid.Column="0" Grid.Row="11" Style="{StaticResource PlayerTextBlockStyleLeft}">Outfit</TextBlock>
-                        <ComboBox IsEditable="False" Grid.Column="1" Grid.Row="11" ItemsSource="{Binding AvailableClothesView}" DisplayMemberPath="Name"
+                        <ComboBox IsEditable="False" Grid.Column="1" Grid.Row="11"
+                                  ItemsSource="{Binding AvailableClothesView}" DisplayMemberPath="Name"
                                   SelectedItem="{Binding PlayerState.SelectedCloth}" />
                     </Grid>
                 </Grid>
