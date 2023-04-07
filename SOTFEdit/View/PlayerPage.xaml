@@ -83,19 +83,19 @@
                                            Value="{Binding PlayerState.MaxHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource PlayerTextBlockStyleLeft}">Current Health</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.1"
-                                Maximum="{Binding PlayerState.MaxHealth}" Value="{Binding PlayerState.CurrentHealth}" />
+                                Maximum="{Binding PlayerState.MaxHealth}" Value="{Binding PlayerState.CurrentHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource PlayerTextBlockStyleLeft}">Fullness</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Fullness}" />
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource PlayerTextBlockStyleLeft}">Hydration</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Hydration}" />
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource PlayerTextBlockStyleLeft}">Rest</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Rest}" />
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Rest, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource PlayerTextBlockStyleLeft}">Stamina</TextBlock>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
-                                Maximum="100" Interval="10" Value="{Binding PlayerState.Stamina}" />
+                                Maximum="100" Interval="10" Value="{Binding PlayerState.Stamina, UpdateSourceTrigger=PropertyChanged}" />
                         <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
                                 Command="{Binding FillAllBarsCommand}" Margin="0 0 0 10">
                             Fill all bars

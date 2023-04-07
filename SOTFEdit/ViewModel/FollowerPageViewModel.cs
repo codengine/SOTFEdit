@@ -32,21 +32,14 @@ public partial class FollowerPageViewModel : ObservableObject
     {
         SetupListeners();
 
-        KelvinState = BuildFollowerState(gameData, KelvinTypeId);
-        VirginiaState = BuildFollowerState(gameData, VirginiaTypeId);
+        KelvinState = new KelvinState(gameData.FollowerData.GetOutfits(KelvinTypeId),
+            gameData.FollowerData.GetEquippableItems(KelvinTypeId, gameData.Items));
+        VirginiaState = new VirginiaState(gameData.FollowerData.GetOutfits(VirginiaTypeId),
+            gameData.FollowerData.GetEquippableItems(VirginiaTypeId, gameData.Items));
     }
 
-    public FollowerState KelvinState { get; }
-    public FollowerState VirginiaState { get; }
-
-    private static FollowerState BuildFollowerState(GameData gameData, int typeId)
-    {
-        return new FollowerState(
-            typeId,
-            gameData.FollowerData.GetOutfits(typeId),
-            gameData.FollowerData.GetEquippableItems(typeId, gameData.Items)
-        );
-    }
+    public KelvinState KelvinState { get; }
+    public VirginiaState VirginiaState { get; }
 
     private void SetupListeners()
     {
@@ -147,7 +140,7 @@ public partial class FollowerPageViewModel : ObservableObject
                 continue;
             }
 
-            var followerModel = typeId == KelvinTypeId ? KelvinState : VirginiaState;
+            FollowerState followerModel = typeId == KelvinTypeId ? KelvinState : VirginiaState;
 
             if (actor["UniqueId"]?.Value<int>() is { } uniqueId)
             {
@@ -169,12 +162,18 @@ public partial class FollowerPageViewModel : ObservableObject
             if (actor["Stats"] is { } stats)
             {
                 followerModel.Health = stats["Health"]?.Value<float>() ?? 0f;
-                followerModel.Anger = stats["Anger"]?.Value<float>() ?? 0f;
-                followerModel.Fear = stats["Fear"]?.Value<float>() ?? 0f;
-                followerModel.Fullness = stats["Fullness"]?.Value<float>() ?? 0f;
                 followerModel.Hydration = stats["Hydration"]?.Value<float>() ?? 0f;
                 followerModel.Energy = stats["Energy"]?.Value<float>() ?? 0f;
-                followerModel.Affection = stats["Affection"]?.Value<float>() ?? 0f;
+
+                switch (followerModel)
+                {
+                    case KelvinState kelvinState:
+                        kelvinState.Fear = stats["Fear"]?.Value<float>() ?? 0f;
+                        break;
+                    case VirginiaState virginiaState:
+                        virginiaState.Affection = stats["Affection"]?.Value<float>() ?? 0f;
+                        break;
+                }
             }
 
             if (actor["EquippedItems"] is JArray equippedItems && equippedItems.ToObject<int[]>() is { } itemIds)
@@ -247,7 +246,8 @@ public partial class FollowerPageViewModel : ObservableObject
 
         var saveDataWrapper = new SaveDataWrapper(saveData);
         var followerModifier = new FollowerModifier(saveDataWrapper);
-        var hasChanges = followerModifier.Update(new[] { KelvinState, VirginiaState }) && saveDataWrapper.SerializeAllModified();
+        var hasChanges = followerModifier.Update(new FollowerState[] { KelvinState, VirginiaState }) &&
+                         saveDataWrapper.SerializeAllModified();
 
         if (!hasChanges)
         {

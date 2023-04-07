@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.8.4
+
+### Fixes
+
+- Removed follower stats that were removed in Patch 03
+- Removed sliders from influences that were removed in Patch 03
+- Fix saving of follower stats and influences
+
 ## v0.8.3
 
 ### Fixes

@@ -6,14 +6,9 @@ using SOTFEdit.Model.SaveData.Actor;
 
 namespace SOTFEdit.Model.Actor;
 
-public partial class FollowerState : ObservableObject
+public abstract partial class FollowerState : ObservableObject
 {
-    [ObservableProperty] private float _affection;
-    [ObservableProperty] private float _anger;
     [ObservableProperty] private float _energy;
-    [ObservableProperty] private float _fear;
-    [ObservableProperty] private float _fullness;
-
     [ObservableProperty] private float _health;
     [ObservableProperty] private float _hydration;
     [ObservableProperty] private Outfit? _outfit;
@@ -30,7 +25,8 @@ public partial class FollowerState : ObservableObject
     {
         TypeId = typeId;
         Outfits = outfits;
-        foreach (var equippableItem in equippableItems.Select(item => new EquippableItem(item))) Inventory.Add(equippableItem);
+        foreach (var equippableItem in equippableItems.Select(item => new EquippableItem(item)))
+            Inventory.Add(equippableItem);
     }
 
     public int TypeId { get; }
@@ -40,17 +36,13 @@ public partial class FollowerState : ObservableObject
     public ObservableCollection<EquippableItem> Inventory { get; } = new();
     public ObservableCollection<Influence> Influences { get; } = new();
 
-    public void Reset()
+    public virtual void Reset()
     {
         Status = "???";
         Pos = new Position(0, 0, 0);
         Health = 0.0f;
-        Anger = 0.0f;
-        Fear = 0.0f;
-        Fullness = 0.0f;
         Hydration = 0.0f;
         Energy = 0.0f;
-        Affection = 0.0f;
         foreach (var equippableItem in Inventory) equippableItem.Selected = false;
 
         var temporaryItems = Inventory.Where(item => item.IsTemporary).ToList();
