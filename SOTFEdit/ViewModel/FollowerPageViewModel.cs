@@ -17,7 +17,8 @@ namespace SOTFEdit.ViewModel;
 
 public partial class FollowerPageViewModel : ObservableObject
 {
-    private const int TeleportYoffset = 1;
+    private const int TeleportXoffset = 3;
+    private const int TeleportXoffsetForPlayer = 1;
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     [ObservableProperty]
@@ -32,14 +33,21 @@ public partial class FollowerPageViewModel : ObservableObject
     {
         SetupListeners();
 
-        KelvinState = new KelvinState(gameData.FollowerData.GetOutfits(KelvinTypeId),
-            gameData.FollowerData.GetEquippableItems(KelvinTypeId, gameData.Items));
-        VirginiaState = new VirginiaState(gameData.FollowerData.GetOutfits(VirginiaTypeId),
-            gameData.FollowerData.GetEquippableItems(VirginiaTypeId, gameData.Items));
+        KelvinState = BuildFollowerState(gameData, KelvinTypeId);
+        VirginiaState = BuildFollowerState(gameData, VirginiaTypeId);
     }
 
-    public KelvinState KelvinState { get; }
-    public VirginiaState VirginiaState { get; }
+    public FollowerState KelvinState { get; }
+    public FollowerState VirginiaState { get; }
+
+    private static FollowerState BuildFollowerState(GameData gameData, int typeId)
+    {
+        return new FollowerState(
+            typeId,
+            gameData.FollowerData.GetOutfits(typeId),
+            gameData.FollowerData.GetEquippableItems(typeId, gameData.Items)
+        );
+    }
 
     private void SetupListeners()
     {
@@ -65,21 +73,21 @@ public partial class FollowerPageViewModel : ObservableObject
         }
 
         var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
-        follower.Pos = playerPos with { Y = playerPos.Y + TeleportYoffset };
+        follower.Pos = playerPos with { Y = playerPos.Y + TeleportXoffsetForPlayer };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToKelvin(FollowerState follower)
     {
         var kelvinPos = KelvinState.Pos;
-        follower.Pos = kelvinPos with { Y = kelvinPos.Y + TeleportYoffset };
+        follower.Pos = kelvinPos with { Y = kelvinPos.Y + TeleportXoffset };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
     private void MoveToVirginia(FollowerState follower)
     {
         var virginiaPos = VirginiaState.Pos;
-        follower.Pos = virginiaPos with { Y = virginiaPos.Y + TeleportYoffset };
+        follower.Pos = virginiaPos with { Y = virginiaPos.Y + TeleportXoffset };
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveChanges))]
@@ -140,7 +148,7 @@ public partial class FollowerPageViewModel : ObservableObject
                 continue;
             }
 
-            FollowerState followerModel = typeId == KelvinTypeId ? KelvinState : VirginiaState;
+            var followerModel = typeId == KelvinTypeId ? KelvinState : VirginiaState;
 
             if (actor["UniqueId"]?.Value<int>() is { } uniqueId)
             {
@@ -162,18 +170,12 @@ public partial class FollowerPageViewModel : ObservableObject
             if (actor["Stats"] is { } stats)
             {
                 followerModel.Health = stats["Health"]?.Value<float>() ?? 0f;
+                followerModel.Anger = stats["Anger"]?.Value<float>() ?? 0f;
+                followerModel.Fear = stats["Fear"]?.Value<float>() ?? 0f;
+                followerModel.Fullness = stats["Fullness"]?.Value<float>() ?? 0f;
                 followerModel.Hydration = stats["Hydration"]?.Value<float>() ?? 0f;
                 followerModel.Energy = stats["Energy"]?.Value<float>() ?? 0f;
-
-                switch (followerModel)
-                {
-                    case KelvinState kelvinState:
-                        kelvinState.Fear = stats["Fear"]?.Value<float>() ?? 0f;
-                        break;
-                    case VirginiaState virginiaState:
-                        virginiaState.Affection = stats["Affection"]?.Value<float>() ?? 0f;
-                        break;
-                }
+                followerModel.Affection = stats["Affection"]?.Value<float>() ?? 0f;
             }
 
             if (actor["EquippedItems"] is JArray equippedItems && equippedItems.ToObject<int[]>() is { } itemIds)
@@ -246,7 +248,7 @@ public partial class FollowerPageViewModel : ObservableObject
 
         var saveDataWrapper = new SaveDataWrapper(saveData);
         var followerModifier = new FollowerModifier(saveDataWrapper);
-        var hasChanges = followerModifier.Update(new FollowerState[] { KelvinState, VirginiaState }) &&
+        var hasChanges = followerModifier.Update(new[] { KelvinState, VirginiaState }) &&
                          saveDataWrapper.SerializeAllModified();
 
         if (!hasChanges)

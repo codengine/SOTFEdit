@@ -93,6 +93,9 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleLeft}">Name:</TextBlock>
                         <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource FollowerTextBlockStyleRight}">Kelvin aka Robby</TextBlock>
@@ -108,20 +111,33 @@
                         <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource FollowerTextBlockStyleLeft}">Health</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="4" Minimum="0.0"
                                 Maximum="100" Value="{Binding KelvinState.Health, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
+                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.0"
-                                Maximum="100" Value="{Binding KelvinState.Fear, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
+                                Maximum="100" Value="{Binding KelvinState.Anger, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0"
-                                Maximum="100" Value="{Binding KelvinState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
+                                Maximum="100" Value="{Binding KelvinState.Fear, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Fullness</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0"
+                                Maximum="100"
+                                Value="{Binding KelvinState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0"
+                                Maximum="100"
+                                Value="{Binding KelvinState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
                                 Maximum="100" Value="{Binding KelvinState.Energy, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Margin="0" Grid.Column="0" Grid.Row="8"
+                        <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource FollowerTextBlockStyleLeft}">Affection</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="10"
+                                Minimum="0.0"
+                                Maximum="100"
+                                Value="{Binding KelvinState.Affection, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Margin="0" Grid.Column="0" Grid.Row="11"
                                    Style="{StaticResource FollowerTextBlockStyleLeft}">
                             Outfit
                         </TextBlock>
-                        <ComboBox Grid.Column="1" Grid.Row="8" ItemsSource="{Binding KelvinState.Outfits}"
+                        <ComboBox Grid.Column="1" Grid.Row="11" ItemsSource="{Binding KelvinState.Outfits}"
                                   SelectedItem="{Binding KelvinState.Outfit}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type model:Item}">
@@ -130,7 +146,8 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </Grid>
-                    <ItemsControl ItemsSource="{Binding KelvinState.Influences}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <ItemsControl ItemsSource="{Binding KelvinState.Influences}" Grid.Row="1" Grid.Column="0"
+                                  Grid.ColumnSpan="2">
                         <ItemsControl.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <GroupBox Header="Influences" Margin="10" Padding="10">
@@ -151,15 +168,39 @@
                                             <RowDefinition />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Column="0" Grid.Row="0" Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerTextBlockStyleLeft}">Sentiment</TextBlock>
-                                        <Slider Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="-100.0"
-                                                Maximum="100" Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}" Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
-                                        <Slider Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1" Minimum="0.0"
-                                                Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}" Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
-                                        <Slider Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2" Minimum="0.0"
-                                                Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock Grid.Column="0" Grid.Row="0"
+                                                   Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
+                                                   Style="{StaticResource FollowerTextBlockStyleLeft}">
+                                            Sentiment
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0"
+                                            Minimum="-100.0"
+                                            Maximum="100"
+                                            Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Grid.Column="0" Grid.Row="1"
+                                            Style="{StaticResource FollowerTextBlockStyleLeft}">
+                                            Anger
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1"
+                                            Minimum="0.0"
+                                            Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Grid.Column="0" Grid.Row="2"
+                                            Style="{StaticResource FollowerTextBlockStyleLeft}">
+                                            Fear
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2"
+                                            Minimum="0.0"
+                                            Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </DataTemplate>
@@ -199,12 +240,16 @@
                             Spawn
                         </Button>
                     </StackPanel>
-                    <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
+                    <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                          Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
@@ -229,18 +274,34 @@
                                    Text="{Binding VirginiaState.PositionPrintable}" />
                         <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource FollowerTextBlockStyleLeft}">Health</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="4" Minimum="0.0"
-                                Maximum="120" Value="{Binding VirginiaState.Health, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
+                                Maximum="120"
+                                Value="{Binding VirginiaState.Health, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="5" Minimum="0.0"
-                                Maximum="100" Value="{Binding VirginiaState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
+                                Maximum="100"
+                                Value="{Binding VirginiaState.Anger, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="6" Minimum="0.0"
-                                Maximum="100" Value="{Binding VirginiaState.Energy, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Affection</TextBlock>
+                                Maximum="100" Value="{Binding VirginiaState.Fear, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource FollowerTextBlockStyleLeft}">Fullness</TextBlock>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="7" Minimum="0.0"
-                                Maximum="100" Value="{Binding VirginiaState.Affection, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource FollowerTextBlockStyleLeft}">Equipment</TextBlock>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8">
+                                Maximum="100"
+                                Value="{Binding VirginiaState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource FollowerTextBlockStyleLeft}">Hydration</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="8" Minimum="0.0"
+                                Maximum="100"
+                                Value="{Binding VirginiaState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="9" Style="{StaticResource FollowerTextBlockStyleLeft}">Energy</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="9" Minimum="0.0"
+                                Maximum="100"
+                                Value="{Binding VirginiaState.Energy, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="10" Style="{StaticResource FollowerTextBlockStyleLeft}">Affection</TextBlock>
+                        <Slider Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="10"
+                                Minimum="0.0"
+                                Maximum="100"
+                                Value="{Binding VirginiaState.Affection, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="0" Grid.Row="11" Style="{StaticResource FollowerTextBlockStyleLeft}">Equipment</TextBlock>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="11">
                             <ItemsControl ItemsSource="{Binding VirginiaState.Inventory}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -256,11 +317,11 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </StackPanel>
-                        <TextBlock Grid.Column="0" Grid.Row="9" Margin="0"
+                        <TextBlock Grid.Column="0" Grid.Row="12" Margin="0"
                                    Style="{StaticResource FollowerTextBlockStyleLeft}">
                             Outfit
                         </TextBlock>
-                        <ComboBox Grid.Column="1" Grid.Row="9" ItemsSource="{Binding VirginiaState.Outfits}"
+                        <ComboBox Grid.Column="1" Grid.Row="12" ItemsSource="{Binding VirginiaState.Outfits}"
                                   SelectedItem="{Binding VirginiaState.Outfit}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type model:Outfit}">
@@ -269,7 +330,8 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </Grid>
-                    <ItemsControl ItemsSource="{Binding VirginiaState.Influences}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <ItemsControl ItemsSource="{Binding VirginiaState.Influences}" Grid.Row="1" Grid.Column="0"
+                                  Grid.ColumnSpan="2">
                         <ItemsControl.Template>
                             <ControlTemplate TargetType="ItemsControl">
                                 <GroupBox Header="Influences" Margin="10" Padding="10">
@@ -290,15 +352,39 @@
                                             <RowDefinition />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <TextBlock Grid.Column="0" Grid.Row="0" Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerTextBlockStyleLeft}">Sentiment</TextBlock>
-                                        <Slider Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0" Minimum="-100.0"
-                                                Maximum="100" Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}" Grid.Column="0" Grid.Row="1" Style="{StaticResource FollowerTextBlockStyleLeft}">Anger</TextBlock>
-                                        <Slider Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1" Minimum="0.0"
-                                                Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}" Grid.Column="0" Grid.Row="2" Style="{StaticResource FollowerTextBlockStyleLeft}">Fear</TextBlock>
-                                        <Slider Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}" Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2" Minimum="0.0"
-                                                Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock Grid.Column="0" Grid.Row="0"
+                                                   Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
+                                                   Style="{StaticResource FollowerTextBlockStyleLeft}">
+                                            Sentiment
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0"
+                                            Minimum="-100.0"
+                                            Maximum="100"
+                                            Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Grid.Column="0" Grid.Row="1"
+                                            Style="{StaticResource FollowerTextBlockStyleLeft}">
+                                            Anger
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1"
+                                            Minimum="0.0"
+                                            Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock
+                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Grid.Column="0" Grid.Row="2"
+                                            Style="{StaticResource FollowerTextBlockStyleLeft}">
+                                            Fear
+                                        </TextBlock>
+                                        <Slider
+                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
+                                            Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2"
+                                            Minimum="0.0"
+                                            Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </DataTemplate>

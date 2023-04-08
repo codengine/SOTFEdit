@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.8.5
+
+### Fixes
+
+- Reverted removal of follower stats. It appears that it depends on your game which stats are set
+- Fix reviving of Kelvin and Virginia which is broken since Update 03
+- Teleporting should not launch the player into the air anymore
+
 ## v0.8.4
 
 ### Fixes

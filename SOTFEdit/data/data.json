@@ -146,7 +146,7 @@
       "type": "misc",
       "nameDe": "C4-Ladung",
       "storageMax": {
-        "shelf": 6,
+        "shelf": 3,
         "inventory": 10
       }
     },
@@ -339,7 +339,7 @@
       "nameDe": "Leiterplatte",
       "storageMax": {
         "shelf": 6,
-        "inventory": 8
+        "inventory": 10
       }
     },
     {
@@ -2809,7 +2809,7 @@
       "id": 29,
       "name": "Stick Storage",
       "slots": 1,
-      "maxPerSlot": 91,
+      "maxPerSlot": 90,
       "restrictedItemIds": [
         392
       ],

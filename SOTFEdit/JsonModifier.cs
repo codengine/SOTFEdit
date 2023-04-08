@@ -5,20 +5,20 @@ namespace SOTFEdit;
 
 public static class JsonModifier
 {
-    public static bool CompareAndModify(JToken? token, Func<float, bool> comparator, float newValue)
+    public static bool CompareAndModify(JToken? token, string key, Func<float, bool> comparator, float newValue)
     {
         if (token == null)
         {
             return false;
         }
 
-        var oldValue = token.Value<float>();
-        if (!comparator.Invoke(oldValue))
+        var oldValue = token[key]?.Value<float>();
+        if (oldValue is { } theOldValue && !comparator.Invoke(theOldValue))
         {
             return false;
         }
 
-        token.Replace(newValue);
+        token[key] = newValue;
         return true;
     }
 

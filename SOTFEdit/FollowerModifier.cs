@@ -59,12 +59,20 @@ public class FollowerModifier
             if (actor["Stats"] is { } stats)
             {
                 hasChangesInVailWorldSim =
-                    JsonModifier.CompareAndModify(stats["Health"], f => f < FullHealth, FullHealth) ||
+                    JsonModifier.CompareAndModify(stats, "Health", f => f < FullHealth, FullHealth) ||
                     hasChangesInVailWorldSim;
-                hasChangesInVailWorldSim = JsonModifier.CompareAndModify(stats["Fear"], f => f > NoFear, NoFear) ||
-                                           hasChangesInVailWorldSim;
-                hasChangesInVailWorldSim = JsonModifier.CompareAndModify(stats["Anger"], f => f > NoAnger, NoAnger) ||
-                                           hasChangesInVailWorldSim;
+                hasChangesInVailWorldSim =
+                    JsonModifier.CompareAndModify(stats, "Hydration", f => f < FullHydration, FullHydration) ||
+                    hasChangesInVailWorldSim;
+                hasChangesInVailWorldSim =
+                    JsonModifier.CompareAndModify(stats, "Energy", f => f < FullEnergy, FullEnergy) ||
+                    hasChangesInVailWorldSim;
+                hasChangesInVailWorldSim =
+                    JsonModifier.CompareAndModify(stats, "Affection", f => f > FullAffection, FullAffection) ||
+                    hasChangesInVailWorldSim;
+                hasChangesInVailWorldSim =
+                    JsonModifier.CompareAndModify(stats, "Fear", f => f > NoFear, NoFear) ||
+                    hasChangesInVailWorldSim;
             }
 
             hasChangesInVailWorldSim = ResetPlayerInfluence(vailWorldSim, uniqueId) || hasChangesInVailWorldSim;
@@ -313,11 +321,11 @@ public class FollowerModifier
                 }
 
                 hasChanges =
-                    JsonModifier.CompareAndModify(influenceToken["Sentiment"], f => f < FullSentiment, FullSentiment) ||
+                    JsonModifier.CompareAndModify(influenceToken, "Sentiment", f => f < FullSentiment, FullSentiment) ||
                     hasChanges;
-                hasChanges = JsonModifier.CompareAndModify(influenceToken["Anger"], f => f > NoAnger, NoAnger) ||
+                hasChanges = JsonModifier.CompareAndModify(influenceToken, "Anger", f => f > NoAnger, NoAnger) ||
                              hasChanges;
-                hasChanges = JsonModifier.CompareAndModify(influenceToken["Fear"], f => f > NoFear, NoFear) ||
+                hasChanges = JsonModifier.CompareAndModify(influenceToken, "Fear", f => f > NoFear, NoFear) ||
                              hasChanges;
                 break;
             }
@@ -380,19 +388,15 @@ public class FollowerModifier
             }
 
             hasChangesInVailWorldSim = ModifyStat(stats, "Health", followerModel.Health) || hasChangesInVailWorldSim;
+            hasChangesInVailWorldSim = ModifyStat(stats, "Anger", followerModel.Anger) || hasChangesInVailWorldSim;
+            hasChangesInVailWorldSim = ModifyStat(stats, "Fear", followerModel.Fear) || hasChangesInVailWorldSim;
+            hasChangesInVailWorldSim =
+                ModifyStat(stats, "Fullness", followerModel.Fullness) || hasChangesInVailWorldSim;
             hasChangesInVailWorldSim =
                 ModifyStat(stats, "Hydration", followerModel.Hydration) || hasChangesInVailWorldSim;
             hasChangesInVailWorldSim = ModifyStat(stats, "Energy", followerModel.Energy) || hasChangesInVailWorldSim;
-
-            switch (followerModel)
-            {
-                case KelvinState kelvinState:
-                    hasChangesInVailWorldSim = ModifyStat(stats, "Fear", kelvinState.Fear) || hasChangesInVailWorldSim;
-                    break;
-                case VirginiaState virginiaState:
-                    hasChangesInVailWorldSim = ModifyStat(stats, "Affection", virginiaState.Affection) || hasChangesInVailWorldSim;
-                    break;
-            }
+            hasChangesInVailWorldSim =
+                ModifyStat(stats, "Affection", followerModel.Affection) || hasChangesInVailWorldSim;
         }
 
         if (hasChangesInVailWorldSim)
@@ -448,7 +452,7 @@ public class FollowerModifier
         {
             return false;
         }
-        
+
         if (stats[key] is not { } oldValueToken || Math.Abs(oldValueToken.Value<float>() - newValue.Value) < 0.001)
         {
             return false;
