@@ -123,6 +123,9 @@ Another cool thing is that you can use it to build stuff in caves or bunkers. Th
 blueprints, mark them as "almost finished", take them down and
 use the resources to build new stuff.
 
+If you want to build larger structures like shelters in a cave or bunker, you have to place a small blueprint first (
+like a chair), then change its type and save.
+
 ## Weather
 
 There is one very important thing. If you only change the season, it will be reverted immediately when the game

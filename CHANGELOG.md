@@ -4,6 +4,14 @@
 
 ### Features
 
+- Added feature to change a blueprint's type, which allows the convertion of any blueprint to any other inside bunkers
+  and
+  caves
+
+## v0.9.0
+
+### Features
+
 - Added a brand new NPC page
 - Added a brand new structures page, which allows you to finish/remove blueprints and as a side effect also lets you
   build inside bunkers and caves!

@@ -52,6 +52,14 @@ public partial class StructuresPageViewModel : ObservableObject
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
             (_, message) => OnSelectedSavegameChangedEvent(message));
+        WeakReferenceMessenger.Default.Register<ChangeScrewStructureResult>(this,
+            (_, message) => { OnChangeScrewStructureResult(message); });
+    }
+
+    private void OnChangeScrewStructureResult(ChangeScrewStructureResult message)
+    {
+        message.ScrewStructureWrapper.Update(message.SelectedScrewStructure);
+        Structures.Refresh();
     }
 
     private void OnSelectedSavegameChangedEvent(SelectedSavegameChangedEvent message)
@@ -139,6 +147,11 @@ public partial class StructuresPageViewModel : ObservableObject
                 }
 
                 token["Added"] = added;
+            }
+
+            if (wrapper.ChangedTypeId is { } changedTypeId)
+            {
+                token["Id"] = changedTypeId;
             }
 
             jArray.Add(token);

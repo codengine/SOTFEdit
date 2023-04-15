@@ -1,0 +1,54 @@
+﻿<mah:BaseMetroDialog x:Class="SOTFEdit.View.ChangeScrewStructureTypeDialog"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                     xmlns:model="clr-namespace:SOTFEdit.Model"
+                     xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                     xmlns:st="http://schemas.spicytaco.io/"
+                     mc:Ignorable="d"
+                     Padding="30"
+                     d:DataContext="{d:DesignInstance viewModel:ChangeScrewStructureViewModel}">
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="400">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="0 0 0 10" TextWrapping="Wrap">
+            You can select a different structure type here. Please keep in mind that the rotation and location of the structure will stay the same, which could lead to bugs and crashes.
+        </TextBlock>
+        <ComboBox Grid.Row="1" ItemsSource="{Binding ScrewStructures}"
+                  Margin="0 0 0 10"
+                  HorizontalAlignment="Stretch"
+                  SelectedItem="{Binding SelectedScrewStructure, UpdateSourceTrigger=PropertyChanged}" Padding="6">
+            <ComboBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate DataType="{x:Type GroupItem}">
+                            <TextBlock Padding="3" Text="{Binding Name}"
+                                       Foreground="{DynamicResource MahApps.Brushes.AccentBase}"
+                                       FontWeight="Bold" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ComboBox.GroupStyle>
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type model:ScrewStructure}">
+                    <TextBlock Padding="8 3 3 3" Text="{Binding Name}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <st:AutoGrid Grid.Row="2" HorizontalAlignment="Stretch" Columns="*,*">
+            <Button Margin="0 0 8 0" Command="{Binding OkCommand}"
+                    Background="{DynamicResource MahApps.Brushes.Accent}" Padding="10">
+                Ok
+            </Button>
+            <Button Command="{Binding CancelCommand}" Background="DarkRed" Padding="10">Cancel</Button>
+        </st:AutoGrid>
+    </Grid>
+</mah:BaseMetroDialog>

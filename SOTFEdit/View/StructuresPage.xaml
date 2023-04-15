@@ -115,15 +115,18 @@
                     <DataGridTemplateColumn Header="Modification">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
-                                <ComboBox SelectedValuePath="Content"
-                                          SelectedValue="{Binding ModificationMode, UpdateSourceTrigger=PropertyChanged}">
-                                    <ComboBox.Items>
-                                        <ComboBoxItem Content="" />
-                                        <ComboBoxItem Content="Remove" />
-                                        <ComboBoxItem Content="Finish" />
-                                        <ComboBoxItem Content="Unfinish" />
-                                    </ComboBox.Items>
-                                </ComboBox>
+                                <StackPanel Orientation="Horizontal">
+                                    <ComboBox SelectedValuePath="Content" Margin="0 0 6 0"
+                                              SelectedValue="{Binding ModificationMode, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.Items>
+                                            <ComboBoxItem Content="" />
+                                            <ComboBoxItem Content="Remove" />
+                                            <ComboBoxItem Content="Finish" />
+                                            <ComboBoxItem Content="Unfinish" />
+                                        </ComboBox.Items>
+                                    </ComboBox>
+                                    <Button Command="{Binding ChangeTypeCommand}">Change Type</Button>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

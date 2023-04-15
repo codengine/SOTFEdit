@@ -90,6 +90,20 @@ public partial class MainWindow
             (_, _) => OnRequestModifyConsumedItemsEvent());
         WeakReferenceMessenger.Default.Register<RequestTeleportWorldItemEvent>(this,
             (_, _) => OnRequestTeleportWorldItemEvent());
+        WeakReferenceMessenger.Default.Register<ShowDialogEvent>(this,
+            (recipient, message) => OnShowDialogEvent(message));
+    }
+
+    private async void OnShowDialogEvent(ShowDialogEvent message)
+    {
+        var dialog = message.DialogFactory.Invoke(this);
+        await this.ShowMetroDialogAsync(dialog, new MetroDialogSettings
+        {
+            AnimateShow = false,
+            AnimateHide = false,
+            OwnerCanCloseWithDialog = true
+        });
+        await dialog.WaitUntilUnloadedAsync();
     }
 
     private void OnRequestTeleportWorldItemEvent()
