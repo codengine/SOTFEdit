@@ -4,7 +4,7 @@ using SOTFEdit.Infrastructure;
 namespace SOTFEdit.Model.Actors;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public record ActorType(string Name, int Id, string Classification, string? Gender, string? Image)
+public record ActorType(int Id, string Classification, string? Gender, string? Image)
 {
     public Color ActorColor
     {
@@ -25,8 +25,11 @@ public record ActorType(string Name, int Id, string Classification, string? Gend
         }
     }
 
-    public string PrintableClassification =>
-        TranslationManager.GetString("ActorClassification_", Classification, "???");
+    public string Name => TranslationManager.Get("actors.types." + Id);
 
-    public string PrintableGender => Gender == null ? "-" : TranslationManager.GetString("ActorGender_", Gender, "-");
+    public string PrintableClassification =>
+        TranslationManager.Get("actors.classification." + Classification);
+
+    public string PrintableGender =>
+        Gender == null ? "-" : TranslationManager.Get("actors.gender." + Gender);
 }

@@ -1,12 +1,17 @@
 # Changelog
 
-## v0.9.0
+## v0.9.2
+
+### Features
+
+- Added multilingual support and translations for german and polish
+
+## v0.9.1
 
 ### Features
 
 - Added feature to change a blueprint's type, which allows the convertion of any blueprint to any other inside bunkers
-  and
-  caves
+  and caves
 
 ## v0.9.0
 

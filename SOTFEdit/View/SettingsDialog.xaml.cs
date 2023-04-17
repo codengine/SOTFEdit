@@ -25,6 +25,7 @@ public partial class SettingsDialog
     private void SettingsSavedEvent()
     {
         _saved = true;
+        DialogResult = true;
         Close();
     }
 

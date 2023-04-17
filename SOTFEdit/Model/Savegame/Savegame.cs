@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json.Linq;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.Actors;
 using static SOTFEdit.Model.Constants.Actors;
 
@@ -47,7 +48,7 @@ public class Savegame : ObservableObject
                 return "MP_Client";
             }
 
-            return "Unknown";
+            return TranslationManager.Get("generic.unknown");
         }
     }
 

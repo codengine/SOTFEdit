@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              d:DataContext="{d:DesignInstance viewModel:GamePageViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -12,12 +13,14 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <GroupBox VerticalAlignment="Top" Padding="10" Header="Game Setup" Margin="0 0 5 0">
+        <GroupBox VerticalAlignment="Top" Padding="10" Header="{infrastructure:Translate 'game.setup.header'}"
+                  Margin="0 0 5 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top">
                 <ContentPresenter Content="{Binding GameSetup}" />
             </ScrollViewer>
         </GroupBox>
-        <GroupBox VerticalAlignment="Top" Padding="10" Header="Game State" Grid.Column="1" Margin="5 0 0 0">
+        <GroupBox VerticalAlignment="Top" Padding="10" Header="{infrastructure:Translate 'game.state.header'}"
+                  Grid.Column="1" Margin="5 0 0 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Top"
                           PreviewMouseWheel="GameState_PreviewMouseWheel">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">

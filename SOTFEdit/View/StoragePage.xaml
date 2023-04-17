@@ -6,6 +6,7 @@
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:storage="clr-namespace:SOTFEdit.Model.Storage"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:StoragePageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -15,7 +16,8 @@
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Storage Types" VerticalAlignment="Top" MinHeight="100">
+        <GroupBox Header="{infrastructure:Translate 'storage.headers.storageTypes'}" VerticalAlignment="Top"
+                  MinHeight="100">
             <Grid VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -23,9 +25,8 @@
                 </Grid.RowDefinitions>
                 <Button FontSize="14" Margin="10 10 10 15" Background="{DynamicResource MahApps.Brushes.Accent}"
                         Padding="10"
-                        Command="{Binding FillAllStoragesCommand}">
-                    Fill all Storages
-                </Button>
+                        Command="{Binding FillAllStoragesCommand}"
+                        Content="{infrastructure:Translate 'storage.buttons.fillAllStorages'}" />
                 <TreeView ItemsSource="{Binding StorageCollections}" Grid.Row="1" Name="StorageTreeView">
                     <TreeView.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type viewModel:StorageCollection}"
@@ -93,7 +94,8 @@
         </GroupBox>
         <GridSplitter Grid.Column="1" Width="5" />
         <GroupBox VerticalAlignment="Top" Grid.Column="2"
-                  Header="{Binding SelectedStorage.Description, FallbackValue='Select a storage'}" MinHeight="100">
+                  Header="{Binding SelectedStorage.Description, FallbackValue={infrastructure:Translate 'storage.headers.selectAStorage'}}"
+                  MinHeight="100">
             <ContentPresenter Content="{Binding SelectedUserControl}" />
         </GroupBox>
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.SaveData.Armour;
 
@@ -19,8 +20,7 @@ public partial class ArmourData : ObservableObject
 
     public int Id => _item?.Id ?? ArmourPiece.ItemId;
 
-    public string Name => _item?.Name ?? "??? Unknown Item";
-    public string NameDe => _item?.NameDe ?? "";
+    public string Name => _item?.Name ?? TranslationManager.Get("armor.unknownItem");
 
     public int Slot => ArmourPiece.Slot;
 

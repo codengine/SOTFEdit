@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData.Storage.Module;
 
 namespace SOTFEdit.Model.SaveData.Storage;
@@ -65,7 +66,8 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
         return new FoodSpoilStorageModule(
             moduleId,
             obj["CurrentState"]?.Value<int>() ??
-            throw new Exception($"CurrentState not defined for moduleId {moduleId}"),
+            throw new Exception(
+                TranslationManager.GetFormatted("storage.errors.currentStateNotDefined", moduleId)),
             obj["TimeRemainingInState"]?.Value<long>() ?? default,
             obj["PauseDecay"]?.Value<bool>() ?? default
         );

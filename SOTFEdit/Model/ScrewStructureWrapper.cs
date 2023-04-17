@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.Events;
 using SOTFEdit.View;
 
@@ -13,7 +14,7 @@ public partial class ScrewStructureWrapper : ObservableObject
 {
     [ObservableProperty] private int _added;
 
-    [ObservableProperty] private string? _modificationMode;
+    [ObservableProperty] private ScrewStructureModificationMode? _modificationMode;
 
     [ObservableProperty] private ScrewStructure? _screwStructure;
 
@@ -29,7 +30,7 @@ public partial class ScrewStructureWrapper : ObservableObject
     public Position? Position { get; }
 
     public string Name => ScrewStructure?.Name ?? "???";
-    public string Category => ScrewStructure?.Category ?? "Unknown";
+    public string Category => ScrewStructure?.CategoryName ?? TranslationManager.Get("generic.unknown");
     public int BuildCost => ScrewStructure?.BuildCost ?? -1;
 
     private int PctDone => ScrewStructure?.BuildCost is { } buildCost ? 100 * Added / buildCost : -1;
@@ -78,7 +79,7 @@ public partial class ScrewStructureWrapper : ObservableObject
 
         ScrewStructure = selectedScrewStructure;
         Added = ScrewStructure?.BuildCost - 1 ?? 0;
-        ModificationMode = "Finish";
+        ModificationMode = ScrewStructureModificationMode.Finish;
         ChangedTypeId = selectedScrewStructure.Id;
         OnPropertyChanged(nameof(BuildCost));
     }

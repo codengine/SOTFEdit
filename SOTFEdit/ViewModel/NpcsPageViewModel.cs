@@ -131,7 +131,10 @@ public partial class NpcsPageViewModel : ObservableObject
 
         _actorsByType.ReplaceRange(actors.OrderBy(actor => actor.GraphMask).ThenBy(actor => actor.FamilyId)
             .GroupBy(actor => actor.TypeId)
-            .Select(g => new ActorCollection(_actorTypes.GetValueOrDefault(g.Key)?.Name ?? "Unknown", g.ToList()))
+            .Select(g =>
+                new ActorCollection(
+                    _actorTypes.GetValueOrDefault(g.Key)?.Name ?? TranslationManager.Get("generic.unknown"),
+                    g.ToList()))
             .OrderBy(c => c.Name));
         _actorsByFamily.ReplaceRange(actors.Where(actor => actor.FamilyId != null)
             .OrderBy(actor => actor.GraphMask).ThenBy(actor => actor.TypeId)
@@ -169,17 +172,17 @@ public partial class NpcsPageViewModel : ObservableObject
 
         if (subActors.TrueForAll(actor => actor.ActorType?.Classification == "animal"))
         {
-            return "Animals";
+            return TranslationManager.Get("actors.grouping.animals");
         }
 
         if (subActors.TrueForAll(actor => actor.ActorType?.Classification == "creep"))
         {
-            return "Creeps";
+            return TranslationManager.Get("actors.grouping.creeps");
         }
 
         if (subActors.TrueForAll(actor => actor.ActorType?.Classification == "misc"))
         {
-            return "Misc";
+            return TranslationManager.Get("actors.grouping.misc");
         }
 
         var allMale = subActors.TrueForAll(actor => actor.ActorType?.Gender == "male");
@@ -189,38 +192,38 @@ public partial class NpcsPageViewModel : ObservableObject
         {
             if (allMale)
             {
-                return "Male Cannibals";
+                return TranslationManager.Get("actors.grouping.maleCannibals");
             }
 
             if (allFemale)
             {
-                return "Female Cannibals";
+                return TranslationManager.Get("actors.grouping.femaleCannibals");
             }
 
-            return "Mixed Cannibals";
+            return TranslationManager.Get("actors.grouping.mixedCannibals");
         }
 
         if (subActors.TrueForAll(actor => actor.ActorType?.Classification == "muddy_cannibal"))
         {
             if (allMale)
             {
-                return "Male Muddy Cannibals";
+                return TranslationManager.Get("actors.grouping.maleMuddyCannibals");
             }
 
             if (allFemale)
             {
-                return "Female Muddy Cannibals";
+                return TranslationManager.Get("actors.grouping.femaleMuddyCannibals");
             }
 
-            return "Mixed Muddy Cannibals";
+            return TranslationManager.Get("actors.grouping.mixedMuddyCannibals");
         }
 
         if (subActors.TrueForAll(actor => actor.FamilyId == 0))
         {
-            return "No Family";
+            return TranslationManager.Get("actors.grouping.noFamily");
         }
 
-        return "Mixed";
+        return TranslationManager.Get("actors.grouping.mixed");
     }
 
     private static HashSet<string> GetUniqueNamesOfActors(IEnumerable<Actor> subActors)

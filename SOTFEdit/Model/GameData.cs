@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Storage;
 
@@ -33,7 +34,25 @@ public class GameData
     public List<string> NamedIntKeys { get; }
 }
 
-public record ScrewStructure(string Name, string Category, int Id, int BuildCost);
+public class ScrewStructure
+{
+    public ScrewStructure(string category, int id, int buildCost)
+    {
+        Category = category;
+        Id = id;
+        BuildCost = buildCost;
+    }
+
+    public string Name => TranslationManager.Get("structures.types." + Id);
+    public string Category { get; }
+
+    public string CategoryName => string.IsNullOrEmpty(Category)
+        ? ""
+        : TranslationManager.Get("structures.categories." + Category);
+
+    public int Id { get; }
+    public int BuildCost { get; }
+}
 
 // ReSharper disable once ClassNeverInstantiated.Global
 public class Configuration
@@ -50,11 +69,24 @@ public class Configuration
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public record FollowerData(Dictionary<int, List<Outfit>> Outfits, Dictionary<int, int[]> EquippableItems)
+public class FollowerData
 {
+    private readonly Dictionary<int, List<Outfit>> _outfits = new();
+
+    public FollowerData(Dictionary<int, List<int>> outfits, Dictionary<int, int[]> equippableItems)
+    {
+        foreach (var typeIdToOutfits in outfits)
+        foreach (var outfitId in typeIdToOutfits.Value)
+            _outfits.GetOrCreate(typeIdToOutfits.Key).Add(new Outfit(typeIdToOutfits.Key, outfitId));
+
+        EquippableItems = equippableItems;
+    }
+
+    public Dictionary<int, int[]> EquippableItems { get; init; }
+
     public List<Outfit> GetOutfits(int typeId)
     {
-        return Outfits.GetValueOrDefault(typeId) ?? new List<Outfit>();
+        return _outfits.GetValueOrDefault(typeId) ?? new List<Outfit>();
     }
 
     public IEnumerable<Item> GetEquippableItems(int typeId, ItemList items)
@@ -68,4 +100,17 @@ public record FollowerData(Dictionary<int, List<Outfit>> Outfits, Dictionary<int
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public record Outfit(int Id, string Name);
+public class Outfit
+{
+    private readonly int _typeId;
+
+    public Outfit(int typeId, int id)
+    {
+        _typeId = typeId;
+        Id = id;
+    }
+
+    public int Id { get; }
+
+    public string Name => TranslationManager.Get($"followers.outfits.{_typeId}.{Id}");
+}

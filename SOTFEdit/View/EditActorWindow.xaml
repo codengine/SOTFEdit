@@ -7,6 +7,8 @@
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                  xmlns:actor1="clr-namespace:SOTFEdit.Model.SaveData.Actor"
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  mc:Ignorable="d"
                  PreviewKeyDown="EditActorWindow_OnPreviewKeyDown"
                  Title="{Binding Actor.PrintableTitle}"
@@ -52,7 +54,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <GroupBox Header="Info" Padding="10" Margin="0 0 10 0">
+        <GroupBox Header="{infrastructure:Translate 'actors.headers.info'}" Padding="10" Margin="0 0 10 0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -80,7 +82,7 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{infrastructure:Translate 'generic.name'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="0" Grid.Column="1"
                                Text="{Binding Actor.ActorType.Name, FallbackValue='???'}">
@@ -88,15 +90,17 @@
                             <SolidColorBrush Color="{Binding Actor.ActorColor}" />
                         </TextBlock.Foreground>
                     </TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Classification"
+                    <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="{infrastructure:Translate 'actors.details.classification'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="1" Grid.Column="1"
                                Text="{Binding Actor.ActorType.PrintableClassification, FallbackValue='???'}" />
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Gender"
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{infrastructure:Translate 'actors.details.gender'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="2" Grid.Column="1"
                                Text="{Binding Actor.ActorType.PrintableGender, FallbackValue='???'}" />
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Last Visited Time"
+                    <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="{infrastructure:Translate 'actors.details.lastVisitedTime'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="3" Grid.Column="1"
                                Text="{Binding Actor.LastVisitTime, FallbackValue='???'}" />
@@ -104,18 +108,19 @@
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="4" Grid.Column="1"
                                Text="{Binding Actor.SpawnerId, FallbackValue='???'}" />
-
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Spawned Count"
+                    <TextBlock Grid.Row="5" Grid.Column="0"
+                               Text="{infrastructure:Translate 'actors.details.spawnedCount'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="5" Grid.Column="1"
                                Text="{Binding Actor.Spawner.Count, FallbackValue='???'}" />
 
-                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Last Spawn Time"
+                    <TextBlock Grid.Row="6" Grid.Column="0"
+                               Text="{infrastructure:Translate 'actors.details.lastSpawnTime'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="6" Grid.Column="1"
                                Text="{Binding Actor.Spawner.LastSpawnTime, FallbackValue='???'}" />
 
-                    <TextBlock Grid.Row="7" Grid.Column="0" Text="State"
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="{infrastructure:Translate 'actors.details.state'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="7" Grid.Column="1"
                                Text="{Binding Actor.State, FallbackValue='???'}" />
@@ -135,7 +140,7 @@
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="11" Grid.Column="1" Text="{Binding Actor.PositionSuffix}"
                                VerticalAlignment="Center" />
-                    <TextBlock Grid.Row="12" Grid.Column="0" Text="Position"
+                    <TextBlock Grid.Row="12" Grid.Column="0" Text="{infrastructure:Translate 'generic.position'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="12" Grid.Column="1" Text="{Binding Actor.Position.PrintableShort}"
                                TextWrapping="Wrap" VerticalAlignment="Top" />
@@ -148,18 +153,16 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <GroupBox Header="Influences" VerticalAlignment="Top" HorizontalAlignment="Stretch" Padding="10"
+            <GroupBox Header="{infrastructure:Translate 'actors.headers.influences'}" VerticalAlignment="Top"
+                      HorizontalAlignment="Stretch" Padding="10"
                       Margin="0 0 0 10">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <TextBlock TextWrapping="Wrap" Margin="0 0 0 10">
-                        Sentiment defines the affection, yet it is not clear how this influences enemies.<LineBreak />
-                        When the Fear value is high, enemies run away more often.<LineBreak />
-                        A high value in Anger increases the likelyhood of attacks.
-                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0 0 0 10"
+                               Text="{infrastructure:Translate 'influences.disclaimer'}" />
                     <ItemsControl ItemsSource="{Binding Actor.Influences}" Grid.Row="1" VerticalAlignment="Top"
                                   HorizontalAlignment="Stretch" Height="Auto">
                         <ItemsControl.ItemTemplate>
@@ -177,9 +180,8 @@
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="0"
                                                    Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
-                                                   Style="{StaticResource SliderLabelStyle}" Foreground="HotPink">
-                                            Sentiment
-                                        </TextBlock>
+                                                   Style="{StaticResource SliderLabelStyle}" Foreground="HotPink"
+                                                   Text="{infrastructure:Translate 'influences.sentiment'}" />
                                         <Slider
                                             Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="0"
@@ -189,9 +191,8 @@
                                         <TextBlock
                                             Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="1"
-                                            Style="{StaticResource SliderLabelStyle}" Foreground="Red">
-                                            Anger
-                                        </TextBlock>
+                                            Style="{StaticResource SliderLabelStyle}" Foreground="Red"
+                                            Text="{infrastructure:Translate 'influences.anger'}" />
                                         <Slider
                                             Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="1"
@@ -200,9 +201,8 @@
                                         <TextBlock
                                             Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="2" Foreground="DodgerBlue"
-                                            Style="{StaticResource SliderLabelStyle}">
-                                            Fear
-                                        </TextBlock>
+                                            Style="{StaticResource SliderLabelStyle}"
+                                            Text="{infrastructure:Translate 'influences.fear'}" />
                                         <Slider
                                             Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="2"
@@ -215,20 +215,22 @@
                     </ItemsControl>
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Row="1" Header="Kill Statistics" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'actors.headers.killStatistics'}"
+                      VerticalAlignment="Top" HorizontalAlignment="Stretch"
                       Padding="10">
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Style="{StaticResource LabelStyle}">Killed by Player</TextBlock>
+                    <TextBlock Style="{StaticResource LabelStyle}"
+                               Text="{infrastructure:Translate 'actors.details.killedByPlayer'}" />
                     <TextBlock Grid.Column="1" Text="{Binding Actor.KillStats.PlayerKilled, FallbackValue='0'}" />
                 </Grid>
             </GroupBox>
         </Grid>
         <GroupBox Grid.Column="2" Width="400" VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                  Header="Modifications"
+                  Header="{infrastructure:Translate 'actors.headers.modifications'}"
                   Padding="10">
             <Grid>
                 <Grid.RowDefinitions>
@@ -237,7 +239,8 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <GroupBox Grid.Row="0" Header="Selection" Padding="10" Margin="0 0 0 10">
+                <GroupBox Grid.Row="0" Header="{infrastructure:Translate 'actors.headers.selection'}" Padding="10"
+                          Margin="0 0 0 10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -247,35 +250,35 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                             <RadioButton GroupName="ModificationMode" Margin="0 0 8 0"
-                                         IsChecked="{Binding ModificationMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='Modify'}">
-                                Modify
-                            </RadioButton>
+                                         IsChecked="{Binding ModificationMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='{x:Static actors:ActorModificationMode.Modify}'}"
+                                         Content="{infrastructure:Translate 'actors.modificationMode.Modify'}" />
                             <RadioButton GroupName="ModificationMode"
-                                         IsChecked="{Binding ModificationMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='Remove'}">
-                                Remove
-                            </RadioButton>
+                                         IsChecked="{Binding ModificationMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='{x:Static actors:ActorModificationMode.Remove}'}"
+                                         Content="{infrastructure:Translate 'actors.modificationMode.Remove'}" />
                         </StackPanel>
                         <ComboBox Grid.Row="1" ItemsSource="{Binding AllActorSelections}"
                                   SelectedValue="{Binding ActorSelection}" DisplayMemberPath="Title"
                                   SelectedValuePath="Value" Margin="0 0 0 10" />
                         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 0 0 10">
-                            <CheckBox Content="Skip Kelvin"
+                            <CheckBox Content="{infrastructure:Translate 'actors.modificationOptions.skipKelvin'}"
                                       IsChecked="{Binding SkipKelvin}" Margin="0 0 8 0" />
-                            <CheckBox Content="Skip Virginia"
+                            <CheckBox Content="{infrastructure:Translate 'actors.modificationOptions.skipVirginia'}"
                                       IsChecked="{Binding SkipVirginia}" />
                         </StackPanel>
                         <CheckBox Grid.Row="3" IsChecked="{Binding OnlyInSameAreaAsActor}">
                             <CheckBox.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock>Only in the same area as this actor</TextBlock>
+                                    <TextBlock
+                                        Text="{infrastructure:Translate 'actors.modificationOptions.onlyInSameAreaAsActor'}" />
                                     <TextBlock Text="{Binding Actor.PositionSuffix}" />
                                 </StackPanel>
                             </CheckBox.Content>
                         </CheckBox>
                     </Grid>
                 </GroupBox>
-                <GroupBox Grid.Row="1" Header="Stats" Padding="10" Margin="0 0 0 10"
-                          Visibility="{Binding ModificationMode, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter='Modify'}">
+                <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'actors.headers.stats'}" Padding="10"
+                          Margin="0 0 0 10"
+                          Visibility="{Binding ModificationMode, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter='{x:Static actors:ActorModificationMode.Modify}'}">
                     <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -286,64 +289,70 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource LabelStyle}">Energy</TextBlock>
+                        <TextBlock Style="{StaticResource LabelStyle}"
+                                   Text="{infrastructure:Translate 'actors.stats.energy'}" />
                         <mah:NumericUpDown Margin="0 0 10 0" Grid.Row="0" Grid.Column="1" Minimum="1" Maximum="100"
                                            NumericInputMode="Numbers" Interval="10"
                                            Value="{Binding ModifyOptions.ActorEnergy, UpdateSourceTrigger=PropertyChanged}" />
-                        <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding ModifyOptions.UpdateEnergy}"> Update</CheckBox>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}">Health</TextBlock>
+                        <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding ModifyOptions.UpdateEnergy}"
+                                  Content="{infrastructure:Translate 'generic.update'}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"
+                                   Text="{infrastructure:Translate 'actors.stats.health'}" />
                         <mah:NumericUpDown Margin="0 0 10 0" Grid.Row="1" Grid.Column="1" Minimum="1" Maximum="100"
                                            NumericInputMode="Numbers" Interval="10"
                                            Value="{Binding ModifyOptions.ActorHealth, UpdateSourceTrigger=PropertyChanged}" />
-                        <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding ModifyOptions.UpdateHealth}"> Update</CheckBox>
+                        <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding ModifyOptions.UpdateHealth}"
+                                  Content="{infrastructure:Translate 'generic.update'}" />
                     </Grid>
                 </GroupBox>
-                <GroupBox Grid.Row="2" Header="Modify Options" Padding="10" Margin="0 0 0 10"
-                          Visibility="{Binding ModificationMode, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter='Modify'}">
+                <GroupBox Grid.Row="2" Header="{infrastructure:Translate 'actors.headers.modificationOptions'}"
+                          Padding="10" Margin="0 0 0 10"
+                          Visibility="{Binding ModificationMode, Converter={StaticResource StringToVisibilityConverter}, ConverterParameter='{x:Static actors:ActorModificationMode.Modify}'}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="0 0 8 0">
-                            <CheckBox Content="Remove Spawner" IsChecked="{Binding ModifyOptions.RemoveSpawner}"
-                                      ToolTip="If selected the NPC should not spawn again" Margin="0 0 0 8" />
-                            <CheckBox Content="Update Influences" Margin="0 0 0 8"
-                                      IsChecked="{Binding ModifyOptions.UpdateInfluences}" />
+                            <CheckBox
+                                Content="{infrastructure:Translate 'actors.modificationOptions.removeSpawner.text'}"
+                                IsChecked="{Binding ModifyOptions.RemoveSpawner}"
+                                ToolTip="{infrastructure:Translate 'actors.modificationOptions.removeSpawner.tooltip'}"
+                                Margin="0 0 0 8" />
+                            <CheckBox
+                                Content="{infrastructure:Translate 'actors.modificationOptions.updateInfluences'}"
+                                Margin="0 0 0 8"
+                                IsChecked="{Binding ModifyOptions.UpdateInfluences}" />
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Style="{StaticResource LabelStyle}">Replace Type</TextBlock>
-                                <ComboBox Grid.Column="1" SelectedItem="{Binding ModifyOptions.ReplaceType}"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource LabelStyle}"
+                                           Text="{infrastructure:Translate 'actors.modificationOptions.replaceType'}" />
+                                <ComboBox Grid.Row="1" SelectedItem="{Binding ModifyOptions.ReplaceType}"
                                           ItemsSource="{Binding AllActorTypes}" DisplayMemberPath="Name" />
                             </Grid>
                         </StackPanel>
                         <StackPanel Grid.Column="1">
-                            <TextBlock TextWrapping="Wrap" Margin="0 0 0 8">
-                                Be careful if you teleport multiple actors to the same location. This might crash your game!
-                            </TextBlock>
-                            <TextBlock Margin="0 0 0 8">Teleport:</TextBlock>
+                            <TextBlock TextWrapping="Wrap" Margin="0 0 0 8"
+                                       Text="{infrastructure:Translate 'actors.modificationOptions.teleport.disclaimer'}" />
+                            <TextBlock Margin="0 0 0 8"
+                                       Text="{infrastructure:Translate 'actors.modificationOptions.teleport.teleportLabel'}" />
                             <RadioButton GroupName="TeleportMode" Margin="0 0 0 8"
-                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter=''}">
-                                None
-                            </RadioButton>
+                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter=''}"
+                                         Content="{infrastructure:Translate 'actors.modificationOptions.teleport.none'}" />
                             <RadioButton GroupName="TeleportMode" Margin="0 0 0 8"
-                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='PlayerToNpc'}">
-                                Player to NPC
-                            </RadioButton>
+                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='PlayerToNpc'}"
+                                         Content="{infrastructure:Translate 'actors.modificationOptions.teleport.playerToNpc'}" />
                             <RadioButton GroupName="TeleportMode" Margin="0 0 0 8"
-                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='NpcToPlayer'}">
-                                NPC To Player
-                            </RadioButton>
+                                         IsChecked="{Binding ModifyOptions.TeleportMode, Converter={StaticResource StringToBooleanConverter}, ConverterParameter='NpcToPlayer'}"
+                                         Content="{infrastructure:Translate 'actors.modificationOptions.teleport.npcToPlayer'}" />
                         </StackPanel>
                     </Grid>
                 </GroupBox>
                 <Button Grid.Row="3" Padding="10" Background="{StaticResource MahApps.Brushes.Accent}"
-                        Command="{Binding SaveCommand}">
-                    Save
-                </Button>
+                        Command="{Binding SaveCommand}" Content="{infrastructure:Translate 'generic.save'}" />
             </Grid>
         </GroupBox>
     </Grid>

@@ -75,7 +75,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 }
                 else
                 {
-                    groupName = $"Unknown Item ({itemId})";
+                    groupName = TranslationManager.GetFormatted("windows.worldItemTeleporter.unknownItem", itemId);
                 }
             }
             else
@@ -83,7 +83,10 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 continue;
             }
 
-            result.Add(new WorldItemState(itemId, objectNameId == "" ? $"Unnamed ({i++})" : objectNameId, groupName,
+            result.Add(new WorldItemState(itemId,
+                objectNameId == ""
+                    ? TranslationManager.GetFormatted("windows.worldItemTeleporter.unnamedItem", i++)
+                    : objectNameId, groupName,
                 position));
         }
 
@@ -103,7 +106,10 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
             worldItemManager["WorldItemStates"] is not JArray worldItemStates)
         {
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("Nothing to delete", "Nothing found"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.text"),
+                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.title")
+            ));
             _parent.Close();
             return;
         }
@@ -115,15 +121,20 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
 
         if (toRemove.Count == 0)
         {
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("Nothing to delete", "Nothing found"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.text"),
+                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.title")
+            ));
             _parent.Close();
             return;
         }
 
         toRemove.ForEach(worldItemState => worldItemState.Remove());
         WeakReferenceMessenger.Default.Send(
-            new GenericMessageEvent($"{toRemove.Count} clones of {_selectedWorldItem.Group} were removed",
-                "Clones removed"));
+            new GenericMessageEvent(
+                TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.clonesDeleted.text",
+                    toRemove.Count, _selectedWorldItem.Group),
+                TranslationManager.Get("windows.worldItemTeleporter.messages.clonesDeleted.title")));
         _parent.Close();
     }
 
@@ -140,7 +151,10 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
             worldItemManager["WorldItemStates"] is not JArray worldItemStates)
         {
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("Nothing to move found", "Nothing found"));
+            WeakReferenceMessenger.Default.Send(
+                new GenericMessageEvent(
+                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.text"),
+                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.title")));
             _parent.Close();
             return;
         }
@@ -161,9 +175,13 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             itemStateCopy["Unnamed"] = true;
             worldItemStates.Add(itemStateCopy);
             saveDataWrapper.MarkAsModified(Constants.JsonKeys.WorldItemManager);
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-                $"A copy of {_selectedWorldItem.ObjectNameId} was created at player position. Please save changes to persist them",
-                $"{_selectedWorldItem.Group} created"));
+
+            WeakReferenceMessenger.Default.Send(
+                new GenericMessageEvent(
+                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectCloned.text",
+                        _selectedWorldItem.ObjectNameId),
+                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectCloned.title",
+                        _selectedWorldItem.Group)));
             break;
         }
 
@@ -180,9 +198,13 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
 
         Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos =
             _selectedWorldItem.Position.WithYOffset(3);
-        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-            $"Player was moved to {_selectedWorldItem.ObjectNameId}. Please save changes to persist it",
-            $"{_selectedWorldItem.Group} moved"));
+
+        WeakReferenceMessenger.Default.Send(
+            new GenericMessageEvent(
+                TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.playerMoved.text",
+                    _selectedWorldItem.ObjectNameId),
+                TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.playerMoved.title",
+                    _selectedWorldItem.Group)));
         _parent.Close();
     }
 

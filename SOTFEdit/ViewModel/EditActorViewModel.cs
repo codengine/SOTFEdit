@@ -4,6 +4,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
@@ -15,7 +16,7 @@ public partial class EditActorViewModel : ObservableObject
 {
     [ObservableProperty] private short? _actorSelection;
 
-    [ObservableProperty] private string _modificationMode = "Modify";
+    [ObservableProperty] private ActorModificationMode _modificationMode = ActorModificationMode.Modify;
 
     [ObservableProperty] private bool _onlyInSameAreaAsActor = true;
 
@@ -51,10 +52,10 @@ public partial class EditActorViewModel : ObservableObject
 
     public IEnumerable<ComboBoxItemAndValue<short>> AllActorSelections { get; } = new List<ComboBoxItemAndValue<short>>
     {
-        new("This Actor", 0),
-        new("All Actors of the same family", 1),
-        new("All Actors of the same type", 2),
-        new("All Actors", 3)
+        new(TranslationManager.Get("actors.modificationOptions.allActorSelections.thisActor"), 0),
+        new(TranslationManager.Get("actors.modificationOptions.allActorSelections.allActorsOfSameFamily"), 1),
+        new(TranslationManager.Get("actors.modificationOptions.allActorSelections.allActorsOfSameType"), 2),
+        new(TranslationManager.Get("actors.modificationOptions.allActorSelections.allActors"), 3)
     };
 
     public Actor Actor { get; }

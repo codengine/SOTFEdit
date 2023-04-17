@@ -6,13 +6,14 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                  xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  mc:Ignorable="d"
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
                  PreviewKeyDown="ModifyConsumedItemsWindow_OnPreviewKeyDown"
                  d:DataContext="{d:DesignInstance viewModel:ModifyConsumedItemsViewModel}"
                  TitleCharacterCasing="Normal"
-                 Title="Modify Consumed Items" Height="600" Width="400">
+                 Title="{infrastructure:Translate 'windows.modifyConsumedItems.title'}" Height="600" Width="400">
     <st:AutoGrid Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" Columns="*" Rows="*,Auto"
                  ChildMargin="3">
         <DataGrid HorizontalAlignment="Stretch" Margin="0 0 0 10" VerticalAlignment="Top"
@@ -24,9 +25,11 @@
                   VerticalScrollBarVisibility="Auto"
                   CanUserDeleteRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" IsReadOnly="True" Header="Name" />
-                <DataGridTextColumn Binding="{Binding Key}" IsReadOnly="True" Header="Key" />
-                <DataGridTemplateColumn Header="Remove">
+                <DataGridTextColumn Binding="{Binding Name}" IsReadOnly="True"
+                                    Header="{infrastructure:Translate 'generic.name'}" />
+                <DataGridTextColumn Binding="{Binding Key}" IsReadOnly="True"
+                                    Header="{infrastructure:Translate 'windows.modifyConsumedItems.key'}" />
+                <DataGridTemplateColumn Header="{infrastructure:Translate 'windows.modifyConsumedItems.remove'}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox HorizontalAlignment="Center"
@@ -38,13 +41,11 @@
         </DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Command="{Binding SaveCommand}" Margin="0 0 8 0" Padding="15"
-                    Background="{DynamicResource MahApps.Brushes.Accent}">
-                Save
-            </Button>
+                    Background="{DynamicResource MahApps.Brushes.Accent}"
+                    Content="{infrastructure:Translate 'generic.save'}" />
             <Button Command="{Binding RemoveAllCommand}" Padding="15"
-                    Background="{DynamicResource MahApps.Brushes.Accent}">
-                Remove All
-            </Button>
+                    Background="{DynamicResource MahApps.Brushes.Accent}"
+                    Content="{infrastructure:Translate 'windows.modifyConsumedItems.removeAll'}" />
         </StackPanel>
     </st:AutoGrid>
 </mah:MetroWindow>

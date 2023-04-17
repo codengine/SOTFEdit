@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NLog;
 using Semver;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
@@ -30,6 +32,8 @@ public partial class App
 
     public App()
     {
+        InitializeLanguage();
+
         Logger.Debug("Initializing Application");
         SetupExceptionHandling();
 
@@ -45,6 +49,25 @@ public partial class App
 
         Logger.Debug("Initializing Component");
         InitializeComponent();
+    }
+
+    private static void InitializeLanguage()
+    {
+        var language = string.IsNullOrEmpty(Settings.Default.Language)
+            ? CultureInfo.CurrentCulture.TwoLetterISOLanguageName
+            : Settings.Default.Language;
+
+        var availableCultures = LanguageManager.GetAvailableCultures().ToHashSet();
+        if (!availableCultures.Contains(language))
+        {
+            language = "en";
+        }
+
+        var cultureInfo = new CultureInfo(language);
+        CultureInfo.CurrentCulture = cultureInfo;
+        CultureInfo.CurrentUICulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
     }
 
     private static void ConfigureServices()

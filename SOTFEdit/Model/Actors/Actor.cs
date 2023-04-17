@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData.Actor;
 
 namespace SOTFEdit.Model.Actors;
@@ -35,8 +36,9 @@ public class Actor
             return GraphMask switch
             {
                 0 => " (?)",
-                1 => $" ({Resources.GraphMask_Surface} => {GraphMask})",
-                < 0 or > 1 => $" ({Resources.GraphMask_CaveOrBunker} => {GraphMask})",
+                1 => $" ({TranslationManager.Get("actors.graphMask.surface")})",
+                < 0 or > 1 =>
+                    $" ({TranslationManager.Get("actors.graphMask.caveOrBunker")} => {GraphMask})",
                 _ => ""
             };
         }

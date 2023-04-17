@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.Generic;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
@@ -47,11 +48,30 @@ public partial class RegrowTreesViewModel : ObservableObject
 
         var countRegrown = selectedSavegame.RegrowTrees(VegetationStateSelected);
 
+        var statesPrintable = new List<string>();
+        if ((VegetationStateSelected & VegetationState.Gone) != 0)
+        {
+            statesPrintable.Add(TranslationManager.Get("windows.regrowTrees.gone"));
+        }
+
+        if ((VegetationStateSelected & VegetationState.HalfChopped) != 0)
+        {
+            statesPrintable.Add(TranslationManager.Get("windows.regrowTrees.halfChopped"));
+        }
+
+        if ((VegetationStateSelected & VegetationState.Stumps) != 0)
+        {
+            statesPrintable.Add(TranslationManager.Get("windows.regrowTrees.stumps"));
+        }
+
         var resultMessage =
             countRegrown == 0
-                ? $"No trees with state \"{VegetationStateSelected}\" regrown"
-                : $"{countRegrown} trees with previous state \"{VegetationStateSelected}\" should now have regrown. Please save to persist the changes.";
-        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(resultMessage, "Regrow Trees"));
+                ? TranslationManager.GetFormatted("windows.regrowTrees.messages.noTreesRegrown",
+                    string.Join(", ", statesPrintable))
+                : TranslationManager.GetFormatted("windows.regrowTrees.messages.success", countRegrown,
+                    string.Join(", ", statesPrintable));
+        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(resultMessage,
+            TranslationManager.Get("windows.regrowTrees.title")));
         _parent.Close();
     }
 

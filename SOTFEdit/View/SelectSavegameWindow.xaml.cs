@@ -33,7 +33,7 @@ public partial class SelectSavegameWindow
     {
         var folderBrowser = new FolderPicker
         {
-            Title = "Select Sons of the Forest \"Saves\" Directory",
+            Title = TranslationManager.Get("windows.selectSavegame.folderBrowserTitle"),
             InputPath = SavegameManager.GetSavePath()
         };
 

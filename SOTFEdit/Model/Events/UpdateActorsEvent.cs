@@ -26,7 +26,7 @@ public class UpdateActorsEvent
 
     public ModifyOptions ModifyOptions { get; }
 
-    public string ModificationMode { get; }
+    public ActorModificationMode ModificationMode { get; }
 
     public short? ActorSelection { get; }
 }

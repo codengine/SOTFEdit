@@ -7,6 +7,7 @@
              xmlns:wpftk="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
              xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
              xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:ActorViewModel}"
              d:DesignHeight="300" d:DesignWidth="300" Padding="10">
@@ -47,7 +48,7 @@
                                                   CommandParameter="{Binding Position}" />
                                 </Image.InputBindings>
                             </Image>
-                            <TextBlock Text="Position" VerticalAlignment="Center" />
+                            <TextBlock Text="{infrastructure:Translate 'generic.position'}" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding PositionSuffix}" VerticalAlignment="Center" />
                         </StackPanel>
                         <Grid Grid.Row="2" Margin="0 0 0 6">
@@ -60,21 +61,24 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name"
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{infrastructure:Translate 'generic.name'}"
                                        Style="{StaticResource LabelStyle}" />
                             <TextBlock Grid.Row="0" Grid.Column="1"
                                        Text="{Binding ActorType.Name, FallbackValue='???'}"
                                        Foreground="{Binding ActorColor, Converter={StaticResource ColorToSolidColorBrushConverter}}" />
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Classification"
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="{infrastructure:Translate 'actors.details.classification'}"
                                        Style="{StaticResource LabelStyle}" />
                             <TextBlock Grid.Row="1" Grid.Column="1"
                                        Text="{Binding ActorType.PrintableClassification, FallbackValue='???'}" />
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Gender"
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="{infrastructure:Translate 'actors.details.gender'}"
                                        Style="{StaticResource LabelStyle}" />
                             <TextBlock Grid.Row="2" Grid.Column="1"
                                        Text="{Binding ActorType.PrintableGender, FallbackValue='???'}" />
                         </Grid>
-                        <Button Grid.Row="3" Content="Edit" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                        <Button Grid.Row="3" Content="{infrastructure:Translate 'generic.edit'}"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Top"
                                 Command="{Binding DataContext.EditActorCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                 CommandParameter="{Binding}" />
                     </Grid>

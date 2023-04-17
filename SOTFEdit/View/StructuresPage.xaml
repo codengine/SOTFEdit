@@ -6,12 +6,23 @@
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:st="http://schemas.spicytaco.io/"
              xmlns:model="clr-namespace:SOTFEdit.Model"
+             xmlns:local="clr-namespace:SOTFEdit.Infrastructure"
+             xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
              mc:Ignorable="d"
              HorizontalAlignment="Center"
              VerticalAlignment="Top"
              d:DataContext="{d:DesignInstance viewModel:StructuresPageViewModel}">
 
     <Grid>
+        <Grid.Resources>
+            <ObjectDataProvider x:Key="ScrewStructureModificationModes" ObjectType="{x:Type local:EnumHelper}"
+                                MethodName="GetAllEnumValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type Type="model:ScrewStructureModificationMode" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <converters:TranslationConverter x:Key="TranslationConverter" />
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
@@ -19,7 +30,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <GroupBox Padding="10" Margin="0 0 10 0" Header="Unfinished Structures" VerticalAlignment="Top" MinWidth="500"
+        <GroupBox Padding="10" Margin="0 0 10 0" Header="{local:Translate 'structures.headers.unfinishedStructures'}"
+                  VerticalAlignment="Top" MinWidth="500"
                   HorizontalAlignment="Stretch">
             <GroupBox.Resources>
                 <Style x:Key="CellStyleTextBlock" TargetType="{x:Type TextBlock}"
@@ -57,7 +69,8 @@
                     </GroupStyle>
                 </DataGrid.GroupStyle>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Name" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}">
+                    <DataGridTemplateColumn Header="{local:Translate 'generic.name'}" IsReadOnly="True"
+                                            HeaderStyle="{StaticResource HeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
                                 <TextBlock Text="{Binding Name}" Style="{StaticResource CellStyleTextBlock}"
@@ -65,7 +78,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Build Cost" IsReadOnly="True"
+                    <DataGridTemplateColumn Header="{local:Translate 'structures.buildCost'}" IsReadOnly="True"
                                             HeaderStyle="{StaticResource HeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
@@ -73,14 +86,15 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Added" IsReadOnly="True" HeaderStyle="{StaticResource HeaderStyle}">
+                    <DataGridTemplateColumn Header="{local:Translate 'structures.added'}" IsReadOnly="True"
+                                            HeaderStyle="{StaticResource HeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
                                 <TextBlock Text="{Binding Added}" Style="{StaticResource CellStyleTextBlock}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Percent Done" IsReadOnly="True"
+                    <DataGridTemplateColumn Header="{local:Translate 'structures.percentDone'}" IsReadOnly="True"
                                             HeaderStyle="{StaticResource HeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
@@ -93,7 +107,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn IsReadOnly="True" Header="Position"
+                    <DataGridTemplateColumn IsReadOnly="True" Header="{local:Translate 'generic.position'}"
                                             HeaderStyle="{StaticResource HeaderStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
@@ -105,27 +119,28 @@
                                                           Command="{Binding OpenMapAtStructurePosCommand}" />
                                         </Image.InputBindings>
                                     </Image>
-                                    <TextBlock Style="{StaticResource CellStyleTextBlock}" xml:space="preserve">Position: </TextBlock>
                                     <TextBlock Style="{StaticResource CellStyleTextBlock}"
                                                Text="{Binding Position.PrintableShort, FallbackValue=???}" />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Modification">
+                    <DataGridTemplateColumn Header="{local:Translate 'structures.modification'}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
                                 <StackPanel Orientation="Horizontal">
                                     <ComboBox SelectedValuePath="Content" Margin="0 0 6 0"
-                                              SelectedValue="{Binding ModificationMode, UpdateSourceTrigger=PropertyChanged}">
-                                        <ComboBox.Items>
-                                            <ComboBoxItem Content="" />
-                                            <ComboBoxItem Content="Remove" />
-                                            <ComboBoxItem Content="Finish" />
-                                            <ComboBoxItem Content="Unfinish" />
-                                        </ComboBox.Items>
+                                              ItemsSource="{Binding Source={StaticResource ScrewStructureModificationModes}}"
+                                              SelectedItem="{Binding ModificationMode, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    Text="{Binding Converter={StaticResource TranslationConverter}, ConverterParameter='structures.modificationMode.'}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
                                     </ComboBox>
-                                    <Button Command="{Binding ChangeTypeCommand}">Change Type</Button>
+                                    <Button Command="{Binding ChangeTypeCommand}"
+                                            Content="{local:Translate 'structures.buttons.changeType'}" />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -133,11 +148,9 @@
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-        <GroupBox Header="Batch" VerticalAlignment="Top" Grid.Column="1">
+        <GroupBox Header="{local:Translate 'structures.headers.batch'}" VerticalAlignment="Top" Grid.Column="1">
             <st:AutoGrid Columns="Auto" ChildMargin="3">
-                <TextBlock>
-                    If nothing is selected, all structures will be changed
-                </TextBlock>
+                <TextBlock Text="{local:Translate 'structures.structureTypeSelectorDisclaimer'}" />
                 <ComboBox ItemsSource="{Binding StructureTypes}"
                           SelectedItem="{Binding BatchSelectedStructureType, UpdateSourceTrigger=PropertyChanged}">
                     <ComboBox.GroupStyle>
@@ -157,20 +170,18 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button Padding="10" Command="{Binding SetModificationModeCommand}" CommandParameter="">
-                    Un-Modify all
-                </Button>
+                <Button Padding="10" Command="{Binding SetModificationModeCommand}" CommandParameter="{x:Null}"
+                        Content="{local:Translate 'structures.buttons.unmodifyAll'}" />
                 <Button Padding="10" Background="DarkRed" Command="{Binding SetModificationModeCommand}"
-                        CommandParameter="Remove">
-                    Set all to "Remove"
-                </Button>
+                        CommandParameter="{x:Static model:ScrewStructureModificationMode.Remove}"
+                        Content="{local:Translate 'structures.buttons.setAllToRemove'}" />
                 <Button Padding="10" Background="{DynamicResource MahApps.Brushes.Accent}"
-                        Command="{Binding SetModificationModeCommand}" CommandParameter="Finish">
-                    Set all to "Finish"
-                </Button>
-                <Button Padding="10" Command="{Binding SetModificationModeCommand}" CommandParameter="Unfinish">
-                    Set all to "Unfinish"
-                </Button>
+                        Command="{Binding SetModificationModeCommand}"
+                        CommandParameter="{x:Static model:ScrewStructureModificationMode.Finish}"
+                        Content="{local:Translate 'structures.buttons.setAllToFinish'}" />
+                <Button Padding="10" Command="{Binding SetModificationModeCommand}"
+                        CommandParameter="{x:Static model:ScrewStructureModificationMode.Unfinish}"
+                        Content="{local:Translate 'structures.buttons.setAllToUnfinish'}" />
             </st:AutoGrid>
         </GroupBox>
     </Grid>

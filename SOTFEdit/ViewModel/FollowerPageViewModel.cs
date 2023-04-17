@@ -173,9 +173,9 @@ public partial class FollowerPageViewModel : ObservableObject
 
             followerModel.Status = actor["State"]?.Value<int>() switch
             {
-                2 => "Alive",
-                6 => "Dead",
-                _ => "???"
+                2 => TranslationManager.Get("followers.status.alive"),
+                6 => TranslationManager.Get("followers.status.dead"),
+                _ => TranslationManager.Get("followers.status.unknown")
             };
 
             if (actor["Position"] is { } position)
@@ -203,8 +203,7 @@ public partial class FollowerPageViewModel : ObservableObject
                         Logger.Warn($"Unknown item found in inventory for follower {typeId}: {itemId}");
                         var item = new Item
                         {
-                            Id = itemId,
-                            Name = "???"
+                            Id = itemId
                         };
                         followerModel.Inventory.Add(new EquippableItem(item, true)
                         {

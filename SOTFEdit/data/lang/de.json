@@ -1,0 +1,1121 @@
+{
+  "influences": {
+    "disclaimer": "Stimmung definiert die Zuneigung, doch es ist nicht klar, wie dies Feinde beeinflusst.\nWenn der Angst-Wert hoch ist, rennen Feinde häufiger weg.\nEin hoher Wert in Wut erhöht die Wahrscheinlichkeit von Angriffen.",
+    "sentiment": "Stimmung",
+    "anger": "Wut",
+    "fear": "Angst"
+  },
+  "game": {
+    "setup": {
+      "header": "Spiel-Setup",
+      "spawnEnemies": "Feinde spawnen",
+      "headers": {
+        "enemiesCustom": "Feinde (benutzerdefiniert)",
+        "weatherCustom": "Wetter (benutzerdefiniert)"
+      },
+      "mode": {
+        "_label": "Modus",
+        "normal": "Normal",
+        "hard": "Schwer",
+        "hardSurvival": "Schweres Überleben",
+        "peaceful": "Friedlich",
+        "creative": "Kreativ",
+        "custom": "Benutzerdefiniert"
+      },
+      "consumableEffects": {
+        "_label": "Verderb-Effekte",
+        "_tooltip": "Wie viel Schaden du nimmst, wenn du schlechtes Essen isst",
+        "off": "Aus",
+        "normal": "Normal",
+        "hard": "Schwer"
+      },
+      "playerStatsDamage": {
+        "_label": "Spielerstatus-Schaden",
+        "_tooltip": "Wie viel Schaden du durch Hunger und so weiter nimmst.",
+        "off": "Aus",
+        "normal": "Normal",
+        "hard": "Schwer"
+      },
+      "animalSpawnRate": {
+        "_label": "Tier-Spawngeschwindigkeit",
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch"
+      },
+      "enemyHealth": {
+        "_label": "Feind-Gesundheit",
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch"
+      },
+      "enemyDamage": {
+        "_label": "Feind-Schaden",
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch"
+      },
+      "enemyArmour": {
+        "_label": "Feind-Rüstung",
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch"
+      },
+      "enemyAggression": {
+        "_label": "Feind-Aggressivität",
+        "low": "Niedrig",
+        "normal": "Normal",
+        "high": "Hoch"
+      },
+      "startingSeason": {
+        "_label": "Startsaison",
+        "spring": "Frühling",
+        "summer": "Sommer",
+        "autumn": "Herbst",
+        "winter": "Winter"
+      },
+      "seasonLength": {
+        "_label": "Saisonlänge",
+        "short": "Kurz",
+        "default": "Standard",
+        "long": "Lang",
+        "realistic": "Realistisch"
+      },
+      "dayLength": {
+        "_label": "Tageslänge",
+        "short": "Kurz",
+        "default": "Standard",
+        "long": "Lang",
+        "realistic": "Realistisch"
+      },
+      "precipitationFrequency": {
+        "_label": "Niederschlagsfrequenz",
+        "_tooltip": "Wie oft ändert sich das Wetter",
+        "low": "Niedrig",
+        "default": "Standard",
+        "high": "Hoch"
+      },
+      "uid": "UID",
+      "customSettings": "Benutzerdefinierte Einstellungen"
+    },
+    "state": {
+      "header": "Spielzustand",
+      "worldObjectStates": {
+        "header": "Zustand der Weltobjekte",
+        "disclaimer": "Ich habe nicht vollständig untersucht, welche Werte welchen Zustand repräsentieren. Vermutlich:\n- 0 = Nicht festgelegt/geschlossen/nicht passiert\n- 1 oder 3 = Festgelegt/geöffnet/geschehen"
+      },
+      "headers": {
+        "worldObjectStates": "Zustand der Weltobjekte"
+      }
+    }
+  },
+  "inventory": {
+    "filterWatermark": "Filtern...",
+    "table": {
+      "count": {
+        "tooltip": "Die Menge, die du im Inventar hast",
+        "text": "Anzahl"
+      },
+      "id": "ID",
+      "name": "Name",
+      "type": "Typ",
+      "actions": "Aktionen"
+    },
+    "headers": {
+      "itemsInInventory": "Gegenstände im Inventar",
+      "unassignedItems": "Nicht zugewiesene Gegenstände"
+    },
+    "buttons": {
+      "addAllFromCategory": "Alle von Kategorie hinzufügen",
+      "setAllToMin": "Alle auf Min setzen",
+      "setAllToMax": "Alle auf Max setzen",
+      "removeAll": "Alle entfernen",
+      "remove": "Entfernen",
+      "max": "Max"
+    },
+    "unknownItem": "??? Unbekannter Gegenstand"
+  },
+  "actors": {
+    "classification": {
+      "cannibal": "Kannibale",
+      "creep": "Gruselwesen",
+      "human": "Mensch",
+      "muddyCannibal": "Schlammiger Kannibale",
+      "animal": "Tier"
+    },
+    "grouping": {
+      "animals": "Tiere",
+      "creeps": "Gruselwesen",
+      "misc": "Verschiedenes",
+      "maleCannibals": "Männliche Kannibalen",
+      "femaleCannibals": "Weibliche Kannibalen",
+      "mixedCannibals": "Gemischte Kannibalen",
+      "maleMuddyCannibals": "Männliche Schlammige Kannibalen",
+      "femaleMuddyCannibals": "Weibliche Schlammige Kannibalen",
+      "mixedMuddyCannibals": "Gemischte Schlammige Kannibalen",
+      "noFamily": "Keine Familie",
+      "mixed": "Gemischt"
+    },
+    "types": {
+      "1": "Kaninchen",
+      "2": "Eichhörnchen",
+      "3": "Schildkröte",
+      "4": "Hai",
+      "5": "Möwe",
+      "6": "Adler",
+      "7": "Ente",
+      "8": "Timmy",
+      "9": "Kelvin",
+      "10": "Virginia",
+      "11": "Fingers",
+      "12": "Carl",
+      "13": "Andy",
+      "14": "Danny",
+      "15": "Billy",
+      "16": "GoldMaske",
+      "17": "Elch",
+      "18": "Baby",
+      "19": "Zwillinge",
+      "20": "Mr. Puffy",
+      "21": "Mrs. Puffy",
+      "22": "Slug",
+      "23": "Angel",
+      "24": "Lachs",
+      "25": "Brandy",
+      "26": "Crystal",
+      "27": "Destiny",
+      "28": "Verschlammte Frau",
+      "29": "Verschlammter Mann",
+      "30": "Starker Mann",
+      "31": "Sponge Test",
+      "32": "Fledermaus",
+      "33": "Hirsch",
+      "34": "Blaumeise",
+      "35": "Kolibri",
+      "36": "Killerwal",
+      "37": "Land-Schildkröte",
+      "38": "Dicker Mann",
+      "39": "Dicke Frau",
+      "40": "John2",
+      "41": "Gesichtsloser Mann",
+      "42": "Dämon",
+      "43": "Bemalter Mann",
+      "44": "Bemalte Frau",
+      "45": "Dämon Boss",
+      "46": "Mr. Puffton",
+      "47": "Mrs. Puffton"
+    },
+    "graphMask": {
+      "caveOrBunker": "Höhle oder Bunker",
+      "surface": "Oberfläche"
+    },
+    "influenceType": {
+      "Cannibal": "Kannibale",
+      "Creepy": "Gruselige",
+      "Player": "Spieler"
+    },
+    "gender": {
+      "male": "Männlich",
+      "female": "Weiblich"
+    },
+    "modificationMode": {
+      "Remove": "Entfernen",
+      "Modify": "Ändern"
+    },
+    "details": {
+      "classification": "Klassifikation",
+      "gender": "Geschlecht",
+      "lastVisitedTime": "Letzter Besuch",
+      "spawnedCount": "Anzahl Spawns",
+      "lastSpawnTime": "Letzter Spawn",
+      "state": "Status",
+      "killedByPlayer": "Getötet von Spieler"
+    },
+    "stats": {
+      "energy": "Energie",
+      "health": "Gesundheit",
+      "anger": "Wut",
+      "fear": "Angst",
+      "hydration": "Hydration",
+      "fullness": "Sättigung",
+      "affection": "Zuneigung",
+      "rest": "Erholung",
+      "stamina": "Ausdauer",
+      "fullnessBuff": "Sättigungsbonus",
+      "hydrationBuff": "Hydrationsbonus",
+      "restBuff": "Erholungsbonus"
+    },
+    "modificationOptions": {
+      "allActorSelections": {
+        "thisActor": "Dieser NPC",
+        "allActorsOfSameFamily": "Alle NPCs derselben Familie",
+        "allActorsOfSameType": "Alle NPCs desselben Typs",
+        "allActors": "Alle NPCs"
+      },
+      "skipKelvin": "Kelvin überspringen",
+      "skipVirginia": "Virginia überspringen",
+      "onlyInSameAreaAsActor": "Nur in derselben Zone wie dieser NPC",
+      "removeSpawner": {
+        "text": "Spawn-Punkt entfernen",
+        "tooltip": "Wenn ausgewählt, wird der NPC nicht erneut spawnen"
+      },
+      "updateInfluences": "Einflüsse aktualisieren",
+      "replaceType": "Typ ersetzen",
+      "teleport": {
+        "disclaimer": "Seien Sie vorsichtig, wenn Sie mehrere NPCs zum selben Ort teleportieren. Dies könnte Ihr Spiel abstürzen lassen!",
+        "teleportLabel": "Teleportieren:",
+        "none": "Keiner",
+        "playerToNpc": "Spieler zum NPC",
+        "npcToPlayer": "NPC zum Spieler"
+      }
+    },
+    "headers": {
+      "info": "Information",
+      "influences": "Einflüsse",
+      "modifications": "Änderungen",
+      "selection": "Auswahl",
+      "killStatistics": "Tötungsstatistik",
+      "stats": "Statistiken",
+      "modificationOptions": "Änderungsoptionen"
+    }
+  },
+  "structures": {
+    "structureTypeSelectorDisclaimer": "Wenn nichts ausgewählt wird, werden alle Strukturen geändert",
+    "buildCost": "Baukosten",
+    "added": "Hinzugefügt",
+    "percentDone": "Fortschritt",
+    "modification": "Modifikation",
+    "categories": {
+      "shelter": "Unterkunft",
+      "treeShelter": "Baum-Unterkunft",
+      "furniture": "Möbel",
+      "storage": "Lagerung",
+      "utility": "Nützliches",
+      "gardening": "Gartenarbeit",
+      "traps": "Fallen"
+    },
+    "headers": {
+      "unfinishedStructures": "Unfertige Strukturen",
+      "batch": "Batch"
+    },
+    "buttons": {
+      "changeType": "Typ ändern",
+      "unmodifyAll": "Alle Änderungen rückgängig",
+      "setAllToRemove": "Alle auf \"Entfernen\" setzen",
+      "setAllToFinish": "Alle auf \"Fertigstellen\" setzen",
+      "setAllToUnfinish": "Alle auf \"Unvollständig\" setzen"
+    },
+    "types": {
+      "0": "",
+      "20": "Stuhl aus Stöckern",
+      "21": "Falle des Knochenmachers",
+      "22": "Bett aus Stöckern",
+      "23": "Wand-Pflanzkasten",
+      "24": "Knochenlampe",
+      "25": "Knochenstuhl",
+      "26": "Anbau",
+      "27": "Trockengestell",
+      "28": "Baumunterstand 2",
+      "29": "Stocklager",
+      "31": "Steinlager",
+      "32": "Knochenlager",
+      "34": "Kleine Blockhütte",
+      "35": "Reuse",
+      "36": "Rüstungsständer",
+      "37": "Baumstammlager",
+      "38": "Aussichtsturm",
+      "39": "Vogelscheuche",
+      "40": "Pflanzkasten",
+      "41": "Baumplattform 2",
+      "42": "Falle für Kleintiere",
+      "43": "Baumplattform 1",
+      "44": "Baumunterstand 1",
+      "45": "Fliegende Klatschfalle",
+      "46": "Stockweg",
+      "47": "Jagdhütte",
+      "48": "Tisch",
+      "49": "Regal",
+      "50": "Steinweg",
+      "51": "Wandregal",
+      "52": "Bank",
+      "53": "Wandfackel",
+      "54": "Schädel-Deckenlampe",
+      "56": "Regenfänger",
+      "57": "Federfalle"
+    },
+    "modificationMode": {
+      "None": "Keine Änderung",
+      "Remove": "Entfernen",
+      "Finish": "Fertigstellen",
+      "Unfinish": "Unfertig stellen"
+    }
+  },
+  "backup": {
+    "mode": {
+      "Default": "Immer sichern",
+      "InitialAndOne": "Original behalten, ein zusätzliches Backup",
+      "None": "Keine Backups",
+      "One": "Ein Backup behalten und überschreiben"
+    },
+    "messages": {
+      "backupsRestored": {
+        "text": "{0} Backups wurden wiederhergestellt. Gelöschte Dateien wurden in den Papierkorb verschoben",
+        "title": "Backups wiederhergestellt"
+      }
+    }
+  },
+  "storage": {
+    "errors": {
+      "currentStateNotDefined": "CurrentState für Modul-ID {0} nicht definiert"
+    },
+    "headers": {
+      "storageTypes": "Lager-Typen",
+      "selectAStorage": "Wähle ein Lager aus"
+    },
+    "buttons": {
+      "fillAllStorages": "Alle Lager füllen"
+    },
+    "batch": {
+      "allSlots": "Alle Plätze",
+      "fillAllWith": "Alles füllen mit",
+      "setAllToMax": "Alle auf Maximum setzen",
+      "clearAll": "Alle leeren"
+    },
+    "slot": {
+      "remove": "Entfernen",
+      "max": "Max"
+    }
+  },
+  "errors": {
+    "canNotBeEmpty": "{0} darf nicht leer sein"
+  },
+  "generic": {
+    "unknown": "Unbekannt",
+    "position": "Position",
+    "name": "Name",
+    "edit": "Bearbeiten",
+    "add": "Hinzufügen",
+    "ok": "OK",
+    "cancel": "Abbrechen",
+    "update": "Aktualisieren",
+    "save": "Speichern",
+    "setting": "Einstellung",
+    "value": "Wert",
+    "error": "Fehler",
+    "exceptionMessage": "Ein Fehler ist aufgetreten: {0}",
+    "success": "Erfolg",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "armor": {
+    "header": "Ausgerüstete Rüstung (Max. 10)",
+    "unknownItem": "??? Unbekanntes Objekt",
+    "durabilityInput": {
+      "tooltip": "Die Haltbarkeit der Rüstung. Wenn sie 0 beträgt, bricht die Rüstung. Kann sehr hoch sein",
+      "watermark": "Haltbarkeit"
+    },
+    "buttons": {
+      "setToDefault": {
+        "text": "Standard",
+        "tooltip": "Setzt die Haltbarkeit der Rüstung auf den Standardwert"
+      },
+      "setAllToDefault": {
+        "text": "Alle auf Standard",
+        "tooltip": "Setzt die Haltbarkeit aller Rüstungsteile auf den Standardwert"
+      },
+      "setToMax": {
+        "text": "Max",
+        "tooltip": "Setzt die Haltbarkeit der Rüstung auf eine sehr hohe Zahl"
+      },
+      "setAllToMax": {
+        "text": "Alle auf Max",
+        "tooltip": "Setzt die Haltbarkeit aller Rüstungsteile auf das Maximum"
+      },
+      "remove": "Entfernen",
+      "default": "Standard",
+      "max": "Max"
+    },
+    "headers": {
+      "slot": "Slot",
+      "id": "ID",
+      "name": "Name",
+      "durability": "Haltbarkeit",
+      "actions": "Aktionen"
+    }
+  },
+  "followers": {
+    "reviveTooltip": "Stellen Sie sicher, dass Sie dies außerhalb von Gebäuden tun, wenn der Körper fehlt, sonst könnten Sie in das Gebäude glitchen. Der Begleiter spawnt an der Position des Spielers und hat die konfigurierten Gegenstände und Kleidung ausgerüstet.",
+    "details": {
+      "uniqueId": "UniqueID",
+      "status": "Status"
+    },
+    "status": {
+      "alive": "Lebendig",
+      "dead": "Tot",
+      "unknown": "???"
+    },
+    "buttons": {
+      "moveToPlayer": "Zum Spieler teleportieren",
+      "moveToVirginia": "Zu Virginia teleportieren",
+      "moveToKelvin": "Zu Kelvin teleportieren",
+      "revive": "Wiederbeleben",
+      "spawn": "Spawnen",
+      "fillAllBars": "Alle Balken füllen"
+    },
+    "outfitLabel": "Outfit",
+    "equipmentLabel": "Ausrüstung",
+    "outfits": {
+      "9": {
+        "-1": "Standard",
+        "0": "Taktische Jacke",
+        "1": "Anzug",
+        "2": "Pyjamas",
+        "3": "Lederjacke",
+        "4": "Kapuzenpullover",
+        "5": "Unbekannt",
+        "6": "Blazer"
+      },
+      "10": {
+        "-1": "Standard",
+        "0": "Badeanzug",
+        "1": "Trainingsanzug",
+        "2": "Lederanzug",
+        "3": "Tarnanzug",
+        "4": "Kleid"
+      }
+    }
+  },
+  "dialogs": {
+    "changeScrewStructureType": {
+      "disclaimer": "Sie können hier einen anderen Strukturtyp auswählen. Bitte beachten Sie, dass die Rotation und Position der Struktur gleich bleiben, was zu Fehlern und Abstürzen führen kann."
+    },
+    "spawnFollower": {
+      "title": "Begleiter spawnen",
+      "disclaimer": "Wenn Sie Begleiter spawnen möchten, müssen Sie sicherstellen, dass Sie sich an einem freien Ort befinden. Die Begleiter werden an der Position des Spielers über der aktuellen Höhe des Spielers und mit einem leichten Offset gespawnt.\n\nIch habe viele Dinge für Virginia ausprobiert, aber konnte nur maximal 4 spawnen lassen. Es hat mit Kelvin besser geklappt. \n\nDies kann Ihre FPS töten und die langfristigen Auswirkungen sind derzeit auch nicht bekannt.\n\nWenn Sie mehr möchten, sollten Sie das Spiel laden, alles spawnen lassen, das Spiel speichern, Begleiter spawnen lassen usw."
+    }
+  },
+  "menu": {
+    "file": {
+      "text": "Datei",
+      "openSavegame": "Spielstand öffnen...",
+      "openLastSavegame": "Letzten Spielstand öffnen...",
+      "openLastSavegameWithSavegame": "{0} öffnen...",
+      "save": "Speichern",
+      "reloadCurrentSavegame": "Aktuellen Spielstand neu laden",
+      "openSavegameDirInExplorer": "Spielstand-Ordner im Explorer öffnen",
+      "restoreFromBackup": {
+        "text": "Backup wiederherstellen",
+        "fromOldestBackup": "Vom ältesten Backup",
+        "fromNewestBackup": "Vom neuesten Backup"
+      },
+      "deleteAllBackups": "Alle Backups löschen",
+      "settings": "Einstellungen",
+      "exit": "Beenden"
+    },
+    "tools": {
+      "text": "Tools",
+      "regrowTrees": "Bäume nachwachsen lassen...",
+      "igniteAndRefuelFires": {
+        "text": "Alle Feuer entzünden und auffüllen",
+        "tooltip": "Entzündet und füllt alle Feuer auf und verlangsamt den Verbrauch von Brennstoff, so dass sie fast ewig brennen sollten."
+      },
+      "resetStructureDamage": {
+        "text": "Schadenszähler für Gebäude zurücksetzen",
+        "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
+      },
+      "teleportCloneWorldObjects": {
+        "text": "Glider und Knight V teleportieren/klonen...",
+        "tooltip": "Teleportiert die Objekte zum Spieler oder den Spieler zu den Objekten."
+      },
+      "modifyConsumedItems": {
+        "text": "Verzehrte Gegenstände bearbeiten...",
+        "tooltip": "Falls Sie Ihr Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
+      },
+      "resetKillStatistics": {
+        "text": "Tötungsstatistik zurücksetzen",
+        "tooltip": "Manche Spieler werden von Kannibalen und Monstern überflutet. Das Zurücksetzen der Statistiken könnte zu weniger Spawns führen, oder auch nicht. Wer weiß?"
+      },
+      "resetNumberOfCutTrees": {
+        "text": "Anzahl der gefällten Bäume zurücksetzen",
+        "tooltip": "Dies könnte auch helfen, die Anzahl der Kannibalen zu reduzieren. Eine Theorie besagt, dass sie aufgrund dieser Zahl berechnet wird."
+      }
+    },
+    "help": {
+      "text": "?",
+      "links": {
+        "text": "Links",
+        "githubProject": "GitHub Projekt",
+        "discord": "Discord",
+        "downloadLatestVersion": "Neueste Version herunterladen",
+        "nexusMods": "NexusMods",
+        "thunderstoreIo": "thunderstore.io"
+      },
+      "updates": {
+        "text": "Aktualisierungen",
+        "checkNow": "Jetzt prüfen",
+        "checkOnStartup": "Beim Start prüfen"
+      },
+      "readme": "Readme",
+      "changelog": "Changelog"
+    }
+  },
+  "experiments": {
+    "resetNumberOfCutTrees": {
+      "success": {
+        "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
+        "title": "Änderungen hinzugefügt"
+      }
+    },
+    "resetKillStatistics": {
+      "success": {
+        "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
+        "title": "Änderungen hinzugefügt"
+      }
+    },
+    "resetStructureDamage": {
+      "noDamage": {
+        "text": "Kein Strukturschaden muss repariert werden",
+        "title": "Kein Strukturschaden"
+      },
+      "success": {
+        "text": "{0} Strukturschäden wurden repariert",
+        "title": "Schäden repariert"
+      }
+    },
+    "igniteAndRefuelFires": {
+      "noFires": {
+        "text": "Keine Feuer zum Bearbeiten gefunden",
+        "title": "Keine Feuer"
+      },
+      "success": {
+        "text": "{0} Feuer wurden entzündet, aufgefüllt und ihre Brennrate gesenkt",
+        "title": "Feuer verändert"
+      }
+    }
+  },
+  "windows": {
+    "main": {
+      "title": " (Ausgewählt: {0}, {1} - Gespeichert am: {2}, Zuletzt geändert: {3})",
+      "messages": {
+        "confirmRestoreBackups": {
+          "text": "Sind Sie sicher, dass Sie Backups wiederherstellen möchten?",
+          "title": "Backups wiederherstellen"
+        },
+        "confirmDeleteBackups": {
+          "text": "Möchten Sie wirklich alle Backups löschen?",
+          "title": "Alle Backups löschen"
+        },
+        "confirmOverwriteExternalChanges": {
+          "text": "Das Savegame wurde extern geändert. Möchten Sie wirklich alle Änderungen überschreiben?",
+          "title": "Änderungen überschreiben"
+        },
+        "confirmCreateBackup": {
+          "text": "Möchten Sie ein Backup erstellen?",
+          "title": "Backup erstellen?"
+        },
+        "confirmCloseApplication": {
+          "text": "Möchten Sie die Anwendung schließen?",
+          "title": "Anwendung schließen"
+        },
+        "unableToSpawnFollowers": "Begleiter konnten nicht erzeugt werden",
+        "followersCreated": {
+          "text": "{0} Begleiter wurden erzeugt",
+          "title": "Begleiter erzeugt"
+        },
+        "alreadyLatestVersion": {
+          "text": "Sie verwenden bereits die neueste Version",
+          "title": "Kein Update"
+        },
+        "backupsDeleted": "{0} Backups gelöscht",
+        "changesSaved": "Änderungen wurden erfolgreich gespeichert",
+        "noChanges": {
+          "text": "Keine Änderungen - Nichts gespeichert",
+          "title": "Keine Änderungen"
+        },
+        "unableToDeleteBackups": "Backups konnten nicht gelöscht werden: {0}",
+        "followerRevived": {
+          "text": "{0} sollte jetzt wieder da sein",
+          "title": "Wiederbelebt"
+        },
+        "followerAlreadyAlive": {
+          "text": "{0} sollte bereits am Leben sein",
+          "title": "Keine Änderungen"
+        },
+        "saveChanges": "Änderungen speichern"
+      },
+      "errors": {
+        "errorCheckingLastVersion": "Beim Überprüfen der neuesten Version ist ein Fehler aufgetreten"
+      },
+      "map": "Karte"
+    },
+    "modifyConsumedItems": {
+      "title": "Verbrauchte Gegenstände bearbeiten",
+      "removeAll": "Alle entfernen",
+      "key": "Key",
+      "remove": "entfernen"
+    },
+    "regrowTrees": {
+      "title": "Bäume wiederherstellen",
+      "all": "Alle",
+      "halfChopped": "Halb gefällt",
+      "gone": "Verschwunden",
+      "stumps": "Baumstümpfe",
+      "messages": {
+        "noTreesRegrown": "Keine Bäume mit dem Zustand \"{0}\" wiederhergestellt",
+        "success": "{0} Bäume mit dem vorherigen Zustand \"{1}\" sollten jetzt wiederhergestellt sein. Bitte speichern, um die Änderungen zu übernehmen."
+      },
+      "saveButton": "Bäume wiederherstellen"
+    },
+    "selectSavegame": {
+      "title": "Spielstand auswählen...",
+      "folderBrowserTitle": "Wähle das \"Saves\" Verzeichnis von Sons of the Forest",
+      "lastSaveTimeTooltip": "Letzter Schreibzeitpunkt des Spielstandverzeichnisses",
+      "selectedPath": {
+        "label": "Ausgewählter Pfad:",
+        "tooltip": "Normalerweise werden die Speicherstände unter C:\\Users\\[Benutzer]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves gespeichert"
+      },
+      "headers": {
+        "location": "Speicherort"
+      },
+      "tabs": {
+        "singleplayer": "Einzelspieler",
+        "multiplayer": "Mehrspieler",
+        "multiplayerClient": "Mehrspieler (Client)"
+      },
+      "buttons": {
+        "change": "Ändern...",
+        "setToDefault": "Auf Standard zurücksetzen"
+      }
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "theme": "Theme",
+      "backupMode": "Backup-Modus",
+      "askForBackupsEveryTime": "Bei jedem Speichern fragen",
+      "language": "Sprache",
+      "messages": {
+        "languageChanged": {
+          "text": "Bitte starten Sie die Anwendung neu damit die geänderte Sprache übernommen wird",
+          "title": "Einstellungen gespeichert"
+        }
+      },
+      "fileMode": {
+        "label": "Datei-Modus",
+        "single": "Ein Backup pro geänderter JSON-Datei",
+        "zip": "ZIP-Archiv"
+      }
+    },
+    "unhandledException": {
+      "title": "Unbehandelte Ausnahme",
+      "disclaimer": "Ein unerwarteter Fehler ist aufgetreten. Der Anwendungsstatus könnte beschädigt sein.",
+      "header": "Exception-Details",
+      "applicationVersion": "Anwendungsversion",
+      "exceptionMessage": "Exception-Message",
+      "exceptionType": "Exception-Typ",
+      "callstack": "Callstack",
+      "innerException": "Innere Exception",
+      "buttons": {
+        "copyErrorToClipboard": "Fehler in Zwischenablage kopieren",
+        "exitApplication": "Anwendung beenden"
+      }
+    },
+    "updateAvailable": {
+      "title": "Update verfügbar",
+      "header": "Ein Update ist verfügbar",
+      "buttons": {
+        "download": "Herunterladen",
+        "ignore": "Ignorieren"
+      }
+    },
+    "worldItemTeleporter": {
+      "title": "Weltobjekt-Teleporter",
+      "worldItem": "Weltobjekt",
+      "pinTooltip": "Zeige Objektposition auf der Karte",
+      "unknownItem": "Unbekanntes Objekt ({0})",
+      "unnamedItem": "Unbenannt ({0})",
+      "messages": {
+        "nothingToDelete": {
+          "text": "Nichts zum Löschen gefunden",
+          "title": "Nichts gefunden"
+        },
+        "clonesDeleted": {
+          "text": "{0} Kopien von {1} wurden entfernt",
+          "title": "Kopien entfernt"
+        },
+        "nothingToMove": {
+          "text": "Nichts zum teleportieren gefunden",
+          "title": "Nichts gefunden"
+        },
+        "objectCloned": {
+          "text": "Eine Kopie von {0} wurde an der Position des Spielers erstellt. Bitte speichern Sie die Änderungen, um sie zu übernehmen",
+          "title": "{0} erstellt"
+        },
+        "playerMoved": {
+          "text": "Der Spieler wurde nach {0} teleportiert. Bitte speichern Sie die Änderungen, um sie zu übernehmen",
+          "title": "{0} teleportiert"
+        }
+      },
+      "buttons": {
+        "removeAllCopies": {
+          "text": "Alle Kopien von der Karte entfernen",
+          "tooltip": "Entfernt alle Kopien dieses Objekts von der Karte"
+        },
+        "cloneAtPlayerPosition": {
+          "text": "An Spielerposition kopieren",
+          "tooltip": "Erstellt eine Kopie dieses Objekts an der Position des Spielers"
+        },
+        "teleportPlayerToObject": {
+          "text": "Spieler zum Objekt teleportieren",
+          "tooltip": "Teleportiert den Spieler zum Objekt"
+        }
+      }
+    }
+  },
+  "player": {
+    "buttons": {
+      "moveToKelvin": "Zu Kelvin teleportieren",
+      "moveToVirginia": "Zu Virginia teleportieren"
+    },
+    "strengthLevel": "Stärke-Level",
+    "maxHealth": "Maximale Gesundheit",
+    "currentHealth": "Aktuelle Gesundheit",
+    "outfit": "Outfit",
+    "fillAllBars": "Alle Balken füllen"
+  },
+  "npcs": {
+    "tabs": {
+      "byType": "Nach Typ",
+      "byFamily": {
+        "text": "Nach Familie",
+        "disclaimer": "Eine Familie stellt eine Gruppe von NPCs dar, die zueinander gehören. Mit anderen Worten: Ein Schwarm, ein Stamm zum Beispiel."
+      }
+    }
+  },
+  "tabs": {
+    "player": "Spieler",
+    "inventory": "Inventar",
+    "storage": "Lager",
+    "followers": "Begleiter",
+    "game": "Spiel",
+    "npcs": "NPCs",
+    "structures": "Gebäude"
+  },
+  "weather": {
+    "header": "Wetterzustand"
+  },
+  "itemTypes": {
+    "key": "Schlüssel",
+    "misc": "Sonstiges",
+    "ammo": "Munition",
+    "printed": "Gedrucktes",
+    "food": "Lebensmittel",
+    "armor": "Rüstung",
+    "clothes": "Kleidung",
+    "weapon": "Waffe",
+    "document": "Dokument",
+    "plant": "Pflanze",
+    "container": "Behälter",
+    "log": "Stamm",
+    "blueprint": "Bauplan"
+  },
+  "itemVariants": {
+    "436": {
+      "1": "Roher Fisch",
+      "2": "Unbekannter Fisch",
+      "3": "Verdorbener Fisch",
+      "4": "Trockenfisch",
+      "5": "Gekochter Fisch",
+      "6": "Verbrannter Fisch"
+    },
+    "433": {
+      "1": "Rohes Fleisch",
+      "2": "Unbekanntes Fleisch",
+      "3": "Verdorbenes Fleisch",
+      "4": "Trockenfleisch",
+      "5": "Gekochtes Fleisch",
+      "6": "Verbranntes Fleisch"
+    }
+  },
+  "items": {
+    "78": "Baumstamm",
+    "340": "Gitarre",
+    "341": "Fernglas",
+    "346": "Schrotflintenaufsatz",
+    "351": "Notfalltasche",
+    "353": "Betäubungsgewehr",
+    "354": "Nachtsichtgerät",
+    "355": "Pistole",
+    "356": "Moderne Axt",
+    "357": "Luftgewehr",
+    "358": "Schrotflinte",
+    "359": "Machete",
+    "360": "Kompositbogen",
+    "361": "Gewehr",
+    "362": "9-mm-Munition",
+    "363": "Flintenlaufgeschoss",
+    "364": "Schrotkugeln",
+    "365": "Armbrust",
+    "366": "Ortungspfeil",
+    "367": "Katana",
+    "368": "Armbrustbolzen",
+    "369": "Betäubungsgewehrmunition",
+    "370": "9-mm-Munition",
+    "371": "Schrotkugeln",
+    "372": "Flintenlaufgeschoss",
+    "373": "Kohlefaserpfeil",
+    "374": "Schalldämpfer",
+    "375": "Laservisier",
+    "376": "Pistolenaufsatz",
+    "377": "Zielfernrohr",
+    "378": "Taschenlampenvorrichtung",
+    "379": "Taktische Axt",
+    "380": "Kampfmesser",
+    "381": "Granate",
+    "382": "Granate",
+    "383": "Gewehraufsatz",
+    "384": "Armbrustköcher",
+    "386": "Revolver",
+    "387": "Gewehrmunition",
+    "388": "Molotowcocktail",
+    "389": "Molotow",
+    "390": "Druckerharz",
+    "391": "Rote Maske",
+    "392": "Stock",
+    "393": "Stein",
+    "394": "Kettensäge",
+    "395": "Brett",
+    "396": "Elektroschocker",
+    "397": "Shiitake",
+    "398": "Kräuterseitling",
+    "399": "Semmel-Stoppelpilz",
+    "400": "Knollenblätterpilz",
+    "401": "Schildkrötenei",
+    "402": "Rucksack",
+    "403": "Seil",
+    "405": "Knochen",
+    "406": "Viertelstamm",
+    "408": "Stammhälfte",
+    "409": "Dreiviertelstamm",
+    "410": "Armbanduhr",
+    "412": "GPS-Gerät",
+    "413": "Feuerzeug",
+    "414": "Wodka-Flasche",
+    "415": "Stoff",
+    "416": "Leiterplatte",
+    "417": "Zeitbombe",
+    "418": "Draht",
+    "419": "Klebeband",
+    "420": "C4-Ladung",
+    "421": "Ramen-Nudeln",
+    "422": "Reparaturwerkzeug",
+    "423": "Roman [Fähnchenbanner]",
+    "424": "Roman [Tiefschlaf]",
+    "425": "Crunchie Wunchies",
+    "426": "Gedruckte Trinkflasche",
+    "427": "Gedrucktes Messer",
+    "428": "Gedruckter Schlitten",
+    "429": "Gedruckte Tauchermaske",
+    "430": "Schädel",
+    "431": "Feuerwehraxt",
+    "432": "Dosenöffner",
+    "433": "Fleisch",
+    "434": "Konserven",
+    "435": "Goldmaske",
+    "436": "Fisch",
+    "437": "Medizin",
+    "438": "Feldration",
+    "439": "Energydrink",
+    "440": "Leuchtfackel",
+    "441": "Energieriegel",
+    "443": "Handgemachter Bogen",
+    "444": "Tauchgerät",
+    "445": "Heidelbeeren",
+    "446": "Heckenkirsche",
+    "447": "Lachsbeeren",
+    "448": "Schneebeeren",
+    "449": "Igelkraftwurz",
+    "450": "Schachtelhalm",
+    "451": "Aloe-Vera",
+    "452": "Schafgarbe",
+    "453": "Weidenröschen",
+    "454": "Pfeilblatt",
+    "455": "Gesundheitsmischung",
+    "456": "Gesundheitsmischung +",
+    "457": "Betäubungsgewehrmunition",
+    "458": "Ladegerät",
+    "459": "Schleuder",
+    "460": "Batterie-Päckchen",
+    "461": "Energiemischung",
+    "462": "Energiemischung +",
+    "463": "Flossen",
+    "464": "Katzenfutter",
+    "465": "Chicorée",
+    "466": "Auster",
+    "467": "Album-Cover",
+    "468": "Kreuz",
+    "469": "Lufttank",
+    "470": "Zielfernrohr für Luftgewehr",
+    "471": "Taschenlampe",
+    "472": "Tierhaut",
+    "473": "Blätterrüstung",
+    "474": "Handgefertigter Speer",
+    "475": "Reiseflasche",
+    "476": "Kleiner Stein",
+    "477": "Handgefertigte Keule",
+    "478": "Kletteraxt",
+    "479": "Feder",
+    "480": "Arm",
+    "481": "Bein",
+    "482": "Kopf",
+    "483": "Notfallpaket",
+    "484": "Blatt",
+    "485": "Schaufel",
+    "486": "Walkie-Talkie",
+    "487": "Schlafanzug",
+    "488": "Blaues T-Shirt",
+    "489": "Taktische Hose",
+    "490": "Kapuzenpullover",
+    "491": "Jackett",
+    "492": "Smoking-Jacke",
+    "493": "Lederjacke",
+    "494": "Knochenrüstung",
+    "495": "Taktische Jacke",
+    "496": "Geld",
+    "497": "Servierbrett",
+    "498": "GRABS-Laserpointer",
+    "499": "Neoprenanzug",
+    "500": "Winterjacke",
+    "501": "Stiefel",
+    "502": "Münzen",
+    "503": "Fackel",
+    "504": "Plane",
+    "505": "Laser-Messgerät",
+    "506": "Schildkrötenpanzer",
+    "507": "Steinpfeil",
+    "508": "Lederbeutel",
+    "509": "Flugblatt [Hölenquellen] ",
+    "511": "Kontaktauslöser",
+    "512": "Gefülltes Servierbrett",
+    "513": "Feder",
+    "514": "Kontaktfederauslöser",
+    "515": "Tutorial [Grundlegendes Bauen]",
+    "516": "Tutorial [Tarp-Zelt]",
+    "517": "Kochtopf",
+    "518": "Papierzielscheibe",
+    "519": "Tierhautrüstung",
+    "520": "Konstruktionselement",
+    "521": "E-Mail [Hölenbeleuchtung]",
+    "522": "Seilgewehr",
+    "523": "Seilrutschenseil",
+    "524": "Golfball",
+    "525": "Putter",
+    "526": "Testament von Hr. Puffy",
+    "527": "Batterien",
+    "528": "Mr. Puffys Finanzen",
+    "529": "GPS-Peilsender",
+    "530": "Bauplan Trockengestell",
+    "531": "Bauplan Stühle aus Stöcken",
+    "532": "Bauplan Bett aus Stöcken",
+    "533": "Bauplan Waffenregal",
+    "534": "E-Mail [Golf 1/4]",
+    "535": "E-Mail [Golf 2/4]",
+    "536": "E-Mail [Golf 3/4]",
+    "537": "E-Mail [Golf 4/4]",
+    "538": "E-Mail [Malerei]",
+    "539": "E-Mail [Astrologie 1/3]",
+    "540": "E-Mail [Astrologie 2/3]",
+    "541": "E-Mail [Astrologie 3/3]",
+    "542": "E-Mail [Politik 1/3]",
+    "543": "E-Mail Politik 2/3",
+    "544": "E-Mail [Politik 3/3]",
+    "545": "E-Mail Balett",
+    "546": "E-Mail [Quietschende Schuhe 1/3]",
+    "547": "E-Mail [Quietschende Schuhe 2/3]",
+    "548": "E-Mail [Quietschende Schuhe 3/3]",
+    "549": "Bauplan Knochenmacherfalle",
+    "550": "Bauplan Fliegenklatsche-Falle",
+    "551": "Bauplan Kleintierfalle",
+    "552": "Baupläne",
+    "553": "Tech Mesh",
+    "554": "Tech-Rüstung",
+    "555": "Trainingsanzug",
+    "556": "Kleid",
+    "557": "Lederanzug",
+    "558": "Tarnanzug",
+    "559": "Gedruckte Pfeilspitze",
+    "560": "Gedruckter Enterhaken",
+    "561": "Gedruckter Blumentopf",
+    "562": "Notizen [Holoville 1/4]",
+    "563": "Notizen [Holoville 2/4]",
+    "564": "Notizen [Holoville 3/4]",
+    "565": "Notizen [Holoville 4/4]",
+    "566": "Wartungsschlüsselkarte",
+    "567": "Gästeschlüsselkarte",
+    "568": "VIP-Schlüsselkarte",
+    "569": "Gehirnstück",
+    "570": "Steakstück",
+    "571": "Speckstück",
+    "572": "Goldrüstung",
+    "573": "Schlafsack",
+    "574": "Roman [Gerettet]",
+    "575": "Roman [Parallelwelten]",
+    "576": "Viertelbrett",
+    "577": "Bretthälfte",
+    "578": "Dreiviertelbrett",
+    "579": "Bauplan Knochenstuhl",
+    "580": "Bauplan Sprossenleiter",
+    "581": "Bauplan Vogelhaus",
+    "582": "Bauplan Fischreuse",
+    "583": "Bauplan Aufbewahrungskiste",
+    "584": "Bauplan Schaufensterfigur",
+    "585": "Bauplan Vogelscheuche",
+    "586": "Bauplan Wandpflanzkasten",
+    "587": "Bauplan Pflanzgefäß",
+    "588": "Bauplan Knochenleuchter",
+    "589": "Handbuch",
+    "590": "Radio",
+    "591": "Kleine Blockhütte",
+    "592": "Unheimliche Haut",
+    "593": "Mutantenrüstung",
+    "594": "Guarana-Beeren",
+    "595": "Brombeeren",
+    "596": "Aloe-Vera-Samen",
+    "597": "Pfeilblattsamen",
+    "598": "Brombeere",
+    "599": "Heidelbeerstrauchsame",
+    "600": "Igelkraftwurzsamen",
+    "601": "Weidenröschensamen",
+    "602": "Guarana-Samen",
+    "603": "Schachtelhalmsamen",
+    "604": "Lachsbeersamen",
+    "605": "Wegwarte",
+    "606": "Schafgarbensamen",
+    "607": "Bauplan Steinlager",
+    "608": "Bauplan Knochenlager",
+    "609": "Bauplan Stammlager",
+    "610": "Bauplan Stocklager",
+    "611": "Ausdruck [Zahlen]",
+    "612": "Zeitungsausschnitt 1/2",
+    "613": "Zeitungsausschnitt 2/2",
+    "614": "E-Mail 1/3",
+    "615": "E-Mail 2/3",
+    "616": "E-Mail 3/3",
+    "617": "Aktienkurs",
+    "618": "Gedruckter Pfeil",
+    "619": "Badeanzug",
+    "620": "Bauplan Tisch",
+    "621": "Bauplan Regal",
+    "622": "Bauplan Steinweg",
+    "623": "Bauplan Wandregal",
+    "624": "Bauplan Wandfackel",
+    "625": "Bauplan Schädel-Lampe",
+    "626": "Hang Glider",
+    "627": "Tischkarte von Mr. Puffton",
+    "628": "Tischkarte von Mrs. Puffton",
+    "629": "Wassersammler",
+    "630": "Knight V",
+    "631": "Hinter dem Reich",
+    "633": "Flugblatt [Kultiges]",
+    "634": "Solarmodul",
+    "635": "Glühbirne"
+  }
+}

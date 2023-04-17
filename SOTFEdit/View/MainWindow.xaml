@@ -9,6 +9,7 @@
                  xmlns:zoomControl="clr-namespace:Denxorz.ZoomControl;assembly=Denxorz.ZoomControl"
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  mc:Ignorable="d"
                  SaveWindowPosition="True"
                  WindowStartupLocation="CenterScreen"
@@ -24,7 +25,8 @@
     </Window.Resources>
     <mah:MetroWindow.Flyouts>
         <mah:FlyoutsControl>
-            <mah:Flyout x:Name="MapFlyout" Header="Map" Position="Right" Width="400">
+            <mah:Flyout x:Name="MapFlyout" Header="{infrastructure:Translate 'windows.main.map'}" Position="Right"
+                        Width="400">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="400" />
@@ -53,7 +55,7 @@
                     </zoomControl:ZoomControl>
                     <st:AutoGrid Grid.Row="1" Rows="Auto" Columns="Auto,*" ChildMargin="3" Orientation="Horizontal"
                                  Margin="8" ChildHorizontalAlignment="Left" ChildVerticalAlignment="Center">
-                        <Label Content="Position" />
+                        <Label Content="{infrastructure:Translate 'generic.position'}" />
                         <TextBox IsReadOnly="True" IsReadOnlyCaretVisible="False"
                                  Text="{Binding PinPos.Printable, Mode=OneWay, FallbackValue='???'}" />
                     </st:AutoGrid>
@@ -64,103 +66,128 @@
     <st:AutoGrid Rows="Auto,*" Columns="*">
         <Border BorderThickness="0 0 0 1" BorderBrush="Black">
             <Menu Background="{DynamicResource MahApps.Brushes.MenuItem.Background}" Padding="3">
-                <MenuItem Header="File">
-                    <MenuItem Header="Open Savegame..." Command="{Binding SelectSavegameCommand}">
+                <MenuItem Header="{infrastructure:Translate 'menu.file.text'}">
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.openSavegame'}"
+                              Command="{Binding SelectSavegameCommand}">
                         <MenuItem.Icon>
                             <iconPacks:MaterialDesign Kind="FolderOpen" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="{Binding LastSaveGameMenuItem}" Command="{Binding OpenLastSavegameCommand}" />
                     <Separator />
-                    <MenuItem Header="Save" Command="{Binding SaveChangesCommand}" InputGestureText="Ctrl+S">
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.save'}"
+                              Command="{Binding SaveChangesCommand}" InputGestureText="Ctrl+S">
                         <MenuItem.Icon>
                             <iconPacks:MaterialDesign Kind="Save" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Reload Current Savegame" Command="{Binding ReloadSavegameCommand}"
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.reloadCurrentSavegame'}"
+                              Command="{Binding ReloadSavegameCommand}"
                               InputGestureText="F5">
                         <MenuItem.Icon>
                             <iconPacks:MaterialDesign Kind="Refresh" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Open Savegame Dir in Explorer" Command="{Binding OpenSavegameDirCommand}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.openSavegameDirInExplorer'}"
+                              Command="{Binding OpenSavegameDirCommand}" />
                     <Separator />
-                    <MenuItem Header="Restore from Backups">
-                        <MenuItem Header="From oldest backup" Command="{Binding RestoreBackupsCommand}"
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.restoreFromBackup.text'}">
+                        <MenuItem Header="{infrastructure:Translate 'menu.file.restoreFromBackup.fromOldestBackup'}"
+                                  Command="{Binding RestoreBackupsCommand}"
                                   CommandParameter="false" />
-                        <MenuItem Header="From newest backup" Command="{Binding RestoreBackupsCommand}"
+                        <MenuItem Header="{infrastructure:Translate 'menu.file.restoreFromBackup.fromNewestBackup'}"
+                                  Command="{Binding RestoreBackupsCommand}"
                                   CommandParameter="true" />
                     </MenuItem>
-                    <MenuItem Header="Delete all backups" Command="{Binding DeleteBackupsCommand}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.deleteAllBackups'}"
+                              Command="{Binding DeleteBackupsCommand}" />
                     <Separator />
-                    <MenuItem Header="Settings" Command="{Binding ChangeSettingsCommand}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.settings'}"
+                              Command="{Binding ChangeSettingsCommand}" />
                     <Separator />
-                    <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" InputGestureText="Ctrl+Q" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.file.exit'}"
+                              Command="{Binding ExitApplicationCommand}" InputGestureText="Ctrl+Q" />
                 </MenuItem>
-                <MenuItem Header="Tools">
-                    <MenuItem Command="{Binding RegrowTreesCommand}" Header="Regrow Trees..." />
-                    <MenuItem Header="Ignite and Refuel all Fires"
-                              ToolTip="Will ignite and refuel all fires as well as slowing down the drain rate of the fires fuel, which should make them burn almost eternally"
+                <MenuItem Header="{infrastructure:Translate 'menu.tools.text'}">
+                    <MenuItem Command="{Binding RegrowTreesCommand}"
+                              Header="{infrastructure:Translate 'menu.tools.regrowTrees'}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.text'}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.tooltip'}"
                               Command="{Binding IgniteAndRefuelFiresCommand}" />
-                    <MenuItem Header="Reset Structure Damage" ToolTip="Lets you repair all structures"
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetStructureDamage.text'}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.resetStructureDamage.tooltip'}"
                               Command="{Binding ResetStructureDamageCommand}" />
-                    <MenuItem Header="Teleport/Clone Glider &amp; Knight V..."
-                              ToolTip="Teleport the objects to the player, or the player to the objects"
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.teleportCloneWorldObjects.text'}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.teleportCloneWorldObjects.tooltip'}"
                               Command="{Binding TeleportWorldItemCommand}" />
-                    <MenuItem Header="Modify Consumed Items..." Command="{Binding ModifyConsumedItemsCommand}"
-                              ToolTip="In case you want to purge your memory about items that you have consumed already" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.modifyConsumedItems.text'}"
+                              Command="{Binding ModifyConsumedItemsCommand}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.modifyConsumedItems.tooltip'}" />
                     <Separator />
-                    <MenuItem Header="Reset Kill Statistics" Command="{Binding ExperimentResetKillStatisticsCommand}"
-                              ToolTip="Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?" />
-                    <MenuItem Header="Reset Number of Cut Trees"
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetKillStatistics.text'}"
+                              Command="{Binding ExperimentResetKillStatisticsCommand}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.resetKillStatistics.tooltip'}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.text'}"
                               Command="{Binding ExperimentResetNumberCutTreesCommand}"
-                              ToolTip="This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number" />
+                              ToolTip="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.tooltip'}" />
                 </MenuItem>
-                <MenuItem Header="?">
-                    <MenuItem Header="Links">
-                        <MenuItem Header="GitHub Project" Command="{Binding OpenUrlCommand}"
+                <MenuItem Header="{infrastructure:Translate 'menu.help.text'}">
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.links.text'}">
+                        <MenuItem Header="{infrastructure:Translate 'menu.help.links.githubProject'}"
+                                  Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://github.com/codengine/SOTFEdit">
                             <MenuItem.Icon>
                                 <iconPacks:MaterialDesign Kind="Code" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Discord" Command="{Binding OpenUrlCommand}"
+                        <MenuItem Header="{infrastructure:Translate 'menu.help.links.discord'}"
+                                  Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://discord.gg/867UDYvvqE">
                             <MenuItem.Icon>
                                 <iconPacks:MaterialDesign Kind="Chat" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Download Latest Version" Command="{Binding OpenUrlCommand}"
+                        <MenuItem Header="{infrastructure:Translate 'menu.help.links.downloadLatestVersion'}"
+                                  Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://github.com/codengine/SOTFEdit/releases">
                             <MenuItem.Icon>
                                 <iconPacks:MaterialDesign Kind="Code" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem Header="NexusMods" Command="{Binding OpenUrlCommand}"
+                        <MenuItem Header="{infrastructure:Translate 'menu.help.links.nexusMods'}"
+                                  Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://www.nexusmods.com/sonsoftheforest/mods/41" />
-                        <MenuItem Header="thunderstore.io" Command="{Binding OpenUrlCommand}"
+                        <MenuItem Header="{infrastructure:Translate 'menu.help.links.thunderstoreIo'}"
+                                  Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/SOTFEdit/" />
                     </MenuItem>
-                    <MenuItem Header="Updates">
-                        <MenuItem Header="Check now" Command="{Binding CheckForUpdatesCommand}" />
-                        <CheckBox IsChecked="{Binding CheckVersionOnStartup}">Check on Startup</CheckBox>
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.updates.text'}">
+                        <MenuItem Header="{infrastructure:Translate 'menu.help.updates.checkNow'}"
+                                  Command="{Binding CheckForUpdatesCommand}" />
+                        <CheckBox IsChecked="{Binding CheckVersionOnStartup}"
+                                  Content="{infrastructure:Translate 'menu.help.updates.checkOnStartup'}" />
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="Readme" Click="OpenReadme_Click" />
-                    <MenuItem Header="Changelog" Click="OpenChangelog_Click" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.readme'}" Click="OpenReadme_Click" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.changelog'}" Click="OpenChangelog_Click" />
 
                 </MenuItem>
             </Menu>
         </Border>
         <TabControl SelectedItem="{Binding SelectedTab}" Margin="15 0 15 15">
-            <TabItem Foreground="White" Header="Player" Content="{Binding PlayerPage}" />
-            <TabItem Foreground="White" Header="Inventory" Content="{Binding InventoryPage}" />
-            <TabItem Foreground="White" Header="Storage" Content="{Binding StoragePage}" />
-            <TabItem Foreground="White" Header="Followers" Content="{Binding FollowersPage}" />
-            <TabItem Foreground="White" Header="Game" Content="{Binding GamePage}" />
-            <TabItem Foreground="White" Header="NPCs" Content="{Binding NpcsPage}" />
-            <TabItem Foreground="White" Header="Structures" Content="{Binding StructuresPage}" />
+            <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.player'}"
+                     Content="{Binding PlayerPage}" />
+            <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.inventory'}"
+                     Content="{Binding InventoryPage}" />
+            <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.storage'}"
+                     Content="{Binding StoragePage}" />
+            <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.followers'}"
+                     Content="{Binding FollowersPage}" />
+            <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.game'}" Content="{Binding GamePage}" />
+            <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.npcs'}" Content="{Binding NpcsPage}" />
+            <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.structures'}"
+                     Content="{Binding StructuresPage}" />
         </TabControl>
     </st:AutoGrid>
 </mah:MetroWindow>

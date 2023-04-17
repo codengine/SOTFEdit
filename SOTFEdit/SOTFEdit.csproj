@@ -14,10 +14,13 @@
         <None Update="data\*">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="data\lang\*">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="icons8-kleine-axt-doodle-96.ico"/>
+        <Content Include="icons8-kleine-axt-doodle-96.ico" />
         <Content Include="images\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -33,18 +36,20 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
-        <PackageReference Include="Denxorz.ZoomControl" Version="1.1.0"/>
-        <PackageReference Include="MahApps.Metro" Version="2.4.9"/>
-        <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0"/>
-        <PackageReference Include="Markdig" Version="0.31.0"/>
-        <PackageReference Include="Markdig.Wpf" Version="0.5.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-        <PackageReference Include="NLog" Version="5.1.3"/>
-        <PackageReference Include="Semver" Version="2.3.0"/>
-        <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29"/>
-        <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+        <PackageReference Include="Denxorz.ZoomControl" Version="1.1.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+        <PackageReference Include="libc.translation" Version="7.0.1" />
+        <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+        <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0" />
+        <PackageReference Include="Markdig" Version="0.31.0" />
+        <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="NLog" Version="5.1.3" />
+        <PackageReference Include="Semver" Version="2.3.0" />
+        <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29" />
+        <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7" />
     </ItemGroup>
 
     <ItemGroup>
@@ -53,12 +58,7 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Settings.settings</DependentUpon>
         </Compile>
-        <Compile Remove="Model\Actor\MyAbstract.cs"/>
-        <Compile Update="Resources.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
-        </Compile>
+        <Compile Remove="Model\Actor\MyAbstract.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -77,12 +77,5 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </Page>
-    </ItemGroup>
-
-    <ItemGroup>
-        <EmbeddedResource Update="Resources.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
     </ItemGroup>
 </Project>

@@ -6,8 +6,9 @@
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  mc:Ignorable="d"
-                 Title="Settings" MinWidth="400"
+                 Title="{infrastructure:Translate 'windows.settings.title'}" MinWidth="400"
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
                  ResizeMode="NoResize"
@@ -29,21 +30,28 @@
         </Style>
     </Window.Resources>
     <st:AutoGrid Columns="Auto,*" ChildMargin="3" Margin="15">
-        <Label>Theme</Label>
+        <Label Content="{infrastructure:Translate 'windows.settings.theme'}" />
         <ComboBox ItemsSource="{Binding AccentColors, Mode=OneTime}"
                   ItemContainerStyle="{StaticResource AccentColorMenuItemStyle}"
                   SelectedItem="{Binding CurrentThemeAccent, Mode=TwoWay}" />
-        <Label>Backup Mode</Label>
+        <Label Content="{infrastructure:Translate 'windows.settings.backupMode'}" />
         <ComboBox ItemsSource="{Binding BackupModes, Mode=OneTime}" IsSynchronizedWithCurrentItem="True"
                   SelectedItem="{Binding CurrentBackupMode}" DisplayMemberPath="Name" />
         <Label />
-        <CheckBox Content="Ask for backups every time" IsChecked="{Binding AskForBackups}" />
-        <Label>File Mode</Label>
+        <CheckBox Content="{infrastructure:Translate 'windows.settings.askForBackupsEveryTime'}"
+                  IsChecked="{Binding AskForBackups}" />
+        <Label Content="{infrastructure:Translate 'windows.settings.fileMode.label'}" />
         <StackPanel Orientation="Horizontal">
-            <RadioButton GroupName="BackupFileFlags" Margin="0 0 8 0" IsChecked="{Binding BackupFileTypeSingle}">One backup per changed JSON File</RadioButton>
-            <RadioButton GroupName="BackupFileFlags" IsChecked="{Binding BackupFileTypeArchive}">ZIP Archive</RadioButton>
+            <RadioButton GroupName="BackupFileFlags" Margin="0 0 8 0" IsChecked="{Binding BackupFileTypeSingle}"
+                         Content="{infrastructure:Translate 'windows.settings.fileMode.single'}" />
+            <RadioButton GroupName="BackupFileFlags" IsChecked="{Binding BackupFileTypeArchive}"
+                         Content="{infrastructure:Translate 'windows.settings.fileMode.zip'}" />
         </StackPanel>
-        <Button Grid.ColumnSpan="2" Content="Save" Margin="0 10 0 0"
+        <Label Content="{infrastructure:Translate 'windows.settings.language'}" />
+        <ComboBox ItemsSource="{Binding Languages}"
+                  SelectedValue="{Binding SelectedLanguage}" DisplayMemberPath="Title"
+                  SelectedValuePath="Value" Margin="0 0 0 10" />
+        <Button Grid.ColumnSpan="2" Content="{infrastructure:Translate 'generic.save'}" Margin="0 10 0 0"
                 Background="{DynamicResource MahApps.Brushes.Accent}" Command="{Binding SaveCommand}" />
     </st:AutoGrid>
 </mah:MetroWindow>

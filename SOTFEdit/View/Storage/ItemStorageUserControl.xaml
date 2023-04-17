@@ -7,6 +7,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:storageViewModels="clr-namespace:SOTFEdit.View.Storage"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:ItemStorageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -17,7 +18,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <GroupBox Header="All Slots" Margin="0 0 0 20" Padding="10" HorizontalAlignment="Center">
+                <GroupBox Header="{infrastructure:Translate 'storage.batch.allSlots'}" Margin="0 0 0 20" Padding="10"
+                          HorizontalAlignment="Center">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -37,15 +39,13 @@
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                             <Button Background="{DynamicResource MahApps.Brushes.Accent}"
                                     Command="{Binding FillAllCommand}" Margin="0 0 10 0"
-                                    Padding="20 10">
-                                Fill all with
-                            </Button>
+                                    Padding="20 10" Content="{infrastructure:Translate 'storage.batch.fillAllWith'}" />
                             <Button Foreground="{DynamicResource MahApps.Brushes.AccentBase}"
                                     Command="{Binding SetAllToMaxCommand}"
-                                    Margin="0 0 10 0" Padding="20 10">
-                                Set all to Max
-                            </Button>
-                            <Button Foreground="DarkOrange" Command="{Binding ClearAllCommand}" Padding="20 10">Clear All</Button>
+                                    Margin="0 0 10 0" Padding="20 10"
+                                    Content="{infrastructure:Translate 'storage.batch.setAllToMax'}" />
+                            <Button Foreground="DarkOrange" Command="{Binding ClearAllCommand}" Padding="20 10"
+                                    Content="{infrastructure:Translate 'storage.batch.clearAll'}" />
                         </StackPanel>
                     </Grid>
                 </GroupBox>
@@ -82,13 +82,11 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Button Foreground="DarkOrange"
                                                         Command="{Binding ClearCommand, Mode=OneTime}"
-                                                        Margin="0 0 10 0">
-                                                    Remove
-                                                </Button>
+                                                        Margin="0 0 10 0"
+                                                        Content="{infrastructure:Translate 'storage.slot.remove'}" />
                                                 <Button Grid.Column="1" Foreground="GreenYellow"
-                                                        Command="{Binding SetToMaxCommand, Mode=OneTime}">
-                                                    Max
-                                                </Button>
+                                                        Command="{Binding SetToMaxCommand, Mode=OneTime}"
+                                                        Content="{infrastructure:Translate 'storage.slot.max'}" />
                                             </Grid>
                                         </Grid>
                                     </DataTemplate>

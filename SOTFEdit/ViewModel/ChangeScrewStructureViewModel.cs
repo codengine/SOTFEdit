@@ -20,12 +20,12 @@ public partial class ChangeScrewStructureViewModel : ObservableObject
     {
         _parent = parent;
         _screwStructureWrapper = screwStructureWrapper;
-        ScrewStructures = new ListCollectionView(screwStructures.OrderBy(screwStructure => screwStructure.Category)
+        ScrewStructures = new ListCollectionView(screwStructures.OrderBy(screwStructure => screwStructure.CategoryName)
             .ThenBy(screwStructure => screwStructure.Name).ToList())
         {
             GroupDescriptions =
             {
-                new PropertyGroupDescription("Category")
+                new PropertyGroupDescription("CategoryName")
             }
         };
         SelectedScrewStructure =

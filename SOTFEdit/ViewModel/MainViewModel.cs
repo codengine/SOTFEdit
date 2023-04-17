@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using NLog;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Savegame;
@@ -22,7 +23,7 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private bool _checkVersionOnStartup;
 
-    [ObservableProperty] private string _lastSaveGameMenuItem = "Open last savegame...";
+    [ObservableProperty] private string _lastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
 
     [ObservableProperty] private double? _pinLeft;
 
@@ -118,18 +119,20 @@ public partial class MainViewModel : ObservableObject
     {
         if (Settings.Default.LastSavegame is not { } lastSavegame)
         {
-            LastSaveGameMenuItem = "Open last savegame...";
+            LastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
             return;
         }
 
         var parts = lastSavegame.Split(Path.DirectorySeparatorChar);
         if (parts.Length < 2)
         {
-            LastSaveGameMenuItem = $"Open {lastSavegame}...";
+            LastSaveGameMenuItem =
+                TranslationManager.GetFormatted("menu.file.openLastSavegameWithSavegame", lastSavegame);
             return;
         }
 
-        LastSaveGameMenuItem = $"Open {parts[^2]}{Path.DirectorySeparatorChar}{parts[^1]}...";
+        LastSaveGameMenuItem = TranslationManager.GetFormatted("menu.file.openLastSavegameWithSavegame",
+            $"{parts[^2]}{Path.DirectorySeparatorChar}{parts[^1]}");
     }
 
     public static bool CanOpenLastSavegame()
@@ -143,7 +146,8 @@ public partial class MainViewModel : ObservableObject
         if (!CanOpenLastSavegame())
         {
             WeakReferenceMessenger.Default.Send(
-                new GenericMessageEvent("Unable to open the last savegame. Has it been deleted?", "Error"));
+                new GenericMessageEvent("Unable to open the last savegame. Has it been deleted?",
+                    TranslationManager.Get("generic.error")));
         }
 
         var directoryInfo = new DirectoryInfo(Settings.Default.LastSavegame);
@@ -173,12 +177,14 @@ public partial class MainViewModel : ObservableObject
 
             if (hasChanges)
             {
-                WeakReferenceMessenger.Default.Send(new SavegameStoredEvent("Changes saved successfully"));
+                WeakReferenceMessenger.Default.Send(
+                    new SavegameStoredEvent(TranslationManager.Get("windows.main.messages.changesSaved")));
             }
             else
             {
-                WeakReferenceMessenger.Default.Send(new GenericMessageEvent("No changes - Nothing saved",
-                    "No changes"));
+                WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                    TranslationManager.Get("windows.main.messages.noChanges.text"),
+                    TranslationManager.Get("windows.main.messages.noChanges.title")));
             }
         }));
     }
@@ -233,14 +239,16 @@ public partial class MainViewModel : ObservableObject
         try
         {
             LabExperiments.ResetKillStatistics(selectedSavegame);
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("Changes added. Please save to persist them",
-                "Changes added"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.Get("experiments.resetKillStatistics.success.text"),
+                TranslationManager.Get("experiments.resetKillStatistics.success.title")));
         }
         catch (Exception ex)
         {
             Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"An exception has occured: {ex.Message}",
-                "Error"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.GetFormatted("generic.exceptionMessage", ex.Message),
+                TranslationManager.Get("generic.error")));
         }
     }
 
@@ -255,14 +263,16 @@ public partial class MainViewModel : ObservableObject
         try
         {
             LabExperiments.ResetNumberCutTrees(selectedSavegame);
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("Changes added. Please save to persist them",
-                "Changes added"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.Get("experiments.resetNumberOfCutTrees.success.text"),
+                TranslationManager.Get("experiments.resetNumberOfCutTrees.success.title")));
         }
         catch (Exception ex)
         {
             Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"An exception has occured: {ex.Message}",
-                "Error"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.GetFormatted("generic.exceptionMessage", ex.Message),
+                TranslationManager.Get("generic.error")));
         }
     }
 
@@ -323,8 +333,9 @@ public partial class MainViewModel : ObservableObject
                 { } structureDestruction ||
             structureDestruction["Data"] is not JArray destructionData)
         {
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("No structure damage has to be repaired",
-                "No structure damage"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.Get("experiments.resetStructureDamage.noDamage.text"),
+                TranslationManager.Get("experiments.resetStructureDamage.noDamage.title")));
             return;
         }
 
@@ -332,8 +343,9 @@ public partial class MainViewModel : ObservableObject
         destructionData.Clear();
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.StructureDestruction);
 
-        WeakReferenceMessenger.Default.Send(
-            new GenericMessageEvent($"{entryCount} structural damages have been repaired", "Damages repaired"));
+        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+            TranslationManager.GetFormatted("experiments.resetStructureDamage.success.text", entryCount),
+            TranslationManager.Get("experiments.resetStructureDamage.success.title")));
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
@@ -345,7 +357,9 @@ public partial class MainViewModel : ObservableObject
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.Fires) is not { } fires ||
             fires["FiresPerStructureType"] is not { } firesPerStructureType)
         {
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent("No fires found to be modified", "No fires"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.Get("experiments.igniteAndRefuelFires.noFires.text"),
+                TranslationManager.Get("experiments.igniteAndRefuelFires.noFires.title")));
             return;
         }
 
@@ -363,7 +377,8 @@ public partial class MainViewModel : ObservableObject
 
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.Fires);
         WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-            $"{countChanged} fires have been lit, refueled and their drain rate lowered", "Fires changed"));
+            TranslationManager.GetFormatted("experiments.igniteAndRefuelFires.success.text", countChanged),
+            TranslationManager.Get("experiments.igniteAndRefuelFires.success.title")));
     }
 
     [RelayCommand(CanExecute = nameof(IsSavegameSelected))]

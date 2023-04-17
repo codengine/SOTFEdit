@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.Model;
 
 public class Item
 {
+    private string? _normalizedLowercaseName;
     public int Id { get; init; }
-    public string Name { get; init; }
-    public string? NameDe { get; init; }
+    public string Name => TranslationManager.Get("items." + Id);
     public string Type { get; init; }
     public List<ItemModule>? Modules { get; init; }
     public bool IsInventoryItem { get; init; } = true;
@@ -14,6 +15,11 @@ public class Item
     public bool IsWearableCloth { get; init; } = false;
     public DefaultMinMax? Durability { get; init; }
     public StorageMax? StorageMax { get; init; }
+
+    public string NormalizedLowercaseName
+    {
+        get { return _normalizedLowercaseName ??= TranslationHelper.Normalize(Name).ToLower(); }
+    }
 
     private bool Equals(Item other)
     {
@@ -47,7 +53,4 @@ public class Item
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public record ItemModule(int ModuleId, List<ItemVariant> Variants);
-
-// ReSharper disable once ClassNeverInstantiated.Global
-public record ItemVariant(int State, string Name);
+public record ItemModule(int ModuleId, List<int> Variants);

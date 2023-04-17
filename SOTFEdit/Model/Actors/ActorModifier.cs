@@ -40,12 +40,12 @@ public class ActorModifier
 
         switch (data.ModificationMode)
         {
-            case "Remove":
+            case ActorModificationMode.Remove:
             {
                 Remove(vailWorldSim, matchedActors, data);
                 break;
             }
-            case "Modify":
+            case ActorModificationMode.Modify:
                 Modify(vailWorldSim, matchedActors, data);
                 break;
         }

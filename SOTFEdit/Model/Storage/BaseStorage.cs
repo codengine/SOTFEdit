@@ -211,7 +211,7 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
             target.AddRange(
                 from itemModule in item.Modules
                 from variant in itemModule.Variants
-                select new ItemWrapper(item, storageDefinition.MaxPerSlot, BuildModuleWrapper(itemModule, variant))
+                select new ItemWrapper(item, storageDefinition.MaxPerSlot, BuildModuleWrapper(itemModule, item.Id, variant))
             );
         }
         else
@@ -221,12 +221,12 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
     }
 
 
-    private ModuleWrapper? BuildModuleWrapper(ItemModule itemModule, ItemVariant variant)
+    private ModuleWrapper? BuildModuleWrapper(ItemModule itemModule, int itemId, int variant)
     {
         if (FoodSpoilStorageModule.SupportsModuleId(itemModule.ModuleId))
         {
-            var storageModule = new FoodSpoilStorageModule(itemModule.ModuleId, variant.State);
-            return new ModuleWrapper(storageModule, variant.Name);
+            var storageModule = new FoodSpoilStorageModule(itemModule.ModuleId, variant);
+            return new ModuleWrapper(storageModule, itemId, variant);
         }
 
         _logger.Warn($"Unsupported moduleId: {itemModule.ModuleId}");

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:GameStatePageViewModel}"
@@ -20,37 +21,31 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <GroupBox Header="Game State" Padding="10" Margin="0 0 0 10">
+        <GroupBox Header="{infrastructure:Translate 'game.state.header'}" Padding="10" Margin="0 0 0 10">
             <DataGrid Height="Auto" AutoGenerateColumns="False"
                       SelectionMode="Single" ItemsSource="{Binding Settings}" CanUserAddRows="false"
                       CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Setting" IsReadOnly="True" />
-                    <DataGridTemplateColumn Header="Value"
+                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="{infrastructure:Translate 'generic.setting'}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="{infrastructure:Translate 'generic.value'}"
                                             CellTemplateSelector="{StaticResource SettingCellTemplateSelector}" />
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-        <GroupBox Header="World Object States" Padding="10" Grid.Row="1">
+        <GroupBox Header="{infrastructure:Translate 'game.state.worldObjectStates.header'}" Padding="10" Grid.Row="1">
             <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Margin="0 0 0 10">
-                    I haven't fully investigated which values represent which state. Presumably:
-                    <LineBreak />
-                    - 0 = Unset/Closed/Not happened
-                    <LineBreak />
-                    - 1 or 3 = Set/Opened/Happened
-                </TextBlock>
+                <TextBlock Grid.Row="0" Margin="0 0 0 10" Text="{infrastructure:Translate 'game.state.worldObjectStates.disclaimer'}" />
 
                 <DataGrid Height="Auto" Grid.Row="1" AutoGenerateColumns="False"
                           SelectionMode="Single" ItemsSource="{Binding NamedIntDatas}" CanUserAddRows="false"
                           CanUserDeleteRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Setting" IsReadOnly="True" />
-                        <DataGridTemplateColumn Header="Value"
+                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="{infrastructure:Translate 'generic.setting'}" IsReadOnly="True" />
+                        <DataGridTemplateColumn Header="{infrastructure:Translate 'generic.value'}"
                                                 CellTemplateSelector="{StaticResource SettingCellTemplateSelector}" />
                     </DataGrid.Columns>
                 </DataGrid>

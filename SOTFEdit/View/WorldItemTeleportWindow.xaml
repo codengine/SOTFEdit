@@ -8,8 +8,9 @@
                  xmlns:st="http://schemas.spicytaco.io/"
                  xmlns:model="clr-namespace:SOTFEdit.Model"
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  mc:Ignorable="d"
-                 Title="Settings" MinWidth="300"
+                 Title="{infrastructure:Translate 'windows.worldItemTeleporter.title'}" MinWidth="300"
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
                  ResizeMode="NoResize"
@@ -31,7 +32,7 @@
         </Label>
         <StackPanel Orientation="Horizontal">
             <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
-                   ToolTip="Show Object Position on Map"
+                   ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.pinTooltip'}"
                    VerticalAlignment="Center"
                    Visibility="{Binding SelectedWorldItem, Converter={StaticResource NullToVisibilityConverter}}">
                 <Image.InputBindings>
@@ -61,17 +62,15 @@
         </StackPanel>
         <Button Command="{Binding RemoveAllOfThisTypeCommand}"
                 Background="DarkRed" Grid.ColumnSpan="2"
-                ToolTip="Removes all copies of this type from map">
-            Remove all copies from map
-        </Button>
+                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.removeAllCopies.tooltip'}"
+                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.removeAllCopies.text'}" />
         <Button Command="{Binding CloneObjectAtPlayerPosCommand}"
                 Background="{DynamicResource MahApps.Brushes.Accent}" Grid.ColumnSpan="2"
-                ToolTip="Creates a clone of this object at the players position">
-            Clone at Player Position
-        </Button>
+                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.cloneAtPlayerPosition.tooltip'}"
+                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.cloneAtPlayerPosition.text'}" />
         <Button Command="{Binding TeleportPlayerToObjectCommand}" Grid.ColumnSpan="2"
-                Background="{DynamicResource MahApps.Brushes.Accent}" ToolTip="Teleports the player to the object">
-            Teleport player to object
-        </Button>
+                Background="{DynamicResource MahApps.Brushes.Accent}"
+                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportPlayerToObject.tooltip'}"
+                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportPlayerToObject.text'}" />
     </st:AutoGrid>
 </mah:MetroWindow>

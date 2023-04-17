@@ -7,16 +7,18 @@
                  xmlns:wpf="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
                  xmlns:st="http://schemas.spicytaco.io/"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  mc:Ignorable="d"
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
                  TitleCharacterCasing="Normal"
                  PreviewKeyDown="UpdateAvailableWindow_OnPreviewKeyDown"
                  d:DataContext="{d:DesignInstance viewModel:UpdateAvailableViewModel}"
-                 Title="Update available" Height="600" Width="800">
+                 Title="{infrastructure:Translate 'windows.updateAvailable.title'}" Height="600" Width="800">
     <st:AutoGrid Rows="Auto,*,Auto" Columns="*" Margin="15">
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0 0 0 10">
-            <TextBlock FontSize="20" Margin="0 0 8 0">An Update is available:</TextBlock>
+            <TextBlock FontSize="20" Margin="0 0 8 0"
+                       Text="{infrastructure:Translate 'windows.updateAvailable.header'}" />
             <TextBlock FontSize="20" FontWeight="Bold" Foreground="{DynamicResource MahApps.Brushes.Accent}"
                        Text="{Binding Version}" />
         </StackPanel>
@@ -24,9 +26,11 @@
             <wpf:MarkdownViewer Markdown="{Binding Changelog, Mode=OneTime}" />
         </Border>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button Padding="8" Content="Download" Background="{DynamicResource MahApps.Brushes.Accent}"
+            <Button Padding="8" Content="{infrastructure:Translate 'windows.updateAvailable.buttons.download'}"
+                    Background="{DynamicResource MahApps.Brushes.Accent}"
                     Margin="0 0 10 0" Click="Download_OnClick" />
-            <Button Padding="8" Content="Ignore" Click="Ignore_OnClick" />
+            <Button Padding="8" Content="{infrastructure:Translate 'windows.updateAvailable.buttons.ignore'}"
+                    Click="Ignore_OnClick" />
         </StackPanel>
     </st:AutoGrid>
 </mah:MetroWindow>

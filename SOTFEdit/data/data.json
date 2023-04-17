@@ -5,9 +5,7 @@
   "items": [
     {
       "id": 568,
-      "name": "VIP Key",
       "type": "key",
-      "nameDe": "VIP-Schlüsselkarte",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -15,9 +13,7 @@
     },
     {
       "id": 566,
-      "name": "Maintenance Key",
       "type": "key",
-      "nameDe": "Wartungsschlüsselkarte",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -25,9 +21,7 @@
     },
     {
       "id": 567,
-      "name": "Guest Key",
       "type": "key",
-      "nameDe": "Gästeschlüsselkarte",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -35,9 +29,7 @@
     },
     {
       "id": 469,
-      "name": "Air Canister",
       "type": "misc",
-      "nameDe": "Lufttank",
       "storageMax": {
         "shelf": 4,
         "inventory": 4
@@ -45,9 +37,7 @@
     },
     {
       "id": 527,
-      "name": "Batteries",
       "type": "misc",
-      "nameDe": "Batterien",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -55,9 +45,7 @@
     },
     {
       "id": 458,
-      "name": "Battery Charger",
       "type": "misc",
-      "nameDe": "Ladegerät",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -66,14 +54,11 @@
     },
     {
       "id": 460,
-      "name": "Battery Pack",
       "type": "misc"
     },
     {
       "id": 471,
-      "name": "Flashlight",
       "type": "misc",
-      "nameDe": "Taschenlampe",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -81,9 +66,7 @@
     },
     {
       "id": 435,
-      "name": "Gold Mask",
       "type": "misc",
-      "nameDe": "Goldmaske",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -91,9 +74,7 @@
     },
     {
       "id": 524,
-      "name": "Golf Ball",
       "type": "misc",
-      "nameDe": "Golfball",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -101,9 +82,7 @@
     },
     {
       "id": 529,
-      "name": "GPS Locator",
       "type": "misc",
-      "nameDe": "GPS-Peilsender",
       "storageMax": {
         "shelf": 0,
         "inventory": 10
@@ -111,9 +90,7 @@
     },
     {
       "id": 412,
-      "name": "GPS Tracker",
       "type": "misc",
-      "nameDe": "GPS-Gerät",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -121,9 +98,7 @@
     },
     {
       "id": 432,
-      "name": "Can Opener",
       "type": "misc",
-      "nameDe": "Dosenöffner",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -131,9 +106,7 @@
     },
     {
       "id": 341,
-      "name": "Binoculars",
       "type": "misc",
-      "nameDe": "Fernglas",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -141,9 +114,7 @@
     },
     {
       "id": 420,
-      "name": "C4 Brick",
       "type": "misc",
-      "nameDe": "C4-Ladung",
       "storageMax": {
         "shelf": 3,
         "inventory": 10
@@ -151,9 +122,7 @@
     },
     {
       "id": 419,
-      "name": "Duct Tape",
       "type": "misc",
-      "nameDe": "Klebeband",
       "storageMax": {
         "shelf": 10,
         "inventory": 100
@@ -161,9 +130,7 @@
     },
     {
       "id": 479,
-      "name": "Feather",
       "type": "misc",
-      "nameDe": "Feder",
       "storageMax": {
         "shelf": 50,
         "inventory": 1000
@@ -171,9 +138,7 @@
     },
     {
       "id": 440,
-      "name": "Flare",
       "type": "misc",
-      "nameDe": "Leuchtfackel",
       "storageMax": {
         "shelf": 10,
         "inventory": 10
@@ -181,9 +146,7 @@
     },
     {
       "id": 486,
-      "name": "Walkie Talkie",
       "type": "misc",
-      "nameDe": "Walkie-Talkie",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -191,9 +154,7 @@
     },
     {
       "id": 418,
-      "name": "Wire",
       "type": "misc",
-      "nameDe": "Draht",
       "storageMax": {
         "shelf": 12,
         "inventory": 100
@@ -201,9 +162,7 @@
     },
     {
       "id": 410,
-      "name": "Watch",
       "type": "misc",
-      "nameDe": "Armbanduhr",
       "storageMax": {
         "shelf": 10,
         "inventory": 50
@@ -211,9 +170,7 @@
     },
     {
       "id": 590,
-      "name": "Radio",
       "type": "misc",
-      "nameDe": "Radio",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -222,9 +179,7 @@
     },
     {
       "id": 444,
-      "name": "Rebreather",
       "type": "misc",
-      "nameDe": "Tauchgerät",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -232,9 +187,7 @@
     },
     {
       "id": 391,
-      "name": "Red Mask",
       "type": "misc",
-      "nameDe": "Rote Maske",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -242,9 +195,7 @@
     },
     {
       "id": 393,
-      "name": "Rock",
       "type": "misc",
-      "nameDe": "Stein",
       "storageMax": {
         "shelf": 0,
         "inventory": 10
@@ -252,9 +203,7 @@
     },
     {
       "id": 403,
-      "name": "Rope",
       "type": "misc",
-      "nameDe": "Seil",
       "storageMax": {
         "shelf": 8,
         "inventory": 10
@@ -262,9 +211,7 @@
     },
     {
       "id": 480,
-      "name": "Severed Arm",
       "type": "misc",
-      "nameDe": "Arm",
       "storageMax": {
         "shelf": 2,
         "inventory": 2
@@ -272,9 +219,7 @@
     },
     {
       "id": 481,
-      "name": "Severed Leg",
       "type": "misc",
-      "nameDe": "Bein",
       "storageMax": {
         "shelf": 2,
         "inventory": 2
@@ -282,9 +227,7 @@
     },
     {
       "id": 482,
-      "name": "Severed Head",
       "type": "misc",
-      "nameDe": "Kopf",
       "storageMax": {
         "shelf": 1,
         "inventory": 1
@@ -292,9 +235,7 @@
     },
     {
       "id": 508,
-      "name": "Skin Pouch",
       "type": "misc",
-      "nameDe": "Lederbeutel",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -302,9 +243,7 @@
     },
     {
       "id": 430,
-      "name": "Skull",
       "type": "misc",
-      "nameDe": "Schädel",
       "storageMax": {
         "shelf": 1,
         "inventory": 3
@@ -312,9 +251,7 @@
     },
     {
       "id": 573,
-      "name": "Sleeping Bag",
       "type": "misc",
-      "nameDe": "Schlafsack",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -323,9 +260,7 @@
     },
     {
       "id": 476,
-      "name": "Small Rock",
       "type": "misc",
-      "nameDe": "Kleiner Stein",
       "storageMax": {
         "shelf": 15,
         "inventory": 30
@@ -333,9 +268,7 @@
     },
     {
       "id": 416,
-      "name": "Circuit Board",
       "type": "misc",
-      "nameDe": "Leiterplatte",
       "storageMax": {
         "shelf": 6,
         "inventory": 10
@@ -343,9 +276,7 @@
     },
     {
       "id": 415,
-      "name": "Cloth",
       "type": "misc",
-      "nameDe": "Stoff",
       "storageMax": {
         "shelf": 20,
         "inventory": 1000
@@ -353,9 +284,7 @@
     },
     {
       "id": 405,
-      "name": "Bone",
       "type": "misc",
-      "nameDe": "Knochen",
       "storageMax": {
         "shelf": 0,
         "inventory": 15
@@ -363,9 +292,7 @@
     },
     {
       "id": 502,
-      "name": "Coins",
       "type": "misc",
-      "nameDe": "Münzen",
       "storageMax": {
         "shelf": 100,
         "inventory": 1000
@@ -373,14 +300,11 @@
     },
     {
       "id": 517,
-      "name": "Cooking Pot",
       "type": "misc"
     },
     {
       "id": 392,
-      "name": "Stick",
       "type": "misc",
-      "nameDe": "Stock",
       "storageMax": {
         "shelf": 0,
         "inventory": 20
@@ -388,9 +312,7 @@
     },
     {
       "id": 504,
-      "name": "Tarp",
       "type": "misc",
-      "nameDe": "Plane",
       "storageMax": {
         "shelf": 4,
         "inventory": 5
@@ -398,9 +320,7 @@
     },
     {
       "id": 553,
-      "name": "Tech Mesh",
       "type": "misc",
-      "nameDe": "Tech Mesh",
       "storageMax": {
         "shelf": 5,
         "inventory": 10
@@ -408,9 +328,7 @@
     },
     {
       "id": 503,
-      "name": "Torch",
       "type": "misc",
-      "nameDe": "Fackel",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -418,9 +336,7 @@
     },
     {
       "id": 401,
-      "name": "Turtle Egg",
       "type": "misc",
-      "nameDe": "Schildkrötenei",
       "storageMax": {
         "shelf": 8,
         "inventory": 10
@@ -428,9 +344,7 @@
     },
     {
       "id": 506,
-      "name": "Turtle Shell",
       "type": "misc",
-      "nameDe": "Schildkrötenpanzer",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -438,9 +352,7 @@
     },
     {
       "id": 414,
-      "name": "Vodka Bottle",
       "type": "misc",
-      "nameDe": "Wodka-Flasche",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -448,9 +360,7 @@
     },
     {
       "id": 437,
-      "name": "Meds",
       "type": "misc",
-      "nameDe": "Medizin",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -458,9 +368,7 @@
     },
     {
       "id": 496,
-      "name": "Money",
       "type": "misc",
-      "nameDe": "Geld",
       "storageMax": {
         "shelf": 1000,
         "inventory": 1000000
@@ -468,9 +376,7 @@
     },
     {
       "id": 518,
-      "name": "Paper Target",
       "type": "misc",
-      "nameDe": "Papierzielscheibe",
       "storageMax": {
         "shelf": 100,
         "inventory": 50
@@ -478,9 +384,7 @@
     },
     {
       "id": 484,
-      "name": "Leaf",
       "type": "misc",
-      "nameDe": "Blatt",
       "storageMax": {
         "shelf": 100,
         "inventory": 1000
@@ -488,9 +392,7 @@
     },
     {
       "id": 618,
-      "name": "Printed Arrow",
       "type": "ammo",
-      "nameDe": "3D-gedruckter Pfeil",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -498,19 +400,15 @@
     },
     {
       "id": 559,
-      "name": "Printed Arrow Heads",
       "type": "printed"
     },
     {
       "id": 561,
-      "name": "Printed Flower Pot",
       "type": "printed"
     },
     {
       "id": 560,
-      "name": "Printed Grappling Hook",
       "type": "printed",
-      "nameDe": "Gedruckter Enterhaken",
       "storageMax": {
         "shelf": 10,
         "inventory": 10
@@ -518,9 +416,7 @@
     },
     {
       "id": 413,
-      "name": "Plasma Lighter",
       "type": "printed",
-      "nameDe": "Feuerzeug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -528,9 +424,7 @@
     },
     {
       "id": 426,
-      "name": "Printed Flask",
       "type": "printed",
-      "nameDe": "Gedruckte Trinkflasche",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -538,14 +432,11 @@
     },
     {
       "id": 427,
-      "name": "Printed Knife",
       "type": "printed"
     },
     {
       "id": 428,
-      "name": "Printed Sled",
       "type": "printed",
-      "nameDe": "Gedruckter Schlitten",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -553,9 +444,7 @@
     },
     {
       "id": 390,
-      "name": "Printer Resin",
       "type": "printed",
-      "nameDe": "Druckerharz",
       "storageMax": {
         "shelf": 20,
         "inventory": 1000
@@ -563,14 +452,11 @@
     },
     {
       "id": 429,
-      "name": "Printed Scuba Mask",
       "type": "printed"
     },
     {
       "id": 569,
-      "name": "Brain Bite",
       "type": "food",
-      "nameDe": "Gehirnstück",
       "storageMax": {
         "shelf": 10,
         "inventory": 10
@@ -578,9 +464,7 @@
     },
     {
       "id": 434,
-      "name": "Canned Food",
       "type": "food",
-      "nameDe": "Konserven",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -588,9 +472,7 @@
     },
     {
       "id": 464,
-      "name": "Cat Food",
       "type": "food",
-      "nameDe": "Katzenfutter",
       "storageMax": {
         "shelf": 0,
         "inventory": 5
@@ -598,43 +480,21 @@
     },
     {
       "id": 483,
-      "name": "Emergency Pack",
-      "type": "food",
-      "nameDe": "Notfallpaket"
+      "type": "food"
     },
     {
       "id": 436,
-      "name": "Fish",
       "type": "food",
-      "nameDe": "Fisch",
       "modules": [
         {
           "moduleId": 3,
           "variants": [
-            {
-              "state": 1,
-              "name": "Raw Fish"
-            },
-            {
-              "state": 2,
-              "name": "Unknown Fish"
-            },
-            {
-              "state": 3,
-              "name": "Spoiled Fish"
-            },
-            {
-              "state": 4,
-              "name": "Dried Fish"
-            },
-            {
-              "state": 5,
-              "name": "Cooked Fish"
-            },
-            {
-              "state": 6,
-              "name": "Burned Fish"
-            }
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ]
         }
       ],
@@ -645,9 +505,7 @@
     },
     {
       "id": 439,
-      "name": "Energy Drink",
       "type": "food",
-      "nameDe": "Energydrink",
       "storageMax": {
         "shelf": 10,
         "inventory": 10
@@ -655,19 +513,15 @@
     },
     {
       "id": 512,
-      "name": "Food Tray Filled",
       "type": "food"
     },
     {
       "id": 497,
-      "name": "Food Tray",
       "type": "food"
     },
     {
       "id": 438,
-      "name": "MRE Pack",
       "type": "food",
-      "nameDe": "Feldration",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -675,9 +529,7 @@
     },
     {
       "id": 421,
-      "name": "Ramen Noodles",
       "type": "food",
-      "nameDe": "Ramen-Nudeln",
       "storageMax": {
         "shelf": 4,
         "inventory": 10
@@ -685,9 +537,7 @@
     },
     {
       "id": 570,
-      "name": "Steak Bite",
       "type": "food",
-      "nameDe": "Steakstück",
       "storageMax": {
         "shelf": 10,
         "inventory": 10
@@ -695,9 +545,7 @@
     },
     {
       "id": 571,
-      "name": "Steak and Bacon Bite",
       "type": "food",
-      "nameDe": "Speckstück",
       "storageMax": {
         "shelf": 10,
         "inventory": 10
@@ -705,9 +553,7 @@
     },
     {
       "id": 494,
-      "name": "Bone Armour",
       "type": "armor",
-      "nameDe": "Knochenrüstung",
       "isEquippableArmor": true,
       "durability": {
         "default": 35,
@@ -721,9 +567,7 @@
     },
     {
       "id": 593,
-      "name": "Creepy Armour",
       "type": "armor",
-      "nameDe": "Mutantenrüstung",
       "isEquippableArmor": true,
       "durability": {
         "default": 40,
@@ -737,9 +581,7 @@
     },
     {
       "id": 519,
-      "name": "Deer Hide Armour",
       "type": "armor",
-      "nameDe": "Tierhautrüstung",
       "isEquippableArmor": true,
       "durability": {
         "default": 20,
@@ -753,17 +595,13 @@
     },
     {
       "id": 572,
-      "name": "Golden Armour",
       "type": "armor",
-      "nameDe": "Goldrüstung",
       "isEquippableArmor": false,
       "isWearableCloth": true
     },
     {
       "id": 473,
-      "name": "Leaf Armour",
       "type": "armor",
-      "nameDe": "Blätterrüstung",
       "isEquippableArmor": true,
       "durability": {
         "default": 10,
@@ -777,9 +615,7 @@
     },
     {
       "id": 492,
-      "name": "Tuxedo",
       "type": "clothes",
-      "nameDe": "Tuxedo",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -787,9 +623,7 @@
     },
     {
       "id": 554,
-      "name": "Tech Armour",
       "type": "armor",
-      "nameDe": "Tech-Rüstung",
       "isEquippableArmor": true,
       "durability": {
         "default": 80,
@@ -803,9 +637,7 @@
     },
     {
       "id": 491,
-      "name": "Blazer",
       "type": "clothes",
-      "nameDe": "Jackett",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -813,14 +645,11 @@
     },
     {
       "id": 488,
-      "name": "Blue T-shirt",
       "type": "clothes"
     },
     {
       "id": 558,
-      "name": "Camoflage Suit",
       "type": "clothes",
-      "nameDe": "Tarnanzug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -828,9 +657,7 @@
     },
     {
       "id": 490,
-      "name": "Hoodie",
       "type": "clothes",
-      "nameDe": "Kapuzenpullover",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -838,9 +665,7 @@
     },
     {
       "id": 499,
-      "name": "Wetsuit",
       "type": "clothes",
-      "nameDe": "Neoprenanzug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -848,14 +673,11 @@
     },
     {
       "id": 463,
-      "name": "Flippers",
       "type": "clothes"
     },
     {
       "id": 493,
-      "name": "Leather Jacket",
       "type": "clothes",
-      "nameDe": "Lederjacke",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -863,9 +685,7 @@
     },
     {
       "id": 487,
-      "name": "Silk Pyjamas",
       "type": "clothes",
-      "nameDe": "Schlafanzug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -873,9 +693,7 @@
     },
     {
       "id": 619,
-      "name": "Swim Suit",
       "type": "clothes",
-      "nameDe": "Badeanzug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -883,9 +701,7 @@
     },
     {
       "id": 500,
-      "name": "Puffy Jacket",
       "type": "clothes",
-      "nameDe": "Winterjacke",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -893,9 +709,7 @@
     },
     {
       "id": 501,
-      "name": "Tactical Boots",
       "type": "clothes",
-      "nameDe": "Stiefel",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -903,9 +717,7 @@
     },
     {
       "id": 489,
-      "name": "Tactical Pants",
       "type": "clothes",
-      "nameDe": "Taktische Hose",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -913,9 +725,7 @@
     },
     {
       "id": 555,
-      "name": "Track Suit",
       "type": "clothes",
-      "nameDe": "Trainingsanzug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -923,8 +733,6 @@
     },
     {
       "id": 354,
-      "name": "Night Vision Goggles",
-      "nameDe": "Nachtsichtgerät",
       "type": "misc",
       "storageMax": {
         "shelf": 0,
@@ -933,21 +741,15 @@
     },
     {
       "id": 357,
-      "name": "Airgun",
-      "type": "weapon",
-      "nameDe": "Luftgewehr"
+      "type": "weapon"
     },
     {
       "id": 361,
-      "name": "Rifle",
-      "type": "weapon",
-      "nameDe": "Gewehr"
+      "type": "weapon"
     },
     {
       "id": 364,
-      "name": "Shotgun Buckshot",
       "type": "ammo",
-      "nameDe": "Schrotkugeln",
       "storageMax": {
         "shelf": 50,
         "inventory": 1000
@@ -955,9 +757,7 @@
     },
     {
       "id": 394,
-      "name": "Chainsaw",
       "type": "weapon",
-      "nameDe": "Kettensäge",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -965,9 +765,7 @@
     },
     {
       "id": 478,
-      "name": "Climbing Axe",
       "type": "weapon",
-      "nameDe": "Kletteraxt",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -976,7 +774,6 @@
     },
     {
       "id": 380,
-      "name": "Combat Knife",
       "type": "weapon",
       "storageMax": {
         "shelf": 0,
@@ -985,9 +782,7 @@
     },
     {
       "id": 355,
-      "name": "Compact Pistol",
       "type": "weapon",
-      "nameDe": "Pistole",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -995,9 +790,7 @@
     },
     {
       "id": 443,
-      "name": "Crafted Bow",
       "type": "weapon",
-      "nameDe": "Handgemachter Bogen",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1005,9 +798,7 @@
     },
     {
       "id": 477,
-      "name": "Crafted Club",
       "type": "weapon",
-      "nameDe": "Handgefertigte Keule",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1015,9 +806,7 @@
     },
     {
       "id": 507,
-      "name": "Crafted Arrow",
       "type": "ammo",
-      "nameDe": "Steinpfeil",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1025,9 +814,7 @@
     },
     {
       "id": 474,
-      "name": "Crafted Spear",
       "type": "weapon",
-      "nameDe": "Handgefertigter Speer",
       "storageMax": {
         "shelf": 0,
         "inventory": 5
@@ -1035,9 +822,7 @@
     },
     {
       "id": 365,
-      "name": "Crossbow",
       "type": "weapon",
-      "nameDe": "Armbrust",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1045,9 +830,7 @@
     },
     {
       "id": 431,
-      "name": "Firefighter Axe",
       "type": "weapon",
-      "nameDe": "Feuerwehraxt",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1055,9 +838,7 @@
     },
     {
       "id": 525,
-      "name": "Putter",
       "type": "weapon",
-      "nameDe": "Putter",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1065,9 +846,7 @@
     },
     {
       "id": 381,
-      "name": "Grenade",
       "type": "weapon",
-      "nameDe": "Granate",
       "storageMax": {
         "shelf": 5,
         "inventory": 10
@@ -1075,15 +854,11 @@
     },
     {
       "id": 382,
-      "name": "GrenadeAmmo",
-      "type": "weapon",
-      "nameDe": "Granate"
+      "type": "weapon"
     },
     {
       "id": 340,
-      "name": "Guitar",
       "type": "weapon",
-      "nameDe": "Gitarre",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1091,9 +866,7 @@
     },
     {
       "id": 367,
-      "name": "Katana",
       "type": "weapon",
-      "nameDe": "Katana",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1101,9 +874,7 @@
     },
     {
       "id": 388,
-      "name": "Molotov",
       "type": "weapon",
-      "nameDe": "Molotowcocktail",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -1111,9 +882,7 @@
     },
     {
       "id": 389,
-      "name": "MolotovAmmo",
       "type": "weapon",
-      "nameDe": "Molotow",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -1122,9 +891,7 @@
     },
     {
       "id": 356,
-      "name": "Modern Axe",
       "type": "weapon",
-      "nameDe": "Moderne Axt",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1132,9 +899,7 @@
     },
     {
       "id": 362,
-      "name": "Pistol Ammo",
       "type": "ammo",
-      "nameDe": "9-mm-Munition",
       "storageMax": {
         "shelf": 50,
         "inventory": 1000
@@ -1142,9 +907,7 @@
     },
     {
       "id": 422,
-      "name": "Repair Tool",
       "type": "weapon",
-      "nameDe": "Reparaturwerkzeug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1152,9 +915,7 @@
     },
     {
       "id": 522,
-      "name": "RopeGun",
       "type": "weapon",
-      "nameDe": "Seilgewehr",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1162,15 +923,11 @@
     },
     {
       "id": 377,
-      "name": "Scope",
-      "type": "weapon",
-      "nameDe": "Zielfernrohr"
+      "type": "weapon"
     },
     {
       "id": 485,
-      "name": "Shovel",
       "type": "weapon",
-      "nameDe": "Schaufel",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1178,9 +935,7 @@
     },
     {
       "id": 374,
-      "name": "Silencer",
       "type": "weapon",
-      "nameDe": "Schalldämpfer",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1188,9 +943,7 @@
     },
     {
       "id": 358,
-      "name": "Shotgun",
       "type": "weapon",
-      "nameDe": "Schrotflinte",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1198,9 +951,7 @@
     },
     {
       "id": 459,
-      "name": "Slingshot",
       "type": "weapon",
-      "nameDe": "Schleuder",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1208,9 +959,7 @@
     },
     {
       "id": 363,
-      "name": "Shotgun Slug",
       "type": "ammo",
-      "nameDe": "Flintenlaufgeschoss",
       "storageMax": {
         "shelf": 50,
         "inventory": 1000
@@ -1218,9 +967,7 @@
     },
     {
       "id": 369,
-      "name": "Stun Gun Ammo",
       "type": "ammo",
-      "nameDe": "Betäubungsgewehrmunition",
       "storageMax": {
         "shelf": 50,
         "inventory": 1000
@@ -1228,9 +975,7 @@
     },
     {
       "id": 379,
-      "name": "Tactical Axe",
       "type": "weapon",
-      "nameDe": "Taktische Axt",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1238,9 +983,7 @@
     },
     {
       "id": 417,
-      "name": "Time Bomb",
       "type": "weapon",
-      "nameDe": "Zeitbombe",
       "storageMax": {
         "shelf": 3,
         "inventory": 3
@@ -1248,15 +991,11 @@
     },
     {
       "id": 470,
-      "name": "Airgun Scope",
-      "type": "weapon",
-      "nameDe": "Zielfernrohr für Luftgewehr"
+      "type": "weapon"
     },
     {
       "id": 523,
-      "name": "Zipline Rope",
       "type": "weapon",
-      "nameDe": "Seilrutschenseil",
       "storageMax": {
         "shelf": 4,
         "inventory": 10
@@ -1264,9 +1003,7 @@
     },
     {
       "id": 373,
-      "name": "Tactical Arrow",
       "type": "ammo",
-      "nameDe": "Kohlefaserpfeil",
       "storageMax": {
         "shelf": 20,
         "inventory": 25
@@ -1274,9 +1011,7 @@
     },
     {
       "id": 378,
-      "name": "Flashlight Attachment",
       "type": "weapon",
-      "nameDe": "Taschenlampenvorrichtung",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1284,9 +1019,7 @@
     },
     {
       "id": 384,
-      "name": "Crossbow Quiver",
       "type": "weapon",
-      "nameDe": "Armbrustköcher",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -1295,9 +1028,7 @@
     },
     {
       "id": 375,
-      "name": "Laser Sight",
       "type": "weapon",
-      "nameDe": "Laservisier",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1305,9 +1036,7 @@
     },
     {
       "id": 376,
-      "name": "Pistol Rail",
       "type": "weapon",
-      "nameDe": "Pistolenaufsatz",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1315,9 +1044,7 @@
     },
     {
       "id": 346,
-      "name": "Shotgun Rail",
       "type": "weapon",
-      "nameDe": "Schrotflintenaufsatz",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1325,9 +1052,7 @@
     },
     {
       "id": 509,
-      "name": "Holosprings Pamphlet",
       "type": "document",
-      "nameDe": "Holosprings-Broschüre",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1335,9 +1060,7 @@
     },
     {
       "id": 467,
-      "name": "Album Cover",
       "type": "document",
-      "nameDe": "Plattencover",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1345,9 +1068,7 @@
     },
     {
       "id": 521,
-      "name": "Cave Lighting Email",
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1355,9 +1076,7 @@
     },
     {
       "id": 448,
-      "name": "Snowberries",
       "type": "plant",
-      "nameDe": "Schneebeeren",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1365,9 +1084,7 @@
     },
     {
       "id": 446,
-      "name": "Twinberries",
       "type": "plant",
-      "nameDe": "Heckenkirsche",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1375,9 +1092,7 @@
     },
     {
       "id": 451,
-      "name": "Aloe Vera",
       "type": "plant",
-      "nameDe": "Aloe-Vera",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1385,9 +1100,7 @@
     },
     {
       "id": 596,
-      "name": "AloeVera Seed",
       "type": "plant",
-      "nameDe": "Aloe-Vera-Same",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1395,9 +1108,7 @@
     },
     {
       "id": 595,
-      "name": "Blackberries",
       "type": "plant",
-      "nameDe": "Brombeeren",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1405,9 +1116,7 @@
     },
     {
       "id": 598,
-      "name": "Blackberry Seed",
       "type": "plant",
-      "nameDe": "Brombeere",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1415,9 +1124,7 @@
     },
     {
       "id": 454,
-      "name": "Arrowleaf",
       "type": "plant",
-      "nameDe": "Pfeilblatt",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1425,9 +1132,7 @@
     },
     {
       "id": 597,
-      "name": "Arrowleaf Seed",
       "type": "plant",
-      "nameDe": "Pfeilblattsamen",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1435,9 +1140,7 @@
     },
     {
       "id": 445,
-      "name": "Blueberries",
       "type": "plant",
-      "nameDe": "Heidelbeeren",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1445,9 +1148,7 @@
     },
     {
       "id": 599,
-      "name": "Blueberry Seed",
       "type": "plant",
-      "nameDe": "Heidelbeerstrauchsame",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1455,9 +1156,7 @@
     },
     {
       "id": 465,
-      "name": "Chicory",
       "type": "plant",
-      "nameDe": "Chicorée",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1465,9 +1164,7 @@
     },
     {
       "id": 605,
-      "name": "Chicory Seed",
       "type": "plant",
-      "nameDe": "Wegwarte",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1475,9 +1172,7 @@
     },
     {
       "id": 449,
-      "name": "Devil's Club",
       "type": "plant",
-      "nameDe": "Igelkraftwurz",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1485,9 +1180,7 @@
     },
     {
       "id": 600,
-      "name": "DevilsClub Seed",
       "type": "plant",
-      "nameDe": "Igelkraftwurzsamen",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1495,9 +1188,7 @@
     },
     {
       "id": 461,
-      "name": "Energy Mix",
       "type": "plant",
-      "nameDe": "Energiemischung",
       "storageMax": {
         "shelf": 7,
         "inventory": 3
@@ -1505,9 +1196,7 @@
     },
     {
       "id": 462,
-      "name": "Energy Mix+",
       "type": "plant",
-      "nameDe": "Energiemischung +",
       "storageMax": {
         "shelf": 9,
         "inventory": 3
@@ -1515,9 +1204,7 @@
     },
     {
       "id": 453,
-      "name": "Fireweed",
       "type": "plant",
-      "nameDe": "WEIDENRÖSCHEN",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1525,9 +1212,7 @@
     },
     {
       "id": 601,
-      "name": "Fireweed Seed",
       "type": "plant",
-      "nameDe": "Weidenröschensamen",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1535,9 +1220,7 @@
     },
     {
       "id": 594,
-      "name": "Guarana Berries",
       "type": "plant",
-      "nameDe": "Guarana-Beeren",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1545,9 +1228,7 @@
     },
     {
       "id": 602,
-      "name": "Guarana Seed",
       "type": "plant",
-      "nameDe": "Guarana-Samen",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1555,9 +1236,7 @@
     },
     {
       "id": 455,
-      "name": "Health Mix",
       "type": "plant",
-      "nameDe": "Gesundheitsmischung",
       "storageMax": {
         "shelf": 7,
         "inventory": 3
@@ -1565,9 +1244,7 @@
     },
     {
       "id": 456,
-      "name": "Health Mix+",
       "type": "plant",
-      "nameDe": "Health Mix +",
       "storageMax": {
         "shelf": 9,
         "inventory": 3
@@ -1575,9 +1252,7 @@
     },
     {
       "id": 450,
-      "name": "Horsetail",
       "type": "plant",
-      "nameDe": "SCHACHTELHALM",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1585,9 +1260,7 @@
     },
     {
       "id": 603,
-      "name": "Horsetail Seed",
       "type": "plant",
-      "nameDe": "Schachtelhalmsamen",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1595,9 +1268,7 @@
     },
     {
       "id": 447,
-      "name": "Salmonberries",
       "type": "plant",
-      "nameDe": "Lachsbeeren",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1605,9 +1276,7 @@
     },
     {
       "id": 604,
-      "name": "Salmonberry Seed",
       "type": "plant",
-      "nameDe": "Lachsbeersamen",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1615,9 +1284,7 @@
     },
     {
       "id": 452,
-      "name": "Yarrow",
       "type": "plant",
-      "nameDe": "Schafgarbe",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -1625,9 +1292,7 @@
     },
     {
       "id": 606,
-      "name": "Yarro Seed",
       "type": "plant",
-      "nameDe": "Schafgarbensamen",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -1635,9 +1300,7 @@
     },
     {
       "id": 402,
-      "name": "Backpack",
       "type": "container",
-      "nameDe": "Rucksack",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1645,9 +1308,7 @@
     },
     {
       "id": 468,
-      "name": "Cross",
       "type": "weapon",
-      "nameDe": "Kreuz",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1655,9 +1316,7 @@
     },
     {
       "id": 368,
-      "name": "Crossbow Bolt",
       "type": "ammo",
-      "nameDe": "Armbrustbolzen",
       "storageMax": {
         "shelf": 20,
         "inventory": 15
@@ -1665,9 +1324,7 @@
     },
     {
       "id": 441,
-      "name": "Energy Bar",
       "type": "food",
-      "nameDe": "Energieriegel",
       "storageMax": {
         "shelf": 5,
         "inventory": 10
@@ -1675,9 +1332,7 @@
     },
     {
       "id": 400,
-      "name": "Fly Amanita",
       "type": "misc",
-      "nameDe": "Knollenblätterpilz",
       "storageMax": {
         "shelf": 10,
         "inventory": 20
@@ -1685,9 +1340,7 @@
     },
     {
       "id": 526,
-      "name": "Mr Puffy Will",
       "type": "key",
-      "nameDe": "Testament von Hr. Puffy",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1695,9 +1348,7 @@
     },
     {
       "id": 589,
-      "name": "S.C.R.E.W. / Tutorials",
       "type": "document",
-      "nameDe": "Handbuch",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1705,9 +1356,7 @@
     },
     {
       "id": 398,
-      "name": "King Oyster",
       "type": "food",
-      "nameDe": "Kräuterseitling",
       "storageMax": {
         "shelf": 10,
         "inventory": 20
@@ -1715,16 +1364,12 @@
     },
     {
       "id": 78,
-      "name": "Log",
       "type": "log",
-      "nameDe": "Baumstamm",
       "isInventoryItem": false
     },
     {
       "id": 466,
-      "name": "Oyster",
       "type": "food",
-      "nameDe": "Auster",
       "storageMax": {
         "shelf": 5,
         "inventory": 5
@@ -1732,37 +1377,17 @@
     },
     {
       "id": 433,
-      "name": "Meat",
       "type": "food",
-      "nameDe": "Fleisch",
       "modules": [
         {
           "moduleId": 3,
           "variants": [
-            {
-              "state": 1,
-              "name": "Raw Meat"
-            },
-            {
-              "state": 2,
-              "name": "Unknown Meat"
-            },
-            {
-              "state": 3,
-              "name": "Spoiled Meat"
-            },
-            {
-              "state": 4,
-              "name": "Dried Meat"
-            },
-            {
-              "state": 5,
-              "name": "Cooked Meat"
-            },
-            {
-              "state": 6,
-              "name": "Burned Meat"
-            }
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ]
         }
       ],
@@ -1773,9 +1398,7 @@
     },
     {
       "id": 386,
-      "name": "Revolver",
       "type": "weapon",
-      "nameDe": "Revolver",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1783,9 +1406,7 @@
     },
     {
       "id": 353,
-      "name": "Stun Gun",
       "type": "weapon",
-      "nameDe": "Betäubungsgewehr",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1793,7 +1414,6 @@
     },
     {
       "id": 552,
-      "name": "Blueprint Book",
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -1802,9 +1422,7 @@
     },
     {
       "id": 351,
-      "name": "Grab Bag",
       "type": "container",
-      "nameDe": "Notgepäck",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -1812,10 +1430,8 @@
       }
     },
     {
-      "name": "Pistol Ammo",
       "id": 370,
       "type": "ammo",
-      "nameDe": "9-mm-Munition",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -1823,20 +1439,16 @@
       }
     },
     {
-      "name": "Stock Price",
       "id": 617,
       "type": "document",
-      "nameDe": "Aktienkurs-Chart",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "BlueprintStorageBox",
       "id": 583,
       "type": "container",
-      "nameDe": "Aufbewahrungskiste",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -1844,16 +1456,12 @@
       }
     },
     {
-      "name": "Stun Gun Ammo",
       "id": 457,
-      "type": "ammo",
-      "nameDe": "Betäubungsgewehrmunition"
+      "type": "ammo"
     },
     {
-      "name": "Stick Bed Blueprint",
       "id": 532,
       "type": "blueprint",
-      "nameDe": "Bett aus Stöcken",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -1861,308 +1469,244 @@
       }
     },
     {
-      "name": "Log Plank",
       "id": 395,
       "type": "log",
-      "nameDe": "Brett",
       "isInventoryItem": false
     },
     {
-      "name": "Half Log plank",
       "id": 577,
       "type": "log",
-      "nameDe": "Bretthälfte",
       "isInventoryItem": false
     },
     {
-      "name": "Novel A",
       "id": 423,
       "type": "document",
-      "nameDe": "Buch „Fähnchenbanner”",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Novel C",
       "id": 574,
       "type": "document",
-      "nameDe": "Buch „Gerettet”",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Novel D",
       "id": 575,
       "type": "document",
-      "nameDe": "Buch „Parallelwelten”",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Novel B",
       "id": 424,
       "type": "document",
-      "nameDe": "Buch „Tiefschlaf”",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Crunchie Wunchies",
       "id": 425,
       "type": "food",
-      "nameDe": "Crunchie Wunchies",
       "storageMax": {
         "shelf": 4,
         "inventory": 4
       }
     },
     {
-      "name": "Three Quarter Log Plank",
       "id": 578,
       "type": "log",
-      "nameDe": "Dreiviertelbrett",
       "isInventoryItem": false
     },
     {
-      "name": "Three Quarter Log",
       "id": 409,
       "type": "log",
-      "nameDe": "Dreiviertelstamm",
       "isInventoryItem": false
     },
     {
-      "name": "Golf Email Pt 1",
       "id": 534,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Politician Email Pt 1",
       "id": 542,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Email",
       "id": 614,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Ballet Email",
       "id": 545,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Politician Email Pt 2",
       "id": 543,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Email",
       "id": 615,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Squeaky Shoes Email Pt 3",
       "id": 548,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Squeaky Shoes Email Pt 2",
       "id": 547,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Squeaky Shoes Email Pt 1",
       "id": 546,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Email",
       "id": 616,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Astrology Email Pt 2",
       "id": 540,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Politician Email Pt 3",
       "id": 544,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Golf Email Pt 2",
       "id": 535,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Golf Email Pt 3",
       "id": 536,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Golf Email Pt 4",
       "id": 537,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Painting Email",
       "id": 538,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Astrology Email Pt 3",
       "id": 541,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Astrology Email Pt 1",
       "id": 539,
       "type": "document",
-      "nameDe": "E-Mail",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Stun Baton",
       "id": 396,
       "type": "weapon",
-      "nameDe": "Elektroschocker",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Spring",
       "id": 513,
       "type": "misc",
-      "nameDe": "Feder",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "MrPuffy Financials",
       "id": 528,
       "type": "document",
-      "nameDe": "Finanzdaten von Hr. Puffy",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "BlueprintFishTrap",
       "id": 582,
       "type": "blueprint",
-      "nameDe": "Fischreuse",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Fly Swatter Blueprint",
       "id": 550,
       "type": "blueprint",
-      "nameDe": "Fliegenklatsche-Falle",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2170,10 +1714,8 @@
       }
     },
     {
-      "name": "Shotgun Slug",
       "id": 372,
       "type": "weapon",
-      "nameDe": "Flintenlaufgeschoss",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 50,
@@ -2181,72 +1723,56 @@
       }
     },
     {
-      "name": "Rifle Rail Mod",
       "id": 383,
-      "type": "weapon",
-      "nameDe": "Gewehraufsatz"
+      "type": "weapon"
     },
     {
-      "name": "RifleAmmo",
       "id": 387,
-      "type": "ammo",
-      "nameDe": "Gewehrmunition"
+      "type": "ammo"
     },
     {
-      "name": "HolovilleNoticeA",
       "id": 562,
       "type": "document",
-      "nameDe": "Holoville-Hinweis",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "HolovilleNoticeD",
       "id": 565,
       "type": "document",
-      "nameDe": "Holoville-Hinweis",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "HolovilleNoticeB",
       "id": 563,
       "type": "document",
-      "nameDe": "Holoville-Hinweis",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "HolovilleNoticeC",
       "id": 564,
       "type": "document",
-      "nameDe": "Holoville-Hinweis",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Dress",
       "id": 556,
       "type": "clothes",
-      "nameDe": "Kleid",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "BlueprintSmallLogCabin",
       "id": 591,
       "type": "blueprint",
-      "nameDe": "Kleine Blockhütte",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2254,10 +1780,8 @@
       }
     },
     {
-      "name": "Small Animal Catcher Blueprint",
       "id": 551,
       "type": "blueprint",
-      "nameDe": "Kleintierfalle",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2265,10 +1789,8 @@
       }
     },
     {
-      "name": "BlueprintStorageBones",
       "id": 608,
       "type": "blueprint",
-      "nameDe": "Knochenlager",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2276,10 +1798,8 @@
       }
     },
     {
-      "name": "BlueprintBoneChandelier",
       "id": 588,
       "type": "blueprint",
-      "nameDe": "Knochenleuchter",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2287,10 +1807,8 @@
       }
     },
     {
-      "name": "Bone Maker Blueprint",
       "id": 549,
       "type": "blueprint",
-      "nameDe": "Knochenmacherfalle",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2298,10 +1816,8 @@
       }
     },
     {
-      "name": "BlueprintBoneChair",
       "id": 579,
       "type": "blueprint",
-      "nameDe": "Knochenstuhl",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2309,26 +1825,20 @@
       }
     },
     {
-      "name": "Tactical Bow",
       "id": 360,
       "type": "weapon",
-      "nameDe": "Kompositbogen",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Structure Element",
       "id": 520,
-      "type": "misc",
-      "nameDe": "Konstruktionselement"
+      "type": "misc"
     },
     {
-      "name": "Contact Trigger",
       "id": 511,
       "type": "misc",
-      "nameDe": "Kontaktauslöser",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2336,10 +1846,8 @@
       }
     },
     {
-      "name": "Contact Spring Trigger",
       "id": 514,
       "type": "misc",
-      "nameDe": "Kontaktfederauslöser",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2347,36 +1855,28 @@
       }
     },
     {
-      "name": "Leather Suit",
       "id": 557,
       "type": "clothes",
-      "nameDe": "Lederanzug",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Machete",
       "id": 359,
       "type": "weapon",
-      "nameDe": "Machete",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Tracker Dart",
       "id": 366,
-      "type": "weapon",
-      "nameDe": "Ortungspfeil"
+      "type": "weapon"
     },
     {
-      "name": "BlueprintPlanterFloor",
       "id": 587,
       "type": "blueprint",
-      "nameDe": "Pflanzgefäß",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2384,10 +1884,8 @@
       }
     },
     {
-      "name": "BlueprintMannequin",
       "id": 584,
       "type": "blueprint",
-      "nameDe": "Schaufensterfigur",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2395,10 +1893,8 @@
       }
     },
     {
-      "name": "Shotgun Buckshot",
       "id": 371,
       "type": "ammo",
-      "nameDe": "Schrotkugeln",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2406,30 +1902,24 @@
       }
     },
     {
-      "name": "Hydnum Repandum",
       "id": 399,
       "type": "plant",
-      "nameDe": "Semmel-Stoppelpilz",
       "storageMax": {
         "shelf": 10,
         "inventory": 20
       }
     },
     {
-      "name": "Shiitake",
       "id": 397,
       "type": "plant",
-      "nameDe": "Shiitake",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
       }
     },
     {
-      "name": "BlueprintStickLadder",
       "id": 580,
       "type": "blueprint",
-      "nameDe": "Sprossenleiter",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2437,17 +1927,13 @@
       }
     },
     {
-      "name": "Half Log",
       "id": 408,
       "type": "log",
-      "nameDe": "Stammhälfte",
       "isInventoryItem": false
     },
     {
-      "name": "BlueprintStorageLogs",
       "id": 609,
       "type": "blueprint",
-      "nameDe": "Stammlager",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2455,10 +1941,8 @@
       }
     },
     {
-      "name": "BlueprintStorageRocks",
       "id": 607,
       "type": "blueprint",
-      "nameDe": "Steinlager",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2466,10 +1950,8 @@
       }
     },
     {
-      "name": "BlueprintStorageSticks",
       "id": 610,
       "type": "blueprint",
-      "nameDe": "Stocklager",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2477,10 +1959,8 @@
       }
     },
     {
-      "name": "Stick Chair Blueprint",
       "id": 531,
       "type": "blueprint",
-      "nameDe": "Stühle aus Stöcken",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2488,30 +1968,24 @@
       }
     },
     {
-      "name": "Tactical Jacket",
       "id": 495,
       "type": "clothes",
-      "nameDe": "Taktische Jacke",
       "storageMax": {
         "shelf": 0,
         "inventory": 2
       }
     },
     {
-      "name": "Deer Hide",
       "id": 472,
       "type": "misc",
-      "nameDe": "Tierhaut",
       "storageMax": {
         "shelf": 3,
         "inventory": 10
       }
     },
     {
-      "name": "Drying Rack Blueprint",
       "id": 530,
       "type": "blueprint",
-      "nameDe": "Trockengestell",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2519,30 +1993,24 @@
       }
     },
     {
-      "name": "Basic Building Tutorial Page",
       "id": 515,
       "type": "document",
-      "nameDe": "Tutorial-Seite",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Tarp Tent Tutorial Page",
       "id": 516,
       "type": "document",
-      "nameDe": "Tutorial-Seite",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Creepy Skin",
       "id": 592,
       "type": "armor",
-      "nameDe": "Unheimliche Haut",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2550,24 +2018,18 @@
       }
     },
     {
-      "name": "Quarter Log plank",
       "id": 576,
       "type": "log",
-      "nameDe": "Viertelbrett",
       "isInventoryItem": false
     },
     {
-      "name": "Quarter Log",
       "id": 406,
       "type": "log",
-      "nameDe": "Viertelstamm",
       "isInventoryItem": false
     },
     {
-      "name": "BlueprintBirdHouse",
       "id": 581,
       "type": "blueprint",
-      "nameDe": "Vogelhaus",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2575,10 +2037,8 @@
       }
     },
     {
-      "name": "BlueprintScarecrow",
       "id": 585,
       "type": "blueprint",
-      "nameDe": "Vogelscheuche",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2586,10 +2046,8 @@
       }
     },
     {
-      "name": "BlueprintWeaponRack",
       "id": 533,
       "type": "blueprint",
-      "nameDe": "Waffenregal",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2597,10 +2055,8 @@
       }
     },
     {
-      "name": "BlueprintPlanterWall",
       "id": 586,
       "type": "blueprint",
-      "nameDe": "Wandpflanzkasten",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -2608,56 +2064,44 @@
       }
     },
     {
-      "name": "Numbers Printout",
       "id": 611,
       "type": "document",
-      "nameDe": "Zahlenübersetzung",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Newspaper Cutout",
       "id": 612,
       "type": "document",
-      "nameDe": "Zeitungsausschnitt",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Newspaper Cutout",
       "id": 613,
       "type": "document",
-      "nameDe": "Zeitungsausschnitt",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "name": "Hang Glider",
-      "nameDe": "Hang Glider",
       "id": 626,
       "type": "misc",
       "isInventoryItem": false
     },
     {
-      "name": "Knight V",
-      "nameDe": "Knight V",
       "id": 630,
       "type": "misc",
       "isInventoryItem": false
     },
     {
-      "name": "Laser Measure Tool",
       "id": 505,
       "type": "misc"
     },
     {
-      "name": "Cult Pamphlet",
       "id": 633,
       "type": "document",
       "storageMax": {
@@ -2666,8 +2110,6 @@
       }
     },
     {
-      "name": "Rain Catcher",
-      "nameDe": "Wassersammler",
       "id": 629,
       "type": "misc",
       "storageMax": {
@@ -2676,7 +2118,6 @@
       }
     },
     {
-      "name": "The Realm Beyond",
       "id": 631,
       "type": "document",
       "storageMax": {
@@ -2685,8 +2126,6 @@
       }
     },
     {
-      "name": "Solar Panel",
-      "nameDe": "Solarmodul",
       "id": 634,
       "type": "misc",
       "storageMax": {
@@ -2695,8 +2134,6 @@
       }
     },
     {
-      "name": "Light Bulb",
-      "nameDe": "Glühbirne",
       "id": 635,
       "type": "misc",
       "storageMax": {
@@ -2705,7 +2142,6 @@
       }
     },
     {
-      "name": "Blueprint Hanging Skull Light",
       "id": 625,
       "type": "blueprint",
       "storageMax": {
@@ -2714,7 +2150,6 @@
       }
     },
     {
-      "name": "Blueprint Rock Path",
       "id": 622,
       "type": "blueprint",
       "storageMax": {
@@ -2723,7 +2158,6 @@
       }
     },
     {
-      "name": "Blueprint Shelf",
       "id": 621,
       "type": "blueprint",
       "storageMax": {
@@ -2732,7 +2166,6 @@
       }
     },
     {
-      "name": "Blueprint Table",
       "id": 620,
       "type": "blueprint",
       "storageMax": {
@@ -2741,7 +2174,6 @@
       }
     },
     {
-      "name": "Blueprint Wall Shelf",
       "id": 623,
       "type": "blueprint",
       "storageMax": {
@@ -2750,7 +2182,6 @@
       }
     },
     {
-      "name": "Blueprint Wall Torch",
       "id": 624,
       "type": "blueprint",
       "storageMax": {
@@ -2759,7 +2190,6 @@
       }
     },
     {
-      "name": "Flask",
       "id": 475,
       "type": "misc",
       "storageMax": {
@@ -2768,7 +2198,6 @@
       }
     },
     {
-      "name": "GRABS Laser Pointer",
       "id": 498,
       "type": "misc",
       "storageMax": {
@@ -2777,7 +2206,6 @@
       }
     },
     {
-      "name": "Mr. Puffton Table Card",
       "id": 627,
       "type": "misc",
       "storageMax": {
@@ -2786,7 +2214,6 @@
       }
     },
     {
-      "name": "Mrs. Puffton Table Card",
       "id": 628,
       "type": "misc",
       "storageMax": {
@@ -2798,12 +2225,10 @@
   "storages": [
     {
       "id": 49,
-      "name": "Shelf",
       "slots": 12
     },
     {
       "id": 29,
-      "name": "Stick Storage",
       "slots": 1,
       "maxPerSlot": 90,
       "restrictedItemIds": [
@@ -2813,7 +2238,6 @@
     },
     {
       "id": 31,
-      "name": "Rock Storage",
       "slots": 1,
       "maxPerSlot": 17,
       "restrictedItemIds": [
@@ -2823,7 +2247,6 @@
     },
     {
       "id": 32,
-      "name": "Bone Storage",
       "slots": 1,
       "maxPerSlot": 50,
       "restrictedItemIds": [
@@ -2833,12 +2256,10 @@
     },
     {
       "id": 51,
-      "name": "Wall Shelf",
       "slots": 4
     },
     {
       "id": 27,
-      "name": "Drying Rack",
       "slots": 6,
       "maxPerSlot": 1,
       "type": "Food",
@@ -2849,7 +2270,6 @@
     },
     {
       "id": 37,
-      "name": "Log Storage",
       "slots": 1,
       "maxPerSlot": 6,
       "restrictedItemIds": [
@@ -2859,7 +2279,6 @@
     },
     {
       "id": 36,
-      "name": "Armor Rack",
       "slots": 10,
       "maxPerSlot": 1,
       "restrictedItemIds": [
@@ -2872,7 +2291,6 @@
     },
     {
       "id": 39,
-      "name": "Scarecrow",
       "slots": 0,
       "restrictedItemIds": []
     }
@@ -2880,64 +2298,22 @@
   "followers": {
     "outfits": {
       "9": [
-        {
-          "id": -1,
-          "name": "Default"
-        },
-        {
-          "id": 0,
-          "name": "Tactical Jacket"
-        },
-        {
-          "id": 1,
-          "name": "Tuxedo"
-        },
-        {
-          "id": 2,
-          "name": "Pyjamas"
-        },
-        {
-          "id": 3,
-          "name": "Leather Jacket"
-        },
-        {
-          "id": 4,
-          "name": "Hoody"
-        },
-        {
-          "id": 5,
-          "name": "Unknown"
-        },
-        {
-          "id": 6,
-          "name": "Blazer"
-        }
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
       ],
       "10": [
-        {
-          "id": -1,
-          "name": "Default"
-        },
-        {
-          "id": 0,
-          "name": "Swim Suit"
-        },
-        {
-          "id": 1,
-          "name": "Track Suit"
-        },
-        {
-          "id": 2,
-          "name": "Leather Suit"
-        },
-        {
-          "id": 3,
-          "name": "Camouflage Suit"
-        },
-        {
-          "id": 4,
-          "name": "Dress"
-        }
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     "equippableItems": {
@@ -2953,306 +2329,259 @@
   },
   "actorTypes": [
     {
-      "name": "Rabbit",
       "id": 1,
       "classification": "animal",
       "image": "rabbit.jpg"
     },
     {
-      "name": "Squirrel",
       "id": 2,
       "classification": "animal",
       "image": "squirrel.jpg"
     },
     {
-      "name": "Turtle",
       "id": 3,
       "classification": "animal",
       "image": "sea_turtle.jpg"
     },
     {
-      "name": "Shark",
       "id": 4,
       "classification": "animal",
       "image": "shark.png"
     },
     {
-      "name": "Seagull",
       "id": 5,
       "classification": "animal",
       "image": "seagull.png"
     },
     {
-      "name": "Eagle",
       "id": 6,
       "classification": "animal",
       "image": "eagle.jpg"
     },
     {
-      "name": "Duck",
       "id": 7,
       "classification": "animal",
       "image": "duck.png"
     },
     {
-      "name": "Timmy",
       "id": 8,
       "classification": "human",
       "gender": "male",
       "image": "timmy.jpg"
     },
     {
-      "name": "Kelvin / Robby",
       "id": 9,
       "classification": "human",
       "gender": "male",
       "image": "kelvin.jpg"
     },
     {
-      "name": "Virginia",
       "id": 10,
       "classification": "human",
       "gender": "female",
       "image": "virginia.jpg"
     },
     {
-      "name": "Fingers",
       "id": 11,
       "classification": "creep",
       "image": "fingers.jpg"
     },
     {
-      "name": "Carl",
       "id": 12,
       "classification": "cannibal",
       "gender": "male",
       "image": "carl.jpg"
     },
     {
-      "name": "Andy",
       "id": 13,
       "classification": "cannibal",
       "gender": "male",
       "image": "andy.jpg"
     },
     {
-      "name": "Danny",
       "id": 14,
       "classification": "cannibal",
       "gender": "male",
       "image": "danny.jpg"
     },
     {
-      "name": "Billy",
       "id": 15,
       "classification": "cannibal",
       "gender": "male",
       "image": "billy.jpg"
     },
     {
-      "name": "GoldMask",
-      "classification": "cannibal",
       "id": 16,
+      "classification": "cannibal",
       "gender": "male",
       "image": "gold_mask.jpg"
     },
     {
-      "name": "Moose",
       "id": 17,
       "classification": "animal",
       "image": "moose.jpg"
     },
     {
-      "name": "Baby",
       "id": 18,
       "classification": "creep",
       "image": "baby.jpg"
     },
     {
-      "name": "Twins",
       "id": 19,
       "classification": "creep",
       "image": "twins.jpg"
     },
     {
-      "name": "Mr. Puffy",
       "id": 20,
       "classification": "creep",
       "gender": "male",
       "image": "mr_puffy.jpg"
     },
     {
-      "name": "Mrs. Puffy",
       "id": 21,
       "classification": "creep",
       "gender": "female",
       "image": "mrs_puffy.jpg"
     },
     {
-      "name": "Slug",
       "id": 22,
       "classification": "creep",
       "image": "slug.jpg"
     },
     {
-      "name": "Angel",
-      "classification": "cannibal",
       "id": 23,
+      "classification": "cannibal",
       "gender": "female",
       "image": "angel.jpg"
     },
     {
-      "name": "Salmon",
       "id": 24,
       "classification": "animal",
       "image": "salmon.png"
     },
     {
-      "name": "Brandy",
       "id": 25,
       "classification": "cannibal",
       "gender": "female",
       "image": "brandy.jpg"
     },
     {
-      "name": "Crystal",
       "id": 26,
       "classification": "cannibal",
       "gender": "female",
       "image": "crystal.jpg"
     },
     {
-      "name": "Destiny",
       "id": 27,
       "classification": "cannibal",
       "gender": "male",
       "image": "destiny.jpg"
     },
     {
-      "name": "Muddy Female",
       "id": 28,
-      "classification": "muddy_cannibal",
+      "classification": "muddyCannibal",
       "gender": "female",
       "image": "muddy_female.jpg"
     },
     {
-      "name": "Muddy Male",
       "id": 29,
-      "classification": "muddy_cannibal",
+      "classification": "muddyCannibal",
       "gender": "male",
       "image": "muddy_male.jpg"
     },
     {
-      "name": "Heavy Male",
       "id": 30,
       "classification": "cannibal",
       "gender": "male",
       "image": "heavy_male.jpg"
     },
     {
-      "name": "Sponge Test",
       "id": 31,
       "classification": "misc"
     },
     {
-      "name": "Bat",
       "id": 32,
       "classification": "animal",
       "image": "bat.png"
     },
     {
-      "name": "Deer",
       "id": 33,
       "classification": "animal",
       "image": "deer.png"
     },
     {
-      "name": "Bluebird",
       "id": 34,
       "classification": "animal",
       "image": "bluebird.jpg"
     },
     {
-      "name": "Hummingbird",
       "id": 35,
       "classification": "animal",
       "image": "hummingbird.jpg"
     },
     {
-      "name": "Killer Whale",
       "id": 36,
       "classification": "animal",
       "image": "killer_whale.png"
     },
     {
-      "name": "Land Turtle",
       "id": 37,
       "classification": "animal",
       "image": "land_turtle.png"
     },
     {
-      "name": "Fat Male",
       "id": 38,
       "classification": "cannibal",
       "gender": "male",
       "image": "fat_male.jpg"
     },
     {
-      "name": "Fat Female",
       "id": 39,
       "classification": "cannibal",
       "gender": "female",
       "image": "fat_female.jpg"
     },
     {
-      "name": "John2",
       "id": 40,
       "classification": "creep",
       "gender": "male",
       "image": "john2.jpg"
     },
     {
-      "name": "Faceless Male",
       "id": 41,
       "classification": "cannibal",
       "gender": "male",
       "image": "faceless_male.jpg"
     },
     {
-      "name": "Demon",
       "id": 42,
       "classification": "creep",
       "image": "demon_boss.jpg"
     },
     {
-      "name": "Painted Male",
       "id": 43,
       "classification": "cannibal",
       "gender": "male",
       "image": "painted_male.jpg"
     },
     {
-      "name": "Painted Female",
       "id": 44,
       "classification": "cannibal",
       "gender": "female",
       "image": "painted_male.jpg"
     },
     {
-      "name": "Demon Boss",
       "id": 45,
       "classification": "creep",
       "image": "demon_boss.jpg"
     },
     {
-      "name": "Mr. Puffton",
       "id": 46,
       "classification": "creep",
       "gender": "male",
       "image": "mr_puffton.jpg"
     },
     {
-      "name": "Mrs. Puffton",
       "id": 47,
       "classification": "creep",
       "gender": "female",
@@ -3285,214 +2614,179 @@
   ],
   "screwStructures": [
     {
-      "name": "Hunting Shelter",
-      "id": 47,
-      "buildCost": 20,
-      "category": "Shelter"
-    },
-    {
-      "name": "Small Log Cabin",
-      "id": 34,
-      "buildCost": 95,
-      "category": "Shelter"
-    },
-    {
-      "name": "Lean-to",
-      "id": 26,
-      "buildCost": 72,
-      "category": "Shelter"
-    },
-    {
-      "name": "Look Out Tower",
-      "id": 38,
-      "buildCost": 74,
-      "category": "Shelter"
-    },
-    {
-      "name": "Tree Platform 1",
-      "id": 43,
-      "buildCost": 10,
-      "category": "Tree Shelter"
-    },
-    {
-      "name": "Tree Platform 2",
-      "id": 41,
-      "buildCost": 54,
-      "category": "Tree Shelter"
-    },
-    {
-      "name": "Tree Shelter 1",
-      "id": 44,
-      "buildCost": 97,
-      "category": "Tree Shelter"
-    },
-    {
-      "name": "Tree Shelter 2",
-      "id": 28,
-      "buildCost": 131,
-      "category": "Tree Shelter"
-    },
-    {
-      "name": "Stick Bed",
-      "id": 22,
-      "buildCost": 17,
-      "category": "Furniture"
-    },
-    {
-      "name": "Stick Chair",
       "id": 20,
       "buildCost": 14,
-      "category": "Furniture"
+      "category": "furniture"
     },
     {
-      "name": "Bone Chair",
-      "id": 25,
-      "buildCost": 16,
-      "category": "Furniture"
-    },
-    {
-      "name": "Bone Chandelier",
-      "id": 24,
-      "buildCost": 28,
-      "category": "Furniture"
-    },
-    {
-      "name": "Wall Torch",
-      "id": 53,
-      "buildCost": 2,
-      "category": "Furniture"
-    },
-    {
-      "name": "Ceiling Skull Lamp",
-      "id": 54,
-      "buildCost": 2,
-      "category": "Furniture"
-    },
-    {
-      "name": "Bench",
-      "id": 52,
-      "buildCost": 3,
-      "category": "Furniture"
-    },
-    {
-      "name": "Table",
-      "id": 48,
-      "buildCost": 7,
-      "category": "Furniture"
-    },
-    {
-      "name": "Stick Storage",
-      "id": 29,
-      "buildCost": 6,
-      "category": "Storage"
-    },
-    {
-      "name": "Shelf",
-      "id": 49,
-      "buildCost": 5,
-      "category": "Storage"
-    },
-    {
-      "name": "Rock Storage",
-      "id": 31,
-      "buildCost": 7,
-      "category": "Storage"
-    },
-    {
-      "name": "Bone Storage",
-      "id": 32,
-      "buildCost": 8,
-      "category": "Storage"
-    },
-    {
-      "name": "Wall Shelf",
-      "id": 51,
-      "buildCost": 3,
-      "category": "Storage"
-    },
-    {
-      "name": "Drying Rack",
-      "id": 27,
-      "buildCost": 9,
-      "category": "Storage"
-    },
-    {
-      "name": "Log Storage",
-      "id": 37,
-      "buildCost": 8,
-      "category": "Storage"
-    },
-    {
-      "name": "Armor Rack",
-      "id": 36,
-      "buildCost": 21,
-      "category": "Storage"
-    },
-    {
-      "name": "Scarecrow",
-      "id": 39,
-      "buildCost": 18,
-      "category": "Utility"
-    },
-    {
-      "name": "Rock Path",
-      "id": 50,
-      "buildCost": 4,
-      "category": "Utility"
-    },
-    {
-      "name": "Stick Path",
-      "id": 46,
-      "buildCost": 4,
-      "category": "Utility"
-    },
-    {
-      "name": "Rain Catcher",
-      "id": 56,
-      "buildCost": 13,
-      "category": "Utility"
-    },
-    {
-      "name": "Standing Planter",
-      "id": 40,
-      "buildCost": 18,
-      "category": "Gardening"
-    },
-    {
-      "name": "Wall Planter",
-      "id": 23,
-      "buildCost": 16,
-      "category": "Gardening"
-    },
-    {
-      "name": "Small Animal Trap",
-      "id": 42,
-      "buildCost": 14,
-      "category": "Traps"
-    },
-    {
-      "name": "Fish Trap",
-      "id": 35,
-      "buildCost": 25,
-      "category": "Traps"
-    },
-    {
-      "name": "Bone Maker Trap",
       "id": 21,
       "buildCost": 10,
-      "category": "Traps"
+      "category": "traps"
     },
     {
-      "name": "Fly Swatter Trap",
+      "id": 22,
+      "buildCost": 17,
+      "category": "furniture"
+    },
+    {
+      "id": 23,
+      "buildCost": 16,
+      "category": "gardening"
+    },
+    {
+      "id": 24,
+      "buildCost": 28,
+      "category": "furniture"
+    },
+    {
+      "id": 25,
+      "buildCost": 16,
+      "category": "furniture"
+    },
+    {
+      "id": 26,
+      "buildCost": 72,
+      "category": "shelter"
+    },
+    {
+      "id": 27,
+      "buildCost": 9,
+      "category": "storage"
+    },
+    {
+      "id": 28,
+      "buildCost": 131,
+      "category": "treeShelter"
+    },
+    {
+      "id": 29,
+      "buildCost": 6,
+      "category": "storage"
+    },
+    {
+      "id": 31,
+      "buildCost": 7,
+      "category": "storage"
+    },
+    {
+      "id": 32,
+      "buildCost": 8,
+      "category": "storage"
+    },
+    {
+      "id": 34,
+      "buildCost": 95,
+      "category": "shelter"
+    },
+    {
+      "id": 35,
+      "buildCost": 25,
+      "category": "traps"
+    },
+    {
+      "id": 36,
+      "buildCost": 21,
+      "category": "storage"
+    },
+    {
+      "id": 37,
+      "buildCost": 8,
+      "category": "storage"
+    },
+    {
+      "id": 38,
+      "buildCost": 74,
+      "category": "shelter"
+    },
+    {
+      "id": 39,
+      "buildCost": 18,
+      "category": "utility"
+    },
+    {
+      "id": 40,
+      "buildCost": 18,
+      "category": "gardening"
+    },
+    {
+      "id": 41,
+      "buildCost": 54,
+      "category": "treeShelter"
+    },
+    {
+      "id": 42,
+      "buildCost": 14,
+      "category": "traps"
+    },
+    {
+      "id": 43,
+      "buildCost": 10,
+      "category": "treeShelter"
+    },
+    {
+      "id": 44,
+      "buildCost": 97,
+      "category": "treeShelter"
+    },
+    {
       "id": 45,
       "buildCost": 14,
-      "category": "Traps"
+      "category": "traps"
     },
     {
-      "name": "Spring Trap",
+      "id": 46,
+      "buildCost": 4,
+      "category": "utility"
+    },
+    {
+      "id": 47,
+      "buildCost": 20,
+      "category": "shelter"
+    },
+    {
+      "id": 48,
+      "buildCost": 7,
+      "category": "furniture"
+    },
+    {
+      "id": 49,
+      "buildCost": 5,
+      "category": "storage"
+    },
+    {
+      "id": 50,
+      "buildCost": 4,
+      "category": "utility"
+    },
+    {
+      "id": 51,
+      "buildCost": 3,
+      "category": "storage"
+    },
+    {
+      "id": 52,
+      "buildCost": 3,
+      "category": "furniture"
+    },
+    {
+      "id": 53,
+      "buildCost": 2,
+      "category": "furniture"
+    },
+    {
+      "id": 54,
+      "buildCost": 2,
+      "category": "furniture"
+    },
+    {
+      "id": 56,
+      "buildCost": 13,
+      "category": "utility"
+    },
+    {
       "id": 57,
       "buildCost": 10,
-      "category": "Traps"
+      "category": "traps"
     }
   ]
 }

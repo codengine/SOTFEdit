@@ -10,8 +10,8 @@ public partial class Influence : ObservableObject
     [ObservableProperty] private float? _fear;
     [ObservableProperty] private float? _sentiment;
     public string TypeId { get; init; }
-    public static IEnumerable<string> AllTypes => new[] { "Player", "Cannibal", "Creepy" };
-    public string PrintableTypeId => TranslationManager.GetString("InfluenceType_", TypeId);
+    public static IEnumerable<string> AllTypes => new[] { Type.Player, Type.Cannibal, Type.Creepy };
+    public string PrintableTypeId => TranslationManager.Get("actors.influenceType." + TypeId);
 
     public static Influence AsFillerWithDefaults(string typeId)
     {

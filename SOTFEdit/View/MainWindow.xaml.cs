@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
 using MahApps.Metro.Controls.Dialogs;
 using NLog;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Infrastructure.Converters;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
@@ -143,7 +145,13 @@ public partial class MainWindow
     {
         var applicationSettings = Ioc.Default.GetRequiredService<ApplicationSettings>();
         var dialog = new SettingsDialog(this, applicationSettings);
-        dialog.ShowDialog();
+
+        if (dialog.ShowDialog() is true &&
+            Settings.Default.Language != CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
+        {
+            ShowMessageDialog(TranslationManager.Get("windows.settings.messages.languageChanged.text"),
+                TranslationManager.Get("windows.settings.messages.languageChanged.title"));
+        }
     }
 
     private void OnZoomToPos(ZoomToPosEvent message)
@@ -180,7 +188,8 @@ public partial class MainWindow
 
     private async void OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)
     {
-        var result = await ShowConfirmDialog("Are you sure that you want to restore backups?", "Restore backups");
+        var result = await ShowConfirmDialog(TranslationManager.Get("windows.main.messages.confirmRestoreBackups.text"),
+            TranslationManager.Get("windows.main.messages.confirmRestoreBackups.title"));
         if (result != MessageDialogResult.Affirmative)
         {
             return;
@@ -195,8 +204,8 @@ public partial class MainWindow
         }
 
         await ShowMessageDialog(
-            string.Format(SOTFEdit.Resources.BackupsRestoredMessage, countRestored),
-            SOTFEdit.Resources.BackupsRestoredTitle);
+            TranslationManager.GetFormatted("backup.messages.backupsRestored.text", countRestored),
+            TranslationManager.Get("backup.messages.backupsRestored.title"));
     }
 
     private async void OnRequestSpawnFollowerEvent(RequestSpawnFollowerEvent message)
@@ -219,7 +228,8 @@ public partial class MainWindow
         if (message.Savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not { } saveDataWrapper)
         {
             Logger.Warn("Save data could not be loaded");
-            await ShowMessageDialog("Unable to spawn followers", "Error");
+            await ShowMessageDialog(TranslationManager.Get("windows.main.messages.unableToSpawnFollowers"),
+                TranslationManager.Get("generic.error"));
             return;
         }
 
@@ -229,7 +239,9 @@ public partial class MainWindow
 
         if (hasChanges)
         {
-            await ShowMessageDialog($"{count} followers have been created", "Followers created");
+            await ShowMessageDialog(
+                TranslationManager.GetFormatted("windows.main.messages.followersCreated.text", count),
+                TranslationManager.Get("windows.main.messages.followersCreated.title"));
         }
     }
 
@@ -249,14 +261,16 @@ public partial class MainWindow
         if (message.IsError)
         {
             await Application.Current.Dispatcher.Invoke(async () =>
-                await ShowMessageDialog("An error occured while checking for latest version", "Error"));
+                await ShowMessageDialog(TranslationManager.Get("windows.main.errors.errorCheckingLastVersion"),
+                    TranslationManager.Get("generic.error")));
             return;
         }
 
         if (!message.IsNewer)
         {
             await Application.Current.Dispatcher.Invoke(async () =>
-                await ShowMessageDialog("You are already using the latest version", "No update"));
+                await ShowMessageDialog(TranslationManager.Get("windows.main.messages.alreadyLatestVersion.text"),
+                    TranslationManager.Get("windows.main.messages.alreadyLatestVersion.title")));
             return;
         }
 
@@ -289,7 +303,8 @@ public partial class MainWindow
 
     private async void OnRequestDeleteBackupsEvent(RequestDeleteBackupsEvent message)
     {
-        var result = await ShowConfirmDialog("Do you really want to delete all backups?", "Delete all backups");
+        var result = await ShowConfirmDialog(TranslationManager.Get("windows.main.messages.confirmDeleteBackups.text"),
+            TranslationManager.Get("windows.main.messages.confirmDeleteBackups.title"));
         if (result != MessageDialogResult.Affirmative)
         {
             return;
@@ -298,12 +313,16 @@ public partial class MainWindow
         try
         {
             var countDeleted = message.Savegame.SavegameStore.DeleteBackups(ApplicationSettings.BackupFlags);
-            await ShowMessageDialog($"Deleted {countDeleted} backups", "Success");
+            await ShowMessageDialog(
+                TranslationManager.GetFormatted("windows.main.messages.backupsDeleted", countDeleted),
+                TranslationManager.Get("generic.success"));
         }
         catch (Exception ex)
         {
             Logger.Error(ex, $"Unable to delete backups at {message.Savegame.FullPath}");
-            await ShowMessageDialog($"Unable to delete backups: {ex.Message}", "Error");
+            await ShowMessageDialog(
+                TranslationManager.GetFormatted("windows.main.messages.unableToDeleteBackups", ex.Message),
+                TranslationManager.Get("generic.error"));
         }
     }
 
@@ -317,7 +336,9 @@ public partial class MainWindow
         Application.Current.Dispatcher.Invoke(() =>
         {
             Title = _baseTitle + (selectedSavegame != null
-                ? $" (Selected: {selectedSavegame.Title}, {selectedSavegame.PrintableType} - Saved at: {selectedSavegame.LastSaveTime}, Last Modified: {selectedSavegame.SavegameStore.LastWriteTime})"
+                ? TranslationManager.GetFormatted("windows.main.title", selectedSavegame.Title,
+                    selectedSavegame.PrintableType, selectedSavegame.LastSaveTime,
+                    selectedSavegame.SavegameStore.LastWriteTime)
                 : "");
         });
     }
@@ -342,8 +363,8 @@ public partial class MainWindow
         {
             var overwriteResult =
                 await ShowConfirmDialog(
-                    "The savegame has been modified outside. Do you really want to overwrite any changes?",
-                    "Overwrite Changes");
+                    TranslationManager.Get("windows.main.messages.confirmOverwriteExternalChanges.text"),
+                    TranslationManager.Get("windows.main.messages.confirmOverwriteExternalChanges.title"));
             if (overwriteResult != MessageDialogResult.Affirmative)
             {
                 return;
@@ -357,12 +378,14 @@ public partial class MainWindow
             effectiveBackupMode != ApplicationSettings.BackupMode.None)
         {
             var dialogSettings = BuildDefaultDialogSettings();
-            dialogSettings.AffirmativeButtonText = "Yes";
-            dialogSettings.NegativeButtonText = "No";
-            dialogSettings.FirstAuxiliaryButtonText = "Cancel";
+            dialogSettings.AffirmativeButtonText = TranslationManager.Get("generic.yes");
+            dialogSettings.NegativeButtonText = TranslationManager.Get("generic.no");
+            dialogSettings.FirstAuxiliaryButtonText = TranslationManager.Get("generic.cancel");
             dialogSettings.DialogResultOnCancel = MessageDialogResult.Canceled;
 
-            var askResult = await ShowConfirmDialog("Do you want to create a backup?", "Create a backup?",
+            var askResult = await ShowConfirmDialog(
+                TranslationManager.Get("windows.main.messages.confirmCreateBackup.text"),
+                TranslationManager.Get("windows.main.messages.confirmCreateBackup.title"),
                 MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, dialogSettings);
 
             switch (askResult)
@@ -390,17 +413,19 @@ public partial class MainWindow
         var hasChanges =
             message.SelectedSavegame.ReviveFollower(message.TypeId, message.ItemIds, message.Outfit, message.Pos);
 
-        var actorName = message.TypeId == Constants.Actors.KelvinTypeId ? "Kelvin" : "Virginia";
+        var actorName = TranslationManager.Get("actors.types." + message.TypeId);
 
         if (hasChanges)
         {
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"{actorName} should now be back again",
-                "Revived"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.GetFormatted("windows.main.messages.followerRevived.text", actorName),
+                TranslationManager.Get("windows.main.messages.followerRevived.title")));
         }
         else
         {
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent($"{actorName} should be alive already",
-                "No changes"));
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.GetFormatted("windows.main.messages.followerAlreadyAlive.text", actorName),
+                TranslationManager.Get("windows.main.messages.followerAlreadyAlive.title")));
         }
     }
 
@@ -408,7 +433,7 @@ public partial class MainWindow
     {
         if (message.Message is { } text)
         {
-            await ShowMessageDialog(text, "Save Changes");
+            await ShowMessageDialog(text, TranslationManager.Get("windows.main.messages.saveChanges"));
         }
     }
 
@@ -447,14 +472,14 @@ public partial class MainWindow
     private void OpenReadme_Click(object sender, RoutedEventArgs e)
     {
         var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "README.md");
-        var markdownViewer = new MarkdownViewer(this, path, "Readme");
+        var markdownViewer = new MarkdownViewer(this, path, TranslationManager.Get("menu.help.readme"));
         markdownViewer.ShowDialog();
     }
 
     private void OpenChangelog_Click(object sender, RoutedEventArgs e)
     {
         var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CHANGELOG.md");
-        var markdownViewer = new MarkdownViewer(this, path, "Changelog");
+        var markdownViewer = new MarkdownViewer(this, path, TranslationManager.Get("menu.help.changelog"));
         markdownViewer.ShowDialog();
     }
 
@@ -464,7 +489,8 @@ public partial class MainWindow
         {
             e.Handled = true;
 
-            if (await ShowConfirmDialog("Do you want to close the application?", "Close Application") ==
+            if (await ShowConfirmDialog(TranslationManager.Get("windows.main.messages.confirmCloseApplication.text"),
+                    TranslationManager.Get("windows.main.messages.confirmCloseApplication.title")) ==
                 MessageDialogResult.Affirmative)
             {
                 Close();

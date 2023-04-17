@@ -7,6 +7,7 @@
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:NpcsPageViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -18,7 +19,8 @@
         </Grid.ColumnDefinitions>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabControl TabStripPlacement="Top">
-                <TabItem Header="By Type" mah:HeaderedControlHelper.HeaderFontSize="18"
+                <TabItem Header="{infrastructure:Translate 'npcs.tabs.byType'}"
+                         mah:HeaderedControlHelper.HeaderFontSize="18"
                          mah:HeaderedControlHelper.HeaderBackground="{StaticResource MahApps.Brushes.Accent}">
                     <ListView ItemsSource="{Binding ActorsByType}" DisplayMemberPath="Name" Name="ActorListView">
                         <b:Interaction.Triggers>
@@ -31,7 +33,8 @@
                     </ListView>
 
                 </TabItem>
-                <TabItem Header="By Family" mah:HeaderedControlHelper.HeaderFontSize="18"
+                <TabItem Header="{infrastructure:Translate 'npcs.tabs.byFamily.text'}"
+                         mah:HeaderedControlHelper.HeaderFontSize="18"
                          mah:HeaderedControlHelper.HeaderBackground="{StaticResource MahApps.Brushes.Accent}">
                     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <Grid.RowDefinitions>
@@ -39,7 +42,7 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Margin="0 0 0 10" TextWrapping="Wrap"
-                                   Text="A family represents a group of NPCs which belong to each other. In other words: A swarm, a tribe for example." />
+                                   Text="{infrastructure:Translate 'npcs.tabs.byFamily.disclaimer'}" />
                         <TreeView Grid.Row="1" ItemsSource="{Binding ActorsByFamily}" Name="ActorTreeView">
                             <TreeView.Resources>
                                 <HierarchicalDataTemplate DataType="{x:Type actors:ActorGrouping}"

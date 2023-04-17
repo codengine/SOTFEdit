@@ -23,22 +23,22 @@ public partial class StructuresPageViewModel : ObservableObject
 
     public StructuresPageViewModel(GameData gameData)
     {
-        _structureTypes = gameData.ScrewStructures.OrderBy(screwStructure => screwStructure.Category)
+        _structureTypes = gameData.ScrewStructures.OrderBy(screwStructure => screwStructure.CategoryName)
             .ThenBy(screwStructure => screwStructure.Name).ToList();
-        _structureTypes.Insert(0, new ScrewStructure("", "", 0, 0));
+        _structureTypes.Insert(0, new ScrewStructure("", 0, 0));
 
         StructureTypes = new ListCollectionView(_structureTypes)
         {
             GroupDescriptions =
             {
-                new PropertyGroupDescription("Category")
+                new PropertyGroupDescription("CategoryName")
             }
         };
         Structures = new ListCollectionView(_structures)
         {
             GroupDescriptions =
             {
-                new PropertyGroupDescription("Category")
+                new PropertyGroupDescription("CategoryName")
             }
         };
         SetupListeners();
@@ -109,7 +109,8 @@ public partial class StructuresPageViewModel : ObservableObject
 
     public bool Update(Savegame savegame)
     {
-        var toBeModifiedCount = _structures.Count(structure => !string.IsNullOrEmpty(structure.ModificationMode));
+        var toBeModifiedCount = _structures.Count(structure =>
+            structure.ModificationMode != null && structure.ModificationMode != ScrewStructureModificationMode.None);
 
         if (toBeModifiedCount == 0)
         {
@@ -130,18 +131,18 @@ public partial class StructuresPageViewModel : ObservableObject
 
         foreach (var wrapper in _structures)
         {
-            if (wrapper.ModificationMode == "Remove")
+            if (wrapper.ModificationMode == ScrewStructureModificationMode.Remove)
             {
                 continue;
             }
 
             var token = wrapper.Token.DeepClone();
 
-            if (!string.IsNullOrEmpty(wrapper.ModificationMode))
+            if (wrapper.ModificationMode != null && wrapper.ModificationMode != ScrewStructureModificationMode.None)
             {
                 var added = 0;
 
-                if (wrapper.ModificationMode == "Finish")
+                if (wrapper.ModificationMode == ScrewStructureModificationMode.Finish)
                 {
                     added = wrapper.BuildCost == 1 ? 0 : wrapper.BuildCost - 1;
                 }
@@ -165,11 +166,11 @@ public partial class StructuresPageViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(HasSavegameSelected))]
-    private void SetModificationMode(string? mode)
+    private void SetModificationMode(ScrewStructureModificationMode? mode)
     {
         foreach (var wrapper in _structures.Where(structure =>
                      BatchSelectedStructureType == null || BatchSelectedStructureType.Name == "" ||
-                     structure.Category == BatchSelectedStructureType.Category))
+                     structure.ScrewStructure?.Id == BatchSelectedStructureType.Id))
             wrapper.ModificationMode = mode;
     }
 

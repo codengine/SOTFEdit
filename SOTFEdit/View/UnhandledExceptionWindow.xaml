@@ -5,13 +5,14 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                  d:DataContext="{d:DesignInstance viewModel:UnhandledExceptionViewModel}"
                  mc:Ignorable="d"
                  Padding="15"
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
                  TitleCharacterCasing="Normal"
-                 Title="Unhandled Exception" Height="800" Width="800">
+                 Title="{infrastructure:Translate 'windows.unhandledException.title'}" Height="800" Width="800">
     <Window.Resources>
         <Style x:Key="Label"
                TargetType="TextBlock">
@@ -36,37 +37,38 @@
         <!--  Info  -->
         <TextBlock Margin="16"
                    FontSize="14"
-                   Text="An unexpected error occured. The application state might be corrupted."
+                   Text="{infrastructure:Translate 'windows.unhandledException.disclaimer'}"
                    TextWrapping="Wrap" />
 
         <!--  Exception details  -->
-        <GroupBox Grid.Row="1" Header="Exception Details" Margin="16,8,16,8">
+        <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'windows.unhandledException.header'}"
+                  Margin="16,8,16,8">
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <TextBlock Style="{StaticResource Label}"
-                               Text="Application Version" />
+                               Text="{infrastructure:Translate 'windows.unhandledException.applicationVersion'}" />
                     <TextBlock Style="{StaticResource Content}"
                                Text="{Binding ApplicationVersion, Mode=OneWay, TargetNullValue=-}" />
                     <!--  Exception Message  -->
                     <TextBlock Style="{StaticResource Label}"
-                               Text="Exception message" />
+                               Text="{infrastructure:Translate 'windows.unhandledException.exceptionMessage'}" />
                     <TextBlock
                         Text="{Binding Exception.Message, Mode=OneWay, TargetNullValue=-}"
                         TextWrapping="Wrap" />
                     <!--  Exception Type  -->
                     <TextBlock Style="{StaticResource Label}"
-                               Text="Exception type" />
+                               Text="{infrastructure:Translate 'windows.unhandledException.exceptionType'}" />
                     <TextBlock Style="{StaticResource Content}"
                                Text="{Binding ExceptionType, Mode=OneWay, TargetNullValue=-}" />
                     <!--  Callstack  -->
                     <TextBlock Style="{StaticResource Label}"
-                               Text="Callstack" />
+                               Text="{infrastructure:Translate 'windows.unhandledException.callstack'}" />
                     <TextBlock Style="{StaticResource Content}"
                                Text="{Binding Exception.StackTrace, Mode=OneWay, TargetNullValue=-}" />
                     <!--  Inner exception  -->
                     <TextBlock Style="{StaticResource Label}"
-                               Text="Inner exception" />
+                               Text="{infrastructure:Translate 'windows.unhandledException.innerException'}" />
                     <TextBlock Style="{StaticResource Content}"
                                Text="{Binding Exception.InnerException, Mode=OneWay, TargetNullValue=-}" />
                 </StackPanel>
@@ -74,10 +76,10 @@
         </GroupBox>
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="15">
             <Button Background="{DynamicResource MahApps.Brushes.Accent}" Padding="10" Margin="0 0 10 0"
-                    Command="{Binding CopyToClipboardCommand}">
-                Copy Error to Clipboard
-            </Button>
-            <Button Background="DarkRed" Padding="10" Command="{Binding ExitApplicationCommand}">Exit Application</Button>
+                    Command="{Binding CopyToClipboardCommand}"
+                    Content="{infrastructure:Translate 'windows.unhandledException.buttons.copyErrorToClipboard'}" />
+            <Button Background="DarkRed" Padding="10" Command="{Binding ExitApplicationCommand}"
+                    Content="{infrastructure:Translate 'windows.unhandledException.buttons.exitApplication'}" />
         </StackPanel>
     </Grid>
 </mah:MetroWindow>

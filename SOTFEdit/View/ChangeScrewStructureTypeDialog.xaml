@@ -7,6 +7,7 @@
                      xmlns:model="clr-namespace:SOTFEdit.Model"
                      xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                      xmlns:st="http://schemas.spicytaco.io/"
+                     xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
                      mc:Ignorable="d"
                      Padding="30"
                      d:DataContext="{d:DesignInstance viewModel:ChangeScrewStructureViewModel}">
@@ -19,9 +20,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="0 0 0 10" TextWrapping="Wrap">
-            You can select a different structure type here. Please keep in mind that the rotation and location of the structure will stay the same, which could lead to bugs and crashes.
-        </TextBlock>
+        <TextBlock Margin="0 0 0 10" TextWrapping="Wrap"
+                   Text="{infrastructure:Translate 'dialogs.changeScrewStructureType.disclaimer'}" />
         <ComboBox Grid.Row="1" ItemsSource="{Binding ScrewStructures}"
                   Margin="0 0 0 10"
                   HorizontalAlignment="Stretch"
@@ -45,10 +45,10 @@
         </ComboBox>
         <st:AutoGrid Grid.Row="2" HorizontalAlignment="Stretch" Columns="*,*">
             <Button Margin="0 0 8 0" Command="{Binding OkCommand}"
-                    Background="{DynamicResource MahApps.Brushes.Accent}" Padding="10">
-                Ok
-            </Button>
-            <Button Command="{Binding CancelCommand}" Background="DarkRed" Padding="10">Cancel</Button>
+                    Background="{DynamicResource MahApps.Brushes.Accent}" Padding="10"
+                    Content="{infrastructure:Translate 'generic.ok'}" />
+            <Button Command="{Binding CancelCommand}" Background="DarkRed" Padding="10"
+                    Content="{infrastructure:Translate 'generic.cancel'}" />
         </st:AutoGrid>
     </Grid>
 </mah:BaseMetroDialog>

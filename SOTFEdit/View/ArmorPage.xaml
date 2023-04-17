@@ -6,32 +6,31 @@
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:st="http://schemas.spicytaco.io/"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:ArmorPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <GroupBox Header="Equipped Armor (Max. 10)" Margin="0 0 5 0">
+    <GroupBox Header="{infrastructure:Translate 'armor.header'}" Margin="0 0 5 0">
         <st:AutoGrid Margin="10" Rows="Auto,*,Auto" Columns="*">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 10 0 20">
                 <ComboBox Margin="0,0,5,0" ItemsSource="{Binding ArmourTypes}"
                           SelectedItem="{Binding NewArmour.SelectedItem}" DisplayMemberPath="Name" />
-                <Button Margin="0,0,5,0" ToolTip="Set to the armors default durability"
-                        Command="{Binding NewArmour.SetDefaultDurabilityForNewArmourCommand}">
-                    Default
-                </Button>
-                <Button Margin="0,0,5,0" ToolTip="Set the armors durability to an arbitrarily high number"
-                        Command="{Binding NewArmour.SetMaxDurabilityForNewArmourCommand}">
-                    Max
-                </Button>
+                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToDefault.tooltip'}"
+                        Command="{Binding NewArmour.SetDefaultDurabilityForNewArmourCommand}"
+                        Content="{infrastructure:Translate 'armor.buttons.setToDefault.text'}" />
+                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToMax.tooltip'}"
+                        Command="{Binding NewArmour.SetMaxDurabilityForNewArmourCommand}"
+                        Content="{infrastructure:Translate 'armor.buttons.setToMax.text'}" />
                 <mah:NumericUpDown
-                    ToolTip="The durability of the armor. If it is 0, the armor breaks. Can be very high"
+                    ToolTip="{infrastructure:Translate 'armor.durabilityInput.tooltip'}"
                     Margin="0,0,5,0"
-                    mah:TextBoxHelper.Watermark="Durability" Interval="10"
+                    mah:TextBoxHelper.Watermark="{infrastructure:Translate 'armor.durabilityInput.watermark'}"
+                    Interval="10"
                     Value="{Binding NewArmour.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}"
                     MinWidth="100" />
                 <Button Background="{DynamicResource MahApps.Brushes.Accent}"
-                        Command="{Binding NewArmour.AddArmorCommand}">
-                    Add
-                </Button>
+                        Command="{Binding NewArmour.AddArmorCommand}"
+                        Content="{infrastructure:Translate 'generic.add'}" />
             </StackPanel>
             <DataGrid Height="Auto" AutoGenerateColumns="False"
                       SelectionMode="Single" ItemsSource="{Binding ArmourView}"
@@ -41,7 +40,7 @@
                     <DataTemplate x:Key="NumericUpDownTemplate" DataType="{x:Type viewModel:ArmourData}">
                         <Grid>
                             <mah:NumericUpDown
-                                ToolTip="The durability of the armor. If it is 0, the armor breaks. Can be very high"
+                                ToolTip="{infrastructure:Translate 'armor.durabilityInput.tooltip'}"
                                 Value="{Binding ArmourPiece.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}"
                                 Minimum="{Binding MinDurability, Mode=OneWay}"
                                 Maximum="{Binding MaxDurability, Mode=OneWay}" />
@@ -51,41 +50,41 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Margin="0,0,5,0" Background="DarkRed"
                                     Command="{Binding DataContext.RemoveArmourCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                    CommandParameter="{Binding}">
-                                Remove
-                            </Button>
+                                    CommandParameter="{Binding}"
+                                    Content="{infrastructure:Translate 'armor.buttons.remove'}" />
                             <Button Margin="0,0,5,0" Command="{Binding SetDurabilityCommand}"
-                                    CommandParameter="{Binding DefaultDurability}">
-                                Default
-                            </Button>
+                                    CommandParameter="{Binding DefaultDurability}"
+                                    Content="{infrastructure:Translate 'armor.buttons.default'}" />
                             <Button Background="{DynamicResource MahApps.Brushes.Accent}"
                                     Command="{Binding SetDurabilityCommand}"
-                                    CommandParameter="{Binding MaxDurability}">
-                                Max
-                            </Button>
+                                    CommandParameter="{Binding MaxDurability}"
+                                    Content="{infrastructure:Translate 'armor.buttons.max'}" />
                         </StackPanel>
                     </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Slot, Mode=OneTime}" Header="Slot" IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}" Header="ID" IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="Name" IsReadOnly="True" />
-                    <DataGridTextColumn Binding="{Binding NameDe, Mode=OneTime}" Header="Name (De)" IsReadOnly="True" />
-                    <DataGridTemplateColumn Header="Durability" CellTemplate="{StaticResource NumericUpDownTemplate}" />
-                    <DataGridTemplateColumn Width="*" Header="Actions" CellTemplate="{StaticResource ActionButtons}" />
+                    <DataGridTextColumn Binding="{Binding Slot, Mode=OneTime}"
+                                        Header="{infrastructure:Translate 'armor.headers.slot'}" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
+                                        Header="{infrastructure:Translate 'armor.headers.id'}" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
+                                        Header="{infrastructure:Translate 'armor.headers.name'}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="{infrastructure:Translate 'armor.headers.durability'}"
+                                            CellTemplate="{StaticResource NumericUpDownTemplate}" />
+                    <DataGridTemplateColumn Width="*" Header="{infrastructure:Translate 'armor.headers.actions'}"
+                                            CellTemplate="{StaticResource ActionButtons}" />
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0 20 0 0"
                         HorizontalAlignment="Right">
-                <Button Padding="10" ToolTip="Set durability of all armor pieces to default" Margin="0,0,10,0"
-                        Command="{Binding SetAllToDefaultCommand}">
-                    Set all to Default
-                </Button>
+                <Button Padding="10" ToolTip="{infrastructure:Translate 'armor.buttons.setAllToDefault.tooltip'}"
+                        Margin="0,0,10,0"
+                        Command="{Binding SetAllToDefaultCommand}"
+                        Content="{infrastructure:Translate 'armor.buttons.setAllToDefault.text'}" />
                 <Button Background="{DynamicResource MahApps.Brushes.Accent}"
-                        ToolTip="Set durability of all armor pieces to max" Padding="10"
-                        Command="{Binding SetAllToMaxCommand}">
-                    Set all to Max
-                </Button>
+                        ToolTip="{infrastructure:Translate 'armor.buttons.setAllToMax.text'}" Padding="10"
+                        Command="{Binding SetAllToMaxCommand}"
+                        Content="{infrastructure:Translate 'armor.buttons.setAllToMax.text'}" />
             </StackPanel>
         </st:AutoGrid>
     </GroupBox>

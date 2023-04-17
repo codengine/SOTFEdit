@@ -33,7 +33,10 @@ public partial class InventoryPageViewModel : ObservableObject
     };
 
     [ObservableProperty] private string _inventoryFilter = "";
+    private string _normalizedInventoryFilter = "";
+    private string _normalizedUnassignedItemsFilter = "";
     [ObservableProperty] private string _unassignedItemsFilter = "";
+
 
     public InventoryPageViewModel(GameData gameData)
     {
@@ -87,12 +90,14 @@ public partial class InventoryPageViewModel : ObservableObject
     private void OnInventoryFilterTimerTick(object? sender, EventArgs e)
     {
         _inventoryFilterTimer.Stop();
+        _normalizedInventoryFilter = TranslationHelper.Normalize(_inventoryFilter).ToLower();
         InventoryCollectionView.Refresh();
     }
 
     private void OnUnassignedItemsFilterTimerTick(object? sender, EventArgs e)
     {
         _unassignedItemsFilterTimer.Stop();
+        _normalizedUnassignedItemsFilter = TranslationHelper.Normalize(_unassignedItemsFilter).ToLower();
         UnassignedItemsCollectionView.Refresh();
     }
 
@@ -136,7 +141,7 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private bool OnFilterUnassignedItems(object? obj)
     {
-        var filter = UnassignedItemsFilter;
+        var filter = _normalizedUnassignedItemsFilter;
         if (string.IsNullOrWhiteSpace(filter) || obj == null)
         {
             return true;
@@ -148,7 +153,7 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private bool OnFilterInventory(object? obj)
     {
-        var filter = InventoryFilter;
+        var filter = _normalizedInventoryFilter;
         if (string.IsNullOrWhiteSpace(filter) || obj == null)
         {
             return true;
@@ -160,9 +165,8 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private static bool FilterItem(InventoryItem item, string filter)
     {
-        return item.Name.Contains(filter, StringComparison.InvariantCultureIgnoreCase) ||
-               item.NameDe.Contains(filter, StringComparison.InvariantCultureIgnoreCase) ||
-               item.Type.Contains(filter, StringComparison.InvariantCultureIgnoreCase) ||
+        return item.NormalizedName.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+               item.TypeRendered.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
                item.Id.ToString().Contains(filter);
     }
 
@@ -271,5 +275,5 @@ public class Category
     public string Type { get; }
 
     // ReSharper disable once UnusedMember.Global
-    public string TypeRendered => Type.FirstCharToUpper();
+    public string TypeRendered => TranslationManager.Get("itemTypes." + Type);
 }

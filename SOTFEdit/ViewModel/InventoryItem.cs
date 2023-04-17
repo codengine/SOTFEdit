@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.SaveData.Inventory;
 
@@ -19,6 +20,8 @@ public partial class InventoryItem : ObservableObject
 
     public string Type => _item?.Type ?? "";
 
+    public string TypeRendered => string.IsNullOrEmpty(_item?.Type) ? "" : TranslationManager.Get("itemTypes." + Type);
+
     public int Id => _item?.Id ?? ItemBlock.ItemId;
 
     public int TotalCount
@@ -36,8 +39,8 @@ public partial class InventoryItem : ObservableObject
         }
     }
 
-    public string Name => _item?.Name ?? "??? Unknown Item";
-    public string NameDe => _item?.NameDe ?? "";
+    public string Name => _item?.Name ?? TranslationManager.Get("inventory.unknownItem");
+    public string NormalizedName => _item?.NormalizedLowercaseName ?? TranslationManager.Get("inventory.unknownItem");
 
     public int Max => _item?.StorageMax?.Inventory ?? 1;
 

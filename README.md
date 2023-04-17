@@ -212,3 +212,7 @@ about that game.
 ## Links and Credits
 
 - [Kleine Axt icon by Icons8](https://icons8.com/icon/81685/kleine-axt)
+- Translations and Corrections
+    - Polski: Mortennif
+    - German: Hinterix
+- Supporters and Testers: Mortennif, M2THE49, feydrautha01
