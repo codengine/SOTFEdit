@@ -4,7 +4,11 @@
 
 ### Features
 
-- Added multilingual support and translations for german and polish
+- Added multilingual support and translations for german
+
+### Fixes
+
+- Some minor fixes and improvements
 
 ## v0.9.1
 
