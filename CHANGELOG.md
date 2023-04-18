@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.9.3
+
+### Fixes
+
+- Fix stats resetting if the player did not have a value currently set for a given stat
+
+### Improvements
+
+- Influences can now be added on demand if missing
+- All sliders for all influence stats are now always visible, independent if present in the savegame or not
+- Optimize resource bundling
+
 ## v0.9.2
 
 ### Features

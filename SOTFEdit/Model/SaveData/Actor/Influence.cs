@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.Model.SaveData.Actor;
@@ -10,8 +11,10 @@ public partial class Influence : ObservableObject
     [ObservableProperty] private float? _fear;
     [ObservableProperty] private float? _sentiment;
     public string TypeId { get; init; }
-    public static IEnumerable<string> AllTypes => new[] { Type.Player, Type.Cannibal, Type.Creepy };
-    public string PrintableTypeId => TranslationManager.Get("actors.influenceType." + TypeId);
+
+    [JsonIgnore] public static IEnumerable<string> AllTypes => new[] { Type.Player, Type.Cannibal, Type.Creepy };
+
+    [JsonIgnore] public string PrintableTypeId => TranslationManager.Get("actors.influenceType." + TypeId);
 
     public static Influence AsFillerWithDefaults(string typeId)
     {

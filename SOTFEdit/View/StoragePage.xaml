@@ -39,7 +39,8 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                                <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                       Cursor="Hand"
                                        VerticalAlignment="Center">
                                     <Image.InputBindings>
                                         <MouseBinding MouseAction="LeftClick"
@@ -55,7 +56,8 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                                <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                       Cursor="Hand"
                                        VerticalAlignment="Center">
                                     <Image.InputBindings>
                                         <MouseBinding MouseAction="LeftClick"
@@ -71,7 +73,8 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                                <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                       Cursor="Hand"
                                        VerticalAlignment="Center">
                                     <Image.InputBindings>
                                         <MouseBinding MouseAction="LeftClick"

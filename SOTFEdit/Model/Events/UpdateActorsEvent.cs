@@ -1,4 +1,6 @@
-﻿using SOTFEdit.Model.Actors;
+﻿using System.Collections.Generic;
+using SOTFEdit.Model.Actors;
+using SOTFEdit.Model.SaveData.Actor;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.Events;
@@ -7,6 +9,7 @@ public class UpdateActorsEvent
 {
     public UpdateActorsEvent(EditActorViewModel viewModel)
     {
+        Influences = new List<Influence>(viewModel.Influences);
         ActorSelection = viewModel.ActorSelection;
         ModificationMode = viewModel.ModificationMode;
         ModifyOptions = viewModel.ModifyOptions;
@@ -15,6 +18,8 @@ public class UpdateActorsEvent
         Actor = viewModel.Actor;
         OnlyInSameAreaAsActor = viewModel.OnlyInSameAreaAsActor;
     }
+
+    public List<Influence> Influences { get; set; }
 
     public bool OnlyInSameAreaAsActor { get; }
 

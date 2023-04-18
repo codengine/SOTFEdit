@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Newtonsoft.Json;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData.Actor;
 
@@ -26,7 +27,9 @@ public class Actor
     public int OutfitId { get; set; }
     public int? GraphMask { get; set; }
 
+    [JsonIgnore]
     public Color ActorColor => ActorType?.ActorColor ?? Colors.SaddleBrown;
+    [JsonIgnore]
     public BitmapImage ActorImage => LoadImage();
 
     public string PositionSuffix

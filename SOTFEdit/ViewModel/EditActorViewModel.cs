@@ -23,6 +23,10 @@ public partial class EditActorViewModel : ObservableObject
     [ObservableProperty] private bool _skipKelvin = true;
 
     [ObservableProperty] private bool _skipVirginia = true;
+    
+    private Actor _actor;
+
+    public WpfObservableRangeCollection<Influence> Influences { get; } = new();
 
     public EditActorViewModel(Actor actor, List<ActorType> allActorTypes)
     {
@@ -35,6 +39,10 @@ public partial class EditActorViewModel : ObservableObject
         ModifyOptions.ActorHealth = Actor.Stats?.GetValueOrDefault("Health", 100f) ?? 100f;
         ModifyOptions.UpdateHealth = !Actor.Stats?.ContainsKey("Energy") ?? true;
 
+        AllInfluences = Influence.AllTypes.Select(type =>
+                new ComboBoxItemAndValue<string>(TranslationManager.Get("actors.influenceType." + type), type))
+            .ToList();
+
         switch (actor.TypeId)
         {
             case Constants.Actors.KelvinTypeId:
@@ -44,9 +52,9 @@ public partial class EditActorViewModel : ObservableObject
                 SkipVirginia = false;
                 break;
         }
-
-        FillInfluences();
     }
+
+    public List<ComboBoxItemAndValue<string>> AllInfluences { get; }
 
     public ModifyOptions ModifyOptions { get; } = new();
 
@@ -58,27 +66,40 @@ public partial class EditActorViewModel : ObservableObject
         new(TranslationManager.Get("actors.modificationOptions.allActorSelections.allActors"), 3)
     };
 
-    public Actor Actor { get; }
+    public Actor Actor
+    {
+        get => _actor;
+        set
+        {
+            _actor = value;
+            Influences.ReplaceRange(_actor.Influences ?? new List<Influence>());
+        }
+    }
+
     public List<ActorType> AllActorTypes { get; }
+
+    [RelayCommand]
+    private void AddInfluence(string influenceType)
+    {
+        if (string.IsNullOrEmpty(influenceType))
+        {
+            return;
+        }
+
+        var existingTypeId = Influences.FirstOrDefault(influence => influence.TypeId == influenceType);
+        if (existingTypeId != null)
+        {
+            return;
+        }
+
+        Influences.Add(Influence.AsFillerWithDefaults(influenceType));
+        ModifyOptions.UpdateInfluences = true;
+    }
 
     [RelayCommand]
     private void Save()
     {
         WeakReferenceMessenger.Default.Send(new RequestUpdateActorsEvent(this));
-    }
-
-    private void FillInfluences()
-    {
-        Actor.Influences ??= new List<Influence>();
-
-        var influenceTypes = Actor.Influences.Select(influence => influence.TypeId)
-            .ToHashSet();
-
-        foreach (var typeId in Influence.AllTypes)
-            if (!influenceTypes.Contains(typeId))
-            {
-                Actor.Influences.Add(Influence.AsFillerWithDefaults(typeId));
-            }
     }
 }
 

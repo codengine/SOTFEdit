@@ -9,6 +9,7 @@
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:st="http://schemas.spicytaco.io/"
                  mc:Ignorable="d"
                  PreviewKeyDown="EditActorWindow_OnPreviewKeyDown"
                  Title="{Binding Actor.PrintableTitle}"
@@ -41,7 +42,6 @@
             <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
         <converters:StringToBooleanConverter x:Key="StringToBooleanConverter" />
         <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
     </mah:MetroWindow.Resources>
@@ -153,9 +153,22 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <GroupBox Header="{infrastructure:Translate 'actors.headers.influences'}" VerticalAlignment="Top"
+            <GroupBox VerticalAlignment="Top"
                       HorizontalAlignment="Stretch" Padding="10"
                       Margin="0 0 0 10">
+                <GroupBox.Header>
+                    <st:AutoGrid Columns="*,*">
+                        <TextBlock Text="{infrastructure:Translate 'actors.headers.influences'}"
+                                   VerticalAlignment="Center" />
+                        <st:AutoGrid VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <ComboBox ItemsSource="{Binding AllInfluences}" DisplayMemberPath="Title"
+                                      SelectedValuePath="Value" x:Name="ComboAddInfluence" />
+                            <Button Content="{infrastructure:Translate 'generic.add'}"
+                                    Command="{Binding AddInfluenceCommand}"
+                                    CommandParameter="{Binding ElementName=ComboAddInfluence, Path=SelectedItem.Value}" />
+                        </st:AutoGrid>
+                    </st:AutoGrid>
+                </GroupBox.Header>
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -163,7 +176,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock TextWrapping="Wrap" Margin="0 0 0 10"
                                Text="{infrastructure:Translate 'influences.disclaimer'}" />
-                    <ItemsControl ItemsSource="{Binding Actor.Influences}" Grid.Row="1" VerticalAlignment="Top"
+                    <ItemsControl ItemsSource="{Binding Influences}" Grid.Row="1" VerticalAlignment="Top"
                                   HorizontalAlignment="Stretch" Height="Auto">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type actor1:Influence}">
@@ -179,32 +192,26 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="0"
-                                                   Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
                                                    Style="{StaticResource SliderLabelStyle}" Foreground="HotPink"
                                                    Text="{infrastructure:Translate 'influences.sentiment'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="0"
                                             Minimum="-100.0"
                                             Maximum="100"
                                             Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
-                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="1"
                                             Style="{StaticResource SliderLabelStyle}" Foreground="Red"
                                             Text="{infrastructure:Translate 'influences.anger'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="1"
                                             Minimum="0.0"
                                             Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
-                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="2" Foreground="DodgerBlue"
                                             Style="{StaticResource SliderLabelStyle}"
                                             Text="{infrastructure:Translate 'influences.fear'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="2"
                                             Minimum="0.0"
                                             Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />

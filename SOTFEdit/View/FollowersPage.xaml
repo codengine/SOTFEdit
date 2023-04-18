@@ -7,14 +7,13 @@
              xmlns:model="clr-namespace:SOTFEdit.Model"
              xmlns:actor1="clr-namespace:SOTFEdit.Model.SaveData.Actor"
              xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
-             xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
              xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+             xmlns:st="http://schemas.spicytaco.io/"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:FollowerPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
-            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <Style x:Key="FollowerTextBlockStyleLeft" TargetType="{x:Type TextBlock}"
                    BasedOn="{StaticResource MahApps.Styles.TextBlock}">
                 <Setter Property="Margin" Value="0 0 10 10" />
@@ -56,7 +55,8 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
-                        <Image Source="/images/kv.jpg" Width="197" Height="246" Margin="0 0 0 10" />
+                        <Image Source="pack://siteoforigin:,,,/images/kv.jpg" Width="197" Height="246"
+                               Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}"
                                 CommandParameter="{Binding KelvinState}"
                                 Content="{infrastructure:Translate 'followers.buttons.moveToPlayer'}" />
@@ -110,7 +110,8 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                            <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                   Cursor="Hand"
                                    VerticalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenMapAtFollowerCommand}"
@@ -174,8 +175,21 @@
                                   Grid.ColumnSpan="2">
                         <ItemsControl.Template>
                             <ControlTemplate TargetType="ItemsControl">
-                                <GroupBox Header="{infrastructure:Translate 'actors.headers.influences'}" Margin="10"
-                                          Padding="10">
+                                <GroupBox Margin="10" Padding="10">
+                                    <GroupBox.Header>
+                                        <st:AutoGrid Columns="*,*">
+                                            <TextBlock Text="{infrastructure:Translate 'actors.headers.influences'}"
+                                                       VerticalAlignment="Center" />
+                                            <st:AutoGrid VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <ComboBox ItemsSource="{Binding AllInfluences}"
+                                                          DisplayMemberPath="Title" SelectedValuePath="Value"
+                                                          x:Name="ComboKelvinInfluenceAdd" />
+                                                <Button Content="{infrastructure:Translate 'generic.add'}"
+                                                        Command="{Binding KelvinState.AddInfluenceCommand}"
+                                                        CommandParameter="{Binding ElementName=ComboKelvinInfluenceAdd, Path=SelectedItem.Value}" />
+                                            </st:AutoGrid>
+                                        </st:AutoGrid>
+                                    </GroupBox.Header>
                                     <ItemsPresenter />
                                 </GroupBox>
                             </ControlTemplate>
@@ -194,35 +208,29 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="0"
-                                                   Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
                                                    Foreground="HotPink"
                                                    Style="{StaticResource FollowerTextBlockStyleLeft}"
                                                    Text="{infrastructure:Translate 'influences.sentiment'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0"
                                             Minimum="-100.0"
                                             Maximum="100"
                                             Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
-                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="1"
                                             Foreground="Red"
                                             Style="{StaticResource FollowerTextBlockStyleLeft}"
                                             Text="{infrastructure:Translate 'influences.anger'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1"
                                             Minimum="0.0"
                                             Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
-                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="2"
                                             Foreground="DodgerBlue"
                                             Style="{StaticResource FollowerTextBlockStyleLeft}"
                                             Text="{infrastructure:Translate 'influences.fear'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2"
                                             Minimum="0.0"
                                             Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
@@ -247,7 +255,8 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
-                        <Image Source="/images/vg.jpg" Width="197" Height="246" Margin="0 0 0 10" />
+                        <Image Source="pack://siteoforigin:,,,/images/vg.jpg" Width="197" Height="246"
+                               Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}"
                                 CommandParameter="{Binding VirginiaState}"
                                 Content="{infrastructure:Translate 'followers.buttons.moveToPlayer'}" />
@@ -303,7 +312,8 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+                            <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                   Cursor="Hand"
                                    VerticalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenMapAtFollowerCommand}"
@@ -388,8 +398,21 @@
                                   Grid.ColumnSpan="2">
                         <ItemsControl.Template>
                             <ControlTemplate TargetType="ItemsControl">
-                                <GroupBox Header="{infrastructure:Translate 'actors.headers.influences'}" Margin="10"
-                                          Padding="10">
+                                <GroupBox Margin="10" Padding="10">
+                                    <GroupBox.Header>
+                                        <st:AutoGrid Columns="*,*">
+                                            <TextBlock Text="{infrastructure:Translate 'actors.headers.influences'}"
+                                                       VerticalAlignment="Center" />
+                                            <st:AutoGrid VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <ComboBox ItemsSource="{Binding AllInfluences}"
+                                                          DisplayMemberPath="Title" SelectedValuePath="Value"
+                                                          x:Name="ComboVirginiaInfluenceAdd" />
+                                                <Button Content="{infrastructure:Translate 'generic.add'}"
+                                                        Command="{Binding VirginiaState.AddInfluenceCommand}"
+                                                        CommandParameter="{Binding ElementName=ComboVirginiaInfluenceAdd, Path=SelectedItem.Value}" />
+                                            </st:AutoGrid>
+                                        </st:AutoGrid>
+                                    </GroupBox.Header>
                                     <ItemsPresenter />
                                 </GroupBox>
                             </ControlTemplate>
@@ -408,35 +431,29 @@
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Grid.Row="0"
-                                                   Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
                                                    Foreground="HotPink"
                                                    Style="{StaticResource FollowerTextBlockStyleLeft}"
                                                    Text="{infrastructure:Translate 'influences.sentiment'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Sentiment, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="0"
                                             Minimum="-100.0"
                                             Maximum="100"
                                             Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
-                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="1"
                                             Foreground="Red"
                                             Style="{StaticResource FollowerTextBlockStyleLeft}"
                                             Text="{infrastructure:Translate 'influences.anger'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Anger, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1"
                                             Minimum="0.0"
                                             Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
-                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Grid.Column="0" Grid.Row="2"
                                             Foreground="DodgerBlue"
                                             Style="{StaticResource FollowerTextBlockStyleLeft}"
                                             Text="{infrastructure:Translate 'influences.fear'}" />
                                         <Slider
-                                            Visibility="{Binding Path=Fear, Converter={StaticResource NullToVisibilityConverter}}"
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2"
                                             Minimum="0.0"
                                             Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />

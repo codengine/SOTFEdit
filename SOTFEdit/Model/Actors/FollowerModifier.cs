@@ -412,35 +412,75 @@ public class FollowerModifier
     private static bool UpdateInfluenceMemory(JToken vailWorldSim, IReadOnlyCollection<Influence> influences,
         int uniqueId)
     {
-        var hasChanges = false;
-
-        foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
+        if (vailWorldSim["InfluenceMemory"] is not JArray influenceMemory)
         {
-            if (influenceMemory["UniqueId"]?.Value<int>() != uniqueId)
+            return false;
+        }
+
+        var followersInfluenceMemory =
+            influenceMemory.FirstOrDefault(memory => memory["UniqueId"]?.Value<int>() == uniqueId);
+
+        if (followersInfluenceMemory == null)
+        {
+            influenceMemory.Add(JToken.FromObject(new InfluenceMemory(uniqueId, new List<Influence>(influences))));
+            return true;
+        }
+
+        if (followersInfluenceMemory["Influences"] is not JArray followersInfluences ||
+            HasDifferencesInMemories(followersInfluences, influences))
+        {
+            followersInfluenceMemory["Influences"] = JToken.FromObject(influences);
+            return true;
+        }
+
+        return false;
+    }
+
+    private static bool HasDifferencesInMemories(JArray existingInfluences,
+        IReadOnlyCollection<Influence> newInfluences)
+    {
+        if (existingInfluences.Count == 0 && newInfluences.Count == 0)
+        {
+            return false;
+        }
+
+        if (existingInfluences.Count != newInfluences.Count)
+        {
+            return true;
+        }
+
+        var newInfluencesByType = newInfluences.DistinctBy(influence => influence.TypeId)
+            .ToDictionary(influence => influence.TypeId);
+
+        foreach (var existingInfluence in existingInfluences)
+        {
+            if (existingInfluence["TypeId"]?.ToString() is not { } typeId)
             {
                 continue;
             }
 
-            foreach (var influenceToken in influenceMemory["Influences"] ?? Enumerable.Empty<JToken>())
+            if (!newInfluencesByType.TryGetValue(typeId, out var newInfluence))
             {
-                if (influenceToken["TypeId"]?.ToString() is not { } typeId)
-                {
-                    continue;
-                }
-
-                var newInfluence = influences.FirstOrDefault(newInfluence => newInfluence.TypeId == typeId);
-                if (newInfluence == null)
-                {
-                    continue;
-                }
-
-                hasChanges = ModifyStat(influenceToken, "Sentiment", newInfluence.Sentiment) || hasChanges;
-                hasChanges = ModifyStat(influenceToken, "Anger", newInfluence.Anger) || hasChanges;
-                hasChanges = ModifyStat(influenceToken, "Fear", newInfluence.Fear) || hasChanges;
+                return true;
             }
+
+            var anger = existingInfluence["Anger"]?.Value<float>() ?? 0f;
+            var fear = existingInfluence["Fear"]?.Value<float>() ?? 0f;
+            var sentiment = existingInfluence["Sentiment"]?.Value<float>() ?? 0f;
+
+            if (
+                Math.Abs(anger - newInfluence.Anger ?? 0f) > 0.001 ||
+                Math.Abs(fear - newInfluence.Fear ?? 0f) > 0.001 ||
+                Math.Abs(sentiment - newInfluence.Sentiment ?? 0f) > 0.001
+            )
+            {
+                return true;
+            }
+
+            newInfluencesByType.Remove(typeId);
         }
 
-        return hasChanges;
+        return newInfluencesByType.Count > 0;
     }
 
     private static bool ModifyStat(JToken stats, string key, float? newValue)
@@ -450,7 +490,7 @@ public class FollowerModifier
             return false;
         }
 
-        if (stats[key] is not { } oldValueToken || Math.Abs(oldValueToken.Value<float>() - newValue.Value) < 0.001)
+        if (stats[key] is { } oldValueToken && Math.Abs(oldValueToken.Value<float>() - newValue.Value) < 0.001)
         {
             return false;
         }

@@ -189,8 +189,6 @@ public class ActorModifier
             return;
         }
 
-        var actorInfluences = data.Actor.Influences ?? new List<Influence>();
-
         foreach (var influenceMemory in influenceMemories)
         {
             if (influenceMemory["UniqueId"]?.Value<int>() is not { } uniqueId || !uniqueIds.Contains(uniqueId))
@@ -198,12 +196,12 @@ public class ActorModifier
                 continue;
             }
 
-            influenceMemory["Influences"] = JToken.FromObject(actorInfluences);
+            influenceMemory["Influences"] = JToken.FromObject(data.Influences);
             handledInfluenceMemories.Add(uniqueId);
         }
 
         foreach (var uniqueId in uniqueIds.Where(uniqueId => !handledInfluenceMemories.Contains(uniqueId)))
-            influenceMemories.Add(JToken.FromObject(new InfluenceMemory(uniqueId, actorInfluences)));
+            influenceMemories.Add(JToken.FromObject(new InfluenceMemory(uniqueId, data.Influences)));
     }
 
     private static void RemoveInfluenceMemories(JToken vailWorldSim, IEnumerable<JToken> matchedActors)

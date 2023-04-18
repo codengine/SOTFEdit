@@ -43,7 +43,8 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="10">
-                        <Image Source="/images/player.jpg" Width="197" Height="246" Margin="0 0 0 10" />
+                        <Image Source="pack://siteoforigin:,,,/images/player.jpg" Width="197" Height="246"
+                               Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToKelvinCommand}"
                                 Content="{infrastructure:Translate 'player.buttons.moveToKelvin'}" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToVirginiaCommand}"
@@ -77,7 +78,8 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="/images/red-pin.png" Width="32" Height="32" Cursor="Hand">
+                            <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                   Cursor="Hand">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenMapAtPlayerPosCommand}" />
                                 </Image.InputBindings>

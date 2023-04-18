@@ -26,7 +26,12 @@ public partial class FollowerPageViewModel : ObservableObject
 
         KelvinState = BuildFollowerState(gameData, KelvinTypeId);
         VirginiaState = BuildFollowerState(gameData, VirginiaTypeId);
+        AllInfluences = Influence.AllTypes.Select(type =>
+                new ComboBoxItemAndValue<string>(TranslationManager.Get("actors.influenceType." + type), type))
+            .ToList();
     }
+
+    public IEnumerable<ComboBoxItemAndValue<string>> AllInfluences { get; }
 
     public FollowerState KelvinState { get; }
     public FollowerState VirginiaState { get; }

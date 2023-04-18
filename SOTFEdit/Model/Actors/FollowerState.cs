@@ -2,6 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData.Actor;
 
 namespace SOTFEdit.Model.Actors;
@@ -31,6 +34,8 @@ public partial class FollowerState : ObservableObject
         Outfits = outfits;
         foreach (var equippableItem in equippableItems.Select(item => new EquippableItem(item)))
             Inventory.Add(equippableItem);
+
+        SetupListeners();
     }
 
     public int TypeId { get; }
@@ -38,6 +43,39 @@ public partial class FollowerState : ObservableObject
     public List<Outfit> Outfits { get; }
     public ObservableCollection<EquippableItem> Inventory { get; } = new();
     public ObservableCollection<Influence> Influences { get; } = new();
+
+    private void SetupListeners()
+    {
+        WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
+            (_, _) => { OnSelectedSavegameChanged(); });
+    }
+
+    private void OnSelectedSavegameChanged()
+    {
+        AddInfluenceCommand.NotifyCanExecuteChanged();
+    }
+
+    private bool HasSavegameSelected()
+    {
+        return SavegameManager.SelectedSavegame != null;
+    }
+
+    [RelayCommand(CanExecute = nameof(HasSavegameSelected))]
+    private void AddInfluence(string influenceType)
+    {
+        if (string.IsNullOrEmpty(influenceType))
+        {
+            return;
+        }
+
+        var existingTypeId = Influences.FirstOrDefault(influence => influence.TypeId == influenceType);
+        if (existingTypeId != null)
+        {
+            return;
+        }
+
+        Influences.Add(Influence.AsFillerWithDefaults(influenceType));
+    }
 
     public void Reset()
     {
