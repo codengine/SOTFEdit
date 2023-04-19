@@ -211,7 +211,26 @@
     },
     {
       "id": 480,
-      "type": "misc",
+      "type": "food",
+      "modules": [
+        {
+          "moduleId": 1,
+          "SourceActorType": [
+            13
+          ]
+        },
+        {
+          "moduleId": 3,
+          "variants": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
       "storageMax": {
         "shelf": 2,
         "inventory": 2
@@ -219,7 +238,26 @@
     },
     {
       "id": 481,
-      "type": "misc",
+      "type": "food",
+      "modules": [
+        {
+          "moduleId": 1,
+          "SourceActorType": [
+            13
+          ]
+        },
+        {
+          "moduleId": 3,
+          "variants": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
       "storageMax": {
         "shelf": 2,
         "inventory": 2
