@@ -833,6 +833,22 @@
       "4": "Trockenfleisch",
       "5": "Gekochtes Fleisch",
       "6": "Verbranntes Fleisch"
+    },
+    "480": {
+      "1": "Roher Arm",
+      "2": "Unbekannter Arm",
+      "3": "Verdorbener Arm",
+      "4": "Getrockneter Arm",
+      "5": "Gekochter Arm",
+      "6": "Verbrannter Arm"
+    },
+    "481": {
+      "1": "Rohes Bein",
+      "2": "Unbekanntes Bein",
+      "3": "Verdorbenes Bein",
+      "5": "Getrocknetes Bein",
+      "5": "Gekochtes Bein",
+      "6": "Verbranntes Bein"
     }
   },
   "items": {
