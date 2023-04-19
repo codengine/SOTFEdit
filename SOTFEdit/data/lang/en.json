@@ -838,6 +838,22 @@
       "4": "Dried Meat",
       "5": "Cooked Meat",
       "6": "Burned Meat"
+    },
+    "480": {
+      "1": "Raw Arm",
+      "2": "Unknown Arm",
+      "3": "Spoiled Arm",
+      "4": "Dried Arm",
+      "5": "Cooked Arm",
+      "6": "Burned Arm"
+    },
+    "481": {
+      "1": "Raw Leg",
+      "2": "Unknown Leg",
+      "3": "Spoiled Leg",
+      "4": "Dried Leg",
+      "5": "Cooked Leg",
+      "6": "Burned Leg"
     }
   },
   "items": {
