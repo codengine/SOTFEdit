@@ -10,9 +10,4 @@ public record FoodSpoilStorageModule
     {
         return base.IsEqualTo(other) && other is FoodSpoilStorageModule module && module.CurrentState == CurrentState;
     }
-
-    public static bool SupportsModuleId(int moduleId)
-    {
-        return moduleId is 3 or 6;
-    }
 }

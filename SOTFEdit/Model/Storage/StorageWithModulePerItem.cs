@@ -7,10 +7,10 @@ namespace SOTFEdit.Model.Storage;
 
 public class StorageWithModulePerItem : RestrictedStorage
 {
-    private readonly Func<IStorageModule> _moduleFactory;
+    private readonly Func<IStorageModule>? _moduleFactory;
 
     public StorageWithModulePerItem(StorageDefinition definition, ItemList itemList, int index,
-        Func<IStorageModule> moduleFactory) : base(definition,
+        Func<IStorageModule>? moduleFactory = null) : base(definition,
         itemList, index)
     {
         _moduleFactory = moduleFactory;
@@ -45,14 +45,17 @@ public class StorageWithModulePerItem : RestrictedStorage
                     UniqueItems = new List<UniqueItem>(storedItem.Count)
                 };
 
-                for (var i = 0; i < storedItem.Count; i++)
-                    storageItemBlock.UniqueItems.Add(new UniqueItem
-                    {
-                        Modules = new List<IStorageModule>
+                if (_moduleFactory != null)
+                {
+                    for (var i = 0; i < storedItem.Count; i++)
+                        storageItemBlock.UniqueItems.Add(new UniqueItem
                         {
-                            _moduleFactory.Invoke()
-                        }
-                    });
+                            Modules = new List<IStorageModule>
+                            {
+                                _moduleFactory.Invoke()
+                            }
+                        });                    
+                }
 
                 storageBlock.ItemBlocks.Add(storageItemBlock);
             }

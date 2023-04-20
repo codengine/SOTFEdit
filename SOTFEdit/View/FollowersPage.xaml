@@ -224,7 +224,8 @@
                                         <Slider
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1"
                                             Minimum="0.0"
-                                            Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
+                                            Maximum="100"
+                                            Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
                                             Grid.Column="0" Grid.Row="2"
                                             Foreground="DodgerBlue"
@@ -233,7 +234,8 @@
                                         <Slider
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2"
                                             Minimum="0.0"
-                                            Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
+                                            Maximum="100"
+                                            Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </DataTemplate>
@@ -447,7 +449,8 @@
                                         <Slider
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="1"
                                             Minimum="0.0"
-                                            Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
+                                            Maximum="100"
+                                            Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
                                         <TextBlock
                                             Grid.Column="0" Grid.Row="2"
                                             Foreground="DodgerBlue"
@@ -456,7 +459,8 @@
                                         <Slider
                                             Style="{StaticResource FollowerSliderStyle}" Grid.Column="1" Grid.Row="2"
                                             Minimum="0.0"
-                                            Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
+                                            Maximum="100"
+                                            Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
                                     </Grid>
                                 </GroupBox>
                             </DataTemplate>

@@ -174,7 +174,7 @@ public partial class StructuresPageViewModel : ObservableObject
             wrapper.ModificationMode = mode;
     }
 
-    private bool HasSavegameSelected()
+    private static bool HasSavegameSelected()
     {
         return SavegameManager.SelectedSavegame != null;
     }

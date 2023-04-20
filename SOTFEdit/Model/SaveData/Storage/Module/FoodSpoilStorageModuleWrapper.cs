@@ -2,18 +2,18 @@
 
 namespace SOTFEdit.Model.SaveData.Storage.Module;
 
-public class ModuleWrapper
+public class FoodSpoilStorageModuleWrapper
 {
     private readonly int _itemId;
     private readonly int _variantId;
 
-    public ModuleWrapper(IStorageModule module, int itemId, int variantId)
+    public FoodSpoilStorageModuleWrapper(FoodSpoilStorageModule foodSpoilStorageModule, int itemId, int variantId)
     {
         _itemId = itemId;
         _variantId = variantId;
-        Module = module;
+        FoodSpoilStorageModule = foodSpoilStorageModule;
     }
 
-    public IStorageModule Module { get; }
+    public FoodSpoilStorageModule FoodSpoilStorageModule { get; }
     public string Name => TranslationManager.Get($"itemVariants.{_itemId}.{_variantId}");
 }

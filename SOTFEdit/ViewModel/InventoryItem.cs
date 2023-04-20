@@ -8,21 +8,21 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryItem : ObservableObject
 {
-    private readonly Item? _item;
+    public Item? Item { get; }
 
     public InventoryItem(ItemBlockModel itemBlock, Item? item)
     {
         ItemBlock = itemBlock;
-        _item = item;
+        Item = item;
     }
 
     public ItemBlockModel ItemBlock { get; }
 
-    public string Type => _item?.Type ?? "";
+    public string Type => Item?.Type ?? "";
 
-    public string TypeRendered => string.IsNullOrEmpty(_item?.Type) ? "" : TranslationManager.Get("itemTypes." + Type);
+    public string TypeRendered => string.IsNullOrEmpty(Item?.Type) ? "" : TranslationManager.Get("itemTypes." + Type);
 
-    public int Id => _item?.Id ?? ItemBlock.ItemId;
+    public int Id => Item?.Id ?? ItemBlock.ItemId;
 
     public int TotalCount
     {
@@ -39,10 +39,10 @@ public partial class InventoryItem : ObservableObject
         }
     }
 
-    public string Name => _item?.Name ?? TranslationManager.Get("inventory.unknownItem");
-    public string NormalizedName => _item?.NormalizedLowercaseName ?? TranslationManager.Get("inventory.unknownItem");
+    public string Name => Item?.Name ?? TranslationManager.Get("inventory.unknownItem");
+    public string NormalizedName => Item?.NormalizedLowercaseName ?? TranslationManager.Get("inventory.unknownItem");
 
-    public int Max => _item?.StorageMax?.Inventory ?? 1;
+    public int Max => Item?.StorageMax?.Inventory ?? 1;
 
     [RelayCommand]
     private void SetToMax()

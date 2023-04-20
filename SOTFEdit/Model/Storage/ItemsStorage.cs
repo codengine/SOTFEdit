@@ -71,14 +71,14 @@ public class ItemsStorage : BaseStorage
                     ItemId = item.Item.Id
                 };
 
-                if (item.ModuleWrapper is { } moduleWrapper)
+                if (item.FoodSpoilStorageModuleWrapper is { } moduleWrapper)
                 {
                     for (var i = 0; i < storedItem.Count; i++)
                         storageItemBlock.UniqueItems.Add(new UniqueItem
                         {
                             Modules = new List<IStorageModule>
                             {
-                                moduleWrapper.Module
+                                moduleWrapper.FoodSpoilStorageModule
                             }
                         });
                 }

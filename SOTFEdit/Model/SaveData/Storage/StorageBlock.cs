@@ -6,6 +6,7 @@ namespace SOTFEdit.Model.SaveData.Storage;
 public class StorageBlock
 {
     public List<StorageItemBlock> ItemBlocks { get; init; } = new();
+    public string Version => "0.0.0";
 
     private bool Equals(StorageBlock other)
     {

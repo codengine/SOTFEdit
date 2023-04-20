@@ -93,7 +93,7 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Register<RequestTeleportWorldItemEvent>(this,
             (_, _) => OnRequestTeleportWorldItemEvent());
         WeakReferenceMessenger.Default.Register<ShowDialogEvent>(this,
-            (recipient, message) => OnShowDialogEvent(message));
+            (_, message) => OnShowDialogEvent(message));
     }
 
     private async void OnShowDialogEvent(ShowDialogEvent message)

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NLog;
 using SOTFEdit.Model.SaveData.Storage;
@@ -28,17 +27,9 @@ public class FoodStorage : RestrictedStorage
 
         foreach (var itemBlock in saveData.Storages.SelectMany(storageBlock => storageBlock.ItemBlocks))
         {
-            if (supportedItems.FirstOrDefault(supportedItem => supportedItem.Item.Id == itemBlock.ItemId) is not
-                { } item)
+            if (supportedItems.FirstOrDefault(supportedItem => supportedItem.Item.Id == itemBlock.ItemId) is null)
             {
                 Logger.Warn($"Item {itemBlock.ItemId} is not in list of supported items, will skip");
-                continue;
-            }
-
-            if (item.Item.Modules?.ToDictionary(itemModuleDefinition => itemModuleDefinition.ModuleId) is not
-                { } itemModuleDefinitions)
-            {
-                Logger.Warn($"Item {itemBlock.ItemId} has no modules defined, will skip");
                 continue;
             }
 
@@ -57,28 +48,20 @@ public class FoodStorage : RestrictedStorage
                     continue;
                 }
 
-                foreach (var module in uniqueItem.Modules)
-                {
-                    if (!itemModuleDefinitions.ContainsKey(module.GetModuleId()))
-                    {
-                        throw new Exception(
-                            $"Module definition {module.GetModuleId()} for item {itemBlock.ItemId} not found");
-                    }
+                var foodSpoilStorageModule = uniqueItem.Modules
+                    .OfType<FoodSpoilStorageModule>()
+                    .FirstOrDefault();
 
-                    if (module is not FoodSpoilStorageModule foodSpoilStorageModule)
-                    {
-                        throw new Exception($"Unexpected module type: {module.GetType().Name}");
-                    }
+                var selectedItem = supportedItems.FirstOrDefault(itemWrapper =>
+                    itemWrapper.Item.Id == itemBlock.ItemId &&
+                    foodSpoilStorageModule != null &&
+                    (itemWrapper.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule
+                        .IsEqualTo(foodSpoilStorageModule) ?? false));
 
-                    var selectedItem = supportedItems.FirstOrDefault(itemWrapper =>
-                        itemWrapper.Item.Id == itemBlock.ItemId &&
-                        (itemWrapper.ModuleWrapper?.Module.IsEqualTo(foodSpoilStorageModule) ?? false));
-
-                    var storedItem = new StoredItem(selectedItem, selectedItem == null ? 0 : 1,
-                        supportedItems, Definition.MaxPerSlot);
-                    storedItem.PropertyChanged += OnStoredItemPropertyChanged;
-                    Slots[currentSlot++].StoredItems.Add(storedItem);
-                }
+                var storedItem = new StoredItem(selectedItem, selectedItem == null ? 0 : 1,
+                    supportedItems, Definition.MaxPerSlot, uniqueItem.Modules);
+                storedItem.PropertyChanged += OnStoredItemPropertyChanged;
+                Slots[currentSlot++].StoredItems.Add(storedItem);
             }
         }
 
@@ -138,12 +121,15 @@ public class FoodStorage : RestrictedStorage
                     continue;
                 }
 
+                var modules = storedItem.Modules == null
+                    ? new List<IStorageModule>()
+                    : new List<IStorageModule>(storedItem.Modules);
+
+                UpdateModules(item.Item, modules);
+
                 storageItemBlock.UniqueItems.Add(new UniqueItem
                 {
-                    Modules = new List<IStorageModule>
-                    {
-                        item.ModuleWrapper?.Module ?? new FoodSpoilStorageModule(3, 1)
-                    }
+                    Modules = modules
                 });
             }
 
@@ -151,6 +137,21 @@ public class FoodStorage : RestrictedStorage
         }
 
         return storageSaveData;
+    }
+
+    private static void UpdateModules(Item item, ICollection<IStorageModule> modules)
+    {
+        if (item.FoodSpoilModuleDefinition is { } foodSpoilModuleDefinition &&
+            !modules.OfType<FoodSpoilStorageModule>().Any())
+        {
+            modules.Add(foodSpoilModuleDefinition.BuildNewModuleWithDefaults());
+        }
+
+        if (item.SourceActorModuleDefinition is { } sourceActorModuleDefinition &&
+            !modules.OfType<SourceActorStorageModule>().Any())
+        {
+            modules.Add(sourceActorModuleDefinition.BuildNewModuleWithDefaults());
+        }
     }
 
     public override void SetAllToMax()
@@ -162,7 +163,7 @@ public class FoodStorage : RestrictedStorage
                 storedItem.SelectedItem = storedItem.SupportedItems
                     .FirstOrDefault(wrapper =>
                         wrapper.Item.Id == DefaultItemIdForUnselectedSlot &&
-                        wrapper.ModuleWrapper?.Module is FoodSpoilStorageModule
+                        wrapper.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule is
                         {
                             CurrentState: DefaultVariantForUnselectedSlot
                         });

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData.Storage.Module;
+using SOTFEdit.Model.Storage;
 
 namespace SOTFEdit.Model.SaveData.Storage;
 
@@ -32,7 +33,7 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
 
         var instance = moduleId switch
         {
-            0 => BuildStickStorageModule(obj),
+            1 => BuildSourceActorStorageModule(obj),
             3 => BuildFoodSpoilModule(moduleId, obj),
             6 => BuildLogStorageModule(),
             _ => BuildGenericModule(moduleId)
@@ -45,15 +46,14 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
         return instance;
     }
 
+    private static IStorageModule BuildSourceActorStorageModule(JObject obj)
+    {
+        return new SourceActorStorageModule(obj["SourceActorType"]?.Value<int>() ?? SourceActorStorageModule.DefaultActorType);
+    }
+
     private static IStorageModule BuildGenericModule(int moduleId)
     {
         return new GenericModule(moduleId);
-    }
-
-    private static IStorageModule BuildStickStorageModule(JObject obj)
-    {
-        return new GenericModuleWithWeights(obj["ChannelWeights"]?.ToObject<ChannelWeightsModel>() ??
-                                            new ChannelWeightsModel(0, 0, 0, 0));
     }
 
     private static IStorageModule BuildLogStorageModule()

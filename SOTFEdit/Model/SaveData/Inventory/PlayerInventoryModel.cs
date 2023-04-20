@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using SOTFEdit.Model.SaveData.Storage.Module;
+using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.SaveData.Inventory;
 
@@ -9,9 +12,9 @@ public record PlayerInventoryModel
 {
     public ItemInstanceManagerDataModel ItemInstanceManagerData { get; set; }
 
-    public static bool Merge(JToken playerInventory, IEnumerable<ItemBlockModel> selectedItems)
+    public static bool Merge(JToken playerInventory, IEnumerable<InventoryItem> selectedItems)
     {
-        var selectedItemsDict = selectedItems.ToDictionary(itemBlock => itemBlock.ItemId);
+        var selectedItemsDict = selectedItems.ToDictionary(inventoryItem => inventoryItem.Id);
 
         if (playerInventory.SelectToken("ItemInstanceManagerData.ItemBlocks") is not JArray itemBlocks)
         {
@@ -38,6 +41,11 @@ public record PlayerInventoryModel
 
                     if (selectedItem.TotalCount > 0)
                     {
+                        if (selectedItem.Item is { } item)
+                        {
+                            UpdateUniqueItems(itemBlock, totalCountToken?.ToObject<int>() ?? 0, selectedItem, item);
+                        }
+
                         finalTokens.Add(itemBlock);
                     }
                 }
@@ -53,8 +61,18 @@ public record PlayerInventoryModel
                 finalTokens.Add(itemBlock);
             }
 
-        var newItemsFromDict = selectedItemsDict.Values.Where(item => !processedItemIds.Contains(item.ItemId))
-            .Select(JToken.FromObject)
+        var newItemsFromDict = selectedItemsDict.Values.Where(item => !processedItemIds.Contains(item.Id))
+            .Select(inventoryItem =>
+            {
+                var block = JToken.FromObject(inventoryItem.ItemBlock);
+
+                if (inventoryItem.Item is { } item)
+                {
+                    UpdateUniqueItems(block, 0, inventoryItem, item);
+                }
+
+                return block;
+            })
             .ToList();
 
         finalTokens.AddRange(newItemsFromDict);
@@ -67,5 +85,47 @@ public record PlayerInventoryModel
         }
 
         return hasChanges;
+    }
+
+    private static void UpdateUniqueItems(JToken itemBlock, int previousTotalCount, InventoryItem selectedItem,
+        Item item)
+    {
+        if (previousTotalCount == selectedItem.TotalCount || !item.HasModules())
+        {
+            return;
+        }
+
+        if (itemBlock["UniqueItems"] is not JArray uniqueItems)
+        {
+            uniqueItems = new JArray();
+        }
+
+        var uniqueItemsCount = uniqueItems.Count;
+        if (uniqueItemsCount > selectedItem.TotalCount)
+        {
+            var retainedItems = uniqueItems.Take(new Range(0, selectedItem.TotalCount)).ToList();
+            itemBlock["UniqueItems"] = new JArray(retainedItems);
+        }
+        else
+        {
+            var modules = new List<IStorageModule>();
+            if (item.FoodSpoilModuleDefinition is { } foodSpoilModule)
+            {
+                modules.Add(foodSpoilModule.BuildNewModuleWithDefaults());
+            }
+
+            if (item.SourceActorModuleDefinition is { } sourceActorModuleDefinition)
+            {
+                modules.Add(sourceActorModuleDefinition.BuildNewModuleWithDefaults());
+            }
+
+            for (var i = 0; i < selectedItem.TotalCount - uniqueItemsCount; i++)
+                uniqueItems.Add(new JObject
+                {
+                    { "Modules", new JArray(modules.Select(JToken.FromObject).ToList()) }
+                });
+
+            itemBlock["UniqueItems"] = uniqueItems;
+        }
     }
 }

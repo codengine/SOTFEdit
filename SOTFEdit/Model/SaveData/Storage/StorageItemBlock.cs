@@ -36,8 +36,8 @@ public class StorageItemBlock
         return HashCode.Combine(ItemId, TotalCount, UniqueItems);
     }
 
-    public bool FirstModuleIsEqualTo(IStorageModule storageModule)
+    public bool HasModuleEqualTo(IStorageModule storageModule)
     {
-        return UniqueItems.FirstOrDefault()?.Modules.FirstOrDefault()?.IsEqualTo(storageModule) ?? false;
+        return UniqueItems.SelectMany(uniqueItem => uniqueItem.Modules).Any(module => module.IsEqualTo(storageModule));
     }
 }

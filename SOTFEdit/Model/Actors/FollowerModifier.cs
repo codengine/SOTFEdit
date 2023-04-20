@@ -469,9 +469,9 @@ public class FollowerModifier
             var sentiment = existingInfluence["Sentiment"]?.Value<float>() ?? 0f;
 
             if (
-                Math.Abs(anger - newInfluence.Anger ?? 0f) > 0.001 ||
-                Math.Abs(fear - newInfluence.Fear ?? 0f) > 0.001 ||
-                Math.Abs(sentiment - newInfluence.Sentiment ?? 0f) > 0.001
+                Math.Abs(anger - newInfluence.Anger) > 0.001 ||
+                Math.Abs(fear - newInfluence.Fear) > 0.001 ||
+                Math.Abs(sentiment - newInfluence.Sentiment) > 0.001
             )
             {
                 return true;

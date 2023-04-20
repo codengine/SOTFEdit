@@ -4,101 +4,13 @@
   },
   "items": [
     {
-      "id": 568,
-      "type": "key",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "id": 78,
+      "type": "log",
+      "isInventoryItem": false
     },
     {
-      "id": 566,
-      "type": "key",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 567,
-      "type": "key",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 469,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 4,
-        "inventory": 4
-      }
-    },
-    {
-      "id": 527,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 6
-      }
-    },
-    {
-      "id": 458,
-      "type": "misc",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 460,
-      "type": "misc"
-    },
-    {
-      "id": 471,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 435,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 524,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 529,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 412,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 432,
-      "type": "misc",
+      "id": 340,
+      "type": "weapon",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -113,64 +25,16 @@
       }
     },
     {
-      "id": 420,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 3,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 419,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 100
-      }
-    },
-    {
-      "id": 479,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 1000
-      }
-    },
-    {
-      "id": 440,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 486,
-      "type": "misc",
+      "id": 346,
+      "type": "weapon",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 418,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 12,
-        "inventory": 100
-      }
-    },
-    {
-      "id": 410,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 50
-      }
-    },
-    {
-      "id": 590,
-      "type": "misc",
+      "id": 351,
+      "type": "container",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -178,592 +42,8 @@
       }
     },
     {
-      "id": 444,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 391,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 393,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 403,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 8,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 480,
-      "type": "food",
-      "modules": [
-        {
-          "moduleId": 1,
-          "SourceActorType": [
-            13
-          ]
-        },
-        {
-          "moduleId": 3,
-          "variants": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        }
-      ],
-      "storageMax": {
-        "shelf": 2,
-        "inventory": 2
-      }
-    },
-    {
-      "id": 481,
-      "type": "food",
-      "modules": [
-        {
-          "moduleId": 1,
-          "SourceActorType": [
-            13
-          ]
-        },
-        {
-          "moduleId": 3,
-          "variants": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        }
-      ],
-      "storageMax": {
-        "shelf": 2,
-        "inventory": 2
-      }
-    },
-    {
-      "id": 482,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 1,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 508,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 6
-      }
-    },
-    {
-      "id": 430,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 1,
-        "inventory": 3
-      }
-    },
-    {
-      "id": 573,
-      "type": "misc",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 476,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 15,
-        "inventory": 30
-      }
-    },
-    {
-      "id": 416,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 415,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 1000
-      }
-    },
-    {
-      "id": 405,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 15
-      }
-    },
-    {
-      "id": 502,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 100,
-        "inventory": 1000
-      }
-    },
-    {
-      "id": 517,
-      "type": "misc"
-    },
-    {
-      "id": 392,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 504,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 4,
-        "inventory": 5
-      }
-    },
-    {
-      "id": 553,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 503,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 401,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 8,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 506,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 414,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 6
-      }
-    },
-    {
-      "id": 437,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 6
-      }
-    },
-    {
-      "id": 496,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 1000,
-        "inventory": 1000000
-      }
-    },
-    {
-      "id": 518,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 100,
-        "inventory": 50
-      }
-    },
-    {
-      "id": 484,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 100,
-        "inventory": 1000
-      }
-    },
-    {
-      "id": 618,
-      "type": "ammo",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 559,
-      "type": "printed"
-    },
-    {
-      "id": 561,
-      "type": "printed"
-    },
-    {
-      "id": 560,
-      "type": "printed",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 413,
-      "type": "printed",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 426,
-      "type": "printed",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 427,
-      "type": "printed"
-    },
-    {
-      "id": 428,
-      "type": "printed",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 390,
-      "type": "printed",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 1000
-      }
-    },
-    {
-      "id": 429,
-      "type": "printed"
-    },
-    {
-      "id": 569,
-      "type": "food",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 434,
-      "type": "food",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 6
-      }
-    },
-    {
-      "id": 464,
-      "type": "food",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 5
-      }
-    },
-    {
-      "id": 483,
-      "type": "food"
-    },
-    {
-      "id": 436,
-      "type": "food",
-      "modules": [
-        {
-          "moduleId": 3,
-          "variants": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        }
-      ],
-      "storageMax": {
-        "shelf": 7,
-        "inventory": 3
-      }
-    },
-    {
-      "id": 439,
-      "type": "food",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 512,
-      "type": "food"
-    },
-    {
-      "id": 497,
-      "type": "food"
-    },
-    {
-      "id": 438,
-      "type": "food",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 6
-      }
-    },
-    {
-      "id": 421,
-      "type": "food",
-      "storageMax": {
-        "shelf": 4,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 570,
-      "type": "food",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 571,
-      "type": "food",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 494,
-      "type": "armor",
-      "isEquippableArmor": true,
-      "durability": {
-        "default": 35,
-        "min": 1,
-        "max": 65535
-      },
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 593,
-      "type": "armor",
-      "isEquippableArmor": true,
-      "durability": {
-        "default": 40,
-        "min": 1,
-        "max": 65535
-      },
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 519,
-      "type": "armor",
-      "isEquippableArmor": true,
-      "durability": {
-        "default": 20,
-        "min": 1,
-        "max": 65535
-      },
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 572,
-      "type": "armor",
-      "isEquippableArmor": false,
-      "isWearableCloth": true
-    },
-    {
-      "id": 473,
-      "type": "armor",
-      "isEquippableArmor": true,
-      "durability": {
-        "default": 10,
-        "min": 1,
-        "max": 65535
-      },
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 492,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 554,
-      "type": "armor",
-      "isEquippableArmor": true,
-      "durability": {
-        "default": 80,
-        "min": 1,
-        "max": 65535
-      },
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 491,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 488,
-      "type": "clothes"
-    },
-    {
-      "id": 558,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 490,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 499,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 463,
-      "type": "clothes"
-    },
-    {
-      "id": 493,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 487,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 619,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 500,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 501,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 489,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 555,
-      "type": "clothes",
+      "id": 353,
+      "type": "weapon",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -778,153 +58,11 @@
       }
     },
     {
-      "id": 357,
-      "type": "weapon"
-    },
-    {
-      "id": 361,
-      "type": "weapon"
-    },
-    {
-      "id": 364,
-      "type": "ammo",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 1000
-      }
-    },
-    {
-      "id": 394,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 478,
-      "type": "weapon",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 380,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
       "id": 355,
       "type": "weapon",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
-    },
-    {
-      "id": 443,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 477,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 507,
-      "type": "ammo",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 474,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 5
-      }
-    },
-    {
-      "id": 365,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 431,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 525,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 381,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 382,
-      "type": "weapon"
-    },
-    {
-      "id": 340,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 367,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 388,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 6,
-        "inventory": 6
-      }
-    },
-    {
-      "id": 389,
-      "type": "weapon",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 10
       }
     },
     {
@@ -936,48 +74,8 @@
       }
     },
     {
-      "id": 362,
-      "type": "ammo",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 1000
-      }
-    },
-    {
-      "id": 422,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 522,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 377,
+      "id": 357,
       "type": "weapon"
-    },
-    {
-      "id": 485,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 374,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
     },
     {
       "id": 358,
@@ -988,11 +86,31 @@
       }
     },
     {
-      "id": 459,
+      "id": 359,
       "type": "weapon",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
+      }
+    },
+    {
+      "id": 360,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 361,
+      "type": "weapon"
+    },
+    {
+      "id": 362,
+      "type": "ammo",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 1000
       }
     },
     {
@@ -1004,6 +122,42 @@
       }
     },
     {
+      "id": 364,
+      "type": "ammo",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 1000
+      }
+    },
+    {
+      "id": 365,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 366,
+      "type": "weapon"
+    },
+    {
+      "id": 367,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 368,
+      "type": "ammo",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 15
+      }
+    },
+    {
       "id": 369,
       "type": "ammo",
       "storageMax": {
@@ -1012,31 +166,30 @@
       }
     },
     {
-      "id": 379,
-      "type": "weapon",
+      "id": 370,
+      "type": "ammo",
+      "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 417,
-      "type": "weapon",
+      "id": 371,
+      "type": "ammo",
+      "isInventoryItem": false,
       "storageMax": {
-        "shelf": 3,
-        "inventory": 3
+        "shelf": 0,
+        "inventory": 1
       }
     },
     {
-      "id": 470,
-      "type": "weapon"
-    },
-    {
-      "id": 523,
+      "id": 372,
       "type": "weapon",
+      "isInventoryItem": false,
       "storageMax": {
-        "shelf": 4,
-        "inventory": 10
+        "shelf": 50,
+        "inventory": 1
       }
     },
     {
@@ -1048,17 +201,8 @@
       }
     },
     {
-      "id": 378,
+      "id": 374,
       "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 384,
-      "type": "weapon",
-      "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1081,7 +225,11 @@
       }
     },
     {
-      "id": 346,
+      "id": 377,
+      "type": "weapon"
+    },
+    {
+      "id": 378,
       "type": "weapon",
       "storageMax": {
         "shelf": 0,
@@ -1089,263 +237,7 @@
       }
     },
     {
-      "id": 509,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 467,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 521,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 448,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 446,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 451,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 596,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 595,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 598,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 454,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 597,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 445,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 599,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 465,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 605,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 449,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 600,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 461,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 7,
-        "inventory": 3
-      }
-    },
-    {
-      "id": 462,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 9,
-        "inventory": 3
-      }
-    },
-    {
-      "id": 453,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 601,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 594,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 602,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 455,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 7,
-        "inventory": 3
-      }
-    },
-    {
-      "id": 456,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 9,
-        "inventory": 3
-      }
-    },
-    {
-      "id": 450,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 603,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 447,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 604,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 452,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 606,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 50,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 402,
-      "type": "container",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 468,
+      "id": 379,
       "type": "weapon",
       "storageMax": {
         "shelf": 0,
@@ -1353,85 +245,36 @@
       }
     },
     {
-      "id": 368,
-      "type": "ammo",
+      "id": 380,
+      "type": "weapon",
       "storageMax": {
-        "shelf": 20,
-        "inventory": 15
+        "shelf": 0,
+        "inventory": 1
       }
     },
     {
-      "id": 441,
-      "type": "food",
+      "id": 381,
+      "type": "weapon",
       "storageMax": {
         "shelf": 5,
         "inventory": 10
       }
     },
     {
-      "id": 400,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 20
-      }
+      "id": 382,
+      "type": "weapon"
     },
     {
-      "id": 526,
-      "type": "key",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "id": 383,
+      "type": "weapon"
     },
     {
-      "id": 589,
-      "type": "document",
+      "id": 384,
+      "type": "weapon",
+      "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
-    },
-    {
-      "id": 398,
-      "type": "food",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 78,
-      "type": "log",
-      "isInventoryItem": false
-    },
-    {
-      "id": 466,
-      "type": "food",
-      "storageMax": {
-        "shelf": 5,
-        "inventory": 5
-      }
-    },
-    {
-      "id": 433,
-      "type": "food",
-      "modules": [
-        {
-          "moduleId": 3,
-          "variants": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        }
-      ],
-      "storageMax": {
-        "shelf": 7,
-        "inventory": 7
       }
     },
     {
@@ -1443,64 +286,61 @@
       }
     },
     {
-      "id": 353,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 552,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 351,
-      "type": "container",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 370,
-      "type": "ammo",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 617,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 583,
-      "type": "container",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 457,
+      "id": 387,
       "type": "ammo"
     },
     {
-      "id": 532,
-      "type": "blueprint",
+      "id": 388,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 6
+      }
+    },
+    {
+      "id": 389,
+      "type": "weapon",
       "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 390,
+      "type": "printed",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 1000
+      }
+    },
+    {
+      "id": 391,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 392,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 393,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 394,
+      "type": "weapon",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1512,28 +352,190 @@
       "isInventoryItem": false
     },
     {
-      "id": 577,
+      "id": 396,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 397,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 398,
+      "type": "food",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 399,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 400,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 401,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 8,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 402,
+      "type": "container",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 403,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 8,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 405,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 15
+      }
+    },
+    {
+      "id": 406,
       "type": "log",
       "isInventoryItem": false
     },
     {
+      "id": 408,
+      "type": "log",
+      "isInventoryItem": false
+    },
+    {
+      "id": 409,
+      "type": "log",
+      "isInventoryItem": false
+    },
+    {
+      "id": 410,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 50
+      }
+    },
+    {
+      "id": 412,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 413,
+      "type": "printed",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 414,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 6
+      }
+    },
+    {
+      "id": 415,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 1000
+      }
+    },
+    {
+      "id": 416,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 417,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 3,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 418,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 12,
+        "inventory": 100
+      }
+    },
+    {
+      "id": 419,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 100
+      }
+    },
+    {
+      "id": 420,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 3,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 421,
+      "type": "food",
+      "storageMax": {
+        "shelf": 4,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 422,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
       "id": 423,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 574,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 575,
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -1557,105 +559,879 @@
       }
     },
     {
-      "id": 578,
-      "type": "log",
-      "isInventoryItem": false
+      "id": 426,
+      "type": "printed",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     },
     {
-      "id": 409,
-      "type": "log",
-      "isInventoryItem": false
+      "id": 427,
+      "type": "printed"
+    },
+    {
+      "id": 428,
+      "type": "printed",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 429,
+      "type": "printed"
+    },
+    {
+      "id": 430,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 1,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 431,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 432,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 433,
+      "type": "food",
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]        
+      },
+      "storageMax": {
+        "shelf": 7,
+        "inventory": 7
+      }
+    },
+    {
+      "id": 434,
+      "type": "food",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 6
+      }
+    },
+    {
+      "id": 435,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 436,
+      "type": "food",
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "storageMax": {
+        "shelf": 7,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 437,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 6
+      }
+    },
+    {
+      "id": 438,
+      "type": "food",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 6
+      }
+    },
+    {
+      "id": 439,
+      "type": "food",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 440,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 441,
+      "type": "food",
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 443,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 444,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 445,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 446,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 447,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 448,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 449,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 450,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 451,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 452,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 453,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 454,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 455,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 7,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 456,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 9,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 457,
+      "type": "ammo"
+    },
+    {
+      "id": 458,
+      "type": "misc",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 459,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 460,
+      "type": "misc"
+    },
+    {
+      "id": 461,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 7,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 462,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 9,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 463,
+      "type": "clothes"
+    },
+    {
+      "id": 464,
+      "type": "food",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 5
+      }
+    },
+    {
+      "id": 465,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 466,
+      "type": "food",
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 5
+      }
+    },
+    {
+      "id": 467,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 468,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 469,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 4,
+        "inventory": 4
+      }
+    },
+    {
+      "id": 470,
+      "type": "weapon"
+    },
+    {
+      "id": 471,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 472,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 3,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 473,
+      "type": "armor",
+      "isEquippableArmor": true,
+      "durability": {
+        "default": 10,
+        "min": 1,
+        "max": 65535
+      },
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 474,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 5
+      }
+    },
+    {
+      "id": 475,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 476,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 15,
+        "inventory": 30
+      }
+    },
+    {
+      "id": 477,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 478,
+      "type": "weapon",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 479,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 1000
+      }
+    },
+    {
+      "id": 480,
+      "type": "food",
+      "storageMax": {
+        "shelf": 2,
+        "inventory": 2
+      },
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "sourceActorModuleDefinition": {
+        "defaultSourceActorType": 13
+      }
+    },
+    {
+      "id": 481,
+      "type": "food",
+      "storageMax": {
+        "shelf": 2,
+        "inventory": 2
+      },
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "sourceActorModuleDefinition": {
+        "defaultSourceActorType": 13
+      }
+    },
+    {
+      "id": 482,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 1,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 483,
+      "type": "food"
+    },
+    {
+      "id": 484,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 100,
+        "inventory": 1000
+      }
+    },
+    {
+      "id": 485,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 486,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 487,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 488,
+      "type": "clothes"
+    },
+    {
+      "id": 489,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 490,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 491,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 492,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 493,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 494,
+      "type": "armor",
+      "isEquippableArmor": true,
+      "durability": {
+        "default": 35,
+        "min": 1,
+        "max": 65535
+      },
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 495,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 2
+      }
+    },
+    {
+      "id": 496,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 1000,
+        "inventory": 1000000
+      }
+    },
+    {
+      "id": 497,
+      "type": "food"
+    },
+    {
+      "id": 498,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 499,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 500,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 501,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 502,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 100,
+        "inventory": 1000
+      }
+    },
+    {
+      "id": 503,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 504,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 4,
+        "inventory": 5
+      }
+    },
+    {
+      "id": 505,
+      "type": "misc"
+    },
+    {
+      "id": 506,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 507,
+      "type": "ammo",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 508,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 6
+      }
+    },
+    {
+      "id": 509,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 511,
+      "type": "misc",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 512,
+      "type": "food"
+    },
+    {
+      "id": 513,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 514,
+      "type": "misc",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 515,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 516,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 517,
+      "type": "misc"
+    },
+    {
+      "id": 518,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 100,
+        "inventory": 50
+      }
+    },
+    {
+      "id": 519,
+      "type": "armor",
+      "isEquippableArmor": true,
+      "durability": {
+        "default": 20,
+        "min": 1,
+        "max": 65535
+      },
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 520,
+      "type": "misc"
+    },
+    {
+      "id": 521,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 522,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 523,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 4,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 524,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 525,
+      "type": "weapon",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 526,
+      "type": "key",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 527,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 6
+      }
+    },
+    {
+      "id": 528,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 529,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 530,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 531,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 532,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 533,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     },
     {
       "id": 534,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 542,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 614,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 545,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 543,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 615,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 548,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 547,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 546,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 616,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 540,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 544,
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -1695,14 +1471,6 @@
       }
     },
     {
-      "id": 541,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
       "id": 539,
       "type": "document",
       "storageMax": {
@@ -1711,23 +1479,7 @@
       }
     },
     {
-      "id": 396,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 513,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 528,
+      "id": 540,
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -1735,8 +1487,73 @@
       }
     },
     {
-      "id": 582,
+      "id": 541,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 542,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 543,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 544,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 545,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 546,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 547,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 548,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 549,
       "type": "blueprint",
+      "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1752,24 +1569,16 @@
       }
     },
     {
-      "id": 372,
-      "type": "weapon",
+      "id": 551,
+      "type": "blueprint",
       "isInventoryItem": false,
       "storageMax": {
-        "shelf": 50,
+        "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 383,
-      "type": "weapon"
-    },
-    {
-      "id": 387,
-      "type": "ammo"
-    },
-    {
-      "id": 562,
+      "id": 552,
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -1777,7 +1586,77 @@
       }
     },
     {
-      "id": 565,
+      "id": 553,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 554,
+      "type": "armor",
+      "isEquippableArmor": true,
+      "durability": {
+        "default": 80,
+        "min": 1,
+        "max": 65535
+      },
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 555,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 556,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 557,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 558,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 559,
+      "type": "printed"
+    },
+    {
+      "id": 560,
+      "type": "printed",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 561,
+      "type": "printed"
+    },
+    {
+      "id": 562,
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -1801,16 +1680,70 @@
       }
     },
     {
-      "id": 556,
-      "type": "clothes",
+      "id": 565,
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 591,
-      "type": "blueprint",
+      "id": 566,
+      "type": "key",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 567,
+      "type": "key",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 568,
+      "type": "key",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 569,
+      "type": "food",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 570,
+      "type": "food",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 571,
+      "type": "food",
+      "storageMax": {
+        "shelf": 10,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 572,
+      "type": "armor",
+      "isEquippableArmor": false,
+      "isWearableCloth": true
+    },
+    {
+      "id": 573,
+      "type": "misc",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -1818,40 +1751,35 @@
       }
     },
     {
-      "id": 551,
-      "type": "blueprint",
-      "isInventoryItem": false,
+      "id": 574,
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 608,
-      "type": "blueprint",
-      "isInventoryItem": false,
+      "id": 575,
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 588,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "id": 576,
+      "type": "log",
+      "isInventoryItem": false
     },
     {
-      "id": 549,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "id": 577,
+      "type": "log",
+      "isInventoryItem": false
+    },
+    {
+      "id": 578,
+      "type": "log",
+      "isInventoryItem": false
     },
     {
       "id": 579,
@@ -1860,99 +1788,6 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
-    },
-    {
-      "id": 360,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 520,
-      "type": "misc"
-    },
-    {
-      "id": 511,
-      "type": "misc",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 514,
-      "type": "misc",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 557,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 359,
-      "type": "weapon",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 366,
-      "type": "weapon"
-    },
-    {
-      "id": 587,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 584,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 371,
-      "type": "ammo",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 399,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 10,
-        "inventory": 20
-      }
-    },
-    {
-      "id": 397,
-      "type": "plant",
-      "storageMax": {
-        "shelf": 20,
-        "inventory": 20
       }
     },
     {
@@ -1965,108 +1800,33 @@
       }
     },
     {
-      "id": 408,
-      "type": "log",
-      "isInventoryItem": false
-    },
-    {
-      "id": 609,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 607,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 610,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 531,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 495,
-      "type": "clothes",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 2
-      }
-    },
-    {
-      "id": 472,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 3,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 530,
-      "type": "blueprint",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 515,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 516,
-      "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 592,
-      "type": "armor",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 10
-      }
-    },
-    {
-      "id": 576,
-      "type": "log",
-      "isInventoryItem": false
-    },
-    {
-      "id": 406,
-      "type": "log",
-      "isInventoryItem": false
-    },
-    {
       "id": 581,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 582,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 583,
+      "type": "container",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 584,
       "type": "blueprint",
       "isInventoryItem": false,
       "storageMax": {
@@ -2084,7 +1844,7 @@
       }
     },
     {
-      "id": 533,
+      "id": 586,
       "type": "blueprint",
       "isInventoryItem": false,
       "storageMax": {
@@ -2093,7 +1853,205 @@
       }
     },
     {
-      "id": 586,
+      "id": 587,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 588,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 589,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 590,
+      "type": "misc",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 591,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 592,
+      "type": "armor",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 593,
+      "type": "armor",
+      "isEquippableArmor": true,
+      "durability": {
+        "default": 40,
+        "min": 1,
+        "max": 65535
+      },
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      }
+    },
+    {
+      "id": 594,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 595,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 596,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 597,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 598,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 599,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 600,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 601,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 602,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 603,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 604,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 605,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 606,
+      "type": "plant",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 607,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 608,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 609,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 610,
       "type": "blueprint",
       "isInventoryItem": false,
       "storageMax": {
@@ -2126,21 +2084,7 @@
       }
     },
     {
-      "id": 626,
-      "type": "misc",
-      "isInventoryItem": false
-    },
-    {
-      "id": 630,
-      "type": "misc",
-      "isInventoryItem": false
-    },
-    {
-      "id": 505,
-      "type": "misc"
-    },
-    {
-      "id": 633,
+      "id": 614,
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -2148,15 +2092,7 @@
       }
     },
     {
-      "id": 629,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
-    },
-    {
-      "id": 631,
+      "id": 615,
       "type": "document",
       "storageMax": {
         "shelf": 0,
@@ -2164,31 +2100,39 @@
       }
     },
     {
-      "id": 634,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 3
-      }
-    },
-    {
-      "id": 635,
-      "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 8
-      }
-    },
-    {
-      "id": 625,
-      "type": "blueprint",
+      "id": 616,
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 622,
+      "id": 617,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 618,
+      "type": "ammo",
+      "storageMax": {
+        "shelf": 20,
+        "inventory": 20
+      }
+    },
+    {
+      "id": 619,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 620,
       "type": "blueprint",
       "storageMax": {
         "shelf": 0,
@@ -2204,7 +2148,7 @@
       }
     },
     {
-      "id": 620,
+      "id": 622,
       "type": "blueprint",
       "storageMax": {
         "shelf": 0,
@@ -2228,20 +2172,17 @@
       }
     },
     {
-      "id": 475,
-      "type": "misc",
+      "id": 625,
+      "type": "blueprint",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
       }
     },
     {
-      "id": 498,
+      "id": 626,
       "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 627,
@@ -2258,12 +2199,65 @@
         "shelf": 0,
         "inventory": 1
       }
+    },
+    {
+      "id": 629,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 630,
+      "type": "misc",
+      "isInventoryItem": false
+    },
+    {
+      "id": 631,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 633,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 634,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 3
+      }
+    },
+    {
+      "id": 635,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 8
+      }
     }
   ],
   "storages": [
     {
-      "id": 49,
-      "slots": 12
+      "id": 27,
+      "slots": 6,
+      "maxPerSlot": 1,
+      "type": "Food",
+      "restrictedItemIds": [
+        433,
+        436,
+        480,
+        481
+      ]
     },
     {
       "id": 29,
@@ -2293,29 +2287,6 @@
       "type": "Bones"
     },
     {
-      "id": 51,
-      "slots": 4
-    },
-    {
-      "id": 27,
-      "slots": 6,
-      "maxPerSlot": 1,
-      "type": "Food",
-      "restrictedItemIds": [
-        433,
-        436
-      ]
-    },
-    {
-      "id": 37,
-      "slots": 1,
-      "maxPerSlot": 6,
-      "restrictedItemIds": [
-        78
-      ],
-      "type": "Logs"
-    },
-    {
       "id": 36,
       "slots": 10,
       "maxPerSlot": 1,
@@ -2328,9 +2299,26 @@
       ]
     },
     {
+      "id": 37,
+      "slots": 1,
+      "maxPerSlot": 6,
+      "restrictedItemIds": [
+        78
+      ],
+      "type": "Logs"
+    },
+    {
       "id": 39,
       "slots": 0,
       "restrictedItemIds": []
+    },
+    {
+      "id": 49,
+      "slots": 12
+    },
+    {
+      "id": 51,
+      "slots": 4
     }
   ],
   "followers": {

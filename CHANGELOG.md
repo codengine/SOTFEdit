@@ -2,6 +2,11 @@
 
 ## v0.9.3
 
+### Features
+
+- Add support for cooked/spoiled/dried arms and legs in inventory and storages
+    - At inventory, it will add cooked arms/legs by default. Detailed editing may be added in the future
+
 ### Fixes
 
 - Fix stats resetting if the player did not have a value currently set for a given stat

@@ -7,17 +7,17 @@ public class ItemWrapper
 {
     private readonly int? _maxPerSlot;
 
-    public ItemWrapper(Item item, int? maxPerSlot, ModuleWrapper? moduleWrapper = null)
+    public ItemWrapper(Item item, int? maxPerSlot, FoodSpoilStorageModuleWrapper? foodSpoilStorageModuleWrapper = null)
     {
         _maxPerSlot = maxPerSlot;
         Item = item;
-        ModuleWrapper = moduleWrapper;
+        FoodSpoilStorageModuleWrapper = foodSpoilStorageModuleWrapper;
     }
 
     public Item Item { get; }
-    public ModuleWrapper? ModuleWrapper { get; }
+    public FoodSpoilStorageModuleWrapper? FoodSpoilStorageModuleWrapper { get; }
 
-    public string Name => ModuleWrapper?.Name ?? Item.Name;
+    public string Name => FoodSpoilStorageModuleWrapper?.Name ?? Item.Name;
 
     public int Max => _maxPerSlot ?? Item.StorageMax?.Shelf ?? 1;
 }

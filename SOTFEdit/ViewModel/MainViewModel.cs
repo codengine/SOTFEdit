@@ -25,11 +25,11 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string _lastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
 
-    [ObservableProperty] private double? _pinLeft;
+    [ObservableProperty] private double _pinLeft;
 
     [ObservableProperty] private Position? _pinPos;
 
-    [ObservableProperty] private double? _pinTop;
+    [ObservableProperty] private double _pinTop;
 
     public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage, NpcsPage npcsPage,
         StructuresPage structuresPage)

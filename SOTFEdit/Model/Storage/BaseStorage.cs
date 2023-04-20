@@ -84,8 +84,8 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
                 {
                     foreach (var candidate in candidates)
                     {
-                        if (candidate.ModuleWrapper is not { } moduleWrapper ||
-                            !itemBlock.FirstModuleIsEqualTo(moduleWrapper.Module))
+                        if (candidate.FoodSpoilStorageModuleWrapper is not { } moduleWrapper ||
+                            !itemBlock.HasModuleEqualTo(moduleWrapper.FoodSpoilStorageModule))
                         {
                             continue;
                         }
@@ -204,14 +204,13 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
         }
     }
 
-    protected void AddEffectiveSupportedItem(Item item, StorageDefinition storageDefinition, List<ItemWrapper> target)
+    protected static void AddEffectiveSupportedItem(Item item, StorageDefinition storageDefinition, List<ItemWrapper> target)
     {
-        if (item.Modules?.Count > 0)
+        if (item.FoodSpoilModuleDefinition is {} foodSpoilModule)
         {
             target.AddRange(
-                from itemModule in item.Modules
-                from variant in itemModule.Variants
-                select new ItemWrapper(item, storageDefinition.MaxPerSlot, BuildModuleWrapper(itemModule, item.Id, variant))
+                from variant in foodSpoilModule.Variants
+                select new ItemWrapper(item, storageDefinition.MaxPerSlot, BuildFoodSpoilStorageModuleWrapper(foodSpoilModule, item.Id, variant))
             );
         }
         else
@@ -221,16 +220,9 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
     }
 
 
-    private ModuleWrapper? BuildModuleWrapper(ItemModule itemModule, int itemId, int variant)
+    private static FoodSpoilStorageModuleWrapper BuildFoodSpoilStorageModuleWrapper(ItemModule foodSpoilModule, int itemId, int variant)
     {
-        if (FoodSpoilStorageModule.SupportsModuleId(itemModule.ModuleId))
-        {
-            var storageModule = new FoodSpoilStorageModule(itemModule.ModuleId, variant);
-            return new ModuleWrapper(storageModule, itemId, variant);
-        }
-
-        _logger.Warn($"Unsupported moduleId: {itemModule.ModuleId}");
-
-        return null;
+        var storageModule = new FoodSpoilStorageModule(foodSpoilModule.ModuleId, variant);
+        return new FoodSpoilStorageModuleWrapper(storageModule, itemId, variant);
     }
 }

@@ -221,9 +221,7 @@ public partial class InventoryPageViewModel : ObservableObject
             return false;
         }
 
-        var selectedItems = _inventory
-            .Select(item => item.ItemBlock)
-            .ToList();
+        var selectedItems = new List<InventoryItem>(_inventory);
 
         return PlayerInventoryDataModel.Merge(saveDataWrapper, selectedItems);
     }

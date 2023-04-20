@@ -55,7 +55,7 @@ public partial class FollowerState : ObservableObject
         AddInfluenceCommand.NotifyCanExecuteChanged();
     }
 
-    private bool HasSavegameSelected()
+    private static bool HasSavegameSelected()
     {
         return SavegameManager.SelectedSavegame != null;
     }

@@ -20,12 +20,9 @@ public class StorageFactory
             StorageType.Food => new FoodStorage(storageDefinition, _items, index),
             StorageType.Logs => new StorageWithModulePerItem(storageDefinition, _items, index,
                 () => new LogStorageModule()),
-            StorageType.Sticks => new StorageWithModulePerItem(storageDefinition, _items, index,
-                () => new GenericModuleWithWeights(new ChannelWeightsModel(0, 0, 0, 0))),
-            StorageType.Stones => new StorageWithModulePerItem(storageDefinition, _items, index,
-                () => new GenericModuleWithWeights(new ChannelWeightsModel(0, 0, 0, 0))),
-            StorageType.Bones => new StorageWithModulePerItem(storageDefinition, _items, index,
-                () => new GenericModuleWithWeights(new ChannelWeightsModel(0, 0, 0, 0))),
+            StorageType.Sticks => new StorageWithModulePerItem(storageDefinition, _items, index),
+            StorageType.Stones => new StorageWithModulePerItem(storageDefinition, _items, index),
+            StorageType.Bones => new StorageWithModulePerItem(storageDefinition, _items, index),
             _ => throw new ArgumentOutOfRangeException(storageDefinition.Type.ToString())
         };
     }
