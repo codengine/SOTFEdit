@@ -141,5 +141,17 @@ namespace SOTFEdit {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSavegameName {
+            get {
+                return ((string)(this["LastSavegameName"]));
+            }
+            set {
+                this["LastSavegameName"] = value;
+            }
+        }
     }
 }

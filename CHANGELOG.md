@@ -4,12 +4,14 @@
 
 ### Features
 
-- Add support for cooked/spoiled/dried arms and legs in inventory and storages
+- Added support for cooked/spoiled/dried arms and legs in inventory and storages
     - At inventory, it will add cooked arms/legs by default. Detailed editing may be added in the future
+- Added new action camera
+- Added support for savegame naming
 
 ### Fixes
 
-- Fix stats resetting if the player did not have a value currently set for a given stat
+- Fixed stats resetting if the player did not have a value currently set for a given stat
 
 ### Improvements
 

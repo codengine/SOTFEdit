@@ -13,20 +13,25 @@ namespace SOTFEdit.Model.Savegame;
 
 public class Savegame : ObservableObject
 {
+    private readonly string _dirName;
+
     public Savegame(string fullPath, string dirName, SavegameStore savegameStore)
     {
         SavegameStore = savegameStore;
         FullPath = fullPath;
-        Title = dirName;
+        _dirName = dirName;
+        ReadSaveData();
     }
 
     public string FullPath { get; }
 
     public SavegameStore SavegameStore { get; }
 
-    public string Title { get; }
+    public string Title => !string.IsNullOrWhiteSpace(GameName) ? $"{GameName} ({_dirName})" : _dirName;
+    
+    public string? GameName { get; private set; }
 
-    public DateTime LastSaveTime => ReadLastSaveTime();
+    public DateTime LastSaveTime { get; private set; }
     public BitmapImage Thumbnail => BuildThumbnail();
 
     public string PrintableType
@@ -139,16 +144,19 @@ public class Savegame : ObservableObject
         return followerModifier.Revive(typeId, itemIds, outfit, pos);
     }
 
-    private DateTime ReadLastSaveTime()
+    private void ReadSaveData()
     {
-        if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData) is { } saveDataWrapper &&
-            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.GameState)?["SaveTime"]?.ToObject<DateTime>() is
-                { } saveTime)
+        if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData) is not { } saveDataWrapper ||
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.GameState) is not {} gameState)
         {
-            return saveTime;
+            return;
         }
 
-        return SavegameStore.LastWriteTime;
+        LastSaveTime = gameState["SaveTime"]?.ToObject<DateTime>() ?? SavegameStore.LastWriteTime;
+        if (gameState["GameName"]?.Value<string>() is { } gameName)
+        {
+            GameName = gameName;
+        }
     }
 
     public bool ModifyGameState(Dictionary<string, object> values)

@@ -88,6 +88,12 @@ public class GameStatePageViewModel
                         StringValue = child.Value.ToString()
                     };
                     break;
+                case "GameName":
+                    setting = new GenericSetting(child.Name, GenericSetting.DataType.String, child.Path)
+                    {
+                        StringValue = child.Value.ToString()
+                    };
+                    break;
                 case "GameDays":
                     setting = new GenericSetting(child.Name, GenericSetting.DataType.Integer, child.Path)
                     {

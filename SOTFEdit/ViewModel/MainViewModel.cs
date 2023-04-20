@@ -110,6 +110,7 @@ public partial class MainViewModel : ObservableObject
         ResetStructureDamageCommand.NotifyCanExecuteChanged();
         TeleportWorldItemCommand.NotifyCanExecuteChanged();
         Settings.Default.LastSavegame = message.SelectedSavegame?.FullPath ?? "";
+        Settings.Default.LastSavegameName = message.SelectedSavegame?.GameName ?? "";
         Settings.Default.Save();
         UpdateLastSaveGameMenuItem();
         OpenLastSavegameCommand.NotifyCanExecuteChanged();
@@ -123,16 +124,20 @@ public partial class MainViewModel : ObservableObject
             return;
         }
 
+        var fnDisplay = lastSavegame;
+
         var parts = lastSavegame.Split(Path.DirectorySeparatorChar);
-        if (parts.Length < 2)
+        if (parts.Length >= 2)
         {
-            LastSaveGameMenuItem =
-                TranslationManager.GetFormatted("menu.file.openLastSavegameWithSavegame", lastSavegame);
-            return;
+            fnDisplay = $"{parts[^2]}{Path.DirectorySeparatorChar}{parts[^1]}";
         }
 
-        LastSaveGameMenuItem = TranslationManager.GetFormatted("menu.file.openLastSavegameWithSavegame",
-            $"{parts[^2]}{Path.DirectorySeparatorChar}{parts[^1]}");
+        if (!string.IsNullOrWhiteSpace(Settings.Default.LastSavegameName))
+        {
+            fnDisplay = $"{Settings.Default.LastSavegameName} ({fnDisplay})";
+        }
+
+        LastSaveGameMenuItem = TranslationManager.GetFormatted("menu.file.openLastSavegameWithSavegame", fnDisplay);
     }
 
     public static bool CanOpenLastSavegame()

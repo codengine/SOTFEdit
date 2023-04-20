@@ -1,38 +1,40 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="SOTFEdit" GeneratedClassName="Settings">
-    <Profiles/>
-    <Settings>
-        <Setting Name="SavegamePath" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
-        </Setting>
-        <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
-            <Value Profile="(Default)">True</Value>
-        </Setting>
-        <Setting Name="CheckForUpdates" Type="System.Boolean" Scope="User">
-            <Value Profile="(Default)">True</Value>
-        </Setting>
-        <Setting Name="LastFoundVersion" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
-        </Setting>
-        <Setting Name="Theme" Type="System.String" Scope="User">
-            <Value Profile="(Default)">Dark</Value>
-        </Setting>
-        <Setting Name="ThemeAccent" Type="System.String" Scope="User">
-            <Value Profile="(Default)">Blue</Value>
-        </Setting>
-        <Setting Name="BackupMode" Type="SOTFEdit.ApplicationSettings.BackupMode" Scope="User">
-            <Value Profile="(Default)">InitialAndOne</Value>
-        </Setting>
-        <Setting Name="BackupFlags" Type="SOTFEdit.ApplicationSettings.BackupFlag" Scope="User">
-            <Value Profile="(Default)">TYPE_ARCHIVE</Value>
-        </Setting>
-        <Setting Name="LastSavegame" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
-        </Setting>
-        <Setting Name="Language" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
-        </Setting>
-    </Settings>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SOTFEdit" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SavegamePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CheckForUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LastFoundVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Theme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dark</Value>
+    </Setting>
+    <Setting Name="ThemeAccent" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Blue</Value>
+    </Setting>
+    <Setting Name="BackupMode" Type="SOTFEdit.ApplicationSettings.BackupMode" Scope="User">
+      <Value Profile="(Default)">InitialAndOne</Value>
+    </Setting>
+    <Setting Name="BackupFlags" Type="SOTFEdit.ApplicationSettings.BackupFlag" Scope="User">
+      <Value Profile="(Default)">TYPE_ARCHIVE</Value>
+    </Setting>
+    <Setting Name="LastSavegame" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSavegameName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>
 
