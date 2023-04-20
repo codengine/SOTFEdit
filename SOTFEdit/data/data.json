@@ -618,7 +618,7 @@
           4,
           5,
           6
-        ]        
+        ]
       },
       "storageMax": {
         "shelf": 7,
@@ -2243,6 +2243,14 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 8
+      }
+    },
+    {
+      "id": 637,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
       }
     }
   ],
