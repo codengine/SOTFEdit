@@ -1,0 +1,1129 @@
+{
+  "influences": {
+    "disclaimer": "Sentyment odpowiada za przywiązanie, aczkolwiek ciągle nie rozumiemy jak oddziałowywuje to na przeciwników.\nWyższa wartość strachu zwiększa szansę na ucieczkę przeiwników podczas walki.\nWyższy poziom złości zwiększa częstotliwość ataków.",
+    "sentiment": "Sentyment",
+    "anger": "Złość",
+    "fear": "Strach"
+  },
+  "game": {
+    "setup": {
+      "header": "Ustawienia gry",
+      "spawnEnemies": "Przywołaj przeciwników",
+      "headers": {
+        "enemiesCustom": "Przeciwnicy (Custom)",
+        "weatherCustom": "Pogoda (Custom)"
+      },
+      "mode": {
+        "_label": "Tryb",
+        "normal": "Normalny",
+        "hard": "Trudny",
+        "hardSurvival": "Trudny Survival",
+        "peaceful": "Spokojny",
+        "creative": "Kreatywny",
+        "custom": "Własny"
+      },
+      "consumableEffects": {
+        "_label": "Efekty złego jedzenia",
+        "_tooltip": "Ile obrażeń dostaniesz po zjedzeniu złego jedzenia",
+        "off": "Wyłączone",
+        "normal": "Normalny",
+        "hard": "Trudny"
+      },
+      "playerStatsDamage": {
+        "_label": "Obrażenia od odwodnienia itp.",
+        "_tooltip": "Ile obrażeń otrzymasz od odwodnienia itp.",
+        "off": "Off",
+        "normal": "Normalny",
+        "hard": "Trudny"
+      },
+      "animalSpawnRate": {
+        "_label": "Ilość zwierząt",
+        "low": "Mało",
+        "normal": "Normalnie",
+        "high": "Dużo"
+      },
+      "enemyHealth": {
+        "_label": "Zdrowie przeciwników",
+        "low": "Niskie",
+        "normal": "Normalne",
+        "high": "Wysokie"
+      },
+      "enemyDamage": {
+        "_label": "Obrażenia od przeciwników",
+        "low": "Niskie",
+        "normal": "Normalne",
+        "high": "Wysokie"
+      },
+      "enemyArmour": {
+        "_label": "Pancerz przeciwników",
+        "low": "Niski",
+        "normal": "Średni",
+        "high": "Wysoki"
+      },
+      "enemyAggression": {
+        "_label": "Agresja przeciwników",
+        "low": "Niska",
+        "normal": "Średnia",
+        "high": "Wysoka"
+      },
+      "startingSeason": {
+        "_label": "Początkowa pora roku",
+        "spring": "Wiosna",
+        "summer": "Lato",
+        "autumn": "Jesień",
+        "winter": "Zima"
+      },
+      "seasonLength": {
+        "_label": "Długość pór roku",
+        "short": "Krótkie",
+        "default": "Normalne",
+        "long": "Długie",
+        "realistic": "Realistyczne"
+      },
+      "dayLength": {
+        "_label": "Długość dnia",
+        "short": "Krótka",
+        "default": "Normalna",
+        "long": "Długa",
+        "realistic": "Realistyczna"
+      },
+      "precipitationFrequency": {
+        "_label": "Zmiany pogody",
+        "_tooltip": "Jak szybko zmienia się pogoda",
+        "low": "Rzadko",
+        "default": "Normalnie",
+        "high": "Często"
+      },
+      "uid": "UID",
+      "customSettings": "Specjane ustawienia"
+    },
+    "state": {
+      "header": "Game State",
+      "worldObjectStates": {
+        "header": "Stany obiektów w świecie",
+        "disclaimer": "Nie jest pewne co każdy stan oznacza. Prawdopodobnie:\n- 0 = Nie ustawiony/Zamknięty/Nie wydarzyło się\n- 1 or 3 = Ustawiony/Otwarty/Wydarzyło się"
+      },
+      "headers": {
+        "worldObjectStates": "Stany obiektów w świecie"
+      }
+    }
+  },
+  "inventory": {
+    "filterWatermark": "Filtruj...",
+    "table": {
+      "count": {
+        "tooltip": "Ilość ile masz w ekwipunku",
+        "text": "Ilość"
+      },
+      "id": "ID",
+      "name": "Nazwa",
+      "type": "Typ",
+      "actions": "Akcje"
+    },
+    "headers": {
+      "itemsInInventory": "Przedmioty w ekwipunku",
+      "unassignedItems": "Nieprzypisane przedmioty"
+    },
+    "buttons": {
+      "addAllFromCategory": "Dodaj wszystkie z kategorii",
+      "setAllToMin": "Ustaw ilość wszystkich na minimalną",
+      "setAllToMax": "Ustaw ilość wszystkich na maksymalną",
+      "removeAll": "Usuń wszystkie",
+      "remove": "Usuń",
+      "max": "Max"
+    },
+    "unknownItem": "??? Nieznany przedmiot"
+  },
+  "actors": {
+    "classification": {
+      "cannibal": "Kanibal",
+      "creep": "Mutant",
+      "human": "Człowiek",
+      "muddyCannibal": "Błotnisty Kanibal",
+      "animal": "Zwierzę"
+    },
+    "grouping": {
+      "animals": "Zwierzęta",
+      "creeps": "Mutanty",
+      "misc": "Inne",
+      "maleCannibals": "Kanibale Mężczyźni",
+      "femaleCannibals": "Kanibale Kobiety",
+      "mixedCannibals": "Mieszane Kanibale",
+      "maleMuddyCannibals": "Błotniści Kanibale Mężczyźni",
+      "femaleMuddyCannibals": "Błotniste Kanibale Kobiety",
+      "mixedMuddyCannibals": "Błotniste Kanibale Mieszane",
+      "noFamily": "Bez rodziny",
+      "mixed": "Mieszane"
+    },
+    "types": {
+      "1": "Królik",
+      "2": "Wiewiórka",
+      "3": "Rzułf",
+      "4": "Rekin",
+      "5": "Mewa",
+      "6": "Orzeł",
+      "7": "Kaczka",
+      "8": "Timmy",
+      "9": "Kelvin / Robby",
+      "10": "Virginia",
+      "11": "Fingers",
+      "12": "Carl",
+      "13": "Andy",
+      "14": "Danny",
+      "15": "Billy",
+      "16": "Złota Maska",
+      "17": "Łoś",
+      "18": "Dziecko",
+      "19": "Bliźniaki",
+      "20": "Mutant jaskiniowy - Mężczyzna",
+      "21": "Mutant jaskiniowy - Kobieta",
+      "22": "Glut",
+      "23": "Anioł",
+      "24": "Łosoś",
+      "25": "Brandy",
+      "26": "Crystal",
+      "27": "Destiny",
+      "28": "Błotnista Kobieta",
+      "29": "Błotnisy Mężczyzna",
+      "30": "Ciężki Mężczyzna",
+      "31": "Gąbka testowa",
+      "32": "Nietoperz",
+      "33": "Jeleń",
+      "34": "Niebieski ptak",
+      "35": "Koliber",
+      "36": "Orka",
+      "37": "Żółw Lądowy",
+      "38": "Gruby Mężczyzna",
+      "39": "Gruba Kobieta",
+      "40": "Jan2",
+      "41": "Bezimienny",
+      "42": "Demon",
+      "43": "Umalowany Mężczyzna",
+      "44": "Umalowana Kobieta",
+      "45": "Demon Boss",
+      "46": "Pan Puffton",
+      "47": "Pani Puffton"
+    },
+    "graphMask": {
+      "caveOrBunker": "Jaskinia albo Bunkier",
+      "surface": "Powierzchnia"
+    },
+    "influenceType": {
+      "Cannibal": "Kanibal",
+      "Creepy": "Mutant",
+      "Player": "Gracz"
+    },
+    "gender": {
+      "male": "Mężczyzna",
+      "female": "Kobieta"
+    },
+    "modificationMode": {
+      "Remove": "Usuń",
+      "Modify": "Zmień"
+    },
+    "details": {
+      "classification": "Klasyfikacja",
+      "gender": "Płeć",
+      "lastVisitedTime": "Ostatni odwiedzony czas",
+      "spawnedCount": "Ilość zrespionych",
+      "lastSpawnTime": "Ostatni czas respa",
+      "state": "Stan",
+      "killedByPlayer": "Zabity przez gracza"
+    },
+    "stats": {
+      "energy": "Energia",
+      "health": "Zdrowie",
+      "anger": "Złość",
+      "fear": "Strach",
+      "hydration": "Nawodnienie",
+      "fullness": "Nasycenie",
+      "affection": "Przywiązanie",
+      "rest": "Odpoczynek",
+      "stamina": "Stamina",
+      "fullnessBuff": "Wzmocnienie nasycenia",
+      "hydrationBuff": "Wzmocnienie nawodnienia",
+      "restBuff": "Wzmocnienie odpoczynku"
+    },
+    "modificationOptions": {
+      "allActorSelections": {
+        "thisActor": "Ten NPC",
+        "allActorsOfSameFamily": "Wszyscy NPC tej rodziny",
+        "allActorsOfSameType": "Wszyscy NPC tego typu",
+        "allActors": "Wszyscy NPC"
+      },
+      "skipKelvin": "Pomiń Kelvins",
+      "skipVirginia": "Pomiń Virginię",
+      "onlyInSameAreaAsActor": "Tylko w okolicy tego NPC",
+      "removeSpawner": {
+        "text": "Usuń Spawner",
+        "tooltip": "Jeżeli wybrane NPC nie powinien się zrespić"
+      },
+      "updateInfluences": "Zaktualizuj oddziałwyania",
+      "replaceType": "Zamień typ",
+      "teleport": {
+        "disclaimer": "Bądź ostrożny przy teleportowaniu kilku NPC do tego samego miejsca. To może zcrashować grę!",
+        "teleportLabel": "Teleportuj:",
+        "none": "Nic",
+        "playerToNpc": "Gracz do NPC",
+        "npcToPlayer": "NPC to Gracza"
+      }
+    },
+    "headers": {
+      "info": "Informacje",
+      "influences": "Odziaływania",
+      "modifications": "Modyfikacje",
+      "selection": "Selekcja",
+      "killStatistics": "Statystyki zabójstw",
+      "stats": "Statystyki",
+      "modificationOptions": "Opcje modyfikacji"
+    }
+  },
+  "structures": {
+    "structureTypeSelectorDisclaimer": "Jeżeli nic nie będzie wybrane, wszystkie struktury zostaną zmienione!",
+    "buildCost": "Koszt budowy",
+    "added": "Dodano",
+    "percentDone": "Dodano procent",
+    "modification": "Modyfikacja",
+    "categories": {
+      "shelter": "Schronienie",
+      "treeShelter": "Schronienie na drzewie",
+      "furniture": "Meble",
+      "storage": "Magazyn",
+      "utility": "Użytkowość",
+      "gardening": "Ogrodnictwo",
+      "traps": "Pułapki"
+    },
+    "headers": {
+      "unfinishedStructures": "Nieukończone struktury",
+      "batch": "Partia"
+    },
+    "buttons": {
+      "changeType": "Zmień typ",
+      "unmodifyAll": "Od-modyfikuj wszystkie",
+      "setAllToRemove": "Ustaw wszystkie na \"Usunięte\"",
+      "setAllToFinish": "Ustaw wszystkie na \"Ukończone\"",
+      "setAllToUnfinish": "Ustaw wszystkie na \"Nieukończone\""
+    },
+    "types": {
+      "0": "",
+      "20": "Krzesło z Patyków",
+      "21": "Pułapka Robiąca Kości",
+      "22": "Łóżko z Patyków",
+      "23": "Donica Ścienna",
+      "24": "Żyrandol z Kości",
+      "25": "Krzesło z Kości",
+      "26": "Dobudówka",
+      "27": "Suszarka",
+      "28": "Schronienie na drzewie 2",
+      "29": "Magazyn na Patyki",
+      "31": "Magazyn na Kamienie",
+      "32": "Magazyn na Kości",
+      "34": "Mała Chatka",
+      "35": "Pułapka na Ryby",
+      "36": "Stojak na Zbroje",
+      "37": "Magazyn na Kłody",
+      "38": "Wieża obserwacyjna",
+      "39": "Strach na Wróble",
+      "40": "Stojąca Donica",
+      "41": "Platforma na Drzewie 2",
+      "42": "Mała Pułapka na zwierzęta",
+      "43": "Platforma na drzewie 1",
+      "44": "Schronienie na drzewie 1",
+      "45": "Pułapka z Łapką na Muchy",
+      "46": "Ścieżka z Patyków",
+      "47": "Schronienie Myśliwego",
+      "48": "Stół",
+      "49": "Półka",
+      "50": "Ścieżka z Kamieni",
+      "51": "Półka Naścienna",
+      "52": "Ławka",
+      "53": "Pochodnia ścienna",
+      "54": "Lampa z Czaszki",
+      "56": "Zbiornik na Deszczówkę",
+      "57": "Pułapka Sprężynowa"
+    },
+    "modificationMode": {
+      "None": "Nic",
+      "Remove": "Usuń",
+      "Finish": "Ukończ",
+      "Unfinish": "Od-ukończ"
+    }
+  },
+  "backup": {
+    "mode": {
+      "Default": "Zawsze backupuj",
+      "InitialAndOne": "Zawsze zostaw orginał i jeden dodatkowy bakup",
+      "None": "Bez Backupów",
+      "One": "Zostaw jeden backup i nadpisuj"
+    },
+    "messages": {
+      "backupsRestored": {
+        "text": "{0} backups zostały przywrócone. Usunięte pliki przesunięto do kosza",
+        "title": "Backupy przywrócone"
+      }
+    }
+  },
+  "storage": {
+    "errors": {
+      "currentStateNotDefined": "CurrentState nie zdefiniowane dla id {0}"
+    },
+    "headers": {
+      "storageTypes": "Typ magazynu",
+      "selectAStorage": "Wybierz magazyn"
+    },
+    "buttons": {
+      "fillAllStorages": "Wypełnij wszystkie magazyny"
+    },
+    "batch": {
+      "allSlots": "Wszystkie miejca",
+      "fillAllWith": "Wypełnij wszystko",
+      "setAllToMax": "Ustaw wszystkie na",
+      "clearAll": "Usuń wszystkie"
+    },
+    "slot": {
+      "remove": "Usuń",
+      "max": "Dodaj"
+    }
+  },
+  "errors": {
+    "canNotBeEmpty": "{0} nie może być pusty"
+  },
+  "generic": {
+    "unknown": "Nieznane",
+    "position": "Pozycja",
+    "name": "Nazwa",
+    "edit": "Edytuj",
+    "add": "Dodaj",
+    "ok": "OK",
+    "cancel": "Anuluj",
+    "update": "Aktualizuj",
+    "save": "Zapisz",
+    "setting": "Ustawienia",
+    "value": "Wartość",
+    "error": "Błąd",
+    "exceptionMessage": "Pojawił się wyjątek: {0}",
+    "success": "Sukces",
+    "yes": "Tak",
+    "no": "Nie"
+  },
+  "armor": {
+    "header": "Założony pancerz (Max. 10)",
+    "unknownItem": "??? Nieznany przedmiot",
+    "durabilityInput": {
+      "tooltip": "Wytrzymałość pancerza. Jeżeli będzie równe 0, pancerz się niszczy. Może być bardzo wysoka",
+      "watermark": "Wytrzymałość"
+    },
+    "buttons": {
+      "setToDefault": {
+        "text": "Zwykły",
+        "tooltip": "Ustawia wytrzymałość pancerza na zwykłą"
+      },
+      "setAllToDefault": {
+        "text": "Ustaw wszystkie na zwykłą",
+        "tooltip": "Ustawia wytrzymałość wszystkich pancerzów na zwykłą"
+      },
+      "setToMax": {
+        "text": "Max",
+        "tooltip": "Ustawia wytrzymałość pancerza na maksymalną"
+      },
+      "setAllToMax": {
+        "text": "Set all to Max",
+        "tooltip": "Ustawia wytrzymałość wszystkich pancerzów na maksymalną"
+      },
+      "remove": "Usuń",
+      "default": "Zwykły",
+      "max": "Max"
+    },
+    "headers": {
+      "slot": "Slot",
+      "id": "ID",
+      "name": "Nazwa",
+      "durability": "Wytrzymałość",
+      "actions": "Akcje"
+    }
+  },
+  "followers": {
+    "reviveTooltip": "Upewnij się, że robisz to poza budynkami, gdy brakuje ciała, w przeciwnym razie możesz wglithować do budynku\\n Kelwin/Virinia pojawi się na pozycji gracza i będzie miał przedmioty i strój skonfigurowane po prawej stronie.",
+    "details": {
+      "uniqueId": "Unique ID",
+      "status": "Status"
+    },
+    "status": {
+      "alive": "Żywy",
+      "dead": "Martwy",
+      "unknown": "???"
+    },
+    "buttons": {
+      "moveToPlayer": "Przesuń do gracza",
+      "moveToVirginia": "Przesuń do Virginii",
+      "moveToKelvin": "Przesuń do Kelvin",
+      "revive": "Odródź",
+      "spawn": "Przywołaj",
+      "fillAllBars": "Uzupełnij wszystkie paski"
+    },
+    "outfitLabel": "Strój",
+    "equipmentLabel": "Wyposażenie",
+    "outfits": {
+      "9": {
+        "-1": "Bazowy",
+        "0": "Taktyczna kurtka",
+        "1": "Smoking",
+        "2": "Piżamy",
+        "3": "Skórzana Kurtka",
+        "4": "Bluza z Kapturem",
+        "5": "Nieznany",
+        "6": "Garnitur"
+      },
+      "10": {
+        "-1": "Bazowy",
+        "0": "Strój Kąpielowy",
+        "1": "Dres",
+        "2": "Strój skórzany",
+        "3": "Strój kamuflujący",
+        "4": "Sukienka"
+      }
+    }
+  },
+  "dialogs": {
+    "changeScrewStructureType": {
+      "disclaimer": "Możesz tutaj wybrać inny typ struktury. Pamiętaj, że obrót i położenie struktury pozostaną takie same, co może prowadzić do błędów i crashów."
+    },
+    "spawnFollower": {
+      "title": "Spawn Follower",
+      "disclaimer": "Jeśli chcesz zrodzić Kelvina/Virginię, musisz się upewnić, że jesteś na otwartej przestrzeni. Będą oni się pojawiać w pozycji gracza powyżej jego aktualnej wysokości i z lekkim przesunięciem.\n\nPróbowałem wielu rzeczy dla Virginii, ale tylko mogłem zespawnić maksymalnie 4. Z Kelvinem było lepiej.\n\nThis might kill your FPS and the long term consequences are also not known right now, bla bla bla.\n\nKontunuj na własne ryzyko."
+    }
+  },
+  "menu": {
+    "file": {
+      "text": "Plik",
+      "openSavegame": "Otwórz zapis...",
+      "openLastSavegame": "Otwórz ostatni zapis...",
+      "openLastSavegameWithSavegame": "Otwórz {0}...",
+      "save": "Zapisz",
+      "reloadCurrentSavegame": "Załaduj obecny zapis",
+      "openSavegameDirInExplorer": "Otwórz zapis Dir w eksplorerze",
+      "restoreFromBackup": {
+        "text": "Odtwórz z backupów",
+        "fromOldestBackup": "Z najstarszego backupa",
+        "fromNewestBackup": "Z najnowszego backupa"
+      },
+      "deleteAllBackups": "Usuń wszystkie backupy",
+      "settings": "Ustawienia",
+      "exit": "Wyjdź"
+    },
+    "tools": {
+      "text": "Narzędzia",
+      "regrowTrees": "Odrośnij drzewa...",
+      "igniteAndRefuelFires": {
+        "text": "Podpal i dołóż paliwa do ognisk i pochodni",
+        "tooltip": "Podpali i dołoży paliwa do ognisk i pochodni jakże it zmniejszy ich zużycie paliwa, przez co powinny płonąć wiecznie"
+      },
+      "resetStructureDamage": {
+        "text": "Zresetuj obrażenia struktur",
+        "tooltip": "Naprawia wszystkie struktury"
+      },
+      "teleportCloneWorldObjects": {
+        "text": "Teleportuj/klonuj Lotnię & Knight V...",
+        "tooltip": "Teleporuj gracza do pojazdów, albo pojazdy do gracza"
+      },
+      "modifyConsumedItems": {
+        "text": "Modyfikuj zjedzone przedmioty...",
+        "tooltip": "W przypadku, gdy chcesz oczyścić pamięć o przedmiotach, które już zjadłeś"
+      },
+      "resetKillStatistics": {
+        "text": "Resetuj statystyki zabójstw",
+        "tooltip": "Niektórzy toną w  kanibalach i potworach. Resetowanie statystyk może doprowadzić do mniejszej ilości przeciwników, lub nie. Kto wie?"
+      },
+      "resetNumberOfCutTrees": {
+        "text": "Resetuj ilość zciętych drzew",
+        "tooltip": "Może to też pomóc w zmniejszeniu liczby kanibali. Teoria mówi, że jest to obliczane na podstawie tej liczby"
+      }
+    },
+    "help": {
+      "text": "?",
+      "links": {
+        "text": "Linki",
+        "githubProject": "Projekt na GitHubie",
+        "discord": "Discord",
+        "downloadLatestVersion": "Pobierz najnowszą wersję",
+        "nexusMods": "NexusMods",
+        "thunderstoreIo": "thunderstore.io"
+      },
+      "updates": {
+        "text": "Aktualizacje",
+        "checkNow": "Sprawdź teraz",
+        "checkOnStartup": "Sprawdź przy włączeniu"
+      },
+      "readme": "Przeczytaj mnie!",
+      "changelog": "Changelog"
+    }
+  },
+  "experiments": {
+    "resetNumberOfCutTrees": {
+      "success": {
+        "text": "Dodano zmiany. Zapisz, żeby je zatrzymać",
+        "title": "Dodano zmiany"
+      }
+    },
+    "resetKillStatistics": {
+      "success": {
+        "text": "Dodano zmiany. Zapisz, żeby je zatrzymać",
+        "title": "Dodano zmiany"
+      }
+    },
+    "resetStructureDamage": {
+      "noDamage": {
+        "text": "Brak obrażeń do naprawienia",
+        "title": "Brak obrażeń zadanych"
+      },
+      "success": {
+        "text": "{0} obrażeń zostało naprawionych",
+        "title": "Damages repaired"
+      }
+    },
+    "igniteAndRefuelFires": {
+      "noFires": {
+        "text": "Nie znaleziono ognisk do zmodyfikowania",
+        "title": "Brak ognisk"
+      },
+      "success": {
+        "text": "{0} ognisk zostało podpalonych",
+        "title": "Zmodyfikowano ogniska"
+      }
+    }
+  },
+  "windows": {
+    "main": {
+      "title": " (Wybrano: {0}, {1} - Zapisano: {2}, Ostatnio modyfikowano: {3})",
+      "messages": {
+        "confirmRestoreBackups": {
+          "text": "Jesteś pewien, że chcesz przywrócić backupy?",
+          "title": "Przywracanie backupów"
+        },
+        "confirmDeleteBackups": {
+          "text": "Czy chcesz usunąć backupy?",
+          "title": "Usuwanie backupów"
+        },
+        "confirmOverwriteExternalChanges": {
+          "text": "Zapis został zmodyfikowany na zewnątrz. Czy naprawdę chcesz nadpisać wszelkie zmiany?",
+          "title": "Nadpisywanie zmian"
+        },
+        "confirmCreateBackup": {
+          "text": "Czy chcesz stworzyć backup?",
+          "title": "Tworzenie backupa"
+        },
+        "confirmCloseApplication": {
+          "text": "Czy chcesz zamknąć aplikację?",
+          "title": "Zamknij aplikację"
+        },
+        "unableToSpawnFollowers": "Nie można zrespić followera",
+        "followersCreated": {
+          "text": "{0} followerów zostało zrespionych",
+          "title": "Towarzysze zrespieni"
+        },
+        "alreadyLatestVersion": {
+          "text": "Używasz najnowszej wersji",
+          "title": "Brak aktualizacji"
+        },
+        "backupsDeleted": "Usunięto {0} backupów",
+        "changesSaved": "Zapisano zmiany",
+        "noChanges": {
+          "text": "Brak zmian - nic nie zapisano",
+          "title": "Brak zmian"
+        },
+        "unableToDeleteBackups": "Nie można usunąć backupów: {0}",
+        "followerRevived": {
+          "text": "{0} powinien być spowrotem",
+          "title": "Odrodzono"
+        },
+        "followerAlreadyAlive": {
+          "text": "{0} jest już żywy",
+          "title": "Brak zmian"
+        },
+        "saveChanges": "Zapisz zmiany"
+      },
+      "errors": {
+        "errorCheckingLastVersion": "Pojawił się błąd podczas sprawdzania dostępność nowszej wersji"
+      }
+    },
+    "modifyConsumedItems": {
+      "title": "Modyfikuj zjedzone jedzenie",
+      "removeAll": "Usuń wszystkie",
+      "key": "Klucz",
+      "remove": "Usuń"
+    },
+    "regrowTrees": {
+      "title": "Odrośnij drzewa",
+      "all": "Wszystkie",
+      "halfChopped": "Pół ścięte",
+      "gone": "Brak pozostałości",
+      "stumps": "Pieńki",
+      "messages": {
+        "noTreesRegrown": "Brak drzew ze statusem \"{0}\" odrosło",
+        "success": "{0} drzew z stanem \"{1}\" powinno odrosnąć. Zapisz aby je zatrzymać."
+      },
+      "saveButton": "Odrośnij drzewa"
+    },
+    "selectSavegame": {
+      "title": "Wybierz zapis...",
+      "folderBrowserTitle": "Wybierz Sons of the Forest \"Saves\" Directory",
+      "lastSaveTimeTooltip": "Last write time of the savegame directory",
+      "selectedPath": {
+        "label": "Wybrana ścieżka:",
+        "tooltip": "Zazwyczaj zapisy przechowywane są w C:\\Users\\[user]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves"
+      },
+      "headers": {
+        "location": "Pozycja"
+      },
+      "tabs": {
+        "singleplayer": "Singleplayer",
+        "multiplayer": "Multiplayer",
+        "multiplayerClient": "Multiplayer (Client)"
+      },
+      "buttons": {
+        "change": "Zmień...",
+        "setToDefault": "Ustaw na bazowe"
+      }
+    },
+    "settings": {
+      "title": "Ustawienia",
+      "theme": "motyw",
+      "backupMode": "Tryb backupów",
+      "askForBackupsEveryTime": "Pytaj o backupy za każdym razem",
+      "fileMode": {
+        "label": "Tryb plików",
+        "single": "Jeden backup na zmieniony plik JSON",
+        "zip": "Archiwum ZIP"
+      }
+    },
+    "unhandledException": {
+      "title": "Nieobsłużony Wyjątek",
+      "disclaimer": "Wystąpił nieoczekiwany błąd. Stan aplikacji może być uszkodzony.",
+      "header": "Szczegóły Wyjątku",
+      "applicationVersion": "Wersja Aplikacji",
+      "exceptionMessage": "Komunikat Wyjątku",
+      "exceptionType": "Typ Wyjątku",
+      "callstack": "callstack",
+      "innerException": "Wewnętrzny Wyjątek",
+      "buttons": {
+        "copyErrorToClipboard": "Skopiuj błąd do schowka",
+        "exitApplication": "Wyjdź z Aplikacji"
+      }
+    },
+    "updateAvailable": {
+      "title": "Dostępna aktulizacja",
+      "header": "Dostępna aktulizacja",
+      "buttons": {
+        "download": "Pobierz",
+        "ignore": "Ignoruj"
+      }
+    },
+    "worldItemTeleporter": {
+      "title": "Teleporter przedmiotów ze świata",
+      "worldItem": "Przedmiot",
+      "pinTooltip": "Pokaż pozycje przedmiotu na mapie",
+      "unknownItem": "Nieznany przedmiot ({0})",
+      "unnamedItem": "Nienazwane ({0})",
+      "messages": {
+        "nothingToDelete": {
+          "text": "Nic do usunięcia",
+          "title": "Nic nie znaleziono"
+        },
+        "clonesDeleted": {
+          "text": "Usunięto {0} klonów {1}",
+          "title": "Klony usunięte"
+        },
+        "nothingToMove": {
+          "text": "Nic do przesunięcia",
+          "title": "Nic nie znaleziono"
+        },
+        "objectCloned": {
+          "text": "Kopia {0} stworzona w lokalizacji gracza. Zapisz and zatrzymać zmiany",
+          "title": "{0} stworzony"
+        },
+        "playerMoved": {
+          "text": "Gracz przesunięty {0}. Zapisz and zatrzymać zmiany",
+          "title": "{0} przsunięty"
+        }
+      },
+      "buttons": {
+        "removeAllCopies": {
+          "text": "Usuń wszystkie kopie",
+          "tooltip": "Usuwa wszystkie kopie tego typu z mapy"
+        },
+        "cloneAtPlayerPosition": {
+          "text": "Klonuj przy pozycji gracza",
+          "tooltip": "Tworzy kopie tego obiektu przy graczu"
+        },
+        "teleportPlayerToObject": {
+          "text": "Teleportuj gracza do obiektu",
+          "tooltip": "Teleportuje gracza do obiektu"
+        }
+      }
+    }
+  },
+  "player": {
+    "buttons": {
+      "moveToKelvin": "Przeteleportj do Kelvina",
+      "moveToVirginia": "Przeteleportj do Virginii"
+    },
+    "strengthLevel": "Poziom siły",
+    "maxHealth": "Maksymalne zdrowie",
+    "currentHealth": "Obecne zdrowie",
+    "outfit": "Strój",
+    "fillAllBars": "Wypełnij wszystkie paski"
+  },
+  "npcs": {
+    "tabs": {
+      "byType": "Typem",
+      "byFamily": {
+        "text": "Rodziną",
+        "disclaimer": "Rodzina oznacza grupę przeciwników, np plemię."
+      }
+    }
+  },
+  "tabs": {
+    "player": "Gracz",
+    "inventory": "Ekwipunek",
+    "storage": "Magazyn",
+    "followers": "Towarzysze",
+    "game": "Gra",
+    "npcs": "NPC",
+    "structures": "Struktury"
+  },
+  "weather": {
+    "header": "Pogoda"
+  },
+  "itemTypes": {
+    "key": "Klucz",
+    "misc": "Inne",
+    "ammo": "Ammunicja",
+    "printed": "Wydruk",
+    "food": "Jedzenie",
+    "armor": "Pancerz",
+    "clothes": "Ubrania",
+    "weapon": "Broń",
+    "document": "Dokument",
+    "plant": "Roślina",
+    "container": "Pojemnik",
+    "log": "Kłoda",
+    "blueprint": "Projekt"
+  },
+  "itemVariants": {
+    "436": {
+      "1": "Surowa Ryba",
+      "2": "Nieznana Ryba",
+      "3": "Zesputa Ryba",
+      "4": "Suszona Ryba",
+      "5": "Ugotowana Ryba",
+      "6": "Spalona Ryba"
+    },
+    "433": {
+      "1": "Surowe Mięso",
+      "2": "Nieznane Mięso",
+      "3": "Zepsute Mięso",
+      "4": "Suszone Mięso",
+      "5": "Gotowane Mięso",
+      "6": "Spalone Mięso"
+    },
+    "480": {
+      "1": "Surowe Ramię",
+      "2": "Nieznane Ramię",
+      "3": "Zepsute Ramię",
+      "4": "Suszone Ramię",
+      "5": "Gotowane Ramię",
+      "6": "Spalone Ramię"
+    },
+    "481": {
+      "1": "Surowa Noga",
+      "2": "Nieznana Noga",
+      "3": "Zesputa Noga",
+      "4": "Suszona Noga",
+      "5": "Ugotowana Noga",
+      "6": "Spalona Noga"
+    }
+  },
+  "items": {
+    "78": "Kłoda",
+    "340": "Gitara",
+    "341": "Lornetka",
+    "346": "Szyna do strzelby",
+    "351": "Torba z łatwym dostępem",
+    "353": "Paralizator",
+    "354": "Noktowizor",
+    "355": "Pistolet",
+    "356": "Nowoczesna siekiera",
+    "357": "Wiatrówka",
+    "358": "Strzelba",
+    "359": "Maczeta",
+    "360": "Taktyczny łuk",
+    "361": "Karabin",
+    "362": "Amunicja do pistoletu",
+    "363": "Śrut do strzelby",
+    "364": "Kulki do strzelby",
+    "365": "Kusza",
+    "366": "Rzutka śledząca",
+    "367": "Katana",
+    "368": "Bełt do kuszy",
+    "369": "Amunicja do paralizatora",
+    "370": "Amunicja do pistoletu",
+    "371": "Kulki do strzelby",
+    "372": "Śrut do strzelby",
+    "373": "Taktyczna strzała",
+    "374": "Tłumik",
+    "375": "Celownik laserowy",
+    "376": "Szyna do pistoletu",
+    "377": "Luneta",
+    "378": "Mocowanie latarki",
+    "379": "Taktyczna siekiera",
+    "380": "Nóż bojowy",
+    "381": "Granat",
+    "382": "Amunicja do granatnika",
+    "383": "Szyna do karabinu",
+    "384": "Kołczan do kuszy",
+    "386": "Rewolwer",
+    "387": "Amunicja do karabinu",
+    "388": "Molotow",
+    "389": "Amunicja do molotowa",
+    "390": "Żywica do drukarki",
+    "391": "Czerwona maska",
+    "392": "Patyk",
+    "393": "Kamień",
+    "394": "Piła łańcuchowa",
+    "395": "Deska",
+    "396": "Pałka ogłuszająca",
+    "397": "Shiitake",
+    "398": "Boczniak mikołajkowy",
+    "399": "Kolczak obłączasty",
+    "400": "Muchomor Czerwony",
+    "401": "Jajo żółwia",
+    "402": "Plecak",
+    "403": "Lina",
+    "405": "Kość",
+    "406": "Ćwierć kłody",
+    "408": "Pół kłody",
+    "409": "Trzy czwarte kłody",
+    "410": "Zegarek",
+    "412": "Nadajnik GPS",
+    "413": "Zapalniczka plazmowa",
+    "414": "Butelka wódki",
+    "415": "Szmatka",
+    "416": "Płytka drukowana",
+    "417": "Bomba czasowa",
+    "418": "Przewód",
+    "419": "Taśma klejąca",
+    "420": "Ładunek C4",
+    "421": "Ramen",
+    "422": "Narzędzie naprawcze",
+    "423": "Powieść A",
+    "424": "Powieść B",
+    "425": "Płatki śniadaniowe",
+    "426": "Drukowana manierka",
+    "427": "Drukowany nóż",
+    "428": "Drukowane sanki",
+    "429": "Drukowana maska do nurkowania",
+    "430": "Czaszka",
+    "431": "Topór strażacki",
+    "432": "Otwieracz do puszek",
+    "433": "Mięso",
+    "434": "Konserwy",
+    "435": "Złota maska",
+    "436": "Ryba",
+    "437": "Leki",
+    "438": "Pakiet MRE",
+    "439": "Napój energetyczny",
+    "440": "Flara",
+    "441": "Baton energetyczny",
+    "443": "Łuk własnej roboty",
+    "444": "Oddycharka",
+    "445": "Borówki",
+    "446": "Wiciokrzew",
+    "447": "Maliny",
+    "448": "Śnieguliczka",
+    "449": "Kolcosił straszliwy",
+    "450": "Skrzyp polny",
+    "451": "Aloes",
+    "452": "Krwawnik pospolity",
+    "453": "Wierzbówka kiprzyca",
+    "454": "Ostryż",
+    "455": "Mieszanka lecząca",
+    "456": "Mieszanka lecząca+",
+    "457": "Amunicja do paralizatora",
+    "458": "Ładowarka do baterii",
+    "459": "Proca",
+    "460": "Pudełko Baterii",
+    "461": "Mieszanka energetyczna",
+    "462": "Mieszanka energetyczna+",
+    "463": "Płetwy",
+    "464": "Karma dla kota",
+    "465": "Cykoria",
+    "466": "Ostryga",
+    "467": "Okładka albumu",
+    "468": "Krzyż",
+    "469": "Butla z powietrzem",
+    "470": "Celownik do wiatrówki",
+    "471": "Latarka",
+    "472": "Skóra jelenia",
+    "473": "Zbroja z liści",
+    "474": "Włócznia własnej roboty",
+    "475": "Manierka",
+    "476": "Mały kamień",
+    "477": "Maczuga własnej roboty",
+    "478": "Czekan",
+    "479": "Pióro",
+    "480": "Odcięta ręka",
+    "481": "Odcięta noga",
+    "482": "Odcięta głowa",
+    "483": "Pakiet ratunkowy",
+    "484": "Liść",
+    "485": "Łopata",
+    "486": "Krótkofalówka",
+    "487": "Piżamy",
+    "488": "Niebieska koszulka",
+    "489": "Taktyczne spodnie",
+    "490": "Bluza z kapturem",
+    "491": "Marynarka",
+    "492": "Smoking",
+    "493": "Skórzana kurtka",
+    "494": "Pancerz kościany",
+    "495": "Kurtka taktyczna",
+    "496": "Pieniądze",
+    "497": "Tacka na jedzenie",
+    "498": "Celownik laserowy GRABS",
+    "499": "Kombinezon nurkowy",
+    "500": "Puchowa kurtka",
+    "501": "Buty taktyczne",
+    "502": "Monety",
+    "503": "Latarka",
+    "504": "Plandeka",
+    "505": "Miernik laserowy",
+    "506": "Skorupa żółwia",
+    "507": "Ręcznie robione strzały",
+    "508": "Skórzana torba",
+    "509": "Broszura Holosprings",
+    "511": "Wyłącznik kontaktowy",
+    "512": "Pełna tacka na jedzenie",
+    "513": "Sprężyna",
+    "514": "Kontaktowa sprężyna",
+    "515": "Podstawowa strona poradnika budowania",
+    "516": "Strona poradnika budowania namiotu z plandeki",
+    "517": "Garnek",
+    "518": "Cel papierowy",
+    "519": "Pancerz z jeleniej skóry",
+    "520": "Element struktury",
+    "521": "Email o oświetleniu jaskini",
+    "522": "Pistolet do tyrolek",
+    "523": "Linka do tyrolek",
+    "524": "Piłka golfowa",
+    "525": "Kij golfowy",
+    "526": "Testament E. Pufftona",
+    "527": "Baterie",
+    "528": "Finanse E. Pufftona",
+    "529": "Lokalizator GPS",
+    "530": "Projekt stojaka do suszenia",
+    "531": "Projekt krzesła ze patyków",
+    "532": "Projekt łóżka ze patyków",
+    "533": "Projekt stojaka na broń",
+    "534": "Email o golfa, cz. 1",
+    "535": "Email o golfa, cz. 2",
+    "536": "Email o golfa, cz. 3",
+    "537": "Email o golfa, cz. 4",
+    "538": "Email o malarstwie",
+    "539": "Email o astrologii, cz. 1",
+    "540": "Email o astrologii, cz. 2",
+    "541": "Email o astrologii, cz. 3",
+    "542": "Email polityka, cz. 1",
+    "543": "Email polityka, cz. 2",
+    "544": "List od polityków, część 1",
+    "545": "List od polityków, część 2",
+    "546": "List od polityków, część 3",
+    "547": "List od baletnicy",
+    "548": "List o skrzypiących butach, część 1",
+    "549": "Projektowanie kości",
+    "550": "Projektowanie lotki na muchy",
+    "551": "Projektowanie pułapki na małe zwierzęta",
+    "552": "Książka z projektami",
+    "553": "Siatka techniczna",
+    "554": "Pancarz Techniczny",
+    "555": "Dres",
+    "556": "Sukienka",
+    "557": "Skórzany garnitur",
+    "558": "Kamuflażowy kombinezon",
+    "559": "Drukowane groty strzał",
+    "560": "Drukowany hak wspinaczkowy",
+    "561": "Drukowany doniczka",
+    "562": "Ogłoszenie Holoville A",
+    "563": "Ogłoszenie Holoville B",
+    "564": "Ogłoszenie Holoville C",
+    "565": "Ogłoszenie Holoville D",
+    "566": "Karta dostępu do konserwacji",
+    "567": "Karta dostępu gości",
+    "568": "Karta dostępu VIP",
+    "569": "Kąsek mózgu",
+    "570": "Kąsek stekowy",
+    "571": "Kąsek ze steku i bekonu",
+    "572": "Złoty pancerz",
+    "573": "Śpiwór",
+    "574": "Powieść C",
+    "575": "Powieść D",
+    "576": "Ćwierć deski",
+    "577": "Pół deski",
+    "578": "Trzy czwarte deski",
+    "579": "Projektowanie krzesła z kości",
+    "580": "Projektowanie drabiny z patyków",
+    "581": "Projektowanie domku dla ptaków",
+    "582": "Projektowanie pułapki na ryby",
+    "583": "Projektowanie skrzynki na przechowywanie",
+    "584": "Projektowanie manekina",
+    "585": "Projektowanie stracha na wróble",
+    "586": "Projektowanie ściennego doniczka",
+    "587": "Projektowanie podłogowego doniczka",
+    "588": "Projektowanie żyrandola z kości",
+    "589": "S.C.R.E.W. / Samouczki",
+    "590": "Radio",
+    "591": "Projektowanie małego drewnianego domku",
+    "592": "Przerażająca skóra",
+    "593": "Przerażający pancerz",
+    "594": "Jagody guarany",
+    "595": "Jeżyny",
+    "596": "Nasiona aloesu",
+    "597": "Nasiona ostryżu",
+    "598": "Nasiona jeżyn",
+    "599": "Nasiona jagód",
+    "600": "Nasiona Kolcosiła straszliwego",
+    "601": "Nasiona wierzbówki kiprzyca",
+    "602": "Nasiona Gurany",
+    "603": "Nasiona skrzypu polnego",
+    "604": "Nasiona malin",
+    "605": "Nasiona Chicory",
+    "606": "Nasiona Krwawnika pospolitego",
+    "607": "Projekt magazynu kamieni",
+    "608": "Projekt magazynu kości",
+    "609": "Projekt magazynu kłód",
+    "610": "Projekt magazynu patyków",
+    "611": "Wydruk z numerami",
+    "612": "Wycinek z gazety",
+    "613": "Wycinek z gazety 2/2",
+    "614": "Email",
+    "615": "Email",
+    "616": "Email",
+    "617": "Cena akcji",
+    "618": "Wystrzelona strzała",
+    "619": "Kostium kąpielowy",
+    "620": "Projekt stołu",
+    "621": "Projekt półki",
+    "622": "Projekt ścieżki z kamieni",
+    "623": "Projekt półki ściennego",
+    "624": "Projekt pochodni ściennych",
+    "625": "Projekt wiszącej czaszki",
+    "626": "Lotnia",
+    "627": "Karta stołowa Pana Pufftona",
+    "628": "Karta stołowa Pani Puffton",
+    "629": "Zbiornik na deszczówkę",
+    "630": "Knight V",
+    "631": "The Realm Beyond",
+    "633": "Broszura kultu",
+    "634": "Panel słoneczny",
+    "635": "Żarówka"
+  }
+}
