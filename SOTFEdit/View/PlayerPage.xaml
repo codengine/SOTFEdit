@@ -118,11 +118,11 @@
                         <Label Style="{StaticResource LabelStyle}"
                                Content="{infrastructure:Translate 'actors.stats.restBuff'}" />
                         <st:AutoGrid Columns="*,*" ChildMargin="4">
-                            <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="-100.0"
-                                    Maximum="65535" Interval="1"
+                            <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="0"
+                                    Maximum="1"
                                     Value="{Binding PlayerState.RestBuff, UpdateSourceTrigger=PropertyChanged}" />
                             <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}"
-                                               Minimum="-100.0" Maximum="65535" Interval="1" NumericInputMode="Numbers"
+                                               Minimum="0" Maximum="1" Interval="0.1" NumericInputMode="Decimal" StringFormat="F2"
                                                Value="{Binding PlayerState.RestBuff, UpdateSourceTrigger=PropertyChanged}" />
                         </st:AutoGrid>
 

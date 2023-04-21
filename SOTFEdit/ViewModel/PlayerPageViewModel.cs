@@ -162,7 +162,7 @@ public partial class PlayerPageViewModel : ObservableObject
         PlayerState.Rest = 100;
         PlayerState.Stamina = 100;
         PlayerState.HydrationBuff = 65535;
-        PlayerState.RestBuff = 65535;
+        PlayerState.RestBuff = 1;
         PlayerState.FullnessBuff = 65535;
     }
 
@@ -374,24 +374,23 @@ public partial class PlayerPageViewModel : ObservableObject
 
     private static bool WriteFloat(JToken? target, float newValue)
     {
-        if (target?["FloatValue"] is not { } targetToken || ReadFloat(target) is not { } oldValue ||
-            Math.Abs(oldValue - newValue) < 0.001)
+        if (target == null || (ReadFloat(target) is { } oldValue && Math.Abs(oldValue - newValue) < 0.001))
         {
             return false;
         }
 
-        targetToken.Replace(newValue);
+        target["FloatValue"] = newValue;
         return true;
     }
 
     private static bool WriteInt(JToken? target, int newValue)
     {
-        if (target?["IntValue"] is not { } targetToken || ReadInt(target) is not { } oldValue || oldValue == newValue)
+        if (target == null || (ReadInt(target) is { } oldValue && oldValue == newValue))
         {
             return false;
         }
 
-        targetToken.Replace(newValue);
+        target["IntValue"] = newValue;
         return true;
     }
 

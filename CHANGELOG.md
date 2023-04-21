@@ -23,6 +23,8 @@
 ### Fixes
 
 - Fixed stats resetting if the player did not have a value currently set for a given stat
+- Fix Editing of player stats
+- Fix editing of rest buff (maximum value here is 1, else the game will overwrite this)
 
 ## v0.9.2
 
