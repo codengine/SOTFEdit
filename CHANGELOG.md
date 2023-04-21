@@ -8,6 +8,7 @@
     - At inventory, it will add cooked arms/legs by default. Detailed editing may be added in the future
 - Added new action camera
 - Added support for savegame naming
+- Added icons for almost all items
 
 ### Improvements
 

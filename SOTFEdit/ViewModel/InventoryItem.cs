@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Windows.Media.Imaging;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
@@ -8,13 +9,13 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryItem : ObservableObject
 {
-    public Item? Item { get; }
-
     public InventoryItem(ItemBlockModel itemBlock, Item? item)
     {
         ItemBlock = itemBlock;
         Item = item;
     }
+
+    public Item? Item { get; }
 
     public ItemBlockModel ItemBlock { get; }
 
@@ -23,6 +24,9 @@ public partial class InventoryItem : ObservableObject
     public string TypeRendered => string.IsNullOrEmpty(Item?.Type) ? "" : TranslationManager.Get("itemTypes." + Type);
 
     public int Id => Item?.Id ?? ItemBlock.ItemId;
+
+    public BitmapImage? Image => Item?.ThumbnailMedium;
+    public BitmapImage? ImageBig => Item?.ThumbnailBig;
 
     public int TotalCount
     {

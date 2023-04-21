@@ -19,6 +19,13 @@
                                        Minimum="1" Maximum="{Binding Max, Mode=OneTime}" />
                 </Grid>
             </DataTemplate>
+            <DataTemplate x:Key="ImageTemplate" DataType="{x:Type viewModel:InventoryItem}">
+                <Image Width="48" Height="48" Source="{Binding Image}">
+                    <Image.ToolTip>
+                        <Image Source="{Binding ImageBig}" />
+                    </Image.ToolTip>
+                </Image>
+            </DataTemplate>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -97,6 +104,8 @@
                         </DataTemplate>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn CanUserSort="False" Header=""
+                                                CellTemplate="{StaticResource ImageTemplate}" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.id'}" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
@@ -110,6 +119,9 @@
                                                 CellTemplate="{StaticResource NumericUpDownTemplate}" />
                         <DataGridTemplateColumn Header="{infrastructure:Translate 'inventory.table.actions'}"
                                                 CellTemplate="{StaticResource ActionButtons}" />
+                        <DataGridTextColumn Binding="{Binding TypeRendered, Mode=OneTime}"
+                                            Header="{infrastructure:Translate 'inventory.table.type'}"
+                                            IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -143,6 +155,8 @@
                         </DataTemplate>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn CanUserSort="False" Header=""
+                                                CellTemplate="{StaticResource ImageTemplate}" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.id'}" IsReadOnly="True" />
                         <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"

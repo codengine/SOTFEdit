@@ -7,24 +7,35 @@ using libc.translation;
 
 namespace SOTFEdit.Infrastructure;
 
-public class FlatExtractingJsonLocalizationSource: ILocalizationSource
+public class FlatExtractingJsonLocalizationSource : ILocalizationSource
 {
     private readonly PropertyCaseSensitivity _caseSensitivity;
     private readonly string _filenamePattern;
-
-    private readonly ConcurrentDictionary<string, IDictionary<string, string>> _strings = new();
     private readonly string _path;
 
-    public FlatExtractingJsonLocalizationSource(string path, PropertyCaseSensitivity caseSensitivity, string filenamePattern = "{0}.json")
+    private readonly ConcurrentDictionary<string, IDictionary<string, string>> _strings = new();
+
+    public FlatExtractingJsonLocalizationSource(string path, PropertyCaseSensitivity caseSensitivity,
+        string filenamePattern = "{0}.json")
     {
         _caseSensitivity = caseSensitivity;
         _filenamePattern = filenamePattern;
         _path = path;
     }
 
-    private IDictionary<string,string> LoadStrings(string jsonFile)
+    public string? Get(string culture, string key)
     {
-        var document = JsonDocument.Parse(new FileInfo(jsonFile).OpenRead());
+        return GetStrings(culture).TryGetValue(GetKey(key), out var value) ? value : null;
+    }
+
+    public IDictionary<string, string> GetAll(string culture)
+    {
+        return _strings.GetValueOrDefault(culture) ?? new ConcurrentDictionary<string, string>();
+    }
+
+    private IDictionary<string, string> LoadStrings(string jsonFile)
+    {
+        using var document = JsonDocument.Parse(new FileInfo(jsonFile).OpenRead());
         return document.RootElement
             .EnumerateObject()
             .Aggregate(new Dictionary<string, string>(), (acc, cur) =>
@@ -36,11 +47,9 @@ public class FlatExtractingJsonLocalizationSource: ILocalizationSource
                 else
                 {
                     var flatChild = FlattenJson(cur.Value);
-                    foreach (var item in flatChild)
-                    {
-                        acc[GetKey($"{cur.Name}.{item.Key}")] = item.Value;
-                    }
+                    foreach (var item in flatChild) acc[GetKey($"{cur.Name}.{item.Key}")] = item.Value;
                 }
+
                 return acc;
             });
     }
@@ -61,22 +70,18 @@ public class FlatExtractingJsonLocalizationSource: ILocalizationSource
                 {
                     var nestedPrefix = string.IsNullOrEmpty(prefix) ? property.Name : $"{prefix}.{property.Name}";
                     var childDictionary = FlattenJson(property.Value, nestedPrefix);
-                    foreach (var childProperty in childDictionary)
-                    {
-                        dictionary[childProperty.Key] = childProperty.Value;
-                    }
+                    foreach (var childProperty in childDictionary) dictionary[childProperty.Key] = childProperty.Value;
                 }
+
                 break;
             case JsonValueKind.Array:
                 for (var i = 0; i < element.GetArrayLength(); i++)
                 {
                     var nestedPrefix = string.IsNullOrEmpty(prefix) ? $"{i}" : $"{prefix}.{i}";
                     var childDictionary = FlattenJson(element[i], nestedPrefix);
-                    foreach (var childProperty in childDictionary)
-                    {
-                        dictionary[childProperty.Key] = childProperty.Value;
-                    }
+                    foreach (var childProperty in childDictionary) dictionary[childProperty.Key] = childProperty.Value;
                 }
+
                 break;
             default:
                 dictionary[prefix] = element.ToString();
@@ -86,24 +91,14 @@ public class FlatExtractingJsonLocalizationSource: ILocalizationSource
         return dictionary;
     }
 
-    public string? Get(string culture, string key)
-    {
-        return GetStrings(culture).TryGetValue(GetKey(key), out var value) ? value : null;
-    }
-
     private IDictionary<string, string> GetStrings(string culture)
     {
         return _strings.GetOrAdd(culture, ReadFile);
     }
 
-    private IDictionary<string,string> ReadFile(string key)
+    private IDictionary<string, string> ReadFile(string key)
     {
         var jsonFile = Path.Combine(_path, string.Format(_filenamePattern, key));
         return !File.Exists(jsonFile) ? new Dictionary<string, string>() : LoadStrings(jsonFile);
-    }
-
-    public IDictionary<string, string> GetAll(string culture)
-    {
-        return _strings.GetValueOrDefault(culture) ?? new ConcurrentDictionary<string, string>();
     }
 }

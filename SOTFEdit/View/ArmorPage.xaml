@@ -7,6 +7,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:st="http://schemas.spicytaco.io/"
              xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+             xmlns:model="clr-namespace:SOTFEdit.Model"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:ArmorPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -14,7 +15,20 @@
         <st:AutoGrid Margin="10" Rows="Auto,*,Auto" Columns="*">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 10 0 20">
                 <ComboBox Margin="0,0,5,0" ItemsSource="{Binding ArmourTypes}"
-                          SelectedItem="{Binding NewArmour.SelectedItem}" DisplayMemberPath="Name" />
+                          SelectedItem="{Binding NewArmour.SelectedItem}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type model:Item}">
+                            <st:AutoGrid Columns="*,*">
+                                <Image Width="48" Height="48" Source="{Binding ThumbnailMedium}">
+                                    <Image.ToolTip>
+                                        <Image Source="{Binding ThumbnailBig}" />
+                                    </Image.ToolTip>
+                                </Image>
+                                <Label Content="{Binding Name}" VerticalAlignment="Center" />
+                            </st:AutoGrid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToDefault.tooltip'}"
                         Command="{Binding NewArmour.SetDefaultDurabilityForNewArmourCommand}"
                         Content="{infrastructure:Translate 'armor.buttons.setToDefault.text'}" />
@@ -46,6 +60,13 @@
                                 Maximum="{Binding MaxDurability, Mode=OneWay}" />
                         </Grid>
                     </DataTemplate>
+                    <DataTemplate x:Key="ImageTemplate" DataType="{x:Type viewModel:ArmourData}">
+                        <Image Width="48" Height="48" Source="{Binding Image}">
+                            <Image.ToolTip>
+                                <Image Source="{Binding ImageBig}" />
+                            </Image.ToolTip>
+                        </Image>
+                    </DataTemplate>
                     <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:ArmourData}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Margin="0,0,5,0" Background="DarkRed"
@@ -67,6 +88,8 @@
                                         Header="{infrastructure:Translate 'armor.headers.slot'}" IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
                                         Header="{infrastructure:Translate 'armor.headers.id'}" IsReadOnly="True" />
+                    <DataGridTemplateColumn CanUserSort="False" Header=""
+                                            CellTemplate="{StaticResource ImageTemplate}" />
                     <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
                                         Header="{infrastructure:Translate 'armor.headers.name'}" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="{infrastructure:Translate 'armor.headers.durability'}"

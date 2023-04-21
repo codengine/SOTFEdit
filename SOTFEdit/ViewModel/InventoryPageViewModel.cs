@@ -59,7 +59,9 @@ public partial class InventoryPageViewModel : ObservableObject
                 new SortDescription("Name", ListSortDirection.Ascending)
             }
         };
-        _itemList = gameData.Items;
+        _itemList = new ItemList(gameData.Items
+            .Where(item => item.Value.IsInventoryItem)
+            .Where(item => item.Value.StorageMax?.Inventory > 0).Select(item => item.Value));
 
         var categories = gameData.Items
             .Where(item => item.Value.IsInventoryItem)

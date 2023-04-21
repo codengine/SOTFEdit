@@ -109,7 +109,8 @@
                               Command="{Binding ExitApplicationCommand}" InputGestureText="Ctrl+Q" />
                 </MenuItem>
                 <MenuItem Header="{infrastructure:Translate 'menu.tools.text'}">
-                    <MenuItem Command="{Binding RegrowTreesCommand}"
+                    <MenuItem
+                        Command="{Binding RegrowTreesCommand}"
                               Header="{infrastructure:Translate 'menu.tools.regrowTrees'}" />
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.text'}"
                               ToolTip="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.tooltip'}"

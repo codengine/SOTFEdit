@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Windows.Media.Imaging;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
@@ -27,6 +28,9 @@ public partial class ArmourData : ObservableObject
     public int MinDurability => _item?.Durability?.Min ?? 1;
     public int MaxDurability => _item?.Durability?.Max ?? 65535;
     public int DefaultDurability => _item?.Durability?.Default ?? 1;
+
+    public BitmapImage? Image => _item?.ThumbnailMedium;
+    public BitmapImage? ImageBig => _item?.ThumbnailBig;
 
     [RelayCommand]
     private void SetDurability(int? amount)

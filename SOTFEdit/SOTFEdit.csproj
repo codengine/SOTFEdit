@@ -24,6 +24,9 @@
         <None Include="images\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Include="images\items\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
         <None Include="images\actors\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
@@ -58,8 +61,6 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Settings.settings</DependentUpon>
         </Compile>
-        <Compile Remove="Model\Actor\MyAbstract.cs" />
-        <Compile Remove="ViewModel\InventoryItemCounter.cs" />
     </ItemGroup>
 
     <ItemGroup>

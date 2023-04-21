@@ -8,6 +8,7 @@
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:storageViewModels="clr-namespace:SOTFEdit.View.Storage"
              xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+             xmlns:st="http://schemas.spicytaco.io/"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:ItemStorageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -30,7 +31,15 @@
                                   SelectedItem="{Binding SelectedItemForAll}" Margin="0 0 10 0">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type storageViewModels:ItemWrapper}">
-                                    <TextBlock Text="{Binding Name, Mode=OneTime}" />
+                                    <st:AutoGrid Columns="*,*">
+                                        <Image Width="48" Height="48"
+                                               Source="{Binding Item.ThumbnailMedium}">
+                                            <Image.ToolTip>
+                                                <Image Source="{Binding Item.ThumbnailBig}" />
+                                            </Image.ToolTip>
+                                        </Image>
+                                        <Label Content="{Binding Name}" VerticalAlignment="Center" />
+                                    </st:AutoGrid>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
@@ -59,23 +68,32 @@
                                     <DataTemplate DataType="{x:Type storage:StoredItem}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition />
                                                 <ColumnDefinition />
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <ComboBox Margin="0 0 10 0" Grid.Column="0"
+                                            <ComboBox Margin="0 0 10 0" Grid.Column="1"
                                                       SelectedItem="{Binding SelectedItem}"
                                                       ItemsSource="{Binding SupportedItems}">
                                                 <ComboBox.ItemTemplate>
                                                     <DataTemplate DataType="{x:Type storageViewModels:ItemWrapper}">
-                                                        <TextBlock Text="{Binding Name, Mode=OneTime}" />
+                                                        <st:AutoGrid Columns="*,*">
+                                                            <Image Width="48" Height="48"
+                                                                   Source="{Binding Item.ThumbnailMedium}">
+                                                                <Image.ToolTip>
+                                                                    <Image Source="{Binding Item.ThumbnailBig}" />
+                                                                </Image.ToolTip>
+                                                            </Image>
+                                                            <Label Content="{Binding Name}" VerticalAlignment="Center" />
+                                                        </st:AutoGrid>
                                                     </DataTemplate>
                                                 </ComboBox.ItemTemplate>
                                             </ComboBox>
-                                            <mah:NumericUpDown Margin="0 0 10 0" Grid.Column="1" Minimum="0"
+                                            <mah:NumericUpDown Margin="0 0 10 0" Grid.Column="2" Minimum="0"
                                                                Maximum="{Binding Max, Mode=OneWay}"
                                                                Value="{Binding Count, UpdateSourceTrigger=PropertyChanged}" />
-                                            <Grid Grid.Column="2" Margin="0 0 10 0">
+                                            <Grid Grid.Column="3" Margin="0 0 10 0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition />
                                                     <ColumnDefinition />
