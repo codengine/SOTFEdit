@@ -111,7 +111,7 @@
                 <MenuItem Header="{infrastructure:Translate 'menu.tools.text'}">
                     <MenuItem
                         Command="{Binding RegrowTreesCommand}"
-                              Header="{infrastructure:Translate 'menu.tools.regrowTrees'}" />
+                        Header="{infrastructure:Translate 'menu.tools.regrowTrees'}" />
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.text'}"
                               ToolTip="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.tooltip'}"
                               Command="{Binding IgniteAndRefuelFiresCommand}" />

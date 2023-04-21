@@ -86,6 +86,9 @@ nothing less.
 
 - In order to add or remove items, click on the add or remove buttons
 - You can use the other buttons to modify the current count in a convenient way
+- Items that are (currently) not available for the inventory are hidden, but can easily be enabled in data.json
+- When Legs and Arms are added they will default to their cooked variants. The same applies to already existing
+  Arms/Legs when you just increase the count
 
 ## Storage
 

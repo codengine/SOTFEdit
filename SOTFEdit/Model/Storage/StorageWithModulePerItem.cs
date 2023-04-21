@@ -54,7 +54,7 @@ public class StorageWithModulePerItem : RestrictedStorage
                             {
                                 _moduleFactory.Invoke()
                             }
-                        });                    
+                        });
                 }
 
                 storageBlock.ItemBlocks.Add(storageItemBlock);

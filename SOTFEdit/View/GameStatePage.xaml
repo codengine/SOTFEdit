@@ -26,7 +26,8 @@
                       SelectionMode="Single" ItemsSource="{Binding Settings}" CanUserAddRows="false"
                       CanUserDeleteRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="{infrastructure:Translate 'generic.setting'}" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
+                                        Header="{infrastructure:Translate 'generic.setting'}" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="{infrastructure:Translate 'generic.value'}"
                                             CellTemplateSelector="{StaticResource SettingCellTemplateSelector}" />
                 </DataGrid.Columns>
@@ -38,13 +39,15 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Margin="0 0 0 10" Text="{infrastructure:Translate 'game.state.worldObjectStates.disclaimer'}" />
+                <TextBlock Grid.Row="0" Margin="0 0 0 10"
+                           Text="{infrastructure:Translate 'game.state.worldObjectStates.disclaimer'}" />
 
                 <DataGrid Height="Auto" Grid.Row="1" AutoGenerateColumns="False"
                           SelectionMode="Single" ItemsSource="{Binding NamedIntDatas}" CanUserAddRows="false"
                           CanUserDeleteRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}" Header="{infrastructure:Translate 'generic.setting'}" IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
+                                            Header="{infrastructure:Translate 'generic.setting'}" IsReadOnly="True" />
                         <DataGridTemplateColumn Header="{infrastructure:Translate 'generic.value'}"
                                                 CellTemplateSelector="{StaticResource SettingCellTemplateSelector}" />
                     </DataGrid.Columns>

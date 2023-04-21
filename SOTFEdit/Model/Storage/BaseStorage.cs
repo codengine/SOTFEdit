@@ -204,13 +204,15 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
         }
     }
 
-    protected static void AddEffectiveSupportedItem(Item item, StorageDefinition storageDefinition, List<ItemWrapper> target)
+    protected static void AddEffectiveSupportedItem(Item item, StorageDefinition storageDefinition,
+        List<ItemWrapper> target)
     {
-        if (item.FoodSpoilModuleDefinition is {} foodSpoilModule)
+        if (item.FoodSpoilModuleDefinition is { } foodSpoilModule)
         {
             target.AddRange(
                 from variant in foodSpoilModule.Variants
-                select new ItemWrapper(item, storageDefinition.MaxPerSlot, BuildFoodSpoilStorageModuleWrapper(foodSpoilModule, item.Id, variant))
+                select new ItemWrapper(item, storageDefinition.MaxPerSlot,
+                    BuildFoodSpoilStorageModuleWrapper(foodSpoilModule, item.Id, variant))
             );
         }
         else
@@ -220,7 +222,8 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
     }
 
 
-    private static FoodSpoilStorageModuleWrapper BuildFoodSpoilStorageModuleWrapper(ItemModule foodSpoilModule, int itemId, int variant)
+    private static FoodSpoilStorageModuleWrapper BuildFoodSpoilStorageModuleWrapper(ItemModule foodSpoilModule,
+        int itemId, int variant)
     {
         var storageModule = new FoodSpoilStorageModule(foodSpoilModule.ModuleId, variant);
         return new FoodSpoilStorageModuleWrapper(storageModule, itemId, variant);

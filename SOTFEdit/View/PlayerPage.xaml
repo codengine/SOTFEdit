@@ -122,7 +122,8 @@
                                     Maximum="1"
                                     Value="{Binding PlayerState.RestBuff, UpdateSourceTrigger=PropertyChanged}" />
                             <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}"
-                                               Minimum="0" Maximum="1" Interval="0.1" NumericInputMode="Decimal" StringFormat="F2"
+                                               Minimum="0" Maximum="1" Interval="0.1" NumericInputMode="Decimal"
+                                               StringFormat="F2"
                                                Value="{Binding PlayerState.RestBuff, UpdateSourceTrigger=PropertyChanged}" />
                         </st:AutoGrid>
 

@@ -4,6 +4,7 @@
 
 ### Features
 
+- Update 04 improvements
 - Added support for cooked/spoiled/dried arms and legs in inventory and storages
     - At inventory, it will add cooked arms/legs by default. Detailed editing may be added in the future
 - Added new action camera
@@ -14,17 +15,17 @@
 
 - Influences can now be added on demand if missing
 - All sliders for all influence stats are now always visible, independent if present in the savegame or not
-- Teleporting Player, Followers and NPCs will now consider this area mask
+- Teleporting Player, Followers and NPCs will now consider the area mask
     - Previously, teleporting to locations below or back to the surface was not successful
     - "Move to Player" will now be disabled if the player is not at the surface
-- Optimize resource bundling
 - Unassigned Items at Inventory Page will now only contain items that can be added to the inventory
+- Optimize resource bundling
 
 ### Fixes
 
 - Fixed stats resetting if the player did not have a value currently set for a given stat
-- Fix Editing of player stats
-- Fix editing of rest buff (maximum value here is 1, else the game will overwrite this)
+- Fixed editing of player stats
+- Fixed editing of rest buff (maximum value here is 1, else the game will overwrite this)
 
 ## v0.9.2
 

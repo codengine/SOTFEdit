@@ -14,6 +14,7 @@ namespace SOTFEdit.ViewModel;
 
 public partial class EditActorViewModel : ObservableObject
 {
+    private Actor _actor;
     [ObservableProperty] private short? _actorSelection;
 
     [ObservableProperty] private ActorModificationMode _modificationMode = ActorModificationMode.Modify;
@@ -23,10 +24,6 @@ public partial class EditActorViewModel : ObservableObject
     [ObservableProperty] private bool _skipKelvin = true;
 
     [ObservableProperty] private bool _skipVirginia = true;
-    
-    private Actor _actor;
-
-    public WpfObservableRangeCollection<Influence> Influences { get; } = new();
 
     public EditActorViewModel(Actor actor, List<ActorType> allActorTypes)
     {
@@ -53,6 +50,8 @@ public partial class EditActorViewModel : ObservableObject
                 break;
         }
     }
+
+    public WpfObservableRangeCollection<Influence> Influences { get; } = new();
 
     public List<ComboBoxItemAndValue<string>> AllInfluences { get; }
 

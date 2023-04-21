@@ -28,7 +28,7 @@ public class Savegame : ObservableObject
     public SavegameStore SavegameStore { get; }
 
     public string Title => !string.IsNullOrWhiteSpace(GameName) ? $"{GameName} ({_dirName})" : _dirName;
-    
+
     public string? GameName { get; private set; }
 
     public DateTime LastSaveTime { get; private set; }
@@ -147,7 +147,7 @@ public class Savegame : ObservableObject
     private void ReadSaveData()
     {
         if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData) is not { } saveDataWrapper ||
-            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.GameState) is not {} gameState)
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.GameState) is not { } gameState)
         {
             return;
         }

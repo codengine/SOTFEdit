@@ -48,7 +48,8 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
 
     private static IStorageModule BuildSourceActorStorageModule(JObject obj)
     {
-        return new SourceActorStorageModule(obj["SourceActorType"]?.Value<int>() ?? SourceActorStorageModule.DefaultActorType);
+        return new SourceActorStorageModule(obj["SourceActorType"]?.Value<int>() ??
+                                            SourceActorStorageModule.DefaultActorType);
     }
 
     private static IStorageModule BuildGenericModule(int moduleId)
