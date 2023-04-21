@@ -18,6 +18,7 @@
     - Previously, teleporting to locations below or back to the surface was not successful
     - "Move to Player" will now be disabled if the player is not at the surface
 - Optimize resource bundling
+- Unassigned Items at Inventory Page will now only contain items that can be added to the inventory
 
 ### Fixes
 

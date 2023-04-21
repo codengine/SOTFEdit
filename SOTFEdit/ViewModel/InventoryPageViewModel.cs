@@ -59,9 +59,7 @@ public partial class InventoryPageViewModel : ObservableObject
                 new SortDescription("Name", ListSortDirection.Ascending)
             }
         };
-        _itemList = new ItemList(gameData.Items
-            .Where(item => item.Value.IsInventoryItem)
-            .Where(item => item.Value.StorageMax?.Inventory > 0).Select(item => item.Value));
+        _itemList = gameData.Items;
 
         var categories = gameData.Items
             .Where(item => item.Value.IsInventoryItem)
@@ -203,6 +201,7 @@ public partial class InventoryPageViewModel : ObservableObject
         }
 
         var unassignedItems = _itemList.Where(item => !assignedItems.Contains(item.Value.Id))
+            .Where(item => item.Value is { IsInventoryItem: true, StorageMax.Inventory: > 0 })
             .Select(item => BuildUnassignedItem(item.Value));
 
         _unassignedItems.ReplaceRange(unassignedItems);
