@@ -61,6 +61,12 @@ public partial class FollowerPageViewModel : ObservableObject
             (_, m) => { OnSelectedSavegameChanged(m); });
         WeakReferenceMessenger.Default.Register<JsonModelChangedEvent>(this,
             (_, message) => { OnJsonModelChangedEvent(message); });
+        WeakReferenceMessenger.Default.Register<PlayerPosChangedEvent>(this, (_, _) => OnPlayerPosChangedEvent());
+    }
+
+    private void OnPlayerPosChangedEvent()
+    {
+        MoveToPlayerCommand.NotifyCanExecuteChanged();
     }
 
     private void OnJsonModelChangedEvent(JsonModelChangedEvent message)
@@ -96,7 +102,13 @@ public partial class FollowerPageViewModel : ObservableObject
         }
     }
 
-    [RelayCommand(CanExecute = nameof(CanSaveChanges))]
+    private bool CanMoveToPlayer()
+    {
+        return CanSaveChanges() &&
+               Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos.AreaMask.Mask == AreaMask.Surface;
+    }
+
+    [RelayCommand(CanExecute = nameof(CanMoveToPlayer))]
     private void MoveToPlayer(FollowerState follower)
     {
         if (SavegameManager.SelectedSavegame == null)

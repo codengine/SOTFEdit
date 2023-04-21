@@ -176,6 +176,9 @@ public partial class PlayerPageViewModel : ObservableObject
             return;
         }
 
+        Position? playerPos = null;
+        var areaMask = 1;
+
         foreach (var entry in entries)
         {
             var name = entry["Name"]?.ToString();
@@ -187,10 +190,13 @@ public partial class PlayerPageViewModel : ObservableObject
 
                     if (playerPosFloatArray is { Length: 3 })
                     {
-                        PlayerState.Pos = new Position(playerPosFloatArray[0], playerPosFloatArray[1],
+                        playerPos = new Position(playerPosFloatArray[0], playerPosFloatArray[1],
                             playerPosFloatArray[2]);
                     }
 
+                    break;
+                case "player.areaMask":
+                    areaMask = ReadInt(entry) ?? 1;
                     break;
                 case "StrengthLevel":
                     PlayerState.StrengthLevel = ReadInt(entry) ?? 0;
@@ -223,6 +229,12 @@ public partial class PlayerPageViewModel : ObservableObject
                     PlayerState.Stamina = ReadFloat(entry) ?? 0f;
                     break;
             }
+        }
+
+        if (playerPos is { } pos)
+        {
+            pos.AreaMask = new AreaMask(areaMask);
+            PlayerState.Pos = pos;
         }
     }
 
@@ -313,6 +325,9 @@ public partial class PlayerPageViewModel : ObservableObject
                         }
                     }
 
+                    break;
+                case "player.areaMask":
+                    hasChanges = WriteInt(entry, PlayerState.Pos.AreaMask.Mask) || hasChanges;
                     break;
                 case "StrengthLevel":
                     hasChanges = WriteInt(entry, PlayerState.StrengthLevel) || hasChanges;

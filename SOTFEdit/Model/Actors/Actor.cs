@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
-using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData.Actor;
 
 namespace SOTFEdit.Model.Actors;
@@ -27,25 +26,11 @@ public class Actor
     public int OutfitId { get; set; }
     public int? GraphMask { get; set; }
 
-    [JsonIgnore]
-    public Color ActorColor => ActorType?.ActorColor ?? Colors.SaddleBrown;
-    [JsonIgnore]
-    public BitmapImage ActorImage => LoadImage();
+    [JsonIgnore] public Color ActorColor => ActorType?.ActorColor ?? Colors.SaddleBrown;
 
-    public string PositionSuffix
-    {
-        get
-        {
-            return GraphMask switch
-            {
-                0 => " (?)",
-                1 => $" ({TranslationManager.Get("actors.graphMask.surface")})",
-                < 0 or > 1 =>
-                    $" ({TranslationManager.Get("actors.graphMask.caveOrBunker")} => {GraphMask})",
-                _ => ""
-            };
-        }
-    }
+    [JsonIgnore] public BitmapImage ActorImage => LoadImage();
+
+    public string PositionSuffix => $" ({AreaMask.Translate(GraphMask ?? 0)})";
 
     public string PrintableTitle =>
         $"{ActorType?.Name ?? "???"} - UniqueId {UniqueId} - TypeId {TypeId} - FamilyId {FamilyId}";

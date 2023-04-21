@@ -152,7 +152,9 @@ public class ActorModifier
 
             if (data.ModifyOptions.TeleportMode == "NpcToPlayer")
             {
-                actor["Position"] = JToken.FromObject(Teleporter.MoveToPos(_playerPageViewModel.PlayerState.Pos));
+                var newPos = Teleporter.MoveToPos(_playerPageViewModel.PlayerState.Pos);
+                actor["Position"] = JToken.FromObject(newPos);
+                actor["GraphMask"] = newPos.AreaMask.Mask;
             }
         }
 
@@ -163,21 +165,19 @@ public class ActorModifier
             UpdateInfluences(vailWorldSim, data, uniqueIds);
         }
 
-        if (data.ModifyOptions.TeleportMode != "PlayerToNpc")
+        if (data.ModifyOptions.TeleportMode == "PlayerToNpc")
         {
-            return;
+            var actorPos = data.Actor.Position;
+            var playerPos = _playerPageViewModel.PlayerState.Pos;
+            Teleporter.MovePlayerToPos(ref playerPos, ref actorPos);
+
+            if (actorTokenForActorInData != null)
+            {
+                actorTokenForActorInData["Position"] = JToken.FromObject(actorPos);
+            }
+
+            _playerPageViewModel.PlayerState.Pos = playerPos;
         }
-
-        var actorPos = data.Actor.Position;
-        var playerPos = _playerPageViewModel.PlayerState.Pos;
-        Teleporter.MovePlayerToPos(ref playerPos, ref actorPos);
-
-        if (actorTokenForActorInData is { } theToken)
-        {
-            theToken["Position"] = JToken.FromObject(actorPos);
-        }
-
-        _playerPageViewModel.PlayerState.Pos = playerPos;
     }
 
     private static void UpdateInfluences(JToken vailWorldSim, UpdateActorsEvent data, IReadOnlySet<int> uniqueIds)

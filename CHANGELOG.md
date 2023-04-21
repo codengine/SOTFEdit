@@ -9,15 +9,18 @@
 - Added new action camera
 - Added support for savegame naming
 
-### Fixes
-
-- Fixed stats resetting if the player did not have a value currently set for a given stat
-
 ### Improvements
 
 - Influences can now be added on demand if missing
 - All sliders for all influence stats are now always visible, independent if present in the savegame or not
+- Teleporting Player, Followers and NPCs will now consider this area mask
+    - Previously, teleporting to locations below or back to the surface was not successful
+    - "Move to Player" will now be disabled if the player is not at the surface
 - Optimize resource bundling
+
+### Fixes
+
+- Fixed stats resetting if the player did not have a value currently set for a given stat
 
 ## v0.9.2
 

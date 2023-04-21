@@ -204,7 +204,7 @@
       "46": "Pan Puffton",
       "47": "Pani Puffton"
     },
-    "graphMask": {
+    "areaMask": {
       "caveOrBunker": "Jaskinia albo Bunkier",
       "surface": "Powierzchnia"
     },

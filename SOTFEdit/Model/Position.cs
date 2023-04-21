@@ -1,11 +1,14 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 
 namespace SOTFEdit.Model;
 
-public class Position
+public partial class Position : ObservableObject
 {
     private readonly float _y;
+
+    [JsonIgnore] [ObservableProperty] private AreaMask _areaMask = new(1);
 
     public Position(float x, float y, float z)
     {
@@ -28,7 +31,10 @@ public class Position
 
     public Position WithoutOffset()
     {
-        return new Position(X, _y, Z);
+        return new Position(X, _y, Z)
+        {
+            AreaMask = AreaMask
+        };
     }
 
     public Position WithYOffset(int yOffset)
@@ -40,7 +46,7 @@ public class Position
 
     private bool Equals(Position other)
     {
-        return _y.Equals(other._y) && X.Equals(other.X) && Z.Equals(other.Z);
+        return _y.Equals(other._y) && X.Equals(other.X) && Z.Equals(other.Z) && AreaMask.Equals(other.AreaMask);
     }
 
     public override bool Equals(object? obj)

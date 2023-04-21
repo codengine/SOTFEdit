@@ -204,7 +204,7 @@
       "46": "Mr. Puffton",
       "47": "Mrs. Puffton"
     },
-    "graphMask": {
+    "areaMask": {
       "caveOrBunker": "Höhle oder Bunker",
       "surface": "Oberfläche"
     },
@@ -779,7 +779,8 @@
     "maxHealth": "Maximale Gesundheit",
     "currentHealth": "Aktuelle Gesundheit",
     "outfit": "Outfit",
-    "fillAllBars": "Alle Balken füllen"
+    "fillAllBars": "Alle Balken füllen",
+    "areaMask": "Bereich"
   },
   "npcs": {
     "tabs": {

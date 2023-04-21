@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.Model;
 
@@ -28,6 +30,11 @@ public partial class PlayerState : ObservableObject
         {
             CurrentHealth = value;
         }
+    }
+
+    partial void OnPosChanged(Position value)
+    {
+        WeakReferenceMessenger.Default.Send(new PlayerPosChangedEvent());
     }
 
     public void Reset()
