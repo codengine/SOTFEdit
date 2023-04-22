@@ -12,6 +12,10 @@
 - Player and follower page now have scrollbars on smaller window sizes
 - Player armor ordering is no done properly. There are no more gaps
 
+### Fixes
+
+- Fixed issue that dried/cooked meat, fish etc. was not selectable at inventory and storage tab 
+
 ## v0.9.3
 
 ### Features

@@ -709,19 +709,17 @@
     {
       "id": 433,
       "type": "food",
-      "modules": [
-        {
-          "moduleId": 3,
-          "variants": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        }
-      ],
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
       "storageMax": {
         "shelf": 7,
         "inventory": 7
@@ -749,19 +747,17 @@
     {
       "id": 436,
       "type": "food",
-      "modules": [
-        {
-          "moduleId": 3,
-          "variants": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        }
-      ],
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
       "storageMax": {
         "shelf": 7,
         "inventory": 3
@@ -1156,7 +1152,21 @@
         "shelf": 2,
         "inventory": 2
       },
-      "image": "SeveredArm.png"
+      "image": "SeveredArm.png",
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "sourceActorModuleDefinition": {
+        "defaultSourceActorType": 13
+      }
     },
     {
       "id": 481,
@@ -1165,7 +1175,21 @@
         "shelf": 2,
         "inventory": 2
       },
-      "image": "SeveredLeg.png"
+      "image": "SeveredLeg.png",
+      "foodSpoilModuleDefinition": {
+        "defaultVariant": 5,
+        "variants": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "sourceActorModuleDefinition": {
+        "defaultSourceActorType": 13
+      }
     },
     {
       "id": 482,
