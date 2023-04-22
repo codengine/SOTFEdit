@@ -10,6 +10,7 @@
 ### Improvements
 
 - Player and follower page now have scrollbars on smaller window sizes
+- Player armor ordering is no done properly. There are no more gaps
 
 ## v0.9.3
 

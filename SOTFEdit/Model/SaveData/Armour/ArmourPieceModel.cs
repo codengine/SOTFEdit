@@ -8,7 +8,7 @@ public partial class ArmourPieceModel : ObservableObject
 {
     [ObservableProperty] private float _remainingArmourpoints;
     public int ItemId { get; init; }
-    public int Slot { get; init; }
+    public int Slot { get; set; }
 
     public static IEqualityComparer<ArmourPieceModel> ArmourPieceModelComparer { get; } =
         new ArmourPieceModelEqualityComparer();

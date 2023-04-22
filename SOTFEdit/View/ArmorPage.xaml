@@ -86,8 +86,6 @@
                     </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Slot, Mode=OneTime}"
-                                        Header="{infrastructure:Translate 'armor.headers.slot'}" IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
                                         Header="{infrastructure:Translate 'armor.headers.id'}" IsReadOnly="True" />
                     <DataGridTemplateColumn CanUserSort="False" Header=""
