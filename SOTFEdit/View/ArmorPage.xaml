@@ -29,10 +29,10 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToDefault.tooltip'}"
+                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToDefault.tooltip'}" VerticalAlignment="Center"
                         Command="{Binding NewArmour.SetDefaultDurabilityForNewArmourCommand}"
                         Content="{infrastructure:Translate 'armor.buttons.setToDefault.text'}" />
-                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToMax.tooltip'}"
+                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToMax.tooltip'}" VerticalAlignment="Center"
                         Command="{Binding NewArmour.SetMaxDurabilityForNewArmourCommand}"
                         Content="{infrastructure:Translate 'armor.buttons.setToMax.text'}" />
                 <mah:NumericUpDown
@@ -40,9 +40,11 @@
                     Margin="0,0,5,0"
                     mah:TextBoxHelper.Watermark="{infrastructure:Translate 'armor.durabilityInput.watermark'}"
                     Interval="10"
+                    VerticalAlignment="Center"
                     Value="{Binding NewArmour.RemainingArmourpoints, UpdateSourceTrigger=PropertyChanged}"
                     MinWidth="100" />
                 <Button Background="{DynamicResource MahApps.Brushes.Accent}"
+                        VerticalAlignment="Center"
                         Command="{Binding NewArmour.AddArmorCommand}"
                         Content="{infrastructure:Translate 'generic.add'}" />
             </StackPanel>
