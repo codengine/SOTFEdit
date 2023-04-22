@@ -39,7 +39,7 @@
                         <Grid>
                             <Image Source="pack://siteoforigin:,,,/images/map.jpg" Width="4096" Height="4096" />
                             <Canvas Width="4096" Height="4096">
-                                <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                <Image Source="pack://siteoforigin:,,,/images/icons/MapMarker.png" Width="32" Height="32"
                                        Canvas.Top="{Binding PinTop}" Canvas.Left="{Binding PinLeft}">
                                     <Image.RenderTransform>
                                         <ScaleTransform

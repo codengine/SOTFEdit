@@ -170,7 +170,7 @@ public partial class MainWindow
         ZoomCtrl.TranslateX = -2 * ingameToPixel.Item1 + ZoomCtrl.ActualWidth;
         ZoomCtrl.TranslateY = -2 * ingameToPixel.Item2 + ZoomCtrl.ActualHeight;
         _dataContext.PinLeft = ingameToPixel.Item1 - 16;
-        _dataContext.PinTop = ingameToPixel.Item2 - 18;
+        _dataContext.PinTop = ingameToPixel.Item2 - 16;
         _dataContext.PinPos = message.Pos;
 
         _selectedPosSenderHash = senderHash;
