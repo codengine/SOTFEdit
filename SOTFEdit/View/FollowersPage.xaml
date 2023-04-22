@@ -36,7 +36,7 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <st:AutoGrid VerticalAlignment="Top" HorizontalAlignment="Stretch" Columns="Auto,*">
                     <StackPanel VerticalAlignment="Top" Margin="10">
-                        <Image Source="pack://siteoforigin:,,,/images/vg.jpg" Width="197" Height="246"
+                        <Image Source="pack://siteoforigin:,,,/images/kv.jpg" Width="197" Height="246"
                                Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}"
                                 CommandParameter="{Binding KelvinState}"
