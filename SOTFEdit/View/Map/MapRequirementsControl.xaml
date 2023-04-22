@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="SOTFEdit.View.Map.MapRequirementsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SOTFEdit.Model.Map"
+             xmlns:st="http://schemas.spicytaco.io/"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <st:AutoGrid Columns="*" ChildMargin="4">
+        <TextBlock FontSize="16" Text="{infrastructure:Translate 'map.requirements'}"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding Poi.HasAnyRequirements, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <ItemsControl
+            ItemsSource="{Binding Poi.Requirements, RelativeSource={RelativeSource AncestorType=UserControl}}"
+            Visibility="{Binding Poi.HasAnyRequirements, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:ItemInInventoryWrapper}">
+                    <Border BorderBrush="{Binding Color}" BorderThickness="1" Background="{Binding Color}"
+                            Margin="0 0 4 4">
+                        <Image Width="32" Height="32" Source="{Binding Item.ThumbnailMedium}"
+                               ToolTip="{Binding Item.Name}" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </st:AutoGrid>
+</UserControl>

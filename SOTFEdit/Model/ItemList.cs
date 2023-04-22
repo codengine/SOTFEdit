@@ -27,4 +27,12 @@ public class ItemList : IEnumerable<KeyValuePair<int, Item>>
     {
         return _items.GetValueOrDefault(id);
     }
+
+    public IEnumerable<Item>? GetItems(IEnumerable<int>? itemIds)
+    {
+        return itemIds?.Select(GetItem)
+            .Where(item => item != null)
+            .Select(item => item!)
+            .ToList();
+    }
 }

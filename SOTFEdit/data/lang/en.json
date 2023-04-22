@@ -209,10 +209,6 @@
       "46": "Mr. Puffton",
       "47": "Mrs. Puffton"
     },
-    "areaMask": {
-      "caveOrBunker": "Cave or Bunker",
-      "surface": "Surface"
-    },
     "influenceType": {
       "Cannibal": "Cannibal",
       "Creepy": "Creepy",
@@ -233,7 +229,10 @@
       "spawnedCount": "Spawned Count",
       "lastSpawnTime": "Last Spawn Time",
       "state": "State",
-      "killedByPlayer": "Killed by Player"
+      "family": "Family",
+      "uniqueId": "UniqueID",
+      "killedByPlayer": "Killed by Player",
+      "area": "Area"
     },
     "stats": {
       "energy": "Energy",
@@ -289,6 +288,7 @@
     "added": "Added",
     "percentDone": "Percent Done",
     "modification": "Modification",
+    "category": "Category",
     "categories": {
       "shelter": "Shelter",
       "treeShelter": "Tree Shelter",
@@ -476,7 +476,7 @@
         "-1": "Default",
         "0": "Tactical Jacket",
         "1": "Tuxedo",
-        "2": "Pyjamas",
+        "2": "Pajamas",
         "3": "Leather Jacket",
         "4": "Hoody",
         "5": "Unknown",
@@ -545,6 +545,10 @@
       "resetNumberOfCutTrees": {
         "text": "Reset Number of Cut Trees",
         "tooltip": "This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number"
+      },
+      "map": {
+        "text": "Interactive Map",
+        "tooltip": "An interactive map"
       }
     },
     "help": {
@@ -789,7 +793,8 @@
     "currentHealth": "Current Health",
     "outfit": "Outfit",
     "fillAllBars": "Fill all bars",
-    "areaMask": "Area"
+    "areaMask": "Area",
+    "mapGroupName": "Player"
   },
   "npcs": {
     "tabs": {
@@ -825,7 +830,16 @@
     "plant": "Plant",
     "container": "Container",
     "log": "Log",
-    "blueprint": "Blueprint"
+    "blueprint": "Blueprint",
+    "attachment": "Attachment",
+    "book": "Book",
+    "tool": "Tool",
+    "weaponMod": "Weapon Modification",
+    "equipment": "Equipment",
+    "bodyPart": "Body Part",
+    "electricity": "Electricity",
+    "seed": "Seed",
+    "consumable": "Consumable"
   },
   "itemVariants": {
     "436": {
@@ -874,7 +888,7 @@
     "357": "Airgun",
     "358": "Shotgun",
     "359": "Machete",
-    "360": "Tactical Bow",
+    "360": "Compound/Tactical Bow",
     "361": "Rifle",
     "362": "Pistol Ammo",
     "363": "Shotgun Slug",
@@ -888,7 +902,7 @@
     "371": "Shotgun Buckshot",
     "372": "Shotgun Slug",
     "373": "Tactical Arrow",
-    "374": "Silencer",
+    "374": "Pistol Suppressor/Silencer",
     "375": "Laser Sight",
     "376": "Pistol Rail",
     "377": "Scope",
@@ -933,8 +947,8 @@
     "420": "C4 Brick",
     "421": "Ramen Noodles",
     "422": "Repair Tool",
-    "423": "Novel A",
-    "424": "Novel B",
+    "423": "Novel [Pennant Line]",
+    "424": "Novel [Deep Sleep]",
     "425": "Crunchie Wunchies",
     "426": "Printed Flask",
     "427": "Printed Knife",
@@ -945,7 +959,7 @@
     "432": "Can Opener",
     "433": "Meat",
     "434": "Canned Food",
-    "435": "Gold Mask",
+    "435": "Golden Mask",
     "436": "Fish",
     "437": "Meds",
     "438": "MRE Pack",
@@ -996,7 +1010,7 @@
     "484": "Leaf",
     "485": "Shovel",
     "486": "Walkie Talkie",
-    "487": "Silk Pyjamas",
+    "487": "Silk Pajamas",
     "488": "Blue TShirt",
     "489": "Tactical Pants",
     "490": "Hoodie",
@@ -1009,7 +1023,7 @@
     "497": "Food Tray",
     "498": "GRABS Laser Pointer",
     "499": "Wetsuit",
-    "500": "Puffy Jacket",
+    "500": "Winter Jacket",
     "501": "Tactical Boots",
     "502": "Coins",
     "503": "Torch",
@@ -1029,7 +1043,7 @@
     "518": "Paper Target",
     "519": "Deer Hide Armour",
     "520": "Structure Element",
-    "521": "Cave Lighting Email",
+    "521": "Email [More Lighting]",
     "522": "Rope Gun",
     "523": "Zipline Rope",
     "524": "Golf Ball",
@@ -1047,16 +1061,16 @@
     "536": "Golf Email Pt 3",
     "537": "Golf Email Pt 4",
     "538": "Painting Email",
-    "539": "Astrology Email Pt 1",
-    "540": "Astrology Email Pt 2",
-    "541": "Astrology Email Pt 3",
-    "542": "Politician Email Pt 1",
-    "543": "Politician Email Pt 2",
-    "544": "Politician Email Pt 3",
-    "545": "Ballet Email",
-    "546": "Squeaky Shoes Email Pt 1",
-    "547": "Squeaky Shoes Email Pt 2",
-    "548": "Squeaky Shoes Email Pt 3",
+    "539": "Document [Out Demonia]",
+    "540": "Document [Crosses burn Demons]",
+    "541": "Document [Cube Activation Cycles]",
+    "542": "Email [Thought you might find this interesting]",
+    "543": "Email [Another one]",
+    "544": "Email [One more]",
+    "545": "Email [Photo Reference]",
+    "546": "Email [Note to all employees]",
+    "547": "Email [Safe in Cube]",
+    "548": "Document [Stay in the Cube]",
     "549": "Bone Maker Blueprint",
     "550": "Fly Swatter Blueprint",
     "551": "Small Animal Catcher Blueprint",
@@ -1074,16 +1088,16 @@
     "563": "HolovilleNoticeB",
     "564": "HolovilleNoticeC",
     "565": "HolovilleNoticeD",
-    "566": "Maintenance Key",
-    "567": "Guest Key",
-    "568": "VIP Key",
+    "566": "Maintenance Key Card",
+    "567": "Guest Key Card",
+    "568": "VIP Key Card",
     "569": "Brain Bite",
     "570": "Steak Bite",
     "571": "Steak and Bacon Bite",
     "572": "Golden Armour",
     "573": "Sleeping Bag",
-    "574": "Novel C",
-    "575": "Novel D",
+    "574": "Novel [Rescued]",
+    "575": "Novel [Parallel Universes]",
     "576": "Quarter Log plank",
     "577": "Half Log plank",
     "578": "Three Quarter Log Plank",
@@ -1120,11 +1134,11 @@
     "609": "Log Storage Blueprint",
     "610": "Sticks Storage Blueprint",
     "611": "Numbers Printout",
-    "612": "Newspaper Cutout",
-    "613": "Newspaper Cutout 2/2",
-    "614": "Email",
-    "615": "Email",
-    "616": "Email",
+    "612": "Newspaper Cutout [Missing CEO]",
+    "613": "Newspaper Cutout [Puffcorp]",
+    "614": "E-Mail [Artifact - Preliminary Findings]",
+    "615": "E-Mail [Scientific Data - Cube]",
+    "616": "Classified Document",
     "617": "Stock Price",
     "618": "Printed Arrow",
     "619": "Swim Suit",
@@ -1135,8 +1149,8 @@
     "624": "Wall Torch Blueprint",
     "625": "Hanging Skull Light Blueprint",
     "626": "Hang Glider",
-    "627": "Mr. Puffton Table Card",
-    "628": "Mrs. Puffton Table Card",
+    "627": "Mr. Puffton's Reservation Card",
+    "628": "Mrs. Puffton's Reservation Card",
     "629": "Rain Catcher Blueprint",
     "630": "KnightV",
     "631": "The Realm Beyond",
@@ -1146,5 +1160,108 @@
     "635": "Light Bulb",
     "636": "TemplateD",
     "637": "Action Camera"
+  },
+  "poiGroups": {
+    "items": "Items",
+    "bunkers": "Bunkers",
+    "3Dprinters": "3D-Printers",
+    "laptops": "Laptops",
+    "caves": "Caves",
+    "camps": "Camps",
+    "villages": "Villages",
+    "helicopters": "Helicopters",
+    "info": "Info",
+    "doors": "Doors",
+    "ammo": "Ammo",
+    "cannibalVillages": "Cannibal Villages",
+    "lakes": "Lakes",
+    "supply": "Supply",
+    "crates": "Crates"
+  },
+  "map": {
+    "zipLineAnchor": "Zip Line Anchor",
+    "zipLines": "Zip Lines",
+    "pois": "Points of Interest",
+    "options": "Options",
+    "details": "Details",
+    "inventoryFilter": "Show only uncollected items",
+    "isUnderground": "Is underground",
+    "isInInventory": "Owned",
+    "coordinates": "Coordinates",
+    "wiki": "Wiki Link",
+    "itemId": "Item-ID",
+    "requirements": "Requirements",
+    "items": "Items",
+    "objectNameId": "ObjectNameId",
+    "actors": "Actors",
+    "structures": "Structures",
+    "teleportation": "Teleportation",
+    "area": "Area",
+    "objects": "Objects",
+    "altItems": "Alternative Items",
+    "teleportWindow": {
+      "title": "Teleport",
+      "destination": "Destination",
+      "toTeleport": "To teleport",
+      "offset": "Offset",
+      "doTeleport": "Teleport!",
+      "mode": {
+        "Player": "Player",
+        "Kelvin": "Kelvin",
+        "Virginia": "Virginia"
+      },
+      "disclaimer": "You can adjust the location here. If you spawn inside an enemy, chances are that you will be rocketed into the sky. X and Z determine the location, Y the height. Please make sure that the correct area is selected."
+    },
+    "spawnWindow": {
+      "title": "Spawn Actors",
+      "disclaimer": "Be careful with the positioning and number of enemies. It might crash the game. Some enemies can not be spawned at certain underground places.",
+      "doSpawn": "Create Actors",
+      "information": "Information",
+      "position": "Position",
+      "options": "Options",
+      "actorType": "Actor Type",
+      "count": "Count",
+      "familyOfDestinationActor": "Family of Destination Actor",
+      "family": "Family",
+      "spaceBetween": {
+        "text": "Space between",
+        "tooltip": "Defines the space between each actor. The actors will be places in a uniform grid if this value is > 0"
+      },
+      "spawnPattern": {
+        "text": "Spawn Pattern",
+        "Grid": "Grid",
+        "Random": "Random",
+        "Rectangle": "Rectangle",
+        "Cross": "Cross",
+        "VerticalLine": "Vertical Line",
+        "HorizontalLine": "Horizontal Line"
+      }
+    },
+    "requirementsFilter": {
+      "text": "Requirements",
+      "tooltip": "Only show items, caves, bunkers etc. where you own the required items to access them, e.g. a shovel or key card",
+      "types": {
+        "All": "All",
+        "AccessibleOnly": "Only show accessible",
+        "InaccessibleOnly": "Only show inaccessible"
+      }
+    },
+    "areaFilter": {
+      "text": "Area",
+      "types": {
+        "all": "All",
+        "surfaceOnly": "Surface only",
+        "undergroundOnly": "Caves/Bunkers only"
+      }
+    },
+    "buttons": {
+      "deselectAll": "Deselect all",
+      "teleportPlayer": "Teleport Player here",
+      "teleportKelvin": "Teleport Kelvin here",
+      "teleportVirginia": "Teleport Virginia here",
+      "moveToPlayer": "Move to Player",
+      "deleteBothAnchors": "Delete both anchors",
+      "spawnActors": "Spawn Actors"
+    }
   }
 }

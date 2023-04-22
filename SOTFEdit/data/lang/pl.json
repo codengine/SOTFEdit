@@ -204,10 +204,6 @@
       "46": "Pan Puffton",
       "47": "Pani Puffton"
     },
-    "areaMask": {
-      "caveOrBunker": "Jaskinia albo Bunkier",
-      "surface": "Powierzchnia"
-    },
     "influenceType": {
       "Cannibal": "Kanibal",
       "Creepy": "Mutant",
@@ -228,7 +224,10 @@
       "spawnedCount": "Ilość zrespionych",
       "lastSpawnTime": "Ostatni czas respa",
       "state": "Stan",
-      "killedByPlayer": "Zabity przez gracza"
+      "killedByPlayer": "Zabity przez gracza",
+      "family": "Rodzina",
+      "uniqueId": "UniqueID",
+      "area": "Obszar"
     },
     "stats": {
       "energy": "Energia",
@@ -295,14 +294,16 @@
     },
     "headers": {
       "unfinishedStructures": "Nieukończone struktury",
-      "batch": "Partia"
+      "batch": "Partia",
+      "finishedStructures": "Ukończone struktury"
     },
     "buttons": {
       "changeType": "Zmień typ",
       "unmodifyAll": "Od-modyfikuj wszystkie",
       "setAllToRemove": "Ustaw wszystkie na \"Usunięte\"",
       "setAllToFinish": "Ustaw wszystkie na \"Ukończone\"",
-      "setAllToUnfinish": "Ustaw wszystkie na \"Nieukończone\""
+      "setAllToUnfinish": "Ustaw wszystkie na \"Nieukończone\"",
+      "setAllToAlmostFinish": "Ustaw wszystkie na prawie ukończone\""
     },
     "types": {
       "0": "",
@@ -346,8 +347,10 @@
       "None": "Nic",
       "Remove": "Usuń",
       "Finish": "Ukończ",
-      "Unfinish": "Od-ukończ"
-    }
+      "Unfinish": "Od-ukończ",
+      "AlmostFinish": "Prawie ukończone"
+    },
+    "category": "Kategoria"
   },
   "backup": {
     "mode": {
@@ -537,6 +540,10 @@
       "resetNumberOfCutTrees": {
         "text": "Resetuj ilość zciętych drzew",
         "tooltip": "Może to też pomóc w zmniejszeniu liczby kanibali. Teoria mówi, że jest to obliczane na podstawie tej liczby"
+      },
+      "map": {
+        "text": "Interaktywna mapa",
+        "tooltip": "Po prosu interaktywna mapa."
       }
     },
     "help": {
@@ -644,7 +651,8 @@
       },
       "errors": {
         "errorCheckingLastVersion": "Pojawił się błąd podczas sprawdzania dostępność nowszej wersji"
-      }
+      },
+      "map": "Mapa"
     },
     "modifyConsumedItems": {
       "title": "Modyfikuj zjedzone jedzenie",
@@ -662,7 +670,8 @@
         "noTreesRegrown": "Brak drzew ze statusem \"{0}\" odrosło",
         "success": "{0} drzew z stanem \"{1}\" powinno odrosnąć. Zapisz aby je zatrzymać."
       },
-      "saveButton": "Odrośnij drzewa"
+      "saveButton": "Odrośnij drzewa",
+      "pctRegrow": "Procent odrośnięcia"
     },
     "selectSavegame": {
       "title": "Wybierz zapis...",
@@ -694,6 +703,13 @@
         "label": "Tryb plików",
         "single": "Jeden backup na zmieniony plik JSON",
         "zip": "Archiwum ZIP"
+      },
+      "language": "Język",
+      "messages": {
+        "languageChanged": {
+          "text": "Zrestartuj aplikację aby zapisać zmianę języka",
+          "title": "Zapisano ustawienia"
+        }
       }
     },
     "unhandledException": {
@@ -771,7 +787,9 @@
     "maxHealth": "Maksymalne zdrowie",
     "currentHealth": "Obecne zdrowie",
     "outfit": "Strój",
-    "fillAllBars": "Wypełnij wszystkie paski"
+    "fillAllBars": "Wypełnij wszystkie paski",
+    "areaMask": "Obszar",
+    "mapGroupName": "Gracz"
   },
   "npcs": {
     "tabs": {
@@ -807,7 +825,16 @@
     "plant": "Roślina",
     "container": "Pojemnik",
     "log": "Kłoda",
-    "blueprint": "Projekt"
+    "blueprint": "Projekt",
+    "attachment": "Dodatki na broń",
+    "book": "Książki",
+    "tool": "Narzędzia",
+    "weaponMod": "Modyfikacje broni",
+    "equipment": "Wyposażenia",
+    "bodyPart": "Część ciała",
+    "electricity": "Elektryczność",
+    "seed": "Nasiona",
+    "consumable": "Zużywalne"
   },
   "itemVariants": {
     "436": {
@@ -1124,6 +1151,112 @@
     "631": "The Realm Beyond",
     "633": "Broszura kultu",
     "634": "Panel słoneczny",
-    "635": "Żarówka"
+    "635": "Żarówka",
+    "632": "Plan pułapki sprężynowej",
+    "636": "TemplateD",
+    "637": "Kamera"
+  },
+  "poiGroups": {
+    "items": "Przedmioty",
+    "bunkers": "Bunkry",
+    "3Dprinters": "Drukarki 3D",
+    "laptops": "Laptopy",
+    "caves": "Jaskinie",
+    "camps": "Obozowiska",
+    "villages": "Wioski",
+    "helicopters": "Helikoptery",
+    "info": "Informacje",
+    "doors": "Drzwi",
+    "ammo": "Ammunicja",
+    "cannibalVillages": "Wioski kanibalów",
+    "lakes": "Jeziora",
+    "supply": "Zapasy",
+    "crates": "Skrzynie"
+  },
+  "map": {
+    "zipLineAnchor": "Końce tyrolek",
+    "zipLines": "Tyrolki",
+    "pois": "Punkty zainteresowań",
+    "options": "Opcje",
+    "details": "Szczegóły",
+    "inventoryFilter": "Pokaż tylko niezebrane przedmioty",
+    "isUnderground": "Jest podziemią",
+    "isInInventory": "Posiadane",
+    "coordinates": "Koordynaty",
+    "wiki": "Link do Wikipedii",
+    "itemId": "ID przedmiotu",
+    "requirements": "Wymgania",
+    "items": "Przedmioty",
+    "objectNameId": "objectnameId",
+    "actors": "NPC-y",
+    "structures": "Struktury",
+    "teleportation": "Teleportacja",
+    "area": "Obszar",
+    "objects": "Przedmioty",
+    "altItems": "Alternatywne przedmioty",
+    "teleportWindow": {
+      "title": "Teleport",
+      "destination": "Cel",
+      "toTeleport": "Teleport",
+      "offset": "Przesunięcie",
+      "doTeleport": "Teleportuj!",
+      "mode": {
+        "Player": "Gracz",
+        "Kelvin": "Kelvin",
+        "Virginia": "Virginia"
+      },
+      "disclaimer": "Tutaj możesz dostosowywać pozycję NPC-a. Jeżeli zrespisz przeciwnika w sobie, jest możliwe, że polecisz w kosmos. X i Z to lokalizacja, Y to wysokość. Upewnij się że ustawiony obszar jest poprawny."
+    },
+    "spawnWindow": {
+      "title": "Przywołaj NPC-a",
+      "disclaimer": "Bądź ostrożny z ilością i pozycją respionych NPC. Może zcrashować to grę. Niektórzy przeciwnicy mogę zostać zrespieni w jaskiniach.",
+      "doSpawn": "Stwórz NPC-a",
+      "information": "Informacja",
+      "position": "Pozycja",
+      "options": "Opcje",
+      "actorType": "Typ NPC-a",
+      "count": "Ilość",
+      "familyOfDestinationActor": "Rodzina docelowego NPC-a",
+      "family": "Rodzina",
+      "spaceBetween": {
+        "text": "Odległość pomiędzy",
+        "tooltip": "Definiuje odległości pomiędzy przywoływanymi NPC-ami"
+      },
+      "spawnPattern": {
+        "text": "Wzór przywołania",
+        "Grid": "Siatka",
+        "Random": "Losowa",
+        "Rectangle": "Prostokąt",
+        "Cross": "Krzyż",
+        "VerticalLine": "Pionowa Linia",
+        "HorizontalLine": "Pozioma Linia"
+      }
+    },
+    "requirementsFilter": {
+      "text": "Wymagania",
+      "tooltip": "Pokaż tylko przedmioty i miejsca do których masz dostęp (Masz kartę itp.)",
+      "types": {
+        "All": "Wszystko",
+        "AccessibleOnly": "Pokaż tylko dostępne",
+        "InaccessibleOnly": "Pokaż tylko niedostępne"
+      }
+    },
+    "areaFilter": {
+      "text": "Obszar",
+      "types": {
+        "all": "Wszystkie",
+        "surfaceOnly": "Tylko na powierzchni",
+        "undergroundOnly": "Tylko w Jaskiniach/Bunkrach"
+      }
+    },
+    "buttons": {
+      "deselectAll": "Odznacz wszystkie",
+      "teleportPlayer": "Teleportuj tutaj Gracza",
+      "teleportKelvin": "Teleportuj tutaj Kelvina",
+      "teleportVirginia": "Teleportuj tutaj Virginię",
+      "moveToPlayer": "Przesuń do Gracza",
+      "deleteBothAnchors": "Usuń obydwa końce tyrolki",
+      "spawnActors": "Przywołaj NPC"
+    }
   }
 }

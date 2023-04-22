@@ -27,6 +27,7 @@ public record PlayerInventoryModel
         var hasChanges = false;
 
         foreach (var itemBlock in itemBlocks)
+        {
             if (itemBlock["ItemId"]?.Value<int>() is { } itemId)
             {
                 if (selectedItemsDict.TryGetValue(itemId, out var selectedItem))
@@ -60,6 +61,7 @@ public record PlayerInventoryModel
             {
                 finalTokens.Add(itemBlock);
             }
+        }
 
         var newItemsFromDict = selectedItemsDict.Values.Where(item => !processedItemIds.Contains(item.Id))
             .Select(inventoryItem =>
@@ -120,10 +122,12 @@ public record PlayerInventoryModel
             }
 
             for (var i = 0; i < selectedItem.TotalCount - uniqueItemsCount; i++)
+            {
                 uniqueItems.Add(new JObject
                 {
                     { "Modules", new JArray(modules.Select(JToken.FromObject).ToList()) }
                 });
+            }
 
             itemBlock["UniqueItems"] = uniqueItems;
         }

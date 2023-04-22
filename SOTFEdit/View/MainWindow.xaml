@@ -6,14 +6,13 @@
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                 xmlns:zoomControl="clr-namespace:Denxorz.ZoomControl;assembly=Denxorz.ZoomControl"
-                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:st="http://schemas.spicytaco.io/"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:zoomControl="clr-namespace:ZoomControl;assembly=ZoomControl"
                  mc:Ignorable="d"
                  SaveWindowPosition="True"
                  WindowStartupLocation="CenterScreen"
-                 Title="Sons of the Forest Savegame Editor" Height="850" Width="1280"
+                 Title="Sons of the Forest Savegame Editor" Height="850" Width="1380"
                  TitleCharacterCasing="Normal"
                  Style="{DynamicResource MyStyle}"
                  d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
@@ -21,7 +20,7 @@
                  PreviewKeyDown="MainWindow_OnPreviewKeyDown"
                  WindowTransitionsEnabled="False">
     <Window.Resources>
-        <converters:InverseZoomConverter x:Key="InverseZoomConverter" />
+        <infrastructure:ZoomHandler x:Key="ZoomHandler" />
     </Window.Resources>
     <mah:MetroWindow.Flyouts>
         <mah:FlyoutsControl>
@@ -35,16 +34,18 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <zoomControl:ZoomControl x:Name="ZoomCtrl" Mode="Fill" MaxZoom="2">
+                    <zoomControl:ZoomControl x:Name="ZoomCtrl" Mode="Fill" MaxZoom="2"
+                                             Zoom="{Binding Zoom, Source={StaticResource ZoomHandler}, Mode=OneWayToSource}">
                         <Grid>
                             <Image Source="pack://siteoforigin:,,,/images/map.jpg" Width="4096" Height="4096" />
                             <Canvas Width="4096" Height="4096">
-                                <Image Source="pack://siteoforigin:,,,/images/icons/MapMarker.png" Width="32" Height="32"
+                                <Image Source="pack://siteoforigin:,,,/images/icons/crosshair.png" Width="32"
+                                       Height="32"
                                        Canvas.Top="{Binding PinTop}" Canvas.Left="{Binding PinLeft}">
                                     <Image.RenderTransform>
                                         <ScaleTransform
-                                            ScaleX="{Binding Converter={StaticResource InverseZoomConverter}, ElementName=ZoomCtrl, Path=Zoom}"
-                                            ScaleY="{Binding Converter={StaticResource InverseZoomConverter}, ElementName=ZoomCtrl, Path=Zoom}" />
+                                            ScaleX="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}"
+                                            ScaleY="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}" />
                                     </Image.RenderTransform>
                                     <Image.RenderTransformOrigin>
                                         <Point X="0.5" Y="0.5" />
@@ -132,6 +133,9 @@
                               Command="{Binding ExperimentResetNumberCutTreesCommand}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.tooltip'}" />
                 </MenuItem>
+                <MenuItem Header="{infrastructure:Translate 'menu.tools.map.text'}"
+                          Command="{Binding OpenMapCommand}"
+                          ToolTip="{infrastructure:Translate 'menu.tools.map.tooltip'}" />
                 <MenuItem Header="{infrastructure:Translate 'menu.help.text'}">
                     <MenuItem Header="{infrastructure:Translate 'menu.help.links.text'}">
                         <MenuItem Header="{infrastructure:Translate 'menu.help.links.githubProject'}"

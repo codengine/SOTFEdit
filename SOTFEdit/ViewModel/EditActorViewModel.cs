@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -14,16 +15,20 @@ namespace SOTFEdit.ViewModel;
 
 public partial class EditActorViewModel : ObservableObject
 {
-    private Actor _actor;
-    [ObservableProperty] private short? _actorSelection;
+    [ObservableProperty]
+    private short? _actorSelection;
 
-    [ObservableProperty] private ActorModificationMode _modificationMode = ActorModificationMode.Modify;
+    [ObservableProperty]
+    private ActorModificationMode _modificationMode = ActorModificationMode.Modify;
 
-    [ObservableProperty] private bool _onlyInSameAreaAsActor = true;
+    [ObservableProperty]
+    private bool _onlyInSameAreaAsActor = true;
 
-    [ObservableProperty] private bool _skipKelvin = true;
+    [ObservableProperty]
+    private bool _skipKelvin = true;
 
-    [ObservableProperty] private bool _skipVirginia = true;
+    [ObservableProperty]
+    private bool _skipVirginia = true;
 
     public EditActorViewModel(Actor actor, List<ActorType> allActorTypes)
     {
@@ -35,6 +40,11 @@ public partial class EditActorViewModel : ObservableObject
         ModifyOptions.UpdateEnergy = !Actor.Stats?.ContainsKey("Energy") ?? true;
         ModifyOptions.ActorHealth = Actor.Stats?.GetValueOrDefault("Health", 100f) ?? 100f;
         ModifyOptions.UpdateHealth = !Actor.Stats?.ContainsKey("Energy") ?? true;
+
+        Influences = actor.Influences is { } influences
+            ? new ObservableCollectionEx<Influence>(influences)
+            : new ObservableCollectionEx<Influence>();
+        Influences.CollectionChanged += InfluencesOnCollectionChanged;
 
         AllInfluences = Influence.AllTypes.Select(type =>
                 new ComboBoxItemAndValue<string>(TranslationManager.Get("actors.influenceType." + type), type))
@@ -51,7 +61,7 @@ public partial class EditActorViewModel : ObservableObject
         }
     }
 
-    public WpfObservableRangeCollection<Influence> Influences { get; } = new();
+    public ObservableCollectionEx<Influence> Influences { get; }
 
     public List<ComboBoxItemAndValue<string>> AllInfluences { get; }
 
@@ -65,33 +75,12 @@ public partial class EditActorViewModel : ObservableObject
         new(TranslationManager.Get("actors.modificationOptions.allActorSelections.allActors"), 3)
     };
 
-    public Actor Actor
-    {
-        get => _actor;
-        set
-        {
-            _actor = value;
-            Influences.ReplaceRange(_actor.Influences ?? new List<Influence>());
-        }
-    }
+    public Actor Actor { get; }
 
     public List<ActorType> AllActorTypes { get; }
 
-    [RelayCommand]
-    private void AddInfluence(string influenceType)
+    private void InfluencesOnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        if (string.IsNullOrEmpty(influenceType))
-        {
-            return;
-        }
-
-        var existingTypeId = Influences.FirstOrDefault(influence => influence.TypeId == influenceType);
-        if (existingTypeId != null)
-        {
-            return;
-        }
-
-        Influences.Add(Influence.AsFillerWithDefaults(influenceType));
         ModifyOptions.UpdateInfluences = true;
     }
 
@@ -104,18 +93,32 @@ public partial class EditActorViewModel : ObservableObject
 
 public partial class ModifyOptions : ObservableObject
 {
-    [ObservableProperty] private float _actorEnergy;
-    [ObservableProperty] private float _actorHealth;
+    [ObservableProperty]
+    private float _actorEnergy;
+
+    [ObservableProperty]
+    private float _actorHealth;
+
     private float? _originalEnergy;
     private float? _originalHealth;
-    [ObservableProperty] private bool _removeSpawner;
-    [ObservableProperty] private ActorType? _replaceType;
 
-    [ObservableProperty] private string _teleportMode = "";
-    [ObservableProperty] private bool _updateEnergy;
-    [ObservableProperty] private bool _updateHealth;
+    [ObservableProperty]
+    private bool _removeSpawner;
 
-    [ObservableProperty] private bool _updateInfluences;
+    [ObservableProperty]
+    private ActorType? _replaceType;
+
+    [ObservableProperty]
+    private string _teleportMode = "";
+
+    [ObservableProperty]
+    private bool _updateEnergy;
+
+    [ObservableProperty]
+    private bool _updateHealth;
+
+    [ObservableProperty]
+    private bool _updateInfluences;
 
 
     partial void OnActorEnergyChanging(float value)

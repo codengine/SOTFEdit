@@ -32,7 +32,7 @@
                             <ComboBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type storageViewModels:ItemWrapper}">
                                     <st:AutoGrid Columns="*,*">
-                                        <Image Width="48" Height="48"
+                                        <Image Width="32" Height="32"
                                                Source="{Binding Item.ThumbnailMedium}">
                                             <Image.ToolTip>
                                                 <Image Source="{Binding Item.ThumbnailBig}" />
@@ -44,7 +44,8 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                         <mah:NumericUpDown Margin="0 0 10 0" Grid.Column="1" Minimum="1" Maximum="{Binding Max}"
-                                           Value="{Binding Count, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+                                           Value="{Binding Count, UpdateSourceTrigger=PropertyChanged}"
+                                           VerticalAlignment="Center" />
                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                             <Button Background="{DynamicResource MahApps.Brushes.Accent}"
                                     Command="{Binding FillAllCommand}" Margin="0 0 10 0"
@@ -79,7 +80,7 @@
                                                 <ComboBox.ItemTemplate>
                                                     <DataTemplate DataType="{x:Type storageViewModels:ItemWrapper}">
                                                         <st:AutoGrid Columns="*,*">
-                                                            <Image Width="48" Height="48"
+                                                            <Image Width="32" Height="32"
                                                                    Source="{Binding Item.ThumbnailMedium}">
                                                                 <Image.ToolTip>
                                                                     <Image Source="{Binding Item.ThumbnailBig}" />
@@ -90,7 +91,8 @@
                                                     </DataTemplate>
                                                 </ComboBox.ItemTemplate>
                                             </ComboBox>
-                                            <mah:NumericUpDown Margin="0 0 10 0" Grid.Column="2" Minimum="0" VerticalAlignment="Center"
+                                            <mah:NumericUpDown Margin="0 0 10 0" Grid.Column="2" Minimum="0"
+                                                               VerticalAlignment="Center"
                                                                Maximum="{Binding Max, Mode=OneWay}"
                                                                Value="{Binding Count, UpdateSourceTrigger=PropertyChanged}" />
                                             <Grid Grid.Column="3" Margin="0 0 10 0" VerticalAlignment="Center">

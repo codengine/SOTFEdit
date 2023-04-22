@@ -10,7 +10,8 @@ public partial class StoredItem : ObservableObject
 {
     private readonly int? _maxPerSlot;
 
-    [ObservableProperty] private int _count;
+    [ObservableProperty]
+    private int _count;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Max))]

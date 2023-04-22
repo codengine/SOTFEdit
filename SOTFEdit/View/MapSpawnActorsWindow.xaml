@@ -1,0 +1,108 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.MapSpawnActorsWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 xmlns:view="clr-namespace:SOTFEdit.View"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 PreviewKeyDown="MapSpawnActorsWindow_OnPreviewKeyDown"
+                 ResizeMode="NoResize"
+                 ShowMaxRestoreButton="False"
+                 IsMaxRestoreButtonEnabled="False"
+                 ShowMinButton="False"
+                 IsMinButtonEnabled="False"
+                 TitleCharacterCasing="Normal"
+                 mc:Ignorable="d"
+                 d:DataContext="{d:DesignInstance viewModel:MapSpawnActorsViewModel}"
+                 SizeToContent="WidthAndHeight"
+                 Title="{infrastructure:Translate 'map.spawnWindow.title'}" MinWidth="800">
+    <mah:MetroWindow.Resources>
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    </mah:MetroWindow.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="300" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <st:AutoGrid Margin="10" Columns="*" Rows="Auto,Auto,Auto">
+            <GroupBox Header="{infrastructure:Translate 'map.spawnWindow.information'}" Margin="0 0 0 8">
+                <st:AutoGrid ChildMargin="4" Columns="Auto,*">
+                    <TextBlock Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow"
+                               Text="{infrastructure:Translate 'map.spawnWindow.disclaimer'}"
+                               MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type st:AutoGrid}}, Mode=OneWay}" />
+                    <Label Content="{infrastructure:Translate 'map.teleportWindow.destination'}" />
+                    <Label Content="{Binding Destination}" />
+                    <Label Content="{infrastructure:Translate 'map.spawnWindow.familyOfDestinationActor'}"
+                           Visibility="{Binding OriginalFamilyId, Converter={StaticResource NullToVisibilityConverter}}" />
+                    <Label Content="{Binding OriginalFamilyId}"
+                           Visibility="{Binding OriginalFamilyId, Converter={StaticResource NullToVisibilityConverter}}" />
+                </st:AutoGrid>
+            </GroupBox>
+            <st:AutoGrid Columns="*,*" Margin="0 0 0 8">
+                <GroupBox Header="{infrastructure:Translate 'map.spawnWindow.position'}" Margin="0 0 3 0">
+                    <st:AutoGrid Margin="3" ChildMargin="4" Columns="Auto,Auto,Auto,Auto">
+                        <Label Content="{infrastructure:Translate 'map.area'}" />
+                        <ComboBox Grid.ColumnSpan="3" ItemsSource="{Binding Areas}"
+                                  SelectedItem="{Binding SelectedArea}" DisplayMemberPath="Name" />
+                        <Label Content="X" />
+                        <Label Content="{Binding X}" />
+                        <Label Content="{infrastructure:Translate 'map.teleportWindow.offset'}" />
+                        <mah:NumericUpDown Value="{Binding XOffset, UpdateSourceTrigger=PropertyChanged}" Interval="1"
+                                           NumericInputMode="Decimal" Minimum="-10"
+                                           Maximum="100" />
+                        <Label Content="Y" />
+                        <Label Content="{Binding Y}" />
+                        <Label Content="{infrastructure:Translate 'map.teleportWindow.offset'}" />
+                        <mah:NumericUpDown Value="{Binding YOffset, UpdateSourceTrigger=PropertyChanged}" Interval="1"
+                                           NumericInputMode="Decimal" Minimum="-10"
+                                           Maximum="100" />
+                        <Label Content="Z" />
+                        <Label Content="{Binding Z}" />
+                        <Label Content="{infrastructure:Translate 'map.teleportWindow.offset'}" />
+                        <mah:NumericUpDown Value="{Binding ZOffset, UpdateSourceTrigger=PropertyChanged}" Interval="1"
+                                           NumericInputMode="Decimal" Minimum="-100"
+                                           Maximum="100" />
+                    </st:AutoGrid>
+                </GroupBox>
+                <GroupBox Header="{infrastructure:Translate 'map.spawnWindow.options'}" Margin="3 0 0 0">
+                    <st:AutoGrid ChildMargin="3" Columns="Auto,Auto">
+                        <Label Content="{infrastructure:Translate 'map.spawnWindow.actorType'}" />
+                        <ComboBox SelectedItem="{Binding SelectedActorType}"
+                                  ItemsSource="{Binding AllActorTypes}" DisplayMemberPath="Name" />
+                        <Label Content="{infrastructure:Translate 'map.spawnWindow.count'}" />
+                        <mah:NumericUpDown Value="{Binding SpawnCount, UpdateSourceTrigger=PropertyChanged}"
+                                           Interval="1"
+                                           NumericInputMode="Numbers" Minimum="1"
+                                           Maximum="200" />
+                        <Label Content="{infrastructure:Translate 'map.spawnWindow.family'}" />
+                        <ComboBox SelectedItem="{Binding FamilyId}"
+                                  ItemsSource="{Binding AllFamilyIds}" />
+                        <Label Content="{infrastructure:Translate 'map.spawnWindow.spawnPattern.text'}" />
+                        <ComboBox SelectedValue="{Binding SelectedSpawnPattern}"
+                                  ItemsSource="{Binding AllSpawnPatterns}" DisplayMemberPath="Title"
+                                  SelectedValuePath="Value" />
+                        <Label Content="{infrastructure:Translate 'map.spawnWindow.spaceBetween.text'}"
+                               ToolTip="{infrastructure:Translate 'map.spawnWindow.spaceBetween.tooltip'}" />
+                        <mah:NumericUpDown ToolTip="{infrastructure:Translate 'map.spawnWindow.spaceBetween.tooltip'}"
+                                           Value="{Binding SpaceBetween, UpdateSourceTrigger=PropertyChanged}"
+                                           Interval="1"
+                                           NumericInputMode="Numbers" Minimum="0"
+                                           Maximum="200" />
+                    </st:AutoGrid>
+                </GroupBox>
+            </st:AutoGrid>
+            <Button Padding="10" Background="DarkGreen" HorizontalAlignment="Center"
+                    Content="{infrastructure:Translate 'map.spawnWindow.doSpawn'}"
+                    Command="{Binding DoSpawnCommand}" />
+        </st:AutoGrid>
+        <view:InfluenceContainer Margin="10" Grid.Column="1" InfluencesTarget="{Binding Influences}"
+                                 AllInfluences="{Binding AllInfluences}" />
+    </Grid>
+</mah:MetroWindow>

@@ -13,8 +13,7 @@
     "z": 0.0,
     "w": 0.0
   },
-  "SpawnerId": {spawnerId},
-  "ActorSeed": {spawnerId},
+  "ActorSeed": {actorSeed},
   "VariationId": -1,
   "State": 2,
   "GraphMask": 1,

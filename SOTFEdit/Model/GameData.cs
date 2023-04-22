@@ -12,7 +12,7 @@ public class GameData
 {
     public GameData(IEnumerable<Item> items, [JsonProperty("storages")] List<StorageDefinition> storageDefinitions,
         [JsonProperty("followers")] FollowerData followerData, Configuration config, List<string> namedIntKeys,
-        List<ActorType> actorTypes, List<ScrewStructure> screwStructures)
+        List<ActorType> actorTypes, List<ScrewStructure> screwStructures, List<Area> areas)
     {
         Items = new ItemList(items.OrderBy(item => item.Name));
         StorageDefinitions = storageDefinitions;
@@ -21,8 +21,10 @@ public class GameData
         NamedIntKeys = namedIntKeys.OrderBy(key => key).ToList();
         ActorTypes = actorTypes;
         ScrewStructures = screwStructures;
+        AreaManager = new AreaMaskManager(areas);
     }
 
+    public AreaMaskManager AreaManager { get; }
     public List<ScrewStructure> ScrewStructures { get; }
 
     public List<ActorType> ActorTypes { get; }
@@ -36,23 +38,26 @@ public class GameData
 
 public class ScrewStructure
 {
-    public ScrewStructure(string category, int id, int buildCost, bool? canFinish)
+    private readonly string _category;
+
+    public ScrewStructure(string category, int id, int buildCost, bool? canFinish, string icon)
     {
-        Category = category;
+        _category = category;
         Id = id;
         BuildCost = buildCost;
+        Icon = icon;
         CanFinish = canFinish ?? true;
     }
 
     public string Name => TranslationManager.Get("structures.types." + Id);
-    public string Category { get; }
 
-    public string CategoryName => string.IsNullOrEmpty(Category)
+    public string CategoryName => string.IsNullOrEmpty(_category)
         ? ""
-        : TranslationManager.Get("structures.categories." + Category);
+        : TranslationManager.Get("structures.categories." + _category);
 
     public int Id { get; }
     public int BuildCost { get; }
+    public string Icon { get; }
     public bool CanFinish { get; }
 }
 
@@ -73,18 +78,19 @@ public class Configuration
 // ReSharper disable once ClassNeverInstantiated.Global
 public class FollowerData
 {
+    private readonly Dictionary<int, int[]> _equippableItems;
     private readonly Dictionary<int, List<Outfit>> _outfits = new();
 
     public FollowerData(Dictionary<int, List<int>> outfits, Dictionary<int, int[]> equippableItems)
     {
         foreach (var typeIdToOutfits in outfits)
         foreach (var outfitId in typeIdToOutfits.Value)
+        {
             _outfits.GetOrCreate(typeIdToOutfits.Key).Add(new Outfit(typeIdToOutfits.Key, outfitId));
+        }
 
-        EquippableItems = equippableItems;
+        _equippableItems = equippableItems;
     }
-
-    public Dictionary<int, int[]> EquippableItems { get; init; }
 
     public List<Outfit> GetOutfits(int typeId)
     {
@@ -93,7 +99,7 @@ public class FollowerData
 
     public IEnumerable<Item> GetEquippableItems(int typeId, ItemList items)
     {
-        return (EquippableItems.GetValueOrDefault(typeId) ?? Array.Empty<int>())
+        return (_equippableItems.GetValueOrDefault(typeId) ?? Array.Empty<int>())
             .Select(items.GetItem)
             .Where(item => item is not null)
             .Select(item => item!)

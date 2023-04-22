@@ -27,7 +27,8 @@ public class SavegameStore
         FiresSaveData,
         ScrewStructureNodeInstancesSaveData,
         StructureDestructionSaveData,
-        WorldItemManagerSaveData
+        WorldItemManagerSaveData,
+        ZipLineManagerSaveData
     }
 
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();

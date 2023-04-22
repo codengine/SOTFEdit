@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="bin\Debug\net6.0-windows\ZoomControl.dll"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="bin\Debug\net6.0-windows\"/>
+    </ItemGroup>
+
+</Project>

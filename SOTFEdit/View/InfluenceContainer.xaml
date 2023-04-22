@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="SOTFEdit.View.InfluenceContainer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+             xmlns:st="http://schemas.spicytaco.io/"
+             xmlns:actor="clr-namespace:SOTFEdit.Model.SaveData.Actor"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="SliderLabelStyle" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+            <Setter Property="Margin" Value="0 0 10 10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SliderStyle" TargetType="{x:Type Slider}"
+               BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
+            <Setter Property="Margin" Value="0 0 10 10" />
+            <Setter Property="TickFrequency" Value="1" />
+            <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <GroupBox VerticalAlignment="Top"
+              HorizontalAlignment="Stretch" Padding="10"
+              Margin="0 0 0 10">
+        <GroupBox.Header>
+            <st:AutoGrid Columns="*,*">
+                <TextBlock Text="{infrastructure:Translate 'actors.headers.influences'}"
+                           VerticalAlignment="Center" />
+                <st:AutoGrid VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <ComboBox
+                        ItemsSource="{Binding AllInfluences, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        DisplayMemberPath="Title"
+                        SelectedValuePath="Value" x:Name="ComboAddInfluence" />
+                    <Button Content="{infrastructure:Translate 'generic.add'}"
+                            Command="{Binding AddInfluenceCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            CommandParameter="{Binding ElementName=ComboAddInfluence, Path=SelectedItem.Value}" />
+                </st:AutoGrid>
+            </st:AutoGrid>
+        </GroupBox.Header>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Visibility="{Binding ShowDisclaimer, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                TextWrapping="Wrap" Margin="0 0 0 10"
+                Text="{infrastructure:Translate 'influences.disclaimer'}" />
+            <ItemsControl
+                ItemsSource="{Binding InfluencesTarget, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Grid.Row="1" VerticalAlignment="Top"
+                HorizontalAlignment="Stretch" Height="Auto">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type actor:Influence}">
+                        <GroupBox Header="{Binding  PrintableTypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
+                            <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0"
+                                           Style="{StaticResource SliderLabelStyle}" Foreground="HotPink"
+                                           Text="{infrastructure:Translate 'influences.sentiment'}" />
+                                <Slider
+                                    Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="0"
+                                    Minimum="-100.0"
+                                    Maximum="100"
+                                    Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    Grid.Column="0" Grid.Row="1"
+                                    Style="{StaticResource SliderLabelStyle}" Foreground="Red"
+                                    Text="{infrastructure:Translate 'influences.anger'}" />
+                                <Slider
+                                    Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="1"
+                                    Minimum="0.0"
+                                    Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    Grid.Column="0" Grid.Row="2" Foreground="DodgerBlue"
+                                    Style="{StaticResource SliderLabelStyle}"
+                                    Text="{infrastructure:Translate 'influences.fear'}" />
+                                <Slider
+                                    Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="2"
+                                    Minimum="0.0"
+                                    Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </GroupBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </GroupBox>
+</UserControl>

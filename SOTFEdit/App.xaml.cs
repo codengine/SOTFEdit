@@ -17,6 +17,7 @@ using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Map;
 using SOTFEdit.Model.Storage;
 using SOTFEdit.View;
 using SOTFEdit.ViewModel;
@@ -99,6 +100,7 @@ public partial class App
         services.AddSingleton<ApplicationSettings>();
         services.AddSingleton<StructuresPageViewModel>();
         services.AddSingleton<StructuresPage>();
+        services.AddSingleton<MapManager>();
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }
 

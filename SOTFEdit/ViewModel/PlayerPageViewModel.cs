@@ -28,13 +28,8 @@ public partial class PlayerPageViewModel : ObservableObject
 
     public PlayerPageViewModel(GameData gameData)
     {
-        AvailableClothesView = new ListCollectionView(_availableClothes)
-        {
-            SortDescriptions =
-            {
-                new SortDescription("Name", ListSortDirection.Ascending)
-            }
-        };
+        AvailableClothesView = CollectionViewSource.GetDefaultView(_availableClothes);
+        AvailableClothesView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
 
         _gameData = gameData;
         SetupListeners();
@@ -110,7 +105,10 @@ public partial class PlayerPageViewModel : ObservableObject
             }
         }
 
-        foreach (var kvp in newAvailableClothes) _availableClothes.Add(kvp.Value);
+        foreach (var kvp in newAvailableClothes)
+        {
+            _availableClothes.Add(kvp.Value);
+        }
 
         PlayerState.SelectedCloth ??=
             _availableClothes.FirstOrDefault(cloth => cloth.Id == Constants.Items.DefaultPlayerClothItemId);
@@ -233,8 +231,7 @@ public partial class PlayerPageViewModel : ObservableObject
 
         if (playerPos is { } pos)
         {
-            pos.AreaMask = new AreaMask(areaMask);
-            PlayerState.Pos = pos;
+            PlayerState.Pos = pos.WithoutOffset(_gameData.AreaManager.GetAreaForAreaMask(areaMask));
         }
     }
 
@@ -327,7 +324,7 @@ public partial class PlayerPageViewModel : ObservableObject
 
                     break;
                 case "player.areaMask":
-                    hasChanges = WriteInt(entry, PlayerState.Pos.AreaMask.Mask) || hasChanges;
+                    hasChanges = WriteInt(entry, PlayerState.Pos.Area.AreaMask) || hasChanges;
                     break;
                 case "StrengthLevel":
                     hasChanges = WriteInt(entry, PlayerState.StrengthLevel) || hasChanges;

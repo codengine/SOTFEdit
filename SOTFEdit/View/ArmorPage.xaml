@@ -19,7 +19,7 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type model:Item}">
                             <st:AutoGrid Columns="*,*">
-                                <Image Width="48" Height="48" Source="{Binding ThumbnailMedium}">
+                                <Image Width="32" Height="32" Source="{Binding ThumbnailMedium}">
                                     <Image.ToolTip>
                                         <Image Source="{Binding ThumbnailBig}" />
                                     </Image.ToolTip>
@@ -29,10 +29,12 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToDefault.tooltip'}" VerticalAlignment="Center"
+                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToDefault.tooltip'}"
+                        VerticalAlignment="Center"
                         Command="{Binding NewArmour.SetDefaultDurabilityForNewArmourCommand}"
                         Content="{infrastructure:Translate 'armor.buttons.setToDefault.text'}" />
-                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToMax.tooltip'}" VerticalAlignment="Center"
+                <Button Margin="0,0,5,0" ToolTip="{infrastructure:Translate 'armor.buttons.setToMax.tooltip'}"
+                        VerticalAlignment="Center"
                         Command="{Binding NewArmour.SetMaxDurabilityForNewArmourCommand}"
                         Content="{infrastructure:Translate 'armor.buttons.setToMax.text'}" />
                 <mah:NumericUpDown
@@ -63,7 +65,7 @@
                         </Grid>
                     </DataTemplate>
                     <DataTemplate x:Key="ImageTemplate" DataType="{x:Type viewModel:ArmourData}">
-                        <Image Width="48" Height="48" Source="{Binding Image}">
+                        <Image Width="32" Height="32" Source="{Binding Image}">
                             <Image.ToolTip>
                                 <Image Source="{Binding ImageBig}" />
                             </Image.ToolTip>
@@ -86,11 +88,11 @@
                     </DataTemplate>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
+                    <DataGridTextColumn Binding="{Binding (viewModel:ArmourData.Id), Mode=OneTime}"
                                         Header="{infrastructure:Translate 'armor.headers.id'}" IsReadOnly="True" />
                     <DataGridTemplateColumn CanUserSort="False" Header=""
                                             CellTemplate="{StaticResource ImageTemplate}" />
-                    <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
+                    <DataGridTextColumn Binding="{Binding (viewModel:ArmourData.Name), Mode=OneTime}"
                                         Header="{infrastructure:Translate 'armor.headers.name'}" IsReadOnly="True" />
                     <DataGridTemplateColumn Header="{infrastructure:Translate 'armor.headers.durability'}"
                                             CellTemplate="{StaticResource NumericUpDownTemplate}" />

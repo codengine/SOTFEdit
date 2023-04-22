@@ -1,19 +1,31 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
+using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Map;
 using SOTFEdit.Model.Savegame;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
 
-public partial class WorldItemTeleportWindow : ICloseable
+public partial class WorldItemTeleportWindow : ICloseableWithResult
 {
     public WorldItemTeleportWindow(Window owner, GameData gameData, Savegame savegame)
     {
         Owner = owner;
         DataContext = new WorldItemTeleporterViewModel(gameData, savegame, this);
         InitializeComponent();
+    }
+
+    public void Close(bool hasChanges)
+    {
+        base.Close();
+        if (hasChanges)
+        {
+            PoiMessenger.Instance.Send(new WorldItemsChangedEvent());
+        }
     }
 
     private void WorldItemTeleportWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)

@@ -32,17 +32,21 @@
     </mah:MetroWindow.Resources>
     <st:AutoGrid Margin="20" ChildMargin="4" Columns="Auto,Auto" ChildVerticalAlignment="Center">
         <st:AutoGrid Columns="*,Auto" Grid.ColumnSpan="2" ChildMargin="4">
-            <Slider Minimum="1" Maximum="100" AutoToolTipPlacement="TopLeft" Value="{Binding PctRegrow}"></Slider>
+            <Slider Minimum="1" Maximum="100" AutoToolTipPlacement="TopLeft" Value="{Binding PctRegrow}" />
             <Label Content="{infrastructure:Translate 'windows.regrowTrees.pctRegrow'}" />
         </st:AutoGrid>
         <Label Content="{Binding PrintAll}" />
         <mah:ToggleSwitch IsOn="{Binding VegetationStateIsAllSelected}" />
         <Label Content="{Binding PrintGone}" />
-        <mah:ToggleSwitch IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.Gone}}" />
+        <mah:ToggleSwitch
+            IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.Gone}}" />
         <Label Content="{Binding PrintHalfChopped}" />
-        <mah:ToggleSwitch IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
+        <mah:ToggleSwitch
+            IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
         <Label Content="{Binding PrintStumps}" />
-        <mah:ToggleSwitch IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.Stumps}}" />
-        <Button HorizontalAlignment="Center" Command="{Binding SaveCommand}" Padding="10" FontSize="14" Grid.ColumnSpan="2" Content="{infrastructure:Translate 'windows.regrowTrees.saveButton'}" />
+        <mah:ToggleSwitch
+            IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.Stumps}}" />
+        <Button HorizontalAlignment="Center" Command="{Binding SaveCommand}" Padding="10" FontSize="14"
+                Grid.ColumnSpan="2" Content="{infrastructure:Translate 'windows.regrowTrees.saveButton'}" />
     </st:AutoGrid>
 </mah:MetroWindow>

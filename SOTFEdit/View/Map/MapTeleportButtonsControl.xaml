@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="SOTFEdit.View.Map.MapTeleportButtonsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+             xmlns:st="http://schemas.spicytaco.io/"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <st:AutoGrid Columns="*" ChildMargin="4">
+        <TextBlock FontSize="16" Text="{infrastructure:Translate 'map.teleportation'}" />
+        <Button Content="{infrastructure:Translate 'map.buttons.teleportPlayer'}" Padding="10"
+                Command="{Binding Poi.TeleportPlayerHereCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        <Button Content="{infrastructure:Translate 'map.buttons.teleportKelvin'}" Padding="10"
+                Command="{Binding Poi.TeleportKelvinHereCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        <Button Content="{infrastructure:Translate 'map.buttons.teleportVirginia'}" Padding="10"
+                Command="{Binding Poi.TeleportVirginiaHereCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        <Button Content="{infrastructure:Translate 'map.buttons.spawnActors'}" Padding="10"
+                Command="{Binding Poi.SpawnActorsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+    </st:AutoGrid>
+</UserControl>

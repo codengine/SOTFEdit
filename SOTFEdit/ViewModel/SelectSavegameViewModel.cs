@@ -12,7 +12,8 @@ public partial class SelectSavegameViewModel : ObservableObject
 {
     private readonly List<Savegame> _savegames;
 
-    [ObservableProperty] private string? _saveDir = SavegameManager.GetSavePath();
+    [ObservableProperty]
+    private string? _saveDir = SavegameManager.GetSavePath();
 
     public SelectSavegameViewModel()
     {
@@ -70,7 +71,9 @@ public partial class SelectSavegameViewModel : ObservableObject
         _savegames.Clear();
         foreach (var savegame in SavegameManager.GetSavegames()
                      .Values)
+        {
             _savegames.Add(savegame);
+        }
 
         OnPropertyChanged(nameof(SinglePlayerSaves));
         OnPropertyChanged(nameof(MultiPlayerSaves));

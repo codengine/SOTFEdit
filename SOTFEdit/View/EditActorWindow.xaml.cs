@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -25,6 +26,11 @@ public partial class EditActorWindow
     {
         WeakReferenceMessenger.Default.Register<RequestUpdateActorsEvent>(this,
             (_, message) => { OnRequestUpdateActorsEvent(message); });
+    }
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        WeakReferenceMessenger.Default.UnregisterAll(this);
     }
 
     private void OnRequestUpdateActorsEvent(RequestUpdateActorsEvent message)

@@ -18,10 +18,12 @@ public partial class ModifyConsumedItemsWindow : ICloseable
 
     private void ModifyConsumedItemsWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.Escape)
+        if (e.Key != Key.Escape)
         {
-            e.Handled = true;
-            Close();
+            return;
         }
+
+        e.Handled = true;
+        Close();
     }
 }

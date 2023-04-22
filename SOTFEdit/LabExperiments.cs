@@ -16,7 +16,9 @@ public static class LabExperiments
         }
 
         foreach (var killStat in vailWorldSim["KillStatsList"] ?? Enumerable.Empty<JToken>())
+        {
             killStat["PlayerKilled"]?.Replace(0);
+        }
 
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
     }

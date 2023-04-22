@@ -20,7 +20,8 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
 
     protected readonly StorageDefinition Definition;
 
-    [ObservableProperty] private Position? _pos;
+    [ObservableProperty]
+    private Position? _pos;
 
     protected BaseStorage(StorageDefinition definition, int index)
     {
@@ -133,6 +134,7 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
     {
         foreach (var slot in Slots)
         foreach (var storedItem in slot.StoredItems)
+        {
             if (!storedItem.HasItem() && storedItem.SupportedItems.Count == 1)
             {
                 storedItem.SelectedItem = storedItem.SupportedItems[0];
@@ -141,6 +143,7 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
             {
                 storedItem.Count = storedItem.Max;
             }
+        }
     }
 
     private void RemoveOverflowingSlots()

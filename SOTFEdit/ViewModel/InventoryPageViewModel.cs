@@ -17,7 +17,7 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryPageViewModel : ObservableObject
 {
-    private readonly WpfObservableRangeCollection<InventoryItem> _inventory = new();
+    private readonly ObservableCollectionEx<InventoryItem> _inventory = new();
 
     private readonly DispatcherTimer _inventoryFilterTimer = new()
     {
@@ -25,17 +25,21 @@ public partial class InventoryPageViewModel : ObservableObject
     };
 
     private readonly ItemList _itemList;
-    private readonly WpfObservableRangeCollection<InventoryItem> _unassignedItems = new();
+    private readonly ObservableCollectionEx<InventoryItem> _unassignedItems = new();
 
     private readonly DispatcherTimer _unassignedItemsFilterTimer = new()
     {
         Interval = TimeSpan.FromMilliseconds(300)
     };
 
-    [ObservableProperty] private string _inventoryFilter = "";
+    [ObservableProperty]
+    private string _inventoryFilter = "";
+
     private string _normalizedInventoryFilter = "";
     private string _normalizedUnassignedItemsFilter = "";
-    [ObservableProperty] private string _unassignedItemsFilter = "";
+
+    [ObservableProperty]
+    private string _unassignedItemsFilter = "";
 
 
     public InventoryPageViewModel(GameData gameData)
@@ -43,22 +47,16 @@ public partial class InventoryPageViewModel : ObservableObject
         _inventoryFilterTimer.Tick += OnInventoryFilterTimerTick;
         _unassignedItemsFilterTimer.Tick += OnUnassignedItemsFilterTimerTick;
 
-        InventoryCollectionView = new ListCollectionView(_inventory)
-        {
-            Filter = OnFilterInventory,
-            SortDescriptions =
-            {
-                new SortDescription("Name", ListSortDirection.Ascending)
-            }
-        };
-        UnassignedItemsCollectionView = new ListCollectionView(_unassignedItems)
-        {
-            Filter = OnFilterUnassignedItems,
-            SortDescriptions =
-            {
-                new SortDescription("Name", ListSortDirection.Ascending)
-            }
-        };
+        var inventorySortDescription = new SortDescription("Name", ListSortDirection.Ascending);
+
+        InventoryCollectionView = CollectionViewSource.GetDefaultView(_inventory);
+        InventoryCollectionView.Filter = OnFilterInventory;
+        InventoryCollectionView.SortDescriptions.Add(inventorySortDescription);
+
+        UnassignedItemsCollectionView = CollectionViewSource.GetDefaultView(_unassignedItems);
+        UnassignedItemsCollectionView.Filter = OnFilterUnassignedItems;
+        UnassignedItemsCollectionView.SortDescriptions.Add(inventorySortDescription);
+
         _itemList = gameData.Items;
 
         var categories = gameData.Items
@@ -82,7 +80,7 @@ public partial class InventoryPageViewModel : ObservableObject
         SetupListeners();
     }
 
-    public WpfObservableRangeCollection<Category> Categories { get; } = new();
+    public ObservableCollectionEx<Category> Categories { get; } = new();
 
     public ICollectionView InventoryCollectionView { get; }
     public ICollectionView UnassignedItemsCollectionView { get; }
@@ -197,7 +195,10 @@ public partial class InventoryPageViewModel : ObservableObject
                 .ToList();
             _inventory.ReplaceRange(inventoryItems);
 
-            foreach (var inventoryItem in inventoryItems) assignedItems.Add(inventoryItem.Id);
+            foreach (var inventoryItem in inventoryItems)
+            {
+                assignedItems.Add(inventoryItem.Id);
+            }
         }
 
         var unassignedItems = _itemList.Where(item => !assignedItems.Contains(item.Value.Id))
@@ -230,19 +231,28 @@ public partial class InventoryPageViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(HasInventoryItems))]
     private void SetAllEquippedToMin()
     {
-        foreach (var inventoryItem in _inventory) inventoryItem.TotalCount = 1;
+        foreach (var inventoryItem in _inventory)
+        {
+            inventoryItem.TotalCount = 1;
+        }
     }
 
     [RelayCommand(CanExecute = nameof(HasInventoryItems))]
     private void SetAllEquippedToMax()
     {
-        foreach (var inventoryItem in _inventory) inventoryItem.TotalCount = inventoryItem.Max;
+        foreach (var inventoryItem in _inventory)
+        {
+            inventoryItem.TotalCount = inventoryItem.Max;
+        }
     }
 
     [RelayCommand(CanExecute = nameof(HasInventoryItems))]
     private void RemoveAllEquipped()
     {
-        foreach (var inventoryItem in _inventory.ToList()) RemoveItemFromInventory(inventoryItem);
+        foreach (var inventoryItem in _inventory.ToList())
+        {
+            RemoveItemFromInventory(inventoryItem);
+        }
     }
 
     private bool HasInventoryItems()

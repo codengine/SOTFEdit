@@ -30,7 +30,6 @@ public partial class MainWindow
 
     private readonly string _baseTitle;
 
-    private readonly CoordinateConverter _coordinateConverter = new();
     private readonly MainViewModel _dataContext;
 
     private Window? _exceptionWindowOwner;
@@ -94,6 +93,16 @@ public partial class MainWindow
             (_, _) => OnRequestTeleportWorldItemEvent());
         WeakReferenceMessenger.Default.Register<ShowDialogEvent>(this,
             (_, message) => OnShowDialogEvent(message));
+        WeakReferenceMessenger.Default.Register<RequestOpenMapEvent>(this,
+            (_, message) => { OnRequestOpenMapEvent(message); });
+        WeakReferenceMessenger.Default.Register<UpdateActorsEvent>(this,
+            (_, message) => { OnUpdateActorsEvent(message); });
+    }
+
+    private void OnRequestOpenMapEvent(RequestOpenMapEvent message)
+    {
+        var window = new MapWindow(this, message);
+        window.ShowDialog();
     }
 
     private async void OnShowDialogEvent(ShowDialogEvent message)
@@ -106,6 +115,17 @@ public partial class MainWindow
             OwnerCanCloseWithDialog = true
         });
         await dialog.WaitUntilUnloadedAsync();
+    }
+
+    private static void OnUpdateActorsEvent(UpdateActorsEvent message)
+    {
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
+        {
+            return;
+        }
+
+        Ioc.Default.GetRequiredService<ActorModifier>().Modify(selectedSavegame, message);
+        WeakReferenceMessenger.Default.Send(new JsonModelChangedEvent(SavegameStore.FileType.SaveData));
     }
 
     private void OnRequestTeleportWorldItemEvent()
@@ -137,7 +157,7 @@ public partial class MainWindow
 
     private void OnRequestEditActorEvent(RequestEditActorEvent message)
     {
-        var window = new EditActorWindow(this, message.Actor);
+        var window = new EditActorWindow(message.Owner ?? this, message.Actor);
         window.ShowDialog();
     }
 
@@ -165,7 +185,7 @@ public partial class MainWindow
             return;
         }
 
-        var ingameToPixel = _coordinateConverter.IngameToPixel(message.Pos.X, message.Pos.Z);
+        var ingameToPixel = CoordinateConverter.IngameToPixel(message.Pos.X, message.Pos.Z);
         ZoomCtrl.Zoom = 2;
         ZoomCtrl.TranslateX = -2 * ingameToPixel.Item1 + ZoomCtrl.ActualWidth;
         ZoomCtrl.TranslateY = -2 * ingameToPixel.Item2 + ZoomCtrl.ActualHeight;
@@ -408,7 +428,7 @@ public partial class MainWindow
         {
             return;
         }
-        
+
         var window = new RegrowTreesWindow(this, selectedSavegame);
         window.ShowDialog();
     }

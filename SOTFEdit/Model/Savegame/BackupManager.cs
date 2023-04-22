@@ -326,6 +326,8 @@ public static class BackupManager
         Logger.Info($"Creating archive at {backupPath}...");
         using var archive = ZipFile.Open(backupPath, ZipArchiveMode.Create);
         foreach (var jsonFile in dirInfo.GetFiles("*.json"))
+        {
             archive.CreateEntryFromFile(jsonFile.FullName, jsonFile.Name);
+        }
     }
 }

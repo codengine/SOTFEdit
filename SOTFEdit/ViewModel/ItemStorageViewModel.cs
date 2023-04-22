@@ -8,9 +8,12 @@ namespace SOTFEdit.ViewModel;
 
 public partial class ItemStorageViewModel : ObservableObject
 {
-    [ObservableProperty] private int _count;
+    [ObservableProperty]
+    private int _count;
 
-    [NotifyPropertyChangedFor(nameof(Max))] [NotifyCanExecuteChangedFor(nameof(FillAllCommand))] [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Max))]
+    [NotifyCanExecuteChangedFor(nameof(FillAllCommand))]
+    [ObservableProperty]
     private ItemWrapper? _selectedItemForAll;
 
     public ItemStorageViewModel(BaseStorage itemsStorage)
@@ -33,7 +36,9 @@ public partial class ItemStorageViewModel : ObservableObject
     {
         foreach (var slot in ItemsStorage.Slots)
         foreach (var storedItem in slot.StoredItems)
+        {
             storedItem.Clear();
+        }
     }
 
     [RelayCommand(CanExecute = nameof(HasItemSelected))]
@@ -57,10 +62,12 @@ public partial class ItemStorageViewModel : ObservableObject
     {
         foreach (var slot in ItemsStorage.Slots)
         foreach (var storedItem in slot.StoredItems)
+        {
             if (storedItem.SelectedItem != null)
             {
                 storedItem.Count = storedItem.Max;
             }
+        }
     }
 
     public bool HasItemSelected()

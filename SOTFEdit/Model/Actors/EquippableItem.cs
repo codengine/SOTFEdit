@@ -4,7 +4,8 @@ namespace SOTFEdit.Model.Actors;
 
 public partial class EquippableItem : ObservableObject
 {
-    [ObservableProperty] private bool _selected;
+    [ObservableProperty]
+    private bool _selected;
 
     public EquippableItem(Item item, bool isTemporary = false)
     {

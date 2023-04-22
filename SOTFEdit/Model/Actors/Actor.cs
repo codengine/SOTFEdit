@@ -26,11 +26,11 @@ public class Actor
     public int OutfitId { get; set; }
     public int? GraphMask { get; set; }
 
-    [JsonIgnore] public Color ActorColor => ActorType?.ActorColor ?? Colors.SaddleBrown;
+    [JsonIgnore]
+    public Color ActorColor => ActorType?.ActorColor ?? Colors.SaddleBrown;
 
-    [JsonIgnore] public BitmapImage ActorImage => LoadImage();
-
-    public string PositionSuffix => $" ({AreaMask.Translate(GraphMask ?? 0)})";
+    [JsonIgnore]
+    public BitmapImage ActorImage => LoadImage();
 
     public string PrintableTitle =>
         $"{ActorType?.Name ?? "???"} - UniqueId {UniqueId} - TypeId {TypeId} - FamilyId {FamilyId}";

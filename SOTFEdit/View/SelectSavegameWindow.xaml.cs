@@ -1,7 +1,7 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.Events;
@@ -17,7 +17,7 @@ public partial class SelectSavegameWindow
     public SelectSavegameWindow()
     {
         SetupListeners();
-        DataContext = Ioc.Default.GetRequiredService<SelectSavegameViewModel>();
+        DataContext = new SelectSavegameViewModel();
         InitializeComponent();
     }
 
@@ -27,6 +27,12 @@ public partial class SelectSavegameWindow
             (_, _) => { Application.Current.Dispatcher.Invoke(Close); });
         WeakReferenceMessenger.Default.Register<RequestSelectSavegameDirEvent>(this,
             (_, _) => { OnRequestSelectSavegameDirEvent(); });
+    }
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        WeakReferenceMessenger.Default.UnregisterAll(this);
+        WeakReferenceMessenger.Default.UnregisterAll(DataContext);
     }
 
     private void OnRequestSelectSavegameDirEvent()

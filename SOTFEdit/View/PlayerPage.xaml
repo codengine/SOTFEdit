@@ -12,8 +12,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style x:Key="PlayerSliderStyle" TargetType="{x:Type Slider}"
@@ -32,9 +32,9 @@
                 <Setter Property="Margin" Value="0 0 0 10" />
             </Style>
         </Grid.Resources>
-        
-            <GroupBox Header="{infrastructure:Translate 'tabs.player'}" VerticalAlignment="Top" Margin="0 0 0 10">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <GroupBox Header="{infrastructure:Translate 'tabs.player'}" VerticalAlignment="Top" Margin="0 0 0 10">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <st:AutoGrid Columns="Auto,*" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <StackPanel VerticalAlignment="Top" Margin="10">
                         <Image Source="pack://siteoforigin:,,,/images/player.jpg" Width="197" Height="246"
@@ -61,7 +61,7 @@
                         <Label Style="{StaticResource LabelStyle}"
                                Content="{infrastructure:Translate 'player.areaMask'}" />
                         <TextBlock VerticalAlignment="Center"
-                                   Text="{Binding PlayerState.Pos.AreaMask.PrintableString, FallbackValue='?'}" />
+                                   Text="{Binding PlayerState.Pos.Area.Name, FallbackValue='?'}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Image Source="pack://siteoforigin:,,,/images/icons/Strength.png" Width="32" Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
@@ -70,7 +70,7 @@
                         <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Minimum="0" Interval="1"
                                            NumericInputMode="Numbers"
                                            Value="{Binding PlayerState.StrengthLevel, UpdateSourceTrigger=PropertyChanged}" />
-                        
+
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Image Source="pack://siteoforigin:,,,/images/icons/Heal.png" Width="32" Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
@@ -161,8 +161,8 @@
                                   SelectedItem="{Binding PlayerState.SelectedCloth}" />
                     </st:AutoGrid>
                 </st:AutoGrid>
-                </ScrollViewer>
-            </GroupBox>
+            </ScrollViewer>
+        </GroupBox>
         <ContentPresenter Grid.Column="1" Content="{Binding ArmorPage}" Margin="5 0 0 0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

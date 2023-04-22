@@ -22,18 +22,21 @@ A savegame editor for "Sons of The Forest".
     - [Armor](#armor)
     - [NPCs](#npcs)
     - [Structures](#structures)
+    - [Map](#map)
     - [Weather](#weather)
     - [Reviving](#reviving)
     - [Spawning](#spawning)
     - [Troubleshooting](#troubleshooting)
     - [Contributing](#contributing)
     - [Final Words](#final-words)
-    - [Links and Credits](#links-and-credits)
+    - [Links and Credits](#credits)
+    - [Attributions](#attributions)
+    - [Icons](#icons)
 
 ## Disclaimer
 
-This project is in no way or form associated with the developers of the game. It is just a fan project, nothing more,
-nothing less.
+This project is in no way or form associated with the developers of the game. It is just a non-commercial fan project,
+nothing more, nothing less.
 
 ## Features
 
@@ -129,6 +132,51 @@ use the resources to build new stuff.
 If you want to build larger structures like shelters in a cave or bunker, you have to place a small blueprint first (
 like a chair), then change its type and save.
 
+## Map
+
+The map combines static information about points-of-interest with dynamic information that are read directly from the
+savegame.
+Some positions are missing but they may be added in the future.
+
+### Features
+
+- Show/hide information about 3D Printers, Actors/NPCs, Ammunition, Bunkers, Camps, Cannibal Villages, Caves, Crates,
+  Doors, Helicopters, Generic Information, Items, Lakes, Laptops, Player, Structures, Supplies and Villages
+- Teleport the Player and Followers to Actors/NPCs, the player, Zip Lines, Structures, Caves, Bunkers, Helicopters
+- Remove Zip Lines from the map
+- Spawn Actors/NPCs at target areas
+
+### Options
+
+You can enable or disable icons using the "Options" button in the top left corner.
+
+Some important notes regarding the filters:
+
+- "Show only uncollected items" will show/hide uncollected items including bunkers and caves where they can be found
+- Area - Mainly affects Actors or, in general terms, positions where we have the exact coordinates
+- Requirements - Show/Hide caves, bunkers and items which are accessible/inaccessible
+
+### Teleportation
+
+You can only teleport to locations where we have the exact coordinates either from the savegame itself or attached to
+the POI.
+
+Kelvin and Virginia do not appear underground, so teleportation for them is disabled if the target location is
+underground.
+
+By default an offset is added to the target location. This is done so that you do not spawn inside an enemy which would
+catapult you into the sky and most likely kill you.
+You can adjust the target location using those numbers. X and Z represent the longitute/latitude and Y represents the
+height.
+
+### Spawning
+
+Most enemies can be spawned at all areas. Virginia and Kelvin can only be spawned at the Surface. Please note that if
+you spawn too many it may have a severe impact on your performance or even crash your game.
+
+Moreover, the game will not spawn all enemies at the same time. If you spawn 200 enemies the game will create ~25
+enemies and when they are killed, after some time, the next ~25 enemies will spawn.
+
 ## Weather
 
 There is one very important thing. If you only change the season, it will be reverted immediately when the game
@@ -212,10 +260,64 @@ Big thanks to [Gronkh](https://gronkh.tv) for your many years of "Influenz". Esp
 streams I would have never known anything
 about that game.
 
-## Links and Credits
+## Credits
 
-- [Kleine Axt icon by Icons8](https://icons8.com/icon/81685/kleine-axt)
 - Translations and Corrections
     - Polski: Mortennif
     - German: Hinterix
 - Supporters and Testers: Mortennif, M2THE49, feydrautha01
+
+## Attributions
+
+Icons used for items are property of Endnight Games.
+
+POIs and screenshots originate from https://github.com/lmachens/sons-of-the-forest-map who really did a great job to
+collect all data.
+
+## Icons
+
+- [Kleine Axt icon by Icons8](https://icons8.com/icon/81685/kleine-axt)
+- [Birth icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/birth)
+- [Bat icons created by Vitaly Gorbachev - Flaticon](https://www.flaticon.com/free-icons/bat)
+- [Bird icons created by monkik - Flaticon](https://www.flaticon.com/free-icons/bird)
+- [Duck icons created by smalllikeart - Flaticon](https://www.flaticon.com/free-icons/duck)
+- [Eagle icons created by Flat Icons - Flaticon](https://www.flaticon.com/free-icons/eagle)
+- [Fish icons created by VectorPortal - Flaticon](https://www.flaticon.com/free-icons/fish)
+- [Bird icons created by Mihimihi - Flaticon](https://www.flaticon.com/free-icons/bird)
+- [Letter k icons created by icon_small - Flaticon](https://www.flaticon.com/free-icons/letter-k)
+- [Letter v icons created by icon_small - Flaticon](https://www.flaticon.com/free-icons/letter-v)
+- [Shaman icons created by Smashicons - Flaticon](https://www.flaticon.com/free-icons/shaman)
+- [Moose icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/moose)
+- [Orca icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/orca)
+- [Question mark icons created by Fathema Khanom - Flaticon](https://www.flaticon.com/free-icons/question-mark)
+- [Bunny icons created by Mihimihi - Flaticon](https://www.flaticon.com/free-icons/bunny)
+- [Seagull icons created by surang - Flaticon](https://www.flaticon.com/free-icons/seagull)
+- [Shark icons created by BZZRINCANTATION - Flaticon](https://www.flaticon.com/free-icons/shark)
+- [Squirrel icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/squirrel)
+- [Turtle icons created by BZZRINCANTATION - Flaticon](https://www.flaticon.com/free-icons/turtle)
+- [Crosshair icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/crosshair)
+- [Hunt icons created by Darius Dan - Flaticon](https://www.flaticon.com/free-icons/hunt)
+- [Bunker icons created by Smashicons - Flaticon](https://www.flaticon.com/free-icons/bunker)
+- [Cave icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/cave)
+- [Laptop icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/laptop)
+- [Tent icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/tent)
+- [Village icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/village)
+- [Helicopter icons created by Konkapp - Flaticon](https://www.flaticon.com/free-icons/helicopter)
+- [Signaling icons created by Smashicons - Flaticon](https://www.flaticon.com/free-icons/signaling)
+- [Hiking icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/hiking)
+- [Door icons created by kerismaker - Flaticon](https://www.flaticon.com/free-icons/door)
+- [Art and design icons created by Hilmy Abiyyu A. - Flaticon](https://www.flaticon.com/free-icons/art-and-design)
+- [Loot icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/loot)
+- [Crate icons created by lapiyee - Flaticon](https://www.flaticon.com/free-icons/crate)
+- [Shipping and delivery icons created by Ida Desi Mariana - Flaticon](https://www.flaticon.com/free-icons/shipping-and-delivery)
+- [Bullet icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/bullet)
+- [Native american icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/native-american)
+- [Pond icons created by Mihimihi - Flaticon](https://www.flaticon.com/free-icons/pond)
+- [Wood icons created by Nikita Golubev - Flaticon](https://www.flaticon.com/free-icons/wood)
+- [Shelter icons created by Muhammad_Usman - Flaticon](https://www.flaticon.com/free-icons/shelter)
+- [Grow icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/grow)
+- [Basket icons created by ToZ Icon - Flaticon](https://www.flaticon.com/free-icons/basket)
+- [Trap icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/trap)
+- [Glider icons created by Pop Vectors - Flaticon](https://www.flaticon.com/free-icons/glider)
+- [Monowheel icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/monowheel)
+- [Pole dance icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/pole-dance)

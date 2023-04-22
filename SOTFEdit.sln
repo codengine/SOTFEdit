@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOTFEdit", "SOTFEdit\SOTFEdit.csproj", "{449BE113-5D17-4F36-8834-090D5BAA41BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomControl", "ZoomControl\ZoomControl.csproj", "{C4D74D5A-99AB-44E2-8752-73B059E1E378}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{449BE113-5D17-4F36-8834-090D5BAA41BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{449BE113-5D17-4F36-8834-090D5BAA41BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{449BE113-5D17-4F36-8834-090D5BAA41BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D74D5A-99AB-44E2-8752-73B059E1E378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D74D5A-99AB-44E2-8752-73B059E1E378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D74D5A-99AB-44E2-8752-73B059E1E378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D74D5A-99AB-44E2-8752-73B059E1E378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

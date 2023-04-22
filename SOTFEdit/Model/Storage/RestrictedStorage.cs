@@ -25,7 +25,10 @@ public abstract class RestrictedStorage : BaseStorage
             baseQ = baseQ.Where(item => restrictedItemIds.Contains(item.Id));
         }
 
-        foreach (var item in baseQ) AddEffectiveSupportedItem(item, storageDefinition, supportedItems);
+        foreach (var item in baseQ)
+        {
+            AddEffectiveSupportedItem(item, storageDefinition, supportedItems);
+        }
 
         return supportedItems;
     }

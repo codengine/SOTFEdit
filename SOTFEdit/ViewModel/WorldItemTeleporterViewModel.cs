@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -15,24 +16,21 @@ namespace SOTFEdit.ViewModel;
 
 public partial class WorldItemTeleporterViewModel : ObservableObject
 {
-    private readonly ICloseable _parent;
+    private readonly ICloseableWithResult _parent;
 
-    [ObservableProperty] private WorldItemState? _selectedWorldItem;
+    [ObservableProperty]
+    private WorldItemState? _selectedWorldItem;
 
-    public WorldItemTeleporterViewModel(GameData gameData, Savegame savegame, ICloseable parent)
+    public WorldItemTeleporterViewModel(GameData gameData, Savegame savegame, ICloseableWithResult parent)
     {
         _parent = parent;
-        WorldItemStates = new ListCollectionView(Load(gameData.Items, savegame).OrderBy(state => state.Group)
-            .ThenBy(state => state.ObjectNameId).ToList())
-        {
-            GroupDescriptions =
-            {
-                new PropertyGroupDescription("Group")
-            }
-        };
+        WorldItemStates = CollectionViewSource.GetDefaultView(Load(gameData.Items, savegame)
+            .OrderBy(state => state.Group)
+            .ThenBy(state => state.ObjectNameId).ToList());
+        WorldItemStates.GroupDescriptions.Add(new PropertyGroupDescription("Group"));
     }
 
-    public ListCollectionView WorldItemStates { get; }
+    public ICollectionView WorldItemStates { get; }
 
     partial void OnSelectedWorldItemChanged(WorldItemState? value)
     {
@@ -42,7 +40,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         RemoveAllOfThisTypeCommand.NotifyCanExecuteChanged();
     }
 
-    private static IEnumerable<WorldItemState> Load(ItemList items, Savegame savegame)
+    public static IEnumerable<WorldItemState> Load(ItemList items, Savegame savegame, bool includeUnnamed = false)
     {
         var result = new List<WorldItemState>();
 
@@ -59,7 +57,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         foreach (var worldItemState in worldItemStates)
         {
             if (worldItemState["ObjectNameId"]?.Value<string>() is not { } objectNameId ||
-                string.IsNullOrEmpty(objectNameId) ||
+                (!includeUnnamed && string.IsNullOrEmpty(objectNameId)) ||
                 worldItemState["Position"]?.ToObject<Position>() is not { } position)
             {
                 continue;
@@ -110,7 +108,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.text"),
                 TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.title")
             ));
-            _parent.Close();
+            _parent.Close(false);
             return;
         }
 
@@ -125,7 +123,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.text"),
                 TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.title")
             ));
-            _parent.Close();
+            _parent.Close(false);
             return;
         }
 
@@ -135,7 +133,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.clonesDeleted.text",
                     toRemove.Count, _selectedWorldItem.Group),
                 TranslationManager.Get("windows.worldItemTeleporter.messages.clonesDeleted.title")));
-        _parent.Close();
+        _parent.Close(toRemove.Count > 0);
     }
 
     [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
@@ -155,9 +153,11 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 new GenericMessageEvent(
                     TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.text"),
                     TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.title")));
-            _parent.Close();
+            _parent.Close(false);
             return;
         }
+
+        var hasChanges = false;
 
         foreach (var worldItemState in worldItemStates)
         {
@@ -175,6 +175,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             itemStateCopy["Unnamed"] = true;
             worldItemStates.Add(itemStateCopy);
             saveDataWrapper.MarkAsModified(Constants.JsonKeys.WorldItemManager);
+            hasChanges = true;
 
             WeakReferenceMessenger.Default.Send(
                 new GenericMessageEvent(
@@ -185,7 +186,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             break;
         }
 
-        _parent.Close();
+        _parent.Close(hasChanges);
     }
 
     [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
@@ -205,7 +206,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                     _selectedWorldItem.ObjectNameId),
                 TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.playerMoved.title",
                     _selectedWorldItem.Group)));
-        _parent.Close();
+        _parent.Close(false);
     }
 
     [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]

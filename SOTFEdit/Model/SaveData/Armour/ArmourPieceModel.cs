@@ -6,7 +6,9 @@ namespace SOTFEdit.Model.SaveData.Armour;
 
 public partial class ArmourPieceModel : ObservableObject
 {
-    [ObservableProperty] private float _remainingArmourpoints;
+    [ObservableProperty]
+    private float _remainingArmourpoints;
+
     public int ItemId { get; init; }
     public int Slot { get; set; }
 

@@ -49,8 +49,7 @@
                                                   CommandParameter="{Binding Position}" />
                                 </Image.InputBindings>
                             </Image>
-                            <TextBlock Text="{infrastructure:Translate 'generic.position'}" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding PositionSuffix}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Position.Area.Name}" VerticalAlignment="Center" />
                         </StackPanel>
                         <Grid Grid.Row="2" Margin="0 0 0 6">
                             <Grid.ColumnDefinitions>

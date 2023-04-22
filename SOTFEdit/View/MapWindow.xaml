@@ -1,0 +1,252 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.MapWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:models="clr-namespace:SOTFEdit.Model.Map"
+                 xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:zoomControl="clr-namespace:ZoomControl;assembly=ZoomControl"
+                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 mc:Ignorable="d"
+                 Background="#9db4d4"
+                 Title="Map"
+                 WindowState="Maximized"
+                 WindowTransitionsEnabled="False"
+                 PreviewKeyDown="MapWindow_OnPreviewKeyDown"
+                 d:DataContext="{d:DesignInstance viewModel:MapViewModel}"
+                 TitleCharacterCasing="Normal">
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/View/Map/Details/ItemPoiDetailsTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/CaveOrBunkerDetailsTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/GenericInformationalPoiDetailTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/WorldItemPoiDetailsTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/ActorPoiDetailsTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/StructurePoiDetailsTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/DefaultPoiDetailsTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/ZipPointPoiDetailsTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <infrastructure:ZoomHandler x:Key="ZoomHandler" />
+            <converters:BoolToBorderBrushConverter x:Key="BoolToBorderBrushConverter" />
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <DataTemplate x:Key="PoiTemplate" DataType="{x:Type models:IPoi}">
+                <Border BorderThickness="1"
+                        Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        BorderBrush="{Binding IsSelected, Converter={StaticResource BoolToBorderBrushConverter}}">
+                    <Border.RenderTransform>
+                        <ScaleTransform
+                            ScaleX="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}"
+                            ScaleY="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}" />
+                    </Border.RenderTransform>
+                    <Border.RenderTransformOrigin>
+                        <Point X="0.5" Y="0.5" />
+                    </Border.RenderTransformOrigin>
+                    <Image Cursor="Hand"
+                           Tag="{Binding}"
+                           Source="{Binding Icon, Mode=OneTime}" Width="{Binding IconWidth, Mode=OneTime}"
+                           Height="{Binding IconHeight, Mode=OneTime}" ToolTip="{Binding Title, Mode=OneTime}" />
+                </Border>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ZipPoiTemplate" DataType="{x:Type models:ZipPointPoi}">
+                <Border BorderThickness="1"
+                        Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        BorderBrush="{Binding IsSelected, Converter={StaticResource BoolToBorderBrushConverter}}">
+                    <Image Cursor="Hand"
+                           Tag="{Binding}"
+                           Source="{Binding Icon, Mode=OneTime}" Width="{Binding IconWidth, Mode=OneTime}"
+                           Height="{Binding IconHeight, Mode=OneTime}" ToolTip="{Binding Title, Mode=OneTime}" />
+                </Border>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ZiplineTemplate" DataType="{x:Type models:ZiplinePoi}">
+                <Line Visibility="{Binding Enabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      Stroke="Black" StrokeThickness="2" X1="{Binding X1}"
+                      X2="{Binding X2}"
+                      Y1="{Binding Y1}"
+                      Y2="{Binding Y2}" />
+            </DataTemplate>
+
+
+            <infrastructure:PoiTemplateSelector
+                x:Key="PoiTemplateSelector"
+                PoiTemplate="{StaticResource PoiTemplate}"
+                ZiplineTemplate="{StaticResource ZiplineTemplate}"
+                ZipPoiTemplate="{StaticResource ZipPoiTemplate}" />
+
+            <infrastructure:PoiDetailsTemplateSelector
+                x:Key="PoiDetailsTemplateSelector"
+                ItemPoiDetailsTemplate="{StaticResource ItemPoiDetailsTemplate}"
+                CaveOrBunkerPoiDetailsTemplate="{StaticResource CaveOrBunkerDetailsTemplate}"
+                GenericInformationalPoiDetailsTemplate="{StaticResource GenericInformationalPoiDetailTemplate}"
+                WorldItemPoiDetailsTemplate="{StaticResource WorldItemPoiDetailsTemplate}"
+                ActorPoiDetailsTemplate="{StaticResource ActorPoiDetailsTemplate}"
+                StructurePoiDetailsTemplate="{StaticResource StructurePoiDetailsTemplate}"
+                ZipPointPoiDetailsTemplate="{StaticResource ZipPointPoiDetailsTemplate}"
+                DefaultPoiTemplate="{StaticResource DefaultPoiDetailsTemplate}" />
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <mah:Flyout x:Name="MapOptionsFlyout" Header="{infrastructure:Translate 'map.options'}"
+                        Position="Left" AreAnimationsEnabled="False"
+                        MinWidth="280">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="{infrastructure:Translate 'map.options'}" Margin="0 0 0 6">
+                        <st:AutoGrid Columns="Auto,*" ChildMargin="4">
+                            <CheckBox Grid.ColumnSpan="2" Content="{infrastructure:Translate 'map.inventoryFilter'}"
+                                      IsChecked="{Binding MapFilter.ShowOnlyUncollectedItems}" />
+                            <Label Content="{infrastructure:Translate 'map.areaFilter.text'}" />
+                            <ComboBox
+                                ItemsSource="{Binding MapFilter.AreaFilterTypeValues, UpdateSourceTrigger=PropertyChanged}"
+                                DisplayMemberPath="Name" SelectedValue="{Binding MapFilter.AreaFilter}" />
+                            <Label Content="{infrastructure:Translate 'map.requirementsFilter.text'}"
+                                   ToolTip="{infrastructure:Translate 'map.requirementsFilter.tooltip'}" />
+                            <ComboBox ToolTip="{infrastructure:Translate 'map.requirementsFilter.tooltip'}"
+                                      ItemsSource="{Binding MapFilter.RequirementsFilterTypeValues, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Title"
+                                      SelectedValuePath="Value" SelectedValue="{Binding MapFilter.RequirementsFilter}" />
+                        </st:AutoGrid>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'map.pois'}">
+                        <st:AutoGrid Columns="*" Rows="Auto,*">
+                            <Button Content="{infrastructure:Translate 'map.buttons.deselectAll'}" Margin="4 4 4 6"
+                                    Command="{Binding DeselectAllCommand}"
+                                    DockPanel.Dock="Right" />
+                            <ScrollViewer CanContentScroll="True" PreviewMouseWheel="PoiSelector_OnPreviewMouseWheel"
+                                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                <TreeView ItemsSource="{Binding PoiGroups}">
+                                    <TreeView.Resources>
+                                        <!-- Template for PoiGroup -->
+                                        <HierarchicalDataTemplate DataType="{x:Type models:PoiGroup}">
+                                            <CheckBox IsChecked="{Binding Enabled}">
+                                                <CheckBox.Content>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                                                                HorizontalAlignment="Left">
+                                                        <Image Source="{Binding Icon}" Width="24" Height="24" />
+                                                        <Label Content="{Binding Title}" />
+                                                    </StackPanel>
+                                                </CheckBox.Content>
+                                            </CheckBox>
+                                        </HierarchicalDataTemplate>
+
+                                        <!-- Template for PoiGroupCollection -->
+                                        <HierarchicalDataTemplate DataType="{x:Type models:PoiGroupCollection}"
+                                                                  ItemsSource="{Binding PoiGroups}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <CheckBox IsChecked="{Binding Enabled}" />
+                                                <TextBlock Text="{Binding Title}" />
+                                            </StackPanel>
+                                        </HierarchicalDataTemplate>
+                                    </TreeView.Resources>
+                                </TreeView>
+                            </ScrollViewer>
+                        </st:AutoGrid>
+                    </GroupBox>
+                </Grid>
+            </mah:Flyout>
+            <mah:Flyout x:Name="PoiDetailsFlyout" Header="{infrastructure:Translate 'map.details'}"
+                        Position="Right" AreAnimationsEnabled="False"
+                        Width="310">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <ContentPresenter VerticalAlignment="Top" DockPanel.Dock="Top"
+                                          HorizontalAlignment="Stretch"
+                                          ContentTemplateSelector="{StaticResource PoiDetailsTemplateSelector}"
+                                          Content="{Binding SelectedPoi, Mode=OneWay}" />
+                    </ScrollViewer>
+                    <TextBlock Grid.Row="1" TextAlignment="Right" Padding="12">
+                        Static information provided by
+                        <Underline Foreground="{DynamicResource MahApps.Brushes.Accent}" Cursor="Hand">
+                            <Run Text="sotf.th.gl" MouseLeftButtonDown="sotfLink_Click" />
+                        </Underline>
+                    </TextBlock>
+                </Grid>
+            </mah:Flyout>
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
+    <Grid>
+        <zoomControl:ZoomControl Mode="Fill" MaxZoom="8" ModifierMode="None"
+                                 MouseUp="ZoomControl_OnMouseUp"
+                                 PreviewMouseDown="ZoomControl_OnPreviewMouseDown"
+                                 Zoom="{Binding Zoom, Source={StaticResource ZoomHandler}, Mode=OneWayToSource}">
+            <zoomControl:ZoomControl.Resources>
+                <zoomControl:EqualityToBooleanConverter x:Key="EqualityConverter" />
+            </zoomControl:ZoomControl.Resources>
+            <zoomControl:ZoomControl.Template>
+                <ControlTemplate TargetType="{x:Type zoomControl:ZoomControl}">
+                    <Grid>
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <zoomControl:ZoomContentPresenter x:Name="PART_Presenter" ClipToBounds="False" />
+                        </Border>
+                        <Border
+                            Height="40"
+                            Margin="5"
+                            Padding="5"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="#88C0C0C0"
+                            CornerRadius="5">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Command="{Binding OpenCategorySelectorCommand}"
+                                        Content="{infrastructure:Translate 'map.options'}"
+                                        Background="{DynamicResource MahApps.Brushes.Accent}" Margin="0 0 5 0" />
+                                <ToggleButton
+                                    Width="55"
+                                    Content="1:1"
+                                    IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mode, Converter={StaticResource EqualityConverter}, ConverterParameter={x:Static zoomControl:ZoomControlModes.Original}}" />
+                                <ToggleButton
+                                    Width="55"
+                                    Content="Fill"
+                                    IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mode, Converter={StaticResource EqualityConverter}, ConverterParameter={x:Static zoomControl:ZoomControlModes.Fill}}" />
+                                <ToggleButton
+                                    Width="55"
+                                    Content="Custom"
+                                    IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mode, Converter={StaticResource EqualityConverter}, ConverterParameter={x:Static zoomControl:ZoomControlModes.Custom}}" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Zoom, StringFormat='Zoom: {0:P2}'}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </zoomControl:ZoomControl.Template>
+            <Grid>
+                <Image Source="pack://siteoforigin:,,,/images/map.jpg" Width="4096" Height="4096" />
+
+                <ItemsControl ItemsSource="{Binding Pois}" ItemTemplateSelector="{StaticResource PoiTemplateSelector}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas Width="4096" Height="4096" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="Canvas.Left" Value="{Binding IconLeft}" />
+                            <Setter Property="Canvas.Top" Value="{Binding IconTop}" />
+                            <Setter Property="Canvas.ZIndex" Value="{Binding IconZIndex}" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </Grid>
+        </zoomControl:ZoomControl>
+    </Grid>
+</mah:MetroWindow>

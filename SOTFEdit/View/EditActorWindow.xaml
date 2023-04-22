@@ -5,15 +5,15 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
-                 xmlns:actor1="clr-namespace:SOTFEdit.Model.SaveData.Actor"
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
-                 xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:view="clr-namespace:SOTFEdit.View"
                  mc:Ignorable="d"
                  PreviewKeyDown="EditActorWindow_OnPreviewKeyDown"
                  Title="{Binding Actor.PrintableTitle}"
                  WindowTransitionsEnabled="False"
+                 WindowStartupLocation="CenterOwner"
                  ShowMaxRestoreButton="False"
                  IsMaxRestoreButtonEnabled="False"
                  ShowMinButton="False"
@@ -28,18 +28,6 @@
         <Style x:Key="LabelStyle" TargetType="{x:Type TextBlock}"
                BasedOn="{StaticResource MahApps.Styles.TextBlock}">
             <Setter Property="Margin" Value="0 0 8 0" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="SliderLabelStyle" TargetType="{x:Type TextBlock}"
-               BasedOn="{StaticResource MahApps.Styles.TextBlock}">
-            <Setter Property="Margin" Value="0 0 10 10" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="SliderStyle" TargetType="{x:Type Slider}"
-               BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
-            <Setter Property="Margin" Value="0 0 10 10" />
-            <Setter Property="TickFrequency" Value="1" />
-            <Setter Property="AutoToolTipPlacement" Value="BottomRight" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <converters:StringToBooleanConverter x:Key="StringToBooleanConverter" />
@@ -136,9 +124,9 @@
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="10" Grid.Column="1"
                                Text="{Binding Actor.OutfitId, FallbackValue='???'}" />
-                    <TextBlock Grid.Row="11" Grid.Column="0" Text="GraphMask"
+                    <TextBlock Grid.Row="11" Grid.Column="0" Text="{infrastructure:Translate 'actors.details.area'}"
                                Style="{StaticResource LabelStyle}" />
-                    <TextBlock Grid.Row="11" Grid.Column="1" Text="{Binding Actor.PositionSuffix}"
+                    <TextBlock Grid.Row="11" Grid.Column="1" Text="{Binding Actor.Position.Area.Name}"
                                VerticalAlignment="Center" />
                     <TextBlock Grid.Row="12" Grid.Column="0" Text="{infrastructure:Translate 'generic.position'}"
                                Style="{StaticResource LabelStyle}" />
@@ -153,75 +141,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <GroupBox VerticalAlignment="Top"
-                      HorizontalAlignment="Stretch" Padding="10"
-                      Margin="0 0 0 10">
-                <GroupBox.Header>
-                    <st:AutoGrid Columns="*,*">
-                        <TextBlock Text="{infrastructure:Translate 'actors.headers.influences'}"
-                                   VerticalAlignment="Center" />
-                        <st:AutoGrid VerticalAlignment="Center" HorizontalAlignment="Right">
-                            <ComboBox ItemsSource="{Binding AllInfluences}" DisplayMemberPath="Title"
-                                      SelectedValuePath="Value" x:Name="ComboAddInfluence" />
-                            <Button Content="{infrastructure:Translate 'generic.add'}"
-                                    Command="{Binding AddInfluenceCommand}"
-                                    CommandParameter="{Binding ElementName=ComboAddInfluence, Path=SelectedItem.Value}" />
-                        </st:AutoGrid>
-                    </st:AutoGrid>
-                </GroupBox.Header>
-                <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock TextWrapping="Wrap" Margin="0 0 0 10"
-                               Text="{infrastructure:Translate 'influences.disclaimer'}" />
-                    <ItemsControl ItemsSource="{Binding Influences}" Grid.Row="1" VerticalAlignment="Top"
-                                  HorizontalAlignment="Stretch" Height="Auto">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type actor1:Influence}">
-                                <GroupBox Header="{Binding  PrintableTypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
-                                    <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Column="0" Grid.Row="0"
-                                                   Style="{StaticResource SliderLabelStyle}" Foreground="HotPink"
-                                                   Text="{infrastructure:Translate 'influences.sentiment'}" />
-                                        <Slider
-                                            Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="0"
-                                            Minimum="-100.0"
-                                            Maximum="100"
-                                            Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock
-                                            Grid.Column="0" Grid.Row="1"
-                                            Style="{StaticResource SliderLabelStyle}" Foreground="Red"
-                                            Text="{infrastructure:Translate 'influences.anger'}" />
-                                        <Slider
-                                            Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="1"
-                                            Minimum="0.0"
-                                            Maximum="100" Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
-                                        <TextBlock
-                                            Grid.Column="0" Grid.Row="2" Foreground="DodgerBlue"
-                                            Style="{StaticResource SliderLabelStyle}"
-                                            Text="{infrastructure:Translate 'influences.fear'}" />
-                                        <Slider
-                                            Style="{StaticResource SliderStyle}" Grid.Column="1" Grid.Row="2"
-                                            Minimum="0.0"
-                                            Maximum="100" Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
-                                    </Grid>
-                                </GroupBox>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </Grid>
-            </GroupBox>
+            <view:InfluenceContainer InfluencesTarget="{Binding Influences}" AllInfluences="{Binding AllInfluences}" />
             <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'actors.headers.killStatistics'}"
                       VerticalAlignment="Top" HorizontalAlignment="Stretch"
                       Padding="10">
@@ -272,15 +192,8 @@
                             <CheckBox Content="{infrastructure:Translate 'actors.modificationOptions.skipVirginia'}"
                                       IsChecked="{Binding SkipVirginia}" />
                         </StackPanel>
-                        <CheckBox Grid.Row="3" IsChecked="{Binding OnlyInSameAreaAsActor}">
-                            <CheckBox.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock
-                                        Text="{infrastructure:Translate 'actors.modificationOptions.onlyInSameAreaAsActor'}" />
-                                    <TextBlock Text="{Binding Actor.PositionSuffix}" />
-                                </StackPanel>
-                            </CheckBox.Content>
-                        </CheckBox>
+                        <CheckBox Grid.Row="3" IsChecked="{Binding OnlyInSameAreaAsActor}"
+                                  Content="{infrastructure:Translate 'actors.modificationOptions.onlyInSameAreaAsActor'}" />
                     </Grid>
                 </GroupBox>
                 <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'actors.headers.stats'}" Padding="10"

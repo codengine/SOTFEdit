@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -10,6 +8,7 @@ using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Map;
 using SOTFEdit.Model.SaveData.Actor;
 using SOTFEdit.Model.Savegame;
 using SOTFEdit.View;
@@ -19,25 +18,26 @@ namespace SOTFEdit.ViewModel;
 public partial class NpcsPageViewModel : ObservableObject
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-    private readonly WpfObservableRangeCollection<ActorGrouping> _actorsByFamily = new();
-    private readonly WpfObservableRangeCollection<ActorCollection> _actorsByType = new();
     private readonly Dictionary<int, ActorType> _actorTypes;
+    private readonly AreaMaskManager _areaManager;
 
-    [ObservableProperty] private ActorView? _actorView;
+    [ObservableProperty]
+    private ActorView? _actorView;
 
-    [ObservableProperty] private ActorCollection? _selectedActorCollection;
+    [ObservableProperty]
+    private ActorCollection? _selectedActorCollection;
 
     public NpcsPageViewModel(GameData gameData)
     {
-        ActorsByFamily = new ListCollectionView(_actorsByFamily);
-        ActorsByType = new ListCollectionView(_actorsByType);
-
         _actorTypes = gameData.ActorTypes.ToDictionary(actorType => actorType.Id);
+        _areaManager = gameData.AreaManager;
         SetupListeners();
     }
 
-    public ICollectionView ActorsByFamily { get; }
-    public ICollectionView ActorsByType { get; }
+    public ObservableCollectionEx<ActorGrouping> ActorsByFamily { get; } = new();
+    public ObservableCollectionEx<ActorCollection> ActorsByType { get; } = new();
+
+    public List<Actor> AllActors { get; } = new();
 
     private void SetupListeners()
     {
@@ -70,18 +70,13 @@ public partial class NpcsPageViewModel : ObservableObject
         {
             LoadNpcs(selectedSavegame);
         }
+
+        PoiMessenger.Instance.Send(new NpcsReloadedEvent());
     }
 
     partial void OnSelectedActorCollectionChanged(ActorCollection? value)
     {
-        if (value == null || SavegameManager.SelectedSavegame is not { } selectedSavegame)
-        {
-            ActorView = null;
-        }
-        else
-        {
-            ActorView = new ActorView(value, selectedSavegame);
-        }
+        ActorView = value == null ? null : new ActorView(value);
     }
 
     private void LoadNpcs(Savegame? savegame)
@@ -104,12 +99,13 @@ public partial class NpcsPageViewModel : ObservableObject
         var killStatsByType = vailWorldSim["KillStatsList"]?.ToObject<List<KillStat>>()?
             .ToDictionary(s => s.TypeId) ?? new Dictionary<int, KillStat>();
 
-        var actors = vailWorldSim["Actors"]?.ToObject<List<Actor>>() ?? Enumerable.Empty<Actor>().ToList();
-        foreach (var actor in actors)
+        AllActors.Clear();
+        AllActors.AddRange(vailWorldSim["Actors"]?.ToObject<List<Actor>>() ?? Enumerable.Empty<Actor>().ToList());
+        foreach (var actor in AllActors)
         {
             if (actor.GraphMask is { } graphMask)
             {
-                actor.Position.AreaMask = new AreaMask(graphMask);
+                actor.Position = actor.Position.WithoutOffset(_areaManager.GetAreaForGraphMask(graphMask));
             }
 
             if (actor.SpawnerId is { } spawnerId)
@@ -130,11 +126,12 @@ public partial class NpcsPageViewModel : ObservableObject
             }
             else
             {
+                actor.ActorType = new ActorType(-1, TranslationManager.Get("generic.unknown"));
                 Logger.Warn($"No actorType definition found for {actor.TypeId}");
             }
         }
 
-        _actorsByType.ReplaceRange(actors.OrderBy(actor => actor.GraphMask).ThenBy(actor => actor.FamilyId)
+        ActorsByType.ReplaceRange(AllActors.OrderBy(actor => actor.GraphMask).ThenBy(actor => actor.FamilyId)
             .GroupBy(actor => actor.TypeId)
             .Select(g =>
                 new ActorCollection(
@@ -142,7 +139,7 @@ public partial class NpcsPageViewModel : ObservableObject
                     g.ToList()))
             .OrderBy(c => c.Name)
         );
-        _actorsByFamily.ReplaceRange(actors.Where(actor => actor.FamilyId != null)
+        ActorsByFamily.ReplaceRange(AllActors.Where(actor => actor.FamilyId != null)
             .OrderBy(actor => actor.GraphMask).ThenBy(actor => actor.TypeId)
             .GroupBy(actor => actor.FamilyId)
             .GroupBy(g => BuildNameForActorList(g.ToList()))

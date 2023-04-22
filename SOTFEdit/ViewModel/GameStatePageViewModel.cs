@@ -29,11 +29,13 @@ public class GameStatePageViewModel
     private void PrefillNamedIntDatas(List<string> namedIntKeys)
     {
         foreach (var namedIntKey in namedIntKeys)
+        {
             NamedIntDatas.Add(new GenericSetting(namedIntKey, GenericSetting.DataType.Integer)
             {
                 IntValue = null,
                 MaxInt = 3
             });
+        }
     }
 
     private void SetupListeners()
@@ -179,6 +181,7 @@ public class GameStatePageViewModel
         var namedIntDatasByName = NamedIntDatas.ToDictionary(setting => setting.Name);
 
         foreach (var storedNamedIntSetting in storedNamedIntSettings)
+        {
             if (!namedIntDatasByName.ContainsKey(storedNamedIntSetting.Name))
             {
                 Logger.Info($"New NamedIntData found: {storedNamedIntSetting.Name}");
@@ -188,6 +191,7 @@ public class GameStatePageViewModel
             {
                 namedIntDatasByName[storedNamedIntSetting.Name].IntValue = storedNamedIntSetting.IntValue;
             }
+        }
     }
 
     public bool Update(Savegame savegame)

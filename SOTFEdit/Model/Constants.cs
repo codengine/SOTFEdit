@@ -42,6 +42,7 @@ public static class Constants
         public const string ScrewStructureNodeInstances = "Data.ScrewStructureNodeInstances";
         public const string StructureDestruction = "Data.StructureDestruction";
         public const string WorldItemManager = "Data.WorldItemManager";
+        public const string ZipLineManager = "Data.ZipLineManager";
     }
 
     public static class Items

@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
              xmlns:model="clr-namespace:SOTFEdit.Model"
-             xmlns:actor1="clr-namespace:SOTFEdit.Model.SaveData.Actor"
              xmlns:actors="clr-namespace:SOTFEdit.Model.Actors"
              xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              xmlns:st="http://schemas.spicytaco.io/"
+             xmlns:view="clr-namespace:SOTFEdit.View"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:FollowerPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -73,8 +73,10 @@
                             <Label VerticalAlignment="Center" Content="{Binding KelvinState.Pos.Printable}" />
                         </st:AutoGrid>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/Heal.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.health'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Heal.png" Width="32" Height="32"
+                                   VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.health'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Minimum="0.0"
                                 Maximum="100"
@@ -88,15 +90,19 @@
                                 Maximum="100"
                                 Value="{Binding KelvinState.Fear, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/Fullness.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.fullness'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Fullness.png" Width="32" Height="32"
+                                   VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.fullness'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Minimum="0.0"
                                 Maximum="100"
                                 Value="{Binding KelvinState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/Hydration.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.hydration'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Hydration.png" Width="32" Height="32"
+                                   VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.hydration'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Minimum="0.0"
                                 Maximum="100"
@@ -106,8 +112,10 @@
                                 Maximum="100"
                                 Value="{Binding KelvinState.Energy, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/TrustedPlayer.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.affection'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/TrustedPlayer.png" Width="32"
+                                   Height="32" VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.affection'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}"
                                 Minimum="0.0"
@@ -142,67 +150,18 @@
                         <Button HorizontalAlignment="Center" Margin="0 10 0 10" Padding="10" Grid.ColumnSpan="2"
                                 Background="{DynamicResource MahApps.Brushes.Accent}"
                                 Command="{Binding FillAllBarsCommand}" CommandParameter="{Binding KelvinState}"
-                                Content="{infrastructure:Translate 'followers.buttons.fillAllBars'}" />                        
+                                Content="{infrastructure:Translate 'followers.buttons.fillAllBars'}" />
                     </st:AutoGrid>
-                    <ItemsControl ItemsSource="{Binding KelvinState.Influences}" Grid.Row="1" Grid.Column="0"
-                                  Grid.ColumnSpan="2">
-                        <ItemsControl.Template>
-                            <ControlTemplate TargetType="ItemsControl">
-                                <GroupBox Margin="10" Padding="10">
-                                    <GroupBox.Header>
-                                        <st:AutoGrid Columns="*,*">
-                                            <TextBlock Text="{infrastructure:Translate 'actors.headers.influences'}"
-                                                       VerticalAlignment="Center" />
-                                            <st:AutoGrid VerticalAlignment="Center" HorizontalAlignment="Right">
-                                                <ComboBox ItemsSource="{Binding AllInfluences}"
-                                                          DisplayMemberPath="Title" SelectedValuePath="Value"
-                                                          x:Name="ComboVirginiaInfluenceAdd" />
-                                                <Button Content="{infrastructure:Translate 'generic.add'}"
-                                                        Command="{Binding KelvinState.AddInfluenceCommand}"
-                                                        CommandParameter="{Binding ElementName=ComboVirginiaInfluenceAdd, Path=SelectedItem.Value}" />
-                                            </st:AutoGrid>
-                                        </st:AutoGrid>
-                                    </GroupBox.Header>
-                                    <ItemsPresenter />
-                                </GroupBox>
-                            </ControlTemplate>
-                        </ItemsControl.Template>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type actor1:Influence}">
-                                <GroupBox Header="{Binding PrintableTypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
-                                    <st:AutoGrid Columns="Auto,*" ChildMargin="4" ChildVerticalAlignment="Center">
-                                        <Label Foreground="HotPink" Content="{infrastructure:Translate 'influences.sentiment'}" />
-                                        <Slider
-                                            Style="{StaticResource FollowerSliderStyle}"
-                                            Minimum="-100.0"
-                                            Maximum="100"
-                                            Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
-                                        <Label Foreground="Red" Content="{infrastructure:Translate 'influences.anger'}" />
-                                        <Slider
-                                            Style="{StaticResource FollowerSliderStyle}"
-                                            Minimum="0.0"
-                                            Maximum="100"
-                                            Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
-                                        <Label
-                                            Foreground="DodgerBlue"
-                                            Content="{infrastructure:Translate 'influences.fear'}" />
-                                        <Slider
-                                            Style="{StaticResource FollowerSliderStyle}"
-                                            Minimum="0.0"
-                                            Maximum="100"
-                                            Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
-                                    </st:AutoGrid>
-                                </GroupBox>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <view:InfluenceContainer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ShowDisclaimer="False"
+                                             InfluencesTarget="{Binding KelvinState.Influences}"
+                                             AllInfluences="{Binding AllInfluences}" />
                 </st:AutoGrid>
             </ScrollViewer>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="{infrastructure:Translate 'actors.types.10'}" Margin="5 0 0 0"
                   VerticalAlignment="Top">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                <st:AutoGrid VerticalAlignment="Top" HorizontalAlignment="Stretch" Columns="Auto,*">
+                <st:AutoGrid VerticalAlignment="Top" HorizontalAlignment="Stretch" Columns="Auto,*">
                     <StackPanel VerticalAlignment="Top" Margin="10">
                         <Image Source="pack://siteoforigin:,,,/images/vg.jpg" Width="197" Height="246"
                                Margin="0 0 0 10" />
@@ -241,8 +200,10 @@
                             <Label VerticalAlignment="Center" Content="{Binding VirginiaState.Pos.Printable}" />
                         </st:AutoGrid>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/Heal.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.health'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Heal.png" Width="32" Height="32"
+                                   VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.health'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Minimum="0.0"
                                 Maximum="100"
@@ -256,15 +217,19 @@
                                 Maximum="100"
                                 Value="{Binding VirginiaState.Fear, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/Fullness.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.fullness'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Fullness.png" Width="32" Height="32"
+                                   VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.fullness'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Minimum="0.0"
                                 Maximum="100"
                                 Value="{Binding VirginiaState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/Hydration.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.hydration'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Hydration.png" Width="32" Height="32"
+                                   VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.hydration'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}" Minimum="0.0"
                                 Maximum="100"
@@ -274,8 +239,10 @@
                                 Maximum="100"
                                 Value="{Binding VirginiaState.Energy, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="pack://siteoforigin:,,,/images/icons/TrustedPlayer.png" Width="32" Height="32" VerticalAlignment="Center" />
-                            <Label Content="{infrastructure:Translate 'actors.stats.affection'}" VerticalAlignment="Center" />
+                            <Image Source="pack://siteoforigin:,,,/images/icons/TrustedPlayer.png" Width="32"
+                                   Height="32" VerticalAlignment="Center" />
+                            <Label Content="{infrastructure:Translate 'actors.stats.affection'}"
+                                   VerticalAlignment="Center" />
                         </StackPanel>
                         <Slider Style="{StaticResource FollowerSliderStyle}"
                                 Minimum="0.0"
@@ -310,60 +277,11 @@
                         <Button HorizontalAlignment="Center" Margin="0 10 0 10" Padding="10" Grid.ColumnSpan="2"
                                 Background="{DynamicResource MahApps.Brushes.Accent}"
                                 Command="{Binding FillAllBarsCommand}" CommandParameter="{Binding VirginiaState}"
-                                Content="{infrastructure:Translate 'followers.buttons.fillAllBars'}" />                        
+                                Content="{infrastructure:Translate 'followers.buttons.fillAllBars'}" />
                     </st:AutoGrid>
-                    <ItemsControl ItemsSource="{Binding VirginiaState.Influences}" Grid.Row="1" Grid.Column="0"
-                                  Grid.ColumnSpan="2">
-                        <ItemsControl.Template>
-                            <ControlTemplate TargetType="ItemsControl">
-                                <GroupBox Margin="10" Padding="10">
-                                    <GroupBox.Header>
-                                        <st:AutoGrid Columns="*,*">
-                                            <TextBlock Text="{infrastructure:Translate 'actors.headers.influences'}"
-                                                       VerticalAlignment="Center" />
-                                            <st:AutoGrid VerticalAlignment="Center" HorizontalAlignment="Right">
-                                                <ComboBox ItemsSource="{Binding AllInfluences}"
-                                                          DisplayMemberPath="Title" SelectedValuePath="Value"
-                                                          x:Name="ComboVirginiaInfluenceAdd" />
-                                                <Button Content="{infrastructure:Translate 'generic.add'}"
-                                                        Command="{Binding VirginiaState.AddInfluenceCommand}"
-                                                        CommandParameter="{Binding ElementName=ComboVirginiaInfluenceAdd, Path=SelectedItem.Value}" />
-                                            </st:AutoGrid>
-                                        </st:AutoGrid>
-                                    </GroupBox.Header>
-                                    <ItemsPresenter />
-                                </GroupBox>
-                            </ControlTemplate>
-                        </ItemsControl.Template>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type actor1:Influence}">
-                                <GroupBox Header="{Binding PrintableTypeId}" Margin="0 0 0 10" Padding="10 10 5 0">
-                                    <st:AutoGrid Columns="Auto,*" ChildMargin="4" ChildVerticalAlignment="Center">
-                                        <Label Foreground="HotPink" Content="{infrastructure:Translate 'influences.sentiment'}" />
-                                        <Slider
-                                            Style="{StaticResource FollowerSliderStyle}"
-                                            Minimum="-100.0"
-                                            Maximum="100"
-                                            Value="{Binding Sentiment, UpdateSourceTrigger=PropertyChanged}" />
-                                        <Label Foreground="Red" Content="{infrastructure:Translate 'influences.anger'}" />
-                                        <Slider
-                                            Style="{StaticResource FollowerSliderStyle}"
-                                            Minimum="0.0"
-                                            Maximum="100"
-                                            Value="{Binding Anger, UpdateSourceTrigger=PropertyChanged}" />
-                                        <Label
-                                            Foreground="DodgerBlue"
-                                            Content="{infrastructure:Translate 'influences.fear'}" />
-                                        <Slider
-                                            Style="{StaticResource FollowerSliderStyle}"
-                                            Minimum="0.0"
-                                            Maximum="100"
-                                            Value="{Binding Fear, UpdateSourceTrigger=PropertyChanged}" />
-                                    </st:AutoGrid>
-                                </GroupBox>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <view:InfluenceContainer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ShowDisclaimer="False"
+                                             InfluencesTarget="{Binding VirginiaState.Influences}"
+                                             AllInfluences="{Binding AllInfluences}" />
                 </st:AutoGrid>
             </ScrollViewer>
         </GroupBox>

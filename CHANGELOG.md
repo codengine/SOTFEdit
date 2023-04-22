@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.10.0
+
+### Features
+
+- Brand new interactive map
+- Spawn enemies/actors using the map
+- Display zip lines
+- Teleport the player/followers to caves, bunkers, enemies, zip lines
+- Show information about the most important POIs
+- Filter items and bunkers if you have the required items to access or if you have already collected everything
+
+### Improvements
+
+- Some areas have had their performance improved
+
 ## v0.9.5
 
 ### Features
@@ -27,11 +42,11 @@
 ### Improvements
 
 - Player and follower page now have scrollbars on smaller window sizes
-- Player armor ordering is no done properly. There are no more gaps
+- Player armor ordering is now done properly. There are no more gaps
 
 ### Fixes
 
-- Fixed issue that dried/cooked meat, fish etc. was not selectable at inventory and storage tab 
+- Fixed issue that dried/cooked meat, fish etc. was not selectable at inventory and storage tab
 
 ## v0.9.3
 

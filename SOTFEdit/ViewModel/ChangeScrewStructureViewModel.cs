@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -20,19 +21,15 @@ public partial class ChangeScrewStructureViewModel : ObservableObject
     {
         _parent = parent;
         _screwStructureWrapper = screwStructureWrapper;
-        ScrewStructures = new ListCollectionView(screwStructures.OrderBy(screwStructure => screwStructure.CategoryName)
-            .ThenBy(screwStructure => screwStructure.Name).ToList())
-        {
-            GroupDescriptions =
-            {
-                new PropertyGroupDescription("CategoryName")
-            }
-        };
+        ScrewStructures = CollectionViewSource.GetDefaultView(screwStructures
+            .OrderBy(screwStructure => screwStructure.CategoryName)
+            .ThenBy(screwStructure => screwStructure.Name).ToList());
+        ScrewStructures.GroupDescriptions.Add(new PropertyGroupDescription("CategoryName"));
         SelectedScrewStructure =
             screwStructures.FirstOrDefault(structure => structure.Id == screwStructureWrapper.ScrewStructure?.Id);
     }
 
-    public ListCollectionView ScrewStructures { get; }
+    public ICollectionView ScrewStructures { get; }
     public ScrewStructure? SelectedScrewStructure { get; set; }
 
     [RelayCommand]

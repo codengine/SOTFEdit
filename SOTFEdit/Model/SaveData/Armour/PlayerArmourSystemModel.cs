@@ -31,6 +31,7 @@ public record PlayerArmourSystemModel : SotfBaseModel
             {
                 break;
             }
+
             selectedArmorPieces[i].Slot = ArmorSlots[i];
         }
     }

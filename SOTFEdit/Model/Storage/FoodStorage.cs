@@ -158,6 +158,7 @@ public class FoodStorage : RestrictedStorage
     {
         foreach (var slot in Slots)
         foreach (var storedItem in slot.StoredItems)
+        {
             if (!storedItem.HasItem() && storedItem.SupportedItems.Count > 0)
             {
                 storedItem.SelectedItem = storedItem.SupportedItems
@@ -172,5 +173,6 @@ public class FoodStorage : RestrictedStorage
             {
                 storedItem.Count = storedItem.Max;
             }
+        }
     }
 }

@@ -19,7 +19,7 @@ public class UpdateActorsEvent
         OnlyInSameAreaAsActor = viewModel.OnlyInSameAreaAsActor;
     }
 
-    public List<Influence> Influences { get; set; }
+    public List<Influence> Influences { get; }
 
     public bool OnlyInSameAreaAsActor { get; }
 

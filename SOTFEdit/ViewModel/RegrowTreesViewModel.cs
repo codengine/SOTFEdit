@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -15,6 +14,12 @@ namespace SOTFEdit.ViewModel;
 public partial class RegrowTreesViewModel : ObservableObject
 {
     private readonly ICloseable _parent;
+    private int _countGone;
+    private int _countHalfChopped;
+    private int _countStumps;
+
+    [ObservableProperty]
+    private int _pctRegrow = 100;
 
     [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     [NotifyPropertyChangedFor(nameof(VegetationStateIsAllSelected))]
@@ -22,31 +27,46 @@ public partial class RegrowTreesViewModel : ObservableObject
     private VegetationState _vegetationStateSelected =
         VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
 
-    [ObservableProperty]
-    private int _pctRegrow = 100;
-
     public RegrowTreesViewModel(ICloseable parent, Savegame selectedSavegame)
     {
         _parent = parent;
         LoadTreeCounts(selectedSavegame);
     }
 
-    public string PrintAll => $"{TranslationManager.Get("windows.regrowTrees.all")} ({(_countGone + _countStumps + _countHalfChopped)})";
+    public string PrintAll =>
+        $"{TranslationManager.Get("windows.regrowTrees.all")} ({_countGone + _countStumps + _countHalfChopped})";
+
     public string PrintStumps => $"{TranslationManager.Get("windows.regrowTrees.stumps")} ({_countStumps})";
-    public string PrintHalfChopped => $"{TranslationManager.Get("windows.regrowTrees.halfChopped")} ({_countHalfChopped})";
+
+    public string PrintHalfChopped =>
+        $"{TranslationManager.Get("windows.regrowTrees.halfChopped")} ({_countHalfChopped})";
+
     public string PrintGone => $"{TranslationManager.Get("windows.regrowTrees.gone")} ({_countGone})";
-    private int _countStumps;
-    private int _countHalfChopped;
-    private int _countGone;
+
+    public bool VegetationStateIsAllSelected
+    {
+        get => VegetationStateSelected.HasFlag(VegetationState.Gone) &&
+               VegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
+               VegetationStateSelected.HasFlag(VegetationState.Stumps);
+        set
+        {
+            var vegetationState = value == false
+                ? VegetationState.None
+                : VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
+            VegetationStateSelected = vegetationState;
+        }
+    }
 
     private void LoadTreeCounts(Savegame selectedSavegame)
     {
         if (selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldObjectLocatorManagerSaveData) is not
-                { } saveDataWrapper || saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldObjectLocatorManager) is not {} worldObjectLocatorManager)
+                { } saveDataWrapper ||
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldObjectLocatorManager) is not
+                { } worldObjectLocatorManager)
         {
             return;
         }
-        
+
         var serializedStates = worldObjectLocatorManager["SerializedStates"]?.ToList() ?? Enumerable.Empty<JToken>();
 
         foreach (var serializedState in serializedStates)
@@ -69,25 +89,11 @@ public partial class RegrowTreesViewModel : ObservableObject
             {
                 _countHalfChopped++;
             }
-            
+
             if ((shiftedValue & (int)VegetationState.Stumps) != 0)
             {
                 _countStumps++;
             }
-        }
-    }
-
-    public bool VegetationStateIsAllSelected
-    {
-        get => VegetationStateSelected.HasFlag(VegetationState.Gone) &&
-               VegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
-               VegetationStateSelected.HasFlag(VegetationState.Stumps);
-        set
-        {
-            var vegetationState = value == false
-                ? VegetationState.None
-                : VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
-            VegetationStateSelected = vegetationState;
         }
     }
 

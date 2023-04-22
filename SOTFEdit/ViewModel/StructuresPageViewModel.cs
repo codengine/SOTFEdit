@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
@@ -19,48 +20,35 @@ public partial class StructuresPageViewModel : ObservableObject
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-    private readonly WpfObservableRangeCollection<ScrewStructureWrapper> _structures = new();
-
     private readonly List<ScrewStructure> _structureTypes;
 
-    [ObservableProperty] private ScrewStructure? _batchSelectedStructureType;
+    [ObservableProperty]
+    private ScrewStructure? _batchSelectedStructureType;
 
     public StructuresPageViewModel(GameData gameData)
     {
         _structureTypes = gameData.ScrewStructures.OrderBy(screwStructure => screwStructure.CategoryName)
             .ThenBy(screwStructure => screwStructure.Name).ToList();
-        _structureTypes.Insert(0, new ScrewStructure("", 0, 0, false));
+        _structureTypes.Insert(0, new ScrewStructure("", 0, 0, false, ""));
 
-        StructureTypes = new ListCollectionView(_structureTypes)
-        {
-            GroupDescriptions =
-            {
-                new PropertyGroupDescription("CategoryName")
-            },
-            SortDescriptions =
-            {
-                new SortDescription("CategoryName", ListSortDirection.Ascending),
-                new SortDescription("Name", ListSortDirection.Ascending)
-            }
-        };
-        Structures = new ListCollectionView(_structures)
-        {
-            GroupDescriptions =
-            {
-                new PropertyGroupDescription("Name")
-            },
-            SortDescriptions =
-            {
-                new SortDescription("Name", ListSortDirection.Ascending),
-                new SortDescription("PctDone", ListSortDirection.Ascending)
-            }
-        };
+        StructureTypes = CollectionViewSource.GetDefaultView(_structureTypes);
+        StructureTypes.GroupDescriptions.Add(new PropertyGroupDescription("CategoryName"));
+        StructureTypes.SortDescriptions.Add(new SortDescription("CategoryName", ListSortDirection.Ascending));
+        StructureTypes.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+
+        StructureView = CollectionViewSource.GetDefaultView(Structures);
+        StructureView.GroupDescriptions.Add(new PropertyGroupDescription("Name"));
+        StructureView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+        StructureView.SortDescriptions.Add(new SortDescription("PctDone", ListSortDirection.Ascending));
+
         SetupListeners();
     }
 
-    public ListCollectionView StructureTypes { get; }
+    public ObservableCollectionEx<ScrewStructureWrapper> Structures { get; } = new();
 
-    public ICollectionView Structures { get; }
+    public ICollectionView StructureTypes { get; }
+
+    public ICollectionView StructureView { get; }
 
     private void SetupListeners()
     {
@@ -73,19 +61,19 @@ public partial class StructuresPageViewModel : ObservableObject
     private void OnChangeScrewStructureResult(ChangeScrewStructureResult message)
     {
         message.ScrewStructureWrapper.Update(message.SelectedScrewStructure);
-        Structures.Refresh();
+        StructureView.Refresh();
     }
 
     private void OnSelectedSavegameChangedEvent(SelectedSavegameChangedEvent message)
     {
-        _structures.Clear();
+        Structures.Clear();
         if (message.SelectedSavegame is { } selectedSavegame)
         {
-            _structures.AddRange(LoadStructures(selectedSavegame).OrderBy(wrapper => wrapper.Category)
+            Structures.AddRange(LoadStructures(selectedSavegame).OrderBy(wrapper => wrapper.Category)
                 .ThenBy(wrapper => wrapper.Name));
         }
 
-        Structures.Refresh();
+        StructureView.Refresh();
         SetModificationModeCommand.NotifyCanExecuteChanged();
     }
 
@@ -167,25 +155,26 @@ public partial class StructuresPageViewModel : ObservableObject
 
     public bool Update(Savegame savegame)
     {
-        var toBeModifiedCount = _structures.Count(structure =>
+        var toBeModifiedCount = Structures.Count(structure =>
             structure.ModificationMode != null && structure.ModificationMode != ScrewStructureModificationMode.None);
 
         if (toBeModifiedCount == 0)
         {
             return false;
         }
-        
+
         if (
             savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.ScrewStructureNodeInstancesSaveData) is
                 not { } screwStructureNodeInstancesSaveWrapper ||
-            screwStructureNodeInstancesSaveWrapper.GetJsonBasedToken(Constants.JsonKeys.ScrewStructureNodeInstances) is not
+            screwStructureNodeInstancesSaveWrapper.GetJsonBasedToken(Constants.JsonKeys.ScrewStructureNodeInstances) is
+                not
                 { } screwStructureNodeInstances
         )
         {
             Logger.Info("ScrewStructureNodeInstances not found, will skip saving structures");
             return false;
         }
-        
+
         if (
             savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.ScrewStructureInstancesSaveData) is
                 not { } screwStructureInstancesSaveDataWrapper ||
@@ -200,26 +189,30 @@ public partial class StructuresPageViewModel : ObservableObject
         var unfinishedStructures = new JArray();
         var finishedStructures = new JArray();
 
-        foreach (var wrapper in _structures)
+        foreach (var wrapper in Structures)
         {
             if (wrapper.ModificationMode == ScrewStructureModificationMode.Remove)
             {
                 continue;
             }
 
-            if (wrapper.Origin == ScrewStructureOrigin.Unfinished)
+            switch (wrapper.Origin)
             {
-                ProcessUnfinished(wrapper, unfinishedStructures, finishedStructures);
-            }
-            else if (wrapper.Origin == ScrewStructureOrigin.Finished)
-            {
-                ProcessFinished(wrapper, unfinishedStructures, finishedStructures);
+                case ScrewStructureOrigin.Unfinished:
+                    ProcessUnfinished(wrapper, unfinishedStructures, finishedStructures);
+                    break;
+                case ScrewStructureOrigin.Finished:
+                    ProcessFinished(wrapper, unfinishedStructures, finishedStructures);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(savegame), wrapper.Origin,
+                        $"Unexpected {nameof(ScrewStructureOrigin)}");
             }
         }
 
         screwStructureNodeInstances["_structures"] = unfinishedStructures;
         screwStructureNodeInstancesSaveWrapper.MarkAsModified(Constants.JsonKeys.ScrewStructureNodeInstances);
-        
+
         screwStructureInstances["_structures"] = finishedStructures;
         screwStructureInstancesSaveDataWrapper.MarkAsModified(Constants.JsonKeys.ScrewStructureInstances);
 
@@ -236,12 +229,12 @@ public partial class StructuresPageViewModel : ObservableObject
             token["Id"] = id;
         }
 
-        if (wrapper.ModificationMode is ScrewStructureModificationMode.None or null || id is not {} theId)
+        if (wrapper.ModificationMode is ScrewStructureModificationMode.None or null || id is not { } theId)
         {
             unfinishedStructures.Add(token);
             return;
         }
-        
+
         if (wrapper.ModificationMode == ScrewStructureModificationMode.Finish)
         {
             finishedStructures.Add(JToken.FromObject(new StorageSaveData
@@ -264,18 +257,20 @@ public partial class StructuresPageViewModel : ObservableObject
         token["Added"] = added;
         unfinishedStructures.Add(token);
     }
-    
-    private static void ProcessFinished(ScrewStructureWrapper wrapper, JArray unfinishedStructures, JArray finishedStructures)
+
+    private static void ProcessFinished(ScrewStructureWrapper wrapper, JArray unfinishedStructures,
+        JArray finishedStructures)
     {
         var token = wrapper.Token.DeepClone();
-        
+
         var id = wrapper.ChangedTypeId ?? token["Id"]?.Value<int>();
         if (id != null)
         {
             token["Id"] = id;
         }
 
-        if (wrapper.ModificationMode is ScrewStructureModificationMode.None or null || id is not {} theId || wrapper.Position is not {} position || token["Rot"] is not {} rotation)
+        if (wrapper.ModificationMode is ScrewStructureModificationMode.None or null || id is not { } theId ||
+            wrapper.Position is not { } position || token["Rot"] is not { } rotation)
         {
             finishedStructures.Add(token);
             return;
@@ -288,13 +283,14 @@ public partial class StructuresPageViewModel : ObservableObject
             _ => 0
         };
 
-        unfinishedStructures.Add(JToken.FromObject(new UnfinishedGenericScrewStructure(theId, position, rotation, added)));
+        unfinishedStructures.Add(
+            JToken.FromObject(new UnfinishedGenericScrewStructure(theId, position, rotation, added)));
     }
 
     [RelayCommand(CanExecute = nameof(HasSavegameSelected))]
     private void SetModificationMode(ScrewStructureModificationWrapper modificationWrapper)
     {
-        foreach (var wrapper in _structures.Where(structure => structure.Origin == modificationWrapper.Origin).Where(
+        foreach (var wrapper in Structures.Where(structure => structure.Origin == modificationWrapper.Origin).Where(
                      structure =>
                          BatchSelectedStructureType == null || BatchSelectedStructureType.Name == "" ||
                          structure.ScrewStructure?.Id == BatchSelectedStructureType.Id))

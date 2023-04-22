@@ -18,30 +18,34 @@ public partial class SettingsDialogViewModel : ObservableObject
     private readonly ApplicationSettings _applicationSettings;
     private ApplicationSettings.BackupFlag _backupFlags;
 
-    [ObservableProperty] private BackupModeWrapper _currentBackupMode;
+    [ObservableProperty]
+    private BackupModeWrapper _currentBackupMode;
 
-    [ObservableProperty] private ThemeData _currentThemeAccent;
+    [ObservableProperty]
+    private ThemeData _currentThemeAccent;
 
-    [ObservableProperty] private string _selectedLanguage;
+    [ObservableProperty]
+    private string _selectedLanguage;
 
     public SettingsDialogViewModel(ApplicationSettings applicationSettings)
     {
         _applicationSettings = applicationSettings;
-        CurrentThemeAccent = applicationSettings.CurrentThemeAccent;
-        CurrentBackupMode = BackupModes.First(wrapper => wrapper.BackupMode == applicationSettings.CurrentBackupMode);
+        _currentThemeAccent = applicationSettings.CurrentThemeAccent;
+        BackupModes = Enum.GetValues<ApplicationSettings.BackupMode>()
+            .Select(backupMode => new BackupModeWrapper(backupMode))
+            .ToList();
+        _currentBackupMode = BackupModes.First(wrapper => wrapper.BackupMode == applicationSettings.CurrentBackupMode);
         _backupFlags = ApplicationSettings.BackupFlags;
         Languages = LanguageManager.GetAvailableCultures()
             .Select(culture =>
                 new ComboBoxItemAndValue<string>(TranslationManager.Get("languages." + culture), culture))
             .ToList();
-        SelectedLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+        _selectedLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
     }
 
     public List<ComboBoxItemAndValue<string>> Languages { get; }
 
-    public List<BackupModeWrapper> BackupModes => Enum.GetValues<ApplicationSettings.BackupMode>()
-        .Select(backupMode => new BackupModeWrapper(backupMode))
-        .ToList();
+    public List<BackupModeWrapper> BackupModes { get; }
 
     public List<ThemeData> AccentColors => _applicationSettings.AccentColors;
 
@@ -105,6 +109,7 @@ public partial class SettingsDialogViewModel : ObservableObject
 
         public ApplicationSettings.BackupMode BackupMode { get; }
 
+        // ReSharper disable once UnusedMember.Global
         public string Name => TranslationManager.Get("backup.mode." + BackupMode);
 
         private bool Equals(BackupModeWrapper other)

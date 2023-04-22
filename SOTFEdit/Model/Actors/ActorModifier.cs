@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.Events;
@@ -48,6 +50,9 @@ public class ActorModifier
             case ActorModificationMode.Modify:
                 Modify(vailWorldSim, matchedActors, data);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(data), data.ModificationMode,
+                    "Unexpected modification mode");
         }
 
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
@@ -154,7 +159,7 @@ public class ActorModifier
             {
                 var newPos = Teleporter.MoveToPos(_playerPageViewModel.PlayerState.Pos);
                 actor["Position"] = JToken.FromObject(newPos);
-                actor["GraphMask"] = newPos.AreaMask.Mask;
+                actor["GraphMask"] = newPos.Area.GraphMask;
             }
         }
 
@@ -162,7 +167,7 @@ public class ActorModifier
 
         if (data.ModifyOptions.UpdateInfluences)
         {
-            UpdateInfluences(vailWorldSim, data, uniqueIds);
+            UpdateInfluences(vailWorldSim, data.Influences, uniqueIds);
         }
 
         if (data.ModifyOptions.TeleportMode == "PlayerToNpc")
@@ -180,7 +185,7 @@ public class ActorModifier
         }
     }
 
-    private static void UpdateInfluences(JToken vailWorldSim, UpdateActorsEvent data, IReadOnlySet<int> uniqueIds)
+    private static void UpdateInfluences(JToken vailWorldSim, List<Influence> influences, IReadOnlySet<int> uniqueIds)
     {
         var handledInfluenceMemories = new HashSet<int>();
 
@@ -196,12 +201,14 @@ public class ActorModifier
                 continue;
             }
 
-            influenceMemory["Influences"] = JToken.FromObject(data.Influences);
+            influenceMemory["Influences"] = JToken.FromObject(influences);
             handledInfluenceMemories.Add(uniqueId);
         }
 
         foreach (var uniqueId in uniqueIds.Where(uniqueId => !handledInfluenceMemories.Contains(uniqueId)))
-            influenceMemories.Add(JToken.FromObject(new InfluenceMemory(uniqueId, data.Influences)));
+        {
+            influenceMemories.Add(JToken.FromObject(new InfluenceMemory(uniqueId, influences)));
+        }
     }
 
     private static void RemoveInfluenceMemories(JToken vailWorldSim, IEnumerable<JToken> matchedActors)
@@ -214,10 +221,12 @@ public class ActorModifier
             .ToHashSet();
 
         foreach (var influenceMemory in vailWorldSim["InfluenceMemory"] ?? Enumerable.Empty<JToken>())
+        {
             if (influenceMemory["UniqueId"]?.Value<int>() is { } uniqueId && uniqueIds.Contains(uniqueId))
             {
                 influenceMemoriesToBeRemoved.Add(influenceMemory);
             }
+        }
 
         influenceMemoriesToBeRemoved.ForEach(influenceMemory => influenceMemory.Remove());
     }
@@ -232,11 +241,35 @@ public class ActorModifier
         var spawnersToBeRemoved = new List<JToken>();
 
         foreach (var spawner in vailWorldSim["Spawners"] ?? Enumerable.Empty<JToken>())
+        {
             if (spawner["UniqueId"]?.Value<int>() is { } spawnerId && spawnersToBeRemoved.Contains(spawnerId))
             {
                 spawnersToBeRemoved.Add(spawner);
             }
+        }
 
         spawnersToBeRemoved.ForEach(spawner => spawner.Remove());
+    }
+
+    public static void Spawn(Savegame.Savegame selectedSavegame, Position position, ActorType actorType,
+        int spawnCount, int? familyId, List<Influence> influences, int spaceBetween, SpawnPattern spawnPattern)
+    {
+        if (selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not { } saveDataWrapper)
+        {
+            return;
+        }
+
+        if (saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim) is not { } vailWorldSim)
+        {
+            return;
+        }
+
+        var newUniqueIds =
+            ActorCreator.CreateActors(vailWorldSim, position, actorType, spawnCount, familyId, spaceBetween,
+                spawnPattern);
+        UpdateInfluences(vailWorldSim, influences, newUniqueIds);
+
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
+        WeakReferenceMessenger.Default.Send(new JsonModelChangedEvent(SavegameStore.FileType.SaveData));
     }
 }

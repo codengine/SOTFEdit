@@ -102,10 +102,10 @@ public partial class FollowerPageViewModel : ObservableObject
         }
     }
 
-    private bool CanMoveToPlayer()
+    private static bool CanMoveToPlayer()
     {
         return CanSaveChanges() &&
-               Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos.AreaMask.Mask == AreaMask.Surface;
+               Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos.Area.IsSurface();
     }
 
     [RelayCommand(CanExecute = nameof(CanMoveToPlayer))]
@@ -173,6 +173,9 @@ public partial class FollowerPageViewModel : ObservableObject
             return;
         }
 
+        var foundVirginia = false;
+        var foundKelvin = false;
+
         foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
         {
             var typeId = actor["TypeId"]?.Value<int>();
@@ -181,7 +184,24 @@ public partial class FollowerPageViewModel : ObservableObject
                 continue;
             }
 
+            switch (typeId)
+            {
+                case KelvinTypeId when foundKelvin:
+                case VirginiaTypeId when foundVirginia:
+                    continue;
+            }
+
             var followerModel = typeId == KelvinTypeId ? KelvinState : VirginiaState;
+
+            switch (typeId)
+            {
+                case KelvinTypeId:
+                    foundKelvin = true;
+                    break;
+                case VirginiaTypeId:
+                    foundVirginia = true;
+                    break;
+            }
 
             if (actor["UniqueId"]?.Value<int>() is { } uniqueId)
             {
@@ -267,7 +287,9 @@ public partial class FollowerPageViewModel : ObservableObject
 
             foreach (var influence in influenceMemory["Influences"]?.ToObject<List<Influence>>() ??
                                       Enumerable.Empty<Influence>())
+            {
                 followerState.Influences.Add(influence);
+            }
         }
     }
 

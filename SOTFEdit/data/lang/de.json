@@ -204,10 +204,6 @@
       "46": "Mr. Puffton",
       "47": "Mrs. Puffton"
     },
-    "areaMask": {
-      "caveOrBunker": "Höhle oder Bunker",
-      "surface": "Oberfläche"
-    },
     "influenceType": {
       "Cannibal": "Kannibale",
       "Creepy": "Gruselige",
@@ -228,7 +224,10 @@
       "spawnedCount": "Anzahl Spawns",
       "lastSpawnTime": "Letzter Spawn",
       "state": "Status",
-      "killedByPlayer": "Getötet von Spieler"
+      "family": "Familie",
+      "uniqueId": "UniqueID",
+      "killedByPlayer": "Getötet von Spieler",
+      "area": "Bereich"
     },
     "stats": {
       "energy": "Energie",
@@ -284,6 +283,7 @@
     "added": "Hinzugefügt",
     "percentDone": "Fortschritt",
     "modification": "Modifikation",
+    "category": "Kategorie",
     "categories": {
       "shelter": "Unterkunft",
       "treeShelter": "Baum-Unterkunft",
@@ -303,7 +303,7 @@
       "unmodifyAll": "Alle Änderungen rückgängig",
       "setAllToRemove": "Alle auf \"Entfernen\" setzen",
       "setAllToFinish": "Alle auf \"Fertigstellen\" setzen",
-      "setAllToFinish": "Alle auf \"Fast fertig\" setzen",
+      "setAllToAlmostFinish": "Alle auf \"Fast fertig\" setzen",
       "setAllToUnfinish": "Alle auf \"Unvollständig\" setzen"
     },
     "types": {
@@ -471,7 +471,7 @@
         "-1": "Standard",
         "0": "Taktische Jacke",
         "1": "Anzug",
-        "2": "Pyjamas",
+        "2": "Schlafanzug",
         "3": "Lederjacke",
         "4": "Kapuzenpullover",
         "5": "Unbekannt",
@@ -540,6 +540,10 @@
       "resetNumberOfCutTrees": {
         "text": "Anzahl der gefällten Bäume zurücksetzen",
         "tooltip": "Dies könnte auch helfen, die Anzahl der Kannibalen zu reduzieren. Eine Theorie besagt, dass sie aufgrund dieser Zahl berechnet wird."
+      },
+      "map": {
+        "text": "Interaktive Karte",
+        "tooltip": "Eine interaktive Karte"
       }
     },
     "help": {
@@ -784,7 +788,8 @@
     "currentHealth": "Aktuelle Gesundheit",
     "outfit": "Outfit",
     "fillAllBars": "Alle Balken füllen",
-    "areaMask": "Bereich"
+    "areaMask": "Bereich",
+    "mapGroupName": "Spieler"
   },
   "npcs": {
     "tabs": {
@@ -820,7 +825,16 @@
     "plant": "Pflanze",
     "container": "Behälter",
     "log": "Stamm",
-    "blueprint": "Bauplan"
+    "blueprint": "Bauplan",
+    "attachment": "Aufsatz",
+    "book": "Buch",
+    "tool": "Werkzeug",
+    "weaponMod": "Waffen-Modifikation",
+    "equipment": "Ausrüstung",
+    "bodyPart": "Körperteil",
+    "electricity": "Elektrizität",
+    "seed": "Samen",
+    "consumable": "Verbrauchsmaterial"
   },
   "itemVariants": {
     "436": {
@@ -1042,16 +1056,16 @@
     "536": "E-Mail [Golf 3/4]",
     "537": "E-Mail [Golf 4/4]",
     "538": "E-Mail [Malerei]",
-    "539": "E-Mail [Astrologie 1/3]",
-    "540": "E-Mail [Astrologie 2/3]",
-    "541": "E-Mail [Astrologie 3/3]",
-    "542": "E-Mail [Politik 1/3]",
-    "543": "E-Mail Politik 2/3",
-    "544": "E-Mail [Politik 3/3]",
-    "545": "E-Mail Balett",
-    "546": "E-Mail [Quietschende Schuhe 1/3]",
-    "547": "E-Mail [Quietschende Schuhe 2/3]",
-    "548": "E-Mail [Quietschende Schuhe 3/3]",
+    "539": "Dokument [Out Demonia]",
+    "540": "Dokument [Crosses burn Demons]",
+    "541": "Dokument [Cube Activation Cycles]",
+    "542": "Email [Thought you might find this interesting]",
+    "543": "Email [Another one]",
+    "544": "Email [One more]",
+    "545": "Email [Photo Reference]",
+    "546": "Email [Note to all employees]",
+    "547": "Email [Safe in Cube]",
+    "548": "Dokument [Stay in the Cube]",
     "549": "Bauplan Knochenmacherfalle",
     "550": "Bauplan Fliegenklatsche-Falle",
     "551": "Bauplan Kleintierfalle",
@@ -1115,11 +1129,11 @@
     "609": "Bauplan Stammlager",
     "610": "Bauplan Stocklager",
     "611": "Ausdruck [Zahlen]",
-    "612": "Zeitungsausschnitt 1/2",
-    "613": "Zeitungsausschnitt 2/2",
-    "614": "E-Mail 1/3",
-    "615": "E-Mail 2/3",
-    "616": "E-Mail 3/3",
+    "612": "Zeitungsausschnitt [Missing CEO]",
+    "613": "Zeitungsausschnitt [Puffcorp]",
+    "614": "E-Mail [Artifact - Preliminary Findings]",
+    "615": "E-Mail [Scientific Data - Cube]",
+    "616": "Geheimes Dokumentflat",
     "617": "Aktienkurs",
     "618": "Gedruckter Pfeil",
     "619": "Badeanzug",
@@ -1135,9 +1149,114 @@
     "629": "Wassersammler",
     "630": "Knight V",
     "631": "Hinter dem Reich",
+    "632": "Bauplan Federfalle",
     "633": "Flugblatt [Kultiges]",
     "634": "Solarmodul",
     "635": "Glühbirne",
+    "636": "TemplateD",
     "637": "Action-Kamera"
+  },
+  "poiGroups": {
+    "items": "Gegenstände",
+    "bunkers": "Bunker",
+    "3Dprinters": "3D-Drucker",
+    "laptops": "Laptops",
+    "caves": "Höhlen",
+    "camps": "Camps",
+    "villages": "Dörfer",
+    "helicopters": "Helikopter",
+    "info": "Info",
+    "doors": "Türen",
+    "ammo": "Munition",
+    "cannibalVillages": "Kannibalen-Dörfer",
+    "lakes": "Seen",
+    "supply": "Vorrat",
+    "crates": "Kisten"
+  },
+  "map": {
+    "zipLines": "Seilrutschen",
+    "zipLineAnchor": "Seilrutschen-Anker",
+    "pois": "Sehenswürdigkeiten",
+    "options": "Optionen",
+    "details": "Details",
+    "inventoryFilter": "Nur nicht-gesammelte Gegenstände",
+    "isUnderground": "Unterirdisch",
+    "isInInventory": "Im Inventar",
+    "itemId": "Item ID",
+    "coordinates": "Koordinaten",
+    "requirements": "Voraussetzungen",
+    "items": "Gegenstände",
+    "wiki": "Wiki Link",
+    "objectNameId": "ObjectNameId",
+    "actors": "NPCs",
+    "structures": "Strukturen",
+    "teleportation": "Teleportation",
+    "area": "Bereich",
+    "objects": "Objekte",
+    "altItems": "Alternative Gegenstände",
+    "teleportWindow": {
+      "title": "Teleportieren",
+      "destination": "Ziel",
+      "toTeleport": "Zu teleportieren",
+      "offset": "Offset",
+      "doTeleport": "Teleportieren!",
+      "mode": {
+        "Player": "Spieler",
+        "Kelvin": "Kelvin",
+        "Virginia": "Virginia"
+      },
+      "disclaimer": "Sie können die Ziel-Koordinaten hier verändern. Wenn der Zielpunkt in einem Gegner ist besteht die Möglichkeit, in die Luft katapultiert zu werden. X und Z bestimmen den Ort und Y die Höhe. Bitte stellen Sie sicher dass der korrekte Bereich eingestellt ist."
+    },
+    "spawnWindow": {
+      "title": "Actor spawnen",
+      "disclaimer": "Sei vorsichtig mit der Position oder Anzahl. Es könnte das Spiel zum Absturz bringen. Manche Gegner lassen sich nicht an bestimmten unterirdischen Orten spawnen.",
+      "doSpawn": "Actors erstellen",
+      "information": "Informationen",
+      "position": "Position",
+      "options": "Optionen",
+      "actorType": "Actor Typ",
+      "count": "Anzahl",
+      "familyOfDestinationActor": "Familie des Ziel-Actors",
+      "family": "Familie",
+      "spaceBetween": {
+        "text": "Abstand dazwischen",
+        "tooltip": "Definiert den Abstand zwischen jedem Actor. Die Actors werden in einem gleichmäßigen Raster platziert, wenn dieser Wert > 0 ist"
+      },
+      "spawnPattern": {
+        "text": "Spawn Muster",
+        "Grid": "Raster",
+        "Random": "Zufällig",
+        "Rectangle": "Rechteck",
+        "Cross": "Kreuz",
+        "VerticalLine": "Vertikale Linie",
+        "HorizontalLine": "Horizontale Linie"
+      }
+    },
+    "requirementsFilter": {
+      "text": "Voraussetzungen",
+      "tooltip": "Zeigt nur Gegenstände, Bunker etc. an für die sich die erforderlichen Gegenstände wie die Schaufel im Inventar befinden",
+      "types": {
+        "All": "Alle",
+        "AccessibleOnly": "Nur Erreichbares anzeigen",
+        "InaccessibleOnly": "Nur Unerreichbares anzeigen"
+      }
+    },
+    "areaFilter": {
+      "text": "Bereiche",
+      "types": {
+        "all": "Alle",
+        "surfaceOnly": "Nur Oberfläche",
+        "undergroundOnly": "Nur Höhlen/Bunker"
+      }
+    },
+    "buttons": {
+      "deselectAll": "Auswahl aufheben",
+      "teleportPlayer": "Spieler hierhin teleportieren",
+      "teleportKelvin": "Kelvin hierhin teleportieren",
+      "teleportVirginia": "Virginia hierhin teleportieren",
+      "moveToPlayer": "Zum Spieler verschieben",
+      "deleteBothAnchors": "Beide Anker löschen",
+      "spawnActors": "Spawn Actors"
+    }
   }
 }

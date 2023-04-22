@@ -20,7 +20,7 @@
     },
     {
       "id": 341,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -29,7 +29,7 @@
     },
     {
       "id": 346,
-      "type": "weapon",
+      "type": "weaponMod",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -56,7 +56,7 @@
     },
     {
       "id": 354,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -235,7 +235,7 @@
     },
     {
       "id": 374,
-      "type": "weapon",
+      "type": "weaponMod",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -244,7 +244,7 @@
     },
     {
       "id": 375,
-      "type": "weapon",
+      "type": "weaponMod",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -253,7 +253,7 @@
     },
     {
       "id": 376,
-      "type": "weapon",
+      "type": "weaponMod",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -262,7 +262,7 @@
     },
     {
       "id": 377,
-      "type": "weapon",
+      "type": "weaponMod",
       "image": "ScopeMod.png",
       "storageMax": {
         "inventory": 1
@@ -270,7 +270,7 @@
     },
     {
       "id": 378,
-      "type": "weapon",
+      "type": "attachment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -306,14 +306,14 @@
     },
     {
       "id": 382,
-      "type": "weapon",
+      "type": "ammo",
       "storageMax": {
         "inventory": 10
       }
     },
     {
       "id": 383,
-      "type": "weapon",
+      "type": "weaponMod",
       "image": "RifleRailMod.png",
       "storageMax": {
         "inventory": 1
@@ -375,7 +375,7 @@
     },
     {
       "id": 391,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -488,7 +488,7 @@
     },
     {
       "id": 405,
-      "type": "misc",
+      "type": "bodyPart",
       "storageMax": {
         "shelf": 0,
         "inventory": 15
@@ -611,7 +611,7 @@
     },
     {
       "id": 422,
-      "type": "weapon",
+      "type": "tool",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -620,7 +620,7 @@
     },
     {
       "id": 423,
-      "type": "document",
+      "type": "book",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -629,7 +629,7 @@
     },
     {
       "id": 424,
-      "type": "document",
+      "type": "book",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -681,7 +681,7 @@
     },
     {
       "id": 430,
-      "type": "misc",
+      "type": "bodyPart",
       "storageMax": {
         "shelf": 1,
         "inventory": 3
@@ -699,7 +699,7 @@
     },
     {
       "id": 432,
-      "type": "misc",
+      "type": "tool",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -737,7 +737,7 @@
     },
     {
       "id": 435,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -766,7 +766,7 @@
     },
     {
       "id": 437,
-      "type": "misc",
+      "type": "consumable",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -820,7 +820,7 @@
     },
     {
       "id": 444,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -829,7 +829,7 @@
     },
     {
       "id": 445,
-      "type": "plant",
+      "type": "food",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -838,7 +838,7 @@
     },
     {
       "id": 446,
-      "type": "plant",
+      "type": "food",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -847,7 +847,7 @@
     },
     {
       "id": 447,
-      "type": "plant",
+      "type": "food",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -856,7 +856,7 @@
     },
     {
       "id": 448,
-      "type": "plant",
+      "type": "food",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -919,7 +919,7 @@
     },
     {
       "id": 455,
-      "type": "plant",
+      "type": "consumable",
       "storageMax": {
         "shelf": 7,
         "inventory": 3
@@ -928,7 +928,7 @@
     },
     {
       "id": 456,
-      "type": "plant",
+      "type": "consumable",
       "storageMax": {
         "shelf": 9,
         "inventory": 3
@@ -945,7 +945,7 @@
     },
     {
       "id": 458,
-      "type": "misc",
+      "type": "electricity",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
@@ -964,7 +964,7 @@
     },
     {
       "id": 460,
-      "type": "misc",
+      "type": "electricity",
       "storageMax": {
         "shelf": 0,
         "inventory": 10
@@ -972,7 +972,7 @@
     },
     {
       "id": 461,
-      "type": "plant",
+      "type": "consumable",
       "storageMax": {
         "shelf": 7,
         "inventory": 3
@@ -981,7 +981,7 @@
     },
     {
       "id": 462,
-      "type": "plant",
+      "type": "consumable",
       "storageMax": {
         "shelf": 9,
         "inventory": 3
@@ -1052,7 +1052,7 @@
     },
     {
       "id": 470,
-      "type": "weapon",
+      "type": "weaponMod",
       "image": "AirgunScope.png",
       "storageMax": {
         "inventory": 1
@@ -1060,7 +1060,7 @@
     },
     {
       "id": 471,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1102,7 +1102,7 @@
     },
     {
       "id": 475,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1147,7 +1147,7 @@
     },
     {
       "id": 480,
-      "type": "misc",
+      "type": "bodyPart",
       "storageMax": {
         "shelf": 2,
         "inventory": 2
@@ -1170,7 +1170,7 @@
     },
     {
       "id": 481,
-      "type": "misc",
+      "type": "bodyPart",
       "storageMax": {
         "shelf": 2,
         "inventory": 2
@@ -1193,7 +1193,7 @@
     },
     {
       "id": 482,
-      "type": "misc",
+      "type": "bodyPart",
       "storageMax": {
         "shelf": 1,
         "inventory": 1
@@ -1218,7 +1218,7 @@
     },
     {
       "id": 485,
-      "type": "weapon",
+      "type": "tool",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1227,7 +1227,7 @@
     },
     {
       "id": 486,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1339,7 +1339,7 @@
     },
     {
       "id": 498,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1401,7 +1401,7 @@
     },
     {
       "id": 505,
-      "type": "misc",
+      "type": "equipment",
       "image": "LaserMeasureTool.png",
       "storageMax": {
         "inventory": 1
@@ -1498,7 +1498,7 @@
     },
     {
       "id": 517,
-      "type": "misc",
+      "type": "tool",
       "image": "CookingPot.png",
       "storageMax": {
         "inventory": 1
@@ -1543,7 +1543,7 @@
     },
     {
       "id": 522,
-      "type": "weapon",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1552,7 +1552,7 @@
     },
     {
       "id": 523,
-      "type": "weapon",
+      "type": "misc",
       "storageMax": {
         "shelf": 4,
         "inventory": 10
@@ -1579,7 +1579,7 @@
     },
     {
       "id": 526,
-      "type": "key",
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -1587,7 +1587,7 @@
     },
     {
       "id": 527,
-      "type": "misc",
+      "type": "electricity",
       "storageMax": {
         "shelf": 6,
         "inventory": 6
@@ -2015,7 +2015,7 @@
     },
     {
       "id": 574,
-      "type": "document",
+      "type": "book",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -2024,7 +2024,7 @@
     },
     {
       "id": 575,
-      "type": "document",
+      "type": "book",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -2199,7 +2199,7 @@
     },
     {
       "id": 595,
-      "type": "plant",
+      "type": "food",
       "storageMax": {
         "shelf": 20,
         "inventory": 20
@@ -2208,7 +2208,7 @@
     },
     {
       "id": 596,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2217,7 +2217,7 @@
     },
     {
       "id": 597,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2226,7 +2226,7 @@
     },
     {
       "id": 598,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2235,7 +2235,7 @@
     },
     {
       "id": 599,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2244,7 +2244,7 @@
     },
     {
       "id": 600,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2253,7 +2253,7 @@
     },
     {
       "id": 601,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2262,7 +2262,7 @@
     },
     {
       "id": 602,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2271,7 +2271,7 @@
     },
     {
       "id": 603,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2280,7 +2280,7 @@
     },
     {
       "id": 604,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2289,7 +2289,7 @@
     },
     {
       "id": 605,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2298,7 +2298,7 @@
     },
     {
       "id": 606,
-      "type": "plant",
+      "type": "seed",
       "storageMax": {
         "shelf": 50,
         "inventory": 20
@@ -2472,11 +2472,12 @@
     {
       "id": 626,
       "type": "misc",
-      "isInventoryItem": false
+      "isInventoryItem": false,
+      "wiki": "https://sonsoftheforest.wiki.gg/wiki/Hang_Glider"
     },
     {
       "id": 627,
-      "type": "misc",
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -2484,7 +2485,7 @@
     },
     {
       "id": 628,
-      "type": "misc",
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -2501,11 +2502,12 @@
     {
       "id": 630,
       "type": "misc",
-      "isInventoryItem": false
+      "isInventoryItem": false,
+      "wiki": ""
     },
     {
       "id": 631,
-      "type": "document",
+      "type": "book",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -2531,7 +2533,7 @@
     },
     {
       "id": 634,
-      "type": "misc",
+      "type": "electricity",
       "storageMax": {
         "shelf": 0,
         "inventory": 3
@@ -2540,7 +2542,7 @@
     },
     {
       "id": 635,
-      "type": "misc",
+      "type": "electricity",
       "storageMax": {
         "shelf": 0,
         "inventory": 8
@@ -2557,7 +2559,7 @@
     },
     {
       "id": 637,
-      "type": "misc",
+      "type": "equipment",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -2676,169 +2678,199 @@
     {
       "id": 1,
       "classification": "animal",
-      "image": "rabbit.jpg"
+      "image": "rabbit.jpg",
+      "icon": "rabbit.png"
     },
     {
       "id": 2,
       "classification": "animal",
-      "image": "squirrel.jpg"
+      "image": "squirrel.jpg",
+      "icon": "squirrel.png"
     },
     {
       "id": 3,
       "classification": "animal",
-      "image": "sea_turtle.jpg"
+      "image": "sea_turtle.jpg",
+      "icon": "turtle.png"
     },
     {
       "id": 4,
       "classification": "animal",
-      "image": "shark.png"
+      "image": "shark.png",
+      "icon": "shark.png"
     },
     {
       "id": 5,
       "classification": "animal",
-      "image": "seagull.png"
+      "image": "seagull.png",
+      "icon": "seagull.png"
     },
     {
       "id": 6,
       "classification": "animal",
-      "image": "eagle.jpg"
+      "image": "eagle.jpg",
+      "icon": "eagle.png"
     },
     {
       "id": 7,
       "classification": "animal",
-      "image": "duck.png"
+      "image": "duck.png",
+      "icon": "duck.png"
     },
     {
       "id": 8,
       "classification": "human",
       "gender": "male",
-      "image": "timmy.jpg"
+      "image": "timmy.jpg",
+      "icon": "timmy.png"
     },
     {
       "id": 9,
       "classification": "human",
       "gender": "male",
-      "image": "kelvin.jpg"
+      "image": "kelvin.jpg",
+      "icon": "letter-k.png"
     },
     {
       "id": 10,
       "classification": "human",
       "gender": "female",
-      "image": "virginia.jpg"
+      "image": "virginia.jpg",
+      "icon": "letter-v.png"
     },
     {
       "id": 11,
       "classification": "creep",
-      "image": "fingers.jpg"
+      "image": "fingers.jpg",
+      "icon": "fingers.png"
     },
     {
       "id": 12,
       "classification": "cannibal",
       "gender": "male",
-      "image": "carl.jpg"
+      "image": "carl.jpg",
+      "icon": "carl.png"
     },
     {
       "id": 13,
       "classification": "cannibal",
       "gender": "male",
-      "image": "andy.jpg"
+      "image": "andy.jpg",
+      "icon": "male_cannibal.png"
     },
     {
       "id": 14,
       "classification": "cannibal",
       "gender": "male",
-      "image": "danny.jpg"
+      "image": "danny.jpg",
+      "icon": "danny.png"
     },
     {
       "id": 15,
       "classification": "cannibal",
       "gender": "male",
-      "image": "billy.jpg"
+      "image": "billy.jpg",
+      "icon": "billy.png"
     },
     {
       "id": 16,
       "classification": "cannibal",
       "gender": "male",
-      "image": "gold_mask.jpg"
+      "image": "gold_mask.jpg",
+      "icon": "mask.png"
     },
     {
       "id": 17,
       "classification": "animal",
-      "image": "moose.jpg"
+      "image": "moose.jpg",
+      "icon": "moose.png"
     },
     {
       "id": 18,
       "classification": "creep",
-      "image": "baby.jpg"
+      "image": "baby.jpg",
+      "icon": "baby.png"
     },
     {
       "id": 19,
       "classification": "creep",
-      "image": "twins.jpg"
+      "image": "twins.jpg",
+      "icon": "twins.png"
     },
     {
       "id": 20,
       "classification": "creep",
       "gender": "male",
-      "image": "mr_puffy.jpg"
+      "image": "mr_puffy.jpg",
+      "icon": "puffy.png"
     },
     {
       "id": 21,
       "classification": "creep",
       "gender": "female",
-      "image": "mrs_puffy.jpg"
+      "image": "mrs_puffy.jpg",
+      "icon": "puffy_female.png"
     },
     {
       "id": 22,
       "classification": "creep",
-      "image": "slug.jpg"
+      "image": "slug.jpg",
+      "icon": "slug.png"
     },
     {
       "id": 23,
       "classification": "cannibal",
       "gender": "female",
-      "image": "angel.jpg"
+      "image": "angel.jpg",
+      "icon": "female_cannibal.png"
     },
     {
       "id": 24,
       "classification": "animal",
-      "image": "salmon.png"
+      "image": "salmon.png",
+      "icon": "fish.png"
     },
     {
       "id": 25,
       "classification": "cannibal",
       "gender": "female",
-      "image": "brandy.jpg"
+      "image": "brandy.jpg",
+      "icon": "brandy.png"
     },
     {
       "id": 26,
       "classification": "cannibal",
       "gender": "female",
-      "image": "crystal.jpg"
+      "image": "crystal.jpg",
+      "icon": "crystal.png"
     },
     {
       "id": 27,
       "classification": "cannibal",
       "gender": "male",
-      "image": "destiny.jpg"
+      "image": "destiny.jpg",
+      "icon": "destiny.png"
     },
     {
       "id": 28,
       "classification": "muddyCannibal",
       "gender": "female",
-      "image": "muddy_female.jpg"
+      "image": "muddy_female.jpg",
+      "icon": "muddy_female.png"
     },
     {
       "id": 29,
       "classification": "muddyCannibal",
       "gender": "male",
-      "image": "muddy_male.jpg"
+      "image": "muddy_male.jpg",
+      "icon": "muddy.png"
     },
     {
       "id": 30,
       "classification": "cannibal",
       "gender": "male",
-      "image": "heavy_male.jpg"
+      "image": "heavy_male.jpg",
+      "icon": "heavy_male.png"
     },
     {
       "id": 31,
@@ -2847,38 +2879,45 @@
     {
       "id": 32,
       "classification": "animal",
-      "image": "bat.png"
+      "image": "bat.png",
+      "icon": "bat.png"
     },
     {
       "id": 33,
       "classification": "animal",
-      "image": "deer.png"
+      "image": "deer.png",
+      "icon": "deer.png"
     },
     {
       "id": 34,
       "classification": "animal",
-      "image": "bluebird.jpg"
+      "image": "bluebird.jpg",
+      "icon": "blue-bird.png"
     },
     {
       "id": 35,
       "classification": "animal",
-      "image": "hummingbird.jpg"
+      "image": "hummingbird.jpg",
+      "icon": "hummingbird.png"
     },
     {
       "id": 36,
       "classification": "animal",
-      "image": "killer_whale.png"
+      "image": "killer_whale.png",
+      "icon": "orca.png"
     },
     {
       "id": 37,
       "classification": "animal",
-      "image": "land_turtle.png"
+      "image": "land_turtle.png",
+      "icon": "turtle.png"
     },
     {
       "id": 38,
       "classification": "cannibal",
       "gender": "male",
-      "image": "fat_male.jpg"
+      "image": "fat_male.jpg",
+      "icon": "fat_male.png"
     },
     {
       "id": 39,
@@ -2890,47 +2929,55 @@
       "id": 40,
       "classification": "creep",
       "gender": "male",
-      "image": "john2.jpg"
+      "image": "john2.jpg",
+      "icon": "john2.png"
     },
     {
       "id": 41,
       "classification": "cannibal",
       "gender": "male",
-      "image": "faceless_male.jpg"
+      "image": "faceless_male.jpg",
+      "icon": "faceless_male.png"
     },
     {
       "id": 42,
       "classification": "creep",
-      "image": "demon_boss.jpg"
+      "image": "demon_boss.jpg",
+      "icon": "demon.png"
     },
     {
       "id": 43,
       "classification": "cannibal",
       "gender": "male",
-      "image": "painted_male.jpg"
+      "image": "painted_male.jpg",
+      "icon": "painted_male.png"
     },
     {
       "id": 44,
       "classification": "cannibal",
       "gender": "female",
-      "image": "painted_male.jpg"
+      "image": "painted_male.jpg",
+      "icon": "painted_female.png"
     },
     {
       "id": 45,
       "classification": "creep",
-      "image": "demon_boss.jpg"
+      "image": "demon_boss.jpg",
+      "icon": "devil.png"
     },
     {
       "id": 46,
       "classification": "creep",
       "gender": "male",
-      "image": "mr_puffton.jpg"
+      "image": "mr_puffton.jpg",
+      "icon": "mr_puffton.png"
     },
     {
       "id": 47,
       "classification": "creep",
       "gender": "female",
-      "image": "mrs_puffton.jpg"
+      "image": "mrs_puffton.jpg",
+      "icon": "mrs_puffton.png"
     }
   ],
   "namedIntKeys": [
@@ -2961,184 +3008,281 @@
     {
       "id": 20,
       "buildCost": 14,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 21,
       "buildCost": 10,
-      "category": "traps"
+      "category": "traps",
+      "icon": "trap.png"
     },
     {
       "id": 22,
       "buildCost": 17,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 23,
       "buildCost": 16,
-      "category": "gardening"
+      "category": "gardening",
+      "icon": "plant.png"
     },
     {
       "id": 24,
       "buildCost": 28,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 25,
       "buildCost": 16,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 26,
       "buildCost": 72,
       "category": "shelter",
+      "icon": "cabin.png",
       "canFinish": false
     },
     {
       "id": 27,
       "buildCost": 9,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 28,
       "buildCost": 131,
       "category": "treeShelter",
+      "icon": "cabin.png",
       "canFinish": false
     },
     {
       "id": 29,
       "buildCost": 6,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 31,
       "buildCost": 7,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 32,
       "buildCost": 8,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 34,
       "buildCost": 95,
       "category": "shelter",
+      "icon": "cabin.png",
       "canFinish": false
     },
     {
       "id": 35,
       "buildCost": 25,
-      "category": "traps"
+      "category": "traps",
+      "icon": "trap.png"
     },
     {
       "id": 36,
       "buildCost": 21,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 37,
       "buildCost": 8,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 38,
       "buildCost": 74,
       "category": "shelter",
+      "icon": "cabin.png",
       "canFinish": false
     },
     {
       "id": 39,
       "buildCost": 18,
-      "category": "utility"
+      "category": "utility",
+      "icon": "board.png"
     },
     {
       "id": 40,
       "buildCost": 18,
-      "category": "gardening"
+      "category": "gardening",
+      "icon": "plant.png"
     },
     {
       "id": 41,
       "buildCost": 54,
       "category": "treeShelter",
+      "icon": "cabin.png",
       "canFinish": false
     },
     {
       "id": 42,
       "buildCost": 14,
-      "category": "traps"
+      "category": "traps",
+      "icon": "trap.png"
     },
     {
       "id": 43,
       "buildCost": 10,
       "category": "treeShelter",
+      "icon": "cabin.png",
       "canFinish": false
     },
     {
       "id": 44,
       "buildCost": 97,
       "category": "treeShelter",
+      "icon": "cabin.png",
       "canFinish": false
     },
     {
       "id": 45,
       "buildCost": 14,
-      "category": "traps"
+      "category": "traps",
+      "icon": "trap.png"
     },
     {
       "id": 46,
       "buildCost": 4,
-      "category": "utility"
+      "category": "utility",
+      "icon": "board.png"
     },
     {
       "id": 47,
       "buildCost": 20,
-      "category": "shelter"
+      "category": "shelter",
+      "icon": "cabin.png"
     },
     {
       "id": 48,
       "buildCost": 7,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 49,
       "buildCost": 5,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 50,
       "buildCost": 4,
-      "category": "utility"
+      "category": "utility",
+      "icon": "board.png"
     },
     {
       "id": 51,
       "buildCost": 3,
-      "category": "storage"
+      "category": "storage",
+      "icon": "basket.png"
     },
     {
       "id": 52,
       "buildCost": 3,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 53,
       "buildCost": 2,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 54,
       "buildCost": 2,
-      "category": "furniture"
+      "category": "furniture",
+      "icon": "board.png"
     },
     {
       "id": 56,
       "buildCost": 13,
-      "category": "utility"
+      "category": "utility",
+      "icon": "board.png"
     },
     {
       "id": 57,
       "buildCost": 10,
-      "category": "traps"
+      "category": "traps",
+      "icon": "trap.png"
+    }
+  ],
+  "areas": [
+    {
+      "name": "Surface",
+      "areaMask": 1,
+      "graphMask": 1
+    },
+    {
+      "name": "Bunker A (Maintenance)",
+      "areaMask": 131072,
+      "graphMask": 64
+    },
+    {
+      "name": "Bunker B (Maintenance)",
+      "areaMask": 262144,
+      "graphMask": 128
+    },
+    {
+      "name": "Bunker C (Maintenance)",
+      "areaMask": 524288,
+      "graphMask": 256
+    },
+    {
+      "name": "Bunker D (Entertainment)",
+      "areaMask": 1048576,
+      "graphMask": 16
+    },
+    {
+      "name": "Bunker E (Food)",
+      "areaMask": 2097152,
+      "graphMask": 32
+    },
+    {
+      "name": "Bunker F (Residential)",
+      "areaMask": 4194304,
+      "graphMask": 1024
+    },
+    {
+      "name": "Cave A (Rebreather)",
+      "areaMask": 2,
+      "graphMask": 2
+    },
+    {
+      "name": "Cave B",
+      "areaMask": 4,
+      "graphMask": 4
+    },
+    {
+      "name": "Cave C",
+      "areaMask": 8,
+      "graphMask": 8
+    },
+    {
+      "name": "Cave D",
+      "areaMask": 16,
+      "graphMask": 2048
+    },
+    {
+      "name": "Cave E / Bunker G",
+      "areaMask": 32,
+      "graphMask": 512
     }
   ]
 }

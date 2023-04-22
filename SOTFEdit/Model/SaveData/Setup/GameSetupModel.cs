@@ -10,7 +10,9 @@ namespace SOTFEdit.Model.SaveData.Setup;
 public record GameSetupModel
 {
     private const string SettingsKey = "_settings";
-    [JsonProperty(SettingsKey)] public List<GameSettingLightModel> Settings;
+
+    [JsonProperty(SettingsKey)]
+    public List<GameSettingLightModel> Settings;
 
     internal static bool Merge(JObject gameSetup, IEnumerable<GameSettingLightModel> newSettings)
     {

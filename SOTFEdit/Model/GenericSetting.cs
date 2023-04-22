@@ -15,12 +15,17 @@ public partial class GenericSetting : ObservableObject
         Enum
     }
 
-    [ObservableProperty] private bool? _boolValue;
-    [ObservableProperty] private int? _intValue = 0;
+    [ObservableProperty]
+    private bool? _boolValue;
 
-    [ObservableProperty] private object? _selectedItem;
+    [ObservableProperty]
+    private int? _intValue = 0;
 
-    [ObservableProperty] private string? _stringValue;
+    [ObservableProperty]
+    private object? _selectedItem;
+
+    [ObservableProperty]
+    private string? _stringValue;
 
     public GenericSetting(string name, DataType type, string? dataPath = null)
     {

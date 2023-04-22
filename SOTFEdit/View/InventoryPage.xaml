@@ -20,7 +20,7 @@
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ImageTemplate" DataType="{x:Type viewModel:InventoryItem}">
-                <Image Width="48" Height="48" Source="{Binding Image}">
+                <Image Width="32" Height="32" Source="{Binding Image}">
                     <Image.ToolTip>
                         <Image Source="{Binding ImageBig}" />
                     </Image.ToolTip>
@@ -106,12 +106,12 @@
                     <DataGrid.Columns>
                         <DataGridTemplateColumn CanUserSort="False" Header=""
                                                 CellTemplate="{StaticResource ImageTemplate}" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.Id), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.id'}" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.Name), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.name'}"
                                             IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding TypeRendered, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.TypeRendered), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.type'}"
                                             IsReadOnly="True" />
                         <DataGridTemplateColumn SortMemberPath="TotalCount"
@@ -119,7 +119,7 @@
                                                 CellTemplate="{StaticResource NumericUpDownTemplate}" />
                         <DataGridTemplateColumn Header="{infrastructure:Translate 'inventory.table.actions'}"
                                                 CellTemplate="{StaticResource ActionButtons}" />
-                        <DataGridTextColumn Binding="{Binding TypeRendered, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.TypeRendered), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.type'}"
                                             IsReadOnly="True" />
                     </DataGrid.Columns>
@@ -157,15 +157,15 @@
                     <DataGrid.Columns>
                         <DataGridTemplateColumn CanUserSort="False" Header=""
                                                 CellTemplate="{StaticResource ImageTemplate}" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Id, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.Id), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.id'}" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Name, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.Name), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.name'}"
                                             IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding TypeRendered, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.TypeRendered), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.type'}"
                                             IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding TotalCount, Mode=OneTime}"
+                        <DataGridTextColumn Binding="{Binding (viewModel:InventoryItem.TotalCount), Mode=OneTime}"
                                             Header="{infrastructure:Translate 'inventory.table.count.text'}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="{x:Type TextBlock}">

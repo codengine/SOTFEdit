@@ -120,19 +120,19 @@ public class Savegame : ObservableObject
             else
             {
                 countRegrown = (int)Math.Round(pctRegrow / 100.0 * candidates.Count);
-            
+
                 if (countRegrown >= candidates.Count - 1)
                 {
                     countRegrown = candidates.Count - 1;
                 }
-                
+
                 if (countRegrown > 0)
                 {
                     var startIndex = candidates.Count - countRegrown;
                     candidates.RemoveRange(startIndex, countRegrown);
                 }
             }
-            
+
             candidates.ForEach(candidate => candidate.Remove());
         }
 

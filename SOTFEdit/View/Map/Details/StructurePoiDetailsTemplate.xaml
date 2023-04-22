@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:models="clr-namespace:SOTFEdit.Model.Map"
+                    xmlns:st="http://schemas.spicytaco.io/"
+                    xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                    xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
+                    xmlns:map="clr-namespace:SOTFEdit.View.Map">
+    <DataTemplate x:Key="StructurePoiDetailsTemplate" DataType="{x:Type models:StructurePoi}">
+        <DataTemplate.Resources>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+            <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
+            <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
+        </DataTemplate.Resources>
+        <st:AutoGrid Columns="Auto,*" ChildVerticalAlignment="Center" Margin="4" ChildMargin="2">
+            <st:AutoGrid Grid.ColumnSpan="2" Columns="Auto, *">
+                <Image Source="{Binding Icon}" Width="32" Height="32" Margin="0 0 5 0" />
+                <TextBlock FontSize="20" Text="{Binding Title}" TextWrapping="Wrap" />
+            </st:AutoGrid>
+
+            <Label Content="{infrastructure:Translate 'map.coordinates'}" />
+            <Label Content="{Binding PrintableCoordinates}" />
+            <Label Content="{infrastructure:Translate 'map.isUnderground'}" />
+            <Label Content="{Binding IsUnderground, Converter={StaticResource BoolTranslationConverter}}" />
+            <Label Content="{infrastructure:Translate 'map.area'}"
+                   Visibility="{Binding AreaName, Converter={StaticResource NullToVisibilityConverter}}" />
+            <Label Content="{Binding AreaName}"
+                   Visibility="{Binding AreaName, Converter={StaticResource NullToVisibilityConverter}}" />
+            <Label Content="{infrastructure:Translate 'structures.category'}" />
+            <Label Content="{Binding ScrewStructureWrapper.Category}" />
+            <Label Content="{infrastructure:Translate 'structures.percentDone'}" />
+            <Label Content="{Binding ScrewStructureWrapper.PctDonePrintable}"
+                   Foreground="{Binding ScrewStructureWrapper.PctDoneColor, Converter={StaticResource ColorToSolidColorBrushConverter}}" />
+
+            <map:MapTeleportButtonsControl Poi="{Binding}" Grid.ColumnSpan="2" Margin="4" />
+        </st:AutoGrid>
+    </DataTemplate>
+</ResourceDictionary>

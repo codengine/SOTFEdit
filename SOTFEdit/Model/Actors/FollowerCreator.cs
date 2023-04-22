@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using SOTFEdit.ViewModel;
 using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.Model.Actors;
@@ -17,15 +18,13 @@ internal static class ActorCreator
             return null;
         }
 
-        GetAllUniqueAndSpawnerIds(vailWorldSim, out var allUniqueIds, out var allSpawnerIds);
+        GetAllUniqueAndSpawnerIds(vailWorldSim, out var allUniqueIds);
         var uniqueId = GetNextFreeUniqueId(allUniqueIds);
-        var spawnerId = typeId == KelvinTypeId ? 0 : GetUnassignedSpawnerId(allSpawnerIds);
 
         var templateText = ReadTemplate("actorTemplate.txt")
             .Replace(@"{uniqueId}", uniqueId.ToString())
             .Replace(@"{typeId}", typeId.ToString())
-            .Replace(@"{spawnerId}", spawnerId.ToString())
-            .Replace(@"{actorSeed}", spawnerId.ToString());
+            .Replace(@"{actorSeed}", new Random().Next().ToString());
         var actorTemplate = JToken.Parse(templateText);
 
         actorTemplate["Position"]?.Replace(JToken.FromObject(pos));
@@ -37,61 +36,28 @@ internal static class ActorCreator
 
         actorArray.Add(actorTemplate);
 
-        CreateSpawner(vailWorldSim, spawnerId);
-
         return new KeyValuePair<int, JToken>(uniqueId, actorTemplate);
     }
 
-    private static void CreateSpawner(JToken vailWorldSim, int spawnerId)
+    private static int GetNextFreeUniqueId(IReadOnlySet<int> allUniqueIds, int uniqueId = 1)
     {
-        if (vailWorldSim["Spawners"] is not JArray spawners)
+        while (allUniqueIds.Contains(uniqueId) && uniqueId < int.MaxValue)
         {
-            return;
+            uniqueId++;
         }
-
-        var templateText = ReadTemplate("spawnerTemplate.txt")
-            .Replace(@"{spawnerId}", spawnerId.ToString());
-
-        spawners.Add(JToken.Parse(templateText));
-    }
-
-    private static int GetUnassignedSpawnerId(IReadOnlySet<int> allSpawnerIds)
-    {
-        if (allSpawnerIds.Count == 0)
-        {
-            return new Random().Next();
-        }
-
-        var spawnerId = allSpawnerIds.Max() - 1;
-        while (allSpawnerIds.Contains(spawnerId) && spawnerId > int.MinValue) spawnerId--;
-
-        return spawnerId;
-    }
-
-    private static int GetNextFreeUniqueId(IReadOnlySet<int> allUniqueIds)
-    {
-        var uniqueId = 1;
-        while (allUniqueIds.Contains(uniqueId) && uniqueId < int.MaxValue) uniqueId++;
 
         return uniqueId;
     }
 
-    private static void GetAllUniqueAndSpawnerIds(JToken vailWorldSim, out HashSet<int> allUniqueIds,
-        out HashSet<int> allSpawnerIds)
+    private static void GetAllUniqueAndSpawnerIds(JToken vailWorldSim, out HashSet<int> allUniqueIds)
     {
         allUniqueIds = new HashSet<int>();
-        allSpawnerIds = new HashSet<int>();
 
         foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
         {
             if (actor["UniqueId"]?.Value<int>() is { } uniqueId)
             {
                 allUniqueIds.Add(uniqueId);
-            }
-
-            if (actor["SpawnerId"]?.Value<int>() is { } spawnerId)
-            {
-                allSpawnerIds.Add(spawnerId);
             }
         }
     }
@@ -100,5 +66,69 @@ internal static class ActorCreator
     {
         var templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", filename);
         return File.ReadAllText(templatePath, Encoding.UTF8);
+    }
+
+    public static HashSet<int> CreateActors(JToken vailWorldSim, Position position, ActorType actorType, int spawnCount,
+        int? familyId, int spaceBetween, SpawnPattern spawnPattern)
+    {
+        var newUniqueIds = new HashSet<int>();
+
+        if (vailWorldSim["Actors"] is not JArray actorArray)
+        {
+            return newUniqueIds;
+        }
+
+        GetAllUniqueAndSpawnerIds(vailWorldSim, out var allUniqueIds);
+
+        var templateText = ReadTemplate("actorTemplate.txt")
+            .Replace(@"{uniqueId}", "0")
+            .Replace(@"{typeId}", actorType.Id.ToString())
+            .Replace(@"{actorSeed}", "0");
+        var actorTemplate = JToken.Parse(templateText);
+
+        actorTemplate["Position"] = JToken.FromObject(position);
+        if (familyId != null)
+        {
+            actorTemplate["FamilyId"] = familyId;
+        }
+
+        actorTemplate["GraphMask"] = position.Area.GraphMask;
+
+        var nextUniqueId = 1;
+
+        List<Tuple<float, float>>? distributedCoordinates = null;
+
+        if (spaceBetween > 0 && spawnCount > 0)
+        {
+            distributedCoordinates = position.DistributeCoordinates(spawnCount, spaceBetween, spawnPattern);
+        }
+
+        var random = new Random();
+
+        for (var i = 0; i < spawnCount; i++)
+        {
+            var cloned = actorTemplate.DeepClone();
+
+            nextUniqueId = GetNextFreeUniqueId(allUniqueIds, nextUniqueId);
+            allUniqueIds.Add(nextUniqueId);
+            newUniqueIds.Add(nextUniqueId);
+            cloned["UniqueId"] = nextUniqueId;
+            cloned["ActorSeed"] = random.Next();
+
+            if (distributedCoordinates != null)
+            {
+                if (i >= distributedCoordinates.Count)
+                {
+                    continue;
+                }
+
+                var (newX, newZ) = distributedCoordinates[i];
+                cloned["Position"] = JToken.FromObject(new Position(newX, position.Y, newZ));
+            }
+
+            actorArray.Add(cloned);
+        }
+
+        return newUniqueIds;
     }
 }

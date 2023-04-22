@@ -21,7 +21,7 @@ public partial class ModifyConsumedItemsViewModel
         Load(savegame, gameData.Items);
     }
 
-    public WpfObservableRangeCollection<ConsumedItemWrapper> ConsumedItems { get; } = new();
+    public ObservableCollectionEx<ConsumedItemWrapper> ConsumedItems { get; } = new();
 
     private void Load(Savegame savegame, ItemList items)
     {
@@ -101,7 +101,10 @@ public partial class ModifyConsumedItemsViewModel
             tokensToBeRemoved.Add(entry);
         }
 
-        foreach (var tokenToBeRemoved in tokensToBeRemoved) entries.Remove(tokenToBeRemoved);
+        foreach (var tokenToBeRemoved in tokensToBeRemoved)
+        {
+            entries.Remove(tokenToBeRemoved);
+        }
 
         return tokensToBeRemoved.Count > 0;
     }
@@ -151,7 +154,8 @@ public partial class ModifyConsumedItemsViewModel
     {
         private readonly Item? _item;
 
-        [ObservableProperty] private bool _remove;
+        [ObservableProperty]
+        private bool _remove;
 
         public ConsumedItemWrapper(string key, Item? item)
         {

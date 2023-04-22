@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -18,31 +15,13 @@ namespace SOTFEdit.Model;
 
 public partial class ScrewStructureWrapper : ObservableObject
 {
-    [ObservableProperty] private int _added;
+    [ObservableProperty]
+    private int _added;
 
     private ScrewStructureModificationMode _modificationMode = ScrewStructureModificationMode.None;
 
-    public ScrewStructureModificationMode? ModificationMode
-    {
-        get => _modificationMode;
-        set
-        {
-            if (value is not {} modificationMode)
-            {
-                SetProperty(ref _modificationMode, ScrewStructureModificationMode.None);
-                return;
-            }
-            
-            if (ModificationModes.Contains(modificationMode))
-            {
-                SetProperty(ref _modificationMode, modificationMode);
-            }
-        }
-    }
-
-    [ObservableProperty] private ScrewStructure? _screwStructure;
-
-    public ImmutableSortedSet<ScrewStructureModificationMode> ModificationModes { get; }
+    [ObservableProperty]
+    private ScrewStructure? _screwStructure;
 
     public ScrewStructureWrapper(ScrewStructure? screwStructure, JToken token, int added, Position? position,
         ScrewStructureOrigin origin)
@@ -57,7 +36,58 @@ public partial class ScrewStructureWrapper : ObservableObject
         PctDone = ScrewStructure?.BuildCost is { } buildCost ? 100 * Added / buildCost : -1;
     }
 
-    private static ImmutableSortedSet<ScrewStructureModificationMode> GetModificationModes(ScrewStructureOrigin origin, bool canFinish)
+    public ScrewStructureModificationMode? ModificationMode
+    {
+        get => _modificationMode;
+        set
+        {
+            if (value is not { } modificationMode)
+            {
+                SetProperty(ref _modificationMode, ScrewStructureModificationMode.None);
+                return;
+            }
+
+            if (ModificationModes.Contains(modificationMode))
+            {
+                SetProperty(ref _modificationMode, modificationMode);
+            }
+        }
+    }
+
+    public ImmutableSortedSet<ScrewStructureModificationMode> ModificationModes { get; }
+
+    public JToken Token { get; }
+    public Position? Position { get; }
+    public ScrewStructureOrigin Origin { get; }
+
+    public string Name => ScrewStructure?.Name ?? "???";
+    public string Category => ScrewStructure?.CategoryName ?? TranslationManager.Get("generic.unknown");
+    public int BuildCost => ScrewStructure?.BuildCost ?? -1;
+
+    // ReSharper disable once MemberCanBePrivate.Global
+    public int PctDone { get; }
+
+    public string PctDonePrintable => PctDone == -1 ? "???" : $"{PctDone}%";
+
+    public int? ChangedTypeId { get; private set; }
+
+    public Color PctDoneColor
+    {
+        get
+        {
+            return PctDone switch
+            {
+                -1 => Colors.Aqua,
+                <= 40 => Colors.Red,
+                <= 60 => Colors.Orange,
+                <= 80 => Colors.Yellow,
+                _ => Colors.LawnGreen
+            };
+        }
+    }
+
+    private static ImmutableSortedSet<ScrewStructureModificationMode> GetModificationModes(ScrewStructureOrigin origin,
+        bool canFinish)
     {
         return Enum.GetValues<ScrewStructureModificationMode>()
             .Where(mode => IsModeAllowed(mode, origin, canFinish))
@@ -79,35 +109,6 @@ public partial class ScrewStructureWrapper : ObservableObject
                 return origin == ScrewStructureOrigin.Unfinished && canFinish;
             default:
                 throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
-        }
-    }
-
-    public JToken Token { get; }
-    public Position? Position { get; }
-    public ScrewStructureOrigin Origin { get; }
-
-    public string Name => ScrewStructure?.Name ?? "???";
-    public string Category => ScrewStructure?.CategoryName ?? TranslationManager.Get("generic.unknown");
-    public int BuildCost => ScrewStructure?.BuildCost ?? -1;
-
-    public int PctDone { get; }
-
-    public string PctDonePrintable => PctDone == -1 ? "???" : $"{PctDone}%";
-
-    public int? ChangedTypeId { get; private set; }
-
-    public Color PctDoneColor
-    {
-        get
-        {
-            return PctDone switch
-            {
-                -1 => Colors.Aqua,
-                <= 40 => Colors.Red,
-                <= 60 => Colors.Orange,
-                <= 80 => Colors.Yellow,
-                _ => Colors.LawnGreen
-            };
         }
     }
 

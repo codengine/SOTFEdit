@@ -25,15 +25,12 @@ public partial class ArmorPageViewModel
         _itemList = gameData.Items;
         foreach (var armorItem in
                  _itemList.Where(item => item.Value.IsEquippableArmor).OrderBy(item => item.Value.Name))
-            ArmourTypes.Add(armorItem.Value);
-
-        ArmourView = new ListCollectionView(_armour)
         {
-            SortDescriptions =
-            {
-                new SortDescription("Slot", ListSortDirection.Ascending)
-            }
-        };
+            ArmourTypes.Add(armorItem.Value);
+        }
+
+        ArmourView = CollectionViewSource.GetDefaultView(_armour);
+        ArmourView.SortDescriptions.Add(new SortDescription("Slot", ListSortDirection.Ascending));
 
         _armour.CollectionChanged += (_, _) =>
         {
@@ -72,7 +69,9 @@ public partial class ArmorPageViewModel
         if (armour != null)
         {
             foreach (var armourPiece in armour.Data.PlayerArmourSystem.ArmourPieces)
+            {
                 _armour.Add(new ArmourData(armourPiece, _itemList.GetItem(armourPiece.ItemId)));
+            }
         }
 
         NewArmour.AddArmorCommand.NotifyCanExecuteChanged();
@@ -111,13 +110,19 @@ public partial class ArmorPageViewModel
     [RelayCommand(CanExecute = nameof(HasArmorPieces))]
     private void SetAllToDefault()
     {
-        foreach (var armourData in _armour) armourData.ArmourPiece.RemainingArmourpoints = armourData.DefaultDurability;
+        foreach (var armourData in _armour)
+        {
+            armourData.ArmourPiece.RemainingArmourpoints = armourData.DefaultDurability;
+        }
     }
 
     [RelayCommand(CanExecute = nameof(HasArmorPieces))]
     private void SetAllToMax()
     {
-        foreach (var armourData in _armour) armourData.ArmourPiece.RemainingArmourpoints = armourData.MaxDurability;
+        foreach (var armourData in _armour)
+        {
+            armourData.ArmourPiece.RemainingArmourpoints = armourData.MaxDurability;
+        }
     }
 
     public partial class NewArmourPiece : ObservableObject
@@ -125,7 +130,8 @@ public partial class ArmorPageViewModel
         private readonly Func<bool> _savegameSelected;
         private readonly Collection<ArmourData> _sink;
 
-        [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(AddArmorCommand))]
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(AddArmorCommand))]
         private int _remainingArmourpoints;
 
         [ObservableProperty]
@@ -168,6 +174,7 @@ public partial class ArmorPageViewModel
             var nextSlot = 0;
 
             foreach (var slot in _sink.Select(piece => piece.Slot).OrderBy(slot => slot))
+            {
                 if (slot == nextSlot)
                 {
                     nextSlot = slot switch
@@ -181,6 +188,7 @@ public partial class ArmorPageViewModel
                 {
                     break;
                 }
+            }
 
             var armourPiece = new ArmourPieceModel
             {

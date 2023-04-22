@@ -12,5 +12,5 @@ public class ActorGrouping
     }
 
     public string Name => $"{_name} ({ActorCollections.Count})";
-    public WpfObservableRangeCollection<ActorCollection> ActorCollections { get; } = new();
+    public ObservableCollectionEx<ActorCollection> ActorCollections { get; } = new();
 }

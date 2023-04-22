@@ -33,7 +33,10 @@ public class ItemsStorage : BaseStorage
             baseQ = baseQ.Where(item => restrictedItemIds.Contains(item.Id));
         }
 
-        foreach (var item in baseQ) AddEffectiveSupportedItem(item, storageDefinition, supportedItems);
+        foreach (var item in baseQ)
+        {
+            AddEffectiveSupportedItem(item, storageDefinition, supportedItems);
+        }
 
         return supportedItems.OrderBy(item => item.Name).ToList();
     }
@@ -74,6 +77,7 @@ public class ItemsStorage : BaseStorage
                 if (item.FoodSpoilStorageModuleWrapper is { } moduleWrapper)
                 {
                     for (var i = 0; i < storedItem.Count; i++)
+                    {
                         storageItemBlock.UniqueItems.Add(new UniqueItem
                         {
                             Modules = new List<IStorageModule>
@@ -81,6 +85,7 @@ public class ItemsStorage : BaseStorage
                                 moduleWrapper.FoodSpoilStorageModule
                             }
                         });
+                    }
                 }
 
                 storageBlock.ItemBlocks.Add(storageItemBlock);

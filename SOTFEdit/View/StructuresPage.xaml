@@ -44,7 +44,7 @@
                       VirtualizingPanel.IsVirtualizing="True"
                       VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                       SelectionMode="Single"
-                      ItemsSource="{Binding Structures}" CanUserAddRows="False"
+                      ItemsSource="{Binding StructureView}" CanUserAddRows="False"
                       CanUserResizeColumns="False"
                       CanUserResizeRows="False"
                       HorizontalScrollBarVisibility="Auto"
@@ -57,13 +57,14 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
-                                            <Expander IsExpanded="False">
+                                            <Expander IsExpanded="False"
+                                                      d:DataContext="{d:DesignInstance CollectionViewGroup}">
                                                 <Expander.Header>
                                                     <TextBlock
                                                         Foreground="{DynamicResource MahApps.Brushes.Text}" Margin="3"
                                                         FontWeight="Bold" FontSize="14">
                                                         <TextBlock.Text>
-                                                            <MultiBinding StringFormat="{}{0} ({1} items)">
+                                                            <MultiBinding StringFormat="{}{0} ({1})">
                                                                 <Binding Path="Name" />
                                                                 <Binding Path="ItemCount" />
                                                             </MultiBinding>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -10,6 +12,8 @@ using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Map;
+using SOTFEdit.Model.Map.Static;
 using SOTFEdit.Model.Savegame;
 using SOTFEdit.View;
 
@@ -20,21 +24,28 @@ public partial class MainViewModel : ObservableObject
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly ArmorPageViewModel _armorPageViewModel;
+    private readonly MapManager _mapManager;
 
-    [ObservableProperty] private bool _checkVersionOnStartup;
+    [ObservableProperty]
+    private bool _checkVersionOnStartup;
 
-    [ObservableProperty] private string _lastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
+    [ObservableProperty]
+    private string _lastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
 
-    [ObservableProperty] private double _pinLeft;
+    [ObservableProperty]
+    private double _pinLeft;
 
-    [ObservableProperty] private Position? _pinPos;
+    [ObservableProperty]
+    private Position? _pinPos;
 
-    [ObservableProperty] private double _pinTop;
+    [ObservableProperty]
+    private double _pinTop;
 
     public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage, NpcsPage npcsPage,
-        StructuresPage structuresPage)
+        StructuresPage structuresPage, MapManager mapManager)
     {
         _armorPageViewModel = armorPageViewModel;
+        _mapManager = mapManager;
         GamePage = gamePage;
         NpcsPage = npcsPage;
         StructuresPage = structuresPage;
@@ -390,5 +401,123 @@ public partial class MainViewModel : ObservableObject
     private void TeleportWorldItem()
     {
         WeakReferenceMessenger.Default.Send(new RequestTeleportWorldItemEvent());
+    }
+
+    [RelayCommand]
+    private void OpenMap()
+    {
+        var actorPoiGroups = _mapManager.GetActorPois();
+
+        var structurePoiGroups = _mapManager.GetStructurePois()
+            .Select(kvp => new PoiGroup(false, kvp.Value, kvp.Key, kvp.Value.First().Icon, PoiGroupType.Actors))
+            .ToList();
+
+        var poiGroups = new List<IPoiGrouper>
+        {
+            PoiGroupCollection.ForActors(actorPoiGroups),
+            new PoiGroupCollection(false, TranslationManager.Get("map.structures"), structurePoiGroups)
+        };
+
+        var gameData = Ioc.Default.GetRequiredService<GameData>();
+        var items = gameData.Items;
+
+        if (SavegameManager.SelectedSavegame is { } selectedSavegame)
+        {
+            poiGroups.AddRange(_mapManager.GetWorldItemPois(selectedSavegame, items)
+                .Select(kvp =>
+                    new PoiGroup(false, kvp.Value, kvp.Key, kvp.Value.First().IconSmall, PoiGroupType.WorldItems)));
+
+            var ziplinePois = MapManager.GetZiplinePois(selectedSavegame);
+
+            if (ziplinePois.Count > 0)
+            {
+                var zipPois = new List<IPoi>();
+
+                foreach (var ziplinePoi in ziplinePois)
+                {
+                    zipPois.Add(ziplinePoi.PointA);
+                    zipPois.Add(ziplinePoi.PointB);
+                    zipPois.Add(ziplinePoi);
+                }
+
+                poiGroups.Add(new PoiGroup(false, zipPois, TranslationManager.Get("map.zipLines"),
+                    ZipPointPoi.IconSmall));
+            }
+        }
+
+        var inventoryItems = new HashSet<int>();
+
+        foreach (var inventoryItem in Ioc.Default.GetRequiredService<InventoryPageViewModel>().InventoryCollectionView
+                     .OfType<InventoryItem>())
+        {
+            inventoryItems.Add(inventoryItem.Id);
+        }
+
+        var areaManager = gameData.AreaManager;
+        var rawPois = RawPoiGroupLoader.Load();
+        foreach (var (category, group) in rawPois)
+        {
+            var title = TranslationManager.Get($"poiGroups.{category}");
+
+            switch (category)
+            {
+                case "items":
+                    poiGroups.Add(BuildPoiGrouperForItems(title, group, items, inventoryItems, areaManager));
+                    break;
+                case "bunkers":
+                case "caves":
+                    var caveOrBunkerPois =
+                        group.Pois.Select(poi => CaveOrBunkerPoi.Of(poi, items, group.Icon!, inventoryItems,
+                            areaManager, group.AlwaysEnabled)).ToList();
+                    poiGroups.Add(new PoiGroup(group.AlwaysEnabled, caveOrBunkerPois, title,
+                        caveOrBunkerPois.First().IconSmall));
+                    break;
+                default:
+                    var informationalPois = group.Pois
+                        .Select(poi => DefaultGenericInformationalPoi.Of(poi, items, group.Icon!, inventoryItems,
+                            areaManager, group.AlwaysEnabled))
+                        .ToList();
+                    poiGroups.Add(new PoiGroup(group.AlwaysEnabled,
+                        informationalPois,
+                        title, informationalPois.First().IconSmall));
+                    break;
+            }
+        }
+
+        var playerPageViewModel = Ioc.Default.GetRequiredService<PlayerPageViewModel>();
+        var playerPos = playerPageViewModel.PlayerState.Pos;
+
+        poiGroups.Add(new PoiGroup(true, new List<IPoi>
+        {
+            new PlayerPoi(playerPos)
+            {
+                Enabled = true
+            }
+        }, TranslationManager.Get("player.mapGroupName"), PlayerPoi.IconSmall));
+
+        WeakReferenceMessenger.Default.Send(new RequestOpenMapEvent(poiGroups.OrderBy(group => group.Title).ToList()));
+    }
+
+    private static IPoiGrouper BuildPoiGrouperForItems(string title, RawPoiGroup group, ItemList itemList,
+        HashSet<int> inventoryItems, AreaMaskManager areaMaskManager)
+    {
+        var groups = new List<PoiGroup>();
+
+        var poisByType = group.Pois
+            .Select(poi => ItemPoi.Of(poi, itemList, inventoryItems, areaMaskManager, group.AlwaysEnabled))
+            .Where(poi => poi != null)
+            .Select(poi => poi!)
+            .GroupBy(poi => poi.Item.Item.Type)
+            .OrderBy(g => g.Key)
+            .ToDictionary(g => g.Key, g => g.ToList());
+
+        foreach (var (type, pois) in poisByType)
+        {
+            groups.Add(new PoiGroup(group.AlwaysEnabled, pois, TranslationManager.Get($"itemTypes.{type}"),
+                pois.First().IconSmall,
+                PoiGroupType.Items));
+        }
+
+        return new PoiGroupCollection(group.AlwaysEnabled, title, groups, poiGroupType: PoiGroupType.Items);
     }
 }

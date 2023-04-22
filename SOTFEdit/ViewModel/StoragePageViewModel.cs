@@ -21,8 +21,12 @@ public partial class StoragePageViewModel : ObservableObject
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     private readonly Dictionary<int, StorageDefinition> _storageDefinitions;
     private readonly StorageFactory _storageFactory;
-    [ObservableProperty] private IStorage? _selectedStorage;
-    [ObservableProperty] private UserControl? _selectedUserControl;
+
+    [ObservableProperty]
+    private IStorage? _selectedStorage;
+
+    [ObservableProperty]
+    private UserControl? _selectedUserControl;
 
     public StoragePageViewModel(StorageFactory storageFactory, GameData gameData)
     {
@@ -50,7 +54,9 @@ public partial class StoragePageViewModel : ObservableObject
     {
         foreach (var storageCollection in StorageCollections)
         foreach (var storage in storageCollection.Storages)
+        {
             storage.SetAllToMax();
+        }
     }
 
     [RelayCommand]
@@ -87,7 +93,11 @@ public partial class StoragePageViewModel : ObservableObject
             return;
         }
 
-        foreach (var storageCollection in storageCollectionsById.Values) StorageCollections.Add(storageCollection);
+        foreach (var storageCollection in storageCollectionsById.Values)
+        {
+            StorageCollections.Add(storageCollection);
+        }
+
         FillAllStoragesCommand.NotifyCanExecuteChanged();
     }
 

@@ -138,7 +138,9 @@ public class GameSetupPageViewModel : ObservableObject
                                     .LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData)
                                     ?.Parent.ToObject<GameSetupDataModel>()?.Data.GameSetup.Settings ??
                                 Enumerable.Empty<GameSettingLightModel>())
+        {
             _gameSettings.Add(setting.Name, setting);
+        }
 
         OnPropertyChanged(nameof(SelectedMode));
         OnPropertyChanged(nameof(Uid));

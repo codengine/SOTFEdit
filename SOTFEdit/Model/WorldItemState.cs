@@ -1,3 +1,5 @@
-﻿namespace SOTFEdit.Model;
+﻿using Newtonsoft.Json;
 
-public record WorldItemState(int ItemId, string ObjectNameId, string Group, Position Position);
+namespace SOTFEdit.Model;
+
+public record WorldItemState(int ItemId, string ObjectNameId, [property: JsonIgnore] string Group, Position Position);

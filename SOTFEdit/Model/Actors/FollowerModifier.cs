@@ -6,6 +6,7 @@ using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData;
 using SOTFEdit.Model.SaveData.Actor;
 using SOTFEdit.Model.Savegame;
+using SOTFEdit.ViewModel;
 using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.Model.Actors;
@@ -354,7 +355,9 @@ public class FollowerModifier
                 continue;
             }
 
-            if (actor["Position"] is { } position)
+            var uniqueId = actor["UniqueId"]?.Value<int>();
+
+            if (uniqueId == followerModel.UniqueId && actor["Position"] is { } position)
             {
                 var oldPosition = position.ToObject<Position>();
 
@@ -364,8 +367,6 @@ public class FollowerModifier
                     hasChangesInVailWorldSim = true;
                 }
             }
-
-            var uniqueId = actor["UniqueId"]?.Value<int>();
 
             var itemIds = followerModel.GetSelectedInventoryItemIds();
             hasChangesInVailWorldSim = EquipItemsInActor(actor, itemIds) || hasChangesInVailWorldSim;
@@ -426,14 +427,14 @@ public class FollowerModifier
             return true;
         }
 
-        if (followersInfluenceMemory["Influences"] is not JArray followersInfluences ||
-            HasDifferencesInMemories(followersInfluences, influences))
+        if (followersInfluenceMemory["Influences"] is JArray followersInfluences &&
+            !HasDifferencesInMemories(followersInfluences, influences))
         {
-            followersInfluenceMemory["Influences"] = JToken.FromObject(influences);
-            return true;
+            return false;
         }
 
-        return false;
+        followersInfluenceMemory["Influences"] = JToken.FromObject(influences);
+        return true;
     }
 
     private static bool HasDifferencesInMemories(JArray existingInfluences,
@@ -510,16 +511,12 @@ public class FollowerModifier
         var hasChangesInVailWorldSim = false;
         var hasChangesInNpcItemInstances = false;
 
-        var basePos = pos.WithYOffset(5);
-        var numRows = (int)Math.Sqrt(count);
-        var numCols = count / numRows;
+        var basePos = new Position(pos.X + 1, pos.Y + 5, pos.Z + 1);
+        var coordinates = basePos.DistributeCoordinates(count, 2, SpawnPattern.Grid);
 
-        for (var row = 0; row < numRows; row++)
-        for (var col = 0; col < numCols; col++)
+        foreach (var (newX, newZ) in coordinates)
         {
-            // Create a new Position object with the new coordinates
-            var usedPos = new Position(basePos.X + col * 1, basePos.Y, basePos.Z + row * 2);
-
+            var usedPos = new Position(newX, basePos.Y, newZ);
             if (ActorCreator.CreateFollower(typeId, vailWorldSim, usedPos) is not { } kvp)
             {
                 continue;
