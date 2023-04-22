@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.9.4
+
+### Features
+
+- Added some more items and icons
+- Ability to modify items of Kelvin (right now Tarp only)
+
+### Improvements
+
+- Player and follower page now have scrollbars on smaller window sizes
+
 ## v0.9.3
 
 ### Features

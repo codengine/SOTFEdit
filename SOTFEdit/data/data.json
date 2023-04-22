@@ -84,7 +84,10 @@
     {
       "id": 357,
       "type": "weapon",
-      "image": "Airgun.png"
+      "image": "Airgun.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 358,
@@ -115,7 +118,10 @@
     },
     {
       "id": 361,
-      "type": "weapon"
+      "type": "weapon",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 362,
@@ -155,7 +161,11 @@
     },
     {
       "id": 366,
-      "type": "weapon"
+      "type": "weapon",
+      "storageMax": {
+        "inventory": 5
+      },
+      "image": "TrackerDart.png"
     },
     {
       "id": 367,
@@ -253,7 +263,10 @@
     {
       "id": 377,
       "type": "weapon",
-      "image": "ScopeMod.png"
+      "image": "ScopeMod.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 378,
@@ -293,12 +306,18 @@
     },
     {
       "id": 382,
-      "type": "weapon"
+      "type": "weapon",
+      "storageMax": {
+        "inventory": 10
+      }
     },
     {
       "id": 383,
       "type": "weapon",
-      "image": "RifleRailMod.png"
+      "image": "RifleRailMod.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 384,
@@ -322,7 +341,10 @@
     {
       "id": 387,
       "type": "ammo",
-      "image": "Ammo.png"
+      "image": "Ammo.png",
+      "storageMax": {
+        "inventory": 10
+      }
     },
     {
       "id": 388,
@@ -635,7 +657,10 @@
     {
       "id": 427,
       "type": "printed",
-      "image": "3DPrintedKnife.png"
+      "image": "3DPrintedKnife.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 428,
@@ -649,7 +674,10 @@
     {
       "id": 429,
       "type": "printed",
-      "image": "3DPrintedScubaMask.png"
+      "image": "3DPrintedScubaMask.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 430,
@@ -914,7 +942,10 @@
     {
       "id": 457,
       "type": "ammo",
-      "image": "Ammo.png"
+      "image": "Ammo.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 458,
@@ -937,7 +968,11 @@
     },
     {
       "id": 460,
-      "type": "misc"
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 10
+      }
     },
     {
       "id": 461,
@@ -960,7 +995,10 @@
     {
       "id": 463,
       "type": "clothes",
-      "image": "Flippers.png"
+      "image": "Flippers.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 464,
@@ -1019,7 +1057,10 @@
     {
       "id": 470,
       "type": "weapon",
-      "image": "AirgunScope.png"
+      "image": "AirgunScope.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 471,
@@ -1137,7 +1178,10 @@
     },
     {
       "id": 483,
-      "type": "food"
+      "type": "food",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 484,
@@ -1178,7 +1222,10 @@
     {
       "id": 488,
       "type": "clothes",
-      "image": "Clothing.png"
+      "image": "Clothing.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 489,
@@ -1260,7 +1307,11 @@
     },
     {
       "id": 497,
-      "type": "food"
+      "type": "food",
+      "storageMax": {
+        "inventory": 1
+      },
+      "image": "FoodTray.png"
     },
     {
       "id": 498,
@@ -1327,7 +1378,10 @@
     {
       "id": 505,
       "type": "misc",
-      "image": "LaserMeasureTool.png"
+      "image": "LaserMeasureTool.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 506,
@@ -1376,7 +1430,11 @@
     },
     {
       "id": 512,
-      "type": "food"
+      "type": "food",
+      "storageMax": {
+        "inventory": 1
+      },
+      "image": "FoodTrayFilled.png"
     },
     {
       "id": 513,
@@ -1393,7 +1451,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "SpringTrigger.png"
     },
     {
       "id": 515,
@@ -1401,7 +1460,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 516,
@@ -1409,12 +1469,16 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 517,
       "type": "misc",
-      "image": "CookingPot.png"
+      "image": "CookingPot.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 518,
@@ -1450,7 +1514,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 522,
@@ -1511,7 +1576,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 529,
@@ -1519,7 +1585,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 10
-      }
+      },
+      "image": "Sat.png"
     },
     {
       "id": 530,
@@ -1563,7 +1630,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 535,
@@ -1571,7 +1639,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 536,
@@ -1579,7 +1648,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 537,
@@ -1587,7 +1657,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 538,
@@ -1595,7 +1666,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 539,
@@ -1603,7 +1675,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 540,
@@ -1611,7 +1684,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 541,
@@ -1619,7 +1693,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 542,
@@ -1627,7 +1702,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 543,
@@ -1635,7 +1711,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 544,
@@ -1643,7 +1720,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 545,
@@ -1651,7 +1729,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 546,
@@ -1659,7 +1738,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 547,
@@ -1667,7 +1747,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 548,
@@ -1675,7 +1756,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 549,
@@ -1710,7 +1792,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 553,
@@ -1774,7 +1857,11 @@
     },
     {
       "id": 559,
-      "type": "printed"
+      "type": "printed",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 20
+      }
     },
     {
       "id": 560,
@@ -1787,7 +1874,10 @@
     },
     {
       "id": 561,
-      "type": "printed"
+      "type": "printed",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 562,
@@ -1795,7 +1885,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "HotelNotice.png"
     },
     {
       "id": 563,
@@ -1803,7 +1894,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "HotelNotice.png"
     },
     {
       "id": 564,
@@ -1811,7 +1903,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "HotelNotice.png"
     },
     {
       "id": 565,
@@ -1819,7 +1912,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "HotelNotice.png"
     },
     {
       "id": 566,
@@ -1880,7 +1974,10 @@
       "type": "armor",
       "isEquippableArmor": false,
       "isWearableCloth": true,
-      "image": "GoldArmour.png"
+      "image": "GoldArmour.png",
+      "storageMax": {
+        "inventory": 1
+      }
     },
     {
       "id": 573,
@@ -2020,7 +2117,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 590,
@@ -2043,12 +2141,13 @@
     },
     {
       "id": 592,
-      "type": "armor",
+      "type": "misc",
       "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
         "inventory": 10
-      }
+      },
+      "image": "CreepyMeat.png"
     },
     {
       "id": 593,
@@ -2224,7 +2323,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 612,
@@ -2232,7 +2332,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 613,
@@ -2240,7 +2341,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 614,
@@ -2248,7 +2350,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 615,
@@ -2256,7 +2359,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 616,
@@ -2264,7 +2368,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 617,
@@ -2272,7 +2377,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 618,
@@ -2383,6 +2489,15 @@
       "image": "Book.png"
     },
     {
+      "id": 632,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
       "id": 633,
       "type": "document",
       "storageMax": {
@@ -2407,6 +2522,14 @@
         "inventory": 8
       },
       "image": "Lightbulb.png"
+    },
+    {
+      "id": 636,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 30
+      }
     },
     {
       "id": 637,

@@ -10,8 +10,12 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewModel:PlayerPageViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <st:AutoGrid Columns="*,*">
-        <st:AutoGrid.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
             <Style x:Key="PlayerSliderStyle" TargetType="{x:Type Slider}"
                    BasedOn="{StaticResource MahApps.Styles.Slider.Win10}">
                 <Setter Property="TickFrequency" Value="1" />
@@ -27,9 +31,10 @@
             <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
                 <Setter Property="Margin" Value="0 0 0 10" />
             </Style>
-        </st:AutoGrid.Resources>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        </Grid.Resources>
+        
             <GroupBox Header="{infrastructure:Translate 'tabs.player'}" VerticalAlignment="Top" Margin="0 0 0 10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <st:AutoGrid Columns="Auto,*" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <StackPanel VerticalAlignment="Top" Margin="10">
                         <Image Source="pack://siteoforigin:,,,/images/player.jpg" Width="197" Height="246"
@@ -57,33 +62,52 @@
                                Content="{infrastructure:Translate 'player.areaMask'}" />
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Binding PlayerState.Pos.AreaMask.PrintableString, FallbackValue='?'}" />
-                        <Label Style="{StaticResource LabelStyle}"
-                               Content="{infrastructure:Translate 'player.strengthLevel'}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Strength.png" Width="32" Height="32" />
+                            <Label Style="{StaticResource LabelStyle}"
+                                   Content="{infrastructure:Translate 'player.strengthLevel'}" />
+                        </StackPanel>
                         <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Minimum="0" Interval="1"
                                            NumericInputMode="Numbers"
                                            Value="{Binding PlayerState.StrengthLevel, UpdateSourceTrigger=PropertyChanged}" />
-                        <Label Style="{StaticResource LabelStyle}"
-                               Content="{infrastructure:Translate 'player.maxHealth'}" />
+                        
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Heal.png" Width="32" Height="32" />
+                            <Label Style="{StaticResource LabelStyle}"
+                                   Content="{infrastructure:Translate 'player.maxHealth'}" />
+                        </StackPanel>
                         <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Minimum="0" Interval="1"
                                            NumericInputMode="Decimal"
                                            Value="{Binding PlayerState.MaxHealth, UpdateSourceTrigger=PropertyChanged}" />
-                        <Label Style="{StaticResource LabelStyle}"
-                               Content="{infrastructure:Translate 'player.currentHealth'}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Heal.png" Width="32" Height="32" />
+                            <Label Style="{StaticResource LabelStyle}"
+                                   Content="{infrastructure:Translate 'player.currentHealth'}" />
+                        </StackPanel>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="0.1"
                                 Maximum="{Binding PlayerState.MaxHealth}"
                                 Value="{Binding PlayerState.CurrentHealth, UpdateSourceTrigger=PropertyChanged}" />
-                        <Label Style="{StaticResource LabelStyle}"
-                               Content="{infrastructure:Translate 'actors.stats.fullness'}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Fullness.png" Width="32" Height="32" />
+                            <Label Style="{StaticResource LabelStyle}"
+                                   Content="{infrastructure:Translate 'actors.stats.fullness'}" />
+                        </StackPanel>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="0.0"
                                 Maximum="100" Interval="10"
                                 Value="{Binding PlayerState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
-                        <Label Style="{StaticResource LabelStyle}"
-                               Content="{infrastructure:Translate 'actors.stats.hydration'}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Hydration.png" Width="32" Height="32" />
+                            <Label Style="{StaticResource LabelStyle}"
+                                   Content="{infrastructure:Translate 'actors.stats.hydration'}" />
+                        </StackPanel>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="0.0"
                                 Maximum="100" Interval="10"
                                 Value="{Binding PlayerState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
-                        <Label Style="{StaticResource LabelStyle}"
-                               Content="{infrastructure:Translate 'actors.stats.rest'}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="pack://siteoforigin:,,,/images/icons/Rested.png" Width="32" Height="32" />
+                            <Label Style="{StaticResource LabelStyle}"
+                                   Content="{infrastructure:Translate 'actors.stats.rest'}" />
+                        </StackPanel>
                         <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="0.0"
                                 Maximum="100" Interval="10"
                                 Value="{Binding PlayerState.Rest, UpdateSourceTrigger=PropertyChanged}" />
@@ -137,8 +161,8 @@
                                   SelectedItem="{Binding PlayerState.SelectedCloth}" />
                     </st:AutoGrid>
                 </st:AutoGrid>
+                </ScrollViewer>
             </GroupBox>
-        </ScrollViewer>
-        <ContentPresenter Content="{Binding ArmorPage}" Margin="5 0 0 0" VerticalAlignment="Top" />
-    </st:AutoGrid>
+        <ContentPresenter Grid.Column="1" Content="{Binding ArmorPage}" Margin="5 0 0 0" VerticalAlignment="Top" />
+    </Grid>
 </UserControl>
