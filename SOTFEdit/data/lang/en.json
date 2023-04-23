@@ -300,6 +300,7 @@
     },
     "headers": {
       "unfinishedStructures": "Unfinished Structures",
+      "finishedStructures": "Finished Structures",
       "batch": "Batch"
     },
     "buttons": {
@@ -307,6 +308,7 @@
       "unmodifyAll": "Un-modify all",
       "setAllToRemove": "Set all to \"Remove\"",
       "setAllToFinish": "Set all to \"Finish\"",
+      "setAllToAlmostFinish": "Set all to \"Almost Finish\"",
       "setAllToUnfinish": "Set all to \"Unfinish\""
     },
     "types": {
@@ -350,6 +352,7 @@
     "modificationMode": {
       "None": "None",
       "Remove": "Remove",
+      "AlmostFinish": "Almost Finish",
       "Finish": "Finish",
       "Unfinish": "Un-finish"
     }
@@ -664,6 +667,7 @@
       "halfChopped": "Half-chopped",
       "gone": "Gone",
       "stumps": "Stumps",
+      "pctRegrow": "Regrow Percent",
       "messages": {
         "noTreesRegrown": "No trees with state \"{0}\" regrown",
         "success": "{0} trees with previous state \"{1}\" should now have regrown. Please save to persist the changes."

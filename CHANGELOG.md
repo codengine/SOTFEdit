@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.9.5
+
+### Features
+
+- Added editing of already finished structures (unfinish, almost finish, remove)
+- Regrow trees now as a percent selector, which lets you decide how many trees you want to regrow
+
+### Improvements
+
+- Items in storages should now keep their modules and attachments
+- Added grouping and scroll bars to structure list
+- Added count of stumps/gone/half-chopped to "Regrow Trees" tool
+
+### Fixes
+
+- Fixed error when items with special modules/attachments were stored at storages
+
 ## v0.9.4
 
 ### Features

@@ -88,7 +88,7 @@
                           VirtualizingPanel.VirtualizationMode="Recycling"
                           VirtualizingPanel.IsVirtualizing="True"
                           SelectionMode="Single"
-                          ItemsSource="{Binding InventoryCollectionView, IsAsync=True}" CanUserAddRows="False"
+                          ItemsSource="{Binding InventoryCollectionView}" CanUserAddRows="False"
                           CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:InventoryItem}">
@@ -144,7 +144,7 @@
                           SelectionMode="Single"
                           VirtualizingPanel.VirtualizationMode="Recycling"
                           VirtualizingPanel.IsVirtualizing="True"
-                          ItemsSource="{Binding UnassignedItemsCollectionView, IsAsync=True}" IsReadOnly="True">
+                          ItemsSource="{Binding UnassignedItemsCollectionView}" IsReadOnly="True">
                     <DataGrid.Resources>
                         <DataTemplate x:Key="ActionButtons" DataType="{x:Type viewModel:InventoryItem}">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">

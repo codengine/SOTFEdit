@@ -28,7 +28,7 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
         var obj = JObject.Load(reader); // Throws an exception if the current token is not an object.
         if (obj["ModuleId"]?.Value<int>() is not { } moduleId)
         {
-            return null;
+            return new GenericModule(-1, obj);
         }
 
         var instance = moduleId switch
@@ -36,7 +36,7 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
             1 => BuildSourceActorStorageModule(obj),
             3 => BuildFoodSpoilModule(moduleId, obj),
             6 => BuildLogStorageModule(),
-            _ => BuildGenericModule(moduleId)
+            _ => BuildGenericModule(moduleId, obj)
         };
 
         using var sr = obj.CreateReader();
@@ -52,9 +52,9 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
                                             SourceActorStorageModule.DefaultActorType);
     }
 
-    private static IStorageModule BuildGenericModule(int moduleId)
+    private static IStorageModule BuildGenericModule(int moduleId, JObject moduleToken)
     {
-        return new GenericModule(moduleId);
+        return new GenericModule(moduleId, moduleToken);
     }
 
     private static IStorageModule BuildLogStorageModule()

@@ -140,7 +140,8 @@ public partial class NpcsPageViewModel : ObservableObject
                 new ActorCollection(
                     _actorTypes.GetValueOrDefault(g.Key)?.Name ?? TranslationManager.Get("generic.unknown"),
                     g.ToList()))
-            .OrderBy(c => c.Name));
+            .OrderBy(c => c.Name)
+        );
         _actorsByFamily.ReplaceRange(actors.Where(actor => actor.FamilyId != null)
             .OrderBy(actor => actor.GraphMask).ThenBy(actor => actor.TypeId)
             .GroupBy(actor => actor.FamilyId)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace SOTFEdit.Model.SaveData.Storage;
 
@@ -8,6 +9,7 @@ public class StorageSaveData
 {
     public int Id { get; init; }
     public Position? Pos { get; init; }
+    public JToken? Rot { get; init; }
     public List<StorageBlock> Storages { get; init; } = new();
 
     private bool Equals(StorageSaveData other)

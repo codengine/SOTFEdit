@@ -12,15 +12,8 @@
              HorizontalAlignment="Center"
              VerticalAlignment="Top"
              d:DataContext="{d:DesignInstance viewModel:StructuresPageViewModel}">
-
-    <Grid>
+    <Grid HorizontalAlignment="Stretch">
         <Grid.Resources>
-            <ObjectDataProvider x:Key="ScrewStructureModificationModes" ObjectType="{x:Type local:EnumHelper}"
-                                MethodName="GetAllEnumValues">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type Type="model:ScrewStructureModificationMode" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
             <converters:TranslationConverter x:Key="TranslationConverter" />
         </Grid.Resources>
         <Grid.ColumnDefinitions>
@@ -30,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <GroupBox Padding="10" Margin="0 0 10 0" Header="{local:Translate 'structures.headers.unfinishedStructures'}"
+        <GroupBox Padding="10" Margin="0 0 10 0" Header="{local:Translate 'tabs.structures'}"
                   VerticalAlignment="Top" MinWidth="500"
                   HorizontalAlignment="Stretch">
             <GroupBox.Resources>
@@ -49,23 +42,41 @@
                       EnableColumnVirtualization="True" AutoGenerateColumns="False"
                       VirtualizingPanel.VirtualizationMode="Recycling"
                       VirtualizingPanel.IsVirtualizing="True"
+                      VirtualizingPanel.IsVirtualizingWhenGrouping="True"
                       SelectionMode="Single"
-                      ItemsSource="{Binding Structures, IsAsync=True}" CanUserAddRows="False"
+                      ItemsSource="{Binding Structures}" CanUserAddRows="False"
                       CanUserResizeColumns="False"
                       CanUserResizeRows="False"
-                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
                       CanUserDeleteRows="False">
                 <DataGrid.GroupStyle>
                     <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate DataType="{x:Type GroupItem}">
-                                <TextBlock Text="{Binding Name}"
-                                           Foreground="{DynamicResource MahApps.Brushes.AccentBase}" Margin="3"
-                                           FontWeight="Bold" FontSize="14" />
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander IsExpanded="False">
+                                                <Expander.Header>
+                                                    <TextBlock
+                                                        Foreground="{DynamicResource MahApps.Brushes.Text}" Margin="3"
+                                                        FontWeight="Bold" FontSize="14">
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}{0} ({1} items)">
+                                                                <Binding Path="Name" />
+                                                                <Binding Path="ItemCount" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
                     </GroupStyle>
                 </DataGrid.GroupStyle>
                 <DataGrid.Columns>
@@ -131,7 +142,7 @@
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
                                 <StackPanel Orientation="Horizontal">
                                     <ComboBox SelectedValuePath="Content" Margin="0 0 6 0"
-                                              ItemsSource="{Binding Source={StaticResource ScrewStructureModificationModes}}"
+                                              ItemsSource="{Binding ModificationModes}"
                                               SelectedItem="{Binding ModificationMode, UpdateSourceTrigger=PropertyChanged}">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -150,7 +161,7 @@
             </DataGrid>
         </GroupBox>
         <GroupBox Header="{local:Translate 'structures.headers.batch'}" VerticalAlignment="Top" Grid.Column="1">
-            <st:AutoGrid Columns="Auto" ChildMargin="3">
+            <st:AutoGrid Columns="Auto" Rows="Auto,Auto,Auto" ChildMargin="4">
                 <TextBlock Text="{local:Translate 'structures.structureTypeSelectorDisclaimer'}" />
                 <ComboBox ItemsSource="{Binding StructureTypes}"
                           SelectedItem="{Binding BatchSelectedStructureType, UpdateSourceTrigger=PropertyChanged}">
@@ -171,18 +182,86 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button Padding="10" Command="{Binding SetModificationModeCommand}" CommandParameter="{x:Null}"
-                        Content="{local:Translate 'structures.buttons.unmodifyAll'}" />
-                <Button Padding="10" Background="DarkRed" Command="{Binding SetModificationModeCommand}"
-                        CommandParameter="{x:Static model:ScrewStructureModificationMode.Remove}"
-                        Content="{local:Translate 'structures.buttons.setAllToRemove'}" />
-                <Button Padding="10" Background="{DynamicResource MahApps.Brushes.Accent}"
-                        Command="{Binding SetModificationModeCommand}"
-                        CommandParameter="{x:Static model:ScrewStructureModificationMode.Finish}"
-                        Content="{local:Translate 'structures.buttons.setAllToFinish'}" />
-                <Button Padding="10" Command="{Binding SetModificationModeCommand}"
-                        CommandParameter="{x:Static model:ScrewStructureModificationMode.Unfinish}"
-                        Content="{local:Translate 'structures.buttons.setAllToUnfinish'}" />
+                <GroupBox Header="{local:Translate 'structures.headers.unfinishedStructures'}">
+                    <st:AutoGrid Columns="*" ChildMargin="3">
+                        <Button Padding="10" Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.unmodifyAll'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper ModificationMode="{x:Null}"
+                                                                         Origin="Unfinished" />
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Padding="10" Background="DarkRed" Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.setAllToRemove'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper
+                                    ModificationMode="{x:Static model:ScrewStructureModificationMode.Remove}"
+                                    Origin="Unfinished" />
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Padding="10" Background="{DynamicResource MahApps.Brushes.Accent}"
+                                Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.setAllToAlmostFinish'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper
+                                    ModificationMode="{x:Static model:ScrewStructureModificationMode.AlmostFinish}"
+                                    Origin="Unfinished" />
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Padding="10" Background="{DynamicResource MahApps.Brushes.Accent}"
+                                Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.setAllToFinish'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper
+                                    ModificationMode="{x:Static model:ScrewStructureModificationMode.Finish}"
+                                    Origin="Unfinished" />
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Padding="10" Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.setAllToUnfinish'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper
+                                    ModificationMode="{x:Static model:ScrewStructureModificationMode.Unfinish}"
+                                    Origin="Unfinished" />
+                            </Button.CommandParameter>
+                        </Button>
+                    </st:AutoGrid>
+                </GroupBox>
+                <GroupBox Header="{local:Translate 'structures.headers.finishedStructures'}">
+                    <st:AutoGrid Columns="*" ChildMargin="3">
+                        <Button Padding="10" Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.unmodifyAll'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper ModificationMode="{x:Null}" Origin="Finished" />
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Padding="10" Background="DarkRed" Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.setAllToRemove'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper
+                                    ModificationMode="{x:Static model:ScrewStructureModificationMode.Remove}"
+                                    Origin="Finished" />
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Padding="10" Background="{DynamicResource MahApps.Brushes.Accent}"
+                                Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.setAllToAlmostFinish'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper
+                                    ModificationMode="{x:Static model:ScrewStructureModificationMode.AlmostFinish}"
+                                    Origin="Finished" />
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Padding="10" Command="{Binding SetModificationModeCommand}"
+                                Content="{local:Translate 'structures.buttons.setAllToUnfinish'}">
+                            <Button.CommandParameter>
+                                <model:ScrewStructureModificationWrapper
+                                    ModificationMode="{x:Static model:ScrewStructureModificationMode.Unfinish}"
+                                    Origin="Finished" />
+                            </Button.CommandParameter>
+                        </Button>
+                    </st:AutoGrid>
+                </GroupBox>
             </st:AutoGrid>
         </GroupBox>
     </Grid>

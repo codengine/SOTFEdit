@@ -8,6 +8,7 @@
                  xmlns:model="clr-namespace:SOTFEdit.Model"
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:st="http://schemas.spicytaco.io/"
                  mc:Ignorable="d"
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
@@ -20,38 +21,28 @@
                  IsMinButtonEnabled="False"
                  d:DataContext="{d:DesignInstance viewModel:RegrowTreesViewModel}"
                  TitleCharacterCasing="Normal"
-                 Title="{infrastructure:Translate 'windows.regrowTrees.title'}" Height="450" Width="800">
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-        <StackPanel.Resources>
-            <converters:VegetationStateToBooleanConverter
-                x:Key="VegetationStateToBooleanConverter" />
-            <Style TargetType="{x:Type CheckBox}"
-                   BasedOn="{StaticResource MahApps.Styles.CheckBox}">
-                <Setter Property="Margin" Value="0 0 10 0" />
-            </Style>
-        </StackPanel.Resources>
-        <mah:ToggleSwitch OnContent="{infrastructure:Translate 'windows.regrowTrees.all'}"
-                          OffContent="{infrastructure:Translate 'windows.regrowTrees.all'}"
-                          IsOn="{Binding VegetationStateIsAllSelected}" />
-        <mah:ToggleSwitch OnContent="{infrastructure:Translate 'windows.regrowTrees.gone'}"
-                          OffContent="{infrastructure:Translate 'windows.regrowTrees.gone'}"
-                          IsOn="{Binding 
-                                Path=VegetationStateSelected,
-                                Converter={StaticResource VegetationStateToBooleanConverter},
-                                ConverterParameter={x:Static model:VegetationState.Gone}}" />
-        <mah:ToggleSwitch OnContent="{infrastructure:Translate 'windows.regrowTrees.halfChopped'}"
-                          OffContent="{infrastructure:Translate 'windows.regrowTrees.halfChopped'}"
-                          IsOn="{Binding 
-                                Path=VegetationStateSelected,
-                                Converter={StaticResource VegetationStateToBooleanConverter},
-                                ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
-        <mah:ToggleSwitch OnContent="{infrastructure:Translate 'windows.regrowTrees.stumps'}"
-                          OffContent="{infrastructure:Translate 'windows.regrowTrees.stumps'}"
-                          IsOn="{Binding 
-                                Path=VegetationStateSelected,
-                                Converter={StaticResource VegetationStateToBooleanConverter},
-                                ConverterParameter={x:Static model:VegetationState.Stumps}}" />
-        <Button Command="{Binding SaveCommand}" Padding="10" FontSize="14"
-                Content="{infrastructure:Translate 'windows.regrowTrees.saveButton'}" />
-    </StackPanel>
+                 Title="{infrastructure:Translate 'windows.regrowTrees.title'}">
+    <mah:MetroWindow.Resources>
+        <converters:VegetationStateToBooleanConverter
+            x:Key="VegetationStateToBooleanConverter" />
+        <Style TargetType="{x:Type CheckBox}"
+               BasedOn="{StaticResource MahApps.Styles.CheckBox}">
+            <Setter Property="Margin" Value="0 0 10 0" />
+        </Style>
+    </mah:MetroWindow.Resources>
+    <st:AutoGrid Margin="20" ChildMargin="4" Columns="Auto,Auto" ChildVerticalAlignment="Center">
+        <st:AutoGrid Columns="*,Auto" Grid.ColumnSpan="2" ChildMargin="4">
+            <Slider Minimum="1" Maximum="100" AutoToolTipPlacement="TopLeft" Value="{Binding PctRegrow}"></Slider>
+            <Label Content="{infrastructure:Translate 'windows.regrowTrees.pctRegrow'}" />
+        </st:AutoGrid>
+        <Label Content="{Binding PrintAll}" />
+        <mah:ToggleSwitch IsOn="{Binding VegetationStateIsAllSelected}" />
+        <Label Content="{Binding PrintGone}" />
+        <mah:ToggleSwitch IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.Gone}}" />
+        <Label Content="{Binding PrintHalfChopped}" />
+        <mah:ToggleSwitch IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.HalfChopped}}" />
+        <Label Content="{Binding PrintStumps}" />
+        <mah:ToggleSwitch IsOn="{Binding Path=VegetationStateSelected, Converter={StaticResource VegetationStateToBooleanConverter}, ConverterParameter={x:Static model:VegetationState.Stumps}}" />
+        <Button HorizontalAlignment="Center" Command="{Binding SaveCommand}" Padding="10" FontSize="14" Grid.ColumnSpan="2" Content="{infrastructure:Translate 'windows.regrowTrees.saveButton'}" />
+    </st:AutoGrid>
 </mah:MetroWindow>

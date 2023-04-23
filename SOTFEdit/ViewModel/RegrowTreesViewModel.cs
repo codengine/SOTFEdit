@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
@@ -18,9 +22,59 @@ public partial class RegrowTreesViewModel : ObservableObject
     private VegetationState _vegetationStateSelected =
         VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
 
-    public RegrowTreesViewModel(ICloseable parent)
+    [ObservableProperty]
+    private int _pctRegrow = 100;
+
+    public RegrowTreesViewModel(ICloseable parent, Savegame selectedSavegame)
     {
         _parent = parent;
+        LoadTreeCounts(selectedSavegame);
+    }
+
+    public string PrintAll => $"{TranslationManager.Get("windows.regrowTrees.all")} ({(_countGone + _countStumps + _countHalfChopped)})";
+    public string PrintStumps => $"{TranslationManager.Get("windows.regrowTrees.stumps")} ({_countStumps})";
+    public string PrintHalfChopped => $"{TranslationManager.Get("windows.regrowTrees.halfChopped")} ({_countHalfChopped})";
+    public string PrintGone => $"{TranslationManager.Get("windows.regrowTrees.gone")} ({_countGone})";
+    private int _countStumps;
+    private int _countHalfChopped;
+    private int _countGone;
+
+    private void LoadTreeCounts(Savegame selectedSavegame)
+    {
+        if (selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldObjectLocatorManagerSaveData) is not
+                { } saveDataWrapper || saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldObjectLocatorManager) is not {} worldObjectLocatorManager)
+        {
+            return;
+        }
+        
+        var serializedStates = worldObjectLocatorManager["SerializedStates"]?.ToList() ?? Enumerable.Empty<JToken>();
+
+        foreach (var serializedState in serializedStates)
+        {
+            var valueToken = serializedState["Value"];
+            var value = valueToken?.Value<short>();
+            if (value == null)
+            {
+                continue;
+            }
+
+            var shiftedValue = (short)(1 << (value - 1));
+
+            if ((shiftedValue & (int)VegetationState.Gone) != 0)
+            {
+                _countGone++;
+            }
+
+            if ((shiftedValue & (int)VegetationState.HalfChopped) != 0)
+            {
+                _countHalfChopped++;
+            }
+            
+            if ((shiftedValue & (int)VegetationState.Stumps) != 0)
+            {
+                _countStumps++;
+            }
+        }
     }
 
     public bool VegetationStateIsAllSelected
@@ -46,7 +100,7 @@ public partial class RegrowTreesViewModel : ObservableObject
             return;
         }
 
-        var countRegrown = selectedSavegame.RegrowTrees(VegetationStateSelected);
+        var countRegrown = selectedSavegame.RegrowTrees(VegetationStateSelected, _pctRegrow);
 
         var statesPrintable = new List<string>();
         if ((VegetationStateSelected & VegetationState.Gone) != 0)

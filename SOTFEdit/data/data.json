@@ -2991,7 +2991,8 @@
     {
       "id": 26,
       "buildCost": 72,
-      "category": "shelter"
+      "category": "shelter",
+      "canFinish": false
     },
     {
       "id": 27,
@@ -3001,7 +3002,8 @@
     {
       "id": 28,
       "buildCost": 131,
-      "category": "treeShelter"
+      "category": "treeShelter",
+      "canFinish": false
     },
     {
       "id": 29,
@@ -3021,7 +3023,8 @@
     {
       "id": 34,
       "buildCost": 95,
-      "category": "shelter"
+      "category": "shelter",
+      "canFinish": false
     },
     {
       "id": 35,
@@ -3041,7 +3044,8 @@
     {
       "id": 38,
       "buildCost": 74,
-      "category": "shelter"
+      "category": "shelter",
+      "canFinish": false
     },
     {
       "id": 39,
@@ -3056,7 +3060,8 @@
     {
       "id": 41,
       "buildCost": 54,
-      "category": "treeShelter"
+      "category": "treeShelter",
+      "canFinish": false
     },
     {
       "id": 42,
@@ -3066,12 +3071,14 @@
     {
       "id": 43,
       "buildCost": 10,
-      "category": "treeShelter"
+      "category": "treeShelter",
+      "canFinish": false
     },
     {
       "id": 44,
       "buildCost": 97,
-      "category": "treeShelter"
+      "category": "treeShelter",
+      "canFinish": false
     },
     {
       "id": 45,

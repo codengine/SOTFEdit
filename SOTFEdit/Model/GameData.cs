@@ -36,11 +36,12 @@ public class GameData
 
 public class ScrewStructure
 {
-    public ScrewStructure(string category, int id, int buildCost)
+    public ScrewStructure(string category, int id, int buildCost, bool? canFinish)
     {
         Category = category;
         Id = id;
         BuildCost = buildCost;
+        CanFinish = canFinish ?? true;
     }
 
     public string Name => TranslationManager.Get("structures.types." + Id);
@@ -52,6 +53,7 @@ public class ScrewStructure
 
     public int Id { get; }
     public int BuildCost { get; }
+    public bool CanFinish { get; }
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global

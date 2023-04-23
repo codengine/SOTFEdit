@@ -1,4 +1,10 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Data;
+using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -14,26 +20,78 @@ public partial class ScrewStructureWrapper : ObservableObject
 {
     [ObservableProperty] private int _added;
 
-    [ObservableProperty] private ScrewStructureModificationMode? _modificationMode;
+    private ScrewStructureModificationMode _modificationMode = ScrewStructureModificationMode.None;
+
+    public ScrewStructureModificationMode? ModificationMode
+    {
+        get => _modificationMode;
+        set
+        {
+            if (value is not {} modificationMode)
+            {
+                SetProperty(ref _modificationMode, ScrewStructureModificationMode.None);
+                return;
+            }
+            
+            if (ModificationModes.Contains(modificationMode))
+            {
+                SetProperty(ref _modificationMode, modificationMode);
+            }
+        }
+    }
 
     [ObservableProperty] private ScrewStructure? _screwStructure;
 
-    public ScrewStructureWrapper(ScrewStructure? screwStructure, JToken token, int added, Position? position)
+    public ImmutableSortedSet<ScrewStructureModificationMode> ModificationModes { get; }
+
+    public ScrewStructureWrapper(ScrewStructure? screwStructure, JToken token, int added, Position? position,
+        ScrewStructureOrigin origin)
     {
         Token = token;
         Added = added;
         Position = position;
+        Origin = origin;
         ScrewStructure = screwStructure;
+        var canFinish = screwStructure?.CanFinish ?? false;
+        ModificationModes = GetModificationModes(origin, canFinish);
+        PctDone = ScrewStructure?.BuildCost is { } buildCost ? 100 * Added / buildCost : -1;
+    }
+
+    private static ImmutableSortedSet<ScrewStructureModificationMode> GetModificationModes(ScrewStructureOrigin origin, bool canFinish)
+    {
+        return Enum.GetValues<ScrewStructureModificationMode>()
+            .Where(mode => IsModeAllowed(mode, origin, canFinish))
+            .ToImmutableSortedSet();
+    }
+
+    private static bool IsModeAllowed(ScrewStructureModificationMode mode, ScrewStructureOrigin origin,
+        bool canFinish)
+    {
+        switch (mode)
+        {
+            case ScrewStructureModificationMode.None:
+            case ScrewStructureModificationMode.Remove:
+                return true;
+            case ScrewStructureModificationMode.AlmostFinish:
+            case ScrewStructureModificationMode.Unfinish:
+                return origin == ScrewStructureOrigin.Unfinished || canFinish;
+            case ScrewStructureModificationMode.Finish:
+                return origin == ScrewStructureOrigin.Unfinished && canFinish;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+        }
     }
 
     public JToken Token { get; }
     public Position? Position { get; }
+    public ScrewStructureOrigin Origin { get; }
 
     public string Name => ScrewStructure?.Name ?? "???";
     public string Category => ScrewStructure?.CategoryName ?? TranslationManager.Get("generic.unknown");
     public int BuildCost => ScrewStructure?.BuildCost ?? -1;
 
-    private int PctDone => ScrewStructure?.BuildCost is { } buildCost ? 100 * Added / buildCost : -1;
+    public int PctDone { get; }
+
     public string PctDonePrintable => PctDone == -1 ? "???" : $"{PctDone}%";
 
     public int? ChangedTypeId { get; private set; }
@@ -62,7 +120,12 @@ public partial class ScrewStructureWrapper : ObservableObject
         }
     }
 
-    [RelayCommand]
+    private bool CanChangeType()
+    {
+        return Origin == ScrewStructureOrigin.Unfinished || (_screwStructure?.CanFinish ?? false);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanChangeType))]
     private void ChangeType()
     {
         var screwStructures = Ioc.Default.GetRequiredService<GameData>().ScrewStructures;
@@ -79,7 +142,7 @@ public partial class ScrewStructureWrapper : ObservableObject
 
         ScrewStructure = selectedScrewStructure;
         Added = ScrewStructure?.BuildCost - 1 ?? 0;
-        ModificationMode = ScrewStructureModificationMode.Finish;
+        ModificationMode = ScrewStructureModificationMode.AlmostFinish;
         ChangedTypeId = selectedScrewStructure.Id;
         OnPropertyChanged(nameof(BuildCost));
     }

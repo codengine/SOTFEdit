@@ -1,3 +1,7 @@
-﻿namespace SOTFEdit.Model.SaveData.Storage.Module;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-public record GenericModule(int ModuleId) : BaseStorageModule(ModuleId);
+namespace SOTFEdit.Model.SaveData.Storage.Module;
+
+[JsonConverter(typeof(GenericStorageModuleConverter))]
+public record GenericModule(int ModuleId, JObject ModuleToken) : BaseStorageModule(ModuleId);

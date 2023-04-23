@@ -404,7 +404,12 @@ public partial class MainWindow
 
     private void OnRequestRegrowTreesEvent()
     {
-        var window = new RegrowTreesWindow(this);
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
+        {
+            return;
+        }
+        
+        var window = new RegrowTreesWindow(this, selectedSavegame);
         window.ShowDialog();
     }
 

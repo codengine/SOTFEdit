@@ -295,6 +295,7 @@
     },
     "headers": {
       "unfinishedStructures": "Unfertige Strukturen",
+      "finishedStructures": "Fertige Strukturen",
       "batch": "Batch"
     },
     "buttons": {
@@ -302,6 +303,7 @@
       "unmodifyAll": "Alle Änderungen rückgängig",
       "setAllToRemove": "Alle auf \"Entfernen\" setzen",
       "setAllToFinish": "Alle auf \"Fertigstellen\" setzen",
+      "setAllToFinish": "Alle auf \"Fast fertig\" setzen",
       "setAllToUnfinish": "Alle auf \"Unvollständig\" setzen"
     },
     "types": {
@@ -345,6 +347,7 @@
     "modificationMode": {
       "None": "Keine Änderung",
       "Remove": "Entfernen",
+      "AlmostFinish": "Fast fertig",
       "Finish": "Fertigstellen",
       "Unfinish": "Unfertig stellen"
     }
@@ -659,6 +662,7 @@
       "halfChopped": "Halb gefällt",
       "gone": "Verschwunden",
       "stumps": "Baumstümpfe",
+      "pctRegrow": "Prozent nachwachsen lassen",
       "messages": {
         "noTreesRegrown": "Keine Bäume mit dem Zustand \"{0}\" wiederhergestellt",
         "success": "{0} Bäume mit dem vorherigen Zustand \"{1}\" sollten jetzt wiederhergestellt sein. Bitte speichern, um die Änderungen zu übernehmen."

@@ -71,7 +71,7 @@ public class Savegame : ObservableObject
         return image;
     }
 
-    public long RegrowTrees(VegetationState vegetationStateSelected)
+    public long RegrowTrees(VegetationState vegetationStateSelected, int pctRegrow)
     {
         if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldObjectLocatorManagerSaveData) is not
             { } saveDataWrapper)
@@ -88,6 +88,8 @@ public class Savegame : ObservableObject
         var serializedStates = worldObjectLocatorManager["SerializedStates"]?.ToList() ?? Enumerable.Empty<JToken>();
 
         var countRegrown = 0;
+
+        var candidates = new List<JToken>();
 
         foreach (var serializedState in serializedStates)
         {
@@ -106,8 +108,32 @@ public class Savegame : ObservableObject
                 continue;
             }
 
-            serializedState.Remove();
-            countRegrown++;
+            candidates.Add(serializedState);
+        }
+
+        if (candidates.Count > 0)
+        {
+            if (pctRegrow == 100)
+            {
+                countRegrown = candidates.Count;
+            }
+            else
+            {
+                countRegrown = (int)Math.Round(pctRegrow / 100.0 * candidates.Count);
+            
+                if (countRegrown >= candidates.Count - 1)
+                {
+                    countRegrown = candidates.Count - 1;
+                }
+                
+                if (countRegrown > 0)
+                {
+                    var startIndex = candidates.Count - countRegrown;
+                    candidates.RemoveRange(startIndex, countRegrown);
+                }
+            }
+            
+            candidates.ForEach(candidate => candidate.Remove());
         }
 
         if (countRegrown == 0)

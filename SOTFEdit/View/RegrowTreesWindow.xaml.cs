@@ -1,16 +1,17 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Model.Savegame;
 using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
 
 public partial class RegrowTreesWindow : ICloseable
 {
-    public RegrowTreesWindow(Window owner)
+    public RegrowTreesWindow(Window owner, Savegame selectedSavegame)
     {
         Owner = owner;
-        DataContext = new RegrowTreesViewModel(this);
+        DataContext = new RegrowTreesViewModel(this, selectedSavegame);
         InitializeComponent();
     }
 
