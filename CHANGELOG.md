@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.10.1
+
+### Bugfixes
+
+- Fix issue with default actor item
+
 ## v0.10.0
 
 ### Features
