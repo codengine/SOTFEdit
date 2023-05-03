@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="icons8-kleine-axt-doodle-96.ico"/>
+        <Content Include="icons8-kleine-axt-doodle-96.ico" />
         <None Include="images\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
@@ -54,19 +54,19 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
-        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1"/>
-        <PackageReference Include="libc.translation" Version="7.1.0"/>
-        <PackageReference Include="MahApps.Metro" Version="2.4.9"/>
-        <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0"/>
-        <PackageReference Include="Markdig" Version="0.31.0"/>
-        <PackageReference Include="Markdig.Wpf" Version="0.5.0.1"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-        <PackageReference Include="NLog" Version="5.1.4"/>
-        <PackageReference Include="Semver" Version="2.3.0"/>
-        <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29"/>
-        <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+        <PackageReference Include="libc.translation" Version="7.1.0" />
+        <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+        <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.11.0" />
+        <PackageReference Include="Markdig" Version="0.31.0" />
+        <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="NLog" Version="5.1.4" />
+        <PackageReference Include="Semver" Version="2.3.0" />
+        <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29" />
+        <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7" />
     </ItemGroup>
 
     <ItemGroup>
@@ -145,6 +145,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ZoomControl\ZoomControl.csproj"/>
+        <ProjectReference Include="..\ZoomControl\ZoomControl.csproj" />
     </ItemGroup>
 </Project>
