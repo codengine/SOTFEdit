@@ -25,7 +25,7 @@ public record ActorType(int Id, string Classification, string? Gender = null, st
         }
     }
 
-    public string IconPath => $"/images/actors/icons/{Icon ?? "question-mark.png"}";
+    public string IconPath => Icon != null ? $"/images/actors/icons/{Icon}" : "/images/icons/question-mark.png";
 
     public string Name => Id == -1 ? "???" : TranslationManager.Get("actors.types." + Id);
 
