@@ -16,13 +16,15 @@ jobs:
         with:
           dotnet-version: '6.0.x'
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+        uses: microsoft/setup-msbuild@v1.1        
       - name: Restore NuGet packages
         run: dotnet restore
+      - name: Clean build directories
+        run: dotnet clean --configuration Release        
       - name: Run tests
         run: dotnet test --no-restore --verbosity normal # Run tests
       - name: Build project
-        run: dotnet publish --configuration Release --no-restore --framework net6.0-windows # Build the app in Release mode
+        run: dotnet publish --configuration Release --no-restore --framework net6.0-windows --maxcpucount:1 # Build the app in Release mode
       - name: Create artifacts directory
         run: mkdir -p artifacts
       - name: Zip artifacts with PowerShell script
