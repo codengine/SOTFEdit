@@ -1583,7 +1583,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 527,
@@ -2481,7 +2482,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Book.png"
     },
     {
       "id": 628,
@@ -2489,7 +2491,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Book.png"
     },
     {
       "id": 629,
@@ -2529,7 +2532,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "BunkerPamphlet.png"
     },
     {
       "id": 634,
@@ -3226,7 +3230,7 @@
   "areas": [
     {
       "name": "Surface",
-      "areaMask": 1,
+      "areaMask": 0,
       "graphMask": 1
     },
     {
@@ -3280,8 +3284,13 @@
       "graphMask": 2048
     },
     {
-      "name": "Cave E / Bunker G",
+      "name": "Cave E / Bunker G (Luxury)",
       "areaMask": 32,
+      "graphMask": 512
+    },
+    {
+      "name": "Raft",
+      "areaMask": 8388608,
       "graphMask": 512
     }
   ]

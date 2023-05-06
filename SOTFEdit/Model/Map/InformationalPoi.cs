@@ -23,7 +23,7 @@ public abstract partial class InformationalPoi : BasePoi
         Title = title;
         _screenshot = screenshot;
         Description = description;
-        IsUnderground = isUnderground;
+        IsUnderground = teleport?.Area.IsUnderground() ?? isUnderground;
         WikiLink = wikiLink;
     }
 

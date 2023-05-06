@@ -31,7 +31,7 @@
             World Item
         </Label>
         <StackPanel Orientation="Horizontal">
-            <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
+            <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32" Cursor="Hand"
                    ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.pinTooltip'}"
                    VerticalAlignment="Center"
                    Visibility="{Binding SelectedWorldItem, Converter={StaticResource NullToVisibilityConverter}}">

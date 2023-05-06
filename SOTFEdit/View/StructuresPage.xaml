@@ -124,7 +124,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="{x:Type model:ScrewStructureWrapper}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                    <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
                                            Cursor="Hand"
                                            VerticalAlignment="Center">
                                         <Image.InputBindings>

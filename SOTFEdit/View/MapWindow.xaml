@@ -12,7 +12,7 @@
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                  mc:Ignorable="d"
                  Background="#9db4d4"
-                 Title="Map"
+                 Title="{infrastructure:Translate 'menu.tools.map.text'}"
                  WindowState="Maximized"
                  WindowTransitionsEnabled="False"
                  PreviewKeyDown="MapWindow_OnPreviewKeyDown"
@@ -95,7 +95,7 @@
         <mah:FlyoutsControl>
             <mah:Flyout x:Name="MapOptionsFlyout" Header="{infrastructure:Translate 'map.options'}"
                         Position="Left" AreAnimationsEnabled="False"
-                        MinWidth="280">
+                        Width="320">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -115,6 +115,13 @@
                                       ItemsSource="{Binding MapFilter.RequirementsFilterTypeValues, UpdateSourceTrigger=PropertyChanged}"
                                       DisplayMemberPath="Title"
                                       SelectedValuePath="Value" SelectedValue="{Binding MapFilter.RequirementsFilter}" />
+                            <Label Content="{infrastructure:Translate 'map.fullText.text'}" />
+                            <TextBox Text="{Binding MapFilter.FullText, UpdateSourceTrigger=PropertyChanged}"
+                                     ToolTip="{infrastructure:Translate 'map.fullText.tooltip'}"
+                                     mah:TextBoxHelper.Watermark="{infrastructure:Translate 'map.fullText.watermark'}"
+                                     mah:TextBoxHelper.WatermarkTrimming="CharacterEllipsis"
+                                     mah:TextBoxHelper.UseFloatingWatermark="True"
+                                     mah:TextBoxHelper.ClearTextButton="True" />
                         </st:AutoGrid>
                     </GroupBox>
                     <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'map.pois'}">
@@ -230,7 +237,7 @@
                 </ControlTemplate>
             </zoomControl:ZoomControl.Template>
             <Grid>
-                <Image Source="pack://siteoforigin:,,,/images/map.jpg" Width="4096" Height="4096" />
+                <Image Source="/SOTFEdit;component/images/map.jpg" Width="4096" Height="4096" />
 
                 <ItemsControl ItemsSource="{Binding Pois}" ItemTemplateSelector="{StaticResource PoiTemplateSelector}">
                     <ItemsControl.ItemsPanel>

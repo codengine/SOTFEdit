@@ -13,11 +13,10 @@ public class ItemPoi : InformationalPoi
 
     private readonly Item _item;
 
-    private ItemPoi(float x, float y, Position? teleport, Item item, string? description, string? screenshot,
+    private ItemPoi(float x, float y, Position teleport, Item item, string? description, string? screenshot,
         IEnumerable<Item>? requirements, IEnumerable<Item>? altItems, HashSet<int> inventoryItems,
-        bool isUnderground = false,
         string? wikiLink = null) : base(x, y, teleport,
-        item.Name, description, requirements, screenshot, isUnderground, wikiLink)
+        item.Name, description, requirements, screenshot, teleport.Area.IsUnderground(), wikiLink)
     {
         _item = item;
         _altItems = altItems;
@@ -37,30 +36,30 @@ public class ItemPoi : InformationalPoi
     public override BitmapImage Icon => _item.ThumbnailMedium ?? "/images/icons/treasure.png".LoadAppLocalImage();
     public BitmapImage IconSmall => _item.ThumbnailMedium ?? "/images/icons/treasure.png".LoadAppLocalImage(24, 24);
 
-    public static ItemPoi? Of(RawPoi rawPoi, ItemList itemList, HashSet<int> inventoryItems,
+    public static ItemPoi? Of(int itemId, RawItemPoiGroup rawItemPoiGroup, RawItemPoi rawItemPoi, ItemList itemList,
+        HashSet<int> inventoryItems,
         AreaMaskManager areaMaskManager, bool enabled)
     {
-        if (rawPoi.ItemId is not { } itemId || itemList.GetItem(itemId) is not { } item)
+        if (itemList.GetItem(itemId) is not { } item)
         {
             return null;
         }
 
         return new ItemPoi(
-            rawPoi.X,
-            rawPoi.Y,
-            rawPoi.Teleport?.ToPosition(areaMaskManager),
+            rawItemPoi.X,
+            rawItemPoi.Y,
+            rawItemPoi.Teleport.ToPosition(areaMaskManager),
             item,
-            rawPoi.Description,
-            rawPoi.Screenshot,
-            itemList.GetItems(rawPoi.Requirements),
-            itemList.GetItems(rawPoi.AltItemIds),
+            rawItemPoi.Description,
+            rawItemPoi.Screenshot,
+            itemList.GetItems(rawItemPoi.Requirements),
+            itemList.GetItems(rawItemPoi.AltItemIds),
             inventoryItems,
-            rawPoi.IsUnderground,
-            rawPoi.Wiki
+            rawItemPoiGroup.Wiki
         )
         {
             Enabled = enabled,
-            MissingRequiredItems = rawPoi.GetMissingRequiredItems(inventoryItems)
+            MissingRequiredItems = rawItemPoi.GetMissingRequiredItems(inventoryItems)
         };
     }
 
@@ -72,6 +71,18 @@ public class ItemPoi : InformationalPoi
     protected override bool ShouldFilter(MapFilter mapFilter)
     {
         return (mapFilter.ShowOnlyUncollectedItems && HasAllItemsInInventory()) || base.ShouldFilter(mapFilter);
+    }
+
+    protected override bool FullTextFilter(string normalizedLowercaseFullText)
+    {
+        return !Item.Item.Matches(normalizedLowercaseFullText) &&
+               base.FullTextFilter(normalizedLowercaseFullText) &&
+               !AnyAltItemContains(normalizedLowercaseFullText);
+    }
+
+    private bool AnyAltItemContains(string normalizedLowercaseFullText)
+    {
+        return AltItems?.Any(item => item.Item.Matches(normalizedLowercaseFullText)) ?? false;
     }
 
     private bool HasAllItemsInInventory()

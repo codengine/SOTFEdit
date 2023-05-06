@@ -147,6 +147,31 @@
       "muddyCannibal": "Muddy Cannibal",
       "animal": "Animal"
     },
+    "state": {
+      "-1": "None",
+      "0": "Any",
+      "1": "Combat",
+      "2": "World",
+      "3": "Sleeping",
+      "4": "Dying",
+      "5": "Injured",
+      "6": "Dead",
+      "7": "Flying",
+      "8": "Stalking",
+      "20": "Burning",
+      "21": "Electrocuted",
+      "22": "Swimming",
+      "23": "Stunned",
+      "24": "Drowning",
+      "40": "OnRock",
+      "41": "OnTree",
+      "42": "Under Leaves",
+      "43": "Wall Walking",
+      "44": "Captured",
+      "45": "Boss Intro",
+      "50": "Leave Combat",
+      "51": "Despawned"
+    },
     "grouping": {
       "animals": "Animals",
       "creeps": "Creeps",
@@ -412,7 +437,8 @@
     "exceptionMessage": "An exception has occured: {0}",
     "success": "Success",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "close": "Close"
   },
   "armor": {
     "header": "Equipped Armor (Max. 10)",
@@ -567,7 +593,8 @@
         "checkOnStartup": "Check on Startup"
       },
       "readme": "Readme",
-      "changelog": "Changelog"
+      "changelog": "Changelog",
+      "about": "About..."
     }
   },
   "experiments": {
@@ -1199,6 +1226,11 @@
     "area": "Area",
     "objects": "Objects",
     "altItems": "Alternative Items",
+    "fullText": {
+      "text": "Full Text",
+      "watermark": "Title, Description, Item name...",
+      "tooltip": "Searches in title, description, item name and item category of the currently selected map marker categories"
+    },
     "teleportWindow": {
       "title": "Teleport",
       "destination": "Destination",

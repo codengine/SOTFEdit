@@ -6,7 +6,7 @@ namespace SOTFEdit.Model;
 
 public class AreaMaskManager
 {
-    public static readonly Area Surface = new("Surface", 1, 1);
+    public static readonly Area Surface = new("Surface", 0, 1);
     private readonly ConcurrentDictionary<int, Area> _areaMasks = new();
     private readonly ConcurrentDictionary<int, Area> _graphMasks = new();
 

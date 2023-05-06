@@ -37,9 +37,9 @@
                     <zoomControl:ZoomControl x:Name="ZoomCtrl" Mode="Fill" MaxZoom="2"
                                              Zoom="{Binding Zoom, Source={StaticResource ZoomHandler}, Mode=OneWayToSource}">
                         <Grid>
-                            <Image Source="pack://siteoforigin:,,,/images/map.jpg" Width="4096" Height="4096" />
+                            <Image Source="/SOTFEdit;component/images/map.jpg" Width="4096" Height="4096" />
                             <Canvas Width="4096" Height="4096">
-                                <Image Source="pack://siteoforigin:,,,/images/icons/crosshair.png" Width="32"
+                                <Image Source="/SOTFEdit;component/images/icons/crosshair.png" Width="32"
                                        Height="32"
                                        Canvas.Top="{Binding PinTop}" Canvas.Left="{Binding PinLeft}">
                                     <Image.RenderTransform>
@@ -176,7 +176,8 @@
                     <Separator />
                     <MenuItem Header="{infrastructure:Translate 'menu.help.readme'}" Click="OpenReadme_Click" />
                     <MenuItem Header="{infrastructure:Translate 'menu.help.changelog'}" Click="OpenChangelog_Click" />
-
+                    <Separator />
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.about'}" Click="OpenAbout_OnClick" />
                 </MenuItem>
             </Menu>
         </Border>

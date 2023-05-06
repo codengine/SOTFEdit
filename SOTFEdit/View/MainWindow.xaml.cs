@@ -533,4 +533,10 @@ public partial class MainWindow
 
         _dataContext.OnPreviewKeyDown(e);
     }
+
+    private void OpenAbout_OnClick(object sender, RoutedEventArgs e)
+    {
+        var aboutWindow = new AboutWindow(this);
+        aboutWindow.ShowDialog();
+    }
 }

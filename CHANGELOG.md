@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.10.2
+
+### Features
+
+- Added a couple hundred new teleport locations
+- Added hundreds new/fixed item locations
+- Added over one hundred new screenshots
+- All POIs are now assigned to the correct area
+- Added human-readable Actor States (e.g. Sleeping, Hiding in Bushes, Despawned etc.)
+- Added a new splash screen while loading and about window (hope you like it :))
+- Added full-text search on the map
+
+### Improvements
+
+- Lakes will now only show the most important ones
+- Images are now bundled, which should help with performance especially on slower hard drives
+- Assigned correct items for some documents/papers
+
+### Bugfixes
+
+- Fix teleportation at a couple of places
+- Replaced icons for a few weapons on the map with better visible ones
+
 ## v0.10.1
 
 ### Bugfixes

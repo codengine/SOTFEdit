@@ -142,6 +142,31 @@
       "muddyCannibal": "Błotnisty Kanibal",
       "animal": "Zwierzę"
     },
+    "state": {
+      "-1": "Brak",
+      "0": "Dowolny",
+      "1": "Walka",
+      "2": "Świat",
+      "3": "Śpi",
+      "4": "Umiera",
+      "5": "Ranny",
+      "6": "Martwy",
+      "7": "Lata",
+      "8": "Podkrada się",
+      "20": "Pali się",
+      "21": "Porażony prądem",
+      "22": "Pływa",
+      "23": "Ogłuszony",
+      "24": "Topi się",
+      "40": "Na skale",
+      "41": "Na drzewie",
+      "42": "Pod liśćmi",
+      "43": "Chodzi po ścianach",
+      "44": "Złapany",
+      "45": "Intro do bossa",
+      "50": "Opuszcza walkę",
+      "51": "Zdespawnował się"
+    },
     "grouping": {
       "animals": "Zwierzęta",
       "creeps": "Mutanty",
@@ -1194,6 +1219,11 @@
     "area": "Obszar",
     "objects": "Przedmioty",
     "altItems": "Alternatywne przedmioty",
+    "fullText": {
+      "text": "Nazwa",
+      "watermark": "Nazwa lokalizacji, przedmiotu, czy ich opis",
+      "tooltip": "Szuka zarówno w nazwach lokalizacji, przedmiotów i innych znaczników na mapie, oraz w ich opisach"
+    },
     "teleportWindow": {
       "title": "Teleport",
       "destination": "Cel",

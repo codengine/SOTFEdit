@@ -28,7 +28,7 @@ public static class AppLocalImageCache
             bitmap.DecodePixelWidth = theHeight;
         }
 
-        bitmap.UriSource = new Uri($"pack://siteoforigin:,,,{cacheKey.PathRelativeToRoot}", UriKind.Absolute);
+        bitmap.UriSource = new Uri($"pack://application:,,,/SOTFEdit;component{cacheKey.PathRelativeToRoot}");
         bitmap.EndInit();
         bitmap.Freeze();
         return bitmap;

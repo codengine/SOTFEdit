@@ -1,0 +1,59 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.AboutWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:view="clr-namespace:SOTFEdit.View"
+                 mc:Ignorable="d"
+                 d:DataContext="{d:DesignInstance view:AboutWindow}"
+                 WindowTransitionsEnabled="False"
+                 ResizeMode="NoResize"
+                 ShowMaxRestoreButton="False"
+                 IsMaxRestoreButtonEnabled="False"
+                 ShowMinButton="False"
+                 WindowStartupLocation="CenterOwner"
+                 IsMinButtonEnabled="False"
+                 TitleCharacterCasing="Normal"
+                 PreviewKeyDown="AboutWindow_OnPreviewKeyDown"
+                 Title="{infrastructure:Translate 'menu.help.about'}" SizeToContent="Height" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Canvas Width="349" Height="500">
+            <Image Canvas.Top="0" Canvas.Left="0" Source="/SOTFEdit;component/images/about.jpg" Width="349"
+                   Height="500" />
+            <TextBlock Canvas.Bottom="20" Canvas.Right="20" TextAlignment="Right" Foreground="White" FontWeight="Bold"
+                       Text="{Binding AssemblyVersion}" />
+        </Canvas>
+
+        <st:AutoGrid Margin="10" VerticalAlignment="Top" HorizontalAlignment="Stretch" ChildMargin="3" Columns="*"
+                     Grid.Column="1">
+            <TextBlock xml:space="preserve" TextWrapping="Wrap"><Run FontSize="16" FontWeight="Bold">Created by codengine</Run>
+
+Big thanks to Gronkh for your many years of "Influenz". Especially without your "The Forest" streams I would have never known anything about that game.
+
+<Bold Foreground="{DynamicResource MahApps.Brushes.Accent}">Translations and Corrections</Bold>
+- Polski: Mortennif
+- German: Hinterix
+
+<Bold Foreground="{DynamicResource MahApps.Brushes.Accent}">Supporters and Testers:</Bold>
+- Mortennif, M2THE49, feydrautha01
+</TextBlock>
+            <TextBlock FontWeight="Bold" Foreground="{DynamicResource MahApps.Brushes.Accent}">Join me on</TextBlock>
+            <Image HorizontalAlignment="Left" Cursor="Hand" Source="/SOTFEdit;component/images/discord.png" Width="250"
+                   Height="47" Margin="3 3 3 15">
+                <Image.InputBindings>
+                    <MouseBinding Gesture="LeftClick" Command="{Binding OpenDiscordCommand, Mode=OneTime}" />
+                </Image.InputBindings>
+            </Image>
+            <Button Command="{Binding CloseWindowCommand}" Padding="15"
+                    Background="{DynamicResource MahApps.Brushes.Accent}"
+                    Content="{infrastructure:Translate 'generic.close'}" HorizontalAlignment="Stretch" />
+        </st:AutoGrid>
+    </Grid>
+</mah:MetroWindow>

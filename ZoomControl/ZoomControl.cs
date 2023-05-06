@@ -47,8 +47,6 @@ public class ZoomControl : ContentControl
         DependencyProperty.Register(nameof(Zoom), typeof(double), typeof(ZoomControl),
             new UIPropertyMetadata(1.0, ZoomPropertyChanged));
 
-    private bool _isMouseDown;
-
     private bool _isZooming;
     private bool _mouseCaptured;
 
@@ -209,7 +207,6 @@ public class ZoomControl : ContentControl
             return;
         }
 
-        _isMouseDown = false;
         ModifierMode = ZoomViewModifierMode.None;
         PreviewMouseMove -= ZoomControlPreviewMouseMove;
         ReleaseMouseCapture();
@@ -234,7 +231,7 @@ public class ZoomControl : ContentControl
         IsPanning = true;
     }
 
-    private void OnMouseDown(MouseButtonEventArgs e, bool isPreview)
+    private void OnMouseDown(MouseEventArgs e, bool isPreview)
     {
         if (ModifierMode != ZoomViewModifierMode.None)
         {
@@ -265,8 +262,6 @@ public class ZoomControl : ContentControl
         {
             return;
         }
-
-        _isMouseDown = true;
 
         IsPanning = false;
         _mouseDownPosition = e.GetPosition(this);

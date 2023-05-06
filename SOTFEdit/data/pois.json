@@ -1,929 +1,4 @@
 {
-  "items": {
-    "alwaysEnabled": true,
-    "pois": [
-      {
-        "id": 4,
-        "itemId": 356,
-        "description": "In the chest of a dead soldier",
-        "x": -703,
-        "y": 445,
-        "screenshot": "modern_axe.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Modern_Axe"
-      },
-      {
-        "id": 5,
-        "itemId": 471,
-        "description": "On hanging soldier",
-        "x": -626,
-        "y": 387,
-        "screenshot": "flashlight.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Flashlight"
-      },
-      {
-        "id": 6,
-        "itemId": 359,
-        "description": "On the deflated boat",
-        "x": -68,
-        "y": 1459,
-        "screenshot": "machete.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Machete"
-      },
-      {
-        "id": 7,
-        "itemId": 396,
-        "description": "In the pile of skulls",
-        "x": -1145,
-        "y": -161,
-        "screenshot": "stun_baton.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Stun_Baton"
-      },
-      {
-        "id": 8,
-        "itemId": 355,
-        "description": "On Emergency Raft",
-        "x": -1797,
-        "y": 578,
-        "screenshot": "pistol_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Pistol"
-      },
-      {
-        "id": 9,
-        "itemId": 355,
-        "x": 1153,
-        "y": -607,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "pistol_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Pistol"
-      },
-      {
-        "id": 10,
-        "itemId": 353,
-        "description": "Inside the right tunnel",
-        "x": -647,
-        "y": 1514,
-        "isUnderground": true,
-        "screenshot": "stun_gun.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Stun_Gun"
-      },
-      {
-        "id": 11,
-        "itemId": 444,
-        "description": "Inside the left tunnel",
-        "x": -422,
-        "y": 1477,
-        "isUnderground": true,
-        "screenshot": "rebreather.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Rebreather"
-      },
-      {
-        "id": 12,
-        "itemId": 468,
-        "description": "Next to the projector",
-        "x": -1174,
-        "y": -217,
-        "isUnderground": true,
-        "screenshot": "cross.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Cross"
-      },
-      {
-        "id": 13,
-        "itemId": 522,
-        "description": "Near the cave exit in the left tunnel",
-        "x": -1204,
-        "y": -277,
-        "isUnderground": true,
-        "screenshot": "rope_gun.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Rope_Gun"
-      },
-      {
-        "id": 14,
-        "itemId": 459,
-        "description": "On one of soldiers bodies",
-        "x": -533,
-        "y": 120,
-        "screenshot": "slingshot.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Slingshot"
-      },
-      {
-        "id": 15,
-        "itemId": 485,
-        "description": "In hands of dead worker inside cave",
-        "x": -429,
-        "y": -103,
-        "isUnderground": true,
-        "requirements": [
-          522,
-          444
-        ],
-        "screenshot": "shovel.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Shovel"
-      },
-      {
-        "id": 16,
-        "itemId": 358,
-        "description": "Inside grave",
-        "x": -1341,
-        "y": 1410,
-        "requirements": [
-          485
-        ],
-        "screenshot": "shotgun.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Shotgun"
-      },
-      {
-        "id": 17,
-        "itemId": 566,
-        "description": "Next to 3D Printer in the bunker",
-        "x": -427,
-        "y": 700,
-        "isUnderground": true,
-        "screenshot": "maintenance_card.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Maintenance_Keycard"
-      },
-      {
-        "id": 19,
-        "itemId": 568,
-        "description": "On desk in Security room",
-        "x": -977,
-        "y": 1039,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "vip_card.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/VIP_Keycard"
-      },
-      {
-        "id": 21,
-        "itemId": 567,
-        "x": -1184,
-        "y": 41,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "guest_keycard.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Guest_Keycard"
-      },
-      {
-        "id": 18,
-        "itemId": 431,
-        "description": "Inside the bunker room at the end of a hallway",
-        "x": -415,
-        "y": 712,
-        "isUnderground": true,
-        "screenshot": "firefighter_axe.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Firefighter_Axe"
-      },
-      {
-        "id": 20,
-        "itemId": 365,
-        "description": "Inside second hydroponic room",
-        "x": -1022,
-        "y": 986,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "crossbow.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Crossbow"
-      },
-      {
-        "id": 22,
-        "itemId": 340,
-        "description": "On bar stand top",
-        "x": -1158,
-        "y": 17,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "guitar.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Guitar"
-      },
-      {
-        "id": 23,
-        "itemId": 394,
-        "description": "In the Theater room",
-        "x": -1151,
-        "y": 116,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "chainsaw.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Chainsaw"
-      },
-      {
-        "id": 24,
-        "itemId": 360,
-        "description": "Inside the bathroom",
-        "x": -1120,
-        "y": -1039,
-        "isUnderground": true,
-        "screenshot": "compound_bow.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Compound_Bow"
-      },
-      {
-        "id": 25,
-        "itemId": 386,
-        "x": 1140,
-        "y": 1048,
-        "isUnderground": true,
-        "screenshot": "revolver.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Revolver"
-      },
-      {
-        "id": 26,
-        "itemId": 367,
-        "x": 1160,
-        "y": -651,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "katana.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Katana"
-      },
-      {
-        "id": 27,
-        "itemId": 572,
-        "x": 181,
-        "y": -664,
-        "isUnderground": true,
-        "requirements": [
-          444
-        ],
-        "screenshot": "golden_armor.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Golden_Armor"
-      },
-      {
-        "id": 28,
-        "itemId": 341,
-        "description": "On top of the kayak",
-        "x": -1112,
-        "y": 1721,
-        "screenshot": "binoculars.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Binoculars"
-      },
-      {
-        "id": 115,
-        "itemId": 432,
-        "description": "On rocks",
-        "x": -315,
-        "y": 1612,
-        "screenshot": "can_opener_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Can_Opener"
-      },
-      {
-        "id": 340,
-        "itemId": 432,
-        "description": "Next to campfire",
-        "x": -1267,
-        "y": -6,
-        "screenshot": "can_opener_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Can_Opener"
-      },
-      {
-        "id": 586,
-        "itemId": 637,
-        "x": 1137,
-        "y": -621,
-        "isUnderground": true,
-        "requirements": [
-          567
-        ],
-        "screenshot": "action_camera.jpg"
-      },
-      {
-        "id": 85,
-        "itemId": 529,
-        "description": "On Emergency Raft",
-        "x": -1797,
-        "y": 577,
-        "screenshot": "gps_locator_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/GPS_Locator"
-      },
-      {
-        "id": 86,
-        "itemId": 529,
-        "description": "Inside grave",
-        "x": -1341,
-        "y": 1411,
-        "requirements": [
-          485
-        ],
-        "screenshot": "gps_locator_3.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/GPS_Locator"
-      },
-      {
-        "id": 87,
-        "itemId": 529,
-        "description": "On hanging soldier",
-        "x": -627,
-        "y": 386,
-        "screenshot": "gps_locator_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/GPS_Locator"
-      },
-      {
-        "id": 88,
-        "itemId": 575,
-        "description": "Next to 3D Printer inside the bunker",
-        "x": -1196,
-        "y": 78,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Books#Parallel_Universes_Book"
-      },
-      {
-        "id": 89,
-        "itemId": 423,
-        "description": "On the floor, next to bathtub",
-        "x": -416,
-        "y": 694,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Books#Pennant_Line_Book"
-      },
-      {
-        "id": 90,
-        "itemId": 424,
-        "description": "On top of the autopsy table on 5th level",
-        "x": 1139,
-        "y": -612,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Books#Deep_Sleep_Book"
-      },
-      {
-        "id": 427,
-        "itemId": 631,
-        "description": "Between two Occultists corpses",
-        "x": -541,
-        "y": -632,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Books#The_Realm_Beyond"
-      },
-      {
-        "id": 91,
-        "itemId": 534,
-        "x": -1142,
-        "y": 2,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Golf_Balls_Emails"
-      },
-      {
-        "id": 92,
-        "itemId": 543,
-        "description": "On the table",
-        "x": -1125,
-        "y": 110,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Artifact_Emails"
-      },
-      {
-        "id": 93,
-        "itemId": 538,
-        "description": "Next to PC on the left",
-        "x": -425,
-        "y": 702,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Painting_Email"
-      },
-      {
-        "id": 94,
-        "itemId": 526,
-        "description": "On second table behind doors",
-        "x": -1178,
-        "y": 27,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ]
-      },
-      {
-        "id": 95,
-        "itemId": 534,
-        "description": "Held by the deceased near the tent",
-        "x": -1269,
-        "y": -14,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Golf_Balls_Emails"
-      },
-      {
-        "id": 96,
-        "itemId": 545,
-        "x": -1139,
-        "y": -234,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Photo_Reference_Email"
-      },
-      {
-        "id": 97,
-        "itemId": 521,
-        "x": -1017,
-        "y": -264,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/More_Lighting_Email"
-      },
-      {
-        "id": 98,
-        "itemId": 612,
-        "description": "Inside the right cave tunnel",
-        "x": -1204,
-        "y": -267,
-        "isUnderground": true
-      },
-      {
-        "id": 99,
-        "itemId": 613,
-        "description": "Next to second dead soldier near entrance",
-        "x": -428,
-        "y": 1497,
-        "isUnderground": true
-      },
-      {
-        "id": 100,
-        "itemId": 467,
-        "description": "Next to TV",
-        "x": -432,
-        "y": 705,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ]
-      },
-      {
-        "id": 335,
-        "itemId": 467,
-        "description": "Next to corpse with stuck guitar inside it",
-        "x": -1157,
-        "y": 29,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ]
-      },
-      {
-        "id": 101,
-        "itemId": 614,
-        "x": 1154,
-        "y": -606
-      },
-      {
-        "id": 102,
-        "itemId": 547,
-        "description": "In the first room after cutscene, on the computer desk",
-        "x": 1149,
-        "y": -602,
-        "isUnderground": true
-      },
-      {
-        "id": 103,
-        "itemId": 615,
-        "description": "In corridor after cutscene",
-        "x": 1151,
-        "y": -619,
-        "isUnderground": true
-      },
-      {
-        "id": 104,
-        "itemId": 611,
-        "x": 1125,
-        "y": -606,
-        "isUnderground": true
-      },
-      {
-        "id": 105,
-        "itemId": 537,
-        "description": "On the wooden table, beside the Putter",
-        "x": 1125,
-        "y": -605,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Golf_Balls_Emails"
-      },
-      {
-        "id": 308,
-        "itemId": 542,
-        "description": "Next to dead person on the floor",
-        "x": -1021,
-        "y": 1036,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Artifact_Emails"
-      },
-      {
-        "id": 312,
-        "itemId": 544,
-        "description": "On desk to the left side",
-        "x": -975,
-        "y": 1036,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Artifact_Emails"
-      },
-      {
-        "id": 314,
-        "itemId": 536,
-        "description": "On the table with mutant",
-        "x": -913,
-        "y": 1036,
-        "isUnderground": true,
-        "requirements": [
-          568
-        ],
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Golf_Balls_Emails"
-      },
-      {
-        "id": 315,
-        "itemId": 628,
-        "description": "On the table with mutant",
-        "x": -915,
-        "y": 1037,
-        "isUnderground": true,
-        "requirements": [
-          568
-        ]
-      },
-      {
-        "id": 316,
-        "itemId": 627,
-        "description": "On the table with mutant",
-        "x": -914,
-        "y": 1038,
-        "isUnderground": true,
-        "requirements": [
-          568
-        ]
-      },
-      {
-        "id": 333,
-        "itemId": 546,
-        "description": "Beside sunbed in the room with big tree",
-        "x": -1120,
-        "y": 18,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Barbara_Email"
-      },
-      {
-        "id": 334,
-        "itemId": 535,
-        "description": "In the room with couches, at the end turn to left table",
-        "x": -1191,
-        "y": 35,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Golf_Balls_Emails"
-      },
-      {
-        "id": 475,
-        "itemId": 633,
-        "description": "Between corpses",
-        "x": -633,
-        "y": 1279
-      },
-      {
-        "id": 576,
-        "itemId": 617,
-        "x": 1156,
-        "y": -654,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ]
-      },
-      {
-        "id": 113,
-        "itemId": 525,
-        "x": 1124,
-        "y": -605,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "putter_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Putter"
-      },
-      {
-        "id": 285,
-        "itemId": 525,
-        "description": "On the back of the Golf Cart",
-        "x": 1589,
-        "y": 1336,
-        "screenshot": "putter_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Putter"
-      },
-      {
-        "id": 306,
-        "itemId": 375,
-        "description": "Next to the computer on the left",
-        "x": -424,
-        "y": 702,
-        "isUnderground": true,
-        "screenshot": "laser_sight.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Laser_Sight"
-      },
-      {
-        "id": 311,
-        "itemId": 346,
-        "description": "In the right corner of the room",
-        "x": -1175,
-        "y": 26,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "shotgun_rail_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Shotgun_Rail"
-      },
-      {
-        "id": 341,
-        "itemId": 346,
-        "x": -47,
-        "y": 1454,
-        "screenshot": "shotgun_rail_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Shotgun_Rail"
-      },
-      {
-        "id": 432,
-        "itemId": 346,
-        "x": 1143,
-        "y": -639,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "shotgun_rail_3.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Shotgun_Rail"
-      },
-      {
-        "id": 342,
-        "itemId": 376,
-        "description": "In hand of dead soldier",
-        "x": -1609,
-        "y": 486,
-        "screenshot": "pistol_rail_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Pistol_Rail"
-      },
-      {
-        "id": 431,
-        "itemId": 376,
-        "x": -807,
-        "y": -220,
-        "screenshot": "pistol_rail_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Pistol_Rail"
-      },
-      {
-        "id": 443,
-        "itemId": 376,
-        "x": 1154,
-        "y": -606,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "pistol_rail_3.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Pistol_Rail"
-      },
-      {
-        "id": 327,
-        "itemId": 378,
-        "description": "In the hand of dead soldier",
-        "x": -580,
-        "y": -69,
-        "isUnderground": true,
-        "requirements": [
-          444
-        ],
-        "screenshot": "flashlight_attachment_1.jpg"
-      },
-      {
-        "id": 569,
-        "itemId": 378,
-        "x": 1154,
-        "y": -604,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "flashlight_attachment_2.jpg"
-      },
-      {
-        "id": 430,
-        "itemId": 374,
-        "x": -808,
-        "y": -217,
-        "screenshot": "pistol_suppressor_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Silencer"
-      },
-      {
-        "id": 567,
-        "itemId": 374,
-        "description": "Next to 3D Printer",
-        "x": -1126,
-        "y": -1050,
-        "screenshot": "pistol_suppressor_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Silencer"
-      },
-      {
-        "id": 429,
-        "itemId": 354,
-        "description": "On the head of Occultist",
-        "x": -150,
-        "y": -420,
-        "isUnderground": true,
-        "requirements": [
-          444
-        ],
-        "screenshot": "night_vision_1.jpg"
-      },
-      {
-        "id": 449,
-        "itemId": 354,
-        "description": "On skeletons head",
-        "x": -609,
-        "y": -1048,
-        "isUnderground": true,
-        "screenshot": "night_vision_2.jpg"
-      },
-      {
-        "id": 70,
-        "itemId": 487,
-        "x": 1634,
-        "y": 514,
-        "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Pajamas"
-      },
-      {
-        "id": 71,
-        "itemId": 490,
-        "altItemIds": [
-          493,
-          495
-        ],
-        "x": -645,
-        "y": 1511,
-        "isUnderground": true,
-        "screenshot": "hoodie_3.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Hoodie"
-      },
-      {
-        "id": 72,
-        "itemId": 491,
-        "description": "Inside open coffin",
-        "x": -922,
-        "y": 1454,
-        "screenshot": "blazer.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Blazer"
-      },
-      {
-        "id": 73,
-        "itemId": 558,
-        "description": "Inside Kayak",
-        "x": -1111,
-        "y": 1723,
-        "screenshot": "camouflage_suit.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Camouflage_Suit"
-      },
-      {
-        "id": 74,
-        "itemId": 493,
-        "altItemIds": [
-          490,
-          495
-        ],
-        "x": -1084,
-        "y": 1282,
-        "screenshot": "hoodie_2.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Hoodie"
-      },
-      {
-        "id": 75,
-        "itemId": 556,
-        "description": "On the right side from entrance",
-        "x": -914,
-        "y": 1010,
-        "isUnderground": true,
-        "requirements": [
-          568
-        ],
-        "screenshot": "dress.jpg"
-      },
-      {
-        "id": 76,
-        "itemId": 493,
-        "description": "Inside plane",
-        "x": -971,
-        "y": -1061,
-        "screenshot": "leather_jacket.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Leather_Jacket"
-      },
-      {
-        "id": 77,
-        "itemId": 500,
-        "x": -1031,
-        "y": -625,
-        "screenshot": "winter_jacket.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Winter_Jacket"
-      },
-      {
-        "id": 78,
-        "itemId": 495,
-        "altItemIds": [
-          493,
-          490
-        ],
-        "x": -743,
-        "y": 20,
-        "screenshot": "hoodie_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Hoodie"
-      },
-      {
-        "id": 79,
-        "itemId": 555,
-        "x": -1141,
-        "y": 6,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "track_suit.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Track_Suit"
-      },
-      {
-        "id": 80,
-        "itemId": 487,
-        "x": -1116,
-        "y": -18,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "pajamas_1.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Pajamas"
-      },
-      {
-        "id": 81,
-        "itemId": 492,
-        "description": "On cabinet in the bathroom",
-        "x": -416,
-        "y": 695,
-        "isUnderground": true,
-        "screenshot": "tuxedo.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Tuxedo"
-      },
-      {
-        "id": 82,
-        "itemId": 557,
-        "x": 1166,
-        "y": -647,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "leather_suit_2.jpg"
-      },
-      {
-        "id": 83,
-        "itemId": 435,
-        "x": 1139,
-        "y": -616,
-        "isUnderground": true,
-        "requirements": [
-          566
-        ],
-        "screenshot": "golden_mask.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Gold_Mask"
-      },
-      {
-        "id": 84,
-        "itemId": 557,
-        "x": -888,
-        "y": 769,
-        "screenshot": "leather_suit_1.jpg"
-      },
-      {
-        "id": 318,
-        "itemId": 499,
-        "x": -509,
-        "y": 128,
-        "isUnderground": true,
-        "requirements": [
-          444
-        ],
-        "screenshot": "wetsuit.jpg",
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Wetsuit"
-      }
-    ]
-  },
   "bunkers": {
     "icon": "bunker.png",
     "alwaysEnabled": true,
@@ -938,7 +13,7 @@
           "x": 1758.006,
           "y": 39.5367,
           "z": 553.5449,
-          "areaMask": 1
+          "areaMask": 0
         },
         "objects": [
           "3D Printer",
@@ -946,12 +21,16 @@
         ],
         "items": [
           346,
-          358,
+          468,
           487,
-          547,
-          540
+          539,
+          540,
+          541,
+          548,
+          574
         ],
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Luxury_Bunker_Check_on_map"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Luxury_Bunker_Check_on_map",
+        "screenshot": "luxury_bunker.jpg"
       },
       {
         "id": 30,
@@ -963,7 +42,7 @@
           "x": -472.473,
           "y": 85.8667,
           "z": 708.6599,
-          "areaMask": 1
+          "areaMask": 0
         },
         "requirements": [
           485
@@ -972,12 +51,13 @@
           "3D Printer"
         ],
         "items": [
-          566,
           375,
-          492,
           423,
+          431,
           467,
-          538
+          492,
+          538,
+          566
         ],
         "screenshot": "maintenance_a.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Maintenance_A_Check_on_map"
@@ -992,7 +72,7 @@
           "x": -1136.061,
           "y": 278.7797,
           "z": -1096.09,
-          "areaMask": 1
+          "areaMask": 0
         },
         "requirements": [
           485
@@ -1017,7 +97,7 @@
           "x": 1103.492,
           "y": 127.8232,
           "z": 1011.861,
-          "areaMask": 1
+          "areaMask": 0
         },
         "requirements": [
           485
@@ -1044,14 +124,15 @@
           566
         ],
         "items": [
-          568,
+          346,
           365,
-          544,
-          628,
-          627,
           536,
           542,
-          556
+          544,
+          556,
+          568,
+          627,
+          628
         ],
         "screenshot": "food_and_dining_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Food_and_Dining_Bunker_Check_on_map"
@@ -1072,19 +153,23 @@
           "3D Printer"
         ],
         "items": [
+          346,
           355,
           367,
-          525,
-          346,
           376,
           378,
-          557,
-          435,
           424,
-          611,
+          435,
+          525,
+          537,
           547,
+          557,
+          567,
+          611,
+          614,
           615,
-          537
+          617,
+          637
         ],
         "screenshot": "residential_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Residential_Bunker_Check_on_map"
@@ -1098,7 +183,7 @@
           "x": -1189.197,
           "y": 66.087,
           "z": 132.917,
-          "areaMask": 1
+          "areaMask": 0
         },
         "requirements": [
           566
@@ -1107,17 +192,19 @@
           "3D Printer"
         ],
         "items": [
-          567,
-          394,
           340,
-          487,
-          555,
-          575,
+          346,
+          394,
           467,
+          487,
+          526,
           534,
-          546,
           535,
-          526
+          543,
+          546,
+          555,
+          567,
+          575
         ],
         "screenshot": "cave_leading_to_entertainment_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Entertainment_Bunker_Check_on_map"
@@ -1133,7 +220,14 @@
         "x": -418,
         "y": 700,
         "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer",
+        "teleport": {
+          "x": -427.0324,
+          "y": 76.6869,
+          "z": 700.9958,
+          "areaMask": 131072
+        },
+        "screenshot": "printer_bunker_a.jpg"
       },
       {
         "id": 35,
@@ -1141,7 +235,14 @@
         "x": -1195,
         "y": 78,
         "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer",
+        "teleport": {
+          "x": -1196.287,
+          "y": 59.8733,
+          "z": 79.9879,
+          "areaMask": 1048576
+        },
+        "screenshot": "printer_bunker_d.jpg"
       },
       {
         "id": 36,
@@ -1149,7 +250,14 @@
         "x": -1126,
         "y": -1048,
         "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer",
+        "teleport": {
+          "x": -1127.252,
+          "y": 269.51,
+          "z": -1049.848,
+          "areaMask": 262144
+        },
+        "screenshot": "printer_bunker_b.jpg"
       },
       {
         "id": 37,
@@ -1157,7 +265,14 @@
         "x": 1121,
         "y": -602,
         "isUnderground": true,
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/3D_Printer",
+        "teleport": {
+          "x": 1122.662,
+          "y": 216.9346,
+          "z": -604.1529,
+          "areaMask": 4194304
+        },
+        "screenshot": "printer_bunker_f.jpg"
       }
     ]
   },
@@ -1167,16 +282,22 @@
       {
         "id": 587,
         "title": "Laptop no.1",
-        "description": "Entertainment Bunker Location",
+        "description": "Cave A (Rebreather) Location",
         "x": -422,
         "y": 1494,
+        "teleport": {
+          "x": -422.6723,
+          "y": 14.1793,
+          "z": 1496.807,
+          "areaMask": 2
+        },
         "isUnderground": true,
         "screenshot": "laptop_rebreather_cave.jpg"
       },
       {
         "id": 588,
         "title": "Laptop no.2",
-        "description": "Bunker A Location",
+        "description": "Cave C (Shovel) Location",
         "x": -581,
         "y": -69,
         "isUnderground": true,
@@ -1184,54 +305,84 @@
           522,
           444
         ],
+        "teleport": {
+          "x": -582.1122,
+          "y": 137.0578,
+          "z": -71.1875,
+          "areaMask": 8
+        },
         "screenshot": "laptop_shovel_cave.jpg"
       },
       {
         "id": 592,
         "title": "Laptop no.3",
-        "description": "Food and Dining Bunker Location",
+        "description": "Bunker A (Maintenance) Location",
         "x": -424,
         "y": 703,
         "isUnderground": true,
         "requirements": [
           485
         ],
-        "screenshot": "laptop_bunker_b.jpg"
+        "teleport": {
+          "x": -425.7823,
+          "y": 76.6869,
+          "z": 702.8818,
+          "areaMask": 131072
+        },
+        "screenshot": "laptop_bunker_a.jpg"
       },
       {
         "id": 589,
         "title": "Laptop no.4",
-        "description": "Residential Bunker Location",
+        "description": "Food and Dining Bunker Location",
         "x": -971,
         "y": 1036,
         "isUnderground": true,
         "requirements": [
           566
         ],
+        "teleport": {
+          "x": -973.5143,
+          "y": 59.8983,
+          "z": 1037.542,
+          "areaMask": 2097152
+        },
         "screenshot": "laptop_food_and_dining_bunker.jpg"
       },
       {
         "id": 590,
         "title": "Laptop no.5",
-        "description": "Bunker B Location",
+        "description": "Bunker D (Entertainment) Location",
         "x": -1179,
         "y": 27,
         "isUnderground": true,
         "requirements": [
           566
         ],
+        "teleport": {
+          "x": -1181.383,
+          "y": 65.69,
+          "z": 26.2152,
+          "areaMask": 1048576
+        },
         "screenshot": "laptop_entertainment_bunker.jpg"
       },
       {
         "id": 591,
         "title": "Laptop no.6",
-        "description": "Bunker C Location",
+        "description": "Bunker B Location",
         "x": -1127,
         "y": -1046,
         "isUnderground": true,
         "requirements": [
           485
         ],
+        "teleport": {
+          "x": -1127.298,
+          "y": 269.51,
+          "z": -1048.533,
+          "areaMask": 262144
+        },
         "screenshot": "laptop_bunker_b.jpg"
       },
       {
@@ -1244,7 +395,13 @@
         "requirements": [
           567
         ],
-        "screenshot": "laptop_residential_bunker.jpg"
+        "teleport": {
+          "x": 1176.274,
+          "y": 209.5366,
+          "z": -644.652,
+          "areaMask": 4194304
+        },
+        "screenshot": "laptop_luxury_bunker.jpg"
       }
     ]
   },
@@ -1258,10 +415,10 @@
         "x": 1230,
         "y": -652,
         "teleport": {
-          "x": 1219.237,
-          "y": 228.104,
-          "z": -638.4961,
-          "areaMask": 1
+          "x": 1241.626,
+          "y": 238.4114,
+          "z": -659.7881,
+          "areaMask": 0
         },
         "screenshot": "cave_leading_to_residential_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Residential_Bunker_Check_on_map"
@@ -1275,7 +432,7 @@
           "x": 974.605,
           "y": 244.7414,
           "z": -408.2101,
-          "areaMask": 1
+          "areaMask": 0
         },
         "screenshot": "large_lake_grotto.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Large_Lake_Grotto_Check_on_map"
@@ -1289,7 +446,7 @@
           "x": 420.3486,
           "y": 513.1536,
           "z": -202.1862,
-          "areaMask": 1
+          "areaMask": 0
         },
         "screenshot": "mountaintop_lake_grotto.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Mountaintop_Lake_Grotto_Check_on_map"
@@ -1303,7 +460,7 @@
           "x": -156.0622,
           "y": 406.3641,
           "z": -89.5833,
-          "areaMask": 1
+          "areaMask": 0
         },
         "screenshot": "frozen_lake_grotto.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Frozen_Lake_Grotto_Check_on_map"
@@ -1317,7 +474,7 @@
           "x": -540.1115,
           "y": 282.7721,
           "z": -635.7455,
-          "areaMask": 1
+          "areaMask": 0
         },
         "items": [
           354,
@@ -1335,7 +492,7 @@
           "x": -655.9606,
           "y": 197.6201,
           "z": -1060.542,
-          "areaMask": 1
+          "areaMask": 0
         },
         "items": [
           354
@@ -1352,7 +509,7 @@
           "x": -103.1071,
           "y": 394.1236,
           "z": -1066.188,
-          "areaMask": 1
+          "areaMask": 0
         },
         "screenshot": "mountainside_grotto.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Mountainside_Grotto_Check_on_map"
@@ -1366,11 +523,12 @@
           "x": -1112.446,
           "y": 127.7137,
           "z": -173.4225,
-          "areaMask": 1
+          "areaMask": 0
         },
         "items": [
-          522,
           468,
+          521,
+          522,
           545,
           612
         ],
@@ -1386,7 +544,7 @@
           "x": -1248.77,
           "y": 147.9817,
           "z": -308.2372,
-          "areaMask": 1
+          "areaMask": 0
         },
         "requirements": [
           522
@@ -1403,12 +561,11 @@
           "x": -538.5109,
           "y": 196.6818,
           "z": 117.8255,
-          "areaMask": 1
+          "areaMask": 0
         },
         "items": [
-          459,
-          485,
           378,
+          485,
           499
         ],
         "screenshot": "shovel_cave.jpg",
@@ -1423,7 +580,7 @@
           "x": -1015.208,
           "y": 97.748,
           "z": 1024.566,
-          "areaMask": 1
+          "areaMask": 0
         },
         "screenshot": "food_and_dining_cave.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Food_and_Dining_Bunker_Check_on_map"
@@ -1437,11 +594,11 @@
           "x": -421.359,
           "y": 14.1331,
           "z": 1518.751,
-          "areaMask": 1
+          "areaMask": 0
         },
         "items": [
-          444,
           353,
+          444,
           490,
           493,
           495,
@@ -1457,7 +614,6 @@
     "pois": [
       {
         "id": 51,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": 1283,
         "y": -727,
@@ -1465,7 +621,6 @@
       },
       {
         "id": 52,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": 1698,
         "y": 33,
@@ -1473,7 +628,6 @@
       },
       {
         "id": 53,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": 1263,
         "y": 494,
@@ -1481,7 +635,6 @@
       },
       {
         "id": 54,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": 725,
         "y": 738,
@@ -1489,7 +642,6 @@
       },
       {
         "id": 55,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": 799,
         "y": 975,
@@ -1497,7 +649,6 @@
       },
       {
         "id": 56,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": -29,
         "y": 667,
@@ -1505,7 +656,6 @@
       },
       {
         "id": 57,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": -237,
         "y": 944,
@@ -1513,7 +663,6 @@
       },
       {
         "id": 58,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": -258,
         "y": 1073,
@@ -1521,7 +670,6 @@
       },
       {
         "id": 59,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": 61,
         "y": 1247,
@@ -1529,7 +677,6 @@
       },
       {
         "id": 60,
-        "type": "camp",
         "title": "Abandoned Camp",
         "x": -47,
         "y": 1456,
@@ -1537,7 +684,6 @@
       },
       {
         "id": 61,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents without save points",
         "x": -749,
@@ -1546,7 +692,6 @@
       },
       {
         "id": 62,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "Tent with save point",
         "x": -1121,
@@ -1555,7 +700,6 @@
       },
       {
         "id": 63,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents without save points",
         "x": -1362,
@@ -1564,7 +708,6 @@
       },
       {
         "id": 64,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": -1255,
@@ -1573,7 +716,6 @@
       },
       {
         "id": 65,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents without save points",
         "x": -1436,
@@ -1582,7 +724,6 @@
       },
       {
         "id": 66,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "4x Tents without save points",
         "x": -1650,
@@ -1591,7 +732,6 @@
       },
       {
         "id": 145,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "Tent with save point",
         "x": -1388,
@@ -1600,7 +740,6 @@
       },
       {
         "id": 146,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": -1722,
@@ -1609,7 +748,6 @@
       },
       {
         "id": 180,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "3x Tents with save points",
         "x": -703,
@@ -1618,7 +756,6 @@
       },
       {
         "id": 181,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "3x Tents without save points",
         "x": -1095,
@@ -1627,7 +764,6 @@
       },
       {
         "id": 182,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": -1268,
@@ -1636,7 +772,6 @@
       },
       {
         "id": 183,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "Tent with save point",
         "x": -1388,
@@ -1645,7 +780,6 @@
       },
       {
         "id": 184,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": -1257,
@@ -1654,7 +788,6 @@
       },
       {
         "id": 185,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": -1028,
@@ -1663,7 +796,6 @@
       },
       {
         "id": 186,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "3x Tents without save points",
         "x": -703,
@@ -1672,7 +804,6 @@
       },
       {
         "id": 187,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": -474,
@@ -1681,7 +812,6 @@
       },
       {
         "id": 188,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": -156,
@@ -1690,7 +820,6 @@
       },
       {
         "id": 189,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "2x Tents with save points",
         "x": 363,
@@ -1699,7 +828,6 @@
       },
       {
         "id": 190,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "Tent with save point",
         "x": 402,
@@ -1708,7 +836,6 @@
       },
       {
         "id": 191,
-        "type": "camp",
         "title": "Abandoned Camp",
         "description": "3x Tents without save points",
         "x": -129,
@@ -1722,7 +849,6 @@
     "pois": [
       {
         "id": 67,
-        "type": "village",
         "title": "Abandoned Cabins",
         "x": 1827,
         "y": -487,
@@ -1730,13 +856,13 @@
           "x": 1826.351,
           "y": 49.1108,
           "z": -511.0179,
-          "areaMask": 1
+          "areaMask": 0
         },
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Abandoned_Camps"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Abandoned_Camps",
+        "screenshot": "abandoned_cabins_3.jpg"
       },
       {
         "id": 68,
-        "type": "village",
         "title": "Abandoned Cabins",
         "x": 1694,
         "y": 1025,
@@ -1744,13 +870,13 @@
           "x": 1678.729,
           "y": 28.7008,
           "z": 1021.659,
-          "areaMask": 1
+          "areaMask": 0
         },
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Abandoned_Camps"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Abandoned_Camps",
+        "screenshot": "abandoned_cabins_1.jpg"
       },
       {
         "id": 69,
-        "type": "village",
         "title": "Abandoned Cabins",
         "x": 1459,
         "y": 747,
@@ -1758,9 +884,10 @@
           "x": 1452.832,
           "y": 87.5943,
           "z": 768.1615,
-          "areaMask": 1
+          "areaMask": 0
         },
-        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Abandoned_Camps"
+        "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Abandoned_Camps",
+        "screenshot": "abandoned_cabins_2.jpg"
       }
     ]
   },
@@ -1769,7 +896,6 @@
     "pois": [
       {
         "id": 114,
-        "type": "helicopter",
         "title": "Helicopter Crash Site",
         "x": -886,
         "y": 770,
@@ -1777,22 +903,23 @@
           "x": -886.6176,
           "y": 95.5233,
           "z": 763.3517,
-          "areaMask": 1
+          "areaMask": 0
         },
+        "screenshot": "helicopter_1.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Helicopter_Crash_Sites"
       },
       {
         "id": 272,
-        "type": "helicopter",
         "title": "Helicopter Crash Site",
         "x": -804,
         "y": -218,
         "teleport": {
-          "x": -886.6176,
-          "y": 95.5233,
-          "z": 552.9674,
-          "areaMask": 1
+          "x": -812.4498,
+          "y": 163.397,
+          "z": -219.1705,
+          "areaMask": 0
         },
+        "screenshot": "helicopter_2.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Locations#Helicopter_Crash_Sites"
       }
     ]
@@ -1802,14 +929,12 @@
     "pois": [
       {
         "id": 192,
-        "type": "info",
         "title": "Big Old Cross",
         "x": 1728,
         "y": -1198
       },
       {
         "id": 204,
-        "type": "info",
         "title": "Wall Painting",
         "x": 870,
         "y": -379,
@@ -1817,7 +942,6 @@
       },
       {
         "id": 582,
-        "type": "info",
         "title": "Wall Painting",
         "x": -989,
         "y": -248,
@@ -1825,7 +949,6 @@
       },
       {
         "id": 583,
-        "type": "info",
         "title": "Wall Painting",
         "x": -461,
         "y": -556,
@@ -1833,14 +956,12 @@
       },
       {
         "id": 216,
-        "type": "info",
         "title": "Hanging Skeletons",
         "x": 1489,
         "y": 716
       },
       {
         "id": 245,
-        "type": "info",
         "title": "Plane Crash Site",
         "x": -933,
         "y": -1007,
@@ -1848,35 +969,30 @@
       },
       {
         "id": 270,
-        "type": "info",
         "title": "Occultists corpses",
         "x": -425,
         "y": 830
       },
       {
         "id": 474,
-        "type": "info",
         "title": "Occultists corpses",
         "x": -630,
         "y": 1270
       },
       {
         "id": 271,
-        "type": "info",
         "title": "Sitting Skeleton",
         "x": -1140,
         "y": 1128
       },
       {
         "id": 301,
-        "type": "info",
         "title": "Skeletons Pile",
         "x": 1571,
         "y": 800
       },
       {
         "id": 302,
-        "type": "info",
         "title": "Helipad A",
         "x": 1928,
         "y": 454,
@@ -1884,7 +1000,6 @@
       },
       {
         "id": 303,
-        "type": "info",
         "title": "Helipad B",
         "x": 1921,
         "y": 399,
@@ -1892,84 +1007,72 @@
       },
       {
         "id": 304,
-        "type": "info",
         "title": "Leg and Torso Effigies",
         "x": -495,
         "y": 1433
       },
       {
         "id": 351,
-        "type": "info",
         "title": "5x Effigies",
         "x": -1630,
         "y": 832
       },
       {
         "id": 352,
-        "type": "info",
         "title": "3x Effigies",
         "x": -639,
         "y": 1494
       },
       {
         "id": 353,
-        "type": "info",
         "title": "Dead Soldier Effigy",
         "x": -420,
         "y": 1643
       },
       {
         "id": 354,
-        "type": "info",
         "title": "Dead Soldier Effigy",
         "x": -400,
         "y": 1645
       },
       {
         "id": 355,
-        "type": "info",
         "title": "3x Effigies",
         "x": 1571,
         "y": 790
       },
       {
         "id": 356,
-        "type": "info",
         "title": "3x Effigies",
         "x": 1871,
         "y": 143
       },
       {
         "id": 435,
-        "type": "info",
         "title": "2x Effigies",
         "x": 924,
         "y": 1559
       },
       {
         "id": 463,
-        "type": "info",
         "title": "2x Effigies",
         "x": -727,
         "y": 31
       },
       {
         "id": 481,
-        "type": "info",
         "title": "2x Effigies",
         "x": -499,
         "y": 476
       },
       {
         "id": 482,
-        "type": "info",
         "title": "2x Effigies",
         "x": -1069,
         "y": 1296
       },
       {
         "id": 357,
-        "type": "info",
         "title": "Kayak",
         "x": -1118,
         "y": 1692,
@@ -1977,7 +1080,6 @@
       },
       {
         "id": 358,
-        "type": "info",
         "title": "2x Kayaks",
         "x": 1882,
         "y": 1438,
@@ -1985,7 +1087,6 @@
       },
       {
         "id": 359,
-        "type": "info",
         "title": "Kayak",
         "x": -1111,
         "y": 1722,
@@ -1993,7 +1094,6 @@
       },
       {
         "id": 360,
-        "type": "info",
         "title": "2x Kayaks",
         "x": 11,
         "y": -1853,
@@ -2001,7 +1101,6 @@
       },
       {
         "id": 361,
-        "type": "info",
         "title": "Boat",
         "x": 1861,
         "y": 750,
@@ -2009,7 +1108,6 @@
       },
       {
         "id": 362,
-        "type": "info",
         "title": "Boat",
         "x": 631,
         "y": -1827,
@@ -2017,7 +1115,6 @@
       },
       {
         "id": 363,
-        "type": "info",
         "title": "3x Boats",
         "x": 1848,
         "y": 774,
@@ -2025,7 +1122,6 @@
       },
       {
         "id": 364,
-        "type": "info",
         "title": "Boat",
         "x": -512,
         "y": -1851,
@@ -2033,7 +1129,6 @@
       },
       {
         "id": 365,
-        "type": "info",
         "title": "2x Boats",
         "x": -529,
         "y": -1899,
@@ -2041,7 +1136,6 @@
       },
       {
         "id": 366,
-        "type": "info",
         "title": "2x Boats",
         "x": -1059,
         "y": -1872,
@@ -2049,7 +1143,6 @@
       },
       {
         "id": 367,
-        "type": "info",
         "title": "2x Boats",
         "x": -1789,
         "y": -1591,
@@ -2057,7 +1150,6 @@
       },
       {
         "id": 368,
-        "type": "info",
         "title": "3x Boats",
         "x": -1761,
         "y": -1093,
@@ -2065,7 +1157,6 @@
       },
       {
         "id": 369,
-        "type": "info",
         "title": "Boat",
         "x": -1784,
         "y": -754,
@@ -2073,7 +1164,6 @@
       },
       {
         "id": 370,
-        "type": "info",
         "title": "2x Boats",
         "x": -1397,
         "y": 604,
@@ -2081,7 +1171,6 @@
       },
       {
         "id": 371,
-        "type": "info",
         "title": "3x Golf Carts Underwater",
         "x": 1618,
         "y": 772,
@@ -2089,7 +1178,6 @@
       },
       {
         "id": 372,
-        "type": "info",
         "title": "Golf Cart",
         "x": 1943,
         "y": 399,
@@ -2097,7 +1185,6 @@
       },
       {
         "id": 373,
-        "type": "info",
         "title": "2x Golf Carts",
         "x": 1905,
         "y": 460,
@@ -2105,7 +1192,6 @@
       },
       {
         "id": 374,
-        "type": "info",
         "title": "2x Golf Carts",
         "x": 1906,
         "y": 404,
@@ -2113,7 +1199,6 @@
       },
       {
         "id": 375,
-        "type": "info",
         "title": "Golf Cart",
         "x": 1023,
         "y": 1641,
@@ -2121,7 +1206,6 @@
       },
       {
         "id": 436,
-        "type": "info",
         "title": "Golf Cart",
         "x": 987,
         "y": 1532,
@@ -2129,7 +1213,6 @@
       },
       {
         "id": 437,
-        "type": "info",
         "title": "Golf Cart",
         "x": 848,
         "y": 1534,
@@ -2137,7 +1220,6 @@
       },
       {
         "id": 473,
-        "type": "info",
         "title": "2x Golf Carts",
         "x": -978,
         "y": 134,
@@ -2145,7 +1227,6 @@
       },
       {
         "id": 480,
-        "type": "info",
         "title": "2x Golf Carts",
         "x": -1016,
         "y": 1019,
@@ -2153,49 +1234,42 @@
       },
       {
         "id": 376,
-        "type": "info",
         "title": "Mutant",
         "x": 209,
         "y": 1457
       },
       {
         "id": 377,
-        "type": "info",
         "title": "Mutant",
         "x": 1812,
         "y": 142
       },
       {
         "id": 378,
-        "type": "info",
         "title": "Mutant",
         "x": 1799,
         "y": -54
       },
       {
         "id": 379,
-        "type": "info",
         "title": "Mutant",
         "x": -1762,
         "y": -1596
       },
       {
         "id": 380,
-        "type": "info",
         "title": "Mutant",
         "x": -1494,
         "y": 820
       },
       {
         "id": 483,
-        "type": "info",
         "title": "Mutant",
         "x": -1065,
         "y": 1295
       },
       {
         "id": 381,
-        "type": "info",
         "title": "2x Dead Killer Whales",
         "x": 1868,
         "y": 82,
@@ -2203,7 +1277,6 @@
       },
       {
         "id": 382,
-        "type": "info",
         "title": "2x Dead Killer Whales",
         "x": 1854,
         "y": 96,
@@ -2211,7 +1284,6 @@
       },
       {
         "id": 383,
-        "type": "info",
         "title": "2x Dead Killer Whales",
         "x": -237,
         "y": 1425,
@@ -2219,7 +1291,6 @@
       },
       {
         "id": 384,
-        "type": "info",
         "title": "2x Dead Killer Whales",
         "x": -1764,
         "y": -977,
@@ -2227,7 +1298,6 @@
       },
       {
         "id": 390,
-        "type": "info",
         "title": "4x Graves",
         "x": 1711,
         "y": -1217,
@@ -2235,7 +1305,6 @@
       },
       {
         "id": 391,
-        "type": "info",
         "title": "2x Graves",
         "x": 287,
         "y": -1643,
@@ -2243,7 +1312,6 @@
       },
       {
         "id": 392,
-        "type": "info",
         "title": "4x Graves",
         "x": -842,
         "y": 1716,
@@ -2251,7 +1319,6 @@
       },
       {
         "id": 393,
-        "type": "info",
         "title": "4x Graves",
         "x": -1314,
         "y": 1474,
@@ -2259,7 +1326,6 @@
       },
       {
         "id": 394,
-        "type": "info",
         "title": "Grave",
         "x": -1340,
         "y": 1412,
@@ -2267,7 +1333,6 @@
       },
       {
         "id": 395,
-        "type": "info",
         "title": "Grave",
         "x": -1455,
         "y": 1415,
@@ -2275,7 +1340,6 @@
       },
       {
         "id": 396,
-        "type": "info",
         "title": "Grave",
         "x": -1595,
         "y": 763,
@@ -2283,7 +1347,6 @@
       },
       {
         "id": 397,
-        "type": "info",
         "title": "3x Graves",
         "x": -1789,
         "y": 22,
@@ -2291,7 +1354,6 @@
       },
       {
         "id": 398,
-        "type": "info",
         "title": "3x Graves",
         "x": -1455,
         "y": -124,
@@ -2299,7 +1361,6 @@
       },
       {
         "id": 399,
-        "type": "info",
         "title": "2x Graves",
         "x": -1596,
         "y": -1131,
@@ -2307,7 +1368,6 @@
       },
       {
         "id": 400,
-        "type": "info",
         "title": "2x Graves",
         "x": -1611,
         "y": -1151,
@@ -2315,7 +1375,6 @@
       },
       {
         "id": 401,
-        "type": "info",
         "title": "2x Graves",
         "x": -1628,
         "y": 1503,
@@ -2323,7 +1382,6 @@
       },
       {
         "id": 402,
-        "type": "info",
         "title": "3x Graves",
         "x": -1634,
         "y": -1508,
@@ -2331,7 +1389,6 @@
       },
       {
         "id": 403,
-        "type": "info",
         "title": "2x Graves",
         "x": 1818,
         "y": -488,
@@ -2339,7 +1396,6 @@
       },
       {
         "id": 404,
-        "type": "info",
         "title": "3x Graves",
         "x": 1616,
         "y": 194,
@@ -2347,7 +1403,6 @@
       },
       {
         "id": 405,
-        "type": "info",
         "title": "2x Graves",
         "x": 1249,
         "y": 763,
@@ -2355,7 +1410,6 @@
       },
       {
         "id": 406,
-        "type": "info",
         "title": "3x Graves",
         "x": 1430,
         "y": 861,
@@ -2363,7 +1417,6 @@
       },
       {
         "id": 407,
-        "type": "info",
         "title": "3x Graves",
         "x": 1666,
         "y": 964,
@@ -2371,7 +1424,6 @@
       },
       {
         "id": 408,
-        "type": "info",
         "title": "3x Graves",
         "x": 1667,
         "y": 958,
@@ -2379,7 +1431,6 @@
       },
       {
         "id": 409,
-        "type": "info",
         "title": "Grave",
         "x": 1296,
         "y": 1073,
@@ -2387,7 +1438,6 @@
       },
       {
         "id": 410,
-        "type": "info",
         "title": "2x Graves",
         "x": 1271,
         "y": 1161,
@@ -2395,7 +1445,6 @@
       },
       {
         "id": 411,
-        "type": "info",
         "title": "2x Graves",
         "x": 891,
         "y": 1361,
@@ -2403,7 +1452,6 @@
       },
       {
         "id": 412,
-        "type": "info",
         "title": "3x Graves",
         "x": 1255,
         "y": 1690,
@@ -2411,7 +1459,6 @@
       },
       {
         "id": 413,
-        "type": "info",
         "title": "3x Graves",
         "x": 527,
         "y": 1046,
@@ -2419,7 +1466,6 @@
       },
       {
         "id": 414,
-        "type": "info",
         "title": "2x Graves",
         "x": 122,
         "y": 1152,
@@ -2427,7 +1473,6 @@
       },
       {
         "id": 415,
-        "type": "info",
         "title": "4x Graves",
         "x": 64,
         "y": 1322,
@@ -2435,7 +1480,6 @@
       },
       {
         "id": 464,
-        "type": "info",
         "title": "3x Graves",
         "x": -1000,
         "y": 210,
@@ -2443,7 +1487,6 @@
       },
       {
         "id": 422,
-        "type": "info",
         "title": "Astronaut Corpse",
         "x": 148,
         "y": -643,
@@ -2451,7 +1494,6 @@
       },
       {
         "id": 423,
-        "type": "info",
         "title": "Astronaut Corpse",
         "x": 174,
         "y": -658,
@@ -2459,7 +1501,6 @@
       },
       {
         "id": 424,
-        "type": "info",
         "title": "3x Astronaut Corpses",
         "x": 182,
         "y": -671,
@@ -2467,7 +1508,6 @@
       },
       {
         "id": 425,
-        "type": "info",
         "title": "3x Astronaut Corpses",
         "x": 175,
         "y": -666,
@@ -2480,11 +1520,17 @@
     "pois": [
       {
         "id": 309,
-        "type": "door",
         "title": "Locked Door",
         "description": "On the right side in first room",
         "x": -1018,
         "y": 1030,
+        "teleport": {
+          "x": -1016.901,
+          "y": 62.7125,
+          "z": 1032.767,
+          "areaMask": 2097152
+        },
+        "screenshot": "door_5.jpg",
         "isUnderground": true,
         "requirements": [
           566
@@ -2492,11 +1538,17 @@
       },
       {
         "id": 313,
-        "type": "door",
         "title": "Locked Door",
         "description": "At the end of the flooded corridor",
         "x": -930,
         "y": 1024,
+        "teleport": {
+          "x": -932.0342,
+          "y": 58.3625,
+          "z": 1025.062,
+          "areaMask": 2097152
+        },
+        "screenshot": "door_4.jpg",
         "isUnderground": true,
         "requirements": [
           568
@@ -2504,11 +1556,17 @@
       },
       {
         "id": 332,
-        "type": "door",
         "title": "Locked Door",
         "description": "At the end of the main corridor",
         "x": -1149,
         "y": 51,
+        "teleport": {
+          "x": -1147.807,
+          "y": 58.6413,
+          "z": 53.4577,
+          "areaMask": 1048576
+        },
+        "screenshot": "door_3.jpg",
         "isUnderground": true,
         "requirements": [
           566
@@ -2516,11 +1574,17 @@
       },
       {
         "id": 338,
-        "type": "door",
         "title": "Locked Door",
         "description": "At the end of a bar section in Night Club room",
         "x": -1170,
         "y": 26,
+        "teleport": {
+          "x": -1168.545,
+          "y": 65.6977,
+          "z": 24.8021,
+          "areaMask": 1048576
+        },
+        "screenshot": "door_2.jpg",
         "isUnderground": true,
         "requirements": [
           566
@@ -2528,11 +1592,17 @@
       },
       {
         "id": 339,
-        "type": "door",
         "title": "Locked Door",
         "description": "In the right corner of the pool",
         "x": -1139,
         "y": 26,
+        "teleport": {
+          "x": -1140.58,
+          "y": 66.5555,
+          "z": 24.9604,
+          "areaMask": 1048576
+        },
+        "screenshot": "door_1.jpg",
         "isUnderground": true,
         "requirements": [
           566
@@ -2540,10 +1610,16 @@
       },
       {
         "id": 433,
-        "type": "door",
         "title": "Locked Door",
         "x": 1142,
         "y": -608,
+        "teleport": {
+          "x": 1144.279,
+          "y": 191.033,
+          "z": -608.2709,
+          "areaMask": 4194304
+        },
+        "screenshot": "door_7.jpg",
         "isUnderground": true,
         "requirements": [
           567
@@ -2551,10 +1627,16 @@
       },
       {
         "id": 434,
-        "type": "door",
         "title": "Locked Door",
         "x": 1218,
         "y": -625,
+        "teleport": {
+          "x": 1217.435,
+          "y": 224.3,
+          "z": -625.6331,
+          "areaMask": 4194304
+        },
+        "screenshot": "door_6.jpg",
         "isUnderground": true,
         "requirements": [
           567
@@ -2567,399 +1649,342 @@
     "pois": [
       {
         "id": 130,
-        "type": "crate",
         "title": "3x Crates",
         "x": -1775,
         "y": 1365
       },
       {
         "id": 135,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1467,
         "y": 1111
       },
       {
         "id": 136,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1369,
         "y": 803
       },
       {
         "id": 147,
-        "type": "crate",
         "title": "3x Crates",
         "x": -1639,
         "y": -170
       },
       {
         "id": 160,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1215,
         "y": 651
       },
       {
         "id": 165,
-        "type": "crate",
         "title": "2x Crates",
         "x": -843,
         "y": 1016
       },
       {
         "id": 167,
-        "type": "crate",
         "title": "3x Crates",
         "x": -1079,
         "y": 1269
       },
       {
         "id": 168,
-        "type": "crate",
         "title": "4x Crates",
         "x": -914,
         "y": 1450
       },
       {
         "id": 171,
-        "type": "crate",
         "title": "3x Crates",
         "x": -1353,
         "y": -835
       },
       {
         "id": 172,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1130,
         "y": -1106
       },
       {
         "id": 173,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1138,
         "y": -1092
       },
       {
         "id": 193,
-        "type": "crate",
         "title": "3x Crates",
         "x": 1747,
         "y": -1209
       },
       {
         "id": 194,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1734,
         "y": -1219
       },
       {
         "id": 195,
-        "type": "crate",
         "title": "4x Crates",
         "x": 931,
         "y": -389
       },
       {
         "id": 196,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1361,
         "y": -163
       },
       {
         "id": 197,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1352,
         "y": -156
       },
       {
         "id": 198,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1397,
         "y": -121
       },
       {
         "id": 199,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1853,
         "y": 126
       },
       {
         "id": 200,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1782,
         "y": -37
       },
       {
         "id": 201,
-        "type": "crate",
         "title": "Crate",
         "x": 1808,
         "y": -60
       },
       {
         "id": 202,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1804,
         "y": -78
       },
       {
         "id": 203,
-        "type": "crate",
         "title": "Crate",
         "x": 1465,
         "y": 679
       },
       {
         "id": 205,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1506,
         "y": 670
       },
       {
         "id": 206,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1503,
         "y": 684
       },
       {
         "id": 207,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1570,
         "y": 894
       },
       {
         "id": 208,
-        "type": "crate",
         "title": "2x Crates",
         "x": 33,
         "y": 1374
       },
       {
         "id": 209,
-        "type": "crate",
         "title": "2x Crates",
         "x": 50,
         "y": 1371
       },
       {
         "id": 210,
-        "type": "crate",
         "title": "2x Crates",
         "x": 260,
         "y": 1467
       },
       {
         "id": 211,
-        "type": "crate",
         "title": "2x Crates",
         "x": 251,
         "y": 1490
       },
       {
         "id": 212,
-        "type": "crate",
         "title": "2x Crates",
         "x": -771,
         "y": 762
       },
       {
         "id": 213,
-        "type": "crate",
         "title": "2x Crates",
         "x": -758,
         "y": 755
       },
       {
         "id": 214,
-        "type": "crate",
         "title": "2x Crates",
         "x": -478,
         "y": 482
       },
       {
         "id": 215,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1141,
         "y": 444
       },
       {
         "id": 217,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1325,
         "y": -488
       },
       {
         "id": 218,
-        "type": "crate",
         "title": "2x Crates",
         "x": -967,
         "y": -792
       },
       {
         "id": 219,
-        "type": "crate",
         "title": "4x Crates",
         "x": -610,
         "y": -1042
       },
       {
         "id": 220,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1155,
         "y": -1202
       },
       {
         "id": 221,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1775,
         "y": -1603
       },
       {
         "id": 222,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1566,
         "y": -1655
       },
       {
         "id": 240,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1571,
         "y": -821
       },
       {
         "id": 241,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1138,
         "y": -1082
       },
       {
         "id": 242,
-        "type": "crate",
         "title": "3x Crates",
         "x": -1153,
         "y": -1203
       },
       {
         "id": 243,
-        "type": "crate",
         "title": "3x Crates",
         "x": -1351,
         "y": -830
       },
       {
         "id": 289,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1375,
         "y": -690
       },
       {
         "id": 290,
-        "type": "crate",
         "title": "3x Crates",
         "x": 1390,
         "y": -699
       },
       {
         "id": 291,
-        "type": "crate",
         "title": "Crate",
         "x": 1061,
         "y": -928
       },
       {
         "id": 292,
-        "type": "crate",
         "title": "Crate",
         "x": 1478,
         "y": 707
       },
       {
         "id": 293,
-        "type": "crate",
         "title": "Crate",
         "x": 1424,
         "y": 851
       },
       {
         "id": 294,
-        "type": "crate",
         "title": "2x Crates",
         "x": 1430,
         "y": 834
       },
       {
         "id": 349,
-        "type": "crate",
         "title": "Coffin",
         "x": -1679,
         "y": -1760
       },
       {
         "id": 350,
-        "type": "crate",
         "title": "2x Coffins",
         "x": -1681,
         "y": -1740
       },
       {
         "id": 484,
-        "type": "crate",
         "title": "2x Coffins",
         "x": -970,
         "y": 819
       },
       {
         "id": 459,
-        "type": "crate",
         "title": "Crate",
         "x": -1152,
         "y": 455
       },
       {
         "id": 460,
-        "type": "crate",
         "title": "Crate",
         "x": -747,
         "y": 28
       },
       {
         "id": 461,
-        "type": "crate",
         "title": "3x Crates",
         "x": -112,
         "y": -103
       },
       {
         "id": 577,
-        "type": "crate",
         "title": "2x Crates",
         "x": -1006,
         "y": -391
       },
       {
         "id": 578,
-        "type": "crate",
         "title": "Crate",
         "x": -518,
         "y": -598,
@@ -2967,7 +1992,6 @@
       },
       {
         "id": 579,
-        "type": "crate",
         "title": "5x Crates",
         "x": -507,
         "y": -618,
@@ -2980,315 +2004,270 @@
     "pois": [
       {
         "id": 116,
-        "type": "supply",
         "title": "4x Supply Suitcases",
         "x": -428,
         "y": 1594
       },
       {
         "id": 117,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -423,
         "y": 1613
       },
       {
         "id": 121,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -651,
         "y": 1487
       },
       {
         "id": 122,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1114,
         "y": 1690
       },
       {
         "id": 123,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1121,
         "y": 1626
       },
       {
         "id": 126,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1364,
         "y": 1665
       },
       {
         "id": 127,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1430,
         "y": 1710
       },
       {
         "id": 128,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1258,
         "y": 1400
       },
       {
         "id": 132,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1652,
         "y": 1185
       },
       {
         "id": 133,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1437,
         "y": 1213
       },
       {
         "id": 137,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1137,
         "y": -221
       },
       {
         "id": 139,
-        "type": "supply",
         "title": "3x Supply Suitcases",
         "x": -1150,
         "y": -234
       },
       {
         "id": 140,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1137,
         "y": -236
       },
       {
         "id": 142,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1134,
         "y": -130
       },
       {
         "id": 143,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1260,
         "y": -205
       },
       {
         "id": 144,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1388,
         "y": -216
       },
       {
         "id": 150,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1719,
         "y": 57
       },
       {
         "id": 151,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1592,
         "y": 224
       },
       {
         "id": 152,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1606,
         "y": 488
       },
       {
         "id": 153,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1342,
         "y": 237
       },
       {
         "id": 157,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1217,
         "y": 665
       },
       {
         "id": 158,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1217,
         "y": 655
       },
       {
         "id": 159,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1188,
         "y": 572
       },
       {
         "id": 161,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -883,
         "y": 773
       },
       {
         "id": 162,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -843,
         "y": 1011
       },
       {
         "id": 169,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1096,
         "y": 1278
       },
       {
         "id": 170,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -751,
         "y": 1276
       },
       {
         "id": 237,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1169,
         "y": -1694
       },
       {
         "id": 238,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -848,
         "y": 146
       },
       {
         "id": 239,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -735,
         "y": 30
       },
       {
         "id": 264,
-        "type": "supply",
         "title": "3x Supply Suitcases",
         "x": -606,
         "y": 873
       },
       {
         "id": 265,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -655,
         "y": 1497
       },
       {
         "id": 266,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1098,
         "y": 1280
       },
       {
         "id": 267,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -806,
         "y": -221
       },
       {
         "id": 268,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -206,
         "y": 878
       },
       {
         "id": 269,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": 39,
         "y": 1371
       },
       {
         "id": 295,
-        "type": "supply",
         "title": "3x Supply Suitcases",
         "x": 1057,
         "y": -915
       },
       {
         "id": 296,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": 1907,
         "y": 398
       },
       {
         "id": 345,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": 1901,
         "y": 410
       },
       {
         "id": 297,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": 1800,
         "y": -71
       },
       {
         "id": 298,
-        "type": "supply",
         "title": "4x Supply Suitcases",
         "x": 1948,
         "y": 398
       },
       {
         "id": 299,
-        "type": "supply",
         "title": "4x Supply Suitcases",
         "x": 1951,
         "y": 452
       },
       {
         "id": 300,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": 1905,
         "y": 454
       },
       {
         "id": 346,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": 1902,
         "y": 466
       },
       {
         "id": 305,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -479,
         "y": 712,
@@ -3296,7 +2275,6 @@
       },
       {
         "id": 310,
-        "type": "supply",
         "title": "3x Supply Suitcases",
         "x": -1009,
         "y": 954,
@@ -3307,7 +2285,6 @@
       },
       {
         "id": 319,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -488,
         "y": 8,
@@ -3318,7 +2295,6 @@
       },
       {
         "id": 326,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -524,
         "y": -17,
@@ -3329,7 +2305,6 @@
       },
       {
         "id": 328,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -580,
         "y": -95,
@@ -3340,14 +2315,12 @@
       },
       {
         "id": 329,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1094,
         "y": 90
       },
       {
         "id": 330,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1195,
         "y": 81,
@@ -3355,7 +2328,6 @@
       },
       {
         "id": 336,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1183,
         "y": 28,
@@ -3366,49 +2338,42 @@
       },
       {
         "id": 141,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -1267,
         "y": -14
       },
       {
         "id": 593,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1267,
         "y": -6
       },
       {
         "id": 594,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1275,
         "y": -13
       },
       {
         "id": 343,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1783,
         "y": -749
       },
       {
         "id": 344,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -1772,
         "y": -761
       },
       {
         "id": 416,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": 1258,
         "y": 196
       },
       {
         "id": 417,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -168,
         "y": -418,
@@ -3416,7 +2381,6 @@
       },
       {
         "id": 418,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -179,
         "y": -418,
@@ -3424,7 +2388,6 @@
       },
       {
         "id": 419,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -464,
         "y": -601,
@@ -3432,7 +2395,6 @@
       },
       {
         "id": 445,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": 1137,
         "y": 1061,
@@ -3440,14 +2402,12 @@
       },
       {
         "id": 446,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": 1219,
         "y": -626
       },
       {
         "id": 447,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": 1157,
         "y": -623,
@@ -3455,7 +2415,6 @@
       },
       {
         "id": 448,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": 1149,
         "y": -608,
@@ -3463,84 +2422,72 @@
       },
       {
         "id": 450,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -258,
         "y": -1
       },
       {
         "id": 451,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -254,
         "y": -16
       },
       {
         "id": 452,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -254,
         "y": -5
       },
       {
         "id": 453,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -252,
         "y": -11
       },
       {
         "id": 454,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -236,
         "y": -23
       },
       {
         "id": 465,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -591,
         "y": -814
       },
       {
         "id": 466,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -49,
         "y": 1451
       },
       {
         "id": 467,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -45,
         "y": 1454
       },
       {
         "id": 468,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -50,
         "y": 1453
       },
       {
         "id": 469,
-        "type": "supply",
         "title": "Supply Suitcase",
         "x": -253,
         "y": -11
       },
       {
         "id": 476,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -700,
         "y": 446
       },
       {
         "id": 477,
-        "type": "supply",
         "title": "2x Supply Suitcases",
         "x": -707,
         "y": 445
@@ -3552,119 +2499,102 @@
     "pois": [
       {
         "id": 118,
-        "type": "ammo",
         "title": "3x Ammo Suitcases",
         "x": -435,
         "y": 1589
       },
       {
         "id": 124,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1119,
         "y": 1630
       },
       {
         "id": 129,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1254,
         "y": 1395
       },
       {
         "id": 595,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1146,
         "y": -234
       },
       {
         "id": 148,
-        "type": "ammo",
         "title": "2x Ammo Suitcases",
         "x": -1726,
         "y": 62
       },
       {
         "id": 154,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1612,
         "y": 490
       },
       {
         "id": 155,
-        "type": "ammo",
         "title": "2x Ammo Suitcases",
         "x": -1249,
         "y": 217
       },
       {
         "id": 156,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1218,
         "y": 662
       },
       {
         "id": 163,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -887,
         "y": 767
       },
       {
         "id": 164,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -844,
         "y": 1011
       },
       {
         "id": 166,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1141,
         "y": 1127
       },
       {
         "id": 244,
-        "type": "ammo",
         "title": "2x Ammo Suitcases",
         "x": -1322,
         "y": -490
       },
       {
         "id": 262,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -205,
         "y": 878
       },
       {
         "id": 263,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": 42,
         "y": 1371
       },
       {
         "id": 286,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": 1805,
         "y": -67
       },
       {
         "id": 287,
-        "type": "ammo",
         "title": "2x Ammo Suitcases",
         "x": 1780,
         "y": -34
       },
       {
         "id": 320,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -486,
         "y": 9,
@@ -3675,7 +2605,6 @@
       },
       {
         "id": 322,
-        "type": "ammo",
         "title": "2x Ammo Suitcases",
         "x": -518,
         "y": 11,
@@ -3686,7 +2615,6 @@
       },
       {
         "id": 323,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -563,
         "y": -65,
@@ -3697,7 +2625,6 @@
       },
       {
         "id": 324,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -564,
         "y": -98,
@@ -3708,7 +2635,6 @@
       },
       {
         "id": 337,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1182,
         "y": 25,
@@ -3719,70 +2645,60 @@
       },
       {
         "id": 455,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -256,
         "y": -16
       },
       {
         "id": 456,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -258,
         "y": -6
       },
       {
         "id": 457,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -250,
         "y": 1
       },
       {
         "id": 458,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -238,
         "y": -10
       },
       {
         "id": 470,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -238,
         "y": -9
       },
       {
         "id": 471,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -45,
         "y": 1453
       },
       {
         "id": 472,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -64,
         "y": 1459
       },
       {
         "id": 478,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -706,
         "y": 451
       },
       {
         "id": 479,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -707,
         "y": 457
       },
       {
         "id": 580,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1133,
         "y": -282,
@@ -3790,7 +2706,6 @@
       },
       {
         "id": 581,
-        "type": "ammo",
         "title": "Ammo Suitcase",
         "x": -1205,
         "y": -277,
@@ -3803,7 +2718,6 @@
     "pois": [
       {
         "id": 236,
-        "type": "can",
         "title": "Village1",
         "description": "Medium Village",
         "x": -738,
@@ -3812,7 +2726,6 @@
       },
       {
         "id": 234,
-        "type": "can",
         "title": "Village2",
         "description": "Abandoned Village",
         "x": -1056,
@@ -3821,7 +2734,6 @@
       },
       {
         "id": 230,
-        "type": "can",
         "title": "Village3",
         "description": "Big Village",
         "x": -969,
@@ -3830,7 +2742,6 @@
       },
       {
         "id": 248,
-        "type": "can",
         "title": "Village4",
         "description": "Small Village",
         "x": -1207,
@@ -3839,7 +2750,6 @@
       },
       {
         "id": 251,
-        "type": "can",
         "title": "Village5",
         "description": "Large Village",
         "x": -1090,
@@ -3848,7 +2758,6 @@
       },
       {
         "id": 252,
-        "type": "can",
         "title": "Village6",
         "description": "Small Village",
         "x": -652,
@@ -3857,7 +2766,6 @@
       },
       {
         "id": 255,
-        "type": "can",
         "title": "Village7",
         "description": "Small Village",
         "x": -602,
@@ -3866,7 +2774,6 @@
       },
       {
         "id": 229,
-        "type": "can",
         "title": "Village8",
         "description": "Big Village",
         "x": -1131,
@@ -3875,7 +2782,6 @@
       },
       {
         "id": 225,
-        "type": "can",
         "title": "Village9",
         "description": "Small Village",
         "x": -1173,
@@ -3884,7 +2790,6 @@
       },
       {
         "id": 223,
-        "type": "can",
         "title": "Village10",
         "description": "Small Village",
         "x": -1572,
@@ -3893,7 +2798,6 @@
       },
       {
         "id": 231,
-        "type": "can",
         "title": "Village11",
         "description": "Small Village",
         "x": -1322,
@@ -3902,7 +2806,6 @@
       },
       {
         "id": 246,
-        "type": "can",
         "title": "Village12",
         "description": "Medium Village",
         "x": -482,
@@ -3911,7 +2814,6 @@
       },
       {
         "id": 250,
-        "type": "can",
         "title": "Village13",
         "description": "Small Village",
         "x": -1470,
@@ -3920,7 +2822,6 @@
       },
       {
         "id": 226,
-        "type": "can",
         "title": "Village14",
         "description": "Small Village",
         "x": -1575,
@@ -3929,7 +2830,6 @@
       },
       {
         "id": 254,
-        "type": "can",
         "title": "Village15",
         "description": "Small Village",
         "x": -763,
@@ -3938,7 +2838,6 @@
       },
       {
         "id": 249,
-        "type": "can",
         "title": "Village16",
         "description": "Medium Village",
         "x": -1513,
@@ -3947,7 +2846,6 @@
       },
       {
         "id": 253,
-        "type": "can",
         "title": "Village17",
         "description": "Medium Village",
         "x": -844,
@@ -3956,7 +2854,6 @@
       },
       {
         "id": 258,
-        "type": "can",
         "title": "Village18",
         "description": "Medium Village",
         "x": 219,
@@ -3965,7 +2862,6 @@
       },
       {
         "id": 259,
-        "type": "can",
         "title": "Village19",
         "description": "Medium Village",
         "x": 43,
@@ -3974,7 +2870,6 @@
       },
       {
         "id": 256,
-        "type": "can",
         "title": "Village20",
         "description": "Medium Village",
         "x": -203,
@@ -3983,7 +2878,6 @@
       },
       {
         "id": 247,
-        "type": "can",
         "title": "Village21",
         "description": "Medium Village",
         "x": -1147,
@@ -3992,7 +2886,6 @@
       },
       {
         "id": 233,
-        "type": "can",
         "title": "Village22",
         "description": "Medium Village",
         "x": -1640,
@@ -4001,7 +2894,6 @@
       },
       {
         "id": 232,
-        "type": "can",
         "title": "Village23",
         "description": "Medium Village",
         "x": -1395,
@@ -4010,7 +2902,6 @@
       },
       {
         "id": 227,
-        "type": "can",
         "title": "Village24",
         "description": "Small Village",
         "x": -1350,
@@ -4019,7 +2910,6 @@
       },
       {
         "id": 228,
-        "type": "can",
         "title": "Village25",
         "description": "Small Village",
         "x": -1155,
@@ -4028,7 +2918,6 @@
       },
       {
         "id": 279,
-        "type": "can",
         "title": "Village26",
         "description": "Abandoned Village",
         "x": 1779,
@@ -4037,7 +2926,6 @@
       },
       {
         "id": 280,
-        "type": "can",
         "title": "Village27",
         "description": "Abandoned Village",
         "x": 1802,
@@ -4046,7 +2934,6 @@
       },
       {
         "id": 278,
-        "type": "can",
         "title": "Village28",
         "description": "Medium Village",
         "x": 1851,
@@ -4055,7 +2942,6 @@
       },
       {
         "id": 260,
-        "type": "can",
         "title": "Village30",
         "description": "Medium Village",
         "x": 257,
@@ -4064,7 +2950,6 @@
       },
       {
         "id": 282,
-        "type": "can",
         "title": "Village31",
         "description": "Medium Village",
         "x": 1356,
@@ -4073,7 +2958,6 @@
       },
       {
         "id": 281,
-        "type": "can",
         "title": "Village32",
         "description": "Small Village",
         "x": 1401,
@@ -4082,7 +2966,6 @@
       },
       {
         "id": 284,
-        "type": "can",
         "title": "Village33",
         "description": "Medium Village",
         "x": 1056,
@@ -4091,7 +2974,6 @@
       },
       {
         "id": 224,
-        "type": "can",
         "title": "Village34",
         "description": "Medium Village",
         "x": -1777,
@@ -4100,7 +2982,6 @@
       },
       {
         "id": 235,
-        "type": "can",
         "title": "Village35",
         "description": "Small Village",
         "x": -845,
@@ -4109,7 +2990,6 @@
       },
       {
         "id": 257,
-        "type": "can",
         "title": "Village36",
         "description": "Medium Village",
         "x": -162,
@@ -4118,7 +2998,6 @@
       },
       {
         "id": 277,
-        "type": "can",
         "title": "AbandonedVillage-1",
         "x": 1430,
         "y": 844,
@@ -4126,7 +3005,6 @@
       },
       {
         "id": 275,
-        "type": "can",
         "title": "AbandonedVillage-2",
         "x": 1468,
         "y": 672,
@@ -4134,7 +3012,6 @@
       },
       {
         "id": 274,
-        "type": "can",
         "title": "Abandoned Cannibal Village",
         "x": 1511,
         "y": 672,
@@ -4142,7 +3019,6 @@
       },
       {
         "id": 276,
-        "type": "can",
         "title": "Abandoned Cannibal Village",
         "x": 1478,
         "y": 703,
@@ -4150,7 +3026,6 @@
       },
       {
         "id": 273,
-        "type": "can",
         "title": "AbandonedVillage-3",
         "x": 1568,
         "y": 890,
@@ -4158,7 +3033,6 @@
       },
       {
         "id": 347,
-        "type": "can",
         "title": "AbandonedVillage-4",
         "x": 1733,
         "y": -1218,
@@ -4166,7 +3040,6 @@
       },
       {
         "id": 283,
-        "type": "can",
         "title": "AbandonedVillage-5",
         "x": 1386,
         "y": -689,
@@ -4174,7 +3047,6 @@
       },
       {
         "id": 348,
-        "type": "can",
         "title": "Cannibal building",
         "x": -1684,
         "y": 906,
@@ -4186,669 +3058,496 @@
     "icon": "lake.png",
     "pois": [
       {
-        "id": 528,
-        "type": "lake",
-        "title": "LakeA",
-        "x": -1010,
-        "y": -32
-      },
-      {
-        "id": 505,
-        "type": "lake",
-        "title": "LakeBA",
-        "x": 1609,
-        "y": 769
-      },
-      {
-        "id": 506,
-        "type": "lake",
-        "title": "LakeBB",
-        "x": 1317,
-        "y": 516
-      },
-      {
-        "id": 490,
-        "type": "lake",
-        "title": "LakeBC",
-        "x": -7,
-        "y": 1303
-      },
-      {
-        "id": 492,
-        "type": "lake",
-        "title": "LakeBD",
-        "x": 66,
-        "y": 897
-      },
-      {
-        "id": 493,
-        "type": "lake",
-        "title": "LakeBE",
-        "x": -234,
-        "y": 726
-      },
-      {
-        "id": 491,
-        "type": "lake",
-        "title": "LakeC",
-        "x": 10,
-        "y": 1096
-      },
-      {
-        "id": 520,
-        "type": "lake",
-        "title": "LakeE",
-        "x": 275,
-        "y": -308
-      },
-      {
-        "id": 523,
-        "type": "lake",
-        "title": "LakeF",
-        "x": -980,
-        "y": -733
-      },
-      {
-        "id": 522,
-        "type": "lake",
-        "title": "LakeG",
-        "x": -1274,
-        "y": -643
-      },
-      {
-        "id": 489,
-        "type": "lake",
-        "title": "LakeH",
-        "x": -1030,
-        "y": 804
-      },
-      {
-        "id": 517,
-        "type": "lake",
-        "title": "LakeI",
-        "x": 565,
-        "y": -1485
-      },
-      {
-        "id": 518,
-        "type": "lake",
-        "title": "LakeJ",
-        "x": 565,
-        "y": -1485
-      },
-      {
-        "id": 509,
-        "type": "lake",
-        "title": "LakeK",
-        "x": 1585,
-        "y": -1135
-      },
-      {
-        "id": 524,
-        "type": "lake",
-        "title": "LakeL",
-        "x": -667,
-        "y": -631
-      },
-      {
-        "id": 521,
-        "type": "lake",
-        "title": "LakeM",
-        "x": -1177,
-        "y": -1353
-      },
-      {
-        "id": 510,
-        "type": "lake",
-        "title": "LakeM (1)",
-        "x": 714,
-        "y": -1657
-      },
-      {
-        "id": 511,
-        "type": "lake",
-        "title": "LakeM (2)",
-        "x": 1212,
-        "y": -1609
-      },
-      {
-        "id": 530,
-        "type": "lake",
-        "title": "LakeM (3)",
-        "x": -941,
-        "y": 152
-      },
-      {
-        "id": 508,
-        "type": "lake",
-        "title": "LakeN",
-        "x": 1126,
-        "y": -465
-      },
-      {
-        "id": 529,
-        "type": "lake",
-        "title": "LakeM",
-        "x": -1178,
-        "y": -1353
-      },
-      {
-        "id": 507,
-        "type": "lake",
-        "title": "LakeO",
-        "x": 1273,
-        "y": -129
-      },
-      {
-        "id": 494,
-        "type": "lake",
-        "title": "LakeP",
-        "x": -704,
-        "y": 458
-      },
-      {
-        "id": 532,
-        "type": "lake",
-        "title": "LakeP 1",
-        "x": -703,
-        "y": 458
-      },
-      {
-        "id": 533,
-        "type": "lake",
-        "title": "LakeP 2",
-        "x": -1067,
-        "y": 1117
-      },
-      {
-        "id": 534,
-        "type": "lake",
-        "title": "LakeP 3",
-        "x": -1666,
-        "y": 1097
-      },
-      {
-        "id": 527,
-        "type": "lake",
-        "title": "LakeP 4",
-        "x": -1317,
-        "y": 1297
-      },
-      {
-        "id": 526,
-        "type": "lake",
-        "title": "LakeP 5",
-        "x": -1135,
-        "y": 1626
-      },
-      {
-        "id": 525,
-        "type": "lake",
-        "title": "LakeP 6",
-        "x": -1252,
-        "y": 1400
-      },
-      {
-        "id": 488,
-        "type": "lake",
-        "title": "LakeP 7",
-        "x": -1037,
-        "y": 1297
-      },
-      {
-        "id": 535,
-        "type": "lake",
-        "title": "LakeP (4)",
-        "x": -1587,
-        "y": 248
-      },
-      {
-        "id": 536,
-        "type": "lake",
-        "title": "LakeP (5)",
-        "x": -1718,
-        "y": 67
-      },
-      {
-        "id": 537,
-        "type": "lake",
-        "title": "LakeP (6)",
-        "x": -1729,
-        "y": -271
-      },
-      {
-        "id": 538,
-        "type": "lake",
-        "title": "LakeP (7)",
-        "x": -1473,
-        "y": 856
-      },
-      {
-        "id": 487,
-        "type": "lake",
-        "title": "LakeP (8)",
-        "x": -1472,
-        "y": 1117
-      },
-      {
-        "id": 486,
-        "type": "lake",
-        "title": "LakeP (9)",
-        "x": -1382,
-        "y": 1496
-      },
-      {
-        "id": 539,
-        "type": "lake",
-        "title": "LakeP (10)",
-        "x": -238,
-        "y": -1662
-      },
-      {
-        "id": 596,
-        "type": "lake",
-        "title": "LakeP (11)",
-        "x": -285,
-        "y": -1469
-      },
-      {
-        "id": 540,
-        "type": "lake",
-        "title": "LakeP (12)",
-        "x": 147,
-        "y": -1589
-      },
-      {
-        "id": 541,
-        "type": "lake",
-        "title": "LakeP (13)",
-        "x": -1113,
-        "y": 1088
-      },
-      {
-        "id": 388,
-        "type": "lake",
-        "title": "LakeP (14)",
-        "x": -1182,
-        "y": -1589
-      },
-      {
-        "id": 385,
-        "type": "lake",
-        "title": "LakeP (15)",
-        "x": 274,
-        "y": -1748
-      },
-      {
-        "id": 387,
-        "type": "lake",
-        "title": "LakeP (16)",
-        "x": 261,
-        "y": -1777
-      },
-      {
-        "id": 386,
-        "type": "lake",
-        "title": "LakeP (17)",
-        "x": 292,
-        "y": -1786
-      },
-      {
-        "id": 542,
-        "type": "lake",
-        "title": "LakeP (18)",
-        "x": 720,
-        "y": 830
-      },
-      {
-        "id": 543,
-        "type": "lake",
-        "title": "LakeP (19)",
-        "x": 191,
-        "y": 1262
-      },
-      {
-        "id": 544,
-        "type": "lake",
-        "title": "LakeP (20)",
-        "x": -299,
-        "y": 962
-      },
-      {
-        "id": 545,
-        "type": "lake",
-        "title": "LakeP (21)",
-        "x": -157,
-        "y": 1195
-      },
-      {
-        "id": 546,
-        "type": "lake",
-        "title": "LakeP (22)",
-        "x": -175,
-        "y": 935
-      },
-      {
-        "id": 547,
-        "type": "lake",
-        "title": "LakeP (23)",
-        "x": -38,
-        "y": 672
-      },
-      {
-        "id": 548,
-        "type": "lake",
-        "title": "LakeP (24)",
-        "x": -385,
-        "y": 522
-      },
-      {
-        "id": 549,
-        "type": "lake",
-        "title": "LakeP (25)",
-        "x": -330,
-        "y": 897
-      },
-      {
-        "id": 550,
-        "type": "lake",
-        "title": "LakeP (26)",
-        "x": -329,
-        "y": 1136
-      },
-      {
-        "id": 551,
-        "type": "lake",
-        "title": "LakeP (27)",
-        "x": -204,
-        "y": 1094
-      },
-      {
-        "id": 389,
-        "type": "lake",
-        "title": "LakeP (29)",
-        "x": 1296,
-        "y": -801
-      },
-      {
-        "id": 552,
-        "type": "lake",
-        "title": "LakeP (30)",
-        "x": 1451,
-        "y": -423
-      },
-      {
-        "id": 442,
-        "type": "lake",
-        "title": "LakeP (31)",
-        "x": 1561,
-        "y": -514
-      },
-      {
-        "id": 553,
-        "type": "lake",
-        "title": "LakeP (32)",
-        "x": 1552,
-        "y": -398
-      },
-      {
-        "id": 554,
-        "type": "lake",
-        "title": "LakeP (33)",
-        "x": 1630,
-        "y": 26
-      },
-      {
-        "id": 441,
-        "type": "lake",
-        "title": "LakeP (34)",
-        "x": 1830,
-        "y": -447
-      },
-      {
-        "id": 555,
-        "type": "lake",
-        "title": "LakeP (35)",
-        "x": 1660,
-        "y": 377
-      },
-      {
-        "id": 438,
-        "type": "lake",
-        "title": "LakeP (36)",
-        "x": 1193,
-        "y": 804
-      },
-      {
-        "id": 439,
-        "type": "lake",
-        "title": "LakeP (37)",
-        "x": 1173,
-        "y": 653
-      },
-      {
-        "id": 556,
-        "type": "lake",
-        "title": "LakeP (38)",
-        "x": 1552,
-        "y": 516
-      },
-      {
-        "id": 557,
-        "type": "lake",
-        "title": "LakeP (39)",
-        "x": 1725,
-        "y": -287
-      },
-      {
-        "id": 558,
-        "type": "lake",
-        "title": "LakeP (40)",
-        "x": 1562,
-        "y": -272
-      },
-      {
-        "id": 559,
-        "type": "lake",
-        "title": "LakeP (41)",
-        "x": 1468,
-        "y": -596
-      },
-      {
-        "id": 560,
-        "type": "lake",
-        "title": "LakeP (42)",
-        "x": 1064,
-        "y": -107
-      },
-      {
-        "id": 426,
-        "type": "lake",
-        "title": "LakeP (43)",
-        "x": 607,
-        "y": -1010
-      },
-      {
-        "id": 561,
-        "type": "lake",
-        "title": "LakeP (44)",
-        "x": 933,
-        "y": -1249
-      },
-      {
-        "id": 562,
-        "type": "lake",
-        "title": "LakeP (45)",
-        "x": 1671,
-        "y": 947
-      },
-      {
-        "id": 563,
-        "type": "lake",
-        "title": "LakeP (46)",
-        "x": 1703,
-        "y": 553
-      },
-      {
-        "id": 564,
-        "type": "lake",
-        "title": "LakeP (47)",
-        "x": 1528,
-        "y": 362
-      },
-      {
-        "id": 444,
-        "type": "lake",
-        "title": "LakeP (48)",
-        "x": 880,
-        "y": -956
-      },
-      {
-        "id": 565,
-        "type": "lake",
-        "title": "LakeP (49)",
-        "x": 1379,
-        "y": 70
-      },
-      {
-        "id": 440,
-        "type": "lake",
-        "title": "LakeP 50",
-        "x": 1239,
-        "y": 270
-      },
-      {
-        "id": 566,
-        "type": "lake",
-        "title": "LakeP 52",
-        "x": -1037,
-        "y": 1297
-      },
-      {
-        "id": 503,
-        "type": "lake",
-        "title": "LakeQ",
-        "x": -1251,
-        "y": -37
-      },
-      {
-        "id": 504,
-        "type": "lake",
-        "title": "LakeR",
-        "x": -1293,
-        "y": 10
-      },
-      {
-        "id": 500,
-        "type": "lake",
-        "title": "LakeS",
-        "x": -1109,
-        "y": -139
-      },
-      {
-        "id": 501,
-        "type": "lake",
-        "title": "LakeT",
-        "x": -1155,
-        "y": -190
-      },
-      {
-        "id": 502,
-        "type": "lake",
-        "title": "LakeU",
-        "x": -1173,
-        "y": -245
-      },
-      {
-        "id": 531,
-        "type": "lake",
-        "title": "LakeV",
-        "x": -645,
-        "y": -1063
-      },
-      {
-        "id": 495,
-        "type": "lake",
-        "title": "LakeW",
-        "x": -535,
-        "y": 121
-      },
-      {
-        "id": 496,
-        "type": "lake",
-        "title": "LakeX",
-        "x": -720,
-        "y": 10
-      },
-      {
-        "id": 497,
-        "type": "lake",
-        "title": "LakeY",
-        "x": -590,
-        "y": -119
-      },
-      {
-        "id": 498,
-        "type": "lake",
-        "title": "LakeZ",
-        "x": -784,
-        "y": -245
-      },
-      {
-        "id": 519,
-        "type": "lake",
-        "title": "LakeZ 1",
-        "x": 480,
-        "y": -1679
-      },
-      {
-        "id": 499,
-        "type": "lake",
-        "title": "LakeAGroup",
-        "x": -954,
-        "y": -16
-      },
-      {
-        "id": 512,
-        "type": "lake",
         "title": "GolfPondA",
-        "x": 821,
-        "y": 1349
+        "x": 813.12,
+        "y": 1345.84,
+        "teleport": {
+          "x": 813.12,
+          "y": 63.96,
+          "z": 1345.84,
+          "areaMask": 0
+        },
+        "screenshot": "golf_pond_a.jpg"
       },
       {
-        "id": 513,
-        "type": "lake",
         "title": "GolfPondB",
-        "x": 796,
-        "y": 1511
+        "x": 799.19,
+        "y": 1516.01,
+        "teleport": {
+          "x": 799.19,
+          "y": 91.24,
+          "z": 1516.01,
+          "areaMask": 0
+        },
+        "screenshot": "golf_pond_b.jpg"
       },
       {
-        "id": 514,
-        "type": "lake",
         "title": "GolfPondC",
-        "x": 1014,
-        "y": 1605
+        "x": 1027.02,
+        "y": 1609.61,
+        "teleport": {
+          "x": 1027.02,
+          "y": 85.86,
+          "z": 1609.61,
+          "areaMask": 0
+        },
+        "screenshot": "golf_pond_c.jpg"
       },
       {
-        "id": 515,
-        "type": "lake",
         "title": "GolfPondD",
-        "x": 1427,
-        "y": 1741
+        "x": 1427.23,
+        "y": 1741.26,
+        "teleport": {
+          "x": 1427.23,
+          "y": 91.63,
+          "z": 1741.26,
+          "areaMask": 0
+        },
+        "screenshot": "golf_pond_d.jpg"
       },
       {
-        "id": 516,
-        "type": "lake",
         "title": "GolfPondE",
-        "x": 1240,
-        "y": 1197
+        "x": 1242.23,
+        "y": 1200.8,
+        "teleport": {
+          "x": 1242.23,
+          "y": 120.81,
+          "z": 1200.8,
+          "areaMask": 0
+        },
+        "screenshot": "golf_pond_e.jpg"
       },
       {
-        "id": 584,
-        "type": "lake",
-        "title": "GolfPondF",
-        "x": 1364,
-        "y": 1559
+        "title": "Lake Polygon (16)",
+        "x": -162.53,
+        "y": -87.16,
+        "teleport": {
+          "x": -162.53,
+          "y": 406.2,
+          "z": -87.16,
+          "areaMask": 0
+        },
+        "screenshot": "lake_polygon_16.jpg"
+      },
+      {
+        "title": "Lake Polygon (17)",
+        "x": -1311.6,
+        "y": -1031.66,
+        "teleport": {
+          "x": -1311.6,
+          "y": 265.7,
+          "z": -1031.66,
+          "areaMask": 0
+        },
+        "screenshot": "lake_polygon_17_1.jpg"
+      },
+      {
+        "title": "Lake Polygon (17)",
+        "x": -1390.95,
+        "y": -1208.53,
+        "teleport": {
+          "x": -1390.95,
+          "y": 224.98,
+          "z": -1208.53,
+          "areaMask": 0
+        },
+        "screenshot": "lake_polygon_17_2.jpg"
+      },
+      {
+        "title": "LakeAGroup",
+        "x": -954.22,
+        "y": -27.52,
+        "teleport": {
+          "x": -954.22,
+          "y": 114.99,
+          "z": -27.52,
+          "areaMask": 0
+        },
+        "screenshot": "lake_a_group.jpg"
+      },
+      {
+        "title": "LakeBA",
+        "x": 1609.14,
+        "y": 769.88,
+        "teleport": {
+          "x": 1609.14,
+          "y": 47.47,
+          "z": 769.88,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ba.jpg"
+      },
+      {
+        "title": "LakeBB",
+        "x": 1310.96,
+        "y": 515.91,
+        "teleport": {
+          "x": 1310.96,
+          "y": 177.24,
+          "z": 515.91,
+          "areaMask": 0
+        },
+        "screenshot": "lake_bb.jpg"
+      },
+      {
+        "title": "LakeBC",
+        "x": -7.5,
+        "y": 1303.31,
+        "teleport": {
+          "x": -7.5,
+          "y": 81.57,
+          "z": 1303.31,
+          "areaMask": 0
+        },
+        "screenshot": "lake_bc.jpg"
+      },
+      {
+        "title": "LakeBD",
+        "x": 66.1,
+        "y": 897.08,
+        "teleport": {
+          "x": 66.1,
+          "y": 145.62,
+          "z": 897.08,
+          "areaMask": 0
+        },
+        "screenshot": "lake_bd.jpg"
+      },
+      {
+        "title": "LakeBE",
+        "x": -234.56,
+        "y": 726.6,
+        "teleport": {
+          "x": -234.56,
+          "y": 154.86,
+          "z": 726.6,
+          "areaMask": 0
+        },
+        "screenshot": "lake_be.jpg"
+      },
+      {
+        "title": "LakeC",
+        "x": 9.82,
+        "y": 1096.42,
+        "teleport": {
+          "x": 9.82,
+          "y": 76.58,
+          "z": 1096.42,
+          "areaMask": 0
+        },
+        "screenshot": "lake_c.jpg"
+      },
+      {
+        "title": "LakeE",
+        "x": 275.55,
+        "y": -308.87,
+        "teleport": {
+          "x": 275.55,
+          "y": 522.75,
+          "z": -308.87,
+          "areaMask": 0
+        },
+        "screenshot": "lake_e.jpg"
+      },
+      {
+        "title": "LakeF",
+        "x": -979.93,
+        "y": -733.51,
+        "teleport": {
+          "x": -979.93,
+          "y": 264.86,
+          "z": -733.51,
+          "areaMask": 0
+        },
+        "screenshot": "lake_f.jpg"
+      },
+      {
+        "title": "LakeG",
+        "x": -1274.55,
+        "y": -643.26,
+        "teleport": {
+          "x": -1274.55,
+          "y": 211.24,
+          "z": -643.26,
+          "areaMask": 0
+        },
+        "screenshot": "lake_g.jpg"
+      },
+      {
+        "title": "LakeH",
+        "x": -984.47,
+        "y": 762.61,
+        "teleport": {
+          "x": -984.47,
+          "y": 86.48,
+          "z": 762.61,
+          "areaMask": 0
+        },
+        "screenshot": "lake_h.jpg"
+      },
+      {
+        "title": "LakeI",
+        "x": 565.67,
+        "y": -1485.55,
+        "teleport": {
+          "x": 565.67,
+          "y": 63.67,
+          "z": -1485.55,
+          "areaMask": 0
+        },
+        "screenshot": "lake_i.jpg"
+      },
+      {
+        "title": "LakeJ",
+        "x": 569.81,
+        "y": -1225.34,
+        "teleport": {
+          "x": 569.81,
+          "y": 209.23,
+          "z": -1225.34,
+          "areaMask": 0
+        },
+        "screenshot": "lake_j.jpg"
+      },
+      {
+        "title": "LakeK",
+        "x": 1585.71,
+        "y": -1135.85,
+        "teleport": {
+          "x": 1585.71,
+          "y": 42.14,
+          "z": -1135.85,
+          "areaMask": 0
+        },
+        "screenshot": "lake_k.jpg"
+      },
+      {
+        "title": "LakeL",
+        "x": -667.54,
+        "y": -632.04,
+        "teleport": {
+          "x": -667.54,
+          "y": 282.19,
+          "z": -632.04,
+          "areaMask": 0
+        },
+        "screenshot": "lake_l.jpg"
+      },
+      {
+        "title": "LakeM (1)",
+        "x": 713.93,
+        "y": -1657.23,
+        "teleport": {
+          "x": 713.93,
+          "y": 35.7,
+          "z": -1657.23,
+          "areaMask": 0
+        },
+        "screenshot": "lake_m_1.jpg"
+      },
+      {
+        "title": "LakeM (2)",
+        "x": 1212.75,
+        "y": -1609.02,
+        "teleport": {
+          "x": 1212.75,
+          "y": 45.89,
+          "z": -1609.02,
+          "areaMask": 0
+        },
+        "screenshot": "lake_m_2.jpg"
+      },
+      {
+        "title": "LakeM (3)",
+        "x": -941.41,
+        "y": 152.04,
+        "teleport": {
+          "x": -941.41,
+          "y": 82.27,
+          "z": 152.04,
+          "areaMask": 0
+        },
+        "screenshot": "lake_m_3.jpg"
+      },
+      {
+        "title": "LakeM",
+        "x": -1178.61,
+        "y": -1353.56,
+        "teleport": {
+          "x": -1178.61,
+          "y": 211.92,
+          "z": -1353.56,
+          "areaMask": 0
+        },
+        "screenshot": "lake_m.jpg"
+      },
+      {
+        "title": "LakeN",
+        "x": 1005.66,
+        "y": -573.35,
+        "teleport": {
+          "x": 1005.66,
+          "y": 244.32,
+          "z": -573.35,
+          "areaMask": 0
+        },
+        "screenshot": "lake_n.jpg"
+      },
+      {
+        "title": "LakeO",
+        "x": 1332.07,
+        "y": -101.38,
+        "teleport": {
+          "x": 1332.07,
+          "y": 115.16,
+          "z": -101.38,
+          "areaMask": 0
+        },
+        "screenshot": "lake_o.jpg"
+      },
+      {
+        "title": "LakeQ",
+        "x": -1252.29,
+        "y": -37.01,
+        "teleport": {
+          "x": -1252.29,
+          "y": 111.85,
+          "z": -37.01,
+          "areaMask": 0
+        },
+        "screenshot": "lake_q.jpg"
+      },
+      {
+        "title": "LakeR",
+        "x": -1293.17,
+        "y": 10.74,
+        "teleport": {
+          "x": -1293.17,
+          "y": 94.88,
+          "z": 10.74,
+          "areaMask": 0
+        },
+        "screenshot": "lake_r.jpg"
+      },
+      {
+        "title": "LakeS",
+        "x": -1119.33,
+        "y": -140.27,
+        "teleport": {
+          "x": -1119.33,
+          "y": 129.57,
+          "z": -140.27,
+          "areaMask": 0
+        },
+        "screenshot": "lake_s.jpg"
+      },
+      {
+        "title": "LakeT",
+        "x": -1155.62,
+        "y": -190.23,
+        "teleport": {
+          "x": -1155.62,
+          "y": 133.29,
+          "z": -190.23,
+          "areaMask": 0
+        },
+        "screenshot": "lake_t.jpg"
+      },
+      {
+        "title": "LakeU",
+        "x": -1173.56,
+        "y": -245.42,
+        "teleport": {
+          "x": -1173.56,
+          "y": 138.42,
+          "z": -245.42,
+          "areaMask": 0
+        },
+        "screenshot": "lake_u.jpg"
+      },
+      {
+        "title": "LakeV",
+        "x": -645.3,
+        "y": -1063.03,
+        "teleport": {
+          "x": -645.3,
+          "y": 194.79,
+          "z": -1063.03,
+          "areaMask": 0
+        },
+        "screenshot": "lake_v.jpg"
+      },
+      {
+        "title": "LakeW",
+        "x": -536.01,
+        "y": 121.32,
+        "teleport": {
+          "x": -536.01,
+          "y": 195.66,
+          "z": 121.32,
+          "areaMask": 0
+        },
+        "screenshot": "lake_w.jpg"
+      },
+      {
+        "title": "LakeX",
+        "x": -719.42,
+        "y": 8.0,
+        "teleport": {
+          "x": -719.42,
+          "y": 133.32,
+          "z": 8.0,
+          "areaMask": 0
+        },
+        "screenshot": "lake_x.jpg"
+      },
+      {
+        "title": "LakeY",
+        "x": -590.61,
+        "y": -119.61,
+        "teleport": {
+          "x": -590.61,
+          "y": 185.38,
+          "z": -119.61,
+          "areaMask": 0
+        },
+        "screenshot": "lake_y.jpg"
+      },
+      {
+        "title": "LakeZ (1)",
+        "x": 484.2,
+        "y": -1670.7,
+        "teleport": {
+          "x": 484.2,
+          "y": 27.8,
+          "z": -1670.7,
+          "areaMask": 0
+        },
+        "screenshot": "lake_z_1.jpg"
+      },
+      {
+        "title": "LakeZ",
+        "x": -783.55,
+        "y": -252.51,
+        "teleport": {
+          "x": -783.55,
+          "y": 160.9,
+          "z": -252.51,
+          "areaMask": 0
+        },
+        "screenshot": "lake_z.jpg"
+      },
+      {
+        "title": "Lake Virginia",
+        "x": -577.852,
+        "y": 562.8575,
+        "teleport": {
+          "x": -609.7222,
+          "y": 93.5471,
+          "z": 568.0879,
+          "areaMask": 0
+        },
+        "screenshot": "lake_virginia.jpg"
       }
     ]
   }

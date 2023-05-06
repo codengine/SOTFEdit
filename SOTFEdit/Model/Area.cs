@@ -17,7 +17,7 @@ public class Area
 
     public bool IsUnderground()
     {
-        return AreaMask != 1;
+        return AreaMask != 0;
     }
 
     private bool Equals(Area other)

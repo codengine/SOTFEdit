@@ -45,6 +45,14 @@ public partial class MapTeleportWindowViewModel : ObservableObject
         X = destination.Position?.X ?? destination.X;
         Y = destination.Position?.Y ?? 0;
         Z = destination.Position?.Z ?? destination.Z;
+
+        if (destination is ItemPoi)
+        {
+            XOffset = 0;
+            YOffset = 0;
+            ZOffset = 0;
+        }
+
         Areas = Ioc.Default.GetRequiredService<GameData>().AreaManager.GetAllAreas()
             .OrderBy(area => area.Name)
             .ToList();

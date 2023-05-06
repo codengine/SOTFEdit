@@ -321,3 +321,4 @@ collect all data.
 - [Glider icons created by Pop Vectors - Flaticon](https://www.flaticon.com/free-icons/glider)
 - [Monowheel icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/monowheel)
 - [Pole dance icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/pole-dance)
+- [Golf icons created by Good Ware - Flaticon](https://www.flaticon.com/free-icons/golf)

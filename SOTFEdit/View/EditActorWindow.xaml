@@ -111,7 +111,7 @@
                     <TextBlock Grid.Row="7" Grid.Column="0" Text="{infrastructure:Translate 'actors.details.state'}"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="7" Grid.Column="1"
-                               Text="{Binding Actor.State, FallbackValue='???'}" />
+                               Text="{Binding Actor.StatePrintable, FallbackValue='???'}" />
                     <TextBlock Grid.Row="8" Grid.Column="0" Text="VariationId"
                                Style="{StaticResource LabelStyle}" />
                     <TextBlock Grid.Row="8" Grid.Column="1"

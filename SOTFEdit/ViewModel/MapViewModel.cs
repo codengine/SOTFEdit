@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -14,6 +16,11 @@ namespace SOTFEdit.ViewModel;
 
 public partial class MapViewModel : ObservableObject
 {
+    private readonly DispatcherTimer _fullTextFilterDispatcherTimer = new()
+    {
+        Interval = TimeSpan.FromMilliseconds(1000)
+    };
+
     private readonly GameData _gameData;
     private readonly MapManager _mapManager;
 
@@ -48,6 +55,8 @@ public partial class MapViewModel : ObservableObject
         MapFilter = new MapFilter(gameData.AreaManager);
         MapFilter.PropertyChanged += MapFilterOnPropertyChanged;
 
+        _fullTextFilterDispatcherTimer.Tick += OnFullTextFilter;
+
         SetupListeners();
     }
 
@@ -56,6 +65,12 @@ public partial class MapViewModel : ObservableObject
     public ObservableCollectionEx<IPoi> Pois { get; }
 
     public ICollectionView PoiGroups { get; }
+
+    private void OnFullTextFilter(object? sender, EventArgs e)
+    {
+        _fullTextFilterDispatcherTimer.Stop();
+        ApplyFilterToAllPois();
+    }
 
     partial void OnSelectedPoiChanging(IPoi? value)
     {
@@ -72,9 +87,25 @@ public partial class MapViewModel : ObservableObject
 
     private void MapFilterOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        foreach (var poi in Pois)
+        if (e.PropertyName == nameof(MapFilter.FullText) && !string.IsNullOrWhiteSpace(MapFilter.FullText))
         {
-            poi.ApplyFilter(MapFilter);
+            _fullTextFilterDispatcherTimer.Start();
+        }
+        else
+        {
+            _fullTextFilterDispatcherTimer.Stop();
+            ApplyFilterToAllPois();
+        }
+    }
+
+    private void ApplyFilterToAllPois()
+    {
+        lock (Pois)
+        {
+            foreach (var poi in Pois)
+            {
+                poi.ApplyFilter(MapFilter);
+            }
         }
     }
 

@@ -9,6 +9,7 @@ namespace SOTFEdit.Model;
 public class Item
 {
     private string? _normalizedLowercaseName;
+    private string? _normalizedLowercaseType;
     public int Id { get; init; }
     public string Name => TranslationManager.Get("items." + Id);
     public string Type { get; init; }
@@ -29,6 +30,11 @@ public class Item
     public string NormalizedLowercaseName
     {
         get { return _normalizedLowercaseName ??= TranslationHelper.Normalize(Name).ToLower(); }
+    }
+
+    public string NormalizedLowercaseType
+    {
+        get { return _normalizedLowercaseType ??= TranslationHelper.Normalize(Type).ToLower(); }
     }
 
     private BitmapImage? GetThumbImage()
@@ -79,6 +85,12 @@ public class Item
     public bool HasModules()
     {
         return FoodSpoilModuleDefinition != null;
+    }
+
+    public bool Matches(string normalizedLowercaseFullText)
+    {
+        return NormalizedLowercaseName.Contains(normalizedLowercaseFullText) ||
+               NormalizedLowercaseType.Contains(normalizedLowercaseFullText);
     }
 }
 

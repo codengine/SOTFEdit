@@ -1,0 +1,32 @@
+﻿<Window x:Class="SOTFEdit.View.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:view="clr-namespace:SOTFEdit.View"
+        WindowStyle="None"
+        Topmost="True"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        mc:Ignorable="d"
+        BorderThickness="1"
+        ResizeMode="NoResize"
+        d:DataContext="{d:DesignInstance view:SplashWindow}"
+        SizeToContent="WidthAndHeight"
+        Title="SOTFEdit">
+    <Border Margin="10" BorderThickness="1" BorderBrush="Black">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                              Direction="270"
+                              BlurRadius="10"
+                              ShadowDepth="3" />
+        </Border.Effect>
+        <Canvas Width="500" Height="500">
+            <Image Canvas.Top="0" Canvas.Left="0" Source="/SOTFEdit;component/images/splash.jpg" Width="500"
+                   Height="500" />
+            <TextBlock Canvas.Bottom="20" Canvas.Right="20" TextAlignment="Right" Foreground="White" FontWeight="Bold"
+                       Text="{Binding AssemblyVersion}" />
+        </Canvas>
+    </Border>
+</Window>

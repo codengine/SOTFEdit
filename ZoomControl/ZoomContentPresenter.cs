@@ -37,8 +37,7 @@ public class ZoomContentPresenter : ContentPresenter
 
     protected override Size ArrangeOverride(Size arrangeBounds)
     {
-        var child = Content as UIElement;
-        if (child == null)
+        if (Content is not UIElement child)
         {
             return arrangeBounds;
         }

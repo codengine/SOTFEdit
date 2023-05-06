@@ -25,6 +25,7 @@ public partial class MainViewModel : ObservableObject
 
     private readonly ArmorPageViewModel _armorPageViewModel;
     private readonly MapManager _mapManager;
+    private readonly PoiLoader _poiLoader;
 
     [ObservableProperty]
     private bool _checkVersionOnStartup;
@@ -42,10 +43,11 @@ public partial class MainViewModel : ObservableObject
     private double _pinTop;
 
     public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage, NpcsPage npcsPage,
-        StructuresPage structuresPage, MapManager mapManager)
+        StructuresPage structuresPage, MapManager mapManager, PoiLoader poiLoader)
     {
         _armorPageViewModel = armorPageViewModel;
         _mapManager = mapManager;
+        _poiLoader = poiLoader;
         GamePage = gamePage;
         NpcsPage = npcsPage;
         StructuresPage = structuresPage;
@@ -445,44 +447,7 @@ public partial class MainViewModel : ObservableObject
             }
         }
 
-        var inventoryItems = new HashSet<int>();
-
-        foreach (var inventoryItem in Ioc.Default.GetRequiredService<InventoryPageViewModel>().InventoryCollectionView
-                     .OfType<InventoryItem>())
-        {
-            inventoryItems.Add(inventoryItem.Id);
-        }
-
-        var areaManager = gameData.AreaManager;
-        var rawPois = RawPoiGroupLoader.Load();
-        foreach (var (category, group) in rawPois)
-        {
-            var title = TranslationManager.Get($"poiGroups.{category}");
-
-            switch (category)
-            {
-                case "items":
-                    poiGroups.Add(BuildPoiGrouperForItems(title, group, items, inventoryItems, areaManager));
-                    break;
-                case "bunkers":
-                case "caves":
-                    var caveOrBunkerPois =
-                        group.Pois.Select(poi => CaveOrBunkerPoi.Of(poi, items, group.Icon!, inventoryItems,
-                            areaManager, group.AlwaysEnabled)).ToList();
-                    poiGroups.Add(new PoiGroup(group.AlwaysEnabled, caveOrBunkerPois, title,
-                        caveOrBunkerPois.First().IconSmall));
-                    break;
-                default:
-                    var informationalPois = group.Pois
-                        .Select(poi => DefaultGenericInformationalPoi.Of(poi, items, group.Icon!, inventoryItems,
-                            areaManager, group.AlwaysEnabled))
-                        .ToList();
-                    poiGroups.Add(new PoiGroup(group.AlwaysEnabled,
-                        informationalPois,
-                        title, informationalPois.First().IconSmall));
-                    break;
-            }
-        }
+        poiGroups.AddRange(_poiLoader.Load());
 
         var playerPageViewModel = Ioc.Default.GetRequiredService<PlayerPageViewModel>();
         var playerPos = playerPageViewModel.PlayerState.Pos;
@@ -496,28 +461,5 @@ public partial class MainViewModel : ObservableObject
         }, TranslationManager.Get("player.mapGroupName"), PlayerPoi.IconSmall));
 
         WeakReferenceMessenger.Default.Send(new RequestOpenMapEvent(poiGroups.OrderBy(group => group.Title).ToList()));
-    }
-
-    private static IPoiGrouper BuildPoiGrouperForItems(string title, RawPoiGroup group, ItemList itemList,
-        HashSet<int> inventoryItems, AreaMaskManager areaMaskManager)
-    {
-        var groups = new List<PoiGroup>();
-
-        var poisByType = group.Pois
-            .Select(poi => ItemPoi.Of(poi, itemList, inventoryItems, areaMaskManager, group.AlwaysEnabled))
-            .Where(poi => poi != null)
-            .Select(poi => poi!)
-            .GroupBy(poi => poi.Item.Item.Type)
-            .OrderBy(g => g.Key)
-            .ToDictionary(g => g.Key, g => g.ToList());
-
-        foreach (var (type, pois) in poisByType)
-        {
-            groups.Add(new PoiGroup(group.AlwaysEnabled, pois, TranslationManager.Get($"itemTypes.{type}"),
-                pois.First().IconSmall,
-                PoiGroupType.Items));
-        }
-
-        return new PoiGroupCollection(group.AlwaysEnabled, title, groups, poiGroupType: PoiGroupType.Items);
     }
 }

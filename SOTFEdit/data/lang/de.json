@@ -142,6 +142,31 @@
       "muddyCannibal": "Schlammiger Kannibale",
       "animal": "Tier"
     },
+    "state": {
+      "-1": "Keine",
+      "0": "Beliebig",
+      "1": "Kampf",
+      "2": "Welt",
+      "3": "Schlafend",
+      "4": "Sterbend",
+      "5": "Verletzt",
+      "6": "Tot",
+      "7": "Fliegend",
+      "8": "Anschleichen",
+      "20": "Brennend",
+      "21": "Elektrisiert",
+      "22": "Schwimmend",
+      "23": "Benommen",
+      "24": "Ertrinkend",
+      "40": "Auf Felsen",
+      "41": "Auf Baum",
+      "42": "Unter Blättern",
+      "43": "Wandlaufen",
+      "44": "Gefangen",
+      "45": "Boss-Einführung",
+      "50": "Kampf verlassen",
+      "51": "Verschwunden"
+    },
     "grouping": {
       "animals": "Tiere",
       "creeps": "Gruselwesen",
@@ -407,7 +432,8 @@
     "exceptionMessage": "Ein Fehler ist aufgetreten: {0}",
     "success": "Erfolg",
     "yes": "Ja",
-    "no": "Nein"
+    "no": "Nein",
+    "close": "Schließen"
   },
   "armor": {
     "header": "Ausgerüstete Rüstung (Max. 10)",
@@ -562,7 +588,8 @@
         "checkOnStartup": "Beim Start prüfen"
       },
       "readme": "Readme",
-      "changelog": "Changelog"
+      "changelog": "Changelog",
+      "about": "Über..."
     }
   },
   "experiments": {
@@ -1194,6 +1221,11 @@
     "area": "Bereich",
     "objects": "Objekte",
     "altItems": "Alternative Gegenstände",
+    "fullText": {
+      "text": "Volltext",
+      "watermark": "Titel, Beschreibung, Item-Name...",
+      "tooltip": "Sucht in Titel, Beschreibung, Gegenstands-Name und Gegenstands-Kategorie der aktuell ausgewählten Markierungs-Kategorien"
+    },
     "teleportWindow": {
       "title": "Teleportieren",
       "destination": "Ziel",

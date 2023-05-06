@@ -19,10 +19,15 @@ public partial class MapFilter : ObservableObject
     private IAreaFilter _areaFilter = Map.AreaFilter.All;
 
     [ObservableProperty]
+    private string? _fullText;
+
+    [ObservableProperty]
     private RequirementsFilterType _requirementsFilter = RequirementsFilterType.All;
 
     [ObservableProperty]
     private bool _showOnlyUncollectedItems;
+
+    public string? NormalizedLowercaseFullText;
 
     public MapFilter(AreaMaskManager areaManager)
     {
@@ -43,4 +48,9 @@ public partial class MapFilter : ObservableObject
     public List<IAreaFilter> AreaFilterTypeValues { get; }
 
     public IEnumerable<ComboBoxItemAndValue<RequirementsFilterType>> RequirementsFilterTypeValues { get; }
+
+    partial void OnFullTextChanged(string? value)
+    {
+        NormalizedLowercaseFullText = value != null ? TranslationHelper.Normalize(value).ToLower() : null;
+    }
 }

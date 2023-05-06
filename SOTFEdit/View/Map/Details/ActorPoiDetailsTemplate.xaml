@@ -34,7 +34,7 @@
             <Label Content="{infrastructure:Translate 'actors.details.lastSpawnTime'}" />
             <Label Content="{Binding Actor.Spawner.LastSpawnTime, FallbackValue='???'}" />
             <Label Content="{infrastructure:Translate 'actors.details.state'}" />
-            <Label Content="{Binding Actor.State}" />
+            <Label Content="{Binding Actor.StatePrintable}" />
             <Label Content="{infrastructure:Translate 'map.coordinates'}" />
             <Label Content="{Binding PrintableCoordinates}" />
             <Label Content="{infrastructure:Translate 'map.isUnderground'}" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -60,7 +59,7 @@ public class Savegame : ObservableObject
     private BitmapImage BuildThumbnail()
     {
         var thumbPath = SavegameStore.GetThumbPath() ??
-                        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "images", "default_screenshot.png");
+                        "pack://application:,,,/SOTFEdit;component/images/default_screenshot.png";
 
         var image = new BitmapImage();
         image.BeginInit();

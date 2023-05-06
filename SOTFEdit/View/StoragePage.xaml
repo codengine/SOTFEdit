@@ -39,7 +39,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
                                        Cursor="Hand"
                                        VerticalAlignment="Center">
                                     <Image.InputBindings>
@@ -56,7 +56,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
                                        Cursor="Hand"
                                        VerticalAlignment="Center">
                                     <Image.InputBindings>
@@ -73,7 +73,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="pack://siteoforigin:,,,/images/red-pin.png" Width="32" Height="32"
+                                <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
                                        Cursor="Hand"
                                        VerticalAlignment="Center">
                                     <Image.InputBindings>

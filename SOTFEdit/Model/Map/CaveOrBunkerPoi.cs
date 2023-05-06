@@ -46,6 +46,16 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
         return (mapFilter.ShowOnlyUncollectedItems && HasAllItemsInInventory()) || base.ShouldFilter(mapFilter);
     }
 
+    protected override bool FullTextFilter(string normalizedLowercaseFullText)
+    {
+        return base.FullTextFilter(normalizedLowercaseFullText) && !AnyItemContains(normalizedLowercaseFullText);
+    }
+
+    private bool AnyItemContains(string normalizedLowercaseFullText)
+    {
+        return Items?.Any(item => item.Item.Matches(normalizedLowercaseFullText)) ?? false;
+    }
+
     private bool HasAllItemsInInventory()
     {
         return _items?.All(HasItemInInventory) ?? true;

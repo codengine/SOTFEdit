@@ -25,6 +25,10 @@ public abstract partial class BasePoi : ObservableObject, IPoi
 
     private float _left;
 
+    private string? _normalizedLowercaseDescription;
+
+    private string? _normalizedLowercaseTitle;
+
     [NotifyCanExecuteChangedFor(nameof(TeleportPlayerHereCommand))]
     [NotifyCanExecuteChangedFor(nameof(TeleportKelvinHereCommand))]
     [NotifyCanExecuteChangedFor(nameof(TeleportVirginiaHereCommand))]
@@ -58,6 +62,29 @@ public abstract partial class BasePoi : ObservableObject, IPoi
     protected static BitmapImage DefaultIcon => LoadBaseIcon("question-mark.png");
     protected virtual int IconOffset => 16;
 
+    private string NormalizedLowercaseTitle
+    {
+        get { return _normalizedLowercaseTitle ??= TranslationHelper.Normalize(Title).ToLower(); }
+    }
+
+    private string? NormalizedLowercaseDescription
+    {
+        get
+        {
+            if (_normalizedLowercaseDescription != null)
+            {
+                return _normalizedLowercaseDescription;
+            }
+
+            if (Description != null)
+            {
+                _normalizedLowercaseDescription = TranslationHelper.Normalize(Description).ToLower();
+            }
+
+            return _normalizedLowercaseDescription;
+        }
+    }
+
     public string? AreaName => Position?.Area.Name;
 
     public string PrintableCoordinates =>
@@ -83,6 +110,7 @@ public abstract partial class BasePoi : ObservableObject, IPoi
     public float IconTop => _top - IconOffset;
 
     public virtual string Title => "";
+
     public string? Description { get; init; }
 
     partial void OnPositionChanged(Position? value)
@@ -105,12 +133,29 @@ public abstract partial class BasePoi : ObservableObject, IPoi
 
     protected virtual bool ShouldFilter(MapFilter mapFilter)
     {
+        return ShouldFilterByArea(mapFilter) || ShouldFilterByFullText(mapFilter);
+    }
+
+    private bool ShouldFilterByArea(MapFilter mapFilter)
+    {
         if (mapFilter.AreaFilter != AreaFilter.All)
         {
             return !mapFilter.AreaFilter.ShouldInclude(this);
         }
 
         return false;
+    }
+
+    private bool ShouldFilterByFullText(MapFilter mapFilter)
+    {
+        return !string.IsNullOrWhiteSpace(mapFilter.NormalizedLowercaseFullText) &&
+               FullTextFilter(mapFilter.NormalizedLowercaseFullText);
+    }
+
+    protected virtual bool FullTextFilter(string normalizedLowercaseFullText)
+    {
+        return !NormalizedLowercaseTitle.Contains(normalizedLowercaseFullText) &&
+               !(NormalizedLowercaseDescription?.Contains(normalizedLowercaseFullText) ?? false);
     }
 
     protected static BitmapImage LoadBaseIcon(string icon, int? width = null, int? height = null)

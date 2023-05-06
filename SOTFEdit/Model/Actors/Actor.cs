@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData.Actor;
 
 namespace SOTFEdit.Model.Actors;
@@ -19,6 +20,10 @@ public class Actor
     public int? SpawnerId { get; set; }
     public Spawner? Spawner { get; set; }
     public int State { get; set; }
+
+    [JsonIgnore]
+    public string StatePrintable => TranslationManager.Get("actors.state." + State, $"??? ({State})");
+
     public int VariationId { get; set; }
     public Dictionary<string, float>? Stats { get; set; }
     public int TypeId { get; set; }
@@ -39,7 +44,7 @@ public class Actor
     {
         var bitmap = new BitmapImage();
         bitmap.BeginInit();
-        bitmap.UriSource = new Uri($"pack://siteoforigin:,,,/images/actors/{ActorType?.Image}", UriKind.Absolute);
+        bitmap.UriSource = new Uri($"pack://application:,,,/SOTFEdit;component/images/actors/{ActorType?.Image}");
         bitmap.EndInit();
         return bitmap;
     }
