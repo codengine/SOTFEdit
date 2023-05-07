@@ -175,7 +175,7 @@ public partial class PlayerPageViewModel : ObservableObject
         }
 
         Position? playerPos = null;
-        var areaMask = 1;
+        var areaMask = 0;
 
         foreach (var entry in entries)
         {
@@ -194,7 +194,7 @@ public partial class PlayerPageViewModel : ObservableObject
 
                     break;
                 case "player.areaMask":
-                    areaMask = ReadInt(entry) ?? 1;
+                    areaMask = ReadInt(entry) ?? 0;
                     break;
                 case "StrengthLevel":
                     PlayerState.StrengthLevel = ReadInt(entry) ?? 0;

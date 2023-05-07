@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.10.3
+
+### Bugfixes
+
+- Fixed player area detection
+
 ## v0.10.2
 
 ### Features
