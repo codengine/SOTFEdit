@@ -6155,6 +6155,34 @@
         }
       ]
     },
+    "517": {
+      "pois": [
+        {
+          "x": 414.4359,
+          "y": 1177.208,
+          "teleport": {
+            "x": 414.4359,
+            "y": 15.8306,
+            "z": 1177.208,
+            "areaMask": 0
+          },
+          "screenshot": "cooking_pot_1.jpg",
+          "description": "At the back of the boat"
+        },
+        {
+          "x": -703.4049,
+          "y": 450.3777,
+          "teleport": {
+            "x": -703.4049,
+            "y": 102.9853,
+            "z": 450.3777,
+            "areaMask": 0
+          },
+          "screenshot": "cooking_pot_2.jpg",
+          "description": "At the campfire at the center of the camp"
+        }
+      ]
+    },
     "521": {
       "wiki": "https://sonsoftheforest.wiki.gg/wiki/More_Lighting_Email",
       "pois": [
@@ -7017,6 +7045,18 @@
           },
           "description": "Inside the right cave tunnel",
           "screenshot": "newspaper_cutout_ceo_missing.jpg"
+        },
+        {
+          "x": 418.29,
+          "y": 1171.254,
+          "teleport": {
+            "x": 418.29,
+            "y": 14.5611,
+            "z": 1171.254,
+            "areaMask": 0
+          },
+          "description": "Inside the boat",
+          "screenshot": "newspaper_cutout_ceo_missing_2.jpg"
         }
       ]
     },
@@ -7416,6 +7456,24 @@
             "areaMask": 4194304
           },
           "screenshot": "action_camera.jpg",
+          "requirements": [
+            567
+          ]
+        }
+      ]
+    },
+    "639": {
+      "pois": [
+        {
+          "x": 1175.794,
+          "y": -646.1533,
+          "teleport": {
+            "x": 1175.794,
+            "y": 210.4917,
+            "z": -646.1533,
+            "areaMask": 4194304
+          },
+          "screenshot": "space_suit.jpg",
           "requirements": [
             567
           ]

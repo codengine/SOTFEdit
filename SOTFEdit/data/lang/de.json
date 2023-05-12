@@ -367,7 +367,9 @@
       "53": "Wandfackel",
       "54": "Schädel-Deckenlampe",
       "56": "Regenfänger",
-      "57": "Federfalle"
+      "57": "Federfalle",
+      "58": "Holzschlitten",
+      "59": "Einfacher Holzschlitten"
     },
     "modificationMode": {
       "None": "Keine Änderung",
@@ -498,10 +500,12 @@
         "0": "Taktische Jacke",
         "1": "Anzug",
         "2": "Schlafanzug",
-        "3": "Lederjacke",
+        "3": "Braune Lederjacke",
         "4": "Kapuzenpullover",
-        "5": "Unbekannt",
-        "6": "Blazer"
+        "5": "Blaues T-Shirt",
+        "6": "Blazer",
+        "7": "Schwarze Lederjacke",
+        "8": "Raumanzug"
       },
       "10": {
         "-1": "Standard",
@@ -509,7 +513,9 @@
         "1": "Trainingsanzug",
         "2": "Lederanzug",
         "3": "Tarnanzug",
-        "4": "Kleid"
+        "4": "Kleid",
+        "5": "Blaugrünes Kleid",
+        "6": "Rotes Kleid"
       }
     }
   },
@@ -1181,7 +1187,9 @@
     "634": "Solarmodul",
     "635": "Glühbirne",
     "636": "TemplateD",
-    "637": "Action-Kamera"
+    "637": "Action-Kamera",
+    "638": "Bauplan Einfacher Holzschlitten",
+    "639": "Raumanzug"
   },
   "poiGroups": {
     "items": "Gegenstände",

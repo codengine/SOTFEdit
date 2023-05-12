@@ -372,7 +372,9 @@
       "53": "Wall Torch",
       "54": "Ceiling Skull Lamp",
       "56": "Rain Catcher",
-      "57": "Spring Trap"
+      "57": "Spring Trap",
+      "58": "Log Sled",
+      "59": "Basic Log Sled"
     },
     "modificationMode": {
       "None": "None",
@@ -503,10 +505,12 @@
         "0": "Tactical Jacket",
         "1": "Tuxedo",
         "2": "Pajamas",
-        "3": "Leather Jacket",
-        "4": "Hoody",
-        "5": "Unknown",
-        "6": "Blazer"
+        "3": "Brown Leather Jacket",
+        "4": "Hoodie",
+        "5": "Blue TShirt",
+        "6": "Blazer",
+        "7": "Black Leather Jacket",
+        "8": "Space Suit"
       },
       "10": {
         "-1": "Default",
@@ -514,7 +518,9 @@
         "1": "Track Suit",
         "2": "Leather Suit",
         "3": "Camouflage Suit",
-        "4": "Dress"
+        "4": "Dress",
+        "5": "Teal Dress",
+        "6": "Red Dress"
       }
     }
   },
@@ -1186,7 +1192,9 @@
     "634": "Solar Panel",
     "635": "Light Bulb",
     "636": "TemplateD",
-    "637": "Action Camera"
+    "637": "Action Camera",
+    "638": "Basic Log Sled Blueprint",
+    "639": "Space Suit"
   },
   "poiGroups": {
     "items": "Items",

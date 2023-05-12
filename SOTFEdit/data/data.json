@@ -1501,6 +1501,7 @@
       "type": "tool",
       "image": "CookingPot.png",
       "storageMax": {
+        "shelf": 1,
         "inventory": 1
       }
     },
@@ -2569,6 +2570,24 @@
         "inventory": 1
       },
       "image": "ActionCam.png"
+    },
+    {
+      "id": 638,
+      "type": "blueprint",
+      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 639,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Clothing.png"
     }
   ],
   "storages": [
@@ -2644,6 +2663,24 @@
     {
       "id": 51,
       "slots": 4
+    },
+    {
+      "id": 58,
+      "slots": 1,
+      "maxPerSlot": 12,
+      "restrictedItemIds": [
+        78
+      ],
+      "type": "Logs"
+    },
+    {
+      "id": 59,
+      "slots": 1,
+      "maxPerSlot": 8,
+      "restrictedItemIds": [
+        78
+      ],
+      "type": "Logs"
     }
   ],
   "followers": {
@@ -3225,6 +3262,18 @@
       "buildCost": 10,
       "category": "traps",
       "icon": "trap.png"
+    },
+    {
+      "id": 58,
+      "buildCost": 62,
+      "category": "storage",
+      "icon": "basket.png"
+    },
+    {
+      "id": 59,
+      "buildCost": 33,
+      "category": "storage",
+      "icon": "basket.png"
     }
   ],
   "areas": [

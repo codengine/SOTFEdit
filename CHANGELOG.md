@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.10.4
+
+## Features
+
+- Update 05 support
+- Updated Cooking Pot (it can be stored on shelves)
+- Added Space Suit
+- Added new outfits for Kelvin and Virginia
+- Added POIs and Screenshots for the new Cooking Pots and Space Suit
+- Added support for Log Sleds and Basic Log Sleds at Structure and Storage Tab
+
 ## v0.10.3
 
 ### Bugfixes
