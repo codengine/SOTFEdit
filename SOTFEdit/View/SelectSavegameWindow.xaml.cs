@@ -24,9 +24,9 @@ public partial class SelectSavegameWindow
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, _) => { Application.Current.Dispatcher.Invoke(Close); });
+            (_, _) => Application.Current.Dispatcher.Invoke(Close));
         WeakReferenceMessenger.Default.Register<RequestSelectSavegameDirEvent>(this,
-            (_, _) => { OnRequestSelectSavegameDirEvent(); });
+            (_, _) => OnRequestSelectSavegameDirEvent());
     }
 
     protected override void OnClosing(CancelEventArgs e)

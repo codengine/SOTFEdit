@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Infrastructure.Companion;
 using SOTFEdit.Model.Map;
 using SOTFEdit.ViewModel;
 
@@ -12,7 +14,8 @@ public partial class MapTeleportWindow : ICloseable
         MapTeleportWindowViewModel.TeleportationMode teleportationMode)
     {
         Owner = owner;
-        DataContext = new MapTeleportWindowViewModel(this, destination, teleportationMode);
+        var companionConnectionManager = Ioc.Default.GetRequiredService<CompanionConnectionManager>();
+        DataContext = new MapTeleportWindowViewModel(this, destination, teleportationMode, companionConnectionManager);
         InitializeComponent();
     }
 

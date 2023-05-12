@@ -29,7 +29,7 @@ public partial class StructuresPageViewModel : ObservableObject
     {
         _structureTypes = gameData.ScrewStructures.OrderBy(screwStructure => screwStructure.CategoryName)
             .ThenBy(screwStructure => screwStructure.Name).ToList();
-        _structureTypes.Insert(0, new ScrewStructure("", 0, 0, false, ""));
+        _structureTypes.Insert(0, new ScrewStructure("", 0, 0, false, "", false, false));
 
         StructureTypes = CollectionViewSource.GetDefaultView(_structureTypes);
         StructureTypes.GroupDescriptions.Add(new PropertyGroupDescription("CategoryName"));
@@ -55,7 +55,7 @@ public partial class StructuresPageViewModel : ObservableObject
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
             (_, message) => OnSelectedSavegameChangedEvent(message));
         WeakReferenceMessenger.Default.Register<ChangeScrewStructureResult>(this,
-            (_, message) => { OnChangeScrewStructureResult(message); });
+            (_, message) => OnChangeScrewStructureResult(message));
     }
 
     private void OnChangeScrewStructureResult(ChangeScrewStructureResult message)
@@ -102,19 +102,19 @@ public partial class StructuresPageViewModel : ObservableObject
 
         foreach (var structure in structures)
         {
+            if (structure.Type == JTokenType.Null)
+            {
+                continue;
+            }
+
             ScrewStructure? screwStructure = null;
             if (structure["Id"]?.Value<int>() is { } id)
             {
                 screwStructure = screwStructuresById.GetValueOrDefault(id);
             }
 
-            if (screwStructure == null)
-            {
-                continue;
-            }
-
             var position = structure["Pos"]?.ToObject<Position>() ?? null;
-            wrappers.Add(new ScrewStructureWrapper(screwStructure, structure, screwStructure.BuildCost, position,
+            wrappers.Add(new ScrewStructureWrapper(screwStructure, structure, screwStructure?.BuildCost ?? 0, position,
                 ScrewStructureOrigin.Finished));
         }
 

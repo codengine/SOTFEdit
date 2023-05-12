@@ -64,7 +64,7 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
     public new static CaveOrBunkerPoi Of(RawPoi rawPoi, ItemList itemList, string icon, HashSet<int> inventoryItems,
         AreaMaskManager areaMaskManager, bool enabled)
     {
-        return new CaveOrBunkerPoi(
+        var poi = new CaveOrBunkerPoi(
             rawPoi.X,
             rawPoi.Y,
             rawPoi.Teleport?.ToPosition(areaMaskManager),
@@ -80,8 +80,10 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
             rawPoi.Wiki
         )
         {
-            Enabled = enabled,
             MissingRequiredItems = rawPoi.GetMissingRequiredItems(inventoryItems)
         };
+
+        poi.SetEnabledNoRefresh(enabled);
+        return poi;
     }
 }

@@ -5,12 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
              xmlns:st="http://schemas.spicytaco.io/"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <st:AutoGrid Columns="*" ChildMargin="4">
-        <Button Content="{infrastructure:Translate 'map.buttons.moveToPlayer'}" Padding="10"
-                Command="{Binding MoveToPlayerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
-        <Button Content="{infrastructure:Translate 'map.buttons.deleteBothAnchors'}" Padding="10"
+        <ToggleButton Content="{infrastructure:Translate 'map.buttons.moveToNextClickedPosition.text'}" Padding="10"
+                      ToolTip="{infrastructure:Translate 'map.buttons.moveToNextClickedPosition.tooltip'}"
+                      mah:ControlsHelper.ContentCharacterCasing="Upper"
+                      IsChecked="{Binding Poi.IsMoveRequested, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        <ToggleButton Content="{infrastructure:Translate 'map.buttons.createNewZipline.text'}" Padding="10"
+                      mah:ControlsHelper.ContentCharacterCasing="Upper"
+                      ToolTip="{infrastructure:Translate 'map.buttons.createNewZipline.tooltip'}"
+                      IsChecked="{Binding Poi.IsZiplineCreationRequested, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        <TextBlock Margin="10" Text="{infrastructure:Translate 'map.buttons.moveToNextClickedPosition.hint'}"
+                   Visibility="{Binding Poi.IsMoveRequested, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <Button Content="{infrastructure:Translate 'map.buttons.deleteBothAnchors'}" Padding="10" Background="DarkRed"
                 Command="{Binding DeleteBothAnchorsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
     </st:AutoGrid>
 </UserControl>

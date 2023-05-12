@@ -8,7 +8,6 @@
     <DataTemplate x:Key="CaveOrBunkerDetailsTemplate" DataType="{x:Type models:CaveOrBunkerPoi}">
         <DataTemplate.Resources>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
             <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
         </DataTemplate.Resources>
         <st:AutoGrid Columns="Auto,*" ChildVerticalAlignment="Center" Margin="4" ChildMargin="2">

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -42,7 +41,7 @@ public partial class PlayerPageViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, m) => { OnSelectedSavegameChanged(m); });
+            (_, m) => OnSelectedSavegameChanged(m));
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
@@ -194,37 +193,37 @@ public partial class PlayerPageViewModel : ObservableObject
 
                     break;
                 case "player.areaMask":
-                    areaMask = ReadInt(entry) ?? 0;
+                    areaMask = SettingReader.ReadInt(entry) ?? 0;
                     break;
                 case "StrengthLevel":
-                    PlayerState.StrengthLevel = ReadInt(entry) ?? 0;
+                    PlayerState.StrengthLevel = SettingReader.ReadInt(entry) ?? 0;
                     break;
                 case "MaxHealth":
-                    PlayerState.MaxHealth = ReadFloat(entry) ?? 0f;
+                    PlayerState.MaxHealth = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "CurrentHealth":
-                    PlayerState.CurrentHealth = ReadFloat(entry) ?? 0f;
+                    PlayerState.CurrentHealth = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "Hydration":
-                    PlayerState.Hydration = ReadFloat(entry) ?? 0f;
+                    PlayerState.Hydration = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "HydrationBuff":
-                    PlayerState.HydrationBuff = ReadFloat(entry) ?? 0f;
+                    PlayerState.HydrationBuff = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "Fullness":
-                    PlayerState.Fullness = ReadFloat(entry) ?? 0f;
+                    PlayerState.Fullness = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "FullnessBuff":
-                    PlayerState.FullnessBuff = ReadFloat(entry) ?? 0f;
+                    PlayerState.FullnessBuff = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "Rest":
-                    PlayerState.Rest = ReadFloat(entry) ?? 0f;
+                    PlayerState.Rest = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "RestBuff":
-                    PlayerState.RestBuff = ReadFloat(entry) ?? 0f;
+                    PlayerState.RestBuff = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
                 case "Stamina":
-                    PlayerState.Stamina = ReadFloat(entry) ?? 0f;
+                    PlayerState.Stamina = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
             }
         }
@@ -324,37 +323,37 @@ public partial class PlayerPageViewModel : ObservableObject
 
                     break;
                 case "player.areaMask":
-                    hasChanges = WriteInt(entry, PlayerState.Pos.Area.AreaMask) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Pos.Area.AreaMask) || hasChanges;
                     break;
                 case "StrengthLevel":
-                    hasChanges = WriteInt(entry, PlayerState.StrengthLevel) || hasChanges;
+                    hasChanges = SettingWriter.WriteInt(entry, PlayerState.StrengthLevel) || hasChanges;
                     break;
                 case "MaxHealth":
-                    hasChanges = WriteFloat(entry, PlayerState.MaxHealth) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.MaxHealth) || hasChanges;
                     break;
                 case "CurrentHealth":
-                    hasChanges = WriteFloat(entry, PlayerState.CurrentHealth) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.CurrentHealth) || hasChanges;
                     break;
                 case "Hydration":
-                    hasChanges = WriteFloat(entry, PlayerState.Hydration) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Hydration) || hasChanges;
                     break;
                 case "HydrationBuff":
-                    hasChanges = WriteFloat(entry, PlayerState.HydrationBuff) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.HydrationBuff) || hasChanges;
                     break;
                 case "Fullness":
-                    hasChanges = WriteFloat(entry, PlayerState.Fullness) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Fullness) || hasChanges;
                     break;
                 case "FullnessBuff":
-                    hasChanges = WriteFloat(entry, PlayerState.FullnessBuff) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.FullnessBuff) || hasChanges;
                     break;
                 case "Rest":
-                    hasChanges = WriteFloat(entry, PlayerState.Rest) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Rest) || hasChanges;
                     break;
                 case "RestBuff":
-                    hasChanges = WriteFloat(entry, PlayerState.RestBuff) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.RestBuff) || hasChanges;
                     break;
                 case "Stamina":
-                    hasChanges = WriteFloat(entry, PlayerState.Stamina) || hasChanges;
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Stamina) || hasChanges;
                     break;
             }
         }
@@ -367,37 +366,5 @@ public partial class PlayerPageViewModel : ObservableObject
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.PlayerState);
 
         return true;
-    }
-
-    private static bool WriteFloat(JToken? target, float newValue)
-    {
-        if (target == null || (ReadFloat(target) is { } oldValue && Math.Abs(oldValue - newValue) < 0.001))
-        {
-            return false;
-        }
-
-        target["FloatValue"] = newValue;
-        return true;
-    }
-
-    private static bool WriteInt(JToken? target, int newValue)
-    {
-        if (target == null || (ReadInt(target) is { } oldValue && oldValue == newValue))
-        {
-            return false;
-        }
-
-        target["IntValue"] = newValue;
-        return true;
-    }
-
-    private static float? ReadFloat(JToken? token)
-    {
-        return token?["FloatValue"]?.Value<float>();
-    }
-
-    private static int? ReadInt(JToken? token)
-    {
-        return token?["IntValue"]?.Value<int>();
     }
 }

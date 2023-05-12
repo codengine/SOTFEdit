@@ -20,8 +20,8 @@ public partial class ZiplinePoi : ObservableObject, IPoi
     public ZiplinePoi(JToken token, Position posA, Position posB)
     {
         Token = token;
-        PointA = new ZipPointPoi(posA, this, false);
-        PointB = new ZipPointPoi(posB, this, true);
+        PointA = new ZipPointPoi(posA, this);
+        PointB = new ZipPointPoi(posB, this);
     }
 
     public JToken Token { get; set; }
@@ -47,10 +47,16 @@ public partial class ZiplinePoi : ObservableObject, IPoi
     public int IconWidth => 0;
     public int IconHeight => 0;
     public int IconZIndex => -1;
+    public float IconRotation => 0;
 
     public void ApplyFilter(MapFilter mapFilter)
     {
         Filtered = mapFilter.RequirementsFilter == MapFilter.RequirementsFilterType.InaccessibleOnly;
+    }
+
+    public void SetEnabledNoRefresh(bool value)
+    {
+        _enabled = value;
     }
 
     public string PrintableCoordinates => "";

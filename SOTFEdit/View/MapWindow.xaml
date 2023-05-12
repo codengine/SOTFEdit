@@ -10,14 +10,61 @@
                  xmlns:zoomControl="clr-namespace:ZoomControl;assembly=ZoomControl"
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  mc:Ignorable="d"
-                 Background="#9db4d4"
+                 Background="{Binding MapBackground}"
                  Title="{infrastructure:Translate 'menu.tools.map.text'}"
-                 WindowState="Maximized"
+                 Width="1024"
+                 Height="768"
                  WindowTransitionsEnabled="False"
                  PreviewKeyDown="MapWindow_OnPreviewKeyDown"
                  d:DataContext="{d:DesignInstance viewModel:MapViewModel}"
                  TitleCharacterCasing="Normal">
+    <mah:MetroWindow.LeftWindowCommands>
+        <mah:WindowCommands VerticalAlignment="Center" VerticalContentAlignment="Center">
+            <Image Height="24" Width="24" mah:VisibilityHelper.IsCollapsed="{Binding IsNotConnected}"
+                   ToolTip="{infrastructure:Translate 'companion.status.connected'}">
+                <Image.Source>
+                    <iconPacks:FontAwesomeImage Kind="PlugSolid"
+                                                Brush="{StaticResource MahApps.Brushes.ThemeForeground}" />
+                </Image.Source>
+            </Image>
+        </mah:WindowCommands>
+    </mah:MetroWindow.LeftWindowCommands>
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands ShowLastSeparator="True">
+            <CheckBox IsChecked="{Binding FollowPlayer, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 8 0"
+                      mah:CheckBoxHelper.CheckBackgroundFillChecked="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillUnchecked="Transparent"
+                      mah:CheckBoxHelper.CheckGlyphForegroundChecked="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundUnchecked="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckBackgroundFillCheckedMouseOver="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillCheckedPressed="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillUncheckedMouseOver="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillUncheckedPressed="Transparent"
+                      mah:CheckBoxHelper.CheckGlyphForegroundCheckedMouseOver="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundUncheckedMouseOver="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundCheckedPressed="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundUncheckedPressed="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      Content="{infrastructure:Translate 'map.followPlayer'}" />
+            <CheckBox Checked="AlwaysOnTop_OnChecked"
+                      Unchecked="AlwaysOnTop_OnUnchecked"
+                      Margin="0 0 8 0"
+                      mah:CheckBoxHelper.CheckBackgroundFillChecked="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillUnchecked="Transparent"
+                      mah:CheckBoxHelper.CheckGlyphForegroundChecked="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundUnchecked="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckBackgroundFillCheckedMouseOver="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillCheckedPressed="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillUncheckedMouseOver="Transparent"
+                      mah:CheckBoxHelper.CheckBackgroundFillUncheckedPressed="Transparent"
+                      mah:CheckBoxHelper.CheckGlyphForegroundCheckedMouseOver="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundUncheckedMouseOver="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundCheckedPressed="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      mah:CheckBoxHelper.CheckGlyphForegroundUncheckedPressed="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                      Content="{infrastructure:Translate 'map.alwaysOnTop'}" />
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
     <mah:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,9 +76,11 @@
                 <ResourceDictionary Source="/View/Map/Details/StructurePoiDetailsTemplate.xaml" />
                 <ResourceDictionary Source="/View/Map/Details/DefaultPoiDetailsTemplate.xaml" />
                 <ResourceDictionary Source="/View/Map/Details/ZipPointPoiDetailsTemplate.xaml" />
+                <ResourceDictionary Source="/View/Map/Details/CustomPoiDetailsTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <infrastructure:ZoomHandler x:Key="ZoomHandler" />
             <converters:BoolToBorderBrushConverter x:Key="BoolToBorderBrushConverter" />
+            <converters:HalfWidthConverter x:Key="HalfWidthConverter" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
             <DataTemplate x:Key="PoiTemplate" DataType="{x:Type models:IPoi}">
@@ -39,9 +88,12 @@
                         Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
                         BorderBrush="{Binding IsSelected, Converter={StaticResource BoolToBorderBrushConverter}}">
                     <Border.RenderTransform>
-                        <ScaleTransform
-                            ScaleX="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}"
-                            ScaleY="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}" />
+                        <TransformGroup>
+                            <ScaleTransform
+                                ScaleX="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}"
+                                ScaleY="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}" />
+                            <RotateTransform Angle="{Binding IconRotation}" />
+                        </TransformGroup>
                     </Border.RenderTransform>
                     <Border.RenderTransformOrigin>
                         <Point X="0.5" Y="0.5" />
@@ -51,6 +103,37 @@
                            Source="{Binding Icon, Mode=OneTime}" Width="{Binding IconWidth, Mode=OneTime}"
                            Height="{Binding IconHeight, Mode=OneTime}" ToolTip="{Binding Title, Mode=OneTime}" />
                 </Border>
+            </DataTemplate>
+
+            <DataTemplate x:Key="NetworkPlayerPoiTemplate" DataType="{x:Type models:NetworkPlayerPoi}">
+                <Grid>
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform
+                                ScaleX="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}"
+                                ScaleY="{Binding ZoomInverse, Source={StaticResource ZoomHandler}}" />
+                            <RotateTransform Angle="{Binding IconRotation}" />
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Grid.RenderTransformOrigin>
+                        <Point X="0.5" Y="0.5" />
+                    </Grid.RenderTransformOrigin>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border BorderThickness="1"
+                            Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            BorderBrush="{Binding IsSelected, Converter={StaticResource BoolToBorderBrushConverter}}">
+                        <Image Cursor="Hand"
+                               Tag="{Binding}"
+                               Source="{Binding Icon, Mode=OneTime}" Width="{Binding IconWidth, Mode=OneTime}"
+                               Height="{Binding IconHeight, Mode=OneTime}" ToolTip="{Binding Title}" />
+                    </Border>
+                    <TextBlock Grid.Row="1" Text="{Binding Title}" FontWeight="Bold" MaxWidth="100"
+                               TextAlignment="Center" TextWrapping="Wrap"
+                               Foreground="{Binding DataContext.NetworkPlayerForeground, RelativeSource={RelativeSource AncestorType={x:Type mah:MetroWindow}}}" />
+                </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="ZipPoiTemplate" DataType="{x:Type models:ZipPointPoi}">
@@ -76,6 +159,7 @@
             <infrastructure:PoiTemplateSelector
                 x:Key="PoiTemplateSelector"
                 PoiTemplate="{StaticResource PoiTemplate}"
+                NetworkPlayerPoiTemplate="{StaticResource NetworkPlayerPoiTemplate}"
                 ZiplineTemplate="{StaticResource ZiplineTemplate}"
                 ZipPoiTemplate="{StaticResource ZipPoiTemplate}" />
 
@@ -88,6 +172,7 @@
                 ActorPoiDetailsTemplate="{StaticResource ActorPoiDetailsTemplate}"
                 StructurePoiDetailsTemplate="{StaticResource StructurePoiDetailsTemplate}"
                 ZipPointPoiDetailsTemplate="{StaticResource ZipPointPoiDetailsTemplate}"
+                CustomPoiDetailsTemplate="{StaticResource CustomPoiDetailsTemplate}"
                 DefaultPoiTemplate="{StaticResource DefaultPoiDetailsTemplate}" />
         </ResourceDictionary>
     </mah:MetroWindow.Resources>
@@ -185,8 +270,8 @@
             </mah:Flyout>
         </mah:FlyoutsControl>
     </mah:MetroWindow.Flyouts>
-    <Grid>
-        <zoomControl:ZoomControl Mode="Fill" MaxZoom="8" ModifierMode="None"
+    <Grid Name="MapGrid">
+        <zoomControl:ZoomControl Mode="Fill" MaxZoom="8" ModifierMode="None" Name="MapZoomControl"
                                  MouseUp="ZoomControl_OnMouseUp"
                                  PreviewMouseDown="ZoomControl_OnPreviewMouseDown"
                                  Zoom="{Binding Zoom, Source={StaticResource ZoomHandler}, Mode=OneWayToSource}">
@@ -217,27 +302,23 @@
                                         Background="{DynamicResource MahApps.Brushes.Accent}" Margin="0 0 5 0" />
                                 <ToggleButton
                                     Width="55"
-                                    Content="1:1"
-                                    IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mode, Converter={StaticResource EqualityConverter}, ConverterParameter={x:Static zoomControl:ZoomControlModes.Original}}" />
-                                <ToggleButton
-                                    Width="55"
-                                    Content="Fill"
-                                    IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mode, Converter={StaticResource EqualityConverter}, ConverterParameter={x:Static zoomControl:ZoomControlModes.Fill}}" />
-                                <ToggleButton
-                                    Width="55"
-                                    Content="Custom"
-                                    IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mode, Converter={StaticResource EqualityConverter}, ConverterParameter={x:Static zoomControl:ZoomControlModes.Custom}}" />
-                                <TextBlock
-                                    Margin="5,0,0,0"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Zoom, StringFormat='Zoom: {0:P2}'}" />
+                                    Content="{infrastructure:Translate 'map.fill'}"
+                                    IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Mode, Converter={StaticResource EqualityConverter}, ConverterParameter={x:Static zoomControl:ZoomControlModes.Fill}}"
+                                    Margin="0 0 5 0" />
+                                <ComboBox SelectedValuePath="Tag" SelectedValue="{Binding MapSelection}"
+                                          BorderBrush="Transparent">
+                                    <ComboBoxItem Tag="{x:Static viewModel:MapType.Dark}"
+                                                  Content="{infrastructure:Translate 'map.mapType.dark'}" />
+                                    <ComboBoxItem Tag="{x:Static viewModel:MapType.Original}"
+                                                  Content="{infrastructure:Translate 'map.mapType.original'}" />
+                                </ComboBox>
                             </StackPanel>
                         </Border>
                     </Grid>
                 </ControlTemplate>
             </zoomControl:ZoomControl.Template>
             <Grid>
-                <Image Source="/SOTFEdit;component/images/map.jpg" Width="4096" Height="4096" />
+                <Image Source="{Binding MapImageSource}" Width="4096" Height="4096" />
 
                 <ItemsControl ItemsSource="{Binding Pois}" ItemTemplateSelector="{StaticResource PoiTemplateSelector}">
                     <ItemsControl.ItemsPanel>
@@ -255,5 +336,27 @@
                 </ItemsControl>
             </Grid>
         </zoomControl:ZoomControl>
+        <Grid
+            Margin="0 0 0 10"
+            VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Slider Minimum="{Binding ElementName=MapZoomControl, Path=MinZoom}"
+                    Maximum="{Binding ElementName=MapZoomControl, Path=MaxZoom}"
+                    mah:SliderHelper.TrackFillBrush="White"
+                    mah:SliderHelper.TrackFillHoverBrush="White"
+                    mah:SliderHelper.TrackFillPressedBrush="White"
+                    Value="{Binding ElementName=MapZoomControl, Path=Zoom}"
+                    Width="{Binding ElementName=MapGrid, Path=ActualWidth, Converter={StaticResource HalfWidthConverter}}">
+                <Slider.Effect>
+                    <DropShadowEffect Color="Black"
+                                      Direction="320"
+                                      ShadowDepth="2"
+                                      Opacity="0.5"
+                                      BlurRadius="10" />
+                </Slider.Effect>
+            </Slider>
+        </Grid>
     </Grid>
 </mah:MetroWindow>

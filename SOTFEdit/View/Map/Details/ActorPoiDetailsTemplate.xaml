@@ -8,7 +8,6 @@
     <DataTemplate x:Key="ActorPoiDetailsTemplate" DataType="{x:Type models:ActorPoi}">
         <DataTemplate.Resources>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
             <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
             <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
         </DataTemplate.Resources>

@@ -22,9 +22,7 @@
         "_label": "Mode",
         "normal": "Normal",
         "hard": "Hard",
-        "hardSurvival": "Hard Survival",
         "peaceful": "Peaceful",
-        "creative": "Creative",
         "custom": "Custom"
       },
       "consumableEffects": {
@@ -100,6 +98,7 @@
         "high": "High"
       },
       "uid": "UID",
+      "inventoryPause": "Pause in Inventory",
       "customSettings": "Custom Settings"
     },
     "state": {
@@ -320,6 +319,7 @@
       "furniture": "Furniture",
       "storage": "Storage",
       "utility": "Utility",
+      "misc": "Misc",
       "gardening": "Gardening",
       "traps": "Traps"
     },
@@ -371,6 +371,7 @@
       "52": "Bench",
       "53": "Wall Torch",
       "54": "Ceiling Skull Lamp",
+      "55": "Zipline",
       "56": "Rain Catcher",
       "57": "Spring Trap",
       "58": "Log Sled",
@@ -440,7 +441,8 @@
     "success": "Success",
     "yes": "Yes",
     "no": "No",
-    "close": "Close"
+    "close": "Close",
+    "seconds": "Second(s)"
   },
   "armor": {
     "header": "Equipped Armor (Max. 10)",
@@ -582,6 +584,10 @@
         "text": "Interactive Map",
         "tooltip": "An interactive map"
       }
+    },
+    "companion": {
+      "text": "Companion",
+      "setup": "Setup"
     },
     "help": {
       "text": "?",
@@ -1197,21 +1203,22 @@
     "639": "Space Suit"
   },
   "poiGroups": {
-    "items": "Items",
-    "bunkers": "Bunkers",
-    "3Dprinters": "3D-Printers",
-    "laptops": "Laptops",
-    "caves": "Caves",
-    "camps": "Camps",
-    "villages": "Villages",
-    "helicopters": "Helicopters",
-    "info": "Info",
-    "doors": "Doors",
-    "ammo": "Ammo",
-    "cannibalVillages": "Cannibal Villages",
-    "lakes": "Lakes",
-    "supply": "Supply",
-    "crates": "Crates"
+    "Items": "Items",
+    "Bunkers": "Bunkers",
+    "Printers": "3D-Printers",
+    "Laptops": "Laptops",
+    "Caves": "Caves",
+    "Camps": "Camps",
+    "Villages": "Villages",
+    "Helicopters": "Helicopters",
+    "Info": "Info",
+    "Doors": "Doors",
+    "Ammo": "Ammo",
+    "CannibalVillages": "Cannibal Villages",
+    "Lakes": "Lakes",
+    "Ponds": "Ponds",
+    "Supply": "Supply",
+    "Crates": "Crates"
   },
   "map": {
     "zipLineAnchor": "Zip Line Anchor",
@@ -1234,6 +1241,15 @@
     "area": "Area",
     "objects": "Objects",
     "altItems": "Alternative Items",
+    "customPois": "Custom",
+    "alwaysOnTop": "Always on top",
+    "followPlayer": "Follow Player",
+    "followers": "Followers",
+    "fill": "Fill",
+    "mapType": {
+      "dark": "Dark",
+      "original": "Original"
+    },
     "fullText": {
       "text": "Full Text",
       "watermark": "Title, Description, Item name...",
@@ -1299,9 +1315,51 @@
       "teleportPlayer": "Teleport Player here",
       "teleportKelvin": "Teleport Kelvin here",
       "teleportVirginia": "Teleport Virginia here",
-      "moveToPlayer": "Move to Player",
       "deleteBothAnchors": "Delete both anchors",
-      "spawnActors": "Spawn Actors"
+      "spawnActors": "Spawn Actors",
+      "delete": "Delete",
+      "moveToNextClickedPosition": {
+        "text": "Move to clicked position",
+        "tooltip": "After you have clicked this button, the anchor will be moved to the next point that you click",
+        "hint": "Please click now another location"
+      },
+      "createNewZipline": {
+        "text": "New Zipline from here",
+        "tooltip": "After you have clicked this button, the new zipline will be created between the current position and the next point that you click"
+      }
+    }
+  },
+  "companion": {
+    "address": "IP/Address",
+    "port": "Port",
+    "portHint": "Ports > 1024 require the program and game to be executed as an admin!",
+    "connectTimeout": "Connect Timeout",
+    "keepAliveInterval": "Keep-Alive Interval",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "readme1": "The companion provides some added functionality to the game, like ingame teleportation, position tracking and much more.\n\nBefore you can use the Companion, you have to set it up first. In order to do so, you have to setup two things in your game:\n\n- BepInExPack\n- SOTFEdit Companion Plugin\n\nYou can get them here and install them either manually, following the README, or use a mod manager:",
+    "readme2": "After both are setup and the game is launched, you have to connect to the Companion using the menu.\n\nAfterwards, ingame you have two new hotkeys:\n- Ingame Teleport to most of the ingame locations (Default: F8)\n- Create Custom Teleport POI (Default: F9)\n\nAt the same time, your position on the map will be live updated.",
+    "settings": "Settings",
+    "readme": "Readme",
+    "mapPositionUpdateInterval": "Update Player Positions every",
+    "connectionFailed": {
+      "title": "Companion Connection failed",
+      "text": "An attempt to connect to the companion plugin failed",
+      "textException": "An attempt to connect to the companion plugin failed. Error: {0}"
+    },
+    "connectionSuccessful": {
+      "title": "Companion connected",
+      "text": "Successfully connected to the companion.\nYou may now use the ingame hotkeys, live-teleportation via map and live position tracking"
+    },
+    "disconnectFailed": {
+      "title": "Companion Disconnect failed",
+      "text": "An attempt to disconnect from the companion plugin failed",
+      "textException": "An attempt to disconnect from the companion plugin failed. Error: {0}"
+    },
+    "status": {
+      "connected": "Connected",
+      "connecting": "Connecting...",
+      "disconnected": "Disconnected"
     }
   }
 }

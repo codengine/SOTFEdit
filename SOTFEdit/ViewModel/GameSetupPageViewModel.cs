@@ -2,16 +2,55 @@
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
+using Newtonsoft.Json.Linq;
 using SOTFEdit.Model.Events;
-using SOTFEdit.Model.SaveData.Settings;
-using SOTFEdit.Model.SaveData.Setup;
 using SOTFEdit.Model.Savegame;
+using static SOTFEdit.Model.Constants;
+using static SOTFEdit.Model.Constants.Settings;
 
 namespace SOTFEdit.ViewModel;
 
 public class GameSetupPageViewModel : ObservableObject
 {
-    private readonly Dictionary<string, GameSettingLightModel> _gameSettings = new();
+    private const string SettingsKey = "_settings";
+    public const string CustomGameMode = "Custom";
+    public const string PeacefulGameMode = "Peaceful";
+    public const string HardGameMode = "Hard";
+    public const string SettingValueHigh = "High";
+
+    // ReSharper disable once InconsistentNaming
+    public const string SettingValueLOW = "LOW";
+    private const string NameKey = "Name";
+    private const string SettingTypeKey = "SettingType";
+
+
+    private readonly Dictionary<string, bool?> _boolSettings = new();
+
+    private readonly HashSet<string> _settingsForNonCustom = new()
+    {
+        GameSetupKeys.Uid, GameSetupKeys.Mode
+    };
+
+    private readonly Dictionary<string, int> _settingTypes = new()
+    {
+        { GameSetupKeys.Mode, SettingTypeString },
+        { GameSetupKeys.Uid, SettingTypeString },
+        { GameSetupKeys.EnemyHealth, SettingTypeString },
+        { GameSetupKeys.EnemyDamage, SettingTypeString },
+        { GameSetupKeys.EnemyArmour, SettingTypeString },
+        { GameSetupKeys.EnemyAggression, SettingTypeString },
+        { GameSetupKeys.AnimalSpawnRate, SettingTypeString },
+        { GameSetupKeys.StartingSeason, SettingTypeString },
+        { GameSetupKeys.SeasonLength, SettingTypeString },
+        { GameSetupKeys.DayLength, SettingTypeString },
+        { GameSetupKeys.PrecipitationFrequency, SettingTypeString },
+        { GameSetupKeys.ConsumableEffects, SettingTypeString },
+        { GameSetupKeys.PlayerStatsDamage, SettingTypeString },
+        { GameSetupKeys.EnemySpawn, SettingTypeBool },
+        { GameSetupKeys.InventoryPause, SettingTypeBool }
+    };
+
+    private readonly Dictionary<string, string> _stringSettings = new();
 
     public GameSetupPageViewModel()
     {
@@ -20,127 +59,163 @@ public class GameSetupPageViewModel : ObservableObject
 
     public string? SelectedMode
     {
-        get => GetModelProperty("Mode")?.StringValue ?? "";
+        get => GetStringSetting(GameSetupKeys.Mode) ?? CustomGameMode;
         set
         {
-            SetModelProperty("Mode", value);
+            SetStringSetting(GameSetupKeys.Mode, value);
             OnPropertyChanged();
         }
     }
 
-    public string Uid => GetModelProperty("UID")?.StringValue ?? "";
+    public string Uid => GetStringSetting(GameSetupKeys.Uid) ?? "";
 
     public string? SelectedEnemyHealth
     {
-        get => GetModelProperty("GameSetting.Vail.EnemyHealth")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Vail.EnemyHealth", value);
+        get => GetStringSetting(GameSetupKeys.EnemyHealth) ?? "NORMAL";
+        set => SetStringSetting(GameSetupKeys.EnemyHealth, value);
     }
 
     public string? SelectedEnemyDamage
     {
-        get => GetModelProperty("GameSetting.Vail.EnemyDamage")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Vail.EnemyDamage", value);
+        get => GetStringSetting(GameSetupKeys.EnemyDamage) ?? "NORMAL";
+        set => SetStringSetting(GameSetupKeys.EnemyDamage, value);
     }
 
     public string? SelectedEnemyArmour
     {
-        get => GetModelProperty("GameSetting.Vail.EnemyArmour")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Vail.EnemyArmour", value);
+        get => GetStringSetting(GameSetupKeys.EnemyArmour) ?? "NORMAL";
+        set => SetStringSetting(GameSetupKeys.EnemyArmour, value);
     }
 
     public string? SelectedEnemyAggression
     {
-        get => GetModelProperty("GameSetting.Vail.EnemyAggression")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Vail.EnemyAggression", value);
+        get => GetStringSetting(GameSetupKeys.EnemyAggression) ?? "NORMAL";
+        set => SetStringSetting(GameSetupKeys.EnemyAggression, value);
     }
 
     public string? SelectedAnimalSpawnRate
     {
-        get => GetModelProperty("GameSetting.Vail.AnimalSpawnRate")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Vail.AnimalSpawnRate", value);
+        get => GetStringSetting(GameSetupKeys.AnimalSpawnRate) ?? "NORMAL";
+        set => SetStringSetting(GameSetupKeys.AnimalSpawnRate, value);
     }
 
     public string? SelectedStartingSeason
     {
-        get => GetModelProperty("GameSetting.Environment.StartingSeason")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Environment.StartingSeason", value);
+        get => GetStringSetting(GameSetupKeys.StartingSeason) ?? "Summer";
+        set => SetStringSetting(GameSetupKeys.StartingSeason, value);
     }
 
     public string? SelectedSeasonLength
     {
-        get => GetModelProperty("GameSetting.Environment.SeasonLength")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Environment.SeasonLength", value);
+        get => GetStringSetting(GameSetupKeys.SeasonLength) ?? "Default";
+        set => SetStringSetting(GameSetupKeys.SeasonLength, value);
     }
 
     public string? SelectedDayLength
     {
-        get => GetModelProperty("GameSetting.Environment.DayLength")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Environment.DayLength", value);
+        get => GetStringSetting(GameSetupKeys.DayLength) ?? "Default";
+        set => SetStringSetting(GameSetupKeys.DayLength, value);
     }
 
     public bool SelectedEnemySpawn
     {
-        get => GetModelProperty("GameSetting.Vail.EnemySpawn")?.BoolValue ?? true;
-        set => SetModelProperty("GameSetting.Vail.EnemySpawn", value);
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.EnemySpawn, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return true;
+        }
+        set => SetBoolSetting(GameSetupKeys.EnemySpawn, value);
+    }
+
+    public bool SelectedInventoryPause
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.InventoryPause, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return true;
+        }
+        set => SetBoolSetting(GameSetupKeys.InventoryPause, value);
     }
 
     public string? SelectedConsumableEffects
     {
-        get => GetModelProperty("GameSetting.Survival.ConsumableEffects")?.StringValue ?? "Normal";
-        set => SetModelProperty("GameSetting.Survival.ConsumableEffects", value);
+        get => GetStringSetting(GameSetupKeys.ConsumableEffects) ?? "Normal";
+        set => SetStringSetting(GameSetupKeys.ConsumableEffects, value);
     }
 
     public string? SelectedPlayerStatsDamage
     {
-        get => GetModelProperty("GameSetting.Survival.PlayerStatsDamage")?.StringValue ?? "";
-        set => SetModelProperty("GameSetting.Survival.PlayerStatsDamage", value);
+        get => GetStringSetting(GameSetupKeys.PlayerStatsDamage) ?? "Off";
+        set => SetStringSetting(GameSetupKeys.PlayerStatsDamage, value);
     }
 
     public string? SelectedPrecipitationFrequency
     {
-        get => GetModelProperty("GameSetting.Environment.PrecipitationFrequency")?.StringValue ?? "Default";
-        set => SetModelProperty("GameSetting.Environment.PrecipitationFrequency", value);
+        get => GetStringSetting(GameSetupKeys.PrecipitationFrequency) ?? "Default";
+        set => SetStringSetting(GameSetupKeys.PrecipitationFrequency, value);
     }
 
-    private void SetModelProperty(string key, string? value)
+    private void SetStringSetting(string key, string? value)
     {
-        if (string.IsNullOrWhiteSpace(value))
+        if (value == null)
         {
-            _gameSettings.Remove(key);
+            _stringSettings.Remove(key);
         }
         else
         {
-            _gameSettings[key] = new GameSettingLightModel(key, value);
+            _stringSettings[key] = value;
         }
     }
 
-    private void SetModelProperty(string key, bool? value)
+    private string? GetStringSetting(string key)
     {
-        _gameSettings[key] = new GameSettingLightModel(key, BoolValue: value);
+        return _stringSettings.GetValueOrDefault(key);
     }
 
-    private GameSettingLightModel? GetModelProperty(string key)
+    private void SetBoolSetting(string key, bool? value)
     {
-        return _gameSettings.TryGetValue(key, out var value) ? value : null;
+        if (value == null)
+        {
+            _boolSettings.Remove(key);
+        }
+        else
+        {
+            _boolSettings[key] = value;
+        }
+    }
+
+    private bool GetBoolSetting(string key, out bool? value)
+    {
+        if (!_boolSettings.ContainsKey(key))
+        {
+            value = null;
+            return false;
+        }
+
+        value = _boolSettings.GetValueOrDefault(key);
+        return true;
     }
 
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, m) => { OnSelectedSavegameChanged(m); });
+            (_, m) => OnSelectedSavegameChanged(m));
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
-        _gameSettings.Clear();
+        _stringSettings.Clear();
+        _boolSettings.Clear();
 
-        foreach (var setting in m.SelectedSavegame?.SavegameStore
-                                    .LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData)
-                                    ?.Parent.ToObject<GameSetupDataModel>()?.Data.GameSetup.Settings ??
-                                Enumerable.Empty<GameSettingLightModel>())
-        {
-            _gameSettings.Add(setting.Name, setting);
-        }
+        LoadSettings(m.SelectedSavegame);
 
         OnPropertyChanged(nameof(SelectedMode));
         OnPropertyChanged(nameof(Uid));
@@ -156,21 +231,216 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedConsumableEffects));
         OnPropertyChanged(nameof(SelectedPlayerStatsDamage));
         OnPropertyChanged(nameof(SelectedPrecipitationFrequency));
+        OnPropertyChanged(nameof(SelectedInventoryPause));
+    }
+
+    private void LoadSettings(Savegame? savegame)
+    {
+        if (GetGameSetupSaveData(savegame) is not { } gameSetupSaveData ||
+            GetSettings(gameSetupSaveData) is not { } settings)
+        {
+            return;
+        }
+
+        foreach (var setting in settings)
+        {
+            var name = setting[NameKey]?.Value<string>();
+
+            if (string.IsNullOrEmpty(name) || !_settingTypes.ContainsKey(name))
+            {
+                continue;
+            }
+
+            var settingType = (setting[SettingTypeKey] ?? setting["SettingsType"])?.Value<int>() ??
+                              GuessSettingType(name);
+            if (settingType == null || (settingType != SettingTypeString && settingType != SettingTypeBool))
+            {
+                continue;
+            }
+
+            switch (settingType)
+            {
+                case SettingTypeString:
+                    if (SettingReader.ReadString(setting, out var stringValue))
+                    {
+                        if (stringValue != null)
+                        {
+                            _stringSettings[name] = stringValue;
+                        }
+                    }
+
+                    break;
+                case SettingTypeBool:
+                    var boolValue = SettingReader.ReadBool(setting);
+                    _boolSettings[name] = boolValue;
+
+                    break;
+            }
+        }
+    }
+
+    private static JToken? GetSettings(SaveDataWrapper gameSetupSaveData)
+    {
+        return gameSetupSaveData.GetJsonBasedToken(JsonKeys.GameSetup)?[SettingsKey];
+    }
+
+    private static SaveDataWrapper? GetGameSetupSaveData(Savegame? savegame)
+    {
+        return savegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData);
+    }
+
+    private int? GuessSettingType(string name)
+    {
+        if (_settingTypes.TryGetValue(name, out var settingType))
+        {
+            return settingType;
+        }
+
+        return null;
     }
 
     public bool Update(Savegame savegame)
     {
-        var saveDataWrapper = savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameSetupSaveData);
-        if (saveDataWrapper == null)
-        {
-            return false;
-        }
-
-        var hasChanges = GameSetupDataModel.Merge(saveDataWrapper, _gameSettings.Values);
+        PrepareSettingsBeforeMerge();
+        var hasChanges = Merge(savegame);
 
         return savegame.ModifyGameState(new Dictionary<string, object>
         {
             { "GameType", SelectedMode ?? "" }
         }) || hasChanges;
+    }
+
+    private void PrepareSettingsBeforeMerge()
+    {
+        if (SelectedMode == CustomGameMode)
+        {
+            return;
+        }
+
+        var stringKeysToRemove = _stringSettings.Keys.Where(key => !_settingsForNonCustom.Contains(key)).ToList();
+        foreach (var key in stringKeysToRemove)
+        {
+            _stringSettings.Remove(key);
+        }
+
+        var boolKeysToRemove = _boolSettings.Keys.Where(key => !_settingsForNonCustom.Contains(key)).ToList();
+        foreach (var key in boolKeysToRemove)
+        {
+            _boolSettings.Remove(key);
+        }
+
+        switch (SelectedMode)
+        {
+            case PeacefulGameMode:
+                _boolSettings[GameSetupKeys.EnemySpawn] = false;
+                _stringSettings[GameSetupKeys.AnimalSpawnRate] = SettingValueHigh;
+                break;
+            case HardGameMode:
+                _boolSettings[GameSetupKeys.EnemySpawn] = true;
+                _stringSettings[GameSetupKeys.EnemyAggression] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.EnemyArmour] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.EnemyDamage] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.EnemyHealth] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.AnimalSpawnRate] = SettingValueLOW;
+                break;
+        }
+    }
+
+    private bool Merge(Savegame savegame)
+    {
+        if (GetGameSetupSaveData(savegame) is not { } gameSetupSaveData ||
+            GetSettings(gameSetupSaveData) is not JArray settings)
+        {
+            return false;
+        }
+
+        List<JToken> finalSettings = new();
+
+        var hasChanges = false;
+
+        HashSet<string> existingSettings = new();
+
+        foreach (var setting in settings)
+        {
+            var name = setting[NameKey]?.Value<string>();
+
+            if (string.IsNullOrEmpty(name) || !_settingTypes.ContainsKey(name))
+            {
+                continue;
+            }
+
+            existingSettings.Add(name);
+
+            if (!_settingTypes.ContainsKey(name))
+            {
+                finalSettings.Add(setting);
+                hasChanges = true;
+                continue;
+            }
+
+            if (_stringSettings.TryGetValue(name, out var newStringValue))
+            {
+                SettingReader.ReadString(setting, out var oldStringValue);
+                if (oldStringValue != newStringValue)
+                {
+                    hasChanges = true;
+                }
+            }
+            else if (_boolSettings.TryGetValue(name, out var newBoolSetting))
+            {
+                var oldBoolSetting = SettingReader.ReadBool(setting);
+                if (oldBoolSetting != newBoolSetting)
+                {
+                    hasChanges = true;
+                }
+            }
+        }
+
+        foreach (var stringSetting in _stringSettings)
+        {
+            if (!existingSettings.Contains(stringSetting.Key))
+            {
+                hasChanges = true;
+            }
+
+            if (stringSetting.Value == "")
+            {
+                continue;
+            }
+
+            var setting = new JObject
+            {
+                { NameKey, stringSetting.Key },
+                { SettingTypeKey, SettingTypeString },
+                { SettingValueKeys.StringValue, stringSetting.Value }
+            };
+
+            finalSettings.Add(setting);
+        }
+
+        foreach (var boolSetting in _boolSettings)
+        {
+            if (!existingSettings.Contains(boolSetting.Key))
+            {
+                hasChanges = true;
+            }
+
+            var setting = new JObject
+            {
+                { NameKey, boolSetting.Key },
+                { SettingTypeKey, SettingTypeBool },
+                { SettingValueKeys.BoolValue, boolSetting.Value }
+            };
+
+            finalSettings.Add(setting);
+        }
+
+        if (hasChanges)
+        {
+            settings.ReplaceAll(finalSettings.ToArray());
+            gameSetupSaveData.MarkAsModified(JsonKeys.GameSetup);
+        }
+
+        return hasChanges;
     }
 }

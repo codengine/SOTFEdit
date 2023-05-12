@@ -20,9 +20,9 @@ public partial class ActorPoi : BasePoi
         }
 
         PoiMessenger.Instance.Register<UpdateActorPoiPositionEvent>(this,
-            (_, message) => { OnUpdateActorPoiPositionEvent(message); });
+            (_, message) => OnUpdateActorPoiPositionEvent(message));
         _isFollower = true;
-        Enabled = true;
+        SetEnabledNoRefresh(true);
     }
 
     public Actor Actor { get; }
@@ -36,7 +36,7 @@ public partial class ActorPoi : BasePoi
 
     private void OnUpdateActorPoiPositionEvent(UpdateActorPoiPositionEvent message)
     {
-        if (message.UniqueId == Actor.UniqueId)
+        if (message.TypeId == Actor.TypeId)
         {
             Position = message.NewPosition;
         }

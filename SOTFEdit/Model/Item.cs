@@ -32,7 +32,7 @@ public class Item
         get { return _normalizedLowercaseName ??= TranslationHelper.Normalize(Name).ToLower(); }
     }
 
-    public string NormalizedLowercaseType
+    private string NormalizedLowercaseType
     {
         get { return _normalizedLowercaseType ??= TranslationHelper.Normalize(Type).ToLower(); }
     }

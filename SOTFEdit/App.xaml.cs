@@ -13,7 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NLog;
 using Semver;
+using SOTFEdit.Companion.Shared;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Infrastructure.Companion;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
@@ -47,6 +49,7 @@ public partial class App
             Settings.Default.Save();
         }
 
+        MessagePackInitializer.Initialize();
         ConfigureServices();
 
         Logger.Debug("Initializing Component");
@@ -102,6 +105,15 @@ public partial class App
         services.AddSingleton<StructuresPageViewModel>();
         services.AddSingleton<StructuresPage>();
         services.AddSingleton<MapManager>();
+        services.AddSingleton<CompanionPoiStorage>();
+        services.AddSingleton<IMessageHandler, CompanionAddPoiMessageHandler>();
+        services.AddSingleton<IMessageHandler, CompanionPosCollectionMessageHandler>();
+        services.AddSingleton<IMessageHandler, CompanionRequestPoiUpdateMessageHandler>();
+        var networkPlayerManager = new CompanionNetworkPlayerManager();
+        services.AddSingleton<IMessageHandler, CompanionNetworkPlayerManager>(_ => networkPlayerManager);
+        services.AddSingleton(networkPlayerManager);
+        services.AddSingleton<CompanionMessageHandler>();
+        services.AddSingleton<CompanionConnectionManager>();
         services.AddSingleton<PoiLoader>();
         Ioc.Default.ConfigureServices(services.BuildServiceProvider());
     }
@@ -141,12 +153,12 @@ public partial class App
 
         TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            LogUnhandledException(e.Exception, "TaskScheduler.UnobservedTaskException");
+            LogUnhandledException(e.Exception, "TaskScheduler.UnobservedTaskException", false);
             e.SetObserved();
         };
     }
 
-    private static void LogUnhandledException(Exception exception, string source)
+    private static void LogUnhandledException(Exception exception, string source, bool sendEvent = true)
     {
         var message = $"Unhandled exception ({source})";
         try
@@ -160,10 +172,23 @@ public partial class App
         }
         finally
         {
-            Logger.Error(exception, message);
+            if (exception is AggregateException aggregateException)
+            {
+                foreach (var innerException in aggregateException.Flatten().InnerExceptions)
+                {
+                    Logger.Error(innerException);
+                }
+            }
+            else
+            {
+                Logger.Error(exception, message);
+            }
         }
 
-        WeakReferenceMessenger.Default.Send(new UnhandledExceptionEvent(exception));
+        if (sendEvent)
+        {
+            WeakReferenceMessenger.Default.Send(new UnhandledExceptionEvent(exception));
+        }
     }
 
     public static void GetAssemblyVersion(out string assemblyName, out SemVersion assemblyVersion)

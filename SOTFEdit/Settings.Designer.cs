@@ -165,5 +165,89 @@ namespace SOTFEdit {
                 this["FirstRun"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_null_")]
+        public string SelectedMapGroups {
+            get {
+                return ((string)(this["SelectedMapGroups"]));
+            }
+            set {
+                this["SelectedMapGroups"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string CompanionAddress {
+            get {
+                return ((string)(this["CompanionAddress"]));
+            }
+            set {
+                this["CompanionAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("35321")]
+        public int CompanionPort {
+            get {
+                return ((int)(this["CompanionPort"]));
+            }
+            set {
+                this["CompanionPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public short CompanionConnectTimeout {
+            get {
+                return ((short)(this["CompanionConnectTimeout"]));
+            }
+            set {
+                this["CompanionConnectTimeout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dark")]
+        public global::SOTFEdit.ViewModel.MapType MapType {
+            get {
+                return ((global::SOTFEdit.ViewModel.MapType)(this["MapType"]));
+            }
+            set {
+                this["MapType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public short CompanionKeepAliveInterval {
+            get {
+                return ((short)(this["CompanionKeepAliveInterval"]));
+            }
+            set {
+                this["CompanionKeepAliveInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal CompanionMapPositionUpdateInterval {
+            get {
+                return ((decimal)(this["CompanionMapPositionUpdateInterval"]));
+            }
+            set {
+                this["CompanionMapPositionUpdateInterval"] = value;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace SOTFEdit.Infrastructure;
 public class PoiTemplateSelector : DataTemplateSelector
 {
     public DataTemplate? PoiTemplate { get; set; }
+    public DataTemplate? NetworkPlayerPoiTemplate { get; set; }
     public DataTemplate? ZiplineTemplate { get; set; }
     public DataTemplate? ZipPoiTemplate { get; set; }
 
@@ -16,6 +17,7 @@ public class PoiTemplateSelector : DataTemplateSelector
         {
             ZiplinePoi => ZiplineTemplate,
             ZipPointPoi => ZipPoiTemplate,
+            NetworkPlayerPoi => NetworkPlayerPoiTemplate,
             _ => PoiTemplate
         };
     }

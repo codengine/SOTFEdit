@@ -26,7 +26,7 @@ public class DefaultGenericInformationalPoi : InformationalPoi
     public static DefaultGenericInformationalPoi Of(RawPoi rawPoi, ItemList itemList, string icon,
         HashSet<int> inventoryItems, AreaMaskManager areaMaskManager, bool enabled)
     {
-        return new DefaultGenericInformationalPoi(
+        var poi = new DefaultGenericInformationalPoi(
             rawPoi.X,
             rawPoi.Y,
             rawPoi.Teleport?.ToPosition(areaMaskManager),
@@ -39,8 +39,10 @@ public class DefaultGenericInformationalPoi : InformationalPoi
             rawPoi.Wiki
         )
         {
-            Enabled = enabled,
             MissingRequiredItems = rawPoi.GetMissingRequiredItems(inventoryItems)
         };
+        poi.SetEnabledNoRefresh(enabled);
+
+        return poi;
     }
 }

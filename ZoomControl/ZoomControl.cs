@@ -225,10 +225,12 @@ public class ZoomControl : ContentControl
             _mouseCaptured = true;
         }
 
-        var translate = _startTranslate + (e.GetPosition(this) - _mouseDownPosition);
+        var posDif = e.GetPosition(this) - _mouseDownPosition;
+
+        var translate = _startTranslate + posDif;
         TranslateX = translate.X;
         TranslateY = translate.Y;
-        IsPanning = true;
+        IsPanning = posDif.LengthSquared > 0.1;
     }
 
     private void OnMouseDown(MouseEventArgs e, bool isPreview)
@@ -328,6 +330,17 @@ public class ZoomControl : ContentControl
 
         var deltaZoom = Math.Max(0.2, Math.Min(2.0, e.Delta / 300.0 + 1));
         DoZoom(deltaZoom, origoPosition, mousePosition, mousePosition);
+    }
+
+    public void ZoomToPos(float targetX, float targetY, int yOffset)
+    {
+        var zoom = Zoom;
+
+        var transformX = -((targetX - ActualWidth / 2) * zoom);
+        var transformY = -((targetY - ActualHeight / 2) * zoom) + yOffset;
+
+        DoZoomAnimation(Zoom, transformX, transformY);
+        Mode = ZoomControlModes.Custom;
     }
 
     private void DoZoom(double deltaZoom, Point origoPosition, Point startHandlePosition, Point targetHandlePosition)

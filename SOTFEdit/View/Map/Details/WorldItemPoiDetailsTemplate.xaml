@@ -8,7 +8,6 @@
     <DataTemplate x:Key="WorldItemPoiDetailsTemplate" DataType="{x:Type models:WorldItemPoi}">
         <DataTemplate.Resources>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
             <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
         </DataTemplate.Resources>
         <st:AutoGrid Columns="Auto,*" ChildVerticalAlignment="Center" Margin="4" ChildMargin="2">

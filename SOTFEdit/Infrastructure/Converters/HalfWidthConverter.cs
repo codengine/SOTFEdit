@@ -4,16 +4,16 @@ using System.Windows.Data;
 
 namespace SOTFEdit.Infrastructure.Converters;
 
-public class BoolToColorConverter : IValueConverter
+public class HalfWidthConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is bool b && parameter is object[] p)
+        if (value is double doubleValue)
         {
-            return b ? p[0] : p[1];
+            return doubleValue / 2;
         }
 
-        return Binding.DoNothing;
+        throw new InvalidOperationException("Invalid type. Expected a double.");
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

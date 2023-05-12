@@ -14,7 +14,6 @@
                  WindowStartupLocation="CenterScreen"
                  Title="Sons of the Forest Savegame Editor" Height="850" Width="1380"
                  TitleCharacterCasing="Normal"
-                 Style="{DynamicResource MyStyle}"
                  d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
                  WindowButtonCommandsOverlayBehavior="Never"
                  PreviewKeyDown="MainWindow_OnPreviewKeyDown"
@@ -37,9 +36,12 @@
                     <zoomControl:ZoomControl x:Name="ZoomCtrl" Mode="Fill" MaxZoom="2"
                                              Zoom="{Binding Zoom, Source={StaticResource ZoomHandler}, Mode=OneWayToSource}">
                         <Grid>
-                            <Image Source="/SOTFEdit;component/images/map.jpg" Width="4096" Height="4096" />
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/map/bright.jpg"
+                                   Width="4096"
+                                   Height="4096" />
                             <Canvas Width="4096" Height="4096">
-                                <Image Source="/SOTFEdit;component/images/icons/crosshair.png" Width="32"
+                                <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/crosshair.png"
+                                       Width="32"
                                        Height="32"
                                        Canvas.Top="{Binding PinTop}" Canvas.Left="{Binding PinLeft}">
                                     <Image.RenderTransform>
@@ -71,28 +73,35 @@
                     <MenuItem Header="{infrastructure:Translate 'menu.file.openSavegame'}"
                               Command="{Binding SelectSavegameCommand}">
                         <MenuItem.Icon>
-                            <iconPacks:MaterialDesign Kind="FolderOpen" />
+                            <iconPacks:FontAwesome Kind="FolderOpenSolid" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="{Binding LastSaveGameMenuItem}" Command="{Binding OpenLastSavegameCommand}" />
+                    <MenuItem Header="{Binding LastSaveGameMenuItem}" Command="{Binding OpenLastSavegameCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="FileSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
                     <MenuItem Header="{infrastructure:Translate 'menu.file.save'}"
                               Command="{Binding SaveChangesCommand}" InputGestureText="Ctrl+S">
                         <MenuItem.Icon>
-                            <iconPacks:MaterialDesign Kind="Save" />
+                            <iconPacks:FontAwesome Kind="SaveSolid" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.file.reloadCurrentSavegame'}"
                               Command="{Binding ReloadSavegameCommand}"
                               InputGestureText="F5">
                         <MenuItem.Icon>
-                            <iconPacks:MaterialDesign Kind="Refresh" />
+                            <iconPacks:FontAwesome Kind="SyncSolid" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.file.openSavegameDirInExplorer'}"
                               Command="{Binding OpenSavegameDirCommand}" />
                     <Separator />
                     <MenuItem Header="{infrastructure:Translate 'menu.file.restoreFromBackup.text'}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="TrashRestoreSolid" />
+                        </MenuItem.Icon>
                         <MenuItem Header="{infrastructure:Translate 'menu.file.restoreFromBackup.fromOldestBackup'}"
                                   Command="{Binding RestoreBackupsCommand}"
                                   CommandParameter="false" />
@@ -104,21 +113,41 @@
                               Command="{Binding DeleteBackupsCommand}" />
                     <Separator />
                     <MenuItem Header="{infrastructure:Translate 'menu.file.settings'}"
-                              Command="{Binding ChangeSettingsCommand}" />
+                              Command="{Binding ChangeSettingsCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="CogSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
                     <MenuItem Header="{infrastructure:Translate 'menu.file.exit'}"
-                              Command="{Binding ExitApplicationCommand}" InputGestureText="Ctrl+Q" />
+                              Command="{Binding ExitApplicationCommand}" InputGestureText="Ctrl+Q">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="DoorOpenSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{infrastructure:Translate 'menu.tools.text'}">
                     <MenuItem
                         Command="{Binding RegrowTreesCommand}"
-                        Header="{infrastructure:Translate 'menu.tools.regrowTrees'}" />
+                        Header="{infrastructure:Translate 'menu.tools.regrowTrees'}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="TreeSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.text'}"
                               ToolTip="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.tooltip'}"
-                              Command="{Binding IgniteAndRefuelFiresCommand}" />
+                              Command="{Binding IgniteAndRefuelFiresCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="FireSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.resetStructureDamage.text'}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetStructureDamage.tooltip'}"
-                              Command="{Binding ResetStructureDamageCommand}" />
+                              Command="{Binding ResetStructureDamageCommand}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="HouseDamageSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.teleportCloneWorldObjects.text'}"
                               ToolTip="{infrastructure:Translate 'menu.tools.teleportCloneWorldObjects.tooltip'}"
                               Command="{Binding TeleportWorldItemCommand}" />
@@ -136,27 +165,41 @@
                 <MenuItem Header="{infrastructure:Translate 'menu.tools.map.text'}"
                           Command="{Binding OpenMapCommand}"
                           ToolTip="{infrastructure:Translate 'menu.tools.map.tooltip'}" />
+                <MenuItem Header="{infrastructure:Translate 'menu.companion.text'}">
+                    <MenuItem Command="{Binding CompanionConnectCommand}" Header="{Binding CompanionConnectMenuText}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="PlugSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Command="{Binding CompanionSetupCommand}"
+                              Header="{infrastructure:Translate 'menu.companion.setup'}">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="CogSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
                 <MenuItem Header="{infrastructure:Translate 'menu.help.text'}">
                     <MenuItem Header="{infrastructure:Translate 'menu.help.links.text'}">
                         <MenuItem Header="{infrastructure:Translate 'menu.help.links.githubProject'}"
                                   Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://github.com/codengine/SOTFEdit">
                             <MenuItem.Icon>
-                                <iconPacks:MaterialDesign Kind="Code" />
+                                <iconPacks:FontAwesome Kind="GithubBrands" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="{infrastructure:Translate 'menu.help.links.discord'}"
                                   Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://discord.gg/867UDYvvqE">
                             <MenuItem.Icon>
-                                <iconPacks:MaterialDesign Kind="Chat" />
+                                <iconPacks:FontAwesome Kind="DiscordBrands" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="{infrastructure:Translate 'menu.help.links.downloadLatestVersion'}"
                                   Command="{Binding OpenUrlCommand}"
                                   CommandParameter="https://github.com/codengine/SOTFEdit/releases">
                             <MenuItem.Icon>
-                                <iconPacks:MaterialDesign Kind="Code" />
+                                <iconPacks:FontAwesome Kind="DownloadSolid" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
@@ -174,14 +217,22 @@
                                   Content="{infrastructure:Translate 'menu.help.updates.checkOnStartup'}" />
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="{infrastructure:Translate 'menu.help.readme'}" Click="OpenReadme_Click" />
-                    <MenuItem Header="{infrastructure:Translate 'menu.help.changelog'}" Click="OpenChangelog_Click" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.readme'}" Click="OpenReadme_Click">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="FileAltSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.changelog'}" Click="OpenChangelog_Click">
+                        <MenuItem.Icon>
+                            <iconPacks:FontAwesome Kind="ScrollSolid" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
                     <MenuItem Header="{infrastructure:Translate 'menu.help.about'}" Click="OpenAbout_OnClick" />
                 </MenuItem>
             </Menu>
         </Border>
-        <TabControl SelectedItem="{Binding SelectedTab}" Margin="15 0 15 15">
+        <TabControl SelectedItem="{Binding SelectedTab}" Margin="15 0 15 15" IsEnabled="{Binding CanEditTabs}">
             <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.player'}"
                      Content="{Binding PlayerPage}" />
             <TabItem Foreground="White" Header="{infrastructure:Translate 'tabs.inventory'}"

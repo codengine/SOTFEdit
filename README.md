@@ -74,7 +74,7 @@ nothing more, nothing less.
 
 ## Requirements
 
-- Windows 7+ (I guess...)
+- Windows 8+
 - [.net 6.0+ Runtime](https://dotnet.microsoft.com/en-us/download/dotnet)
 
 ## Usage
@@ -322,3 +322,6 @@ collect all data.
 - [Monowheel icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/monowheel)
 - [Pole dance icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/pole-dance)
 - [Golf icons created by Good Ware - Flaticon](https://www.flaticon.com/free-icons/golf)
+- [Bookmark icons created by Ian Anandara - Flaticon](https://www.flaticon.com/free-icons/bookmark)
+- [Soldier icons created by ppangman - Flaticon](https://www.flaticon.com/free-icons/soldier)
+

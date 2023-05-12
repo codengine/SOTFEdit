@@ -37,7 +37,8 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <st:AutoGrid Columns="Auto,*" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     <StackPanel VerticalAlignment="Top" Margin="10">
-                        <Image Source="/SOTFEdit;component/images/player.jpg" Width="197" Height="246"
+                        <Image Source="pack://application:,,,/SOTFEdit;component/images/player.jpg" Width="197"
+                               Height="246"
                                Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToKelvinCommand}"
                                 Content="{infrastructure:Translate 'player.buttons.moveToKelvin'}" />
@@ -49,7 +50,8 @@
                         <Label Style="{StaticResource LabelStyle}"
                                Content="{infrastructure:Translate 'generic.position'}" />
                         <st:AutoGrid Columns="Auto,*" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/red-pin.png" Width="32"
+                                   Height="32"
                                    Cursor="Hand">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenMapAtPlayerPosCommand}" />
@@ -63,7 +65,8 @@
                         <TextBlock VerticalAlignment="Center"
                                    Text="{Binding PlayerState.Pos.Area.Name, FallbackValue='?'}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Strength.png" Width="32" Height="32" />
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Strength.png"
+                                   Width="32" Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
                                    Content="{infrastructure:Translate 'player.strengthLevel'}" />
                         </StackPanel>
@@ -72,7 +75,8 @@
                                            Value="{Binding PlayerState.StrengthLevel, UpdateSourceTrigger=PropertyChanged}" />
 
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Heal.png" Width="32" Height="32" />
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Heal.png" Width="32"
+                                   Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
                                    Content="{infrastructure:Translate 'player.maxHealth'}" />
                         </StackPanel>
@@ -80,7 +84,8 @@
                                            NumericInputMode="Decimal"
                                            Value="{Binding PlayerState.MaxHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Heal.png" Width="32" Height="32" />
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Heal.png" Width="32"
+                                   Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
                                    Content="{infrastructure:Translate 'player.currentHealth'}" />
                         </StackPanel>
@@ -88,7 +93,8 @@
                                 Maximum="{Binding PlayerState.MaxHealth}"
                                 Value="{Binding PlayerState.CurrentHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Fullness.png" Width="32" Height="32" />
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Fullness.png"
+                                   Width="32" Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
                                    Content="{infrastructure:Translate 'actors.stats.fullness'}" />
                         </StackPanel>
@@ -96,7 +102,8 @@
                                 Maximum="100" Interval="10"
                                 Value="{Binding PlayerState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Hydration.png" Width="32" Height="32" />
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Hydration.png"
+                                   Width="32" Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
                                    Content="{infrastructure:Translate 'actors.stats.hydration'}" />
                         </StackPanel>
@@ -104,7 +111,8 @@
                                 Maximum="100" Interval="10"
                                 Value="{Binding PlayerState.Hydration, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Rested.png" Width="32" Height="32" />
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Rested.png"
+                                   Width="32" Height="32" />
                             <Label Style="{StaticResource LabelStyle}"
                                    Content="{infrastructure:Translate 'actors.stats.rest'}" />
                         </StackPanel>

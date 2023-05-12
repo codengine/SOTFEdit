@@ -9,10 +9,10 @@ namespace SOTFEdit.Infrastructure;
 
 public static class JsonConverter
 {
-    private static readonly JsonSerializerSettings JsonSerializerSettings = BuildSerializerSettings();
+    private static readonly JsonSerializerSettings DefaultJsonSerializerSettings = BuildDefaultSerializerSettings();
     private static readonly Encoding JsonEncoding = new UTF8Encoding(false);
 
-    private static JsonSerializerSettings BuildSerializerSettings()
+    private static JsonSerializerSettings BuildDefaultSerializerSettings()
     {
         return new JsonSerializerSettings
         {
@@ -23,13 +23,23 @@ public static class JsonConverter
 
     public static T? DeserializeFromFile<T>(string path)
     {
+        return DeserializeFromFile<T>(path, DefaultJsonSerializerSettings);
+    }
+
+    public static T? DeserializeFromFile<T>(string path, JsonSerializerSettings serializerSettings)
+    {
         var json = File.ReadAllText(path, JsonEncoding);
-        return JsonConvert.DeserializeObject<T>(json, JsonSerializerSettings);
+        return JsonConvert.DeserializeObject<T>(json, serializerSettings);
     }
 
     public static void Serialize(string targetFullPath, object model)
     {
-        var json = JsonConvert.SerializeObject(model, JsonSerializerSettings);
+        Serialize(targetFullPath, model, DefaultJsonSerializerSettings);
+    }
+
+    public static void Serialize(string targetFullPath, object model, JsonSerializerSettings serializerSettings)
+    {
+        var json = JsonConvert.SerializeObject(model, serializerSettings);
         File.WriteAllText(targetFullPath, json, JsonEncoding);
     }
 
@@ -40,11 +50,11 @@ public static class JsonConverter
 
     public static object? DeserializeObject(string json, Type objectType)
     {
-        return JsonConvert.DeserializeObject(json, objectType, JsonSerializerSettings);
+        return JsonConvert.DeserializeObject(json, objectType, DefaultJsonSerializerSettings);
     }
 
     public static string Serialize(object? model)
     {
-        return JsonConvert.SerializeObject(model, JsonSerializerSettings);
+        return JsonConvert.SerializeObject(model, DefaultJsonSerializerSettings);
     }
 }

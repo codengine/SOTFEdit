@@ -39,6 +39,27 @@
         <Setting Name="FirstRun" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
+        <Setting Name="SelectedMapGroups" Type="System.String" Scope="User">
+            <Value Profile="(Default)">_null_</Value>
+        </Setting>
+        <Setting Name="CompanionAddress" Type="System.String" Scope="User">
+            <Value Profile="(Default)">127.0.0.1</Value>
+        </Setting>
+        <Setting Name="CompanionPort" Type="System.Int32" Scope="User">
+            <Value Profile="(Default)">35321</Value>
+        </Setting>
+        <Setting Name="CompanionConnectTimeout" Type="System.Int16" Scope="User">
+            <Value Profile="(Default)">15</Value>
+        </Setting>
+        <Setting Name="MapType" Type="SOTFEdit.ViewModel.MapType" Scope="User">
+            <Value Profile="(Default)">Dark</Value>
+        </Setting>
+        <Setting Name="CompanionKeepAliveInterval" Type="System.Int16" Scope="User">
+            <Value Profile="(Default)">30</Value>
+        </Setting>
+        <Setting Name="CompanionMapPositionUpdateInterval" Type="System.Decimal" Scope="User">
+            <Value Profile="(Default)">0.1</Value>
+        </Setting>
     </Settings>
 </SettingsFile>
 

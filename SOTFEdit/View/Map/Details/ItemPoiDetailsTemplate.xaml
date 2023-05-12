@@ -8,7 +8,6 @@
     <DataTemplate x:Key="ItemPoiDetailsTemplate" DataType="{x:Type models:ItemPoi}">
         <DataTemplate.Resources>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
             <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
             <converters:ItemThumbWithFallbackConverter x:Key="ItemThumbWithFallbackConverter" />
         </DataTemplate.Resources>

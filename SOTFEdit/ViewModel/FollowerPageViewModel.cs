@@ -58,9 +58,9 @@ public partial class FollowerPageViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, m) => { OnSelectedSavegameChanged(m); });
+            (_, m) => OnSelectedSavegameChanged(m));
         WeakReferenceMessenger.Default.Register<JsonModelChangedEvent>(this,
-            (_, message) => { OnJsonModelChangedEvent(message); });
+            (_, message) => OnJsonModelChangedEvent(message));
         WeakReferenceMessenger.Default.Register<PlayerPosChangedEvent>(this, (_, _) => OnPlayerPosChangedEvent());
     }
 

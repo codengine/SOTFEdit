@@ -37,6 +37,9 @@ public class Position : ObservableObject
     [JsonIgnore]
     public string Printable => $"X: {X}, Y: {Y}, Z: {Z}";
 
+    [JsonIgnore]
+    public float Rotation { get; set; }
+
 
     public Position WithoutOffset()
     {

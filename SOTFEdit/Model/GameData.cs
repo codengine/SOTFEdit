@@ -40,13 +40,16 @@ public class ScrewStructure
 {
     private readonly string _category;
 
-    public ScrewStructure(string category, int id, int buildCost, bool? canFinish, string icon)
+    public ScrewStructure(string category, int id, int buildCost, bool? canFinish, string icon, bool? canEdit,
+        bool? showOnMap)
     {
         _category = category;
         Id = id;
         BuildCost = buildCost;
         Icon = icon;
         CanFinish = canFinish ?? true;
+        CanEdit = canEdit ?? true;
+        ShowOnMap = showOnMap ?? true;
     }
 
     public string Name => TranslationManager.Get("structures.types." + Id);
@@ -59,6 +62,8 @@ public class ScrewStructure
     public int BuildCost { get; }
     public string Icon { get; }
     public bool CanFinish { get; }
+    public bool ShowOnMap { get; }
+    public bool CanEdit { get; }
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global

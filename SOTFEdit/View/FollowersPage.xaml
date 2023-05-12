@@ -36,7 +36,8 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <st:AutoGrid VerticalAlignment="Top" HorizontalAlignment="Stretch" Columns="Auto,*">
                     <StackPanel VerticalAlignment="Top" Margin="10">
-                        <Image Source="/SOTFEdit;component/images/kv.jpg" Width="197" Height="246"
+                        <Image Source="pack://application:,,,/SOTFEdit;component/images/kv.jpg" Width="197"
+                               Height="246"
                                Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}"
                                 CommandParameter="{Binding KelvinState}"
@@ -55,14 +56,15 @@
                     <st:AutoGrid Columns="Auto,*" VerticalAlignment="Top" HorizontalAlignment="Stretch"
                                  Margin="10" ChildMargin="4" ChildVerticalAlignment="Center">
                         <Label Content="{infrastructure:Translate 'generic.name'}" />
-                        <TextBlock Text="{infrastructure:Translate 'actors.types.10'}" />
+                        <TextBlock Text="{infrastructure:Translate 'actors.types.9'}" />
                         <Label Content="{infrastructure:Translate 'followers.details.uniqueId'}" />
                         <TextBlock Text="{Binding KelvinState.UniqueId}" />
                         <Label Content="{infrastructure:Translate 'followers.details.status'}" />
                         <TextBlock Text="{Binding KelvinState.Status}" />
                         <Label Content="{infrastructure:Translate 'generic.position'}" />
                         <st:AutoGrid Columns="Auto,*" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/red-pin.png" Width="32"
+                                   Height="32"
                                    Cursor="Hand"
                                    VerticalAlignment="Center">
                                 <Image.InputBindings>
@@ -73,7 +75,8 @@
                             <Label VerticalAlignment="Center" Content="{Binding KelvinState.Pos.Printable}" />
                         </st:AutoGrid>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Heal.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Heal.png" Width="32"
+                                   Height="32"
                                    VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.health'}"
                                    VerticalAlignment="Center" />
@@ -90,7 +93,8 @@
                                 Maximum="100"
                                 Value="{Binding KelvinState.Fear, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Fullness.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Fullness.png"
+                                   Width="32" Height="32"
                                    VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.fullness'}"
                                    VerticalAlignment="Center" />
@@ -99,7 +103,8 @@
                                 Maximum="100"
                                 Value="{Binding KelvinState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Hydration.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Hydration.png"
+                                   Width="32" Height="32"
                                    VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.hydration'}"
                                    VerticalAlignment="Center" />
@@ -112,7 +117,8 @@
                                 Maximum="100"
                                 Value="{Binding KelvinState.Energy, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/TrustedPlayer.png" Width="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/TrustedPlayer.png"
+                                   Width="32"
                                    Height="32" VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.affection'}"
                                    VerticalAlignment="Center" />
@@ -163,7 +169,8 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <st:AutoGrid VerticalAlignment="Top" HorizontalAlignment="Stretch" Columns="Auto,*">
                     <StackPanel VerticalAlignment="Top" Margin="10">
-                        <Image Source="/SOTFEdit;component/images/vg.jpg" Width="197" Height="246"
+                        <Image Source="pack://application:,,,/SOTFEdit;component/images/vg.jpg" Width="197"
+                               Height="246"
                                Margin="0 0 0 10" />
                         <Button Style="{StaticResource ButtonStyle}" Command="{Binding MoveToPlayerCommand}"
                                 CommandParameter="{Binding VirginiaState}"
@@ -189,7 +196,8 @@
                         <TextBlock Text="{Binding VirginiaState.Status}" />
                         <Label Content="{infrastructure:Translate 'generic.position'}" />
                         <st:AutoGrid Columns="Auto,*" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Source="/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/red-pin.png" Width="32"
+                                   Height="32"
                                    Cursor="Hand"
                                    VerticalAlignment="Center">
                                 <Image.InputBindings>
@@ -200,7 +208,8 @@
                             <Label VerticalAlignment="Center" Content="{Binding VirginiaState.Pos.Printable}" />
                         </st:AutoGrid>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Heal.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Heal.png" Width="32"
+                                   Height="32"
                                    VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.health'}"
                                    VerticalAlignment="Center" />
@@ -217,7 +226,8 @@
                                 Maximum="100"
                                 Value="{Binding VirginiaState.Fear, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Fullness.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Fullness.png"
+                                   Width="32" Height="32"
                                    VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.fullness'}"
                                    VerticalAlignment="Center" />
@@ -226,7 +236,8 @@
                                 Maximum="100"
                                 Value="{Binding VirginiaState.Fullness, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/Hydration.png" Width="32" Height="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Hydration.png"
+                                   Width="32" Height="32"
                                    VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.hydration'}"
                                    VerticalAlignment="Center" />
@@ -239,7 +250,8 @@
                                 Maximum="100"
                                 Value="{Binding VirginiaState.Energy, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Image Source="/SOTFEdit;component/images/icons/TrustedPlayer.png" Width="32"
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/TrustedPlayer.png"
+                                   Width="32"
                                    Height="32" VerticalAlignment="Center" />
                             <Label Content="{infrastructure:Translate 'actors.stats.affection'}"
                                    VerticalAlignment="Center" />

@@ -65,16 +65,13 @@ public partial class FollowerState : ObservableObject
 
     partial void OnPosChanged(Position value)
     {
-        if (_uniqueId is { } uniqueId)
-        {
-            PoiMessenger.Instance.Send(new UpdateActorPoiPositionEvent(uniqueId, Pos));
-        }
+        PoiMessenger.Instance.Send(new UpdateActorPoiPositionEvent(TypeId, value));
     }
 
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, _) => { OnSelectedSavegameChanged(); });
+            (_, _) => OnSelectedSavegameChanged());
     }
 
     private void OnSelectedSavegameChanged()

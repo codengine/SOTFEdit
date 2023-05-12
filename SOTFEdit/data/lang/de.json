@@ -17,9 +17,7 @@
         "_label": "Modus",
         "normal": "Normal",
         "hard": "Schwer",
-        "hardSurvival": "Schweres Überleben",
         "peaceful": "Friedlich",
-        "creative": "Kreativ",
         "custom": "Benutzerdefiniert"
       },
       "consumableEffects": {
@@ -95,6 +93,7 @@
         "high": "Hoch"
       },
       "uid": "UID",
+      "inventoryPause": "Pause im Inventar",
       "customSettings": "Benutzerdefinierte Einstellungen"
     },
     "state": {
@@ -285,7 +284,7 @@
       "updateInfluences": "Einflüsse aktualisieren",
       "replaceType": "Typ ersetzen",
       "teleport": {
-        "disclaimer": "Seien Sie vorsichtig, wenn Sie mehrere NPCs zum selben Ort teleportieren. Dies könnte Ihr Spiel abstürzen lassen!",
+        "disclaimer": "Sei vorsichtig, wenn du mehrere NPCs zum selben Ort teleportierst. Dies könnte dein Spiel abstürzen lassen!",
         "teleportLabel": "Teleportieren:",
         "none": "Keiner",
         "playerToNpc": "Spieler zum NPC",
@@ -315,6 +314,7 @@
       "furniture": "Möbel",
       "storage": "Lagerung",
       "utility": "Nützliches",
+      "misc": "Sonstiges",
       "gardening": "Gartenarbeit",
       "traps": "Fallen"
     },
@@ -366,6 +366,7 @@
       "52": "Bank",
       "53": "Wandfackel",
       "54": "Schädel-Deckenlampe",
+      "55": "Seilrutsche",
       "56": "Regenfänger",
       "57": "Federfalle",
       "58": "Holzschlitten",
@@ -435,7 +436,8 @@
     "success": "Erfolg",
     "yes": "Ja",
     "no": "Nein",
-    "close": "Schließen"
+    "close": "Schließen",
+    "seconds": "Sekunde(n)"
   },
   "armor": {
     "header": "Ausgerüstete Rüstung (Max. 10)",
@@ -474,7 +476,7 @@
     }
   },
   "followers": {
-    "reviveTooltip": "Stellen Sie sicher, dass Sie dies außerhalb von Gebäuden tun, wenn der Körper fehlt, sonst könnten Sie in das Gebäude glitchen. Der Begleiter spawnt an der Position des Spielers und hat die konfigurierten Gegenstände und Kleidung ausgerüstet.",
+    "reviveTooltip": "Stelle sicher, dass du dies außerhalb von Gebäuden tust, wenn der Körper fehlt, sonst könntest du in das Gebäude glitchen. Der Begleiter spawnt an der Position des Spielers und hat die konfigurierten Gegenstände und Kleidung ausgerüstet.",
     "details": {
       "uniqueId": "UniqueID",
       "status": "Status"
@@ -521,11 +523,11 @@
   },
   "dialogs": {
     "changeScrewStructureType": {
-      "disclaimer": "Sie können hier einen anderen Strukturtyp auswählen. Bitte beachten Sie, dass die Rotation und Position der Struktur gleich bleiben, was zu Fehlern und Abstürzen führen kann."
+      "disclaimer": "Du kannst hier einen anderen Strukturtyp auswählen. Bitte beachte, dass die Rotation und Position der Struktur gleich bleiben, was zu Fehlern und Abstürzen führen kann."
     },
     "spawnFollower": {
       "title": "Begleiter spawnen",
-      "disclaimer": "Wenn Sie Begleiter spawnen möchten, müssen Sie sicherstellen, dass Sie sich an einem freien Ort befinden. Die Begleiter werden an der Position des Spielers über der aktuellen Höhe des Spielers und mit einem leichten Offset gespawnt.\n\nIch habe viele Dinge für Virginia ausprobiert, aber konnte nur maximal 4 spawnen lassen. Es hat mit Kelvin besser geklappt. \n\nDies kann Ihre FPS töten und die langfristigen Auswirkungen sind derzeit auch nicht bekannt.\n\nWenn Sie mehr möchten, sollten Sie das Spiel laden, alles spawnen lassen, das Spiel speichern, Begleiter spawnen lassen usw."
+      "disclaimer": "Wenn du Begleiter spawnen möchtest, musst du sicherstellen, dass du dich an einem freien Ort befindest. Die Begleiter werden an der Position des Spielers über der aktuellen Höhe des Spielers und mit einem leichten Offset gespawnt.\n\nIch habe viele Dinge für Virginia ausprobiert, aber konnte nur maximal 4 spawnen lassen. Es hat mit Kelvin besser geklappt. \n\nDies kann deine FPS töten und die langfristigen Auswirkungen sind derzeit auch nicht bekannt.\n\nWenn du mehr möchtest, solltest du das Spiel laden, alles spawnen lassen, das Spiel speichern, Begleiter spawnen lassen usw."
     }
   },
   "menu": {
@@ -563,7 +565,7 @@
       },
       "modifyConsumedItems": {
         "text": "Verzehrte Gegenstände bearbeiten...",
-        "tooltip": "Falls Sie Ihr Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
+        "tooltip": "Falls du dein Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
       },
       "resetKillStatistics": {
         "text": "Tötungsstatistik zurücksetzen",
@@ -577,6 +579,10 @@
         "text": "Interaktive Karte",
         "tooltip": "Eine interaktive Karte"
       }
+    },
+    "companion": {
+      "text": "Companion",
+      "setup": "Einrichtung"
     },
     "help": {
       "text": "?",
@@ -637,23 +643,23 @@
       "title": " (Ausgewählt: {0}, {1} - Gespeichert am: {2}, Zuletzt geändert: {3})",
       "messages": {
         "confirmRestoreBackups": {
-          "text": "Sind Sie sicher, dass Sie Backups wiederherstellen möchten?",
+          "text": "Bist du sicher, dass du Backups wiederherstellen möchten?",
           "title": "Backups wiederherstellen"
         },
         "confirmDeleteBackups": {
-          "text": "Möchten Sie wirklich alle Backups löschen?",
+          "text": "Möchtest du wirklich alle Backups löschen?",
           "title": "Alle Backups löschen"
         },
         "confirmOverwriteExternalChanges": {
-          "text": "Das Savegame wurde extern geändert. Möchten Sie wirklich alle Änderungen überschreiben?",
+          "text": "Das Savegame wurde extern geändert. Möchtest du wirklich alle Änderungen überschreiben?",
           "title": "Änderungen überschreiben"
         },
         "confirmCreateBackup": {
-          "text": "Möchten Sie ein Backup erstellen?",
+          "text": "Möchtest du ein Backup erstellen?",
           "title": "Backup erstellen?"
         },
         "confirmCloseApplication": {
-          "text": "Möchten Sie die Anwendung schließen?",
+          "text": "Möchtest du die Anwendung schließen?",
           "title": "Anwendung schließen"
         },
         "unableToSpawnFollowers": "Begleiter konnten nicht erzeugt werden",
@@ -662,7 +668,7 @@
           "title": "Begleiter erzeugt"
         },
         "alreadyLatestVersion": {
-          "text": "Sie verwenden bereits die neueste Version",
+          "text": "Du verwendest bereits die neueste Version",
           "title": "Kein Update"
         },
         "backupsDeleted": "{0} Backups gelöscht",
@@ -735,7 +741,7 @@
       "language": "Sprache",
       "messages": {
         "languageChanged": {
-          "text": "Bitte starten Sie die Anwendung neu damit die geänderte Sprache übernommen wird",
+          "text": "Bitte starte die Anwendung neu damit die geänderte Sprache übernommen wird",
           "title": "Einstellungen gespeichert"
         }
       },
@@ -787,11 +793,11 @@
           "title": "Nichts gefunden"
         },
         "objectCloned": {
-          "text": "Eine Kopie von {0} wurde an der Position des Spielers erstellt. Bitte speichern Sie die Änderungen, um sie zu übernehmen",
+          "text": "Eine Kopie von {0} wurde an der Position des Spielers erstellt. Bitte speichere die Änderungen, um sie zu übernehmen",
           "title": "{0} erstellt"
         },
         "playerMoved": {
-          "text": "Der Spieler wurde nach {0} teleportiert. Bitte speichern Sie die Änderungen, um sie zu übernehmen",
+          "text": "Der Spieler wurde nach {0} teleportiert. Bitte speichere die Änderungen, um sie zu übernehmen",
           "title": "{0} teleportiert"
         }
       },
@@ -1192,21 +1198,22 @@
     "639": "Raumanzug"
   },
   "poiGroups": {
-    "items": "Gegenstände",
-    "bunkers": "Bunker",
-    "3Dprinters": "3D-Drucker",
-    "laptops": "Laptops",
-    "caves": "Höhlen",
-    "camps": "Camps",
-    "villages": "Dörfer",
-    "helicopters": "Helikopter",
-    "info": "Info",
-    "doors": "Türen",
-    "ammo": "Munition",
-    "cannibalVillages": "Kannibalen-Dörfer",
-    "lakes": "Seen",
-    "supply": "Vorrat",
-    "crates": "Kisten"
+    "Items": "Gegenstände",
+    "Bunkers": "Bunker",
+    "Printers": "3D-Drucker",
+    "Laptops": "Laptops",
+    "Caves": "Höhlen",
+    "Camps": "Camps",
+    "Villages": "Dörfer",
+    "Helicopters": "Helikopter",
+    "Info": "Info",
+    "Doors": "Türen",
+    "Ammo": "Munition",
+    "CannibalVillages": "Kannibalen-Dörfer",
+    "Lakes": "Seen",
+    "Ponds": "Tümpel",
+    "Supply": "Vorrat",
+    "Crates": "Kisten"
   },
   "map": {
     "zipLines": "Seilrutschen",
@@ -1229,6 +1236,15 @@
     "area": "Bereich",
     "objects": "Objekte",
     "altItems": "Alternative Gegenstände",
+    "customPois": "Benutzerdefiniert",
+    "alwaysOnTop": "Immer im Vordergrund",
+    "followPlayer": "Spieler verfolgen",
+    "followers": "Begleiter",
+    "fill": "Füllen",
+    "mapType": {
+      "dark": "Dunkel",
+      "original": "Original"
+    },
     "fullText": {
       "text": "Volltext",
       "watermark": "Titel, Beschreibung, Item-Name...",
@@ -1245,7 +1261,7 @@
         "Kelvin": "Kelvin",
         "Virginia": "Virginia"
       },
-      "disclaimer": "Sie können die Ziel-Koordinaten hier verändern. Wenn der Zielpunkt in einem Gegner ist besteht die Möglichkeit, in die Luft katapultiert zu werden. X und Z bestimmen den Ort und Y die Höhe. Bitte stellen Sie sicher dass der korrekte Bereich eingestellt ist."
+      "disclaimer": "Du kannst die Ziel-Koordinaten hier verändern. Wenn der Zielpunkt in einem Gegner ist besteht die Möglichkeit, in die Luft katapultiert zu werden. X und Z bestimmen den Ort und Y die Höhe. Bitte stelle sicher dass der korrekte Bereich eingestellt ist."
     },
     "spawnWindow": {
       "title": "Actor spawnen",
@@ -1294,9 +1310,51 @@
       "teleportPlayer": "Spieler hierhin teleportieren",
       "teleportKelvin": "Kelvin hierhin teleportieren",
       "teleportVirginia": "Virginia hierhin teleportieren",
-      "moveToPlayer": "Zum Spieler verschieben",
       "deleteBothAnchors": "Beide Anker löschen",
-      "spawnActors": "Spawn Actors"
+      "spawnActors": "Spawn Actors",
+      "delete": "Löschen",
+      "moveToNextClickedPosition": {
+        "text": "Zur angeklickten Position verschieben",
+        "tooltip": "Nachdem du den Button angeklickt hast, wird die Position zum nächsten angeklickten Icon verschoben",
+        "hint": "Bitte jetzt einen anderen Ort anklicken"
+      },
+      "createNewZipline": {
+        "text": "Neue Seilrutsche von hier",
+        "tooltip": "Nachdem du den Button angeklickt hast, wird die neue Seilrutsche zwischen der aktuellen und der nächsten angeklickten Position hergestellt"
+      }
+    }
+  },
+  "companion": {
+    "address": "IP/Addresse",
+    "port": "Port",
+    "portHint": "Für Ports > 1024 müssen Anwendung und Spiel als Admin gestartet werden!",
+    "connectTimeout": "Verbindungs-Timeout",
+    "keepAliveInterval": "Keep-Alive Intervall",
+    "connect": "Verbinden",
+    "disconnect": "Verbindung trennen",
+    "readme1": "Der \"Companion\" bietet Extra-Funktionalität für das Spiel, wie Ingame-Teleportation, Positions-Verfolgung und einiges mehr.\n\nBevor der Companion genutzt werden kann muss dieser erst eingerichtet werden. Hierfür müssen die folgenden Dinge installiert werden:\n\n- BepInExPack\n- SOTFEdit Companion Plugin\n\nDiese können entweder manuell anhand der README oder einen Mod-Manager eingerichtet werden:",
+    "readme2": "Nachdem beides eingerichtet und das Spiel gestartet wurde, musst du über das Menü eine Verbindung zum Companion herstellen.\n\nDanach stehen im Spiel zwei neue Hotkeys zur Verfügung:\n- Ingame Teleportation zu den meisten Ingame-Orten (Standard: F8)\n- Benutzerdefinierte Location erstellen (F9)\n\nAußerdem wird die Position auf der Karte live aktualisiert.",
+    "settings": "Einstellungen",
+    "readme": "Readme",
+    "mapPositionUpdateInterval": "Aktualisiere Spieler-Positionen alle",
+    "connectionFailed": {
+      "title": "Companion Verbindung fehlgeschlagen",
+      "text": "Der Verbindungsversuch mit dem Companion-Plugin ist fehlgeschlagen",
+      "textException": "Der Verbindungsversuch mit dem Companion-Plugin ist fehlgeschlagen. Fehler: {0}"
+    },
+    "connectionSuccessful": {
+      "title": "Companion verbunden",
+      "text": "Verbindung zum Companion wurde erfolgreich hergestellt.\nDu kannst jetzt die Ingame-Hotkeys, Live-Teleportation über die Karte und Positions-Tracking nutzen."
+    },
+    "disconnectFailed": {
+      "title": "Companion Disconnect fehlgeschlagen",
+      "text": "Der Versuch die Verbindung zum Companion-Plugin zu trennen ist fehlgeschlagen.",
+      "textException": "Der Versuch die Verbindung zum Companion-Plugin zu trennen ist fehlgeschlagen. Fehler: {0}"
+    },
+    "status": {
+      "connected": "Verbunden",
+      "connecting": "Verbinde...",
+      "disconnected": "Verbindung getrennt"
     }
   }
 }

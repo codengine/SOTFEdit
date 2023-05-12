@@ -2,6 +2,7 @@
   "bunkers": {
     "icon": "bunker.png",
     "alwaysEnabled": true,
+    "type": "Bunkers",
     "pois": [
       {
         "id": 29,
@@ -211,8 +212,9 @@
       }
     ]
   },
-  "3Dprinters": {
+  "printers": {
     "icon": "3d-printer.png",
+    "type": "Printers",
     "pois": [
       {
         "id": 34,
@@ -278,6 +280,7 @@
   },
   "laptops": {
     "icon": "laptop.png",
+    "type": "Laptops",
     "pois": [
       {
         "id": 587,
@@ -408,6 +411,7 @@
   "caves": {
     "icon": "cave.png",
     "alwaysEnabled": "true",
+    "type": "Caves",
     "pois": [
       {
         "id": 38,
@@ -611,6 +615,7 @@
   },
   "camps": {
     "icon": "camping.png",
+    "type": "Camps",
     "pois": [
       {
         "id": 51,
@@ -846,6 +851,7 @@
   },
   "villages": {
     "icon": "village.png",
+    "type": "Villages",
     "pois": [
       {
         "id": 67,
@@ -893,6 +899,7 @@
   },
   "helicopters": {
     "icon": "helicopter.png",
+    "type": "Helicopters",
     "pois": [
       {
         "id": 114,
@@ -926,6 +933,7 @@
   },
   "info": {
     "icon": "sign.png",
+    "type": "Info",
     "pois": [
       {
         "id": 192,
@@ -1517,6 +1525,7 @@
   },
   "doors": {
     "icon": "door.png",
+    "type": "Doors",
     "pois": [
       {
         "id": 309,
@@ -1646,6 +1655,7 @@
   },
   "crates": {
     "icon": "wooden-box.png",
+    "type": "Crates",
     "pois": [
       {
         "id": 130,
@@ -2001,6 +2011,7 @@
   },
   "supply": {
     "icon": "packaging.png",
+    "type": "Supply",
     "pois": [
       {
         "id": 116,
@@ -2496,6 +2507,7 @@
   },
   "ammo": {
     "icon": "bullet.png",
+    "type": "Ammo",
     "pois": [
       {
         "id": 118,
@@ -2715,6 +2727,7 @@
   },
   "cannibalVillages": {
     "icon": "tipi.png",
+    "type": "CannibalVillages",
     "pois": [
       {
         "id": 236,
@@ -3054,9 +3067,1480 @@
       }
     ]
   },
+  "ponds": {
+    "icon": "pond.png",
+    "type": "Ponds",
+    "pois": [
+      {
+        "title": "LakeP",
+        "x": -1317.15,
+        "y": 1297.25,
+        "teleport": {
+          "x": -1317.15,
+          "y": 90.72,
+          "z": 1297.25,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAA",
+        "x": -1587.69,
+        "y": 248.1,
+        "teleport": {
+          "x": -1587.69,
+          "y": 55.16,
+          "z": 248.1,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAB",
+        "x": -1718.8,
+        "y": 67.67,
+        "teleport": {
+          "x": -1718.8,
+          "y": 88.76,
+          "z": 67.67,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAC",
+        "x": -1473.42,
+        "y": 856.22,
+        "teleport": {
+          "x": -1473.42,
+          "y": 45.59,
+          "z": 856.22,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAD",
+        "x": -1728.95,
+        "y": -271.79,
+        "teleport": {
+          "x": -1728.95,
+          "y": 100.59,
+          "z": -271.79,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAE",
+        "x": -1382.02,
+        "y": 1496.44,
+        "teleport": {
+          "x": -1382.02,
+          "y": 90.97,
+          "z": 1496.44,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAF",
+        "x": -1471.94,
+        "y": 1117.37,
+        "teleport": {
+          "x": -1471.94,
+          "y": 80.59,
+          "z": 1117.37,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAG",
+        "x": -238.32,
+        "y": -1662.32,
+        "teleport": {
+          "x": -238.32,
+          "y": 86.28,
+          "z": -1662.32,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAH",
+        "x": -285.0,
+        "y": -1469.2,
+        "teleport": {
+          "x": -285.0,
+          "y": 169.55,
+          "z": -1469.2,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAI",
+        "x": 147.65,
+        "y": -1589.94,
+        "teleport": {
+          "x": 147.65,
+          "y": 149.53,
+          "z": -1589.94,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAJ",
+        "x": -1113.34,
+        "y": -1088.08,
+        "teleport": {
+          "x": -1113.34,
+          "y": 278.15,
+          "z": -1088.08,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAK",
+        "x": -1182.17,
+        "y": -1589.47,
+        "teleport": {
+          "x": -1182.17,
+          "y": 227.51,
+          "z": -1589.47,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAL",
+        "x": 274.8,
+        "y": -1748.2,
+        "teleport": {
+          "x": 274.8,
+          "y": 28.09,
+          "z": -1748.2,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAM",
+        "x": 261.9,
+        "y": -1777.5,
+        "teleport": {
+          "x": 261.9,
+          "y": 28.04,
+          "z": -1777.5,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAN",
+        "x": 292.0,
+        "y": -1786.4,
+        "teleport": {
+          "x": 292.0,
+          "y": 28.17,
+          "z": -1786.4,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAO",
+        "x": 720.8,
+        "y": 829.9,
+        "teleport": {
+          "x": 720.8,
+          "y": 283.3,
+          "z": 829.9,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAP",
+        "x": 191.3,
+        "y": 1262.4,
+        "teleport": {
+          "x": 191.3,
+          "y": 76.92,
+          "z": 1262.4,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAQ",
+        "x": -299.64,
+        "y": 962.66,
+        "teleport": {
+          "x": -299.64,
+          "y": 89.05,
+          "z": 962.66,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAR",
+        "x": -157.78,
+        "y": 1195.66,
+        "teleport": {
+          "x": -157.78,
+          "y": 42.83,
+          "z": 1195.66,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAS",
+        "x": -175.3,
+        "y": 935.77,
+        "teleport": {
+          "x": -175.3,
+          "y": 101.97,
+          "z": 935.77,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAT",
+        "x": -37.96,
+        "y": 672.56,
+        "teleport": {
+          "x": -37.96,
+          "y": 250.77,
+          "z": 672.56,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAU",
+        "x": -385.68,
+        "y": 522.41,
+        "teleport": {
+          "x": -385.68,
+          "y": 162.55,
+          "z": 522.41,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAV",
+        "x": -330.5,
+        "y": 897.7,
+        "teleport": {
+          "x": -330.5,
+          "y": 89.05,
+          "z": 897.7,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAW",
+        "x": -329.45,
+        "y": 1136.49,
+        "teleport": {
+          "x": -329.45,
+          "y": 47.41,
+          "z": 1136.49,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAX",
+        "x": -204.12,
+        "y": 1094.43,
+        "teleport": {
+          "x": -204.12,
+          "y": 66.69,
+          "z": 1094.43,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAY",
+        "x": 1296.21,
+        "y": -801.79,
+        "teleport": {
+          "x": 1296.21,
+          "y": 213.18,
+          "z": -801.79,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePAZ",
+        "x": 1451.41,
+        "y": -423.99,
+        "teleport": {
+          "x": 1451.41,
+          "y": 191.83,
+          "z": -423.99,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBA",
+        "x": -886.78,
+        "y": -1648.89,
+        "teleport": {
+          "x": -886.78,
+          "y": 207.23,
+          "z": -1648.89,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBB",
+        "x": -840.46,
+        "y": -1171.62,
+        "teleport": {
+          "x": -840.46,
+          "y": 175.59,
+          "z": -1171.62,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBC",
+        "x": -775.6,
+        "y": -918.3,
+        "teleport": {
+          "x": -775.6,
+          "y": 216.77,
+          "z": -918.3,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBD",
+        "x": -878.13,
+        "y": -1018.59,
+        "teleport": {
+          "x": -878.13,
+          "y": 229.55,
+          "z": -1018.59,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBE",
+        "x": -1058.75,
+        "y": -1483.12,
+        "teleport": {
+          "x": -1058.75,
+          "y": 190.11,
+          "z": -1483.12,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBF",
+        "x": -1413.58,
+        "y": -1352.36,
+        "teleport": {
+          "x": -1413.58,
+          "y": 208.65,
+          "z": -1352.36,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBG",
+        "x": -885.04,
+        "y": -1470.41,
+        "teleport": {
+          "x": -885.04,
+          "y": 146.78,
+          "z": -1470.41,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBH",
+        "x": -1094.88,
+        "y": -1657.38,
+        "teleport": {
+          "x": -1094.88,
+          "y": 224.34,
+          "z": -1657.38,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBI",
+        "x": -1626.58,
+        "y": -1620.02,
+        "teleport": {
+          "x": -1626.58,
+          "y": 40.26,
+          "z": -1620.02,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBJ",
+        "x": -1620.41,
+        "y": -1265.03,
+        "teleport": {
+          "x": -1620.41,
+          "y": 63.06,
+          "z": -1265.03,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBK",
+        "x": -1619.37,
+        "y": -963.14,
+        "teleport": {
+          "x": -1619.37,
+          "y": 50.07,
+          "z": -963.14,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBL",
+        "x": -1681.02,
+        "y": -557.94,
+        "teleport": {
+          "x": -1681.02,
+          "y": 62.92,
+          "z": -557.94,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBM",
+        "x": -1318.15,
+        "y": -1848.16,
+        "teleport": {
+          "x": -1318.15,
+          "y": 17.87,
+          "z": -1848.16,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBN",
+        "x": -899.94,
+        "y": -1858.41,
+        "teleport": {
+          "x": -899.94,
+          "y": 17.86,
+          "z": -1858.41,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBO",
+        "x": -802.94,
+        "y": -829.4,
+        "teleport": {
+          "x": -802.94,
+          "y": 250.58,
+          "z": -829.4,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBP",
+        "x": -991.65,
+        "y": -926.74,
+        "teleport": {
+          "x": -991.65,
+          "y": 271.84,
+          "z": -926.74,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBQ",
+        "x": -524.72,
+        "y": -1586.94,
+        "teleport": {
+          "x": -524.72,
+          "y": 72.4,
+          "z": -1586.94,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBR",
+        "x": -528.4,
+        "y": -1444.87,
+        "teleport": {
+          "x": -528.4,
+          "y": 109.01,
+          "z": -1444.87,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBS",
+        "x": -857.5,
+        "y": 1569.0,
+        "teleport": {
+          "x": -857.5,
+          "y": 62.79,
+          "z": 1569.0,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBT",
+        "x": -847.09,
+        "y": 1440.49,
+        "teleport": {
+          "x": -847.09,
+          "y": 95.32,
+          "z": 1440.49,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBU",
+        "x": -719.94,
+        "y": 882.1,
+        "teleport": {
+          "x": -719.94,
+          "y": 94.44,
+          "z": 882.1,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBV",
+        "x": -788.19,
+        "y": 615.93,
+        "teleport": {
+          "x": -788.19,
+          "y": 102.23,
+          "z": 615.93,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBW",
+        "x": -616.84,
+        "y": 1205.04,
+        "teleport": {
+          "x": -616.84,
+          "y": 44.17,
+          "z": 1205.04,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBX",
+        "x": -1307.47,
+        "y": 1101.91,
+        "teleport": {
+          "x": -1307.47,
+          "y": 66.79,
+          "z": 1101.91,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBY",
+        "x": -878.3,
+        "y": 949.0,
+        "teleport": {
+          "x": -878.3,
+          "y": 89.6,
+          "z": 949.0,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePBZ",
+        "x": -1198.04,
+        "y": 439.72,
+        "teleport": {
+          "x": -1198.04,
+          "y": 56.45,
+          "z": 439.72,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCA",
+        "x": 1561.9,
+        "y": -514.8,
+        "teleport": {
+          "x": 1561.9,
+          "y": 167.57,
+          "z": -514.8,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCB",
+        "x": 1552.38,
+        "y": -398.3,
+        "teleport": {
+          "x": 1552.38,
+          "y": 189.49,
+          "z": -398.3,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCC",
+        "x": 1630.12,
+        "y": 26.41,
+        "teleport": {
+          "x": 1630.12,
+          "y": 32.31,
+          "z": 26.41,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCD",
+        "x": 1831.09,
+        "y": -447.59,
+        "teleport": {
+          "x": 1831.09,
+          "y": 48.99,
+          "z": -447.59,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCE",
+        "x": 1660.48,
+        "y": 377.71,
+        "teleport": {
+          "x": 1660.48,
+          "y": 53.46,
+          "z": 377.71,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCF",
+        "x": 1193.6,
+        "y": 804.2,
+        "teleport": {
+          "x": 1193.6,
+          "y": 128.18,
+          "z": 804.2,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCG",
+        "x": 1173.91,
+        "y": 653.56,
+        "teleport": {
+          "x": 1173.91,
+          "y": 154.97,
+          "z": 653.56,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCH",
+        "x": 1552.9,
+        "y": 516.5,
+        "teleport": {
+          "x": 1552.9,
+          "y": 134.7,
+          "z": 516.5,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCI",
+        "x": 1725.49,
+        "y": -287.78,
+        "teleport": {
+          "x": 1725.49,
+          "y": 63.94,
+          "z": -287.78,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCJ",
+        "x": 1562.09,
+        "y": -272.39,
+        "teleport": {
+          "x": 1562.09,
+          "y": 137.65,
+          "z": -272.39,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCK",
+        "x": 1468.9,
+        "y": -597.0,
+        "teleport": {
+          "x": 1468.9,
+          "y": 190.74,
+          "z": -597.0,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCL",
+        "x": 1064.3,
+        "y": -107.6,
+        "teleport": {
+          "x": 1064.3,
+          "y": 275.66,
+          "z": -107.6,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCM",
+        "x": 607.7,
+        "y": -1010.4,
+        "teleport": {
+          "x": 607.7,
+          "y": 296.65,
+          "z": -1010.4,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCN",
+        "x": 933.37,
+        "y": -1249.18,
+        "teleport": {
+          "x": 933.37,
+          "y": 137.85,
+          "z": -1249.18,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCO",
+        "x": 1671.64,
+        "y": 947.39,
+        "teleport": {
+          "x": 1671.64,
+          "y": 37.16,
+          "z": 947.39,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCP",
+        "x": 1703.33,
+        "y": 553.4,
+        "teleport": {
+          "x": 1703.33,
+          "y": 45.2,
+          "z": 553.4,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCQ",
+        "x": 1528.0,
+        "y": 362.8,
+        "teleport": {
+          "x": 1528.0,
+          "y": 113.66,
+          "z": 362.8,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCR",
+        "x": 881.97,
+        "y": -956.38,
+        "teleport": {
+          "x": 881.97,
+          "y": 246.57,
+          "z": -956.38,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCS",
+        "x": 1379.63,
+        "y": 70.57,
+        "teleport": {
+          "x": 1379.63,
+          "y": 127.61,
+          "z": 70.57,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCT",
+        "x": 1239.0,
+        "y": 269.9,
+        "teleport": {
+          "x": 1239.0,
+          "y": 197.5,
+          "z": 269.9,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCU",
+        "x": -1243.57,
+        "y": -1078.56,
+        "teleport": {
+          "x": -1243.57,
+          "y": 267.43,
+          "z": -1078.56,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCV",
+        "x": -1282.82,
+        "y": -887.19,
+        "teleport": {
+          "x": -1282.82,
+          "y": 252.05,
+          "z": -887.19,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCW",
+        "x": -1135.77,
+        "y": 1626.41,
+        "teleport": {
+          "x": -1135.77,
+          "y": 36.92,
+          "z": 1626.41,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCX",
+        "x": -1252.28,
+        "y": 1400.62,
+        "teleport": {
+          "x": -1252.28,
+          "y": 99.98,
+          "z": 1400.62,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCY",
+        "x": -1037.91,
+        "y": 1297.16,
+        "teleport": {
+          "x": -1037.91,
+          "y": 98.5,
+          "z": 1297.16,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePCZ",
+        "x": -1666.54,
+        "y": 1097.19,
+        "teleport": {
+          "x": -1666.54,
+          "y": 89.52,
+          "z": 1097.19,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDA",
+        "x": -766.72,
+        "y": -1482.14,
+        "teleport": {
+          "x": -766.72,
+          "y": 112.42,
+          "z": -1482.14,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDA",
+        "x": -1067.78,
+        "y": 1117.6,
+        "teleport": {
+          "x": -1067.78,
+          "y": 98.41,
+          "z": 1117.6,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDB",
+        "x": -703.91,
+        "y": 458.34,
+        "teleport": {
+          "x": -703.91,
+          "y": 102.37,
+          "z": 458.34,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDB",
+        "x": 1216.1,
+        "y": -880.74,
+        "teleport": {
+          "x": 1216.1,
+          "y": 219.49,
+          "z": -880.74,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDC",
+        "x": 797.56,
+        "y": -570.14,
+        "teleport": {
+          "x": 797.56,
+          "y": 309.57,
+          "z": -570.14,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDD",
+        "x": 709.27,
+        "y": -919.77,
+        "teleport": {
+          "x": 709.27,
+          "y": 289.05,
+          "z": -919.77,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDE",
+        "x": 1682.17,
+        "y": 20.7,
+        "teleport": {
+          "x": 1682.17,
+          "y": 21.55,
+          "z": 20.7,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDF",
+        "x": 1747.68,
+        "y": 35.44,
+        "teleport": {
+          "x": 1747.68,
+          "y": 23.42,
+          "z": 35.44,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDG",
+        "x": 1516.29,
+        "y": 30.66,
+        "teleport": {
+          "x": 1516.29,
+          "y": 63.84,
+          "z": 30.66,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDH",
+        "x": 1615.64,
+        "y": -75.36,
+        "teleport": {
+          "x": 1615.64,
+          "y": 48.13,
+          "z": -75.36,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDI",
+        "x": 1415.84,
+        "y": 13.8,
+        "teleport": {
+          "x": 1415.84,
+          "y": 94.65,
+          "z": 13.8,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDJ",
+        "x": 809.43,
+        "y": -997.0,
+        "teleport": {
+          "x": 809.43,
+          "y": 263.4,
+          "z": -997.0,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDK",
+        "x": 296.42,
+        "y": -1221.52,
+        "teleport": {
+          "x": 296.42,
+          "y": 306.58,
+          "z": -1221.52,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDL",
+        "x": 1672.19,
+        "y": -1252.93,
+        "teleport": {
+          "x": 1672.19,
+          "y": 47.47,
+          "z": -1252.93,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDM",
+        "x": 1456.18,
+        "y": -1317.81,
+        "teleport": {
+          "x": 1456.18,
+          "y": 53.04,
+          "z": -1317.81,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDN",
+        "x": 1502.7,
+        "y": -1061.43,
+        "teleport": {
+          "x": 1502.7,
+          "y": 93.59,
+          "z": -1061.43,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDO",
+        "x": 1721.4,
+        "y": -1057.37,
+        "teleport": {
+          "x": 1721.4,
+          "y": 26.73,
+          "z": -1057.37,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDP",
+        "x": 1518.36,
+        "y": -879.24,
+        "teleport": {
+          "x": 1518.36,
+          "y": 17.76,
+          "z": -879.24,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDQ",
+        "x": 1477.66,
+        "y": 958.05,
+        "teleport": {
+          "x": 1477.66,
+          "y": 48.0,
+          "z": 958.05,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDR",
+        "x": 1296.7,
+        "y": -552.65,
+        "teleport": {
+          "x": 1296.7,
+          "y": 236.87,
+          "z": -552.65,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDS",
+        "x": 1383.56,
+        "y": -474.15,
+        "teleport": {
+          "x": 1383.56,
+          "y": 204.84,
+          "z": -474.15,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDT",
+        "x": 1157.15,
+        "y": -996.25,
+        "teleport": {
+          "x": 1157.15,
+          "y": 193.33,
+          "z": -996.25,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDU",
+        "x": 1577.22,
+        "y": -1667.12,
+        "teleport": {
+          "x": 1577.22,
+          "y": 23.4,
+          "z": -1667.12,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDV",
+        "x": 1068.94,
+        "y": -1616.22,
+        "teleport": {
+          "x": 1068.94,
+          "y": 30.2,
+          "z": -1616.22,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDW",
+        "x": 1563.65,
+        "y": 235.22,
+        "teleport": {
+          "x": 1563.65,
+          "y": 78.21,
+          "z": 235.22,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDX",
+        "x": 1351.35,
+        "y": 814.56,
+        "teleport": {
+          "x": 1351.35,
+          "y": 122.87,
+          "z": 814.56,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDY",
+        "x": -2.09,
+        "y": -1501.51,
+        "teleport": {
+          "x": -2.09,
+          "y": 228.0,
+          "z": -1501.51,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePDZ",
+        "x": -99.47,
+        "y": -1344.41,
+        "teleport": {
+          "x": -99.47,
+          "y": 245.25,
+          "z": -1344.41,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEA",
+        "x": 583.03,
+        "y": 1108.94,
+        "teleport": {
+          "x": 583.03,
+          "y": 143.1,
+          "z": 1108.94,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEB",
+        "x": 787.59,
+        "y": 959.93,
+        "teleport": {
+          "x": 787.59,
+          "y": 227.27,
+          "z": 959.93,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEC",
+        "x": 596.6,
+        "y": 1336.53,
+        "teleport": {
+          "x": 596.6,
+          "y": 67.41,
+          "z": 1336.53,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePED",
+        "x": 751.73,
+        "y": 1653.83,
+        "teleport": {
+          "x": 751.73,
+          "y": 87.6,
+          "z": 1653.83,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEE",
+        "x": 451.42,
+        "y": 965.38,
+        "teleport": {
+          "x": 451.42,
+          "y": 167.06,
+          "z": 965.38,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEF",
+        "x": 302.59,
+        "y": 831.6,
+        "teleport": {
+          "x": 302.59,
+          "y": 205.72,
+          "z": 831.6,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEG",
+        "x": -968.54,
+        "y": -829.88,
+        "teleport": {
+          "x": -968.54,
+          "y": 268.47,
+          "z": -829.88,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEH",
+        "x": -768.19,
+        "y": -675.16,
+        "teleport": {
+          "x": -768.19,
+          "y": 286.58,
+          "z": -675.16,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEI",
+        "x": -879.96,
+        "y": -769.27,
+        "teleport": {
+          "x": -879.96,
+          "y": 262.84,
+          "z": -769.27,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEJ",
+        "x": -1035.1,
+        "y": -1237.3,
+        "teleport": {
+          "x": -1035.1,
+          "y": 223.89,
+          "z": -1237.3,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEK",
+        "x": -1175.4,
+        "y": -1490.7,
+        "teleport": {
+          "x": -1175.4,
+          "y": 215.5,
+          "z": -1490.7,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEL",
+        "x": -1286.5,
+        "y": -781.8,
+        "teleport": {
+          "x": -1286.5,
+          "y": 243.97,
+          "z": -781.8,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEM",
+        "x": -1387.58,
+        "y": -807.29,
+        "teleport": {
+          "x": -1387.58,
+          "y": 252.95,
+          "z": -807.29,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEN",
+        "x": -1354.44,
+        "y": -950.78,
+        "teleport": {
+          "x": -1354.44,
+          "y": 269.27,
+          "z": -950.78,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEO",
+        "x": -1155.25,
+        "y": -784.36,
+        "teleport": {
+          "x": -1155.25,
+          "y": 266.62,
+          "z": -784.36,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEP",
+        "x": -1121.05,
+        "y": -1146.26,
+        "teleport": {
+          "x": -1121.05,
+          "y": 272.99,
+          "z": -1146.26,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEQ",
+        "x": -1291.93,
+        "y": -1287.45,
+        "teleport": {
+          "x": -1291.93,
+          "y": 213.03,
+          "z": -1287.45,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePER",
+        "x": -1389.92,
+        "y": -1041.46,
+        "teleport": {
+          "x": -1389.92,
+          "y": 220.8,
+          "z": -1041.46,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePES",
+        "x": -1296.78,
+        "y": -1538.66,
+        "teleport": {
+          "x": -1296.78,
+          "y": 205.14,
+          "z": -1538.66,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePET",
+        "x": -922.42,
+        "y": -1150.45,
+        "teleport": {
+          "x": -922.42,
+          "y": 202.65,
+          "z": -1150.45,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEU",
+        "x": -603.8,
+        "y": -1195.2,
+        "teleport": {
+          "x": -603.8,
+          "y": 195.77,
+          "z": -1195.2,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEV",
+        "x": -495.72,
+        "y": -767.06,
+        "teleport": {
+          "x": -495.72,
+          "y": 288.81,
+          "z": -767.06,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEW",
+        "x": 1576.29,
+        "y": 344.42,
+        "teleport": {
+          "x": 1576.29,
+          "y": 81.39,
+          "z": 344.42,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEX",
+        "x": 1687.32,
+        "y": 286.03,
+        "teleport": {
+          "x": 1687.32,
+          "y": 46.34,
+          "z": 286.03,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePEY",
+        "x": 1741.0,
+        "y": 917.77,
+        "teleport": {
+          "x": 1741.0,
+          "y": 28.5,
+          "z": 917.77,
+          "areaMask": 0
+        }
+      }
+    ]
+  },
   "lakes": {
     "icon": "lake.png",
+    "type": "Lakes",
     "pois": [
+      {
+        "title": "FrozenLake",
+        "x": -162.53,
+        "y": -87.16,
+        "teleport": {
+          "x": -162.53,
+          "y": 406.2,
+          "z": -87.16,
+          "areaMask": 0
+        },
+        "screenshot": "frozen_lake.jpg"
+      },
       {
         "title": "GolfPondA",
         "x": 813.12,
@@ -3118,40 +4602,100 @@
         "screenshot": "golf_pond_e.jpg"
       },
       {
-        "title": "Lake Polygon (16)",
-        "x": -162.53,
-        "y": -87.16,
+        "title": "GolfPondF",
+        "x": 1364.2,
+        "y": 1559.41,
         "teleport": {
-          "x": -162.53,
-          "y": 406.2,
-          "z": -87.16,
+          "x": 1364.2,
+          "y": 86.05,
+          "z": 1559.41,
           "areaMask": 0
         },
-        "screenshot": "lake_polygon_16.jpg"
+        "screenshot": "golf_pond_f.jpg"
       },
       {
-        "title": "Lake Polygon (17)",
-        "x": -1311.6,
-        "y": -1031.66,
+        "title": "LakeAA",
+        "x": 654.97,
+        "y": -758.16,
         "teleport": {
-          "x": -1311.6,
-          "y": 265.7,
-          "z": -1031.66,
+          "x": 654.97,
+          "y": 294.0,
+          "z": -758.16,
           "areaMask": 0
         },
-        "screenshot": "lake_polygon_17_1.jpg"
+        "screenshot": "lake_aa.jpg"
       },
       {
-        "title": "Lake Polygon (17)",
-        "x": -1390.95,
-        "y": -1208.53,
+        "title": "LakeAB",
+        "x": 753.95,
+        "y": -870.09,
         "teleport": {
-          "x": -1390.95,
-          "y": 224.98,
-          "z": -1208.53,
+          "x": 753.95,
+          "y": 255.93,
+          "z": -870.09,
           "areaMask": 0
         },
-        "screenshot": "lake_polygon_17_2.jpg"
+        "screenshot": "lake_ab.jpg"
+      },
+      {
+        "title": "LakeAC",
+        "x": 1399.55,
+        "y": -1533.64,
+        "teleport": {
+          "x": 1399.55,
+          "y": 30.51,
+          "z": -1533.64,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ac.jpg"
+      },
+      {
+        "title": "LakeAD",
+        "x": 1260.26,
+        "y": -1468.7,
+        "teleport": {
+          "x": 1260.26,
+          "y": 26.34,
+          "z": -1468.7,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ad.jpg"
+      },
+      {
+        "title": "LakeAE",
+        "x": 1551.52,
+        "y": 989.79,
+        "teleport": {
+          "x": 1551.52,
+          "y": 51.1,
+          "z": 989.79,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ae.jpg"
+      },
+      {
+        "title": "LakeAF",
+        "x": 197.3,
+        "y": 1336.33,
+        "teleport": {
+          "x": 197.3,
+          "y": 65.74,
+          "z": 1336.33,
+          "areaMask": 0
+        },
+        "screenshot": "lake_af.jpg"
+      },
+      {
+        "title": "LakeAG",
+        "x": 693.66,
+        "y": 1098.77,
+        "teleport": {
+          "x": 693.66,
+          "y": 121.09,
+          "z": 1098.77,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ag.jpg"
       },
       {
         "title": "LakeAGroup",
@@ -3236,6 +4780,318 @@
           "areaMask": 0
         },
         "screenshot": "lake_c.jpg"
+      },
+      {
+        "title": "LakeDA",
+        "x": -1390.05,
+        "y": -1207.09,
+        "teleport": {
+          "x": -1390.05,
+          "y": 224.9,
+          "z": -1207.09,
+          "areaMask": 0
+        },
+        "screenshot": "lake_da.jpg"
+      },
+      {
+        "title": "LakeDB",
+        "x": -1311.06,
+        "y": -1039.48,
+        "teleport": {
+          "x": -1311.06,
+          "y": 265.68,
+          "z": -1039.48,
+          "areaMask": 0
+        },
+        "screenshot": "lake_db.jpg"
+      },
+      {
+        "title": "LakeDC",
+        "x": -799.01,
+        "y": -1598.41,
+        "teleport": {
+          "x": -799.01,
+          "y": 151.43,
+          "z": -1598.41,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dc.jpg"
+      },
+      {
+        "title": "LakeDD",
+        "x": -1013.07,
+        "y": -1309.91,
+        "teleport": {
+          "x": -1013.07,
+          "y": 163.65,
+          "z": -1309.91,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dd.jpg"
+      },
+      {
+        "title": "LakeDE",
+        "x": -933.6,
+        "y": -1328.28,
+        "teleport": {
+          "x": -933.6,
+          "y": 147.92,
+          "z": -1328.28,
+          "areaMask": 0
+        },
+        "screenshot": "lake_de.jpg"
+      },
+      {
+        "title": "LakeDF",
+        "x": -854.49,
+        "y": -1363.6,
+        "teleport": {
+          "x": -854.49,
+          "y": 138.01,
+          "z": -1363.6,
+          "areaMask": 0
+        },
+        "screenshot": "lake_df.jpg"
+      },
+      {
+        "title": "LakeDG",
+        "x": -1808.12,
+        "y": -288.01,
+        "teleport": {
+          "x": -1808.12,
+          "y": 88.64,
+          "z": -288.01,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dg.jpg"
+      },
+      {
+        "title": "LakeDH",
+        "x": -1644.46,
+        "y": -801.71,
+        "teleport": {
+          "x": -1644.46,
+          "y": 47.07,
+          "z": -801.71,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dh.jpg"
+      },
+      {
+        "title": "LakeDI",
+        "x": -1632.31,
+        "y": -318.23,
+        "teleport": {
+          "x": -1632.31,
+          "y": 149.78,
+          "z": -318.23,
+          "areaMask": 0
+        },
+        "screenshot": "lake_di.jpg"
+      },
+      {
+        "title": "LakeDJ",
+        "x": -1648.49,
+        "y": -19.18,
+        "teleport": {
+          "x": -1648.49,
+          "y": 82.28,
+          "z": -19.18,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dj.jpg"
+      },
+      {
+        "title": "LakeDK",
+        "x": -1250.37,
+        "y": -1201.05,
+        "teleport": {
+          "x": -1250.37,
+          "y": 234.48,
+          "z": -1201.05,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dk.jpg"
+      },
+      {
+        "title": "LakeDL",
+        "x": -1340.91,
+        "y": -1625.27,
+        "teleport": {
+          "x": -1340.91,
+          "y": 194.9,
+          "z": -1625.27,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dl.jpg"
+      },
+      {
+        "title": "LakeDM",
+        "x": -1128.36,
+        "y": -932.28,
+        "teleport": {
+          "x": -1128.36,
+          "y": 279.16,
+          "z": -932.28,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dm.jpg"
+      },
+      {
+        "title": "LakeDN",
+        "x": -931.29,
+        "y": 1724.73,
+        "teleport": {
+          "x": -931.29,
+          "y": 38.1,
+          "z": 1724.73,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dn.jpg"
+      },
+      {
+        "title": "LakeDO",
+        "x": -1054.41,
+        "y": -1573.08,
+        "teleport": {
+          "x": -1054.41,
+          "y": 208.43,
+          "z": -1573.08,
+          "areaMask": 0
+        },
+        "screenshot": "lake_do.jpg"
+      },
+      {
+        "title": "LakeDP",
+        "x": -446.6,
+        "y": -885.85,
+        "teleport": {
+          "x": -446.6,
+          "y": 270.54,
+          "z": -885.85,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dp.jpg"
+      },
+      {
+        "title": "LakeDQ",
+        "x": -730.05,
+        "y": -730.17,
+        "teleport": {
+          "x": -730.05,
+          "y": 281.56,
+          "z": -730.17,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dq.jpg"
+      },
+      {
+        "title": "LakeDR",
+        "x": -1062.17,
+        "y": 1428.28,
+        "teleport": {
+          "x": -1062.17,
+          "y": 78.14,
+          "z": 1428.28,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dr.jpg"
+      },
+      {
+        "title": "LakeDS",
+        "x": -840.85,
+        "y": 1294.58,
+        "teleport": {
+          "x": -840.85,
+          "y": 68.06,
+          "z": 1294.58,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ds.jpg"
+      },
+      {
+        "title": "LakeDT",
+        "x": -1422.38,
+        "y": 1644.3,
+        "teleport": {
+          "x": -1422.38,
+          "y": 84.46,
+          "z": 1644.3,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dt.jpg"
+      },
+      {
+        "title": "LakeDU",
+        "x": -1550.93,
+        "y": 1199.56,
+        "teleport": {
+          "x": -1550.93,
+          "y": 78.57,
+          "z": 1199.56,
+          "areaMask": 0
+        },
+        "screenshot": "lake_du.jpg"
+      },
+      {
+        "title": "LakeDV",
+        "x": -994.94,
+        "y": 387.67,
+        "teleport": {
+          "x": -994.94,
+          "y": 79.69,
+          "z": 387.67,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dv.jpg"
+      },
+      {
+        "title": "LakeDW",
+        "x": -1240.23,
+        "y": 890.52,
+        "teleport": {
+          "x": -1240.23,
+          "y": 45.56,
+          "z": 890.52,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dw.jpg"
+      },
+      {
+        "title": "LakeDX",
+        "x": 1722.39,
+        "y": -97.81,
+        "teleport": {
+          "x": 1722.39,
+          "y": 24.96,
+          "z": -97.81,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dx.jpg"
+      },
+      {
+        "title": "LakeDY",
+        "x": 1194.86,
+        "y": -20.77,
+        "teleport": {
+          "x": 1194.86,
+          "y": 209.07,
+          "z": -20.77,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dy.jpg"
+      },
+      {
+        "title": "LakeDZ",
+        "x": 973.8,
+        "y": -1007.91,
+        "teleport": {
+          "x": 973.8,
+          "y": 241.88,
+          "z": -1007.91,
+          "areaMask": 0
+        },
+        "screenshot": "lake_dz.jpg"
       },
       {
         "title": "LakeE",
@@ -3334,42 +5190,6 @@
         "screenshot": "lake_l.jpg"
       },
       {
-        "title": "LakeM (1)",
-        "x": 713.93,
-        "y": -1657.23,
-        "teleport": {
-          "x": 713.93,
-          "y": 35.7,
-          "z": -1657.23,
-          "areaMask": 0
-        },
-        "screenshot": "lake_m_1.jpg"
-      },
-      {
-        "title": "LakeM (2)",
-        "x": 1212.75,
-        "y": -1609.02,
-        "teleport": {
-          "x": 1212.75,
-          "y": 45.89,
-          "z": -1609.02,
-          "areaMask": 0
-        },
-        "screenshot": "lake_m_2.jpg"
-      },
-      {
-        "title": "LakeM (3)",
-        "x": -941.41,
-        "y": 152.04,
-        "teleport": {
-          "x": -941.41,
-          "y": 82.27,
-          "z": 152.04,
-          "areaMask": 0
-        },
-        "screenshot": "lake_m_3.jpg"
-      },
-      {
         "title": "LakeM",
         "x": -1178.61,
         "y": -1353.56,
@@ -3380,6 +5200,42 @@
           "areaMask": 0
         },
         "screenshot": "lake_m.jpg"
+      },
+      {
+        "title": "LakeMAA",
+        "x": 713.93,
+        "y": -1657.23,
+        "teleport": {
+          "x": 713.93,
+          "y": 35.7,
+          "z": -1657.23,
+          "areaMask": 0
+        },
+        "screenshot": "lake_maa.jpg"
+      },
+      {
+        "title": "LakeMAB",
+        "x": 1212.75,
+        "y": -1609.02,
+        "teleport": {
+          "x": 1212.75,
+          "y": 45.89,
+          "z": -1609.02,
+          "areaMask": 0
+        },
+        "screenshot": "lake_mab.jpg"
+      },
+      {
+        "title": "LakeMAC",
+        "x": -941.41,
+        "y": 152.04,
+        "teleport": {
+          "x": -941.41,
+          "y": 82.27,
+          "z": 152.04,
+          "areaMask": 0
+        },
+        "screenshot": "lake_mac.jpg"
       },
       {
         "title": "LakeN",
@@ -3514,18 +5370,6 @@
         "screenshot": "lake_y.jpg"
       },
       {
-        "title": "LakeZ (1)",
-        "x": 484.2,
-        "y": -1670.7,
-        "teleport": {
-          "x": 484.2,
-          "y": 27.8,
-          "z": -1670.7,
-          "areaMask": 0
-        },
-        "screenshot": "lake_z_1.jpg"
-      },
-      {
         "title": "LakeZ",
         "x": -783.55,
         "y": -252.51,
@@ -3536,6 +5380,18 @@
           "areaMask": 0
         },
         "screenshot": "lake_z.jpg"
+      },
+      {
+        "title": "LakeZAA",
+        "x": 484.2,
+        "y": -1670.7,
+        "teleport": {
+          "x": 484.2,
+          "y": 27.8,
+          "z": -1670.7,
+          "areaMask": 0
+        },
+        "screenshot": "lake_zaa.jpg"
       },
       {
         "title": "Lake Virginia",

@@ -32,8 +32,9 @@ public partial class ScrewStructureWrapper : ObservableObject
         Origin = origin;
         ScrewStructure = screwStructure;
         var canFinish = screwStructure?.CanFinish ?? false;
-        ModificationModes = GetModificationModes(origin, canFinish);
-        PctDone = ScrewStructure?.BuildCost is { } buildCost ? 100 * Added / buildCost : -1;
+        var canEdit = screwStructure?.CanEdit ?? false;
+        ModificationModes = GetModificationModes(origin, canFinish, canEdit);
+        PctDone = ScrewStructure?.BuildCost is { } buildCost ? buildCost == 0 ? 100 : 100 * Added / buildCost : -1;
     }
 
     public ScrewStructureModificationMode? ModificationMode
@@ -87,16 +88,22 @@ public partial class ScrewStructureWrapper : ObservableObject
     }
 
     private static ImmutableSortedSet<ScrewStructureModificationMode> GetModificationModes(ScrewStructureOrigin origin,
-        bool canFinish)
+        bool canFinish, bool canEdit)
     {
         return Enum.GetValues<ScrewStructureModificationMode>()
-            .Where(mode => IsModeAllowed(mode, origin, canFinish))
+            .Where(mode => IsModeAllowed(mode, origin, canFinish, canEdit))
             .ToImmutableSortedSet();
     }
 
     private static bool IsModeAllowed(ScrewStructureModificationMode mode, ScrewStructureOrigin origin,
-        bool canFinish)
+        bool canFinish,
+        bool canEdit)
     {
+        if (!canEdit)
+        {
+            return mode == ScrewStructureModificationMode.None;
+        }
+
         switch (mode)
         {
             case ScrewStructureModificationMode.None:

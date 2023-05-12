@@ -25,7 +25,7 @@ public partial class EditActorWindow
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<RequestUpdateActorsEvent>(this,
-            (_, message) => { OnRequestUpdateActorsEvent(message); });
+            (_, message) => OnRequestUpdateActorsEvent(message));
     }
 
     protected override void OnClosing(CancelEventArgs e)

@@ -17,9 +17,7 @@
         "_label": "Tryb",
         "normal": "Normalny",
         "hard": "Trudny",
-        "hardSurvival": "Trudny Survival",
         "peaceful": "Spokojny",
-        "creative": "Kreatywny",
         "custom": "Własny"
       },
       "consumableEffects": {
@@ -95,7 +93,8 @@
         "high": "Często"
       },
       "uid": "UID",
-      "customSettings": "Specjane ustawienia"
+      "customSettings": "Specjane ustawienia",
+      "inventoryPause": "Pauzuj w ekwipunku"
     },
     "state": {
       "header": "Game State",
@@ -366,7 +365,9 @@
       "53": "Pochodnia ścienna",
       "54": "Lampa z Czaszki",
       "56": "Zbiornik na Deszczówkę",
-      "57": "Pułapka Sprężynowa"
+      "57": "Pułapka Sprężynowa",
+      "58": "Sanie na Kłody",
+      "59": "Proste Sanie na Kłody"
     },
     "modificationMode": {
       "None": "Nic",
@@ -432,7 +433,9 @@
     "exceptionMessage": "Pojawił się wyjątek: {0}",
     "success": "Sukces",
     "yes": "Tak",
-    "no": "Nie"
+    "no": "Nie",
+    "seconds": "Sekund",
+    "close": "Zamknij"
   },
   "armor": {
     "header": "Założony pancerz (Max. 10)",
@@ -497,10 +500,12 @@
         "0": "Taktyczna kurtka",
         "1": "Smoking",
         "2": "Piżamy",
-        "3": "Skórzana Kurtka",
+        "3": "Brązowa skórzana kurtka",
         "4": "Bluza z Kapturem",
-        "5": "Nieznany",
-        "6": "Garnitur"
+        "5": "Niebieski TShirt",
+        "6": "Garnitur",
+        "7": "Czarna skórzana kurtka",
+        "8": "Skafander Kosmiczny"
       },
       "10": {
         "-1": "Bazowy",
@@ -508,7 +513,9 @@
         "1": "Dres",
         "2": "Strój skórzany",
         "3": "Strój kamuflujący",
-        "4": "Sukienka"
+        "4": "Sukienka",
+        "5": "Turkusowa Sukienka",
+        "6": "Czerwona Sukienka"
       }
     }
   },
@@ -587,7 +594,12 @@
         "checkOnStartup": "Sprawdź przy włączeniu"
       },
       "readme": "Przeczytaj mnie!",
-      "changelog": "Changelog"
+      "changelog": "Changelog",
+      "about": "O programie"
+    },
+    "companion": {
+      "text": "Companion",
+      "setup": "Konfiguracja"
     }
   },
   "experiments": {
@@ -1179,24 +1191,27 @@
     "635": "Żarówka",
     "632": "Plan pułapki sprężynowej",
     "636": "TemplateD",
-    "637": "Kamera"
+    "637": "Kamera",
+    "638": "Plan Prostych Sań na Kłody",
+    "639": "Skafander Kosmiczny"
   },
   "poiGroups": {
-    "items": "Przedmioty",
-    "bunkers": "Bunkry",
-    "3Dprinters": "Drukarki 3D",
-    "laptops": "Laptopy",
-    "caves": "Jaskinie",
-    "camps": "Obozowiska",
-    "villages": "Wioski",
-    "helicopters": "Helikoptery",
-    "info": "Informacje",
-    "doors": "Drzwi",
-    "ammo": "Ammunicja",
-    "cannibalVillages": "Wioski kanibalów",
-    "lakes": "Jeziora",
-    "supply": "Zapasy",
-    "crates": "Skrzynie"
+    "Items": "Przedmioty",
+    "Bunkers": "Bunkry",
+    "Printers": "Drukarki 3D",
+    "Laptops": "Laptopy",
+    "Caves": "Jaskinie",
+    "Camps": "Obozowiska",
+    "Villages": "Wioski",
+    "Helicopters": "Helikoptery",
+    "Info": "Informacje",
+    "Doors": "Drzwi",
+    "Ammo": "Ammunicja",
+    "CannibalVillages": "Wioski kanibalów",
+    "Lakes": "Jeziora",
+    "Supply": "Zapasy",
+    "Crates": "Skrzynie",
+    "Ponds": "Jeziorka"
   },
   "map": {
     "zipLineAnchor": "Końce tyrolek",
@@ -1284,9 +1299,55 @@
       "teleportPlayer": "Teleportuj tutaj Gracza",
       "teleportKelvin": "Teleportuj tutaj Kelvina",
       "teleportVirginia": "Teleportuj tutaj Virginię",
-      "moveToPlayer": "Przesuń do Gracza",
       "deleteBothAnchors": "Usuń obydwa końce tyrolki",
-      "spawnActors": "Przywołaj NPC"
+      "spawnActors": "Przywołaj NPC",
+      "delete": "Usuń",
+      "moveToNextClickedPosition": {
+        "text": "Przenieś do wybranej pozycjii",
+        "tooltip": "Przenieś koniec tyrolki do następnego wybrnego miejsca",
+        "hint": "Wybierz nową lokalicaję"
+      },
+      "createNewZipline": {
+        "text": "Nowa tyrolka stąd",
+        "tooltip": "Po wsiśnieciu stworzy się tyrolka pomiędzy obecnie wybranym punktem a następnie wybranym"
+      }
+    },
+    "customPois": "Własne",
+    "alwaysOnTop": "Zawsze na wierzchu",
+    "followPlayer": "Podążaj za graczem",
+    "followers": "Towarzysze",
+    "fill": "Wypełnij",
+    "mapType": {
+      "dark": "Ciemna",
+      "original": "Oryginalna"
+    }
+  },
+  "companion": {
+    "address": "IP/Addres",
+    "port": "Port",
+    "portHint": "Ports > 1024 wymagają uruchomienia programu i gry jako admin!",
+    "connectTimeout": "Limit czasu połączenia",
+    "keepAliveInterval": "Interwał zostań-żywy",
+    "connect": "Połącz",
+    "disconnect": "Rozłącz",
+    "readme1": "Companion dodaje niektóre dodatkowe funkcje do gry, takie jak teleportacja w grze, śledzenie pozycji i wiele innych.\n\nZanim będziesz mógł używać Companiona, musisz najpierw go skonfigurować. Aby to zrobić, musisz skonfigurować dwie rzeczy w swojej grze:\n\n- BepInExPack\n- SOTFEdit Companion Plugin\n\nMożesz je pobrać stąd i zainstalować ręcznie, postępując zgodnie z instrukcjami w README, lub użyć menedżera modów:",
+    "readme2": "Po przygotowaniu obydwóch, i włączeniu gry, musisz połączyć do Companion używając menu.\n\nNastępnie, w grze, masz do dyspozycji dwie nowe skróty klawiszowe:\n\n- Teleportacja w grze do większości lokalizacji w grze (Domyślnie: F8)\n- Tworzenie niestandardowego punktu teleportacji POI (Domyślnie: F9)\n\nJednocześnie, Twoja pozycja na mapie będzie na bieżąco aktualizowana.",
+    "settings": "Ustawienia",
+    "readme": "Readme",
+    "connectionFailed": {
+      "title": "Połączenie do Companion nieudane",
+      "text": "Próba połączenia do plugina nieudana",
+      "textException": "Próba połączenia do plugina nieudana. Error: {0}"
+    },
+    "disconnectFailed": {
+      "title": "Rozłączenie Companion Nieudane",
+      "text": "Próba rozłączenia do plugina nieudana",
+      "textException": "Próba rozłączenia do plugina nieudana. Error: {0}"
+    },
+    "status": {
+      "connected": "Połączony",
+      "connecting": "Łączenie...",
+      "disconnected": "Rozłączony"
     }
   }
 }

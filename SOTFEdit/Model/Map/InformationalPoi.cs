@@ -32,7 +32,7 @@ public abstract partial class InformationalPoi : BasePoi
     protected int[]? MissingRequiredItems { get; init; }
 
     public string? ScreenshotSmall => _screenshot != null
-        ? $"https://raw.githubusercontent.com/codengine/SOTFEdit-Assets/main/screenshots/{_screenshot.ExtendFilenameWith("_tn")}"
+        ? GetScreenshotPath(_screenshot.ExtendFilenameWith("_tn"))
         : null;
 
     public IEnumerable<ItemInInventoryWrapper> Requirements => GetRequirements();
@@ -42,6 +42,11 @@ public abstract partial class InformationalPoi : BasePoi
     public override bool IsUnderground { get; }
 
     public bool HasAnyRequirements => _requirements != null && _requirements.Any();
+
+    protected virtual string GetScreenshotPath(string screenshot)
+    {
+        return string.Format(ScreenshotUrl, screenshot);
+    }
 
     private IEnumerable<ItemInInventoryWrapper> GetRequirements()
     {
@@ -104,6 +109,6 @@ public abstract partial class InformationalPoi : BasePoi
         }
 
         var title = Title + (Description != null ? " - " + Description : "");
-        WeakReferenceMessenger.Default.Send(new ShowMapImageEvent(string.Format(ScreenshotUrl, _screenshot), title));
+        WeakReferenceMessenger.Default.Send(new ShowMapImageEvent(GetScreenshotPath(_screenshot), title));
     }
 }

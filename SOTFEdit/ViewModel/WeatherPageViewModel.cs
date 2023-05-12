@@ -21,7 +21,7 @@ public class WeatherPageViewModel
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, m) => { OnSelectedSavegameChanged(m); });
+            (_, m) => OnSelectedSavegameChanged(m));
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)

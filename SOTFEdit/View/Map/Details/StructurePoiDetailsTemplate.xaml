@@ -8,7 +8,6 @@
     <DataTemplate x:Key="StructurePoiDetailsTemplate" DataType="{x:Type models:StructurePoi}">
         <DataTemplate.Resources>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
             <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
             <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
         </DataTemplate.Resources>

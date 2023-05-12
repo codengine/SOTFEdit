@@ -55,7 +55,7 @@ public partial class SelectSavegameViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameDirChangedEvent>(this,
-            (_, message) => { OnSelectedSavegameDirChanged(message.NewPath); });
+            (_, message) => OnSelectedSavegameDirChanged(message.NewPath));
     }
 
     private void OnSelectedSavegameDirChanged(string? newPath)

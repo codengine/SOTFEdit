@@ -2,12 +2,12 @@
 
 public class UpdateActorPoiPositionEvent
 {
-    public UpdateActorPoiPositionEvent(int uniqueId, Position newPosition)
+    public UpdateActorPoiPositionEvent(int typeId, Position newPosition)
     {
-        UniqueId = uniqueId;
+        TypeId = typeId;
         NewPosition = newPosition;
     }
 
-    public int UniqueId { get; }
+    public int TypeId { get; }
     public Position NewPosition { get; }
 }

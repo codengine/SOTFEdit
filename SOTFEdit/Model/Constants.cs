@@ -25,6 +25,33 @@ public static class Constants
         public const int SettingTypeString = 3;
     }
 
+    public static class GameSetupKeys
+    {
+        public const string Mode = "Mode";
+        public const string Uid = "UID";
+        public const string EnemyHealth = "GameSetting.Vail.EnemyHealth";
+        public const string EnemyDamage = "GameSetting.Vail.EnemyDamage";
+        public const string EnemyArmour = "GameSetting.Vail.EnemyArmour";
+        public const string EnemyAggression = "GameSetting.Vail.EnemyAggression";
+        public const string AnimalSpawnRate = "GameSetting.Vail.AnimalSpawnRate";
+        public const string StartingSeason = "GameSetting.Environment.StartingSeason";
+        public const string SeasonLength = "GameSetting.Environment.SeasonLength";
+        public const string DayLength = "GameSetting.Environment.DayLength";
+        public const string PrecipitationFrequency = "GameSetting.Environment.PrecipitationFrequency";
+        public const string ConsumableEffects = "GameSetting.Survival.ConsumableEffects";
+        public const string PlayerStatsDamage = "GameSetting.Survival.PlayerStatsDamage";
+        public const string EnemySpawn = "GameSetting.Vail.EnemySpawn";
+        public const string InventoryPause = "GameSetting.Vail.InventoryPause";
+    }
+
+    public static class SettingValueKeys
+    {
+        public const string IntValue = "IntValue";
+        public const string FloatValue = "FloatValue";
+        public const string StringValue = "StringValue";
+        public const string BoolValue = "BoolValue";
+    }
+
     public static class JsonKeys
     {
         public const string PlayerInventory = "Data.PlayerInventory";
@@ -44,6 +71,7 @@ public static class Constants
         public const string WorldItemManager = "Data.WorldItemManager";
         public const string ZipLineManager = "Data.ZipLineManager";
     }
+
 
     public static class Items
     {

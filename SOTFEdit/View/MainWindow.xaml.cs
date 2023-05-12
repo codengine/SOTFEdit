@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -33,6 +34,7 @@ public partial class MainWindow
     private readonly MainViewModel _dataContext;
 
     private Window? _exceptionWindowOwner;
+    private MapWindow? _mapWindow;
     private int? _selectedPosSenderHash;
 
     public MainWindow()
@@ -52,41 +54,41 @@ public partial class MainWindow
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
-            (_, message) => { OnSavegameStored(message); });
+            (_, message) => OnSavegameStored(message));
         WeakReferenceMessenger.Default.Register<RequestRegrowTreesEvent>(this,
-            (_, _) => { OnRequestRegrowTreesEvent(); });
+            (_, _) => OnRequestRegrowTreesEvent());
         WeakReferenceMessenger.Default.Register<RequestReviveFollowersEvent>(this,
-            (_, message) => { OnRequestReviveFollowersEvent(message); });
+            (_, message) => OnRequestReviveFollowersEvent(message));
         WeakReferenceMessenger.Default.Register<RequestSaveChangesEvent>(this,
-            (_, message) => { OnRequestSaveChangesEvent(message); });
+            (_, message) => OnRequestSaveChangesEvent(message));
         WeakReferenceMessenger.Default.Register<RequestSelectSavegameEvent>(this,
-            (_, _) => { OnRequestSelectSavegameEvent(); });
+            (_, _) => OnRequestSelectSavegameEvent());
         WeakReferenceMessenger.Default.Register<RequestApplicationExitEvent>(this,
-            (_, _) => { OnRequestApplicationExitEvent(); });
+            (_, _) => OnRequestApplicationExitEvent());
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, message) => { OnSelectedSavegameChangedEvent(message.SelectedSavegame); });
+            (_, message) => OnSelectedSavegameChangedEvent(message.SelectedSavegame));
         WeakReferenceMessenger.Default.Register<RequestStartProcessEvent>(this,
-            (_, message) => { OnRequestStartProcessEvent(message); });
+            (_, message) => OnRequestStartProcessEvent(message));
         WeakReferenceMessenger.Default.Register<RequestDeleteBackupsEvent>(this,
-            (_, message) => { OnRequestDeleteBackupsEvent(message); });
+            (_, message) => OnRequestDeleteBackupsEvent(message));
         WeakReferenceMessenger.Default.Register<RequestCheckForUpdatesEvent>(this,
-            (_, message) => { OnRequestCheckForUpdatesEvent(message); });
+            (_, message) => OnRequestCheckForUpdatesEvent(message));
         WeakReferenceMessenger.Default.Register<VersionCheckResultEvent>(this,
-            (_, message) => { OnVersionCheckResultEvent(message); });
+            (_, message) => OnVersionCheckResultEvent(message));
         WeakReferenceMessenger.Default.Register<RequestSpawnFollowerEvent>(this,
-            (_, message) => { OnRequestSpawnFollowerEvent(message); });
+            (_, message) => OnRequestSpawnFollowerEvent(message));
         WeakReferenceMessenger.Default.Register<RequestRestoreBackupsEvent>(this,
-            (_, message) => { OnRequestRestoreBackupsEvent(message); });
+            (_, message) => OnRequestRestoreBackupsEvent(message));
         WeakReferenceMessenger.Default.Register<UnhandledExceptionEvent>(this,
-            (_, message) => { OnUnhandledExceptionEvent(message); });
+            (_, message) => OnUnhandledExceptionEvent(message));
 
-        WeakReferenceMessenger.Default.Register<ZoomToPosEvent>(this, (_, message) => { OnZoomToPos(message); });
+        WeakReferenceMessenger.Default.Register<ZoomToPosEvent>(this, (_, message) => OnZoomToPos(message));
         WeakReferenceMessenger.Default.Register<RequestChangeSettingsEvent>(this,
-            (_, _) => { OnRequestChangeSettingsEvent(); });
+            (_, _) => OnRequestChangeSettingsEvent());
         WeakReferenceMessenger.Default.Register<RequestEditActorEvent>(this,
-            (_, message) => { OnRequestEditActorEvent(message); });
+            (_, message) => OnRequestEditActorEvent(message));
         WeakReferenceMessenger.Default.Register<GenericMessageEvent>(this,
-            (_, message) => { OnGenericMessageEvent(message); });
+            (_, message) => OnGenericMessageEvent(message));
         WeakReferenceMessenger.Default.Register<RequestModifyConsumedItemsEvent>(this,
             (_, _) => OnRequestModifyConsumedItemsEvent());
         WeakReferenceMessenger.Default.Register<RequestTeleportWorldItemEvent>(this,
@@ -94,15 +96,54 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Register<ShowDialogEvent>(this,
             (_, message) => OnShowDialogEvent(message));
         WeakReferenceMessenger.Default.Register<RequestOpenMapEvent>(this,
-            (_, message) => { OnRequestOpenMapEvent(message); });
+            (_, message) => OnRequestOpenMapEvent(message));
         WeakReferenceMessenger.Default.Register<UpdateActorsEvent>(this,
-            (_, message) => { OnUpdateActorsEvent(message); });
+            (_, message) => OnUpdateActorsEvent(message));
+        WeakReferenceMessenger.Default.Register<OpenCompanionSetupWindowEvent>(this,
+            (_, _) => OnOpenCompanionSetupWindowEvent());
+    }
+
+    private void OnOpenCompanionSetupWindowEvent()
+    {
+        var window = new CompanionSetupWindow(this);
+        window.ShowDialog();
     }
 
     private void OnRequestOpenMapEvent(RequestOpenMapEvent message)
     {
-        var window = new MapWindow(this, message);
-        window.ShowDialog();
+        if (_mapWindow == null) // Check if the window is not already open
+        {
+            _mapWindow = new MapWindow(message)
+            {
+                MapZoomControl =
+                {
+                    AnimationLength = TimeSpan.FromMilliseconds(200)
+                }
+            };
+            _mapWindow.Closed += MapWindowClosed; // Subscribe to the Closed event of the window
+            _dataContext.IsMapWindowClosed = false;
+            _mapWindow.Show();
+        }
+        else
+        {
+            _mapWindow.Focus(); // Bring the existing window to the foreground
+        }
+    }
+
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        _mapWindow?.Close();
+    }
+
+    private void MapWindowClosed(object? sender, EventArgs e)
+    {
+        if (_mapWindow != null)
+        {
+            _mapWindow.Closed -= MapWindowClosed;
+        }
+
+        _mapWindow = null; // Reset the reference to null when the window is closed
+        _dataContext.IsMapWindowClosed = true;
     }
 
     private async void OnShowDialogEvent(ShowDialogEvent message)
@@ -199,11 +240,20 @@ public partial class MainWindow
 
     private void OnUnhandledExceptionEvent(UnhandledExceptionEvent message)
     {
-        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+        var action = new Action(() =>
         {
             var unhandledExceptionWindow = new UnhandledExceptionWindow(_exceptionWindowOwner, message.Exception);
             unhandledExceptionWindow.ShowDialog();
-        }));
+        });
+
+        if (Application.Current.Dispatcher.CheckAccess())
+        {
+            action.Invoke();
+        }
+        else
+        {
+            Application.Current.Dispatcher.Invoke(action);
+        }
     }
 
     private async void OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)
@@ -464,12 +514,16 @@ public partial class MainWindow
 
     private Task<MessageDialogResult> ShowMessageDialog(string message, string title)
     {
-        return this.ShowMessageAsync(title, message, MessageDialogStyle.Affirmative, new MetroDialogSettings
+        var func = () => this.ShowMessageAsync(title, message, MessageDialogStyle.Affirmative, new MetroDialogSettings
         {
             AnimateShow = false,
             AnimateHide = false,
             ColorScheme = MetroDialogColorScheme.Theme
         });
+
+        return Application.Current.Dispatcher.CheckAccess()
+            ? func.Invoke()
+            : Application.Current.Dispatcher.Invoke(func);
     }
 
     private Task<MessageDialogResult> ShowConfirmDialog(string message, string title)
@@ -510,24 +564,31 @@ public partial class MainWindow
 
     private async void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.Q && Keyboard.Modifiers == ModifierKeys.Control)
+        switch (e.Key)
         {
-            e.Handled = true;
-
-            if (await ShowConfirmDialog(TranslationManager.Get("windows.main.messages.confirmCloseApplication.text"),
-                    TranslationManager.Get("windows.main.messages.confirmCloseApplication.title")) ==
-                MessageDialogResult.Affirmative)
+            case Key.Q when Keyboard.Modifiers == ModifierKeys.Control:
             {
-                Close();
-            }
-        }
-
-        if (e.Key == Key.Escape)
-        {
-            if (MapFlyout.IsOpen)
-            {
-                MapFlyout.IsOpen = false;
                 e.Handled = true;
+
+                if (await ShowConfirmDialog(
+                        TranslationManager.Get("windows.main.messages.confirmCloseApplication.text"),
+                        TranslationManager.Get("windows.main.messages.confirmCloseApplication.title")) ==
+                    MessageDialogResult.Affirmative)
+                {
+                    Close();
+                }
+
+                break;
+            }
+            case Key.Escape:
+            {
+                if (MapFlyout.IsOpen)
+                {
+                    MapFlyout.IsOpen = false;
+                    e.Handled = true;
+                }
+
+                break;
             }
         }
 

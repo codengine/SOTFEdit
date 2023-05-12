@@ -41,7 +41,7 @@ public partial class StoragePageViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, m) => { OnSelectedSavegameChanged(m); });
+            (_, m) => OnSelectedSavegameChanged(m));
     }
 
     private bool HasStorages()

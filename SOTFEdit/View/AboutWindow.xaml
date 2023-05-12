@@ -25,7 +25,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Canvas Width="349" Height="500">
-            <Image Canvas.Top="0" Canvas.Left="0" Source="/SOTFEdit;component/images/about.jpg" Width="349"
+            <Image Canvas.Top="0" Canvas.Left="0" Source="pack://application:,,,/SOTFEdit;component/images/about.jpg"
+                   Width="349"
                    Height="500" />
             <TextBlock Canvas.Bottom="20" Canvas.Right="20" TextAlignment="Right" Foreground="White" FontWeight="Bold"
                        Text="{Binding AssemblyVersion}" />
@@ -45,7 +46,8 @@ Big thanks to Gronkh for your many years of "Influenz". Especially without your 
 - Mortennif, M2THE49, feydrautha01
 </TextBlock>
             <TextBlock FontWeight="Bold" Foreground="{DynamicResource MahApps.Brushes.Accent}">Join me on</TextBlock>
-            <Image HorizontalAlignment="Left" Cursor="Hand" Source="/SOTFEdit;component/images/discord.png" Width="250"
+            <Image HorizontalAlignment="Left" Cursor="Hand"
+                   Source="pack://application:,,,/SOTFEdit;component/images/discord.png" Width="250"
                    Height="47" Margin="3 3 3 15">
                 <Image.InputBindings>
                     <MouseBinding Gesture="LeftClick" Command="{Binding OpenDiscordCommand, Mode=OneTime}" />

@@ -8,9 +8,7 @@
     <DataTemplate x:Key="ZipPointPoiDetailsTemplate" DataType="{x:Type models:ZipPointPoi}">
         <DataTemplate.Resources>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
             <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
-            <converters:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrushConverter" />
         </DataTemplate.Resources>
         <st:AutoGrid Columns="Auto,*" ChildVerticalAlignment="Center" Margin="4" ChildMargin="2">
             <st:AutoGrid Grid.ColumnSpan="2" Columns="Auto, *">

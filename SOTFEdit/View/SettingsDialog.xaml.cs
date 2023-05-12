@@ -17,7 +17,7 @@ public partial class SettingsDialog
         Owner = owner;
         DataContext = new SettingsDialogViewModel(applicationSettings);
 
-        WeakReferenceMessenger.Default.Register<SettingsSavedEvent>(this, (_, _) => { SettingsSavedEvent(); });
+        WeakReferenceMessenger.Default.Register<SettingsSavedEvent>(this, (_, _) => SettingsSavedEvent());
 
         InitializeComponent();
     }

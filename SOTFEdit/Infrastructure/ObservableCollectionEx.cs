@@ -22,38 +22,6 @@ public class ObservableCollectionEx<T> : ObservableCollection<T>
         base.SetItem(index, item);
     }
 
-    public void RemoveRange(IEnumerable<T> itemsToRemove)
-    {
-        if (itemsToRemove == null)
-        {
-            throw new ArgumentNullException(nameof(itemsToRemove));
-        }
-
-        _suppressNotification = true;
-
-        var removedItems = new List<T>();
-        var removedIndices = new List<int>();
-        foreach (var item in itemsToRemove)
-        {
-            var index = IndexOf(item);
-            if (index < 0)
-            {
-                continue;
-            }
-
-            removedItems.Add(item);
-            removedIndices.Add(index);
-            RemoveItem(index);
-        }
-
-        _suppressNotification = false;
-        for (var i = 0; i < removedItems.Count; i++)
-        {
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove,
-                removedItems[i], removedIndices[i]));
-        }
-    }
-
     public void AddRange(IEnumerable<T> itemsToAdd)
     {
         if (itemsToAdd == null)

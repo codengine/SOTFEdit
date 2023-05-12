@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -9,7 +11,9 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using NLog;
+using SOTFEdit.Companion.Shared;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Infrastructure.Companion;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Map;
@@ -24,11 +28,16 @@ public partial class MainViewModel : ObservableObject
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly ArmorPageViewModel _armorPageViewModel;
+    private readonly CompanionConnectionManager _companionConnectionManager;
     private readonly MapManager _mapManager;
+    private readonly CompanionNetworkPlayerManager _networkPlayerManager;
     private readonly PoiLoader _poiLoader;
 
     [ObservableProperty]
     private bool _checkVersionOnStartup;
+
+    [ObservableProperty]
+    private bool _isMapWindowClosed = true;
 
     [ObservableProperty]
     private string _lastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
@@ -43,11 +52,14 @@ public partial class MainViewModel : ObservableObject
     private double _pinTop;
 
     public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage, NpcsPage npcsPage,
-        StructuresPage structuresPage, MapManager mapManager, PoiLoader poiLoader)
+        StructuresPage structuresPage, MapManager mapManager, PoiLoader poiLoader,
+        CompanionNetworkPlayerManager networkPlayerManager, CompanionConnectionManager companionConnectionManager)
     {
         _armorPageViewModel = armorPageViewModel;
         _mapManager = mapManager;
         _poiLoader = poiLoader;
+        _networkPlayerManager = networkPlayerManager;
+        _companionConnectionManager = companionConnectionManager;
         GamePage = gamePage;
         NpcsPage = npcsPage;
         StructuresPage = structuresPage;
@@ -68,6 +80,27 @@ public partial class MainViewModel : ObservableObject
 
     public object? SelectedTab { get; set; }
 
+    public bool CanEditTabs => CanSaveAndEdit();
+
+    public string CompanionConnectMenuText
+    {
+        get
+        {
+            return _companionConnectionManager.Status switch
+            {
+                CompanionConnectionManager.ConnectionStatus.Connected => TranslationManager.Get("companion.disconnect"),
+                CompanionConnectionManager.ConnectionStatus.Connecting => TranslationManager.Get(
+                    "companion.status.connecting"),
+                CompanionConnectionManager.ConnectionStatus.Disconnected => TranslationManager.Get("companion.connect"),
+                _ => _companionConnectionManager.Status.ToString()
+            };
+        }
+    }
+
+    partial void OnIsMapWindowClosedChanged(bool value)
+    {
+        RefreshCanExecuteChanged();
+    }
 
     partial void OnCheckVersionOnStartupChanged(bool value)
     {
@@ -102,13 +135,32 @@ public partial class MainViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
-            (_, _) => { ReloadSavegame(); });
+            (_, _) => ReloadSavegame());
 
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, message) => { OnSelectedSavegameChanged(message); });
+            (_, message) => OnSelectedSavegameChanged(message));
+
+        WeakReferenceMessenger.Default.Register<CompanionConnectionStatusEvent>(this, (_, _) =>
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                CompanionConnectCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(CompanionConnectMenuText));
+            });
+        });
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
+    {
+        RefreshCanExecuteChanged();
+        Settings.Default.LastSavegame = message.SelectedSavegame?.FullPath ?? "";
+        Settings.Default.LastSavegameName = message.SelectedSavegame?.GameName ?? "";
+        Settings.Default.Save();
+        UpdateLastSaveGameMenuItem();
+        OpenLastSavegameCommand.NotifyCanExecuteChanged();
+    }
+
+    private void RefreshCanExecuteChanged()
     {
         SaveChangesCommand.NotifyCanExecuteChanged();
         ReloadSavegameCommand.NotifyCanExecuteChanged();
@@ -122,11 +174,7 @@ public partial class MainViewModel : ObservableObject
         IgniteAndRefuelFiresCommand.NotifyCanExecuteChanged();
         ResetStructureDamageCommand.NotifyCanExecuteChanged();
         TeleportWorldItemCommand.NotifyCanExecuteChanged();
-        Settings.Default.LastSavegame = message.SelectedSavegame?.FullPath ?? "";
-        Settings.Default.LastSavegameName = message.SelectedSavegame?.GameName ?? "";
-        Settings.Default.Save();
-        UpdateLastSaveGameMenuItem();
-        OpenLastSavegameCommand.NotifyCanExecuteChanged();
+        OnPropertyChanged(nameof(CanEditTabs));
     }
 
     private void UpdateLastSaveGameMenuItem()
@@ -172,7 +220,7 @@ public partial class MainViewModel : ObservableObject
         SavegameManager.SelectedSavegame = SavegameManager.CreateSaveInfo(directoryInfo);
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void SaveChanges()
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
@@ -207,7 +255,12 @@ public partial class MainViewModel : ObservableObject
         }));
     }
 
-    public static bool IsSavegameSelected()
+    private bool CanSaveAndEdit()
+    {
+        return IsSavegameSelected() && IsMapWindowClosed;
+    }
+
+    private static bool IsSavegameSelected()
     {
         return SavegameManager.SelectedSavegame != null;
     }
@@ -246,7 +299,7 @@ public partial class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new RequestCheckForUpdatesEvent(true, true));
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void ExperimentResetKillStatistics()
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
@@ -270,7 +323,82 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    private bool CompanionCanConnect()
+    {
+        return _companionConnectionManager.Status != CompanionConnectionManager.ConnectionStatus.Connecting;
+    }
+
+    [RelayCommand(CanExecute = nameof(CompanionCanConnect))]
+    private async Task CompanionConnect()
+    {
+        if (!_companionConnectionManager.IsConnected())
+        {
+            await DoConnect();
+        }
+        else
+        {
+            await DoDisconnect();
+        }
+    }
+
+    private async Task DoConnect()
+    {
+        try
+        {
+            var task = _companionConnectionManager.ConnectAsync();
+            var connected = await task;
+            if (!connected)
+            {
+                WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                    TranslationManager.Get("companion.connectionFailed.text"),
+                    TranslationManager.Get("companion.connectionFailed.title")));
+            }
+            else
+            {
+                WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                    TranslationManager.Get("companion.connectionSuccessful.text"),
+                    TranslationManager.Get("companion.connectionSuccessful.title")));
+            }
+        }
+        catch (Exception ex)
+        {
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                string.Format(TranslationManager.Get("companion.connectionFailed.text"), ex.Message),
+                TranslationManager.Get("companion.connectionFailed.title")));
+        }
+        finally
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                CompanionConnectCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(CompanionConnectMenuText));
+            });
+        }
+    }
+
+    private async Task DoDisconnect()
+    {
+        try
+        {
+            await _companionConnectionManager.DisconnectAsync().ConfigureAwait(false);
+        }
+        catch (Exception ex)
+        {
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                string.Format(TranslationManager.Get("companion.connectionFailed.text"), ex.Message),
+                TranslationManager.Get("companion.connectionFailed.title")));
+        }
+        finally
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                CompanionConnectCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(CompanionConnectMenuText));
+            });
+        }
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void ExperimentResetNumberCutTrees()
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
@@ -294,13 +422,13 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void ModifyConsumedItems()
     {
         WeakReferenceMessenger.Default.Send(new RequestModifyConsumedItemsEvent());
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void RestoreBackups(string restoreFromNewest)
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
@@ -318,7 +446,7 @@ public partial class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new RequestChangeSettingsEvent());
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void RegrowTrees()
     {
         WeakReferenceMessenger.Default.Send(new RequestRegrowTreesEvent());
@@ -341,7 +469,7 @@ public partial class MainViewModel : ObservableObject
         SaveChangesCommand.Execute(null);
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void ResetStructureDamage()
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame ||
@@ -366,7 +494,7 @@ public partial class MainViewModel : ObservableObject
             TranslationManager.Get("experiments.resetStructureDamage.success.title")));
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void IgniteAndRefuelFires()
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame ||
@@ -387,9 +515,9 @@ public partial class MainViewModel : ObservableObject
         foreach (var firesByType in fireType.Children())
         foreach (var fire in firesByType)
         {
-            fire["IsLit"]?.Replace(true);
-            fire["Fuel"]?.Replace(65535.0f);
-            fire["FuelDrainRate"]?.Replace(0.00001f);
+            fire["IsLit"] = true;
+            fire["Fuel"] = 65535f;
+            fire["FuelDrainRate"] = 0.00001f;
             countChanged++;
         }
 
@@ -399,7 +527,7 @@ public partial class MainViewModel : ObservableObject
             TranslationManager.Get("experiments.igniteAndRefuelFires.success.title")));
     }
 
-    [RelayCommand(CanExecute = nameof(IsSavegameSelected))]
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
     private void TeleportWorldItem()
     {
         WeakReferenceMessenger.Default.Send(new RequestTeleportWorldItemEvent());
@@ -411,13 +539,18 @@ public partial class MainViewModel : ObservableObject
         var actorPoiGroups = _mapManager.GetActorPois();
 
         var structurePoiGroups = _mapManager.GetStructurePois()
-            .Select(kvp => new PoiGroup(false, kvp.Value, kvp.Key, kvp.Value.First().Icon, PoiGroupType.Actors))
+            .Select(kvp => new PoiGroup(false, kvp.Value, kvp.Key,
+                PoiGroupKeys.Structures +
+                (kvp.Value.FirstOrDefault()?.ScrewStructureWrapper.ScrewStructure?.Id.ToString() ?? ""),
+                PoiGroupType.Structures, kvp.Value.First().Icon))
             .ToList();
 
         var poiGroups = new List<IPoiGrouper>
         {
             PoiGroupCollection.ForActors(actorPoiGroups),
-            new PoiGroupCollection(false, TranslationManager.Get("map.structures"), structurePoiGroups)
+            new PoiGroupCollection(false, TranslationManager.Get("map.structures"), PoiGroupKeys.Structures,
+                structurePoiGroups,
+                PoiGroupType.Structures)
         };
 
         var gameData = Ioc.Default.GetRequiredService<GameData>();
@@ -427,7 +560,8 @@ public partial class MainViewModel : ObservableObject
         {
             poiGroups.AddRange(_mapManager.GetWorldItemPois(selectedSavegame, items)
                 .Select(kvp =>
-                    new PoiGroup(false, kvp.Value, kvp.Key, kvp.Value.First().IconSmall, PoiGroupType.WorldItems)));
+                    new PoiGroup(false, kvp.Value, kvp.Key, PoiGroupKeys.WorldItems + kvp.Key, PoiGroupType.WorldItems,
+                        kvp.Value.First().IconSmall)));
 
             var ziplinePois = MapManager.GetZiplinePois(selectedSavegame);
 
@@ -443,6 +577,7 @@ public partial class MainViewModel : ObservableObject
                 }
 
                 poiGroups.Add(new PoiGroup(false, zipPois, TranslationManager.Get("map.zipLines"),
+                    PoiGroupType.ZipLines,
                     ZipPointPoi.IconSmall));
             }
         }
@@ -452,14 +587,38 @@ public partial class MainViewModel : ObservableObject
         var playerPageViewModel = Ioc.Default.GetRequiredService<PlayerPageViewModel>();
         var playerPos = playerPageViewModel.PlayerState.Pos;
 
-        poiGroups.Add(new PoiGroup(true, new List<IPoi>
+        poiGroups.Add(new PoiGroup(true, BuildPlayerPois(playerPos, playerPageViewModel),
+            TranslationManager.Get("player.mapGroupName"), PoiGroupType.Player, PlayerPoi.IconSmall));
+
+        WeakReferenceMessenger.Default.Send(new RequestOpenMapEvent(poiGroups.OrderBy(group => group.Title).ToList()));
+    }
+
+    private IEnumerable<IPoi> BuildPlayerPois(Position playerPos, PlayerPageViewModel playerPageViewModel)
+    {
+        var playerPois = new List<IPoi>
         {
             new PlayerPoi(playerPos)
             {
-                Enabled = true
+                Enabled = true,
+                Position = playerPageViewModel.PlayerState.Pos
             }
-        }, TranslationManager.Get("player.mapGroupName"), PlayerPoi.IconSmall));
+        };
 
-        WeakReferenceMessenger.Default.Send(new RequestOpenMapEvent(poiGroups.OrderBy(group => group.Title).ToList()));
+        playerPois.AddRange(
+            _networkPlayerManager.InstanceIds.Select(instanceId =>
+            {
+                var poi = new NetworkPlayerPoi(new Position(0, 0, 0), instanceId, "???");
+                poi.SetEnabledNoRefresh(true);
+                return poi;
+            })
+        );
+
+        return playerPois;
+    }
+
+    [RelayCommand]
+    private static void CompanionSetup()
+    {
+        WeakReferenceMessenger.Default.Send(new OpenCompanionSetupWindowEvent());
     }
 }

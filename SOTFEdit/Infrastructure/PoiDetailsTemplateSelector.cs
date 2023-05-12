@@ -13,6 +13,7 @@ public class PoiDetailsTemplateSelector : DataTemplateSelector
     public DataTemplate? ActorPoiDetailsTemplate { get; set; }
     public DataTemplate? StructurePoiDetailsTemplate { get; set; }
     public DataTemplate? ZipPointPoiDetailsTemplate { get; set; }
+    public DataTemplate? CustomPoiDetailsTemplate { get; set; }
     public DataTemplate? DefaultPoiTemplate { get; set; }
 
     public override DataTemplate? SelectTemplate(object? item, DependencyObject container)
@@ -24,6 +25,7 @@ public class PoiDetailsTemplateSelector : DataTemplateSelector
             WorldItemPoi => WorldItemPoiDetailsTemplate,
             ActorPoi => ActorPoiDetailsTemplate,
             StructurePoi => StructurePoiDetailsTemplate,
+            CustomMapPoi => CustomPoiDetailsTemplate,
             DefaultGenericInformationalPoi => GenericInformationalPoiDetailsTemplate,
             ZipPointPoi => ZipPointPoiDetailsTemplate,
             IPoi => DefaultPoiTemplate,

@@ -6,5 +6,6 @@ namespace SOTFEdit.Model.Map.Static;
 public record RawItemPoiCollection(
     Dictionary<string, string> OverridingTypeIcons,
     HashSet<string> DefaultEnabledGroups,
+    HashSet<string> AllowedGroupsForCompanion,
     Dictionary<int, RawItemPoiGroup> Items
 );

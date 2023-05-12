@@ -1,5 +1,62 @@
 # Changelog
 
+## v0.11.0
+
+The biggest change by far in this release is the integration directly into the game and displaying the position of the
+player, Kelvin and Virginia and in Multiplayer-Games - the position of the other players.
+
+Moreover, this also allows the teleportation to any point where we have exact coordinates (x,y,z) ingame without having
+to leave the game.
+
+All you need is a plugin. You can find the instructions at "Companion -> Setup".
+
+### Features
+
+Companion (only works while connected)
+
+- Added integration with a game mod that allows player, follower and multiplayer live tracking on the map
+- Added live teleportation for the player, Kelvin and Virginia without having to leave the game to any point with exact
+  coordinates (x,y,z)
+- Added Custom POIs with Screenshots that you can create and sync to SOTFEdit via an ingame menu
+- If the connection to the companion is established, there will be a "plug" icon at the titlebar of the map
+
+Map
+
+- Updated map with new ponds and lakes
+- Added a darker version of the regular map, with more details
+- The selection of POI types will now be saved and restored when you close and reopen the map
+- Added option to follow the player while connected to the Companion (-> titlebar of the map)
+- Added option to keep the map at the foreground so that it can be used like an overlay (-> titlebar of the map)
+- Added Slider at the bottom to control the zoom level
+
+Other
+
+- Added new option at "Game Setup" which controls if the game pauses while in the inventory
+- Ziplines can now be extended indefinitely and at any distance by clicking one anchor point and then "Add new from
+  here"
+
+### Bugfixes
+
+- Fixed critical bug where ziplines were accidentally removed from the map if structures were modified
+- Complete rewrite of the "Game Setup" tab, which should now work reliably
+    - One major change is that if you switch the Game Mode, the "invalid" settings are removed. So, "Custom" to "
+      Peaceful" will also disable enemy spawning for example.
+- Rewrote Zipline Management so that it now works reliably
+- Fixed the tool to "Lit Fires" so that fires will now really burn
+- Fixed teleportation to positions on the raft
+
+### Improvements
+
+- Changed and added new icons to menu items
+- To identify the rotation of the players and followers while connected, the icons now include a small arrow
+- Removed "Hard Survival" and "Creative" Mode for now as it has not been implemented yet
+- The map can now be opened independently of the main window, saving and editing is disabled though while the map is
+  open
+- The map will now zoom and scroll faster
+- The map is not maximized by default anymore
+    - If you notice a decrease in performance in games while the map is open, just shrink and maximize the map
+- Removed some buttons from the top left of the map to have less distraction and more room
+
 ## v0.10.4
 
 ## Features

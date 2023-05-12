@@ -23,7 +23,8 @@
                               ShadowDepth="3" />
         </Border.Effect>
         <Canvas Width="500" Height="500">
-            <Image Canvas.Top="0" Canvas.Left="0" Source="/SOTFEdit;component/images/splash.jpg" Width="500"
+            <Image Canvas.Top="0" Canvas.Left="0" Source="pack://application:,,,/SOTFEdit;component/images/splash.jpg"
+                   Width="500"
                    Height="500" />
             <TextBlock Canvas.Bottom="20" Canvas.Right="20" TextAlignment="Right" Foreground="White" FontWeight="Bold"
                        Text="{Binding AssemblyVersion}" />

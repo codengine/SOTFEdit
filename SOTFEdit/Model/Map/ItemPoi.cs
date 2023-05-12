@@ -45,7 +45,7 @@ public class ItemPoi : InformationalPoi
             return null;
         }
 
-        return new ItemPoi(
+        var poi = new ItemPoi(
             rawItemPoi.X,
             rawItemPoi.Y,
             rawItemPoi.Teleport.ToPosition(areaMaskManager),
@@ -58,9 +58,12 @@ public class ItemPoi : InformationalPoi
             rawItemPoiGroup.Wiki
         )
         {
-            Enabled = enabled,
             MissingRequiredItems = rawItemPoi.GetMissingRequiredItems(inventoryItems)
         };
+
+        poi.SetEnabledNoRefresh(enabled);
+
+        return poi;
     }
 
     public override void ApplyFilter(MapFilter mapFilter)
@@ -93,5 +96,12 @@ public class ItemPoi : InformationalPoi
     private bool HasItemInInventory(Item item)
     {
         return _inventoryItems.Contains(item.Id);
+    }
+
+    public override void GetTeleportationOffset(out float xOffset, out float yOffset, out float zOffset)
+    {
+        xOffset = 0;
+        yOffset = 0;
+        zOffset = 0;
     }
 }

@@ -99,10 +99,16 @@ public abstract partial class BasePoi : ObservableObject, IPoi
     public virtual int IconWidth => 32;
     public virtual int IconHeight => 32;
     public virtual int IconZIndex => IsSelected ? 99 : 0;
+    public float IconRotation => Position?.Rotation ?? 0;
 
     public virtual void ApplyFilter(MapFilter mapFilter)
     {
         Filtered = ShouldFilter(mapFilter);
+    }
+
+    public void SetEnabledNoRefresh(bool value)
+    {
+        _enabled = value;
     }
 
     public float IconLeft => _left - IconOffset;
@@ -112,6 +118,13 @@ public abstract partial class BasePoi : ObservableObject, IPoi
     public virtual string Title => "";
 
     public string? Description { get; init; }
+
+    public virtual void GetTeleportationOffset(out float xOffset, out float yOffset, out float zOffset)
+    {
+        xOffset = 1;
+        yOffset = 1;
+        zOffset = 1;
+    }
 
     partial void OnPositionChanged(Position? value)
     {
@@ -125,6 +138,9 @@ public abstract partial class BasePoi : ObservableObject, IPoi
         OnPropertyChanged(nameof(PrintableCoordinates));
         OnPropertyChanged(nameof(IconLeft));
         OnPropertyChanged(nameof(IconTop));
+        OnPropertyChanged(nameof(IconRotation));
+        OnPropertyChanged(nameof(AreaName));
+        OnPropertyChanged(nameof(IsUnderground));
         TeleportPlayerHereCommand.NotifyCanExecuteChanged();
         TeleportKelvinHereCommand.NotifyCanExecuteChanged();
         TeleportVirginiaHereCommand.NotifyCanExecuteChanged();
@@ -175,7 +191,7 @@ public abstract partial class BasePoi : ObservableObject, IPoi
 
     private bool CanTeleportVirginia()
     {
-        return Position != null && !IsUnderground && !IsActorOfType(Constants.Actors.VirginiaTypeId);
+        return Position != null && !IsActorOfType(Constants.Actors.VirginiaTypeId);
     }
 
     private bool IsActorOfType(int typeId)
@@ -185,7 +201,7 @@ public abstract partial class BasePoi : ObservableObject, IPoi
 
     private bool CanTeleportKelvin()
     {
-        return Position != null && !IsUnderground && !IsActorOfType(Constants.Actors.KelvinTypeId);
+        return Position != null && !IsActorOfType(Constants.Actors.KelvinTypeId);
     }
 
     [RelayCommand(CanExecute = nameof(CanTeleportKelvin))]
@@ -242,6 +258,8 @@ public interface IPoi
     public int IconWidth { get; }
     public int IconHeight { get; }
     public int IconZIndex { get; }
+    public float IconRotation { get; }
     public bool IsSelected { get; set; }
     public void ApplyFilter(MapFilter mapFilter);
+    void SetEnabledNoRefresh(bool value);
 }

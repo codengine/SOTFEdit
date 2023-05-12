@@ -4,9 +4,11 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using SOTFEdit.Companion.Shared;
+using SOTFEdit.Companion.Shared.Messages;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Infrastructure.Companion;
 using SOTFEdit.Model;
-using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Map;
 
 namespace SOTFEdit.ViewModel;
@@ -20,6 +22,8 @@ public partial class MapTeleportWindowViewModel : ObservableObject
         Virginia
     }
 
+    private readonly CompanionConnectionManager _companionConnectionManager;
+
     private readonly BasePoi _destination;
 
     private readonly ICloseable _parent;
@@ -29,29 +33,29 @@ public partial class MapTeleportWindowViewModel : ObservableObject
     private Area _selectedArea;
 
     [ObservableProperty]
-    private float _xOffset = 1;
+    private float _xOffset;
 
     [ObservableProperty]
-    private float _yOffset = 1;
+    private float _yOffset;
 
     [ObservableProperty]
-    private float _zOffset = 1;
+    private float _zOffset;
 
-    public MapTeleportWindowViewModel(ICloseable parent, BasePoi destination, TeleportationMode teleportationMode)
+    public MapTeleportWindowViewModel(ICloseable parent, BasePoi destination, TeleportationMode teleportationMode,
+        CompanionConnectionManager companionConnectionManager)
     {
         _parent = parent;
         _destination = destination;
         _teleportationMode = teleportationMode;
+        _companionConnectionManager = companionConnectionManager;
         X = destination.Position?.X ?? destination.X;
         Y = destination.Position?.Y ?? 0;
         Z = destination.Position?.Z ?? destination.Z;
 
-        if (destination is ItemPoi)
-        {
-            XOffset = 0;
-            YOffset = 0;
-            ZOffset = 0;
-        }
+        destination.GetTeleportationOffset(out var xOffset, out var yOffset, out var zOffset);
+        XOffset = xOffset;
+        YOffset = yOffset;
+        ZOffset = zOffset;
 
         Areas = Ioc.Default.GetRequiredService<GameData>().AreaManager.GetAllAreas()
             .OrderBy(area => area.Name)
@@ -94,26 +98,63 @@ public partial class MapTeleportWindowViewModel : ObservableObject
         _parent.Close();
     }
 
-    private static void TeleportPlayer(Position newPosition)
+    private void TeleportPlayer(Position newPosition)
     {
-        var playerState = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState;
-        playerState.Pos = newPosition;
+        if (_companionConnectionManager.IsConnected())
+        {
+            var teleport = new CompanionTeleportMessage
+            {
+                Target = CharacterTarget.Player,
+                Mask = newPosition.Area.AreaMask,
+                X = newPosition.X,
+                Y = newPosition.Y,
+                Z = newPosition.Z
+            };
+            _companionConnectionManager.SendAsync(teleport);
+        }
+        else
+        {
+            var playerState = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState;
+            playerState.Pos = newPosition;
+        }
     }
 
-    private static void TeleportKelvin(Position newPosition)
+    private void TeleportKelvin(Position newPosition)
     {
-        var playerState = Ioc.Default.GetRequiredService<FollowerPageViewModel>().KelvinState;
-        TeleportFollower(playerState, newPosition);
+        if (_companionConnectionManager.IsConnected())
+        {
+            TeleportFollowerRemotely(CharacterTarget.Kelvin, newPosition);
+        }
+        else
+        {
+            var followerState = Ioc.Default.GetRequiredService<FollowerPageViewModel>().KelvinState;
+            followerState.Pos = newPosition;
+        }
     }
 
-    private static void TeleportVirginia(Position newPosition)
+    private void TeleportVirginia(Position newPosition)
     {
-        var playerState = Ioc.Default.GetRequiredService<FollowerPageViewModel>().VirginiaState;
-        TeleportFollower(playerState, newPosition);
+        if (_companionConnectionManager.IsConnected())
+        {
+            TeleportFollowerRemotely(CharacterTarget.Virginia, newPosition);
+        }
+        else
+        {
+            var followerState = Ioc.Default.GetRequiredService<FollowerPageViewModel>().VirginiaState;
+            followerState.Pos = newPosition;
+        }
     }
 
-    private static void TeleportFollower(FollowerState followerState, Position newPosition)
+    private void TeleportFollowerRemotely(CharacterTarget characterTarget, Position newPosition)
     {
-        followerState.Pos = newPosition;
+        var teleport = new CompanionTeleportMessage
+        {
+            Target = characterTarget,
+            Mask = newPosition.Area.GraphMask,
+            X = newPosition.X,
+            Y = newPosition.Y,
+            Z = newPosition.Z
+        };
+        _companionConnectionManager.SendAsync(teleport);
     }
 }

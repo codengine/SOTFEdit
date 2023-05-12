@@ -12,7 +12,7 @@ public class PlayerPoi : BasePoi
     public PlayerPoi(Position position) : base(position)
     {
         PoiMessenger.Instance.Register<PlayerPosChangedEvent>(this,
-            (_, message) => { OnPlayerPosChangedEvent(message); });
+            (_, message) => OnPlayerPosChangedEvent(message));
     }
 
     public override BitmapImage Icon => LoadBaseIcon(IconFile);

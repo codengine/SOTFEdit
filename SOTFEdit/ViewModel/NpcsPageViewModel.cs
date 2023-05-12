@@ -42,9 +42,9 @@ public partial class NpcsPageViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, m) => { OnSelectedSavegameChanged(m); });
+            (_, m) => OnSelectedSavegameChanged(m));
         WeakReferenceMessenger.Default.Register<JsonModelChangedEvent>(this,
-            (_, m) => { OnJsonModelChangedEvent(m); });
+            (_, m) => OnJsonModelChangedEvent(m));
     }
 
     private void OnJsonModelChangedEvent(JsonModelChangedEvent message)

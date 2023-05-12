@@ -4,6 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Messaging;
+using SOTFEdit.Infrastructure.Companion;
+using SOTFEdit.Infrastructure.Converters;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
@@ -17,11 +19,11 @@ public partial class MapWindow
     private readonly MapViewModel _dataContext;
     private IPoi? _clickedPoi;
 
-    public MapWindow(Window owner, RequestOpenMapEvent message)
+    public MapWindow(RequestOpenMapEvent message)
     {
-        Owner = owner;
         DataContext = _dataContext = new MapViewModel(message.PoiGroups, Ioc.Default.GetRequiredService<MapManager>(),
             Ioc.Default.GetRequiredService<GameData>());
+        _dataContext.IsNotConnected = !Ioc.Default.GetRequiredService<CompanionConnectionManager>().IsConnected();
         SetupListeners();
         InitializeComponent();
     }
@@ -29,15 +31,35 @@ public partial class MapWindow
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<OpenCategorySelectorEvent>(this,
-            (_, _) => { OnOpenCategorySelectorEvent(); });
+            (_, _) => OnOpenCategorySelectorEvent());
         WeakReferenceMessenger.Default.Register<ShowMapImageEvent>(this,
-            (_, message) => { OnShowMapImageEvent(message); });
+            (_, message) => OnShowMapImageEvent(message));
         PoiMessenger.Instance.Register<ShowTeleportWindowEvent>(this,
             (_, message) => OnShowTeleportWindowEvent(message));
         PoiMessenger.Instance.Register<ShowSpawnActorsWindowEvent>(this,
             (_, message) => OnShowSpawnActorsWindowEvent(message));
         PoiMessenger.Instance.Register<SpawnActorsEvent>(this,
             (_, message) => OnSpawnActorsEvent(message));
+        PoiMessenger.Instance.Register<SelectedPoiChangedEvent>(this,
+            (_, message) => OnSelectedPoiChangedEvent(message.IsSelected));
+        PoiMessenger.Instance.Register<PlayerPosChangedEvent>(this,
+            (_, message) => OnPlayerPosChangedEvent(message));
+    }
+
+    private void OnPlayerPosChangedEvent(PlayerPosChangedEvent message)
+    {
+        if (!_dataContext.FollowPlayer)
+        {
+            return;
+        }
+
+        var ingameToPixel = CoordinateConverter.IngameToPixel(message.NewPosition.X, message.NewPosition.Z);
+        MapZoomControl.ZoomToPos(ingameToPixel.Item1, ingameToPixel.Item2, -16);
+    }
+
+    private void OnSelectedPoiChangedEvent(bool isSelected)
+    {
+        PoiDetailsFlyout.IsOpen = isSelected;
     }
 
     private static void OnSpawnActorsEvent(SpawnActorsEvent message)
@@ -66,6 +88,7 @@ public partial class MapWindow
         WeakReferenceMessenger.Default.UnregisterAll(this);
         WeakReferenceMessenger.Default.UnregisterAll(DataContext);
         PoiMessenger.Instance.Reset();
+        _dataContext.SaveSettings();
     }
 
     private void OnShowMapImageEvent(ShowMapImageEvent message)
@@ -95,19 +118,34 @@ public partial class MapWindow
 
         if (zoomControl.IsPanning)
         {
+            _dataContext.FollowPlayer = false;
             return;
         }
 
         if (_clickedPoi is { } clickedPoi)
         {
-            _dataContext.SelectedPoi = clickedPoi;
+            if (_dataContext.SelectedPoi is IClickToMovePoi { IsMoveRequested: true } clickToMovePoi)
+            {
+                if (clickedPoi.Position is { } position)
+                {
+                    clickToMovePoi.AcceptNewPos(position);
+                }
+            }
+            else
+            {
+                _dataContext.SelectedPoi = clickedPoi;
+            }
+
             _clickedPoi = null;
-            PoiDetailsFlyout.IsOpen = true;
         }
         else
         {
+            if (_dataContext.SelectedPoi is IClickToMovePoi clickToMovePoi)
+            {
+                clickToMovePoi.IsMoveRequested = false;
+            }
+
             _dataContext.SelectedPoi = null;
-            PoiDetailsFlyout.IsOpen = false;
         }
     }
 
@@ -130,5 +168,15 @@ public partial class MapWindow
     private void ZoomControl_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
         _clickedPoi = e.OriginalSource is Image { Tag: IPoi ipoi } ? ipoi : null;
+    }
+
+    private void AlwaysOnTop_OnChecked(object sender, RoutedEventArgs e)
+    {
+        Topmost = true;
+    }
+
+    private void AlwaysOnTop_OnUnchecked(object sender, RoutedEventArgs e)
+    {
+        Topmost = false;
     }
 }

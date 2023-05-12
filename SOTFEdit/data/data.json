@@ -3252,6 +3252,15 @@
       "icon": "board.png"
     },
     {
+      "id": 55,
+      "buildCost": 0,
+      "category": "misc",
+      "icon": "../icons/pole.png",
+      "canFinish": false,
+      "canEdit": false,
+      "showOnMap": false
+    },
+    {
       "id": 56,
       "buildCost": 13,
       "category": "utility",

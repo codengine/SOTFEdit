@@ -2,6 +2,16 @@
   "overridingTypeIcons": {
     "weapon": "/images/items/FireAxe_tn.png"
   },
+  "allowedGroupsForCompanion": [
+    "weapon",
+    "armor",
+    "clothes",
+    "attachments",
+    "equipment",
+    "key",
+    "tool",
+    "weaponMod"
+  ],
   "defaultEnabledGroups": [
     "weapon",
     "armor",
@@ -189,7 +199,7 @@
             "x": -1797.3,
             "y": 14.01,
             "z": 578.74,
-            "areaMask": 0
+            "areaMask": 8388608
           },
           "description": "On Emergency Raft",
           "screenshot": "pistol_1.jpg"
@@ -6517,7 +6527,7 @@
             "x": -1797.65,
             "y": 14.49,
             "z": 577.03,
-            "areaMask": 0
+            "areaMask": 8388608
           },
           "description": "On Emergency Raft",
           "screenshot": "gps_locator_2.jpg"

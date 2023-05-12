@@ -171,7 +171,7 @@ public partial class InventoryPageViewModel : ObservableObject
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
-            (_, m) => { OnSelectedSavegameChanged(m); });
+            (_, m) => OnSelectedSavegameChanged(m));
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
@@ -269,7 +269,11 @@ public partial class InventoryPageViewModel : ObservableObject
     private void AddAllFromCategory(Category category)
     {
         var items = _unassignedItems.Where(item => item.Type == category.Type).ToList();
-        _unassignedItems.RemoveRange(items);
+        foreach (var inventoryItem in items)
+        {
+            _unassignedItems.Remove(inventoryItem);
+        }
+
         _inventory.AddRange(items);
     }
 }
