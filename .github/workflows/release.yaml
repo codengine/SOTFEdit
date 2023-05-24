@@ -24,7 +24,7 @@ jobs:
       - name: Run tests
         run: dotnet test --no-restore --verbosity normal # Run tests
       - name: Build project
-        run: dotnet publish --configuration Release --no-restore --framework net6.0-windows --maxcpucount:1 # Build the app in Release mode
+        run: dotnet publish ${{ github.event.repository.name }} --configuration Release --no-restore --framework net6.0-windows --maxcpucount:1 # Build the app in Release mode
       - name: Create artifacts directory
         run: mkdir -p artifacts
       - name: Zip artifacts with PowerShell script
