@@ -1200,7 +1200,9 @@
     "636": "TemplateD",
     "637": "Action Camera",
     "638": "Basic Log Sled Blueprint",
-    "639": "Space Suit"
+    "639": "Space Suit",
+    "640": "Stone",
+    "641": "Stone Fire Blueprint"
   },
   "poiGroups": {
     "Items": "Items",

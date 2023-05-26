@@ -1195,7 +1195,9 @@
     "636": "TemplateD",
     "637": "Action-Kamera",
     "638": "Bauplan Einfacher Holzschlitten",
-    "639": "Raumanzug"
+    "639": "Raumanzug",
+    "640": "Stein",
+    "641": "Bauplan Stein-Feuer"
   },
   "poiGroups": {
     "Items": "Gegenstände",
