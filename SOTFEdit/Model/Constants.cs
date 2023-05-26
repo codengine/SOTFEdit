@@ -42,6 +42,9 @@ public static class Constants
         public const string PlayerStatsDamage = "GameSetting.Survival.PlayerStatsDamage";
         public const string EnemySpawn = "GameSetting.Vail.EnemySpawn";
         public const string InventoryPause = "GameSetting.Vail.InventoryPause";
+        public const string ColdPenalties = "GameSetting.Survival.ColdPenalties";
+        public const string ReducedFoodInContainers = "GameSetting.Survival.ReducedFoodInContainers";
+        public const string SingleUseContainers = "GameSetting.Survival.SingleUseContainers";
     }
 
     public static class SettingValueKeys

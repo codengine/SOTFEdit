@@ -22,47 +22,26 @@
       },
       "consumableEffects": {
         "_label": "Efekty złego jedzenia",
-        "_tooltip": "Ile obrażeń dostaniesz po zjedzeniu złego jedzenia",
-        "off": "Wyłączone",
-        "normal": "Normalny",
-        "hard": "Trudny"
+        "_tooltip": "Ile obrażeń dostaniesz po zjedzeniu złego jedzenia"
       },
       "playerStatsDamage": {
         "_label": "Obrażenia od odwodnienia itp.",
-        "_tooltip": "Ile obrażeń otrzymasz od odwodnienia itp.",
-        "off": "Off",
-        "normal": "Normalny",
-        "hard": "Trudny"
+        "_tooltip": "Ile obrażeń otrzymasz od odwodnienia itp."
       },
       "animalSpawnRate": {
-        "_label": "Ilość zwierząt",
-        "low": "Mało",
-        "normal": "Normalnie",
-        "high": "Dużo"
+        "_label": "Ilość zwierząt"
       },
       "enemyHealth": {
-        "_label": "Zdrowie przeciwników",
-        "low": "Niskie",
-        "normal": "Normalne",
-        "high": "Wysokie"
+        "_label": "Zdrowie przeciwników"
       },
       "enemyDamage": {
-        "_label": "Obrażenia od przeciwników",
-        "low": "Niskie",
-        "normal": "Normalne",
-        "high": "Wysokie"
+        "_label": "Obrażenia od przeciwników"
       },
       "enemyArmour": {
-        "_label": "Pancerz przeciwników",
-        "low": "Niski",
-        "normal": "Średni",
-        "high": "Wysoki"
+        "_label": "Pancerz przeciwników"
       },
       "enemyAggression": {
-        "_label": "Agresja przeciwników",
-        "low": "Niska",
-        "normal": "Średnia",
-        "high": "Wysoka"
+        "_label": "Agresja przeciwników"
       },
       "startingSeason": {
         "_label": "Początkowa pora roku",
@@ -87,10 +66,15 @@
       },
       "precipitationFrequency": {
         "_label": "Zmiany pogody",
-        "_tooltip": "Jak szybko zmienia się pogoda",
+        "_tooltip": "Jak szybko zmienia się pogoda"
+      },
+      "settingsValues": {
         "low": "Rzadko",
         "default": "Normalnie",
-        "high": "Często"
+        "high": "Często",
+        "normal": "Średnia",
+        "off": "Off",
+        "hard": "Trudny"
       },
       "uid": "UID",
       "customSettings": "Specjane ustawienia",

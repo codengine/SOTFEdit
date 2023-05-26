@@ -16,10 +16,15 @@ public class GameSetupPageViewModel : ObservableObject
     public const string CustomGameMode = "Custom";
     public const string PeacefulGameMode = "Peaceful";
     public const string HardGameMode = "Hard";
+    public const string HardSurvivalGameMode = "HardSurvival";
     public const string SettingValueHigh = "High";
 
     // ReSharper disable once InconsistentNaming
     public const string SettingValueLOW = "LOW";
+
+    // ReSharper disable once InconsistentNaming
+    public const string SettingValueNORMAL = "NORMAL";
+    public const string SettingValueHard = "Hard";
     private const string NameKey = "Name";
     private const string SettingTypeKey = "SettingType";
 
@@ -47,7 +52,10 @@ public class GameSetupPageViewModel : ObservableObject
         { GameSetupKeys.ConsumableEffects, SettingTypeString },
         { GameSetupKeys.PlayerStatsDamage, SettingTypeString },
         { GameSetupKeys.EnemySpawn, SettingTypeBool },
-        { GameSetupKeys.InventoryPause, SettingTypeBool }
+        { GameSetupKeys.InventoryPause, SettingTypeBool },
+        { GameSetupKeys.ReducedFoodInContainers, SettingTypeBool },
+        { GameSetupKeys.SingleUseContainers, SettingTypeBool },
+        { GameSetupKeys.ColdPenalties, SettingTypeString }
     };
 
     private readonly Dictionary<string, string> _stringSettings = new();
@@ -162,6 +170,40 @@ public class GameSetupPageViewModel : ObservableObject
         get => GetStringSetting(GameSetupKeys.PrecipitationFrequency) ?? "Default";
         set => SetStringSetting(GameSetupKeys.PrecipitationFrequency, value);
     }
+    
+    public string? SelectedColdPenalties
+    {
+        get => GetStringSetting(GameSetupKeys.ColdPenalties) ?? "Normal";
+        set => SetStringSetting(GameSetupKeys.ColdPenalties, value);
+    }
+
+    public bool SelectedReducedFoodInContainers
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.ReducedFoodInContainers, out var boolValue))
+            {
+                return boolValue ?? true;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.ReducedFoodInContainers, value);
+    }
+    
+    public bool SelectedSingleUseContainers
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.SingleUseContainers, out var boolValue))
+            {
+                return boolValue ?? true;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.SingleUseContainers, value);
+    }
 
     private void SetStringSetting(string key, string? value)
     {
@@ -232,6 +274,9 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedPlayerStatsDamage));
         OnPropertyChanged(nameof(SelectedPrecipitationFrequency));
         OnPropertyChanged(nameof(SelectedInventoryPause));
+        OnPropertyChanged(nameof(SelectedColdPenalties));
+        OnPropertyChanged(nameof(SelectedReducedFoodInContainers));
+        OnPropertyChanged(nameof(SelectedSingleUseContainers));
     }
 
     private void LoadSettings(Savegame? savegame)
@@ -334,6 +379,19 @@ public class GameSetupPageViewModel : ObservableObject
             case PeacefulGameMode:
                 _boolSettings[GameSetupKeys.EnemySpawn] = false;
                 _stringSettings[GameSetupKeys.AnimalSpawnRate] = SettingValueHigh;
+                break;
+            case HardSurvivalGameMode:
+                _boolSettings[GameSetupKeys.EnemySpawn] = true;
+                _boolSettings[GameSetupKeys.ReducedFoodInContainers] = true;
+                _boolSettings[GameSetupKeys.SingleUseContainers] = true;
+                _stringSettings[GameSetupKeys.EnemyAggression] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.EnemyArmour] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.EnemyDamage] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.EnemyHealth] = SettingValueNORMAL;
+                _stringSettings[GameSetupKeys.AnimalSpawnRate] = SettingValueLOW;
+                _stringSettings[GameSetupKeys.ConsumableEffects] = SettingValueHard;
+                _stringSettings[GameSetupKeys.PlayerStatsDamage] = SettingValueHard;
+                _stringSettings[GameSetupKeys.ColdPenalties] = SettingValueHard;
                 break;
             case HardGameMode:
                 _boolSettings[GameSetupKeys.EnemySpawn] = true;

@@ -23,51 +23,31 @@
         "normal": "Normal",
         "hard": "Hard",
         "peaceful": "Peaceful",
-        "custom": "Custom"
+        "custom": "Custom",
+        "hardSurvival": "Hard Survival"
       },
       "consumableEffects": {
         "_label": "Consumable Effects",
-        "_tooltip": "How much damage you take eating bad food",
-        "off": "Off",
-        "normal": "Normal",
-        "hard": "Hard"
+        "_tooltip": "How much damage you take eating bad food"
       },
       "playerStatsDamage": {
         "_label": "Player Stats Damage",
-        "_tooltip": "How much damage you take from starvation and etc.",
-        "off": "Off",
-        "normal": "Normal",
-        "hard": "Hard"
+        "_tooltip": "How much damage you take from starvation and etc."
       },
       "animalSpawnRate": {
-        "_label": "Animal Spawn Rate",
-        "low": "Low",
-        "normal": "Normal",
-        "high": "High"
+        "_label": "Animal Spawn Rate"
       },
       "enemyHealth": {
-        "_label": "Enemy Health",
-        "low": "Low",
-        "normal": "Normal",
-        "high": "High"
+        "_label": "Enemy Health"
       },
       "enemyDamage": {
-        "_label": "Enemy Damage",
-        "low": "Low",
-        "normal": "Normal",
-        "high": "High"
+        "_label": "Enemy Damage"
       },
       "enemyArmour": {
-        "_label": "Enemy Armor",
-        "low": "Low",
-        "normal": "Normal",
-        "high": "High"
+        "_label": "Enemy Armor"
       },
       "enemyAggression": {
-        "_label": "Enemy Aggression",
-        "low": "Low",
-        "normal": "Normal",
-        "high": "High"
+        "_label": "Enemy Aggression"
       },
       "startingSeason": {
         "_label": "Starting Season",
@@ -92,14 +72,22 @@
       },
       "precipitationFrequency": {
         "_label": "Precipitation Frequency",
-        "_tooltip": "How often does the weather change",
+        "_tooltip": "How often does the weather change"
+      },
+      "settingsValues": {
         "low": "Low",
         "default": "Default",
-        "high": "High"
+        "high": "High",
+        "normal": "Normal",
+        "off": "Off",
+        "hard": "Hard"
       },
       "uid": "UID",
       "inventoryPause": "Pause in Inventory",
-      "customSettings": "Custom Settings"
+      "customSettings": "Custom Settings",
+      "reducedFoodInContainers": "Reduced Food in Containers",
+      "singleUseContainers": "Single-Use Containers",
+      "coldPenalties": "Cold Penalties"
     },
     "state": {
       "header": "Game State",

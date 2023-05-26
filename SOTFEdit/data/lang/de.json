@@ -18,51 +18,31 @@
         "normal": "Normal",
         "hard": "Schwer",
         "peaceful": "Friedlich",
-        "custom": "Benutzerdefiniert"
+        "custom": "Benutzerdefiniert",
+        "hardSurvival": "Hard Survival"
       },
       "consumableEffects": {
         "_label": "Verderb-Effekte",
-        "_tooltip": "Wie viel Schaden du nimmst, wenn du schlechtes Essen isst",
-        "off": "Aus",
-        "normal": "Normal",
-        "hard": "Schwer"
+        "_tooltip": "Wie viel Schaden du nimmst, wenn du schlechtes Essen isst"
       },
       "playerStatsDamage": {
         "_label": "Spielerstatus-Schaden",
-        "_tooltip": "Wie viel Schaden du durch Hunger und so weiter nimmst.",
-        "off": "Aus",
-        "normal": "Normal",
-        "hard": "Schwer"
+        "_tooltip": "Wie viel Schaden du durch Hunger und so weiter nimmst."
       },
       "animalSpawnRate": {
-        "_label": "Tier-Spawngeschwindigkeit",
-        "low": "Niedrig",
-        "normal": "Normal",
-        "high": "Hoch"
+        "_label": "Tier-Spawngeschwindigkeit"
       },
       "enemyHealth": {
-        "_label": "Feind-Gesundheit",
-        "low": "Niedrig",
-        "normal": "Normal",
-        "high": "Hoch"
+        "_label": "Feind-Gesundheit"
       },
       "enemyDamage": {
-        "_label": "Feind-Schaden",
-        "low": "Niedrig",
-        "normal": "Normal",
-        "high": "Hoch"
+        "_label": "Feind-Schaden"
       },
       "enemyArmour": {
-        "_label": "Feind-Rüstung",
-        "low": "Niedrig",
-        "normal": "Normal",
-        "high": "Hoch"
+        "_label": "Feind-Rüstung"
       },
       "enemyAggression": {
-        "_label": "Feind-Aggressivität",
-        "low": "Niedrig",
-        "normal": "Normal",
-        "high": "Hoch"
+        "_label": "Feind-Aggressivität"
       },
       "startingSeason": {
         "_label": "Startsaison",
@@ -87,10 +67,15 @@
       },
       "precipitationFrequency": {
         "_label": "Niederschlagsfrequenz",
-        "_tooltip": "Wie oft ändert sich das Wetter",
+        "_tooltip": "Wie oft ändert sich das Wetter"
+      },
+      "settingsValues": {
+        "off": "Aus",
+        "normal": "Normal",
+        "hard": "Schwer",
         "low": "Niedrig",
-        "default": "Standard",
-        "high": "Hoch"
+        "high": "Hoch",
+        "default": "Standard"
       },
       "uid": "UID",
       "inventoryPause": "Pause im Inventar",
