@@ -11,11 +11,13 @@ namespace SOTFEdit.Model;
 public class GameData
 {
     public GameData(IEnumerable<Item> items, [JsonProperty("storages")] List<StorageDefinition> storageDefinitions,
+        [JsonProperty("advancedStorages")] List<AdvancedStorageDefinition> advancedStorageDefinitions,
         [JsonProperty("followers")] FollowerData followerData, Configuration config, List<string> namedIntKeys,
         List<ActorType> actorTypes, List<ScrewStructure> screwStructures, List<Area> areas)
     {
         Items = new ItemList(items.OrderBy(item => item.Name));
         StorageDefinitions = storageDefinitions;
+        AdvancedStorageDefinitions = advancedStorageDefinitions;
         FollowerData = followerData;
         Config = config;
         NamedIntKeys = namedIntKeys.OrderBy(key => key).ToList();
@@ -31,6 +33,7 @@ public class GameData
 
     public ItemList Items { get; }
     public List<StorageDefinition> StorageDefinitions { get; }
+    public List<AdvancedStorageDefinition> AdvancedStorageDefinitions { get; }
     public FollowerData FollowerData { get; }
     public Configuration Config { get; }
     public List<string> NamedIntKeys { get; }

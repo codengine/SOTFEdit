@@ -8,7 +8,7 @@ using SOTFEdit.View.Storage;
 
 namespace SOTFEdit.ViewModel;
 
-public partial class ItemStorageViewModel : ObservableObject
+public partial class AdvancedItemStorageViewModel : ObservableObject
 {
     [ObservableProperty]
     private int _count;
@@ -18,19 +18,24 @@ public partial class ItemStorageViewModel : ObservableObject
     [ObservableProperty]
     private ItemWrapper? _selectedItemForAll;
 
-    public ItemStorageViewModel(BaseStorage itemsStorage)
+    public AdvancedItemStorageViewModel(AdvancedItemsStorage itemsStorage)
     {
         ItemsStorage = itemsStorage;
-        SelectedItemForAll = ItemsStorage.SupportedItems.FirstOrDefault();
     }
 
-    public BaseStorage ItemsStorage { get; }
+    public AdvancedItemsStorage ItemsStorage { get; }
 
     public int Max => SelectedItemForAll?.Max ?? 1000;
 
     partial void OnSelectedItemForAllChanged(ItemWrapper? value)
     {
         Count = value?.Max ?? 1;
+    }
+
+    [RelayCommand]
+    private void ApplyToAllOfSameType()
+    {
+        WeakReferenceMessenger.Default.Send(new ApplyToAllOfSameTypeEvent(ItemsStorage));
     }
 
     [RelayCommand]
@@ -54,7 +59,13 @@ public partial class ItemStorageViewModel : ObservableObject
         foreach (var slot in ItemsStorage.Slots)
         foreach (var storedItem in slot.StoredItems)
         {
-            storedItem.SelectedItem = selectedItem;
+            var candidate = storedItem.SupportedItems.FirstOrDefault(item => item.Item.Id == selectedItem.Item.Id);
+            if (candidate == null)
+            {
+                continue;
+            }
+
+            storedItem.SelectedItem = candidate;
             storedItem.Count = Count;
         }
     }
@@ -75,11 +86,5 @@ public partial class ItemStorageViewModel : ObservableObject
     public bool HasItemSelected()
     {
         return SelectedItemForAll != null;
-    }
-
-    [RelayCommand]
-    private void ApplyToAllOfSameType()
-    {
-        WeakReferenceMessenger.Default.Send(new ApplyToAllOfSameTypeEvent(ItemsStorage));
     }
 }

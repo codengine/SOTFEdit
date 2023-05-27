@@ -19,6 +19,8 @@ namespace SOTFEdit.ViewModel;
 public partial class StoragePageViewModel : ObservableObject
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
+    private readonly Dictionary<int, AdvancedStorageDefinition> _advancedStorageDefinitions;
     private readonly Dictionary<int, StorageDefinition> _storageDefinitions;
     private readonly StorageFactory _storageFactory;
 
@@ -33,6 +35,7 @@ public partial class StoragePageViewModel : ObservableObject
         _storageFactory = storageFactory;
         StorageCollections = new ObservableCollection<StorageCollection>();
         _storageDefinitions = gameData.StorageDefinitions.ToDictionary(definition => definition.Id);
+        _advancedStorageDefinitions = gameData.AdvancedStorageDefinitions.ToDictionary(definition => definition.Id);
         SetupListeners();
     }
 
@@ -42,6 +45,20 @@ public partial class StoragePageViewModel : ObservableObject
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
             (_, m) => OnSelectedSavegameChanged(m));
+        WeakReferenceMessenger.Default.Register<ApplyToAllOfSameTypeEvent>(this,
+            (_, m) => OnApplyToAllOfSameTypeEvent(m));
+    }
+
+    private void OnApplyToAllOfSameTypeEvent(ApplyToAllOfSameTypeEvent message)
+    {
+        var collection = StorageCollections.FirstOrDefault(collection => collection.StorageTypeId == message.Storage.GetStorageTypeId());
+        if (collection != null)
+        {
+            foreach (var storage in collection.Storages.Where(s => s != message.Storage))
+            {
+                storage.ApplyFrom(message.Storage);
+            }
+        }
     }
 
     private bool HasStorages()
@@ -72,6 +89,7 @@ public partial class StoragePageViewModel : ObservableObject
             ItemsStorage itemsStorage => new ItemStorageUserControl(itemsStorage),
             StorageWithModulePerItem logStorage => new ItemStorageUserControl(logStorage),
             FoodStorage foodStorage => new ItemStorageUserControl(foodStorage),
+            AdvancedItemsStorage advancedItemsStorage => new AdvancedItemStorageUserControl(advancedItemsStorage),
             _ => SelectedUserControl
         };
         SelectedStorage = iStorage;
@@ -93,7 +111,7 @@ public partial class StoragePageViewModel : ObservableObject
             return;
         }
 
-        foreach (var storageCollection in storageCollectionsById.Values)
+        foreach (var storageCollection in storageCollectionsById.Values.OrderBy(collection => collection.Name))
         {
             StorageCollections.Add(storageCollection);
         }
@@ -114,8 +132,7 @@ public partial class StoragePageViewModel : ObservableObject
 
         foreach (var structure in structures)
         {
-            if (structure.ToObject<StorageSaveData>() is not { } storageSaveData ||
-                !_storageDefinitions.ContainsKey(storageSaveData.Id))
+            if (structure.ToObject<StorageSaveData>() is not { } storageSaveData || !StorageIdKnown(storageSaveData.Id))
             {
                 continue;
             }
@@ -124,6 +141,11 @@ public partial class StoragePageViewModel : ObservableObject
         }
 
         return result;
+    }
+
+    private bool StorageIdKnown(int id)
+    {
+        return _storageDefinitions.ContainsKey(id) || _advancedStorageDefinitions.ContainsKey(id);
     }
 
     private Dictionary<int, StorageCollection>? ReadStorageCollections(Savegame selectedSavegame)
@@ -137,7 +159,9 @@ public partial class StoragePageViewModel : ObservableObject
 
         foreach (var saveData in storageSaveData)
         {
-            if (_storageDefinitions.GetValueOrDefault(saveData.Id) is not { } storageDefinition)
+            var storageDefinition = _storageDefinitions.GetValueOrDefault(saveData.Id) ??
+                                    (IStorageDefinition?)_advancedStorageDefinitions.GetValueOrDefault(saveData.Id);
+            if (storageDefinition == null)
             {
                 continue;
             }
@@ -146,7 +170,7 @@ public partial class StoragePageViewModel : ObservableObject
 
             if (!storageCollectionsById.ContainsKey(saveData.Id))
             {
-                storageCollection = new StorageCollection(storageDefinition);
+                storageCollection = new StorageCollection(saveData.Id, storageDefinition.Name);
                 storageCollectionsById.Add(saveData.Id, storageCollection);
             }
             else
@@ -184,8 +208,7 @@ public partial class StoragePageViewModel : ObservableObject
 
         foreach (var structureToken in structures)
         {
-            if (structureToken["Id"]?.Value<int>() is not { } structureId ||
-                !_storageDefinitions.ContainsKey(structureId))
+            if (structureToken["Id"]?.Value<int>() is not { } structureId || !StorageIdKnown(structureId))
             {
                 continue;
             }

@@ -293,6 +293,10 @@
     "percentDone": "Fortschritt",
     "modification": "Modifikation",
     "category": "Kategorie",
+    "applyToAllOfSameType": {
+      "text": "Auf alle des selben Typs anwenden",
+      "tooltip": "Wendet die oben eingestellten Items und Anzahl auf alle Storages des selben Typs an"
+    },
     "categories": {
       "shelter": "Unterkunft",
       "treeShelter": "Baum-Unterkunft",

@@ -146,6 +146,17 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
         }
     }
 
+    public int GetStorageTypeId()
+    {
+        return Definition.Id;
+    }
+
+    public void ApplyFrom(IStorage storage)
+    {
+        Slots.Clear();
+        SetSaveData(storage.ToStorageSaveData());
+    }
+
     private void RemoveOverflowingSlots()
     {
         if (Slots.Count > Definition.Slots)

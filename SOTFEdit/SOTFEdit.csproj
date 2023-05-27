@@ -62,6 +62,10 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Settings.settings</DependentUpon>
         </Compile>
+        <Compile Update="View\Storage\AdvancedItemStorageUserControl.xaml.cs">
+          <SubType>Code</SubType>
+          <DependentUpon>AdvancedItemStorageUserControl.xaml</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -133,6 +137,11 @@
             <Generator>MSBuild:Compile</Generator>
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
+        </Page>
+        <Page Update="View\Storage\AdvancedItemStorageUserControl.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <XamlRuntime>Wpf</XamlRuntime>
+          <SubType>Designer</SubType>
         </Page>
     </ItemGroup>
 

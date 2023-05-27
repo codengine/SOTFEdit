@@ -9,4 +9,6 @@ public interface IStorage
 
     public StorageSaveData ToStorageSaveData();
     void SetAllToMax();
+    int GetStorageTypeId();
+    void ApplyFrom(IStorage messageStorage);
 }

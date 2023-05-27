@@ -4,7 +4,7 @@ using SOTFEdit.Infrastructure;
 namespace SOTFEdit.Model.Storage;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public sealed class StorageDefinition
+public sealed class StorageDefinition : IStorageDefinition
 {
     public StorageDefinition(int id, int slots, int? maxPerSlot = null,
         HashSet<int>? restrictedItemIds = null,
@@ -17,11 +17,12 @@ public sealed class StorageDefinition
         Type = type;
     }
 
-    public int Id { get; }
-    public string Name => TranslationManager.Get("structures.types." + Id);
     public int Slots { get; }
     public int? MaxPerSlot { get; }
     public HashSet<int>? RestrictedItemIds { get; }
+    public string Name => TranslationManager.Get("structures.types." + Id);
+
+    public int Id { get; }
     public StorageType Type { get; }
 }
 

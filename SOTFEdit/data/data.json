@@ -2656,15 +2656,6 @@
       "slots": 4
     },
     {
-      "id": 58,
-      "slots": 1,
-      "maxPerSlot": 12,
-      "restrictedItemIds": [
-        78
-      ],
-      "type": "Logs"
-    },
-    {
       "id": 59,
       "slots": 1,
       "maxPerSlot": 8,
@@ -2672,6 +2663,66 @@
         78
       ],
       "type": "Logs"
+    }
+  ],
+  "advancedStorages": [
+    {
+      "id": 58,
+      "slots": [
+        {
+          "restrictedItems": {
+            "78": 12,
+            "393": 40,
+            "640": 27
+          },
+          "slotOrder": [
+            78,
+            393,
+            640
+          ]
+        },
+        {
+          "restrictedItems": {
+            "405": 25,
+            "392": 40
+          },
+          "slotOrder": [
+            392,
+            405
+          ]
+        },
+        {
+          "restrictedItems": {
+            "405": 25,
+            "392": 40
+          },
+          "slotOrder": [
+            392,
+            405
+          ]
+        },
+        {
+          "restrictedItems": {
+            "405": 25,
+            "392": 40
+          },
+          "slotOrder": [
+            392,
+            405
+          ]
+        },
+        {
+          "restrictedItems": {
+            "405": 25,
+            "392": 40
+          },
+          "slotOrder": [
+            392,
+            405
+          ]
+        }
+      ],
+      "type": "Items"
     }
   ],
   "followers": {

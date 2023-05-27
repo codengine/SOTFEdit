@@ -301,6 +301,10 @@
     "percentDone": "Percent Done",
     "modification": "Modification",
     "category": "Category",
+    "applyToAllOfSameType": {
+      "text": "Apply to all of same type",
+      "tooltip": "Applies the assigned items and count above to all storages of the same type"
+    },
     "categories": {
       "shelter": "Shelter",
       "treeShelter": "Tree Shelter",

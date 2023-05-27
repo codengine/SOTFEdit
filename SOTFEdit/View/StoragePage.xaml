@@ -31,9 +31,27 @@
                     <TreeView.Resources>
                         <HierarchicalDataTemplate DataType="{x:Type viewModel:StorageCollection}"
                                                   ItemsSource="{Binding Storages}">
-                            <TextBlock Text="{Binding StorageDefinition.Name, Mode=OneTime}" />
+                            <TextBlock Text="{Binding Name, Mode=OneTime}" />
                         </HierarchicalDataTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type storage:ItemsStorage}">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="pack://application:,,,/SOTFEdit;component/images/red-pin.png" Width="32"
+                                       Height="32"
+                                       Cursor="Hand"
+                                       VerticalAlignment="Center">
+                                    <Image.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick"
+                                                      Command="{Binding OpenMapAtStoragePosCommand}" />
+                                    </Image.InputBindings>
+                                </Image>
+                                <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" />
+                            </Grid>
+                        </HierarchicalDataTemplate>
+                        <HierarchicalDataTemplate DataType="{x:Type storage:AdvancedItemsStorage}">
                             <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />

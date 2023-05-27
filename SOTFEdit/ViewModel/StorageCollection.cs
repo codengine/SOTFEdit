@@ -5,11 +5,14 @@ namespace SOTFEdit.ViewModel;
 
 public class StorageCollection
 {
-    public StorageCollection(StorageDefinition storageDefinition)
+    public StorageCollection(int storageTypeId, string name)
     {
-        StorageDefinition = storageDefinition;
+        StorageTypeId = storageTypeId;
+        Name = name;
     }
 
-    public StorageDefinition StorageDefinition { get; }
+    public int StorageTypeId { get; }
+    public string Name { get; }
+
     public ObservableCollection<IStorage> Storages { get; } = new();
 }
