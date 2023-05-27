@@ -355,7 +355,8 @@
       "56": "Regenfänger",
       "57": "Federfalle",
       "58": "Holzschlitten",
-      "59": "Einfacher Holzschlitten"
+      "59": "Einfacher Holzschlitten",
+      "60": "Stein-Feuerstelle"
     },
     "modificationMode": {
       "None": "Keine Änderung",
@@ -1182,7 +1183,7 @@
     "638": "Bauplan Einfacher Holzschlitten",
     "639": "Raumanzug",
     "640": "Stein",
-    "641": "Bauplan Stein-Feuer"
+    "641": "Bauplan Stein-Feuerstele"
   },
   "poiGroups": {
     "Items": "Gegenstände",

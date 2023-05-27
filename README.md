@@ -324,4 +324,5 @@ collect all data.
 - [Golf icons created by Good Ware - Flaticon](https://www.flaticon.com/free-icons/golf)
 - [Bookmark icons created by Ian Anandara - Flaticon](https://www.flaticon.com/free-icons/bookmark)
 - [Soldier icons created by ppangman - Flaticon](https://www.flaticon.com/free-icons/soldier)
+- [Fireplace icons created by Vector Squad - Flaticon](https://www.flaticon.com/free-icons/fireplace)
 

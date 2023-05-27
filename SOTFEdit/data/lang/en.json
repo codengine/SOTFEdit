@@ -363,7 +363,8 @@
       "56": "Rain Catcher",
       "57": "Spring Trap",
       "58": "Log Sled",
-      "59": "Basic Log Sled"
+      "59": "Basic Log Sled",
+      "60": "Stone Fireplace"
     },
     "modificationMode": {
       "None": "None",
@@ -1190,7 +1191,7 @@
     "638": "Basic Log Sled Blueprint",
     "639": "Space Suit",
     "640": "Stone",
-    "641": "Stone Fire Blueprint"
+    "641": "Stone Fireplace Blueprint"
   },
   "poiGroups": {
     "Items": "Items",

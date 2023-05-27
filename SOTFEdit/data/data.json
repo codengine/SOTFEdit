@@ -3274,6 +3274,13 @@
       "buildCost": 33,
       "category": "storage",
       "icon": "basket.png"
+    },
+    {
+      "id": 60,
+      "buildCost": 42,
+      "category": "utility",
+      "icon": "fireplace.png",
+      "canFinish": false
     }
   ],
   "areas": [
