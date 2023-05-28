@@ -47,9 +47,8 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
         var currentSlot = 0;
         var storedItems = new Dictionary<int, StoredItem>();
 
-        foreach (var storageBlock in saveData.Storages)
+        foreach (var itemBlock in saveData.Storages.Select(storageBlock => storageBlock.ItemBlocks.FirstOrDefault()))
         {
-            var itemBlock = storageBlock.ItemBlocks.FirstOrDefault();
             if (itemBlock == null)
             {
                 currentSlot++;
@@ -222,7 +221,7 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
         return itemWrappers;
     }
 
-    private int? GetSlotIndex(int currentSlot)
+    private static int? GetSlotIndex(int currentSlot)
     {
         if (currentSlot <= 10)
         {

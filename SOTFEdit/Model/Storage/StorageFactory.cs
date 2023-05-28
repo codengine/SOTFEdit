@@ -1,5 +1,4 @@
 ﻿using System;
-using SOTFEdit.Model.SaveData.Storage.Module;
 
 namespace SOTFEdit.Model.Storage;
 

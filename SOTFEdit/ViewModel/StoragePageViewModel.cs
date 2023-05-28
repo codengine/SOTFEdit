@@ -52,12 +52,14 @@ public partial class StoragePageViewModel : ObservableObject
     private void OnApplyToAllOfSameTypeEvent(ApplyToAllOfSameTypeEvent message)
     {
         var collection = StorageCollections.FirstOrDefault(collection => collection.StorageTypeId == message.Storage.GetStorageTypeId());
-        if (collection != null)
+        if (collection == null)
         {
-            foreach (var storage in collection.Storages.Where(s => s != message.Storage))
-            {
-                storage.ApplyFrom(message.Storage);
-            }
+            return;
+        }
+
+        foreach (var storage in collection.Storages.Where(s => s != message.Storage))
+        {
+            storage.ApplyFrom(message.Storage);
         }
     }
 
