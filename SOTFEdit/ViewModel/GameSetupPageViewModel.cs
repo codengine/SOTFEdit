@@ -317,7 +317,7 @@ public class GameSetupPageViewModel : ObservableObject
                     break;
                 case SettingTypeBool:
                     var boolValue = SettingReader.ReadBool(setting);
-                    _boolSettings[name] = boolValue;
+                    _boolSettings[name] = boolValue ?? false;
 
                     break;
             }
