@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.11.1
+
+Due to a change in the data model for log, stick, bone and stone holders, older savegames might be incompatible.
+Please save the game first using the current game version before you use this version of the editor.
+
+### Features
+
+- Added new items: Stone Fireplace Blueprint, Stone (the bigger ones used for constructions)
+- Added support for Hard Survival mode (you can switch around freely if you wish)
+- Added support for changes to the Advanced Log Sled
+- Added Button for storages to apply the current item setup to all storages of the same type
+
+### Improvements
+
+- Renamed "Log Sled" to "Advanced Log Sled"
+- Change data model of log, stick, bone and stone holders to a simplified one
+
+### Fixes
+
+- Fix issue if a game setting bool value is null
+
 ## v0.11.0
 
 The biggest change by far in this release is the integration directly into the game and displaying the position of the
