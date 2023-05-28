@@ -170,7 +170,7 @@ public class GameSetupPageViewModel : ObservableObject
         get => GetStringSetting(GameSetupKeys.PrecipitationFrequency) ?? "Default";
         set => SetStringSetting(GameSetupKeys.PrecipitationFrequency, value);
     }
-    
+
     public string? SelectedColdPenalties
     {
         get => GetStringSetting(GameSetupKeys.ColdPenalties) ?? "Normal";
@@ -190,7 +190,7 @@ public class GameSetupPageViewModel : ObservableObject
         }
         set => SetBoolSetting(GameSetupKeys.ReducedFoodInContainers, value);
     }
-    
+
     public bool SelectedSingleUseContainers
     {
         get

@@ -2,9 +2,10 @@
 
 namespace SOTFEdit.Model.Storage;
 
-public class ResourceStorage: RestrictedStorage
+public class ResourceStorage : RestrictedStorage
 {
-    public ResourceStorage(StorageDefinition definition, ItemList itemList, int index) : base(definition, itemList, index)
+    public ResourceStorage(StorageDefinition definition, ItemList itemList, int index) : base(definition, itemList,
+        index)
     {
     }
 

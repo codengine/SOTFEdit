@@ -85,7 +85,8 @@
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.off'}" Tag="Off" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
                                   Tag="Normal" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.hard'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHard}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.hard'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHard}" />
                 </ComboBox>
 
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="1"
@@ -99,7 +100,8 @@
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.off'}" Tag="Off" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
                                   Tag="Normal" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.hard'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHard}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.hard'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHard}" />
                 </ComboBox>
 
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="2"
@@ -110,13 +112,14 @@
                     <ComboBoxItem />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueLOW}" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.high'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
                 </ComboBox>
 
                 <Label Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0"
-                       Content="{infrastructure:Translate 'game.setup.coldPenalties'}"/>
+                       Content="{infrastructure:Translate 'game.setup.coldPenalties'}" />
                 <ComboBox Grid.Column="1" Grid.Row="3"
                           SelectedValue="{Binding SelectedColdPenalties, UpdateSourceTrigger=PropertyChanged}"
                           SelectedValuePath="Tag">
@@ -124,7 +127,8 @@
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.off'}" Tag="Off" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
                                   Tag="Normal" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.hard'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHard}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.hard'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHard}" />
                 </ComboBox>
 
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="4"
@@ -164,7 +168,8 @@
                     <ComboBoxItem />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueLOW}" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.high'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
                 </ComboBox>
@@ -176,7 +181,8 @@
                     <ComboBoxItem />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueLOW}" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.high'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
                 </ComboBox>
@@ -188,7 +194,8 @@
                     <ComboBoxItem />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueLOW}" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.high'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
 
@@ -201,7 +208,8 @@
                     <ComboBoxItem />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueLOW}" />
-                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}" Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.high'}"
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
                 </ComboBox>

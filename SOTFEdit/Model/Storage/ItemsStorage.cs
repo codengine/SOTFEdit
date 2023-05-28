@@ -46,7 +46,8 @@ public class ItemsStorage : BaseStorage
         return _supportedItems;
     }
 
-    public static StorageSaveData GenericToStorageSaveData(IStorageDefinition storageDefinition, IEnumerable<StorageSlot> slots)
+    public static StorageSaveData GenericToStorageSaveData(IStorageDefinition storageDefinition,
+        IEnumerable<StorageSlot> slots)
     {
         var storageSaveData = new StorageSaveData
         {
