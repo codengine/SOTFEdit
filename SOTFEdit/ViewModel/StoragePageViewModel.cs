@@ -86,9 +86,7 @@ public partial class StoragePageViewModel : ObservableObject
 
         SelectedUserControl = iStorage switch
         {
-            ItemsStorage itemsStorage => new ItemStorageUserControl(itemsStorage),
-            StorageWithModulePerItem logStorage => new ItemStorageUserControl(logStorage),
-            FoodStorage foodStorage => new ItemStorageUserControl(foodStorage),
+            BaseStorage baseStorage => new ItemStorageUserControl(baseStorage),
             AdvancedItemsStorage advancedItemsStorage => new AdvancedItemStorageUserControl(advancedItemsStorage),
             _ => SelectedUserControl
         };

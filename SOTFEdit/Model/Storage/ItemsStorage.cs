@@ -46,15 +46,15 @@ public class ItemsStorage : BaseStorage
         return _supportedItems;
     }
 
-    public override StorageSaveData ToStorageSaveData()
+    public static StorageSaveData GenericToStorageSaveData(IStorageDefinition storageDefinition, ICollection<StorageSlot> slots)
     {
         var storageSaveData = new StorageSaveData
         {
-            Id = Definition.Id,
+            Id = storageDefinition.Id,
             Storages = new List<StorageBlock>()
         };
 
-        foreach (var slot in Slots)
+        foreach (var slot in slots)
         {
             var storageBlock = new StorageBlock
             {
@@ -95,5 +95,10 @@ public class ItemsStorage : BaseStorage
         }
 
         return storageSaveData;
+    }
+
+    public override StorageSaveData ToStorageSaveData()
+    {
+        return GenericToStorageSaveData(Definition, Slots);
     }
 }

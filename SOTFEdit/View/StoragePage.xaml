@@ -33,7 +33,7 @@
                                                   ItemsSource="{Binding Storages}">
                             <TextBlock Text="{Binding Name, Mode=OneTime}" />
                         </HierarchicalDataTemplate>
-                        <HierarchicalDataTemplate DataType="{x:Type storage:ItemsStorage}">
+                        <HierarchicalDataTemplate DataType="{x:Type storage:BaseStorage}">
                             <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -52,42 +52,6 @@
                             </Grid>
                         </HierarchicalDataTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type storage:AdvancedItemsStorage}">
-                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Source="pack://application:,,,/SOTFEdit;component/images/red-pin.png" Width="32"
-                                       Height="32"
-                                       Cursor="Hand"
-                                       VerticalAlignment="Center">
-                                    <Image.InputBindings>
-                                        <MouseBinding MouseAction="LeftClick"
-                                                      Command="{Binding OpenMapAtStoragePosCommand}" />
-                                    </Image.InputBindings>
-                                </Image>
-                                <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" />
-                            </Grid>
-                        </HierarchicalDataTemplate>
-                        <HierarchicalDataTemplate DataType="{x:Type storage:FoodStorage}">
-                            <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Source="pack://application:,,,/SOTFEdit;component/images/red-pin.png" Width="32"
-                                       Height="32"
-                                       Cursor="Hand"
-                                       VerticalAlignment="Center">
-                                    <Image.InputBindings>
-                                        <MouseBinding MouseAction="LeftClick"
-                                                      Command="{Binding OpenMapAtStoragePosCommand}" />
-                                    </Image.InputBindings>
-                                </Image>
-                                <TextBlock Grid.Column="1" Text="{Binding Description}" VerticalAlignment="Center" />
-                            </Grid>
-                        </HierarchicalDataTemplate>
-                        <HierarchicalDataTemplate DataType="{x:Type storage:StorageWithModulePerItem}">
                             <Grid VerticalAlignment="Center" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />

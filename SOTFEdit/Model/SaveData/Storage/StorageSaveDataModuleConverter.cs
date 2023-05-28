@@ -35,7 +35,6 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
         {
             1 => BuildSourceActorStorageModule(obj),
             3 => BuildFoodSpoilModule(moduleId, obj),
-            6 => BuildLogStorageModule(),
             _ => BuildGenericModule(moduleId, obj)
         };
 
@@ -55,11 +54,6 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
     private static IStorageModule BuildGenericModule(int moduleId, JObject moduleToken)
     {
         return new GenericModule(moduleId, moduleToken);
-    }
-
-    private static IStorageModule BuildLogStorageModule()
-    {
-        return new LogStorageModule();
     }
 
     private static IStorageModule BuildFoodSpoilModule(int moduleId, JObject obj)

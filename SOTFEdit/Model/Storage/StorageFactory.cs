@@ -24,17 +24,20 @@ public class StorageFactory
 
     private IStorage Build(StorageDefinition storageDefinition, int index)
     {
-        return storageDefinition.Type switch
+        switch (storageDefinition.Type)
         {
-            StorageType.Items => new ItemsStorage(storageDefinition, _items, index),
-            StorageType.Food => new FoodStorage(storageDefinition, _items, index),
-            StorageType.Logs => new StorageWithModulePerItem(storageDefinition, _items, index,
-                () => new LogStorageModule()),
-            StorageType.Sticks => new StorageWithModulePerItem(storageDefinition, _items, index),
-            StorageType.Stones => new StorageWithModulePerItem(storageDefinition, _items, index),
-            StorageType.Bones => new StorageWithModulePerItem(storageDefinition, _items, index),
-            _ => throw new ArgumentOutOfRangeException(storageDefinition.Type.ToString())
-        };
+            case StorageType.Items:
+                return new ItemsStorage(storageDefinition, _items, index);
+            case StorageType.Food:
+                return new FoodStorage(storageDefinition, _items, index);
+            case StorageType.Logs:
+            case StorageType.Sticks:
+            case StorageType.Stones:
+            case StorageType.Bones:
+                return new ResourceStorage(storageDefinition, _items, index);
+            default:
+                throw new ArgumentOutOfRangeException(storageDefinition.Type.ToString());
+        }
     }
 
     private IStorage Build(AdvancedStorageDefinition storageDefinition, int index)
