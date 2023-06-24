@@ -27,20 +27,8 @@
                    Visibility="{Binding AreaName, Converter={StaticResource NullToVisibilityConverter}}" />
             <Label Content="{Binding AreaName}"
                    Visibility="{Binding AreaName, Converter={StaticResource NullToVisibilityConverter}}" />
-            <Label Content="{infrastructure:Translate 'map.itemId'}" />
-            <Label Content="{Binding State.ItemId}" />
             <Label Content="{infrastructure:Translate 'map.objectNameId'}" />
             <Label Content="{Binding State.ObjectNameId}" />
-
-            <TextBlock Margin="8 0 0 8" FontSize="14" FontWeight="Bold" TextDecorations="Underline"
-                       Grid.ColumnSpan="2" Cursor="Hand"
-                       Visibility="{Binding WikiLink, Converter={StaticResource NullToVisibilityConverter}}"
-                       Text="{infrastructure:Translate 'map.wiki'}"
-                       Foreground="{DynamicResource MahApps.Brushes.Accent}">
-                <TextBlock.InputBindings>
-                    <MouseBinding Gesture="LeftClick" Command="{Binding OpenWikiCommand, Mode=OneTime}" />
-                </TextBlock.InputBindings>
-            </TextBlock>
 
             <map:MapTeleportButtonsControl Poi="{Binding}" Grid.ColumnSpan="2" Margin="4" />
         </st:AutoGrid>

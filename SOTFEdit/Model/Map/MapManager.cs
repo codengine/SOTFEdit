@@ -76,10 +76,10 @@ public class MapManager
             .ToDictionary(group => group.Key, group => group.ToList());
     }
 
-    public Dictionary<string, List<WorldItemPoi>> GetWorldItemPois(Savegame.Savegame savegame, ItemList itemList)
+    public static Dictionary<string, List<WorldItemPoi>> GetWorldItemPois(Savegame.Savegame savegame)
     {
-        return WorldItemTeleporterViewModel.Load(_items, savegame, true)
-            .Select(state => new WorldItemPoi(state, itemList.GetItem(state.ItemId)))
+        return WorldItemTeleporterViewModel.Load(savegame, true)
+            .Select(state => new WorldItemPoi(state))
             .GroupBy(poi => poi.State.Group)
             .ToDictionary(g => g.Key, g => g.ToList());
     }

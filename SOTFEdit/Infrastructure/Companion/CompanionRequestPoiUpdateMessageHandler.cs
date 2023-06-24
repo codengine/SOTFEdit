@@ -3,7 +3,6 @@ using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using SOTFEdit.Companion.Shared;
 using SOTFEdit.Companion.Shared.Messages;
-using SOTFEdit.Model;
 using SOTFEdit.Model.Map;
 using SOTFEdit.Model.Map.Static;
 
@@ -12,16 +11,14 @@ namespace SOTFEdit.Infrastructure.Companion;
 public class CompanionRequestPoiUpdateMessageHandler : MessageHandler<CompanionRequestPoiUpdateMessage>
 {
     private readonly CompanionPoiStorage _companionPoiStorage;
-    private readonly GameData _gameData;
     private readonly MapManager _mapManager;
     private readonly PoiLoader _poiLoader;
 
     public CompanionRequestPoiUpdateMessageHandler(PoiLoader poiLoader,
-        MapManager mapManager, GameData gameData, CompanionPoiStorage companionPoiStorage)
+        MapManager mapManager, CompanionPoiStorage companionPoiStorage)
     {
         _poiLoader = poiLoader;
         _mapManager = mapManager;
-        _gameData = gameData;
         _companionPoiStorage = companionPoiStorage;
     }
 
@@ -73,14 +70,14 @@ public class CompanionRequestPoiUpdateMessageHandler : MessageHandler<CompanionR
         SendPoiList(PoiGroupType.Custom, pois);
     }
 
-    private void SendWorldItemPois()
+    private static void SendWorldItemPois()
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
             return;
         }
 
-        var worldItemPois = _mapManager.GetWorldItemPois(selectedSavegame, _gameData.Items).Values
+        var worldItemPois = MapManager.GetWorldItemPois(selectedSavegame).Values
             .SelectMany(l => l)
             .OrderBy(poi => poi.Title);
         SendPoiList(PoiGroupType.WorldItems, worldItemPois);

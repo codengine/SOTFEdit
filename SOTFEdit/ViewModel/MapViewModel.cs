@@ -424,7 +424,7 @@ public partial class MapViewModel : ObservableObject
             return;
         }
 
-        var newWorldItemGroups = _mapManager.GetWorldItemPois(selectedSavegame, _gameData.Items)
+        var newWorldItemGroups = MapManager.GetWorldItemPois(selectedSavegame)
             .Select(kvp =>
                 new PoiGroup(false, kvp.Value, kvp.Key, PoiGroupKeys.WorldItems + kvp.Key, PoiGroupType.WorldItems,
                     kvp.Value.First().IconSmall))

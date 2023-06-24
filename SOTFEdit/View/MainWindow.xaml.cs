@@ -176,7 +176,7 @@ public partial class MainWindow
             return;
         }
 
-        var window = new WorldItemTeleportWindow(this, Ioc.Default.GetRequiredService<GameData>(), selectedSavegame);
+        var window = new WorldItemTeleportWindow(this, selectedSavegame);
         window.Show();
     }
 

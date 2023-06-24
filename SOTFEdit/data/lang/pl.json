@@ -541,10 +541,6 @@
         "text": "Zresetuj obrażenia struktur",
         "tooltip": "Naprawia wszystkie struktury"
       },
-      "teleportCloneWorldObjects": {
-        "text": "Teleportuj/klonuj Lotnię & Knight V...",
-        "tooltip": "Teleporuj gracza do pojazdów, albo pojazdy do gracza"
-      },
       "modifyConsumedItems": {
         "text": "Modyfikuj zjedzone przedmioty...",
         "tooltip": "W przypadku, gdy chcesz oczyścić pamięć o przedmiotach, które już zjadłeś"
@@ -1195,6 +1191,11 @@
     "653": "Notatka Osobista A",
     "654": "Notatka Osobista B",
     "655": "Notatka Osobista C"
+  },
+  "worldItemTypes": {
+    "GolfCart": "Wózek golfowy",
+    "HangGlider": "Lotnia",
+    "KnightV": "Knight V"
   },
   "poiGroups": {
     "Items": "Przedmioty",

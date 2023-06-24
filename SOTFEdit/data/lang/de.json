@@ -550,7 +550,7 @@
         "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
       },
       "teleportCloneWorldObjects": {
-        "text": "Glider und Knight V teleportieren/klonen...",
+        "text": "Welt-Gegenstände teleportieren/klonen...",
         "tooltip": "Teleportiert die Objekte zum Spieler oder den Spieler zu den Objekten."
       },
       "modifyConsumedItems": {
@@ -1173,7 +1173,7 @@
     "623": "Bauplan Wandregal",
     "624": "Bauplan Wandfackel",
     "625": "Bauplan Schädel-Lampe",
-    "626": "Hang Glider",
+    "626": "Hängegleiter",
     "627": "Tischkarte von Mr. Puffton",
     "628": "Tischkarte von Mrs. Puffton",
     "629": "Wassersammler",
@@ -1203,6 +1203,11 @@
     "653": "Persönliche Notiz A",
     "654": "Persönliche Notiz B",
     "655": "Persönliche Notiz C"
+  },
+  "worldItemTypes": {
+    "GolfCart": "Golfwagen",
+    "HangGlider": "Hängegleiter",
+    "KnightV": "Knight V"
   },
   "poiGroups": {
     "Items": "Gegenstände",

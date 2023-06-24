@@ -558,7 +558,7 @@
         "tooltip": "Lets you repair all structures"
       },
       "teleportCloneWorldObjects": {
-        "text": "Teleport/Clone Glider & Knight V...",
+        "text": "Teleport/Clone World Items...",
         "tooltip": "Teleport the objects to the player, or the player to the objects"
       },
       "modifyConsumedItems": {
@@ -1211,6 +1211,11 @@
     "653": "Personal Note A",
     "654": "Personal Note B",
     "655": "Personal Note C"
+  },
+  "worldItemTypes": {
+    "GolfCart": "Golf Cart",
+    "HangGlider": "Hang Glider",
+    "KnightV": "Knight V"
   },
   "poiGroups": {
     "Items": "Items",

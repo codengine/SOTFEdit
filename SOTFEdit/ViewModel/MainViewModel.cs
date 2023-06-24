@@ -553,12 +553,9 @@ public partial class MainViewModel : ObservableObject
                 PoiGroupType.Structures)
         };
 
-        var gameData = Ioc.Default.GetRequiredService<GameData>();
-        var items = gameData.Items;
-
         if (SavegameManager.SelectedSavegame is { } selectedSavegame)
         {
-            poiGroups.AddRange(_mapManager.GetWorldItemPois(selectedSavegame, items)
+            poiGroups.AddRange(MapManager.GetWorldItemPois(selectedSavegame)
                 .Select(kvp =>
                     new PoiGroup(false, kvp.Value, kvp.Key, PoiGroupKeys.WorldItems + kvp.Key, PoiGroupType.WorldItems,
                         kvp.Value.First().IconSmall)));

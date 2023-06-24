@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
-using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Map;
 using SOTFEdit.Model.Savegame;
@@ -12,10 +11,10 @@ namespace SOTFEdit.View;
 
 public partial class WorldItemTeleportWindow : ICloseableWithResult
 {
-    public WorldItemTeleportWindow(Window owner, GameData gameData, Savegame savegame)
+    public WorldItemTeleportWindow(Window owner, Savegame savegame)
     {
         Owner = owner;
-        DataContext = new WorldItemTeleporterViewModel(gameData, savegame, this);
+        DataContext = new WorldItemTeleporterViewModel(savegame, this);
         InitializeComponent();
     }
 

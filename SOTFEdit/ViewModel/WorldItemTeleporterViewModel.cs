@@ -11,6 +11,7 @@ using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Savegame;
+using SOTFEdit.Model.WorldItem;
 
 namespace SOTFEdit.ViewModel;
 
@@ -21,10 +22,10 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
     [ObservableProperty]
     private WorldItemState? _selectedWorldItem;
 
-    public WorldItemTeleporterViewModel(GameData gameData, Savegame savegame, ICloseableWithResult parent)
+    public WorldItemTeleporterViewModel(Savegame savegame, ICloseableWithResult parent)
     {
         _parent = parent;
-        WorldItemStates = CollectionViewSource.GetDefaultView(Load(gameData.Items, savegame)
+        WorldItemStates = CollectionViewSource.GetDefaultView(Load(savegame)
             .OrderBy(state => state.Group)
             .ThenBy(state => state.ObjectNameId).ToList());
         WorldItemStates.GroupDescriptions.Add(new PropertyGroupDescription("Group"));
@@ -40,7 +41,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         RemoveAllOfThisTypeCommand.NotifyCanExecuteChanged();
     }
 
-    public static IEnumerable<WorldItemState> Load(ItemList items, Savegame savegame, bool includeUnnamed = false)
+    public static IEnumerable<WorldItemState> Load(Savegame savegame, bool includeUnnamed = false)
     {
         var result = new List<WorldItemState>();
 
@@ -63,35 +64,35 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 continue;
             }
 
-            string groupName;
+            var objectNameParts = objectNameId.Split('.');
+            var groupName = objectNameParts.Length >= 2
+                ? TranslationManager.Get("worldItemTypes." + objectNameParts[1])
+                : TranslationManager.GetFormatted("windows.worldItemTeleporter.unknownItem", objectNameId);
+            var worldItemType = objectNameParts.Length >= 2
+                ? GetWorldItemType(objectNameParts[1])
+                : WorldItemType.Unknown;
 
-            if (worldItemState["ItemId"]?.Value<int>() is { } itemId)
-            {
-                if (items.GetItem(itemId) is { } item)
-                {
-                    groupName = item.Name;
-                }
-                else
-                {
-                    groupName = TranslationManager.GetFormatted("windows.worldItemTeleporter.unknownItem", itemId);
-                }
-            }
-            else
-            {
-                continue;
-            }
-
-            result.Add(new WorldItemState(itemId,
-                objectNameId == ""
+            result.Add(new WorldItemState(objectNameId == ""
                     ? TranslationManager.GetFormatted("windows.worldItemTeleporter.unnamedItem", i++)
                     : objectNameId, groupName,
-                position));
+                position, worldItemType));
         }
 
         return result;
     }
 
-    [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
+    private static WorldItemType GetWorldItemType(string type)
+    {
+        return type switch
+        {
+            "HangGlider" => WorldItemType.Glider,
+            "KnightV" => WorldItemType.KnightV,
+            "GolfCart" => WorldItemType.GolfCart,
+            _ => WorldItemType.Unknown
+        };
+    }
+
+    [RelayCommand(CanExecute = nameof(HasModifiableWorldItemSelected))]
     private void RemoveAllOfThisType()
     {
         if (_selectedWorldItem == null || SavegameManager.SelectedSavegame is not { } savegame)
@@ -113,7 +114,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         }
 
         var toRemove = worldItemStates
-            .Where(worldItemState => worldItemState["ItemId"]?.Value<int>() == _selectedWorldItem?.ItemId)
+            .Where(worldItemState => WorldItemHasType(worldItemState, _selectedWorldItem.WorldItemType))
             .Where(worldItemState => worldItemState["Unnamed"]?.Value<bool>() == true)
             .ToList();
 
@@ -136,7 +137,22 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         _parent.Close(toRemove.Count > 0);
     }
 
-    [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
+    private static bool WorldItemHasType(JToken worldItemState, WorldItemType requestedType)
+    {
+        if (worldItemState["ObjectNameId"]?.Value<string>() is not { } objectNameId)
+        {
+            return false;
+        }
+
+        var objectNameParts = objectNameId.Split('.');
+        var worldItemType = objectNameParts.Length >= 2
+            ? GetWorldItemType(objectNameParts[1])
+            : WorldItemType.Unknown;
+
+        return worldItemType == requestedType;
+    }
+
+    [RelayCommand(CanExecute = nameof(HasModifiableWorldItemSelected))]
     private void CloneObjectAtPlayerPos()
     {
         if (_selectedWorldItem == null || SavegameManager.SelectedSavegame is not { } savegame)
@@ -222,5 +238,15 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
     private bool HasWorldItemSelected()
     {
         return SelectedWorldItem != null;
+    }
+
+    private bool HasModifiableWorldItemSelected()
+    {
+        return HasWorldItemSelected() && SelectedWorldItem?.WorldItemType switch
+        {
+            WorldItemType.Glider => true,
+            WorldItemType.KnightV => true,
+            _ => false
+        };
     }
 }

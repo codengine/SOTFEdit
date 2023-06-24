@@ -6,9 +6,9 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                  xmlns:st="http://schemas.spicytaco.io/"
-                 xmlns:model="clr-namespace:SOTFEdit.Model"
                  xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 xmlns:worldItem="clr-namespace:SOTFEdit.Model.WorldItem"
                  mc:Ignorable="d"
                  Title="{infrastructure:Translate 'windows.worldItemTeleporter.title'}" MinWidth="300"
                  WindowStartupLocation="CenterOwner"
@@ -55,7 +55,7 @@
                     </GroupStyle>
                 </ComboBox.GroupStyle>
                 <ComboBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type model:WorldItemState}">
+                    <DataTemplate DataType="{x:Type worldItem:WorldItemState}">
                         <TextBlock Padding="8 3 3 3" Text="{Binding ObjectNameId}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>

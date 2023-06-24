@@ -1,19 +1,14 @@
 ﻿using System.Windows.Media.Imaging;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
-using SOTFEdit.Model.Events;
+using SOTFEdit.Model.WorldItem;
 
 namespace SOTFEdit.Model.Map;
 
-public partial class WorldItemPoi : BasePoi
+public class WorldItemPoi : BasePoi
 {
-    private readonly Item? _item;
-
-    public WorldItemPoi(WorldItemState state, Item? item) : base(state.Position)
+    public WorldItemPoi(WorldItemState state) : base(state.Position)
     {
         State = state;
-        _item = item;
     }
 
     public WorldItemState State { get; }
@@ -21,17 +16,15 @@ public partial class WorldItemPoi : BasePoi
     public override BitmapImage Icon => GetIcon();
     public BitmapImage IconSmall => GetIcon(24, 24);
 
-    public override string Title => _item != null ? _item.Name :
-        string.IsNullOrWhiteSpace(State.Group) ? State.ObjectNameId : State.Group;
-
-    public string? WikiLink => _item?.Wiki;
+    public override string Title => string.IsNullOrWhiteSpace(State.Group) ? State.ObjectNameId : State.Group;
 
     private BitmapImage GetIcon(int? width = null, int? height = null)
     {
-        return State.ItemId switch
+        return State.WorldItemType switch
         {
-            626 => "/images/worldobjects/hang-gliding.png".LoadAppLocalImage(width, height),
-            630 => "/images/worldobjects/monowheel.png".LoadAppLocalImage(width, height),
+            WorldItemType.Glider => "/images/worldobjects/hang-gliding.png".LoadAppLocalImage(width, height),
+            WorldItemType.KnightV => "/images/worldobjects/monowheel.png".LoadAppLocalImage(width, height),
+            WorldItemType.GolfCart => "/images/worldobjects/golf-cart.png".LoadAppLocalImage(width, height),
             _ => DefaultIcon
         };
     }
@@ -45,14 +38,5 @@ public partial class WorldItemPoi : BasePoi
     {
         return mapFilter.RequirementsFilter == MapFilter.RequirementsFilterType.InaccessibleOnly ||
                base.ShouldFilter(mapFilter);
-    }
-
-    [RelayCommand]
-    private void OpenWiki()
-    {
-        if (WikiLink != null)
-        {
-            WeakReferenceMessenger.Default.Send(RequestStartProcessEvent.ForUrl(WikiLink));
-        }
     }
 }
