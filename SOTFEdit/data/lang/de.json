@@ -863,7 +863,8 @@
     "bodyPart": "Körperteil",
     "electricity": "Elektrizität",
     "seed": "Samen",
-    "consumable": "Verbrauchsmaterial"
+    "consumable": "Verbrauchsmaterial",
+    "trophy": "Trophäe"
   },
   "itemVariants": {
     "436": {
@@ -1187,7 +1188,21 @@
     "638": "Bauplan Einfacher Holzschlitten",
     "639": "Raumanzug",
     "640": "Stein",
-    "641": "Bauplan Stein-Feuerstele"
+    "641": "Bauplan Stein-Feuerstelle",
+    "642": "Entenkopf",
+    "643": "Adlerkopf",
+    "644": "Kleiner Schildkrötenkopf",
+    "645": "Bauplan Kopf Trophäenhalterung",
+    "646": "Kaninchenkopf",
+    "647": "Eichhörnchen-Kopf",
+    "648": "Möwenkopf",
+    "649": "Blaupause Stein-Lager",
+    "650": "Schildkrötenkopf",
+    "651": "Hirschkopf",
+    "652": "Elchkopf",
+    "653": "Persönliche Notiz A",
+    "654": "Persönliche Notiz B",
+    "655": "Persönliche Notiz C"
   },
   "poiGroups": {
     "Items": "Gegenstände",

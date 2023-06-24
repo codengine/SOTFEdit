@@ -855,7 +855,8 @@
     "bodyPart": "Część ciała",
     "electricity": "Elektryczność",
     "seed": "Nasiona",
-    "consumable": "Zużywalne"
+    "consumable": "Zużywalne",
+    "trophy": "Trofeum"
   },
   "itemVariants": {
     "436": {
@@ -1177,7 +1178,23 @@
     "636": "TemplateD",
     "637": "Kamera",
     "638": "Plan Prostych Sań na Kłody",
-    "639": "Skafander Kosmiczny"
+    "639": "Skafander Kosmiczny",
+    "640": "Kamień",
+    "641": "Projaekt kamiennego kominka",
+    "642": "Głowa Kaczki",
+    "643": "Głowa Orła",
+    "644": "Mała Głowa Żółwia",
+    "645": "Plan stojaku na trofea",
+    "646": "Głowa Królika",
+    "647": "Głowa Wiewiórki",
+    "648": "Głowa Mewy",
+    "649": "Plan przechowywalni kamieni",
+    "650": "Głowa Żółwia",
+    "651": "Głowa Jelenia",
+    "652": "Głowa Łosia",
+    "653": "Notatka Osobista A",
+    "654": "Notatka Osobista B",
+    "655": "Notatka Osobista C"
   },
   "poiGroups": {
     "Items": "Przedmioty",

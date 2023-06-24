@@ -2527,7 +2527,7 @@
       "id": 635,
       "type": "electricity",
       "storageMax": {
-        "shelf": 0,
+        "shelf": 8,
         "inventory": 8
       },
       "image": "Lightbulb.png"
@@ -2575,6 +2575,118 @@
     {
       "id": 641,
       "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 642,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 643,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 644,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 645,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 646,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 647,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 648,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 649,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 650,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 651,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 652,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 653,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 654,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 655,
+      "type": "document",
       "storageMax": {
         "shelf": 0,
         "inventory": 1

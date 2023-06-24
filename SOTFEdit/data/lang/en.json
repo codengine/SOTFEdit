@@ -871,7 +871,8 @@
     "bodyPart": "Body Part",
     "electricity": "Electricity",
     "seed": "Seed",
-    "consumable": "Consumable"
+    "consumable": "Consumable",
+    "trophy": "Trophy"
   },
   "itemVariants": {
     "436": {
@@ -1195,7 +1196,21 @@
     "638": "Basic Log Sled Blueprint",
     "639": "Space Suit",
     "640": "Stone",
-    "641": "Stone Fireplace Blueprint"
+    "641": "Stone Fireplace Blueprint",
+    "642": "Duck Head",
+    "643": "Eagle Head",
+    "644": "Small Turtle Head",
+    "645": "Head Trophy Mount Blueprint",
+    "646": "Rabbit Head",
+    "647": "Squirrel Head",
+    "648": "Seagull Head",
+    "649": "Stones Storage Blueprint",
+    "650": "Turtle Head",
+    "651": "Deer Head",
+    "652": "Moose Head",
+    "653": "Personal Note A",
+    "654": "Personal Note B",
+    "655": "Personal Note C"
   },
   "poiGroups": {
     "Items": "Items",
