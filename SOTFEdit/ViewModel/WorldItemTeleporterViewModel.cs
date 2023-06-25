@@ -38,6 +38,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         OpenMapAtObjectPosCommand.NotifyCanExecuteChanged();
         CloneObjectAtPlayerPosCommand.NotifyCanExecuteChanged();
         TeleportPlayerToObjectCommand.NotifyCanExecuteChanged();
+        TeleportObjectToPlayerCommand.NotifyCanExecuteChanged();
         RemoveAllOfThisTypeCommand.NotifyCanExecuteChanged();
     }
 
@@ -223,6 +224,54 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.playerMoved.title",
                     _selectedWorldItem.Group)));
         _parent.Close(false);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
+    private void TeleportObjectToPlayer()
+    {
+        if (_selectedWorldItem == null || SavegameManager.SelectedSavegame is not { } savegame)
+        {
+            return;
+        }
+
+        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
+                { } saveDataWrapper ||
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
+            worldItemManager["WorldItemStates"] is not JArray worldItemStates)
+        {
+            WeakReferenceMessenger.Default.Send(
+                new GenericMessageEvent(
+                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.text"),
+                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.title")));
+            _parent.Close(false);
+            return;
+        }
+
+        var hasChanges = false;
+
+        foreach (var worldItemState in worldItemStates)
+        {
+            if (worldItemState["ObjectNameId"]?.Value<string>() is not { } objectNameId ||
+                objectNameId != _selectedWorldItem.ObjectNameId)
+            {
+                continue;
+            }
+
+            var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
+            worldItemState["Position"] = JToken.FromObject(playerPos);
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.WorldItemManager);
+            hasChanges = true;
+
+            WeakReferenceMessenger.Default.Send(
+                new GenericMessageEvent(
+                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectMoved.text",
+                        _selectedWorldItem.ObjectNameId),
+                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectMoved.title",
+                        _selectedWorldItem.Group)));
+            break;
+        }
+
+        _parent.Close(hasChanges);
     }
 
     [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]

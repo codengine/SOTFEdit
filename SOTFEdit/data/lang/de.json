@@ -789,8 +789,12 @@
           "title": "{0} erstellt"
         },
         "playerMoved": {
-          "text": "Der Spieler wurde nach {0} teleportiert. Bitte speichere die Änderungen, um sie zu übernehmen",
-          "title": "{0} teleportiert"
+          "text": "Der Spieler wurde zu {0} teleportiert. Bitte speichere die Änderungen, um sie zu übernehmen",
+          "title": "Spieler zu {0} teleportiert"
+        },
+        "objectMoved": {
+          "text": "{0} wurde zum Spieler teleportiert. Bitte speichere die Änderungen, um sie zu übernehmen",
+          "title": "{0} zum Spieler teleportiert"
         }
       },
       "buttons": {
@@ -805,6 +809,10 @@
         "teleportPlayerToObject": {
           "text": "Spieler zum Objekt teleportieren",
           "tooltip": "Teleportiert den Spieler zum Objekt"
+        },
+        "teleportObjectToPlayer": {
+          "text": "Objekt zum Spieler teleportieren",
+          "tooltip": "Teleportiert das Objekt zum Spieler"
         }
       }
     }

@@ -73,5 +73,9 @@
                 Background="{DynamicResource MahApps.Brushes.Accent}"
                 ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportPlayerToObject.tooltip'}"
                 Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportPlayerToObject.text'}" />
+        <Button Command="{Binding TeleportObjectToPlayerCommand}" Grid.ColumnSpan="2"
+                Background="{DynamicResource MahApps.Brushes.Accent}"
+                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportObjectToPlayer.tooltip'}"
+                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportObjectToPlayer.text'}" />
     </st:AutoGrid>
 </mah:MetroWindow>

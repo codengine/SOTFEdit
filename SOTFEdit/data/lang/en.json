@@ -798,7 +798,11 @@
         },
         "playerMoved": {
           "text": "Player was moved to {0}. Please save changes to persist it",
-          "title": "{0} moved"
+          "title": "Player moved to {0}"
+        },
+        "objectMoved": {
+          "text": "{0} was moved to player. Please save changes to persist it",
+          "title": "{0} moved to player"
         }
       },
       "buttons": {
@@ -813,6 +817,10 @@
         "teleportPlayerToObject": {
           "text": "Teleport player to object",
           "tooltip": "Teleports the player to the object"
+        },
+        "teleportObjectToPlayer": {
+          "text": "Teleport object to player",
+          "tooltip": "Teleports the object to the player"
         }
       }
     }
