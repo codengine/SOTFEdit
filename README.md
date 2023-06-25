@@ -325,4 +325,5 @@ collect all data.
 - [Bookmark icons created by Ian Anandara - Flaticon](https://www.flaticon.com/free-icons/bookmark)
 - [Soldier icons created by ppangman - Flaticon](https://www.flaticon.com/free-icons/soldier)
 - [Fireplace icons created by Vector Squad - Flaticon](https://www.flaticon.com/free-icons/fireplace)
-
+- [Golf cart icons created by surang - Flaticon](https://www.flaticon.com/free-icons/golf-cart)
+- [Gun icons created by Nikita Golubev - Flaticon](https://www.flaticon.com/free-icons/gun)
