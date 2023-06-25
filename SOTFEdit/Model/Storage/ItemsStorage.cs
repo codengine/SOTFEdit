@@ -19,18 +19,20 @@ public class ItemsStorage : BaseStorage
     private List<ItemWrapper> GetSupportedItems(ItemList itemList, StorageDefinition storageDefinition)
     {
         var supportedItems = new List<ItemWrapper>();
-
         if (Definition.RestrictedItemIds?.Count == 0)
         {
             return supportedItems;
         }
 
-        var baseQ = itemList.Select(item => item.Value)
-            .Where(item => item is { IsInventoryItem: true, StorageMax.Shelf: > 0 });
+        var baseQ = itemList.Select(item => item.Value);
 
         if (Definition.RestrictedItemIds is { Count: > 0 } restrictedItemIds)
         {
             baseQ = baseQ.Where(item => restrictedItemIds.Contains(item.Id));
+        }
+        else
+        {
+            baseQ = baseQ.Where(item => item is { IsInventoryItem: true, StorageMax.Shelf: > 0 });
         }
 
         foreach (var item in baseQ)

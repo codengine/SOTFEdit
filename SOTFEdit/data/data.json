@@ -2571,7 +2571,7 @@
       "id": 640,
       "type": "misc",
       "isInventoryItem": false,
-      "image": "Rock.png"
+      "image": "stone-block.png"
     },
     {
       "id": 641,
@@ -2587,7 +2587,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "duck.png"
     },
     {
       "id": 643,
@@ -2595,15 +2596,17 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "eagle-head.png"
     },
     {
       "id": 644,
-      "type": "misc",
+      "type": "trophy",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "turtle.png"
     },
     {
       "id": 645,
@@ -2619,7 +2622,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "rabbit-head.png"
     },
     {
       "id": 647,
@@ -2627,7 +2631,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "squirrel.png"
     },
     {
       "id": 648,
@@ -2635,7 +2640,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "seagull.png"
     },
     {
       "id": 649,
@@ -2651,7 +2657,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "turtle.png"
     },
     {
       "id": 651,
@@ -2659,7 +2666,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "deer-head.png"
     },
     {
       "id": 652,
@@ -2667,7 +2675,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "deer-head.png"
     },
     {
       "id": 653,
@@ -2779,6 +2788,31 @@
         78
       ],
       "type": "Logs"
+    },
+    {
+      "id": 61,
+      "slots": 1,
+      "maxPerSlot": 1,
+      "restrictedItemIds": [
+        642,
+        643,
+        644,
+        646,
+        647,
+        648,
+        650,
+        651,
+        652
+      ]
+    },
+    {
+      "id": 62,
+      "slots": 1,
+      "maxPerSlot": 27,
+      "restrictedItemIds": [
+        640
+      ],
+      "type": "Stones"
     }
   ],
   "advancedStorages": [
@@ -3208,7 +3242,7 @@
       "id": 20,
       "buildCost": 14,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "wooden-chair.png"
     },
     {
       "id": 21,
@@ -3220,7 +3254,7 @@
       "id": 22,
       "buildCost": 17,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "bed.png"
     },
     {
       "id": 23,
@@ -3232,13 +3266,13 @@
       "id": 24,
       "buildCost": 28,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "../items/Skull_tn.png"
     },
     {
       "id": 25,
       "buildCost": 16,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "wooden-chair.png"
     },
     {
       "id": 26,
@@ -3264,19 +3298,19 @@
       "id": 29,
       "buildCost": 6,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "../items/Stick_tn.png"
     },
     {
       "id": 31,
       "buildCost": 7,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "../items/Rock_tn.png"
     },
     {
       "id": 32,
       "buildCost": 8,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "../items/Bone_tn.png"
     },
     {
       "id": 34,
@@ -3295,13 +3329,13 @@
       "id": 36,
       "buildCost": 21,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "BlockIcon.png"
     },
     {
       "id": 37,
       "buildCost": 8,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "../items/Log_tn.png"
     },
     {
       "id": 38,
@@ -3314,7 +3348,7 @@
       "id": 39,
       "buildCost": 18,
       "category": "utility",
-      "icon": "board.png"
+      "icon": "scarecrow.png"
     },
     {
       "id": 40,
@@ -3359,7 +3393,7 @@
       "id": 46,
       "buildCost": 4,
       "category": "utility",
-      "icon": "board.png"
+      "icon": "trail.png"
     },
     {
       "id": 47,
@@ -3371,43 +3405,43 @@
       "id": 48,
       "buildCost": 7,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "table.png"
     },
     {
       "id": 49,
       "buildCost": 5,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "shelf.png"
     },
     {
       "id": 50,
       "buildCost": 4,
       "category": "utility",
-      "icon": "board.png"
+      "icon": "stone-path.png"
     },
     {
       "id": 51,
       "buildCost": 3,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "shelf.png"
     },
     {
       "id": 52,
       "buildCost": 3,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "bench.png"
     },
     {
       "id": 53,
       "buildCost": 2,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "primitive-torch.png"
     },
     {
       "id": 54,
       "buildCost": 2,
       "category": "furniture",
-      "icon": "board.png"
+      "icon": "primitive-torch.png"
     },
     {
       "id": 55,
@@ -3422,7 +3456,7 @@
       "id": 56,
       "buildCost": 13,
       "category": "utility",
-      "icon": "board.png"
+      "icon": "../items/TurtleShell_tn.png"
     },
     {
       "id": 57,
@@ -3434,13 +3468,13 @@
       "id": 58,
       "buildCost": 62,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "wheelbarrow.png"
     },
     {
       "id": 59,
       "buildCost": 33,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "wheelbarrow.png"
     },
     {
       "id": 60,
@@ -3448,6 +3482,19 @@
       "category": "utility",
       "icon": "fireplace.png",
       "canFinish": false
+    },
+    {
+      "id": 61,
+      "buildCost": 1,
+      "canFinish": false,
+      "category": "storage",
+      "icon": "../items/deer-head_tn.png"
+    },
+    {
+      "id": 62,
+      "buildCost": 12,
+      "category": "storage",
+      "icon": "../items/stone-block_tn.png"
     }
   ],
   "areas": [
