@@ -121,7 +121,8 @@
       "type": "weapon",
       "storageMax": {
         "inventory": 1
-      }
+      },
+      "image": "Rifle.png"
     },
     {
       "id": 362,
@@ -2674,7 +2675,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 654,
@@ -2682,7 +2684,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 655,
@@ -2690,7 +2693,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     }
   ],
   "storages": [

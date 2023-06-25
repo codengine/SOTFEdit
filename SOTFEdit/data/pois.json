@@ -482,7 +482,8 @@
         },
         "items": [
           354,
-          572
+          572,
+          361
         ],
         "screenshot": "golden_armor_cave.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Lake/Golden_Armor_Cave_Check_on_map"
@@ -4522,6 +4523,50 @@
           "z": 917.77,
           "areaMask": 0
         }
+      },
+      {
+        "title": "LakePFA",
+        "x": 1664.22,
+        "y": 641.3,
+        "teleport": {
+          "x": 1664.22,
+          "y": 88.09,
+          "z": 641.3,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePFB",
+        "x": 1372.5,
+        "y": 289.6,
+        "teleport": {
+          "x": 1372.5,
+          "y": 145.2,
+          "z": 289.6,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePFC",
+        "x": 1380.37,
+        "y": 960.43,
+        "teleport": {
+          "x": 1380.37,
+          "y": 69.84,
+          "z": 960.43,
+          "areaMask": 0
+        }
+      },
+      {
+        "title": "LakePFD",
+        "x": 1549.26,
+        "y": 1064.08,
+        "teleport": {
+          "x": 1549.26,
+          "y": 43.94,
+          "z": 1064.08,
+          "areaMask": 0
+        }
       }
     ]
   },
@@ -5104,6 +5149,90 @@
           "areaMask": 0
         },
         "screenshot": "lake_e.jpg"
+      },
+      {
+        "title": "LakeEA",
+        "x": 1128.95,
+        "y": 797.07,
+        "teleport": {
+          "x": 1128.95,
+          "y": 129.44,
+          "z": 797.07,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ea.jpg"
+      },
+      {
+        "title": "LakeEB",
+        "x": 1232.61,
+        "y": 871.03,
+        "teleport": {
+          "x": 1232.61,
+          "y": 102.81,
+          "z": 871.03,
+          "areaMask": 0
+        },
+        "screenshot": "lake_eb.jpg"
+      },
+      {
+        "title": "LakeEC",
+        "x": 1624.75,
+        "y": 250.35,
+        "teleport": {
+          "x": 1624.75,
+          "y": 57.61,
+          "z": 250.35,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ec.jpg"
+      },
+      {
+        "title": "LakeED",
+        "x": 897.88,
+        "y": 377.32,
+        "teleport": {
+          "x": 897.88,
+          "y": 363.88,
+          "z": 377.32,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ed.jpg"
+      },
+      {
+        "title": "LakeEE",
+        "x": 458.63,
+        "y": 518.22,
+        "teleport": {
+          "x": 458.63,
+          "y": 398.78,
+          "z": 518.22,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ee.jpg"
+      },
+      {
+        "title": "LakeEF",
+        "x": 1716.22,
+        "y": 420.13,
+        "teleport": {
+          "x": 1716.22,
+          "y": 41.36,
+          "z": 420.13,
+          "areaMask": 0
+        },
+        "screenshot": "lake_ef.jpg"
+      },
+      {
+        "title": "LakeEG",
+        "x": 209.13,
+        "y": -913.8,
+        "teleport": {
+          "x": 209.13,
+          "y": 405.54,
+          "z": -913.8,
+          "areaMask": 0
+        },
+        "screenshot": "lake_eg.jpg"
       },
       {
         "title": "LakeF",

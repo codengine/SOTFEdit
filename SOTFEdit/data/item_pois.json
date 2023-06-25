@@ -7489,6 +7489,78 @@
           ]
         }
       ]
+    },
+    "361": {
+      "pois": [
+        {
+          "x": 674.76,
+          "y": -273.36,
+          "teleport": {
+            "x": 674.76,
+            "y": 236.54,
+            "z": -273.36,
+            "areaMask": 16
+          },
+          "screenshot": "rifle.jpg",
+          "requirements": [
+            444
+          ]
+        }
+      ]
+    },
+    "653": {
+      "pois": [
+        {
+          "x": -1130.62,
+          "y": 79.09,
+          "teleport": {
+            "x": -1130.62,
+            "y": 67.10,
+            "z": 79.09,
+            "areaMask": 1048576
+          },
+          "screenshot": "pers_note_a.jpg",
+          "requirements": [
+            566
+          ]
+        }
+      ]
+    },
+    "654": {
+      "pois": [
+        {
+          "x": -908.96,
+          "y": 1029.26,
+          "teleport": {
+            "x": -908.96,
+            "y": 59.52,
+            "z": 1029.26,
+            "areaMask": 2097152
+          },
+          "screenshot": "pers_note_b.jpg",
+          "requirements": [
+            568
+          ]
+        }
+      ]
+    },
+    "655": {
+      "pois": [
+        {
+          "x": 1624.02,
+          "y": 517.16,
+          "teleport": {
+            "x": 1624.02,
+            "y": 22.99,
+            "z": 517.16,
+            "areaMask": 32
+          },
+          "screenshot": "pers_note_c.jpg",
+          "requirements": [
+            444
+          ]
+        }
+      ]
     }
   }
 }
