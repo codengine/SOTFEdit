@@ -13,7 +13,7 @@ This release reflects the changes introduced in Update 07.
 - Added map POIs and screenshots for new lakes (LakeEA - LakeEG)
 - Added map POIs and screenshots for new ponds (LakePFA - LakePFD)
 - Added support for new stone holder (Structures and Storages)
-- ADded support for new head trophy holder (Structures and Storages)
+- Added support for new head trophy holder (Structures and Storages)
 
 ### Improvements
 
