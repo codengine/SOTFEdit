@@ -384,6 +384,7 @@ public class GameSetupPageViewModel : ObservableObject
                 _boolSettings[GameSetupKeys.EnemySpawn] = true;
                 _boolSettings[GameSetupKeys.ReducedFoodInContainers] = true;
                 _boolSettings[GameSetupKeys.SingleUseContainers] = true;
+                _boolSettings[GameSetupKeys.InventoryPause] = true;
                 _stringSettings[GameSetupKeys.EnemyAggression] = SettingValueHigh;
                 _stringSettings[GameSetupKeys.EnemyArmour] = SettingValueHigh;
                 _stringSettings[GameSetupKeys.EnemyDamage] = SettingValueHigh;
