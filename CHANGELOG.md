@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.11.2
+
+This release reflects the changes introduced in Update 07.
+
+### Features
+
+- Added support for new items (rifle, rifle ammo, head trophies, personal note a-c)
+- Added support for golf carts at map and world item cloner/teleporter (teleportation only)
+- Added teleport object-to-player for world items (glider, knightV, golf cart)
+- Added map POIs and screenshots for rifle and personal note a-c
+- Added map POIs and screenshots for new lakes (LakeEA - LakeEG)
+- Added map POIs and screenshots for new ponds (LakePFA - LakePFD)
+- Added support for new stone holder (Structures and Storages)
+- ADded support for new head trophy holder (Structures and Storages)
+
+### Improvements
+
+- Updated both maps (bright, dark) to reflect the newly added lakes, ponds and walkways
+- Updates icons of structures (map)
+- Hard Survival now defaults to "inventory pause on" (aligns with changes in Update 07)
+
 ## v0.11.1
 
 Due to a change in the data model for log, stick, bone and stone holders, older savegames might be incompatible.
