@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.11.3
+
+### Features
+
+- Added support for new Boss Mutant (Spawn & NPCs)
+
+### Bugfixes
+
+- Fixed issue with cloned world items being displayed as unknown
+
 ## v0.11.2
 
 This release reflects the changes introduced in Update 07.
