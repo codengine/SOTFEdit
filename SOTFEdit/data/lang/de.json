@@ -211,7 +211,8 @@
       "44": "Bemalte Frau",
       "45": "Dämon Boss",
       "46": "Mr. Puffton",
-      "47": "Mrs. Puffton"
+      "47": "Mrs. Puffton",
+      "48": "Boss Mutant"
     },
     "influenceType": {
       "Cannibal": "Kannibale",
@@ -551,9 +552,9 @@
         "text": "Schadenszähler für Gebäude zurücksetzen",
         "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
       },
-      "teleportCloneWorldObjects": {
-        "text": "Welt-Gegenstände teleportieren/klonen...",
-        "tooltip": "Teleportiert die Objekte zum Spieler oder den Spieler zu den Objekten."
+      "cloneWorldObjects": {
+        "text": "Welt-Gegenstände klonen...",
+        "tooltip": "Klont einen Welt-Gegenstand an der Position des Spielers"
       },
       "modifyConsumedItems": {
         "text": "Verzehrte Gegenstände bearbeiten...",
@@ -765,8 +766,8 @@
         "ignore": "Ignorieren"
       }
     },
-    "worldItemTeleporter": {
-      "title": "Weltobjekt-Teleporter",
+    "worldItemCloner": {
+      "title": "Weltobjekt-Kloner",
       "worldItem": "Weltobjekt",
       "pinTooltip": "Zeige Objektposition auf der Karte",
       "unknownItem": "Unbekanntes Objekt ({0})",
@@ -787,14 +788,6 @@
         "objectCloned": {
           "text": "Eine Kopie von {0} wurde an der Position des Spielers erstellt. Bitte speichere die Änderungen, um sie zu übernehmen",
           "title": "{0} erstellt"
-        },
-        "playerMoved": {
-          "text": "Der Spieler wurde zu {0} teleportiert. Bitte speichere die Änderungen, um sie zu übernehmen",
-          "title": "Spieler zu {0} teleportiert"
-        },
-        "objectMoved": {
-          "text": "{0} wurde zum Spieler teleportiert. Bitte speichere die Änderungen, um sie zu übernehmen",
-          "title": "{0} zum Spieler teleportiert"
         }
       },
       "buttons": {
@@ -1251,7 +1244,6 @@
     "requirements": "Voraussetzungen",
     "items": "Gegenstände",
     "wiki": "Wiki Link",
-    "objectNameId": "ObjectNameId",
     "actors": "NPCs",
     "structures": "Strukturen",
     "teleportation": "Teleportation",
@@ -1263,6 +1255,8 @@
     "followPlayer": "Spieler verfolgen",
     "followers": "Begleiter",
     "fill": "Füllen",
+    "isRuntimeCreated": "Ist Kopie",
+    "name": "Name",
     "mapType": {
       "dark": "Dunkel",
       "original": "Original"

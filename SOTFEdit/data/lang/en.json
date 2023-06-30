@@ -219,7 +219,8 @@
       "44": "Painted Female",
       "45": "Demon Boss",
       "46": "Mr. Puffton",
-      "47": "Mrs. Puffton"
+      "47": "Mrs. Puffton",
+      "48": "Boss Mutant"
     },
     "influenceType": {
       "Cannibal": "Cannibal",
@@ -559,9 +560,9 @@
         "text": "Reset Structure Damage",
         "tooltip": "Lets you repair all structures"
       },
-      "teleportCloneWorldObjects": {
-        "text": "Teleport/Clone World Items...",
-        "tooltip": "Teleport the objects to the player, or the player to the objects"
+      "cloneWorldObjects": {
+        "text": "Clone World Items...",
+        "tooltip": "Clones World Items at the players position"
       },
       "modifyConsumedItems": {
         "text": "Modify Consumed Items...",
@@ -773,8 +774,8 @@
         "ignore": "Ignore"
       }
     },
-    "worldItemTeleporter": {
-      "title": "World Item Teleporter",
+    "worldItemCloner": {
+      "title": "World Item Cloner",
       "worldItem": "World Item",
       "pinTooltip": "Show Object Position on Map",
       "unknownItem": "Unknown Item ({0})",
@@ -795,14 +796,6 @@
         "objectCloned": {
           "text": "A copy of {0} was created at player position. Please save changes to persist them",
           "title": "{0} created"
-        },
-        "playerMoved": {
-          "text": "Player was moved to {0}. Please save changes to persist it",
-          "title": "Player moved to {0}"
-        },
-        "objectMoved": {
-          "text": "{0} was moved to player. Please save changes to persist it",
-          "title": "{0} moved to player"
         }
       },
       "buttons": {
@@ -1259,7 +1252,6 @@
     "itemId": "Item-ID",
     "requirements": "Requirements",
     "items": "Items",
-    "objectNameId": "ObjectNameId",
     "actors": "Actors",
     "structures": "Structures",
     "teleportation": "Teleportation",
@@ -1271,6 +1263,8 @@
     "followPlayer": "Follow Player",
     "followers": "Followers",
     "fill": "Fill",
+    "isRuntimeCreated": "Is Copy",
+    "name": "Name",
     "mapType": {
       "dark": "Dark",
       "original": "Original"

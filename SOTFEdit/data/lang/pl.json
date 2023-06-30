@@ -751,8 +751,7 @@
         "ignore": "Ignoruj"
       }
     },
-    "worldItemTeleporter": {
-      "title": "Teleporter przedmiotów ze świata",
+    "worldItemCloner": {
       "worldItem": "Przedmiot",
       "pinTooltip": "Pokaż pozycje przedmiotu na mapie",
       "unknownItem": "Nieznany przedmiot ({0})",
@@ -773,10 +772,6 @@
         "objectCloned": {
           "text": "Kopia {0} stworzona w lokalizacji gracza. Zapisz and zatrzymać zmiany",
           "title": "{0} stworzony"
-        },
-        "playerMoved": {
-          "text": "Gracz przesunięty {0}. Zapisz and zatrzymać zmiany",
-          "title": "{0} przsunięty"
         }
       },
       "buttons": {
@@ -1229,7 +1224,6 @@
     "itemId": "ID przedmiotu",
     "requirements": "Wymgania",
     "items": "Przedmioty",
-    "objectNameId": "objectnameId",
     "actors": "NPC-y",
     "structures": "Struktury",
     "teleportation": "Teleportacja",

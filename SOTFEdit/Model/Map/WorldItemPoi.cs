@@ -16,13 +16,13 @@ public class WorldItemPoi : BasePoi
     public override BitmapImage Icon => GetIcon();
     public BitmapImage IconSmall => GetIcon(24, 24);
 
-    public override string Title => string.IsNullOrWhiteSpace(State.Group) ? State.ObjectNameId : State.Group;
+    public override string Title => State.ObjectName;
 
     private BitmapImage GetIcon(int? width = null, int? height = null)
     {
         return State.WorldItemType switch
         {
-            WorldItemType.Glider => "/images/worldobjects/hang-gliding.png".LoadAppLocalImage(width, height),
+            WorldItemType.HangGlider => "/images/worldobjects/hang-gliding.png".LoadAppLocalImage(width, height),
             WorldItemType.KnightV => "/images/worldobjects/monowheel.png".LoadAppLocalImage(width, height),
             WorldItemType.GolfCart => "/images/worldobjects/golf-cart.png".LoadAppLocalImage(width, height),
             _ => DefaultIcon

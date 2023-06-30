@@ -148,8 +148,8 @@
                             <iconPacks:FontAwesome Kind="HouseDamageSolid" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="{infrastructure:Translate 'menu.tools.teleportCloneWorldObjects.text'}"
-                              ToolTip="{infrastructure:Translate 'menu.tools.teleportCloneWorldObjects.tooltip'}"
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.cloneWorldObjects.text'}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.cloneWorldObjects.tooltip'}"
                               Command="{Binding TeleportWorldItemCommand}" />
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.modifyConsumedItems.text'}"
                               Command="{Binding ModifyConsumedItemsCommand}"

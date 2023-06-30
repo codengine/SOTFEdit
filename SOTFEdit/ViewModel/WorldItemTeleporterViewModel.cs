@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -17,32 +16,39 @@ namespace SOTFEdit.ViewModel;
 
 public partial class WorldItemTeleporterViewModel : ObservableObject
 {
+    private static readonly Dictionary<int, WorldItemType> ItemIdsToWorldItemTypes = new()
+    {
+        { 626, WorldItemType.HangGlider },
+        { 630, WorldItemType.KnightV }
+    };
+
+    private static readonly Dictionary<string, WorldItemType> ObjectNameIdToItemTypes = new()
+    {
+        { "GolfCart", WorldItemType.GolfCart },
+        { "HangGlider", WorldItemType.HangGlider },
+        { "KnightV", WorldItemType.KnightV }
+    };
+
     private readonly ICloseableWithResult _parent;
 
+    private readonly Savegame _savegame;
+
     [ObservableProperty]
-    private WorldItemState? _selectedWorldItem;
+    private WorldItemType? _selectedWorldItemType;
 
     public WorldItemTeleporterViewModel(Savegame savegame, ICloseableWithResult parent)
     {
+        _savegame = savegame;
         _parent = parent;
-        WorldItemStates = CollectionViewSource.GetDefaultView(Load(savegame)
-            .OrderBy(state => state.Group)
-            .ThenBy(state => state.ObjectNameId).ToList());
-        WorldItemStates.GroupDescriptions.Add(new PropertyGroupDescription("Group"));
     }
 
-    public ICollectionView WorldItemStates { get; }
-
-    partial void OnSelectedWorldItemChanged(WorldItemState? value)
+    partial void OnSelectedWorldItemTypeChanged(WorldItemType? value)
     {
-        OpenMapAtObjectPosCommand.NotifyCanExecuteChanged();
         CloneObjectAtPlayerPosCommand.NotifyCanExecuteChanged();
-        TeleportPlayerToObjectCommand.NotifyCanExecuteChanged();
-        TeleportObjectToPlayerCommand.NotifyCanExecuteChanged();
         RemoveAllOfThisTypeCommand.NotifyCanExecuteChanged();
     }
 
-    public static IEnumerable<WorldItemState> Load(Savegame savegame, bool includeUnnamed = false)
+    public static IEnumerable<WorldItemState> Load(Savegame savegame, bool includeRuntimeCreated)
     {
         var result = new List<WorldItemState>();
 
@@ -54,246 +60,206 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             return result;
         }
 
-        var i = 0;
+        var worldItemTypeCounts = new Dictionary<WorldItemType, int>();
 
         foreach (var worldItemState in worldItemStates)
         {
-            if (worldItemState["ObjectNameId"]?.Value<string>() is not { } objectNameId ||
-                (!includeUnnamed && string.IsNullOrEmpty(objectNameId)) ||
-                worldItemState["Position"]?.ToObject<Position>() is not { } position)
+            var isRuntimeCreated = IsRuntimeCreated(worldItemState);
+
+            if ((isRuntimeCreated && !includeRuntimeCreated) || worldItemState["Position"]?.ToObject<Position>() is not
+                    { } position)
             {
                 continue;
             }
 
-            var objectNameParts = objectNameId.Split('.');
-            var groupName = objectNameParts.Length >= 2
-                ? TranslationManager.Get("worldItemTypes." + objectNameParts[1])
-                : TranslationManager.GetFormatted("windows.worldItemTeleporter.unknownItem", objectNameId);
-            var worldItemType = objectNameParts.Length >= 2
-                ? GetWorldItemType(objectNameParts[1])
-                : WorldItemType.Unknown;
+            var itemId = worldItemState["ItemId"]?.Value<int>();
+            var objectNameId = worldItemState["ObjectNameId"]?.Value<string>();
+            var worldItemType = GetWorldItemType(itemId, objectNameId);
+            var group = worldItemType == WorldItemType.Unknown
+                ? TranslationManager.GetFormatted("windows.worldItemCloner.unknownItem",
+                    objectNameId ?? (itemId?.ToString() ?? ""))
+                : TranslationManager.Get("worldItemTypes." + worldItemType);
 
-            result.Add(new WorldItemState(objectNameId == ""
-                    ? TranslationManager.GetFormatted("windows.worldItemTeleporter.unnamedItem", i++)
-                    : objectNameId, groupName,
-                position, worldItemType));
+            worldItemTypeCounts[worldItemType] = worldItemTypeCounts.GetOrCreate(worldItemType) + 1;
+            var objectName = $"{group} ({worldItemTypeCounts[worldItemType]})";
+
+            result.Add(new WorldItemState(objectName, group, position, worldItemType, isRuntimeCreated));
         }
 
         return result;
     }
 
-    private static WorldItemType GetWorldItemType(string type)
+    private static bool IsRuntimeCreated(JToken worldItemState)
     {
-        return type switch
-        {
-            "HangGlider" => WorldItemType.Glider,
-            "KnightV" => WorldItemType.KnightV,
-            "GolfCart" => WorldItemType.GolfCart,
-            _ => WorldItemType.Unknown
-        };
+        return (worldItemState["RuntimeCreated"]?.Value<bool>() ?? false) ||
+               (worldItemState["Unnamed"]?.Value<bool>() ??
+                false); //only for legacy reasons, has been replaced by RuntimeCreated
     }
 
-    [RelayCommand(CanExecute = nameof(HasModifiableWorldItemSelected))]
+    private static WorldItemType GetWorldItemType(int? itemId, string? objectNameId)
+    {
+        if (itemId is { } id && ItemIdsToWorldItemTypes.TryGetValue(id, out var itemTypeByItemId))
+        {
+            return itemTypeByItemId;
+        }
+
+        if (string.IsNullOrWhiteSpace(objectNameId))
+        {
+            return WorldItemType.Unknown;
+        }
+
+        var objectNameParts = objectNameId.Split('.');
+        if (objectNameParts.Length >= 2 &&
+            ObjectNameIdToItemTypes.TryGetValue(objectNameParts[1], out var itemTybeByObjectNameId))
+        {
+            return itemTybeByObjectNameId;
+        }
+
+        return WorldItemType.Unknown;
+    }
+
+    [RelayCommand(CanExecute = nameof(HasModifiableWorldItemTypeSelected))]
     private void RemoveAllOfThisType()
     {
-        if (_selectedWorldItem == null || SavegameManager.SelectedSavegame is not { } savegame)
+        if (SelectedWorldItemType is not { } selectedWorldItemType)
         {
             return;
         }
 
-        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
+        if (_savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
                 { } saveDataWrapper ||
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
             worldItemManager["WorldItemStates"] is not JArray worldItemStates)
         {
             WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.text"),
-                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.title")
+                TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.text"),
+                TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.title")
             ));
             _parent.Close(false);
             return;
         }
 
         var toRemove = worldItemStates
-            .Where(worldItemState => WorldItemHasType(worldItemState, _selectedWorldItem.WorldItemType))
-            .Where(worldItemState => worldItemState["Unnamed"]?.Value<bool>() == true)
+            .Where(worldItemState => WorldItemHasType(worldItemState, selectedWorldItemType))
+            .Where(IsRuntimeCreated)
             .ToList();
 
         if (toRemove.Count == 0)
         {
             WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.text"),
-                TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToDelete.title")
+                TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.text"),
+                TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.title")
             ));
             _parent.Close(false);
             return;
         }
 
         toRemove.ForEach(worldItemState => worldItemState.Remove());
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.WorldItemManager);
+
         WeakReferenceMessenger.Default.Send(
             new GenericMessageEvent(
-                TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.clonesDeleted.text",
-                    toRemove.Count, _selectedWorldItem.Group),
-                TranslationManager.Get("windows.worldItemTeleporter.messages.clonesDeleted.title")));
-        _parent.Close(toRemove.Count > 0);
+                TranslationManager.GetFormatted("windows.worldItemCloner.messages.clonesDeleted.text",
+                    toRemove.Count, TranslationManager.Get("worldItemTypes." + selectedWorldItemType)),
+                TranslationManager.Get("windows.worldItemCloner.messages.clonesDeleted.title")));
+
+        _parent.Close(true);
     }
 
     private static bool WorldItemHasType(JToken worldItemState, WorldItemType requestedType)
     {
-        if (worldItemState["ObjectNameId"]?.Value<string>() is not { } objectNameId)
-        {
-            return false;
-        }
-
-        var objectNameParts = objectNameId.Split('.');
-        var worldItemType = objectNameParts.Length >= 2
-            ? GetWorldItemType(objectNameParts[1])
-            : WorldItemType.Unknown;
+        var itemId = worldItemState["ItemId"]?.Value<int>();
+        var objectNameId = worldItemState["ObjectNameId"]?.Value<string>();
+        var worldItemType = GetWorldItemType(itemId, objectNameId);
 
         return worldItemType == requestedType;
     }
 
-    [RelayCommand(CanExecute = nameof(HasModifiableWorldItemSelected))]
+    [RelayCommand(CanExecute = nameof(HasModifiableWorldItemTypeSelected))]
     private void CloneObjectAtPlayerPos()
     {
-        if (_selectedWorldItem == null || SavegameManager.SelectedSavegame is not { } savegame)
+        if (SelectedWorldItemType is not { } selectedWorldItemType ||
+            CreateClone(selectedWorldItemType) is not { } clonedWorldItem)
         {
             return;
         }
 
-        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
+        if (_savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
                 { } saveDataWrapper ||
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
             worldItemManager["WorldItemStates"] is not JArray worldItemStates)
         {
             WeakReferenceMessenger.Default.Send(
                 new GenericMessageEvent(
-                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.text"),
-                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.title")));
+                    TranslationManager.Get("windows.worldItemCloner.messages.nothingToMove.text"),
+                    TranslationManager.Get("windows.worldItemCloner.messages.nothingToMove.title")));
             _parent.Close(false);
             return;
         }
 
-        var hasChanges = false;
+        worldItemStates.Add(clonedWorldItem);
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.WorldItemManager);
 
-        foreach (var worldItemState in worldItemStates)
-        {
-            if (worldItemState["ObjectNameId"]?.Value<string>() is not { } objectNameId ||
-                objectNameId != _selectedWorldItem.ObjectNameId)
-            {
-                continue;
-            }
-
-            var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
-            var itemStateCopy = worldItemState.DeepClone();
-            itemStateCopy["ObjectNameId"] = "";
-            itemStateCopy["Position"] = JToken.FromObject(playerPos);
-            itemStateCopy["State"]?.Remove();
-            itemStateCopy["Unnamed"] = true;
-            worldItemStates.Add(itemStateCopy);
-            saveDataWrapper.MarkAsModified(Constants.JsonKeys.WorldItemManager);
-            hasChanges = true;
-
-            WeakReferenceMessenger.Default.Send(
-                new GenericMessageEvent(
-                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectCloned.text",
-                        _selectedWorldItem.ObjectNameId),
-                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectCloned.title",
-                        _selectedWorldItem.Group)));
-            break;
-        }
-
-        _parent.Close(hasChanges);
-    }
-
-    [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
-    private void TeleportPlayerToObject()
-    {
-        if (_selectedWorldItem == null)
-        {
-            return;
-        }
-
-        Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos =
-            _selectedWorldItem.Position.WithYOffset(3);
+        var itemName = TranslationManager.Get("worldItemTypes." + selectedWorldItemType);
 
         WeakReferenceMessenger.Default.Send(
             new GenericMessageEvent(
-                TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.playerMoved.text",
-                    _selectedWorldItem.ObjectNameId),
-                TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.playerMoved.title",
-                    _selectedWorldItem.Group)));
-        _parent.Close(false);
+                TranslationManager.GetFormatted("windows.worldItemCloner.messages.objectCloned.text", itemName),
+                TranslationManager.GetFormatted("windows.worldItemCloner.messages.objectCloned.title", itemName)));
+
+        _parent.Close(true);
     }
 
-    [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
-    private void TeleportObjectToPlayer()
+    private static JObject? CreateClone(WorldItemType? selectedWorldItemType)
     {
-        if (_selectedWorldItem == null || SavegameManager.SelectedSavegame is not { } savegame)
+        if (!CanClone(selectedWorldItemType))
         {
-            return;
+            return null;
         }
 
-        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
-                { } saveDataWrapper ||
-            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
-            worldItemManager["WorldItemStates"] is not JArray worldItemStates)
+        var itemId = ItemIdsToWorldItemTypes.Where(kvp => kvp.Value == selectedWorldItemType)
+            .Select(kvp => kvp.Key)
+            .FirstOrDefault(-1);
+
+        if (itemId == -1)
         {
-            WeakReferenceMessenger.Default.Send(
-                new GenericMessageEvent(
-                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.text"),
-                    TranslationManager.Get("windows.worldItemTeleporter.messages.nothingToMove.title")));
-            _parent.Close(false);
-            return;
+            return null;
         }
 
-        var hasChanges = false;
+        var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
 
-        foreach (var worldItemState in worldItemStates)
+        return new JObject
         {
-            if (worldItemState["ObjectNameId"]?.Value<string>() is not { } objectNameId ||
-                objectNameId != _selectedWorldItem.ObjectNameId)
+            { "ObjectNameId", Guid.NewGuid().ToString() },
+            { "ItemId", itemId },
+            { "Position", JToken.FromObject(playerPos) },
             {
-                continue;
-            }
-
-            var playerPos = Ioc.Default.GetRequiredService<PlayerPageViewModel>().PlayerState.Pos;
-            worldItemState["Position"] = JToken.FromObject(playerPos);
-            saveDataWrapper.MarkAsModified(Constants.JsonKeys.WorldItemManager);
-            hasChanges = true;
-
-            WeakReferenceMessenger.Default.Send(
-                new GenericMessageEvent(
-                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectMoved.text",
-                        _selectedWorldItem.ObjectNameId),
-                    TranslationManager.GetFormatted("windows.worldItemTeleporter.messages.objectMoved.title",
-                        _selectedWorldItem.Group)));
-            break;
-        }
-
-        _parent.Close(hasChanges);
+                "Rotation", new JObject
+                {
+                    { "x", 0f },
+                    { "y", 0f },
+                    { "z", 0f }
+                }
+            },
+            { "RuntimeCreated", true }
+        };
     }
 
-    [RelayCommand(CanExecute = nameof(HasWorldItemSelected))]
-    private void OpenMapAtObjectPos()
+    private bool HasWorldItemTypeSelected()
     {
-        if (_selectedWorldItem is { } selected)
+        return SelectedWorldItemType != null;
+    }
+
+    private bool HasModifiableWorldItemTypeSelected()
+    {
+        return HasWorldItemTypeSelected() && CanClone(SelectedWorldItemType);
+    }
+
+    private static bool CanClone(WorldItemType? worldItemType)
+    {
+        return worldItemType switch
         {
-            WeakReferenceMessenger.Default.Send(
-                new ZoomToPosEvent(selected.Position));
-        }
-    }
-
-    private bool HasWorldItemSelected()
-    {
-        return SelectedWorldItem != null;
-    }
-
-    private bool HasModifiableWorldItemSelected()
-    {
-        return HasWorldItemSelected() && SelectedWorldItem?.WorldItemType switch
-        {
-            WorldItemType.Glider => true,
+            WorldItemType.HangGlider => true,
             WorldItemType.KnightV => true,
             _ => false
         };

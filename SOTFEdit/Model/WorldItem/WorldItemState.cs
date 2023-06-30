@@ -2,5 +2,5 @@
 
 namespace SOTFEdit.Model.WorldItem;
 
-public record WorldItemState(string ObjectNameId, [property: JsonIgnore] string Group, Position Position,
-    WorldItemType WorldItemType);
+public record WorldItemState(string ObjectName, [property: JsonIgnore] string Group, Position Position,
+    WorldItemType WorldItemType, bool IsRuntimeCreated);

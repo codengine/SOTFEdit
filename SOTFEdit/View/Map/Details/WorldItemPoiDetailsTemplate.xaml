@@ -27,8 +27,10 @@
                    Visibility="{Binding AreaName, Converter={StaticResource NullToVisibilityConverter}}" />
             <Label Content="{Binding AreaName}"
                    Visibility="{Binding AreaName, Converter={StaticResource NullToVisibilityConverter}}" />
-            <Label Content="{infrastructure:Translate 'map.objectNameId'}" />
-            <Label Content="{Binding State.ObjectNameId}" />
+            <Label Content="{infrastructure:Translate 'map.name'}" />
+            <Label Content="{Binding State.ObjectName}" />
+            <Label Content="{infrastructure:Translate 'map.isRuntimeCreated'}" />
+            <Label Content="{Binding State.IsRuntimeCreated, Converter={StaticResource BoolTranslationConverter}}" />
 
             <map:MapTeleportButtonsControl Poi="{Binding}" Grid.ColumnSpan="2" Margin="4" />
         </st:AutoGrid>

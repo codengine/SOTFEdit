@@ -6,11 +6,10 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
                  xmlns:st="http://schemas.spicytaco.io/"
-                 xmlns:converters="clr-namespace:SOTFEdit.Infrastructure.Converters"
                  xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
-                 xmlns:worldItem="clr-namespace:SOTFEdit.Model.WorldItem"
+                 xmlns:local="clr-namespace:SOTFEdit.Model.WorldItem"
                  mc:Ignorable="d"
-                 Title="{infrastructure:Translate 'windows.worldItemTeleporter.title'}" MinWidth="300"
+                 Title="{infrastructure:Translate 'windows.worldItemCloner.title'}" MinWidth="300"
                  WindowStartupLocation="CenterOwner"
                  WindowTransitionsEnabled="False"
                  ResizeMode="NoResize"
@@ -25,57 +24,25 @@
     <st:AutoGrid Margin="20" Columns="Auto,*" Rows="Auto" VerticalAlignment="Top"
                  HorizontalAlignment="Stretch" ChildMargin="3">
         <st:AutoGrid.Resources>
-            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+
         </st:AutoGrid.Resources>
-        <Label>
-            World Item
-        </Label>
-        <StackPanel Orientation="Horizontal">
-            <Image Source="pack://application:,,,/SOTFEdit;component/images/red-pin.png" Width="32" Height="32"
-                   Cursor="Hand"
-                   ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.pinTooltip'}"
-                   VerticalAlignment="Center"
-                   Visibility="{Binding SelectedWorldItem, Converter={StaticResource NullToVisibilityConverter}}">
-                <Image.InputBindings>
-                    <MouseBinding MouseAction="LeftClick"
-                                  Command="{Binding OpenMapAtObjectPosCommand}" />
-                </Image.InputBindings>
-            </Image>
-            <ComboBox ItemsSource="{Binding WorldItemStates}"
-                      SelectedItem="{Binding SelectedWorldItem, UpdateSourceTrigger=PropertyChanged}">
-                <ComboBox.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate DataType="{x:Type GroupItem}">
-                                <TextBlock Padding="3" Text="{Binding Name}"
-                                           Foreground="{DynamicResource MahApps.Brushes.AccentBase}"
-                                           FontWeight="Bold" />
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ComboBox.GroupStyle>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type worldItem:WorldItemState}">
-                        <TextBlock Padding="8 3 3 3" Text="{Binding ObjectNameId}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
+        <ComboBox Grid.ColumnSpan="2"
+                  SelectedValue="{Binding SelectedWorldItemType, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedValuePath="Tag">
+            <ComboBox.Items>
+                <ComboBoxItem Tag="{x:Static local:WorldItemType.HangGlider}"
+                              Content="{infrastructure:Translate 'worldItemTypes.HangGlider' }" />
+                <ComboBoxItem Tag="{x:Static local:WorldItemType.KnightV}"
+                              Content="{infrastructure:Translate 'worldItemTypes.KnightV' }" />
+            </ComboBox.Items>
+        </ComboBox>
         <Button Command="{Binding RemoveAllOfThisTypeCommand}"
                 Background="DarkRed" Grid.ColumnSpan="2"
-                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.removeAllCopies.tooltip'}"
-                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.removeAllCopies.text'}" />
+                ToolTip="{infrastructure:Translate 'windows.worldItemCloner.buttons.removeAllCopies.tooltip'}"
+                Content="{infrastructure:Translate 'windows.worldItemCloner.buttons.removeAllCopies.text'}" />
         <Button Command="{Binding CloneObjectAtPlayerPosCommand}"
                 Background="{DynamicResource MahApps.Brushes.Accent}" Grid.ColumnSpan="2"
-                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.cloneAtPlayerPosition.tooltip'}"
-                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.cloneAtPlayerPosition.text'}" />
-        <Button Command="{Binding TeleportPlayerToObjectCommand}" Grid.ColumnSpan="2"
-                Background="{DynamicResource MahApps.Brushes.Accent}"
-                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportPlayerToObject.tooltip'}"
-                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportPlayerToObject.text'}" />
-        <Button Command="{Binding TeleportObjectToPlayerCommand}" Grid.ColumnSpan="2"
-                Background="{DynamicResource MahApps.Brushes.Accent}"
-                ToolTip="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportObjectToPlayer.tooltip'}"
-                Content="{infrastructure:Translate 'windows.worldItemTeleporter.buttons.teleportObjectToPlayer.text'}" />
+                ToolTip="{infrastructure:Translate 'windows.worldItemCloner.buttons.cloneAtPlayerPosition.tooltip'}"
+                Content="{infrastructure:Translate 'windows.worldItemCloner.buttons.cloneAtPlayerPosition.text'}" />
     </st:AutoGrid>
 </mah:MetroWindow>

@@ -2,7 +2,7 @@
 
 public enum WorldItemType
 {
-    Glider,
+    HangGlider,
     KnightV,
     GolfCart,
     Unknown
