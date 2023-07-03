@@ -344,7 +344,8 @@
       "type": "ammo",
       "image": "Ammo.png",
       "storageMax": {
-        "inventory": 10
+        "shelf": 50,
+        "inventory": 1000
       }
     },
     {

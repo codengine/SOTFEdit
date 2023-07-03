@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.11.4
+
+### Bugfixes
+
+- Fixed maximum rifle ammo in inventory
+- Added rifle ammo to storage selection
+
 ## v0.11.3
 
 ### Features
