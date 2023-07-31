@@ -212,7 +212,8 @@
       "45": "Dämon Boss",
       "46": "Mr. Puffton",
       "47": "Mrs. Puffton",
-      "48": "Boss Mutant"
+      "48": "Boss Mutant",
+      "50": "Armsy"
     },
     "influenceType": {
       "Cannibal": "Kannibale",
@@ -363,7 +364,8 @@
       "59": "Einfacher Holzschlitten",
       "60": "Stein-Feuerstelle",
       "61": "Trophäen-Halter",
-      "62": "Felsen-Lager"
+      "62": "Felsen-Lager",
+      "63": "Hokey Pokey Falle"
     },
     "modificationMode": {
       "None": "Keine Änderung",
@@ -1205,7 +1207,8 @@
     "652": "Elchkopf",
     "653": "Persönliche Notiz A",
     "654": "Persönliche Notiz B",
-    "655": "Persönliche Notiz C"
+    "655": "Persönliche Notiz C",
+    "657": "Gedrucktes GPS Gehäuse"
   },
   "worldItemTypes": {
     "GolfCart": "Golfwagen",

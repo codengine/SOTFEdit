@@ -2705,6 +2705,15 @@
         "inventory": 1
       },
       "image": "Paper.png"
+    },
+    {
+      "id": 657,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 10
+      },
+      "image": "Sat.png"
     }
   ],
   "storages": [
@@ -3218,6 +3227,12 @@
       "classification": "creep",
       "image": "boss_mutant.jpg",
       "icon": "boss_mutant.png"
+    },
+    {
+      "id": 50,
+      "classification": "creep",
+      "image": "armsy.jpg",
+      "icon": "armsy.png"
     }
   ],
   "namedIntKeys": [
@@ -3502,6 +3517,12 @@
       "buildCost": 12,
       "category": "storage",
       "icon": "../items/stone-block_tn.png"
+    },
+    {
+      "id": 63,
+      "buildCost": 34,
+      "category": "traps",
+      "icon": "trap.png"
     }
   ],
   "areas": [

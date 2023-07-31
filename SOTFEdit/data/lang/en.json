@@ -220,7 +220,8 @@
       "45": "Demon Boss",
       "46": "Mr. Puffton",
       "47": "Mrs. Puffton",
-      "48": "Boss Mutant"
+      "48": "Boss Mutant",
+      "50": "Armsy"
     },
     "influenceType": {
       "Cannibal": "Cannibal",
@@ -371,7 +372,8 @@
       "59": "Basic Log Sled",
       "60": "Stone Fireplace",
       "61": "Head Trophy",
-      "62": "Stone Storage"
+      "62": "Stone Storage",
+      "63": "Hokey Pokey Trap"
     },
     "modificationMode": {
       "None": "None",
@@ -1213,7 +1215,8 @@
     "652": "Moose Head",
     "653": "Personal Note A",
     "654": "Personal Note B",
-    "655": "Personal Note C"
+    "655": "Personal Note C",
+    "657": "Printed GPS Case"
   },
   "worldItemTypes": {
     "GolfCart": "Golf Cart",
