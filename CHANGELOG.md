@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.11.5
+
+Update 08 Changes
+
+### Features
+
+- Added new enemy: Armsy
+- Added new structure: Hokey Pokey Trap
+- Added new item: Printed GPS Case
+
 ## v0.11.4
 
 ### Bugfixes
