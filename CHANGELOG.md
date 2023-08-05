@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.11.6
+
+### Features
+
+- Added new enemy: Mutant Virginia
+
+### Bugfixes
+
+- Fixed crash because of strange actors without a position on the map
+
 ## v0.11.5
 
 Update 08 Changes
