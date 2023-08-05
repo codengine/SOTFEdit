@@ -3229,6 +3229,13 @@
       "icon": "boss_mutant.png"
     },
     {
+      "id": 49,
+      "classification": "creep",
+      "gender": "female",
+      "image": "creepy_virginia.jpg",
+      "icon": "creepy_virginia.png"
+    },
+    {
       "id": 50,
       "classification": "creep",
       "image": "armsy.jpg",
