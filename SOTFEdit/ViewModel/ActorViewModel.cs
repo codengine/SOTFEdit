@@ -16,9 +16,12 @@ public partial class ActorViewModel
     public ActorCollection ActorCollection { get; }
 
     [RelayCommand]
-    private static void OpenMap(Position position)
+    private static void OpenMap(Position? position)
     {
-        WeakReferenceMessenger.Default.Send(new ZoomToPosEvent(position));
+        if (position != null)
+        {
+            WeakReferenceMessenger.Default.Send(new ZoomToPosEvent(position));
+        }
     }
 
     [RelayCommand]

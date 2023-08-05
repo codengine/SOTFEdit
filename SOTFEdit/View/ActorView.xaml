@@ -43,14 +43,15 @@
                                    Margin="0 0 5 0" Width="32"
                                    Height="32"
                                    Cursor="Hand" VerticalAlignment="Center"
-                                   ToolTip="{Binding Position.Printable}">
+                                   ToolTip="{Binding Position.Printable, FallbackValue='???'}">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick"
                                                   Command="{Binding DataContext.OpenMapCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
                                                   CommandParameter="{Binding Position}" />
                                 </Image.InputBindings>
                             </Image>
-                            <TextBlock Text="{Binding Position.Area.Name}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Position.Area.Name, FallbackValue='???'}"
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                         <Grid Grid.Row="2" Margin="0 0 0 6">
                             <Grid.ColumnDefinitions>

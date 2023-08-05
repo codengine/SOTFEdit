@@ -103,9 +103,9 @@ public partial class NpcsPageViewModel : ObservableObject
         AllActors.AddRange(vailWorldSim["Actors"]?.ToObject<List<Actor>>() ?? Enumerable.Empty<Actor>().ToList());
         foreach (var actor in AllActors)
         {
-            if (actor.GraphMask is { } graphMask)
+            if (actor is { GraphMask: { } graphMask, Position: { } position })
             {
-                actor.Position = actor.Position.WithoutOffset(_areaManager.GetAreaForGraphMask(graphMask));
+                actor.Position = position.WithoutOffset(_areaManager.GetAreaForGraphMask(graphMask));
             }
 
             if (actor.SpawnerId is { } spawnerId)

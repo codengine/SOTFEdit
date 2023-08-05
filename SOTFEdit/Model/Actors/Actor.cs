@@ -16,7 +16,7 @@ public class Actor
     public List<Influence>? Influences { get; set; }
     public KillStat? KillStats { get; set; }
     public float? LastVisitTime { get; set; }
-    public Position Position { get; set; }
+    public Position? Position { get; set; }
     public int? SpawnerId { get; set; }
     public Spawner? Spawner { get; set; }
     public int State { get; set; }
