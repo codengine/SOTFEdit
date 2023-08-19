@@ -238,8 +238,7 @@ public partial class MainViewModel : ObservableObject
             hasChanges = StoragePage.Update(selectedSavegame) || hasChanges;
             hasChanges = StructuresPage.Update(selectedSavegame) || hasChanges;
 
-            hasChanges = selectedSavegame.SavegameStore.SaveAllModified(backupMode,
-                ApplicationSettings.BackupFlags) || hasChanges;
+            hasChanges = selectedSavegame.SavegameStore.SaveAllModified(backupMode) || hasChanges;
 
             if (hasChanges)
             {

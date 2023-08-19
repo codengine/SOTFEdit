@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ControlzEx.Theming;
 using SOTFEdit.Infrastructure;
@@ -8,14 +7,6 @@ namespace SOTFEdit;
 
 public class ApplicationSettings
 {
-    [Flags]
-    public enum BackupFlag
-    {
-        TYPE_SINGLEFILE = 1,
-        TYPE_ARCHIVE = 2,
-        ASK_FOR_BACKUP = 4
-    }
-
     public enum BackupMode
     {
         None,
@@ -41,12 +32,6 @@ public class ApplicationSettings
                   AccentColors.First();
     }
 
-    public static BackupFlag BackupFlags
-    {
-        get => Settings.Default.BackupFlags;
-        set => Settings.Default.BackupFlags = value;
-    }
-
     public List<ThemeData> AccentColors { get; }
 
     public ThemeData CurrentThemeAccent
@@ -63,11 +48,6 @@ public class ApplicationSettings
     {
         get => Settings.Default.BackupMode;
         set => Settings.Default.BackupMode = value;
-    }
-
-    public bool HasBackupFlag(BackupFlag flag)
-    {
-        return (Settings.Default.BackupFlags & flag) != 0;
     }
 
     public void Save()

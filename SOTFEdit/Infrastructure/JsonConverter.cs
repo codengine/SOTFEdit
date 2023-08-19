@@ -57,4 +57,9 @@ public static class JsonConverter
     {
         return JsonConvert.SerializeObject(model, DefaultJsonSerializerSettings);
     }
+
+    public static T? DeserializeFromString<T>(string json)
+    {
+        return JsonConvert.DeserializeObject<T>(json, DefaultJsonSerializerSettings);
+    }
 }

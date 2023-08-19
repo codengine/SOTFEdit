@@ -108,18 +108,6 @@ namespace SOTFEdit {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("TYPE_ARCHIVE")]
-        public global::SOTFEdit.ApplicationSettings.BackupFlag BackupFlags {
-            get {
-                return ((global::SOTFEdit.ApplicationSettings.BackupFlag)(this["BackupFlags"]));
-            }
-            set {
-                this["BackupFlags"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string LastSavegame {
             get {
@@ -247,6 +235,18 @@ namespace SOTFEdit {
             }
             set {
                 this["CompanionMapPositionUpdateInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AskForBackups {
+            get {
+                return ((bool)(this["AskForBackups"]));
+            }
+            set {
+                this["AskForBackups"] = value;
             }
         }
     }

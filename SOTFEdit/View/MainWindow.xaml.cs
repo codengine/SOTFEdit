@@ -266,7 +266,7 @@ public partial class MainWindow
         }
 
         var countRestored =
-            message.Savegame.SavegameStore.RestoreBackups(message.RestoreFromNewest, ApplicationSettings.BackupFlags);
+            message.Savegame.SavegameStore.RestoreBackups(message.RestoreFromNewest);
 
         if (countRestored > 0)
         {
@@ -382,7 +382,7 @@ public partial class MainWindow
 
         try
         {
-            var countDeleted = message.Savegame.SavegameStore.DeleteBackups(ApplicationSettings.BackupFlags);
+            var countDeleted = message.Savegame.SavegameStore.DeleteBackups();
             await ShowMessageDialog(
                 TranslationManager.GetFormatted("windows.main.messages.backupsDeleted", countDeleted),
                 TranslationManager.Get("generic.success"));
@@ -444,8 +444,7 @@ public partial class MainWindow
         var applicationSettings = Ioc.Default.GetRequiredService<ApplicationSettings>();
         var effectiveBackupMode = applicationSettings.CurrentBackupMode;
 
-        if (applicationSettings.HasBackupFlag(ApplicationSettings.BackupFlag.ASK_FOR_BACKUP) &&
-            effectiveBackupMode != ApplicationSettings.BackupMode.None)
+        if (Settings.Default.AskForBackups && effectiveBackupMode != ApplicationSettings.BackupMode.None)
         {
             var dialogSettings = BuildDefaultDialogSettings();
             dialogSettings.AffirmativeButtonText = TranslationManager.Get("generic.yes");

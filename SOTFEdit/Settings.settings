@@ -24,9 +24,6 @@
         <Setting Name="BackupMode" Type="SOTFEdit.ApplicationSettings.BackupMode" Scope="User">
             <Value Profile="(Default)">InitialAndOne</Value>
         </Setting>
-        <Setting Name="BackupFlags" Type="SOTFEdit.ApplicationSettings.BackupFlag" Scope="User">
-            <Value Profile="(Default)">TYPE_ARCHIVE</Value>
-        </Setting>
         <Setting Name="LastSavegame" Type="System.String" Scope="User">
             <Value Profile="(Default)"/>
         </Setting>
@@ -59,6 +56,9 @@
         </Setting>
         <Setting Name="CompanionMapPositionUpdateInterval" Type="System.Decimal" Scope="User">
             <Value Profile="(Default)">0.1</Value>
+        </Setting>
+        <Setting Name="AskForBackups" Type="System.Boolean" Scope="User">
+            <Value Profile="(Default)">False</Value>
         </Setting>
     </Settings>
 </SettingsFile>

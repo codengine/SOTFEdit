@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json.Linq;
+using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.Actors;
 using static SOTFEdit.Model.Constants.Actors;
@@ -12,7 +15,10 @@ namespace SOTFEdit.Model.Savegame;
 
 public class Savegame : ObservableObject
 {
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     private readonly string _dirName;
+
+    private readonly Regex _nameFilePattern = new(@"(.*)_\d{2}_\d{2}_\d{2}.name");
 
     public Savegame(string fullPath, string dirName, SavegameStore savegameStore)
     {
@@ -171,17 +177,27 @@ public class Savegame : ObservableObject
 
     private void ReadSaveData()
     {
-        if (SavegameStore.LoadJsonRaw(SavegameStore.FileType.GameStateSaveData) is not { } saveDataWrapper ||
-            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.GameState) is not { } gameState)
+        LastSaveTime = SavegameStore.LastWriteTime;
+        GameName = FindGameName();
+    }
+
+    private string? FindGameName()
+    {
+        var nameFile = Directory.GetFiles(FullPath, "*.name").FirstOrDefault();
+        if (nameFile == null)
         {
-            return;
+            Logger.Warn($"Name file not found in {FullPath}");
+            return null;
         }
 
-        LastSaveTime = gameState["SaveTime"]?.ToObject<DateTime>() ?? SavegameStore.LastWriteTime;
-        if (gameState["GameName"]?.Value<string>() is { } gameName)
+        var patternMatch = _nameFilePattern.Match(Path.GetFileName(nameFile));
+        if (!patternMatch.Success || patternMatch.Groups.Count < 2)
         {
-            GameName = gameName;
+            Logger.Warn($"Name pattern does not match on {nameFile}, will return raw filename");
+            return Path.GetFileNameWithoutExtension(nameFile).Replace("_", " ");
         }
+
+        return patternMatch.Groups[1].Value.Replace("_", " ");
     }
 
     public bool ModifyGameState(Dictionary<string, object> values)

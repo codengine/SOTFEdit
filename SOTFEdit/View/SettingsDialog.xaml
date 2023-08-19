@@ -39,14 +39,7 @@
                   SelectedItem="{Binding CurrentBackupMode}" DisplayMemberPath="Name" />
         <Label />
         <CheckBox Content="{infrastructure:Translate 'windows.settings.askForBackupsEveryTime'}"
-                  IsChecked="{Binding AskForBackups}" />
-        <Label Content="{infrastructure:Translate 'windows.settings.fileMode.label'}" />
-        <StackPanel Orientation="Horizontal">
-            <RadioButton GroupName="BackupFileFlags" Margin="0 0 8 0" IsChecked="{Binding BackupFileTypeSingle}"
-                         Content="{infrastructure:Translate 'windows.settings.fileMode.single'}" />
-            <RadioButton GroupName="BackupFileFlags" IsChecked="{Binding BackupFileTypeArchive}"
-                         Content="{infrastructure:Translate 'windows.settings.fileMode.zip'}" />
-        </StackPanel>
+                  IsChecked="{Binding AskForBackups, UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="{infrastructure:Translate 'windows.settings.language'}" />
         <ComboBox ItemsSource="{Binding Languages}"
                   SelectedValue="{Binding SelectedLanguage}" DisplayMemberPath="Title"

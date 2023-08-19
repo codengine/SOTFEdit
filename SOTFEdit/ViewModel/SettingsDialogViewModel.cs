@@ -16,7 +16,6 @@ namespace SOTFEdit.ViewModel;
 public partial class SettingsDialogViewModel : ObservableObject
 {
     private readonly ApplicationSettings _applicationSettings;
-    private ApplicationSettings.BackupFlag _backupFlags;
 
     [ObservableProperty]
     private BackupModeWrapper _currentBackupMode;
@@ -26,6 +25,9 @@ public partial class SettingsDialogViewModel : ObservableObject
 
     [ObservableProperty]
     private string _selectedLanguage;
+    
+    [ObservableProperty]
+    private bool _askForBackups;
 
     public SettingsDialogViewModel(ApplicationSettings applicationSettings)
     {
@@ -35,7 +37,7 @@ public partial class SettingsDialogViewModel : ObservableObject
             .Select(backupMode => new BackupModeWrapper(backupMode))
             .ToList();
         _currentBackupMode = BackupModes.First(wrapper => wrapper.BackupMode == applicationSettings.CurrentBackupMode);
-        _backupFlags = ApplicationSettings.BackupFlags;
+        _askForBackups = Settings.Default.AskForBackups;
         Languages = LanguageManager.GetAvailableCultures()
             .Select(culture =>
                 new ComboBoxItemAndValue<string>(TranslationManager.Get("languages." + culture), culture))
@@ -49,48 +51,13 @@ public partial class SettingsDialogViewModel : ObservableObject
 
     public List<ThemeData> AccentColors => _applicationSettings.AccentColors;
 
-    public bool AskForBackups
-    {
-        get => GetBackupFlag(ApplicationSettings.BackupFlag.ASK_FOR_BACKUP);
-        set => SetBackupFlag(ApplicationSettings.BackupFlag.ASK_FOR_BACKUP, value);
-    }
-
-    public bool BackupFileTypeSingle
-    {
-        get => GetBackupFlag(ApplicationSettings.BackupFlag.TYPE_SINGLEFILE);
-        set => SetBackupFlag(ApplicationSettings.BackupFlag.TYPE_SINGLEFILE, value);
-    }
-
-    public bool BackupFileTypeArchive
-    {
-        get => GetBackupFlag(ApplicationSettings.BackupFlag.TYPE_ARCHIVE);
-        set => SetBackupFlag(ApplicationSettings.BackupFlag.TYPE_ARCHIVE, value);
-    }
-
-    private bool GetBackupFlag(ApplicationSettings.BackupFlag flag)
-    {
-        return (_backupFlags & flag) != 0;
-    }
-
-    private void SetBackupFlag(ApplicationSettings.BackupFlag flag, bool value)
-    {
-        if (value)
-        {
-            _backupFlags |= flag;
-        }
-        else
-        {
-            _backupFlags &= ~flag;
-        }
-    }
-
     [RelayCommand]
     private void Save()
     {
         _applicationSettings.CurrentThemeAccent = CurrentThemeAccent;
         _applicationSettings.CurrentBackupMode = CurrentBackupMode.BackupMode;
         Settings.Default.Language = SelectedLanguage;
-        ApplicationSettings.BackupFlags = _backupFlags;
+        Settings.Default.AskForBackups = AskForBackups;
         _applicationSettings.Save();
         WeakReferenceMessenger.Default.Send(new SettingsSavedEvent());
     }

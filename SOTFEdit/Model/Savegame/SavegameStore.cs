@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading;
 using Newtonsoft.Json.Linq;
@@ -18,6 +19,7 @@ public class SavegameStore
         PlayerInventorySaveData,
         PlayerArmourSystemSaveData,
         SaveData,
+        SaveDataArchive,
         GameStateSaveData,
         WorldObjectLocatorManagerSaveData,
         WeatherSystemSaveData,
@@ -86,8 +88,30 @@ public class SavegameStore
 
     private T? LoadJson<T>(FileType fileType)
     {
-        var path = ResolvePath(fileType.GetFilename());
-        return !File.Exists(path) ? default : JsonConverter.DeserializeFromFile<T>(path);
+        var fileName = fileType.GetFilename();
+        var path = ResolvePath(fileName);
+        return File.Exists(path) ? JsonConverter.DeserializeFromFile<T>(path) : LoadJsonFromArchiveIfExists<T>(fileName);
+    }
+
+    private T? LoadJsonFromArchiveIfExists<T>(string fileName)
+    {
+        var archivePath = ResolvePath(FileType.SaveDataArchive.GetFilename());
+        if (!File.Exists(archivePath))
+        {
+            return default;
+        }
+
+        using var archive = ZipFile.OpenRead(archivePath);
+        var fileEntry = archive.GetEntry(fileName);
+        if (fileEntry == null)
+        {
+            return default;
+        }
+
+        using var stream = fileEntry.Open();
+        using var streamReader = new StreamReader(stream);
+        var json = streamReader.ReadToEnd();
+        return JsonConverter.DeserializeFromString<T>(json);
     }
 
     private string ResolvePath(string fileName)
@@ -102,8 +126,41 @@ public class SavegameStore
 
     private void StoreJson(FileType fileType, object model)
     {
-        var fullPath = ResolvePath(fileType.GetFilename());
-        JsonConverter.Serialize(fullPath, model);
+        var fileName = fileType.GetFilename();
+        var fullPath = ResolvePath(fileName);
+        if (File.Exists(fullPath))
+        {
+            JsonConverter.Serialize(fullPath, model);
+        }
+        else
+        {
+            StoreJsonToArchive(fileName, model);
+        }
+    }
+
+    private void StoreJsonToArchive(string fileName, object model)
+    {
+        var archivePath = ResolvePath(FileType.SaveDataArchive.GetFilename());
+        if (!File.Exists(archivePath))
+        {
+            return;
+        }
+
+        using var archive = ZipFile.Open(archivePath, ZipArchiveMode.Update);
+        var zipEntry = archive.GetEntry(fileName);
+        if (zipEntry == null)
+        {
+            zipEntry = archive.CreateEntry(fileName);
+        }
+        else
+        {
+            zipEntry.LastWriteTime = DateTimeOffset.Now;
+        }
+
+        var json = JsonConverter.Serialize(model);
+        using var stream = zipEntry.Open();
+        using var streamWriter = new StreamWriter(stream);
+        streamWriter.Write(json);
     }
 
     public string? GetThumbPath()
@@ -119,9 +176,9 @@ public class SavegameStore
         return new DirectoryInfo(_path).Parent;
     }
 
-    public int DeleteBackups(ApplicationSettings.BackupFlag backupFlags)
+    public int DeleteBackups()
     {
-        var countDeleted = BackupManager.DeleteAllBackups(_path, backupFlags);
+        var countDeleted = BackupManager.DeleteAllBackups(_path);
         RereadLastWriteTime();
         return countDeleted;
     }
@@ -131,12 +188,12 @@ public class SavegameStore
         LastWriteTime = ReadLastWriteTime();
     }
 
-    public int RestoreBackups(bool restoreFromNewest, ApplicationSettings.BackupFlag backupFlags)
+    public int RestoreBackups(bool restoreFromNewest)
     {
-        return BackupManager.RestoreBackups(_path, restoreFromNewest, backupFlags);
+        return BackupManager.RestoreBackups(_path, restoreFromNewest);
     }
 
-    public bool SaveAllModified(ApplicationSettings.BackupMode backupMode, ApplicationSettings.BackupFlag backupFlags)
+    public bool SaveAllModified(ApplicationSettings.BackupMode backupMode)
     {
         var changedWrappers = _rawData.Where(kvp => kvp.Value != null && kvp.Value.HasModified())
             .Select(kvp => KeyValuePair.Create(kvp.Key, kvp.Value!))
@@ -148,25 +205,14 @@ public class SavegameStore
             return false;
         }
 
-        var hasBackupArchive = (backupFlags & ApplicationSettings.BackupFlag.TYPE_ARCHIVE) != 0 &&
-                               backupMode != ApplicationSettings.BackupMode.None;
-        if (hasBackupArchive)
+        if (backupMode != ApplicationSettings.BackupMode.None)
         {
             BackupManager.BackupArchive(_path, backupMode);
         }
 
-        var hasBackupSingleFile = (backupFlags & ApplicationSettings.BackupFlag.TYPE_SINGLEFILE) != 0 &&
-                                  backupMode != ApplicationSettings.BackupMode.None;
-
         foreach (var (fileType, saveDataWrapper) in changedWrappers)
         {
             Logger.Info($"{fileType} is marked as modified, saving...");
-            if (hasBackupSingleFile)
-            {
-                var fullPath = ResolvePath(fileType.GetFilename());
-                BackupManager.BackupSingleFile(fullPath, backupMode);
-            }
-
             saveDataWrapper.SerializeAllModified();
             StoreJson(fileType, saveDataWrapper.Parent);
         }
@@ -182,6 +228,7 @@ public static class FileTypeExtensions
         return fileType switch
         {
             SavegameStore.FileType.SaveDataThumbnail => fileType + ".png",
+            SavegameStore.FileType.SaveDataArchive => "SaveData.zip",
             _ => fileType + ".json"
         };
     }

@@ -52,7 +52,7 @@ public class SavegameManager : ObservableObject
         try
         {
             var fileInfos =
-                new DirectoryInfo(savesPath).GetFiles("GameStateSaveData.json", SearchOption.AllDirectories);
+                new DirectoryInfo(savesPath).GetFiles("SaveDataThumbnail.png", SearchOption.AllDirectories);
             return fileInfos.Select(file => CreateSaveInfo(file.Directory))
                 .Where(savegame => savegame != null)
                 .Select(savegame => savegame!)
