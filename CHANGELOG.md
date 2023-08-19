@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.11.7
+
+### Features
+
+- Added new trap: Radio Alert Trap
+
+### Bugfixes
+
+- Added support for changes in Savegame System (Savegames are now compressed by the game) 
+
 ## v0.11.6
 
 ### Features
