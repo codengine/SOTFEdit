@@ -3530,6 +3530,12 @@
       "buildCost": 34,
       "category": "traps",
       "icon": "trap.png"
+    },
+    {
+      "id": 64,
+      "buildCost": 25,
+      "category": "traps",
+      "icon": "trap.png"
     }
   ],
   "areas": [
