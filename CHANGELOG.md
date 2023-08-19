@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.11.8
+
+### Bugfixes
+
+- Fix bug at saving ("Additional text encountered after finished reading JSON")
+    - The previous version might have corrupted your savegame. In that case, you have to restore the original savegame
+      from a backup
+
 ## v0.11.7
 
 ### Features
@@ -8,7 +16,7 @@
 
 ### Bugfixes
 
-- Added support for changes in Savegame System (Savegames are now compressed by the game) 
+- Added support for changes in Savegame System (Savegames are now compressed by the game)
 
 ## v0.11.6
 

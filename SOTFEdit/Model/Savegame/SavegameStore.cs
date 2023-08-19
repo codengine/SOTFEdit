@@ -90,7 +90,9 @@ public class SavegameStore
     {
         var fileName = fileType.GetFilename();
         var path = ResolvePath(fileName);
-        return File.Exists(path) ? JsonConverter.DeserializeFromFile<T>(path) : LoadJsonFromArchiveIfExists<T>(fileName);
+        return File.Exists(path)
+            ? JsonConverter.DeserializeFromFile<T>(path)
+            : LoadJsonFromArchiveIfExists<T>(fileName);
     }
 
     private T? LoadJsonFromArchiveIfExists<T>(string fileName)
@@ -147,15 +149,9 @@ public class SavegameStore
         }
 
         using var archive = ZipFile.Open(archivePath, ZipArchiveMode.Update);
-        var zipEntry = archive.GetEntry(fileName);
-        if (zipEntry == null)
-        {
-            zipEntry = archive.CreateEntry(fileName);
-        }
-        else
-        {
-            zipEntry.LastWriteTime = DateTimeOffset.Now;
-        }
+        archive.GetEntry(fileName)?.Delete();
+
+        var zipEntry = archive.CreateEntry(fileName);
 
         var json = JsonConverter.Serialize(model);
         using var stream = zipEntry.Open();
