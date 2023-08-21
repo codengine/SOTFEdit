@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.11.9
+
+### Bugfixes
+
+- Fixed that multiplayer saves where not detected anymore
+
 ## v0.11.8
 
 ### Bugfixes

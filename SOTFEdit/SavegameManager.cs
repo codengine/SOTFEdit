@@ -52,12 +52,13 @@ public class SavegameManager : ObservableObject
         try
         {
             var fileInfos =
-                new DirectoryInfo(savesPath).GetFiles("SaveDataThumbnail.png", SearchOption.AllDirectories);
+                new DirectoryInfo(savesPath).GetFiles("SaveData.*", SearchOption.AllDirectories);
             return fileInfos.Select(file => CreateSaveInfo(file.Directory))
                 .Where(savegame => savegame != null)
                 .Select(savegame => savegame!)
                 .Where(savegame => idFilter == null || idFilter == savegame.FullPath)
                 .OrderByDescending(savegame => savegame.LastSaveTime)
+                .DistinctBy(savegame => savegame.FullPath)
                 .ToDictionary(savegame => savegame.FullPath, savegame => savegame);
         }
         catch (Exception ex)
