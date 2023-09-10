@@ -2,7 +2,7 @@
 
 ## v0.11.10
 
-### Bugfixes
+### Features
 
 - Add Large Log Holder
 - Add Deer Hide Rug
