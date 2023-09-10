@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.11.10
+
+### Bugfixes
+
+- Add Large Log Holder
+- Add Deer Hide Rug
+
 ## v0.11.9
 
 ### Bugfixes
