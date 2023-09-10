@@ -2823,6 +2823,15 @@
         640
       ],
       "type": "Stones"
+    },
+    {
+      "id": 67,
+      "slots": 1,
+      "maxPerSlot": 24,
+      "restrictedItemIds": [
+        78
+      ],
+      "type": "Logs"
     }
   ],
   "advancedStorages": [
@@ -3536,6 +3545,19 @@
       "buildCost": 25,
       "category": "traps",
       "icon": "trap.png"
+    },
+    {
+      "id": 67,
+      "buildCost": 40,
+      "category": "storage",
+      "icon": "../items/Log_tn.png"
+    },
+    {
+      "id": 68,
+      "buildCost": 1,
+      "category": "furniture",
+      "icon": "DeerHide_tn.png",
+      "canFinish": false
     }
   ],
   "areas": [
