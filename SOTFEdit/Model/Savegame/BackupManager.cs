@@ -46,8 +46,8 @@ public static class BackupManager
     private static FileInfo? GetBackupArchive(string path, bool newestFile)
     {
         return (newestFile
-                ? GetBackupArchiveFiles(path).OrderByDescending(fileInfo => fileInfo.CreationTimeUtc)
-                : GetBackupArchiveFiles(path).OrderBy(fileInfo => fileInfo.CreationTimeUtc))
+                ? GetBackupArchiveFiles(path).OrderByDescending(fileInfo => fileInfo.LastWriteTime)
+                : GetBackupArchiveFiles(path).OrderBy(fileInfo => fileInfo.LastWriteTime))
             .FirstOrDefault();
     }
 
