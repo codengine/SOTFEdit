@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.11.11
+
+### Features
+
+- Add Large Battery (Golf Cart Battery)
+- Add "???" Item (whatever it is...)
+- Add Frank (self-incinerating), Eddy (spear-throwing) and Greg (effigy-wielding)
+
+### Bugfixes
+
+- Fix wrong image path for DeerHide Rug (solves #16)
+- Fix restoring of backups (by mistake, it searched through creation time and not last write)
+
 ## v0.11.10
 
 ### Features
