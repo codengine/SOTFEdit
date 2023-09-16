@@ -3556,7 +3556,7 @@
       "id": 68,
       "buildCost": 1,
       "category": "furniture",
-      "icon": "DeerHide_tn.png",
+      "icon": "../items/DeerHide_tn.png",
       "canFinish": false
     }
   ],
