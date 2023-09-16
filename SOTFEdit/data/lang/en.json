@@ -222,7 +222,10 @@
       "47": "Mrs. Puffton",
       "48": "Boss Mutant",
       "49": "Mutant Virginia",
-      "50": "Armsy"
+      "50": "Armsy",
+      "51": "Frank",
+      "52": "Eddy",
+      "53": "Greg"
     },
     "influenceType": {
       "Cannibal": "Cannibal",
@@ -1220,7 +1223,9 @@
     "653": "Personal Note A",
     "654": "Personal Note B",
     "655": "Personal Note C",
-    "657": "Printed GPS Case"
+    "657": "Printed GPS Case",
+    "661": "Golf Cart Battery",
+    "662": "???"
   },
   "worldItemTypes": {
     "GolfCart": "Golf Cart",

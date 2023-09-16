@@ -2714,6 +2714,23 @@
         "inventory": 10
       },
       "image": "Sat.png"
+    },
+    {
+      "id": 661,
+      "type": "electricity",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 3
+      },
+      "image": "Batteries.png"
+    },
+    {
+      "id": 662,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     }
   ],
   "storages": [
@@ -3249,6 +3266,22 @@
       "classification": "creep",
       "image": "armsy.jpg",
       "icon": "armsy.png"
+    },
+    {
+      "id": 51,
+      "classification": "cannibal",
+      "image": "frank.jpg",
+      "icon": "frank.png"
+    },
+    {
+      "id": 52,
+      "classification": "cannibal"
+    },
+    {
+      "id": 53,
+      "classification": "cannibal",
+      "image": "greg.jpg",
+      "icon": "greg.png"
     }
   ],
   "namedIntKeys": [
