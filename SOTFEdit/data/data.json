@@ -3271,17 +3271,20 @@
       "id": 51,
       "classification": "cannibal",
       "image": "frank.jpg",
-      "icon": "frank.png"
+      "icon": "frank.png",
+      "gender": "male"
     },
     {
       "id": 52,
-      "classification": "cannibal"
+      "classification": "cannibal",
+      "gender": "male"
     },
     {
       "id": 53,
       "classification": "cannibal",
       "image": "greg.jpg",
-      "icon": "greg.png"
+      "icon": "greg.png",
+      "gender": "male"
     }
   ],
   "namedIntKeys": [
