@@ -4,21 +4,21 @@
 
 ### Features
 
-- Add Large Battery (Golf Cart Battery)
-- Add "???" Item (whatever it is...)
-- Add Frank (self-incinerating), Eddy (spear-throwing) and Greg (effigy-wielding)
+- Added Large Battery (Golf Cart Battery)
+- Added "???" Item (whatever it is...)
+- Added Frank (self-incinerating), Eddy (spear-throwing) and Greg (effigy-wielding)
 
 ### Bugfixes
 
-- Fix wrong image path for DeerHide Rug (solves #16)
-- Fix restoring of backups (by mistake, it searched through creation time and not last write)
+- Fixed wrong image path for DeerHide Rug (solves #16)
+- Fixed restoring of backups (by mistake, it searched through creation time and not last write)
 
 ## v0.11.10
 
 ### Features
 
-- Add Large Log Holder
-- Add Deer Hide Rug
+- Added Large Log Holder
+- Added Deer Hide Rug
 
 ## v0.11.9
 
@@ -30,7 +30,7 @@
 
 ### Bugfixes
 
-- Fix bug at saving ("Additional text encountered after finished reading JSON")
+- Fixed bug at saving ("Additional text encountered after finished reading JSON")
     - The previous version might have corrupted your savegame. In that case, you have to restore the original savegame
       from a backup
 
@@ -121,7 +121,7 @@ Please save the game first using the current game version before you use this ve
 
 ### Fixes
 
-- Fix issue if a game setting bool value is null
+- Fixed issue if a game setting bool value is null
 
 ## v0.11.0
 
