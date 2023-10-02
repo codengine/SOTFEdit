@@ -372,7 +372,9 @@
       "63": "Hokey Pokey Falle",
       "64": "Radio Alarm Falle",
       "67": "Großer Baumstamm-Halter",
-      "68": "Hirschfell-Teppich"
+      "68": "Hirschfell-Teppich",
+      "70": "Item Plating",
+      "71": "Beleuchtetes Kreuz"
     },
     "modificationMode": {
       "None": "Keine Änderung",
@@ -1215,9 +1217,17 @@
     "653": "Persönliche Notiz A",
     "654": "Persönliche Notiz B",
     "655": "Persönliche Notiz C",
+    "656": "Bauplan Hokey Pokey-Falle",
     "657": "Gedrucktes GPS Gehäuse",
+    "658": "Bauplan Radio-Falle",
+    "659": "Bauplan Radio",
     "661": "Golfwagen-Batterie",
-    "662": "???"
+    "662": "Artefakt Teil A",
+    "663": "Spitzhacke",
+    "664": "Solafit-Erz",
+    "665": "Bauplan Item Plating",
+    "666": "Bauplan beleuchtetes Kreuz",
+    "667": "Artefakt Teil B"
   },
   "worldItemTypes": {
     "GolfCart": "Golfwagen",

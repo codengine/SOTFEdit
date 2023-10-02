@@ -7561,6 +7561,90 @@
           ]
         }
       ]
+    },
+    "662": {
+      "pois": [
+        {
+          "x": -628.95,
+          "y": 517.16,
+          "teleport": {
+            "x": -628.95,
+            "y": -24.00,
+            "z": 1399.59,
+            "areaMask": 2
+          },
+          "screenshot": "artifact_a.jpg"
+        }
+      ]
+    },
+    "663": {
+      "pois": [
+        {
+          "x": 1413.59,
+          "y": 735.17,
+          "teleport": {
+            "x": 1413.59,
+            "y": 80.44,
+            "z": 735.17,
+            "areaMask": 64
+          },
+          "screenshot": "pickaxe.jpg",
+          "requirements": [
+            444
+          ]
+        }
+      ]
+    },
+    "665": {
+      "pois": [
+        {
+          "x": 1333.13,
+          "y": 699.42,
+          "teleport": {
+            "x": 1333.13,
+            "y": 116.52,
+            "z": 699.42,
+            "areaMask": 64
+          },
+          "screenshot": "blueprint_item_plating.jpg",
+          "requirements": [
+            444
+          ]
+        }
+      ]
+    },
+    "666": {
+      "pois": [
+        {
+          "x": -648.79,
+          "y": 1388.92,
+          "teleport": {
+            "x": -648.79,
+            "y": -17.16,
+            "z": 1388.92,
+            "areaMask": 2
+          },
+          "screenshot": "blueprint_powered_cross.jpg"
+        }
+      ]
+    },
+    "667": {
+      "pois": [
+        {
+          "x": 1289.04,
+          "y": 640.10,
+          "teleport": {
+            "x": 1289.04,
+            "y": 47.91,
+            "z": 640.10,
+            "areaMask": 64
+          },
+          "screenshot": "artifact_b.jpg",
+          "requirements": [
+            444
+          ]
+        }
+      ]
     }
   }
 }

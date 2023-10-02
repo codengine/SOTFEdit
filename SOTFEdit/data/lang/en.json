@@ -380,7 +380,9 @@
       "63": "Hokey Pokey Trap",
       "64": "Radio Alarm Trap",
       "67": "Large Log Holder",
-      "68": "Deer Hide Rug"
+      "68": "Deer Hide Rug",
+      "70": "Item Plating",
+      "71": "Powered Cross"
     },
     "modificationMode": {
       "None": "None",
@@ -1223,9 +1225,17 @@
     "653": "Personal Note A",
     "654": "Personal Note B",
     "655": "Personal Note C",
+    "656": "Blueprint Hokey Pokey Trap",
     "657": "Printed GPS Case",
+    "658": "Radio Trap Blueprint",
+    "659": "Radio Blueprint",
     "661": "Golf Cart Battery",
-    "662": "???"
+    "662": "Artifact Piece A",
+    "663": "Pickaxe",
+    "664": "Solafite Ore",
+    "665": "Item Plating Blueprint",
+    "666": "Powered Cross Blueprint",
+    "667": "Artifact Piece B"
   },
   "worldItemTypes": {
     "GolfCart": "Golf Cart",

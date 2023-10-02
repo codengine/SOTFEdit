@@ -1414,7 +1414,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 0,
-        "inventory": 1
+        "inventory": 3
       },
       "image": "TurtleShell.png"
     },
@@ -2707,6 +2707,14 @@
       "image": "Paper.png"
     },
     {
+      "id": 656,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
       "id": 657,
       "type": "misc",
       "storageMax": {
@@ -2716,13 +2724,29 @@
       "image": "Sat.png"
     },
     {
+      "id": 658,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 659,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
       "id": 661,
       "type": "electricity",
       "storageMax": {
         "shelf": 0,
         "inventory": 3
       },
-      "image": "Batteries.png"
+      "image": "BatteryPackGolf.png"
     },
     {
       "id": 662,
@@ -2730,7 +2754,51 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
+      },
+      "image": "ArtifactPieceA.png"
+    },
+    {
+      "id": 663,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "PickAxe.png"
+    },
+    {
+      "id": 664,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 6,
+        "inventory": 12
+      },
+      "image": "Solafite.png"
+    },
+    {
+      "id": 665,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
       }
+    },
+    {
+      "id": 666,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 667,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "ArtifactPieceB.png"
     }
   ],
   "storages": [
@@ -3592,7 +3660,19 @@
       "id": 68,
       "buildCost": 1,
       "category": "furniture",
-      "icon": "../items/DeerHide_tn.png",
+      "icon": "../items/DeerHide_tn.png"
+    },
+    {
+      "id": 70,
+      "buildCost": 28,
+      "category": "utility",
+      "icon": "furnace.png"
+    },
+    {
+      "id": 71,
+      "buildCost": 13,
+      "category": "misc",
+      "icon": "../items/Cross_tn.png",
       "canFinish": false
     }
   ],
@@ -3656,6 +3736,11 @@
       "name": "Cave E / Bunker G (Luxury)",
       "areaMask": 32,
       "graphMask": 512
+    },
+    {
+      "name": "Cave F",
+      "areaMask": 64,
+      "graphMask": 4096
     },
     {
       "name": "Raft",

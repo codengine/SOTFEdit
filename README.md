@@ -327,3 +327,4 @@ collect all data.
 - [Fireplace icons created by Vector Squad - Flaticon](https://www.flaticon.com/free-icons/fireplace)
 - [Golf cart icons created by surang - Flaticon](https://www.flaticon.com/free-icons/golf-cart)
 - [Gun icons created by Nikita Golubev - Flaticon](https://www.flaticon.com/free-icons/gun)
+- [Furnace icons created by amonrat rungreangfangsai - Flaticon](https://www.flaticon.com/free-icons/furnace)

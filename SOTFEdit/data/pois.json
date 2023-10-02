@@ -607,10 +607,32 @@
           490,
           493,
           495,
-          613
+          613,
+          662,
+          666
         ],
         "screenshot": "rebreather_cave.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Beach/Rebreather_Cave_Check_on_map"
+      },
+      {
+        "id": 50,
+        "title": "Cave F",
+        "x": 1296.531,
+        "y": 587.34,
+        "teleport": {
+          "x": 1296.531,
+          "y": 177.51663,
+          "z": 587.34033,
+          "areaMask": 0
+        },
+        "items": [
+          663,
+          665
+        ],
+        "requirements": [
+          444
+        ],
+        "screenshot": "cave_f_entrance.jpg"
       }
     ]
   },
