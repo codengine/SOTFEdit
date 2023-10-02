@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using ControlzEx.Theming;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.Events;
 using SOTFEdit.ViewModel;
 
@@ -17,7 +19,8 @@ public partial class SettingsDialog
         Owner = owner;
         DataContext = new SettingsDialogViewModel(applicationSettings);
 
-        WeakReferenceMessenger.Default.Register<SettingsSavedEvent>(this, (_, _) => SettingsSavedEvent());
+        WeakReferenceMessenger.Default.Register<SettingsSavedEvent>(this,
+            (_, _) => Application.Current.Dispatcher.Invoke(SettingsSavedEvent));
 
         InitializeComponent();
     }
@@ -25,7 +28,6 @@ public partial class SettingsDialog
     private void SettingsSavedEvent()
     {
         _saved = true;
-        DialogResult = true;
         Close();
     }
 
@@ -33,6 +35,13 @@ public partial class SettingsDialog
     {
         if (_saved)
         {
+            if (Settings.Default.Language != CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
+            {
+                WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                    TranslationManager.Get("windows.settings.messages.languageChanged.text"),
+                    TranslationManager.Get("windows.settings.messages.languageChanged.title")));
+            }
+
             return;
         }
 

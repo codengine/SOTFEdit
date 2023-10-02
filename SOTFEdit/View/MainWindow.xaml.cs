@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -206,13 +205,7 @@ public partial class MainWindow
     {
         var applicationSettings = Ioc.Default.GetRequiredService<ApplicationSettings>();
         var dialog = new SettingsDialog(this, applicationSettings);
-
-        if (dialog.ShowDialog() is true &&
-            Settings.Default.Language != CultureInfo.CurrentCulture.TwoLetterISOLanguageName)
-        {
-            ShowMessageDialog(TranslationManager.Get("windows.settings.messages.languageChanged.text"),
-                TranslationManager.Get("windows.settings.messages.languageChanged.title"));
-        }
+        dialog.ShowDialog();
     }
 
     private void OnZoomToPos(ZoomToPosEvent message)
