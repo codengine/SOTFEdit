@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.11.12
+
+### Features
+
+- Added Blueprints for Item Plating and Powered Cross
+- Renamed "???" to Artifact A, added Artifact B
+- Added Pickaxe and Solafite Ore
+- Added new Cave F as well as its items
+- Added items to Cave A (Rebreather)
+- Added screenshots and icons
+- Added structure info for Item Plating and Powered Cross
+- Changed max. number of Turtle Shells to 3
+
+### Bugfixes
+
+- Fixed issue that Savegame Directory could not be changed if it doesn't exist at the first place
+- Fixed issue that the app crashed when saving settings twice
+
 ## v0.11.11
 
 ### Features
