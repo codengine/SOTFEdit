@@ -37,10 +37,12 @@ public partial class SelectSavegameWindow
 
     private void OnRequestSelectSavegameDirEvent()
     {
+        var savePath = SavegameManager.GetSavePath();
+
         var folderBrowser = new FolderPicker
         {
             Title = TranslationManager.Get("windows.selectSavegame.folderBrowserTitle"),
-            InputPath = SavegameManager.GetSavePath()
+            InputPath = Directory.Exists(savePath) ? savePath : null
         };
 
         if (folderBrowser.ShowDialog(this) != true)
