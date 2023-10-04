@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Newtonsoft.Json.Linq;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
@@ -17,6 +18,8 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryPageViewModel : ObservableObject
 {
+    private const int ItemPlatingItemId = 665;
+    private const int PoweredCrossItemId = 666;
     private readonly ObservableCollectionEx<InventoryItem> _inventory = new();
 
     private readonly DispatcherTimer _inventoryFilterTimer = new()
@@ -225,7 +228,81 @@ public partial class InventoryPageViewModel : ObservableObject
 
         var selectedItems = new List<InventoryItem>(_inventory);
 
-        return PlayerInventoryDataModel.Merge(saveDataWrapper, selectedItems);
+        var hasChanged = PlayerInventoryDataModel.Merge(saveDataWrapper, selectedItems);
+        return EnsureBlueprintStatusUpdated(savegame.SavegameStore, selectedItems) || hasChanged;
+    }
+
+    private bool EnsureBlueprintStatusUpdated(SavegameStore savegameStore, List<InventoryItem> inventoryItems)
+    {
+        if (savegameStore.LoadJsonRaw(SavegameStore.FileType.PlayerStateSaveData) is not { } saveDataWrapper)
+        {
+            return false;
+        }
+
+        if (saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.PlayerState) is not { } playerState ||
+            playerState["_entries"] is not JArray entries)
+        {
+            return false;
+        }
+
+        var blueprintItemIds = new HashSet<int>
+        {
+            ItemPlatingItemId, PoweredCrossItemId
+        };
+
+        var addedBlueprintItems = new HashSet<int>();
+
+        var hasChanges = false;
+
+        foreach (var inventoryItem in
+                 inventoryItems.Where(inventoryItem => blueprintItemIds.Contains(inventoryItem.Id)))
+        {
+            addedBlueprintItems.Add(inventoryItem.Id);
+        }
+
+        var blueprintTokensExisting = new HashSet<int>();
+
+        foreach (var jToken in entries)
+        {
+            var name = jToken["Name"]?.Value<string>();
+
+            foreach (var itemId in blueprintItemIds.Where(itemId => name == $"DiscoverablePageUnlocked_{itemId}"))
+            {
+                blueprintTokensExisting.Add(itemId);
+
+                var isEnabled = jToken["BoolValue"]?.Value<bool>() ?? false;
+                var isAdded = addedBlueprintItems.Contains(itemId);
+                if (isEnabled != isAdded)
+                {
+                    jToken["BoolValue"] = isAdded;
+                    hasChanges = true;
+                }
+
+                break;
+            }
+        }
+
+        foreach (var blueprintItemId in blueprintItemIds)
+        {
+            if (blueprintTokensExisting.Contains(blueprintItemId) || !addedBlueprintItems.Contains(blueprintItemId))
+            {
+                continue;
+            }
+
+            entries.Add(new JObject
+            {
+                { "Name", $"DiscoverablePageUnlocked_{blueprintItemId}" },
+                { "BoolValue", true }
+            });
+            hasChanges = true;
+        }
+
+        if (hasChanges)
+        {
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.PlayerState);
+        }
+
+        return hasChanges;
     }
 
     [RelayCommand(CanExecute = nameof(HasInventoryItems))]

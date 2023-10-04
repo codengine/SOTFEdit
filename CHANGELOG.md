@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.11.13
+
+### Bugfixes
+
+- The blueprints for Item Plating and Powered Cross will now properly appear in the crafting book when added to the
+  inventory
+
 ## v0.11.12
 
 ### Features
