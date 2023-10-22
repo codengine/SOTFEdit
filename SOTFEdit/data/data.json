@@ -3453,6 +3453,11 @@
       "image": "greg.jpg",
       "icon": "greg.png",
       "gender": "male"
+    },
+    {
+      "id": 54,
+      "classification": "cannibal",
+      "gender": "male"
     }
   ],
   "namedIntKeys": [

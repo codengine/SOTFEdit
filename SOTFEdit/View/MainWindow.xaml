@@ -227,6 +227,8 @@
                             <iconPacks:FontAwesome Kind="ScrollSolid" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem Header="{infrastructure:Translate 'menu.help.translations'}"
+                              Click="OpenTranslations_Click" />
                     <Separator />
                     <MenuItem Header="{infrastructure:Translate 'menu.help.about'}" Click="OpenAbout_OnClick" />
                 </MenuItem>

@@ -1,130 +1,82 @@
-{
-  "influences": {
-    "disclaimer": "Stimmung definiert die Zuneigung, doch es ist nicht klar, wie dies Feinde beeinflusst.\nWenn der Angst-Wert hoch ist, rennen Feinde häufiger weg.\nEin hoher Wert in Wut erhöht die Wahrscheinlichkeit von Angriffen.",
-    "sentiment": "Stimmung",
-    "anger": "Wut",
-    "fear": "Angst"
-  },
-  "game": {
-    "setup": {
-      "header": "Spiel-Setup",
-      "spawnEnemies": "Feinde spawnen",
-      "headers": {
-        "enemiesCustom": "Feinde (benutzerdefiniert)",
-        "weatherCustom": "Wetter (benutzerdefiniert)"
-      },
-      "mode": {
-        "_label": "Modus",
-        "normal": "Normal",
-        "hard": "Schwer",
-        "peaceful": "Friedlich",
-        "custom": "Benutzerdefiniert",
-        "hardSurvival": "Hard Survival"
-      },
-      "consumableEffects": {
-        "_label": "Verderb-Effekte",
-        "_tooltip": "Wie viel Schaden du nimmst, wenn du schlechtes Essen isst"
-      },
-      "playerStatsDamage": {
-        "_label": "Spielerstatus-Schaden",
-        "_tooltip": "Wie viel Schaden du durch Hunger und so weiter nimmst."
-      },
-      "animalSpawnRate": {
-        "_label": "Tier-Spawngeschwindigkeit"
-      },
-      "enemyHealth": {
-        "_label": "Feind-Gesundheit"
-      },
-      "enemyDamage": {
-        "_label": "Feind-Schaden"
-      },
-      "enemyArmour": {
-        "_label": "Feind-Rüstung"
-      },
-      "enemyAggression": {
-        "_label": "Feind-Aggressivität"
-      },
-      "startingSeason": {
-        "_label": "Startsaison",
-        "spring": "Frühling",
-        "summer": "Sommer",
-        "autumn": "Herbst",
-        "winter": "Winter"
-      },
-      "seasonLength": {
-        "_label": "Saisonlänge",
-        "short": "Kurz",
-        "default": "Standard",
-        "long": "Lang",
-        "realistic": "Realistisch"
-      },
-      "dayLength": {
-        "_label": "Tageslänge",
-        "short": "Kurz",
-        "default": "Standard",
-        "long": "Lang",
-        "realistic": "Realistisch"
-      },
-      "precipitationFrequency": {
-        "_label": "Niederschlagsfrequenz",
-        "_tooltip": "Wie oft ändert sich das Wetter"
-      },
-      "settingsValues": {
-        "off": "Aus",
-        "normal": "Normal",
-        "hard": "Schwer",
-        "low": "Niedrig",
-        "high": "Hoch",
-        "default": "Standard"
-      },
-      "uid": "UID",
-      "inventoryPause": "Pause im Inventar",
-      "customSettings": "Benutzerdefinierte Einstellungen"
-    },
-    "state": {
-      "header": "Spielzustand",
-      "worldObjectStates": {
-        "header": "Zustand der Weltobjekte",
-        "disclaimer": "Ich habe nicht vollständig untersucht, welche Werte welchen Zustand repräsentieren. Vermutlich:\n- 0 = Nicht festgelegt/geschlossen/nicht passiert\n- 1 oder 3 = Festgelegt/geöffnet/geschehen"
-      },
-      "headers": {
-        "worldObjectStates": "Zustand der Weltobjekte"
-      }
-    }
-  },
-  "inventory": {
-    "filterWatermark": "Filtern...",
-    "table": {
-      "count": {
-        "tooltip": "Die Menge, die du im Inventar hast",
-        "text": "Anzahl"
-      },
-      "id": "ID",
-      "name": "Name",
-      "type": "Typ",
-      "actions": "Aktionen"
-    },
-    "headers": {
-      "itemsInInventory": "Gegenstände im Inventar",
-      "unassignedItems": "Nicht zugewiesene Gegenstände"
-    },
-    "buttons": {
-      "addAllFromCategory": "Alle von Kategorie hinzufügen",
-      "setAllToMin": "Alle auf Min setzen",
-      "setAllToMax": "Alle auf Max setzen",
-      "removeAll": "Alle entfernen",
-      "remove": "Entfernen",
-      "max": "Max"
-    },
-    "unknownItem": "??? Unbekannter Gegenstand"
-  },
+﻿{
   "actors": {
     "classification": {
+      "animal": "Tier",
       "cannibal": "Kannibale",
       "creep": "Gruselwesen",
       "human": "Mensch",
-      "muddyCannibal": "Schlammiger Kannibale",
-      "animal": "Tier"
+      "muddyCannibal": "Schlammiger Kannibale"
+    },
+    "details": {
+      "area": "Bereich",
+      "classification": "Klassifikation",
+      "family": "Familie",
+      "gender": "Geschlecht",
+      "killedByPlayer": "Getötet von Spieler",
+      "lastSpawnTime": "Letzter Spawn",
+      "lastVisitedTime": "Letzter Besuch",
+      "spawnedCount": "Anzahl Spawns",
+      "state": "Status",
+      "uniqueId": "UniqueID"
+    },
+    "gender": {
+      "female": "Weiblich",
+      "male": "Männlich"
+    },
+    "grouping": {
+      "animals": "Tiere",
+      "creeps": "Gruselwesen",
+      "femaleCannibals": "Weibliche Kannibalen",
+      "femaleMuddyCannibals": "Weibliche Schlammige Kannibalen",
+      "maleCannibals": "Männliche Kannibalen",
+      "maleMuddyCannibals": "Männliche Schlammige Kannibalen",
+      "misc": "Verschiedenes",
+      "mixed": "Gemischt",
+      "mixedCannibals": "Gemischte Kannibalen",
+      "mixedMuddyCannibals": "Gemischte Schlammige Kannibalen",
+      "noFamily": "Keine Familie"
+    },
+    "headers": {
+      "influences": "Einflüsse",
+      "info": "Information",
+      "killStatistics": "Tötungsstatistik",
+      "modificationOptions": "Änderungsoptionen",
+      "modifications": "Änderungen",
+      "selection": "Auswahl",
+      "stats": "Statistiken"
+    },
+    "influenceType": {
+      "Cannibal": "Kannibale",
+      "Creepy": "Gruselige",
+      "Player": "Spieler"
+    },
+    "modificationMode": {
+      "Modify": "Ändern",
+      "Remove": "Entfernen"
+    },
+    "modificationOptions": {
+      "allActorSelections": {
+        "allActors": "Alle NPCs",
+        "allActorsOfSameFamily": "Alle NPCs derselben Familie",
+        "allActorsOfSameType": "Alle NPCs desselben Typs",
+        "thisActor": "Dieser NPC"
+      },
+      "onlyInSameAreaAsActor": "Nur in derselben Zone wie dieser NPC",
+      "removeSpawner": {
+        "text": "Spawn-Punkt entfernen",
+        "tooltip": "Wenn ausgewählt, wird der NPC nicht erneut spawnen"
+      },
+      "replaceType": "Typ ersetzen",
+      "skipKelvin": "Kelvin überspringen",
+      "skipVirginia": "Virginia überspringen",
+      "teleport": {
+        "disclaimer": "Sei vorsichtig, wenn du mehrere NPCs zum selben Ort teleportierst. Dies könnte dein Spiel abstürzen lassen!",
+        "none": "Keiner",
+        "npcToPlayer": "NPC zum Spieler",
+        "playerToNpc": "Spieler zum NPC",
+        "teleportLabel": "Teleportieren:"
+      },
+      "updateInfluences": "Einflüsse aktualisieren"
     },
     "state": {
       "-1": "Keine",
@@ -151,18 +103,19 @@
       "50": "Kampf verlassen",
       "51": "Verschwunden"
     },
-    "grouping": {
-      "animals": "Tiere",
-      "creeps": "Gruselwesen",
-      "misc": "Verschiedenes",
-      "maleCannibals": "Männliche Kannibalen",
-      "femaleCannibals": "Weibliche Kannibalen",
-      "mixedCannibals": "Gemischte Kannibalen",
-      "maleMuddyCannibals": "Männliche Schlammige Kannibalen",
-      "femaleMuddyCannibals": "Weibliche Schlammige Kannibalen",
-      "mixedMuddyCannibals": "Gemischte Schlammige Kannibalen",
-      "noFamily": "Keine Familie",
-      "mixed": "Gemischt"
+    "stats": {
+      "affection": "Zuneigung",
+      "anger": "Wut",
+      "energy": "Energie",
+      "fear": "Angst",
+      "fullness": "Sättigung",
+      "fullnessBuff": "Sättigungsbonus",
+      "health": "Gesundheit",
+      "hydration": "Hydration",
+      "hydrationBuff": "Hydrationsbonus",
+      "rest": "Erholung",
+      "restBuff": "Erholungsbonus",
+      "stamina": "Ausdauer"
     },
     "types": {
       "1": "Kaninchen",
@@ -218,292 +171,156 @@
       "51": "Frank",
       "52": "Eddy",
       "53": "Greg"
-    },
-    "influenceType": {
-      "Cannibal": "Kannibale",
-      "Creepy": "Gruselige",
-      "Player": "Spieler"
-    },
-    "gender": {
-      "male": "Männlich",
-      "female": "Weiblich"
-    },
-    "modificationMode": {
-      "Remove": "Entfernen",
-      "Modify": "Ändern"
-    },
-    "details": {
-      "classification": "Klassifikation",
-      "gender": "Geschlecht",
-      "lastVisitedTime": "Letzter Besuch",
-      "spawnedCount": "Anzahl Spawns",
-      "lastSpawnTime": "Letzter Spawn",
-      "state": "Status",
-      "family": "Familie",
-      "uniqueId": "UniqueID",
-      "killedByPlayer": "Getötet von Spieler",
-      "area": "Bereich"
-    },
-    "stats": {
-      "energy": "Energie",
-      "health": "Gesundheit",
-      "anger": "Wut",
-      "fear": "Angst",
-      "hydration": "Hydration",
-      "fullness": "Sättigung",
-      "affection": "Zuneigung",
-      "rest": "Erholung",
-      "stamina": "Ausdauer",
-      "fullnessBuff": "Sättigungsbonus",
-      "hydrationBuff": "Hydrationsbonus",
-      "restBuff": "Erholungsbonus"
-    },
-    "modificationOptions": {
-      "allActorSelections": {
-        "thisActor": "Dieser NPC",
-        "allActorsOfSameFamily": "Alle NPCs derselben Familie",
-        "allActorsOfSameType": "Alle NPCs desselben Typs",
-        "allActors": "Alle NPCs"
-      },
-      "skipKelvin": "Kelvin überspringen",
-      "skipVirginia": "Virginia überspringen",
-      "onlyInSameAreaAsActor": "Nur in derselben Zone wie dieser NPC",
-      "removeSpawner": {
-        "text": "Spawn-Punkt entfernen",
-        "tooltip": "Wenn ausgewählt, wird der NPC nicht erneut spawnen"
-      },
-      "updateInfluences": "Einflüsse aktualisieren",
-      "replaceType": "Typ ersetzen",
-      "teleport": {
-        "disclaimer": "Sei vorsichtig, wenn du mehrere NPCs zum selben Ort teleportierst. Dies könnte dein Spiel abstürzen lassen!",
-        "teleportLabel": "Teleportieren:",
-        "none": "Keiner",
-        "playerToNpc": "Spieler zum NPC",
-        "npcToPlayer": "NPC zum Spieler"
-      }
-    },
-    "headers": {
-      "info": "Information",
-      "influences": "Einflüsse",
-      "modifications": "Änderungen",
-      "selection": "Auswahl",
-      "killStatistics": "Tötungsstatistik",
-      "stats": "Statistiken",
-      "modificationOptions": "Änderungsoptionen"
     }
-  },
-  "structures": {
-    "structureTypeSelectorDisclaimer": "Wenn nichts ausgewählt wird, werden alle Strukturen geändert",
-    "buildCost": "Baukosten",
-    "added": "Hinzugefügt",
-    "percentDone": "Fortschritt",
-    "modification": "Modifikation",
-    "category": "Kategorie",
-    "applyToAllOfSameType": {
-      "text": "Auf alle des selben Typs anwenden",
-      "tooltip": "Wendet die oben eingestellten Items und Anzahl auf alle Storages des selben Typs an"
-    },
-    "categories": {
-      "shelter": "Unterkunft",
-      "treeShelter": "Baum-Unterkunft",
-      "furniture": "Möbel",
-      "storage": "Lagerung",
-      "utility": "Nützliches",
-      "misc": "Sonstiges",
-      "gardening": "Gartenarbeit",
-      "traps": "Fallen"
-    },
-    "headers": {
-      "unfinishedStructures": "Unfertige Strukturen",
-      "finishedStructures": "Fertige Strukturen",
-      "batch": "Batch"
-    },
-    "buttons": {
-      "changeType": "Typ ändern",
-      "unmodifyAll": "Alle Änderungen rückgängig",
-      "setAllToRemove": "Alle auf \"Entfernen\" setzen",
-      "setAllToFinish": "Alle auf \"Fertigstellen\" setzen",
-      "setAllToAlmostFinish": "Alle auf \"Fast fertig\" setzen",
-      "setAllToUnfinish": "Alle auf \"Unvollständig\" setzen"
-    },
-    "types": {
-      "0": "",
-      "20": "Stuhl aus Stöckern",
-      "21": "Falle des Knochenmachers",
-      "22": "Bett aus Stöckern",
-      "23": "Wand-Pflanzkasten",
-      "24": "Knochenlampe",
-      "25": "Knochenstuhl",
-      "26": "Anbau",
-      "27": "Trockengestell",
-      "28": "Baumunterstand 2",
-      "29": "Stocklager",
-      "31": "Steinlager",
-      "32": "Knochenlager",
-      "34": "Kleine Blockhütte",
-      "35": "Reuse",
-      "36": "Rüstungsständer",
-      "37": "Baumstammlager",
-      "38": "Aussichtsturm",
-      "39": "Vogelscheuche",
-      "40": "Pflanzkasten",
-      "41": "Baumplattform 2",
-      "42": "Falle für Kleintiere",
-      "43": "Baumplattform 1",
-      "44": "Baumunterstand 1",
-      "45": "Fliegende Klatschfalle",
-      "46": "Stockweg",
-      "47": "Jagdhütte",
-      "48": "Tisch",
-      "49": "Regal",
-      "50": "Steinweg",
-      "51": "Wandregal",
-      "52": "Bank",
-      "53": "Wandfackel",
-      "54": "Schädel-Deckenlampe",
-      "55": "Seilrutsche",
-      "56": "Regenfänger",
-      "57": "Federfalle",
-      "58": "Fortgeschrittener Holzschlitten",
-      "59": "Einfacher Holzschlitten",
-      "60": "Stein-Feuerstelle",
-      "61": "Trophäen-Halter",
-      "62": "Felsen-Lager",
-      "63": "Hokey Pokey Falle",
-      "64": "Radio Alarm Falle",
-      "67": "Großer Baumstamm-Halter",
-      "68": "Hirschfell-Teppich",
-      "70": "Item Plating",
-      "71": "Beleuchtetes Kreuz",
-      "72": "Gore Stuhl",
-      "73": "Gore Couch",
-      "74": "Uber-Falle",
-      "75": "Runder Tisch"
-    },
-    "modificationMode": {
-      "None": "Keine Änderung",
-      "Remove": "Entfernen",
-      "AlmostFinish": "Fast fertig",
-      "Finish": "Fertigstellen",
-      "Unfinish": "Unfertig stellen"
-    }
-  },
-  "backup": {
-    "mode": {
-      "Default": "Immer sichern",
-      "InitialAndOne": "Original behalten, ein zusätzliches Backup",
-      "None": "Keine Backups",
-      "One": "Ein Backup behalten und überschreiben"
-    },
-    "messages": {
-      "backupsRestored": {
-        "text": "{0} Backups wurden wiederhergestellt. Gelöschte Dateien wurden in den Papierkorb verschoben",
-        "title": "Backups wiederhergestellt"
-      }
-    }
-  },
-  "storage": {
-    "errors": {
-      "currentStateNotDefined": "CurrentState für Modul-ID {0} nicht definiert"
-    },
-    "headers": {
-      "storageTypes": "Lager-Typen",
-      "selectAStorage": "Wähle ein Lager aus"
-    },
-    "buttons": {
-      "fillAllStorages": "Alle Lager füllen"
-    },
-    "batch": {
-      "allSlots": "Alle Plätze",
-      "fillAllWith": "Alles füllen mit",
-      "setAllToMax": "Alle auf Maximum setzen",
-      "clearAll": "Alle leeren"
-    },
-    "slot": {
-      "remove": "Entfernen",
-      "max": "Max"
-    }
-  },
-  "errors": {
-    "canNotBeEmpty": "{0} darf nicht leer sein"
-  },
-  "generic": {
-    "unknown": "Unbekannt",
-    "position": "Position",
-    "name": "Name",
-    "edit": "Bearbeiten",
-    "add": "Hinzufügen",
-    "ok": "OK",
-    "cancel": "Abbrechen",
-    "update": "Aktualisieren",
-    "save": "Speichern",
-    "setting": "Einstellung",
-    "value": "Wert",
-    "error": "Fehler",
-    "exceptionMessage": "Ein Fehler ist aufgetreten: {0}",
-    "success": "Erfolg",
-    "yes": "Ja",
-    "no": "Nein",
-    "close": "Schließen",
-    "seconds": "Sekunde(n)"
   },
   "armor": {
-    "header": "Ausgerüstete Rüstung (Max. 10)",
-    "unknownItem": "??? Unbekanntes Objekt",
-    "durabilityInput": {
-      "tooltip": "Die Haltbarkeit der Rüstung. Wenn sie 0 beträgt, bricht die Rüstung. Kann sehr hoch sein",
-      "watermark": "Haltbarkeit"
-    },
     "buttons": {
-      "setToDefault": {
-        "text": "Standard",
-        "tooltip": "Setzt die Haltbarkeit der Rüstung auf den Standardwert"
-      },
+      "default": "Standard",
+      "max": "Max",
+      "remove": "Entfernen",
       "setAllToDefault": {
         "text": "Alle auf Standard",
         "tooltip": "Setzt die Haltbarkeit aller Rüstungsteile auf den Standardwert"
-      },
-      "setToMax": {
-        "text": "Max",
-        "tooltip": "Setzt die Haltbarkeit der Rüstung auf eine sehr hohe Zahl"
       },
       "setAllToMax": {
         "text": "Alle auf Max",
         "tooltip": "Setzt die Haltbarkeit aller Rüstungsteile auf das Maximum"
       },
-      "remove": "Entfernen",
-      "default": "Standard",
-      "max": "Max"
+      "setToDefault": {
+        "text": "Standard",
+        "tooltip": "Setzt die Haltbarkeit der Rüstung auf den Standardwert"
+      },
+      "setToMax": {
+        "text": "Max",
+        "tooltip": "Setzt die Haltbarkeit der Rüstung auf eine sehr hohe Zahl"
+      }
     },
+    "durabilityInput": {
+      "tooltip": "Die Haltbarkeit der Rüstung. Wenn sie 0 beträgt, bricht die Rüstung. Kann sehr hoch sein",
+      "watermark": "Haltbarkeit"
+    },
+    "header": "Ausgerüstete Rüstung (Max. 10)",
     "headers": {
-      "slot": "Slot",
+      "actions": "Aktionen",
+      "durability": "Haltbarkeit",
       "id": "ID",
       "name": "Name",
-      "durability": "Haltbarkeit",
-      "actions": "Aktionen"
+      "slot": "Slot"
+    },
+    "unknownItem": "??? Unbekanntes Objekt"
+  },
+  "backup": {
+    "messages": {
+      "backupsRestored": {
+        "text": "{0} Backups wurden wiederhergestellt. Gelöschte Dateien wurden in den Papierkorb verschoben",
+        "title": "Backups wiederhergestellt"
+      }
+    },
+    "mode": {
+      "Default": "Immer sichern",
+      "InitialAndOne": "Original behalten, ein zusätzliches Backup",
+      "None": "Keine Backups",
+      "One": "Ein Backup behalten und überschreiben"
+    }
+  },
+  "companion": {
+    "address": "IP/Addresse",
+    "connect": "Verbinden",
+    "connectionFailed": {
+      "text": "Der Verbindungsversuch mit dem Companion-Plugin ist fehlgeschlagen",
+      "textException": "Der Verbindungsversuch mit dem Companion-Plugin ist fehlgeschlagen. Fehler: {0}",
+      "title": "Companion Verbindung fehlgeschlagen"
+    },
+    "connectionSuccessful": {
+      "text": "Verbindung zum Companion wurde erfolgreich hergestellt.\nDu kannst jetzt die Ingame-Hotkeys, Live-Teleportation über die Karte und Positions-Tracking nutzen.",
+      "title": "Companion verbunden"
+    },
+    "connectTimeout": "Verbindungs-Timeout",
+    "disconnect": "Verbindung trennen",
+    "disconnectFailed": {
+      "text": "Der Versuch die Verbindung zum Companion-Plugin zu trennen ist fehlgeschlagen.",
+      "textException": "Der Versuch die Verbindung zum Companion-Plugin zu trennen ist fehlgeschlagen. Fehler: {0}",
+      "title": "Companion Disconnect fehlgeschlagen"
+    },
+    "keepAliveInterval": "Keep-Alive Intervall",
+    "mapPositionUpdateInterval": "Aktualisiere Spieler-Positionen alle",
+    "port": "Port",
+    "portHint": "Für Ports > 1024 müssen Anwendung und Spiel als Admin gestartet werden!",
+    "readme": "Readme",
+    "readme1": "Der \"Companion\" bietet Extra-Funktionalität für das Spiel, wie Ingame-Teleportation, Positions-Verfolgung und einiges mehr.\n\nBevor der Companion genutzt werden kann muss dieser erst eingerichtet werden. Hierfür müssen die folgenden Dinge installiert werden:\n\n- BepInExPack\n- SOTFEdit Companion Plugin\n\nDiese können entweder manuell anhand der README oder einen Mod-Manager eingerichtet werden:",
+    "readme2": "Nachdem beides eingerichtet und das Spiel gestartet wurde, musst du über das Menü eine Verbindung zum Companion herstellen.\n\nDanach stehen im Spiel zwei neue Hotkeys zur Verfügung:\n- Ingame Teleportation zu den meisten Ingame-Orten (Standard: F8)\n- Benutzerdefinierte Location erstellen (F9)\n\nAußerdem wird die Position auf der Karte live aktualisiert.",
+    "settings": "Einstellungen",
+    "status": {
+      "connected": "Verbunden",
+      "connecting": "Verbinde...",
+      "disconnected": "Verbindung getrennt"
+    }
+  },
+  "dialogs": {
+    "changeScrewStructureType": {
+      "disclaimer": "Du kannst hier einen anderen Strukturtyp auswählen. Bitte beachte, dass die Rotation und Position der Struktur gleich bleiben, was zu Fehlern und Abstürzen führen kann."
+    },
+    "spawnFollower": {
+      "disclaimer": "Wenn du Begleiter spawnen möchtest, musst du sicherstellen, dass du dich an einem freien Ort befindest. Die Begleiter werden an der Position des Spielers über der aktuellen Höhe des Spielers und mit einem leichten Offset gespawnt.\n\nIch habe viele Dinge für Virginia ausprobiert, aber konnte nur maximal 4 spawnen lassen. Es hat mit Kelvin besser geklappt. \n\nDies kann deine FPS töten und die langfristigen Auswirkungen sind derzeit auch nicht bekannt.\n\nWenn du mehr möchtest, solltest du das Spiel laden, alles spawnen lassen, das Spiel speichern, Begleiter spawnen lassen usw.",
+      "title": "Begleiter spawnen"
+    },
+    "translations": {
+      "filter": "Filtern",
+      "missingOnly": "Nur fehlende"
+    }
+  },
+  "errors": {
+    "canNotBeEmpty": "{0} darf nicht leer sein"
+  },
+  "experiments": {
+    "igniteAndRefuelFires": {
+      "noFires": {
+        "text": "Keine Feuer zum Bearbeiten gefunden",
+        "title": "Keine Feuer"
+      },
+      "success": {
+        "text": "{0} Feuer wurden entzündet, aufgefüllt und ihre Brennrate gesenkt",
+        "title": "Feuer verändert"
+      }
+    },
+    "resetKillStatistics": {
+      "success": {
+        "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
+        "title": "Änderungen hinzugefügt"
+      }
+    },
+    "resetNumberOfCutTrees": {
+      "success": {
+        "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
+        "title": "Änderungen hinzugefügt"
+      }
+    },
+    "resetStructureDamage": {
+      "noDamage": {
+        "text": "Kein Strukturschaden muss repariert werden",
+        "title": "Kein Strukturschaden"
+      },
+      "success": {
+        "text": "{0} Strukturschäden wurden repariert",
+        "title": "Schäden repariert"
+      }
     }
   },
   "followers": {
-    "reviveTooltip": "Stelle sicher, dass du dies außerhalb von Gebäuden tust, wenn der Körper fehlt, sonst könntest du in das Gebäude glitchen. Der Begleiter spawnt an der Position des Spielers und hat die konfigurierten Gegenstände und Kleidung ausgerüstet.",
-    "details": {
-      "uniqueId": "UniqueID",
-      "status": "Status"
-    },
-    "status": {
-      "alive": "Lebendig",
-      "dead": "Tot",
-      "unknown": "???"
-    },
     "buttons": {
+      "fillAllBars": "Alle Balken füllen",
+      "moveToKelvin": "Zu Kelvin teleportieren",
       "moveToPlayer": "Zum Spieler teleportieren",
       "moveToVirginia": "Zu Virginia teleportieren",
-      "moveToKelvin": "Zu Kelvin teleportieren",
       "revive": "Wiederbeleben",
-      "spawn": "Spawnen",
-      "fillAllBars": "Alle Balken füllen"
+      "spawn": "Spawnen"
     },
-    "outfitLabel": "Outfit",
+    "details": {
+      "status": "Status",
+      "uniqueId": "UniqueID"
+    },
     "equipmentLabel": "Ausrüstung",
+    "outfitLabel": "Outfit",
     "outfits": {
       "9": {
         "-1": "Standard",
@@ -527,396 +344,155 @@
         "5": "Blaugrünes Kleid",
         "6": "Rotes Kleid"
       }
+    },
+    "reviveTooltip": "Stelle sicher, dass du dies außerhalb von Gebäuden tust, wenn der Körper fehlt, sonst könntest du in das Gebäude glitchen. Der Begleiter spawnt an der Position des Spielers und hat die konfigurierten Gegenstände und Kleidung ausgerüstet.",
+    "status": {
+      "alive": "Lebendig",
+      "dead": "Tot",
+      "unknown": "???"
     }
   },
-  "dialogs": {
-    "changeScrewStructureType": {
-      "disclaimer": "Du kannst hier einen anderen Strukturtyp auswählen. Bitte beachte, dass die Rotation und Position der Struktur gleich bleiben, was zu Fehlern und Abstürzen führen kann."
-    },
-    "spawnFollower": {
-      "title": "Begleiter spawnen",
-      "disclaimer": "Wenn du Begleiter spawnen möchtest, musst du sicherstellen, dass du dich an einem freien Ort befindest. Die Begleiter werden an der Position des Spielers über der aktuellen Höhe des Spielers und mit einem leichten Offset gespawnt.\n\nIch habe viele Dinge für Virginia ausprobiert, aber konnte nur maximal 4 spawnen lassen. Es hat mit Kelvin besser geklappt. \n\nDies kann deine FPS töten und die langfristigen Auswirkungen sind derzeit auch nicht bekannt.\n\nWenn du mehr möchtest, solltest du das Spiel laden, alles spawnen lassen, das Spiel speichern, Begleiter spawnen lassen usw."
-    }
-  },
-  "menu": {
-    "file": {
-      "text": "Datei",
-      "openSavegame": "Spielstand öffnen...",
-      "openLastSavegame": "Letzten Spielstand öffnen...",
-      "openLastSavegameWithSavegame": "{0} öffnen...",
-      "save": "Speichern",
-      "reloadCurrentSavegame": "Aktuellen Spielstand neu laden",
-      "openSavegameDirInExplorer": "Spielstand-Ordner im Explorer öffnen",
-      "restoreFromBackup": {
-        "text": "Backup wiederherstellen",
-        "fromOldestBackup": "Vom ältesten Backup",
-        "fromNewestBackup": "Vom neuesten Backup"
+  "game": {
+    "setup": {
+      "animalSpawnRate": {
+        "_label": "Tier-Spawngeschwindigkeit"
       },
-      "deleteAllBackups": "Alle Backups löschen",
-      "settings": "Einstellungen",
-      "exit": "Beenden"
-    },
-    "tools": {
-      "text": "Tools",
-      "regrowTrees": "Bäume nachwachsen lassen...",
-      "igniteAndRefuelFires": {
-        "text": "Alle Feuer entzünden und auffüllen",
-        "tooltip": "Entzündet und füllt alle Feuer auf und verlangsamt den Verbrauch von Brennstoff, so dass sie fast ewig brennen sollten."
+      "coldPenalties": "Kälte-Nachteile",
+      "consumableEffects": {
+        "_label": "Verderb-Effekte",
+        "_tooltip": "Wie viel Schaden du nimmst, wenn du schlechtes Essen isst"
       },
-      "resetStructureDamage": {
-        "text": "Schadenszähler für Gebäude zurücksetzen",
-        "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
+      "customSettings": "Benutzerdefinierte Einstellungen",
+      "dayLength": {
+        "default": "Standard",
+        "long": "Lang",
+        "realistic": "Realistisch",
+        "short": "Kurz",
+        "_label": "Tageslänge"
       },
-      "cloneWorldObjects": {
-        "text": "Welt-Gegenstände klonen...",
-        "tooltip": "Klont einen Welt-Gegenstand an der Position des Spielers"
+      "enemyAggression": {
+        "_label": "Feind-Aggressivität"
       },
-      "modifyConsumedItems": {
-        "text": "Verzehrte Gegenstände bearbeiten...",
-        "tooltip": "Falls du dein Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
+      "enemyArmour": {
+        "_label": "Feind-Rüstung"
       },
-      "resetKillStatistics": {
-        "text": "Tötungsstatistik zurücksetzen",
-        "tooltip": "Manche Spieler werden von Kannibalen und Monstern überflutet. Das Zurücksetzen der Statistiken könnte zu weniger Spawns führen, oder auch nicht. Wer weiß?"
+      "enemyDamage": {
+        "_label": "Feind-Schaden"
       },
-      "resetNumberOfCutTrees": {
-        "text": "Anzahl der gefällten Bäume zurücksetzen",
-        "tooltip": "Dies könnte auch helfen, die Anzahl der Kannibalen zu reduzieren. Eine Theorie besagt, dass sie aufgrund dieser Zahl berechnet wird."
+      "enemyHealth": {
+        "_label": "Feind-Gesundheit"
       },
-      "map": {
-        "text": "Interaktive Karte",
-        "tooltip": "Eine interaktive Karte"
-      }
-    },
-    "companion": {
-      "text": "Companion",
-      "setup": "Einrichtung"
-    },
-    "help": {
-      "text": "?",
-      "links": {
-        "text": "Links",
-        "githubProject": "GitHub Projekt",
-        "discord": "Discord",
-        "downloadLatestVersion": "Neueste Version herunterladen",
-        "nexusMods": "NexusMods",
-        "thunderstoreIo": "thunderstore.io"
-      },
-      "updates": {
-        "text": "Aktualisierungen",
-        "checkNow": "Jetzt prüfen",
-        "checkOnStartup": "Beim Start prüfen"
-      },
-      "readme": "Readme",
-      "changelog": "Changelog",
-      "about": "Über..."
-    }
-  },
-  "experiments": {
-    "resetNumberOfCutTrees": {
-      "success": {
-        "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
-        "title": "Änderungen hinzugefügt"
-      }
-    },
-    "resetKillStatistics": {
-      "success": {
-        "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
-        "title": "Änderungen hinzugefügt"
-      }
-    },
-    "resetStructureDamage": {
-      "noDamage": {
-        "text": "Kein Strukturschaden muss repariert werden",
-        "title": "Kein Strukturschaden"
-      },
-      "success": {
-        "text": "{0} Strukturschäden wurden repariert",
-        "title": "Schäden repariert"
-      }
-    },
-    "igniteAndRefuelFires": {
-      "noFires": {
-        "text": "Keine Feuer zum Bearbeiten gefunden",
-        "title": "Keine Feuer"
-      },
-      "success": {
-        "text": "{0} Feuer wurden entzündet, aufgefüllt und ihre Brennrate gesenkt",
-        "title": "Feuer verändert"
-      }
-    }
-  },
-  "windows": {
-    "main": {
-      "title": " (Ausgewählt: {0}, {1} - Gespeichert am: {2}, Zuletzt geändert: {3})",
-      "messages": {
-        "confirmRestoreBackups": {
-          "text": "Bist du sicher, dass du Backups wiederherstellen möchten?",
-          "title": "Backups wiederherstellen"
-        },
-        "confirmDeleteBackups": {
-          "text": "Möchtest du wirklich alle Backups löschen?",
-          "title": "Alle Backups löschen"
-        },
-        "confirmOverwriteExternalChanges": {
-          "text": "Das Savegame wurde extern geändert. Möchtest du wirklich alle Änderungen überschreiben?",
-          "title": "Änderungen überschreiben"
-        },
-        "confirmCreateBackup": {
-          "text": "Möchtest du ein Backup erstellen?",
-          "title": "Backup erstellen?"
-        },
-        "confirmCloseApplication": {
-          "text": "Möchtest du die Anwendung schließen?",
-          "title": "Anwendung schließen"
-        },
-        "unableToSpawnFollowers": "Begleiter konnten nicht erzeugt werden",
-        "followersCreated": {
-          "text": "{0} Begleiter wurden erzeugt",
-          "title": "Begleiter erzeugt"
-        },
-        "alreadyLatestVersion": {
-          "text": "Du verwendest bereits die neueste Version",
-          "title": "Kein Update"
-        },
-        "backupsDeleted": "{0} Backups gelöscht",
-        "changesSaved": "Änderungen wurden erfolgreich gespeichert",
-        "noChanges": {
-          "text": "Keine Änderungen - Nichts gespeichert",
-          "title": "Keine Änderungen"
-        },
-        "unableToDeleteBackups": "Backups konnten nicht gelöscht werden: {0}",
-        "followerRevived": {
-          "text": "{0} sollte jetzt wieder da sein",
-          "title": "Wiederbelebt"
-        },
-        "followerAlreadyAlive": {
-          "text": "{0} sollte bereits am Leben sein",
-          "title": "Keine Änderungen"
-        },
-        "saveChanges": "Änderungen speichern"
-      },
-      "errors": {
-        "errorCheckingLastVersion": "Beim Überprüfen der neuesten Version ist ein Fehler aufgetreten"
-      },
-      "map": "Karte"
-    },
-    "modifyConsumedItems": {
-      "title": "Verbrauchte Gegenstände bearbeiten",
-      "removeAll": "Alle entfernen",
-      "key": "Key",
-      "remove": "entfernen"
-    },
-    "regrowTrees": {
-      "title": "Bäume wiederherstellen",
-      "all": "Alle",
-      "halfChopped": "Halb gefällt",
-      "gone": "Verschwunden",
-      "stumps": "Baumstümpfe",
-      "pctRegrow": "Prozent nachwachsen lassen",
-      "messages": {
-        "noTreesRegrown": "Keine Bäume mit dem Zustand \"{0}\" wiederhergestellt",
-        "success": "{0} Bäume mit dem vorherigen Zustand \"{1}\" sollten jetzt wiederhergestellt sein. Bitte speichern, um die Änderungen zu übernehmen."
-      },
-      "saveButton": "Bäume wiederherstellen"
-    },
-    "selectSavegame": {
-      "title": "Spielstand auswählen...",
-      "folderBrowserTitle": "Wähle das \"Saves\" Verzeichnis von Sons of the Forest",
-      "lastSaveTimeTooltip": "Letzter Schreibzeitpunkt des Spielstandverzeichnisses",
-      "selectedPath": {
-        "label": "Ausgewählter Pfad:",
-        "tooltip": "Normalerweise werden die Speicherstände unter C:\\Users\\[Benutzer]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves gespeichert"
-      },
+      "header": "Spiel-Setup",
       "headers": {
-        "location": "Speicherort"
+        "enemiesCustom": "Feinde (benutzerdefiniert)",
+        "weatherCustom": "Wetter (benutzerdefiniert)"
       },
-      "tabs": {
-        "singleplayer": "Einzelspieler",
-        "multiplayer": "Mehrspieler",
-        "multiplayerClient": "Mehrspieler (Client)"
+      "inventoryPause": "Pause im Inventar",
+      "mode": {
+        "custom": "Benutzerdefiniert",
+        "hard": "Schwer",
+        "hardSurvival": "Hard Survival",
+        "normal": "Normal",
+        "peaceful": "Friedlich",
+        "_label": "Modus"
       },
-      "buttons": {
-        "change": "Ändern...",
-        "setToDefault": "Auf Standard zurücksetzen"
-      }
-    },
-    "settings": {
-      "title": "Einstellungen",
-      "theme": "Theme",
-      "backupMode": "Backup-Modus",
-      "askForBackupsEveryTime": "Bei jedem Speichern fragen",
-      "language": "Sprache",
-      "messages": {
-        "languageChanged": {
-          "text": "Bitte starte die Anwendung neu damit die geänderte Sprache übernommen wird",
-          "title": "Einstellungen gespeichert"
-        }
+      "playerStatsDamage": {
+        "_label": "Spielerstatus-Schaden",
+        "_tooltip": "Wie viel Schaden du durch Hunger und so weiter nimmst."
       },
-      "fileMode": {
-        "label": "Datei-Modus",
-        "single": "Ein Backup pro geänderter JSON-Datei",
-        "zip": "ZIP-Archiv"
-      }
-    },
-    "unhandledException": {
-      "title": "Unbehandelte Ausnahme",
-      "disclaimer": "Ein unerwarteter Fehler ist aufgetreten. Der Anwendungsstatus könnte beschädigt sein.",
-      "header": "Exception-Details",
-      "applicationVersion": "Anwendungsversion",
-      "exceptionMessage": "Exception-Message",
-      "exceptionType": "Exception-Typ",
-      "callstack": "Callstack",
-      "innerException": "Innere Exception",
-      "buttons": {
-        "copyErrorToClipboard": "Fehler in Zwischenablage kopieren",
-        "exitApplication": "Anwendung beenden"
-      }
-    },
-    "updateAvailable": {
-      "title": "Update verfügbar",
-      "header": "Ein Update ist verfügbar",
-      "buttons": {
-        "download": "Herunterladen",
-        "ignore": "Ignorieren"
-      }
-    },
-    "worldItemCloner": {
-      "title": "Weltobjekt-Kloner",
-      "worldItem": "Weltobjekt",
-      "pinTooltip": "Zeige Objektposition auf der Karte",
-      "unknownItem": "Unbekanntes Objekt ({0})",
-      "unnamedItem": "Unbenannt ({0})",
-      "messages": {
-        "nothingToDelete": {
-          "text": "Nichts zum Löschen gefunden",
-          "title": "Nichts gefunden"
-        },
-        "clonesDeleted": {
-          "text": "{0} Kopien von {1} wurden entfernt",
-          "title": "Kopien entfernt"
-        },
-        "nothingToMove": {
-          "text": "Nichts zum teleportieren gefunden",
-          "title": "Nichts gefunden"
-        },
-        "objectCloned": {
-          "text": "Eine Kopie von {0} wurde an der Position des Spielers erstellt. Bitte speichere die Änderungen, um sie zu übernehmen",
-          "title": "{0} erstellt"
-        }
+      "precipitationFrequency": {
+        "_label": "Niederschlagsfrequenz",
+        "_tooltip": "Wie oft ändert sich das Wetter"
       },
-      "buttons": {
-        "removeAllCopies": {
-          "text": "Alle Kopien von der Karte entfernen",
-          "tooltip": "Entfernt alle Kopien dieses Objekts von der Karte"
-        },
-        "cloneAtPlayerPosition": {
-          "text": "An Spielerposition kopieren",
-          "tooltip": "Erstellt eine Kopie dieses Objekts an der Position des Spielers"
-        },
-        "teleportPlayerToObject": {
-          "text": "Spieler zum Objekt teleportieren",
-          "tooltip": "Teleportiert den Spieler zum Objekt"
-        },
-        "teleportObjectToPlayer": {
-          "text": "Objekt zum Spieler teleportieren",
-          "tooltip": "Teleportiert das Objekt zum Spieler"
-        }
+      "reducedFoodInContainers": "Weniger Essen in Containern",
+      "seasonLength": {
+        "default": "Standard",
+        "long": "Lang",
+        "realistic": "Realistisch",
+        "short": "Kurz",
+        "_label": "Saisonlänge"
+      },
+      "settingsValues": {
+        "default": "Standard",
+        "hard": "Schwer",
+        "high": "Hoch",
+        "low": "Niedrig",
+        "normal": "Normal",
+        "off": "Aus"
+      },
+      "singleUseContainers": "Einwegbehälter",
+      "spawnEnemies": "Feinde spawnen",
+      "startingSeason": {
+        "autumn": "Herbst",
+        "spring": "Frühling",
+        "summer": "Sommer",
+        "winter": "Winter",
+        "_label": "Startsaison"
+      },
+      "uid": "UID"
+    },
+    "state": {
+      "header": "Spielzustand",
+      "headers": {
+        "worldObjectStates": "Zustand der Weltobjekte"
+      },
+      "worldObjectStates": {
+        "disclaimer": "Ich habe nicht vollständig untersucht, welche Werte welchen Zustand repräsentieren. Vermutlich:\n- 0 = Nicht festgelegt/geschlossen/nicht passiert\n- 1 oder 3 = Festgelegt/geöffnet/geschehen",
+        "header": "Zustand der Weltobjekte"
       }
     }
   },
-  "player": {
+  "generic": {
+    "add": "Hinzufügen",
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "edit": "Bearbeiten",
+    "error": "Fehler",
+    "exceptionMessage": "Ein Fehler ist aufgetreten: {0}",
+    "name": "Name",
+    "no": "Nein",
+    "ok": "OK",
+    "position": "Position",
+    "save": "Speichern",
+    "seconds": "Sekunde(n)",
+    "setting": "Einstellung",
+    "success": "Erfolg",
+    "unknown": "Unbekannt",
+    "update": "Aktualisieren",
+    "value": "Wert",
+    "yes": "Ja"
+  },
+  "influences": {
+    "anger": "Wut",
+    "disclaimer": "Stimmung definiert die Zuneigung, doch es ist nicht klar, wie dies Feinde beeinflusst.\nWenn der Angst-Wert hoch ist, rennen Feinde häufiger weg.\nEin hoher Wert in Wut erhöht die Wahrscheinlichkeit von Angriffen.",
+    "fear": "Angst",
+    "sentiment": "Stimmung"
+  },
+  "inventory": {
     "buttons": {
-      "moveToKelvin": "Zu Kelvin teleportieren",
-      "moveToVirginia": "Zu Virginia teleportieren"
+      "addAllFromCategory": "Alle von Kategorie hinzufügen",
+      "max": "Max",
+      "remove": "Entfernen",
+      "removeAll": "Alle entfernen",
+      "setAllToMax": "Alle auf Max setzen",
+      "setAllToMin": "Alle auf Min setzen"
     },
-    "strengthLevel": "Stärke-Level",
-    "maxHealth": "Maximale Gesundheit",
-    "currentHealth": "Aktuelle Gesundheit",
-    "outfit": "Outfit",
-    "fillAllBars": "Alle Balken füllen",
-    "areaMask": "Bereich",
-    "mapGroupName": "Spieler"
-  },
-  "npcs": {
-    "tabs": {
-      "byType": "Nach Typ",
-      "byFamily": {
-        "text": "Nach Familie",
-        "disclaimer": "Eine Familie stellt eine Gruppe von NPCs dar, die zueinander gehören. Mit anderen Worten: Ein Schwarm, ein Stamm zum Beispiel."
-      }
-    }
-  },
-  "tabs": {
-    "player": "Spieler",
-    "inventory": "Inventar",
-    "storage": "Lager",
-    "followers": "Begleiter",
-    "game": "Spiel",
-    "npcs": "NPCs",
-    "structures": "Gebäude"
-  },
-  "weather": {
-    "header": "Wetterzustand"
-  },
-  "itemTypes": {
-    "key": "Schlüssel",
-    "misc": "Sonstiges",
-    "ammo": "Munition",
-    "printed": "Gedrucktes",
-    "food": "Lebensmittel",
-    "armor": "Rüstung",
-    "clothes": "Kleidung",
-    "weapon": "Waffe",
-    "document": "Dokument",
-    "plant": "Pflanze",
-    "container": "Behälter",
-    "log": "Stamm",
-    "blueprint": "Bauplan",
-    "attachment": "Aufsatz",
-    "book": "Buch",
-    "tool": "Werkzeug",
-    "weaponMod": "Waffen-Modifikation",
-    "equipment": "Ausrüstung",
-    "bodyPart": "Körperteil",
-    "electricity": "Elektrizität",
-    "seed": "Samen",
-    "consumable": "Verbrauchsmaterial",
-    "trophy": "Trophäe"
-  },
-  "itemVariants": {
-    "436": {
-      "1": "Roher Fisch",
-      "2": "Unbekannter Fisch",
-      "3": "Verdorbener Fisch",
-      "4": "Trockenfisch",
-      "5": "Gekochter Fisch",
-      "6": "Verbrannter Fisch"
+    "filterWatermark": "Filtern...",
+    "headers": {
+      "itemsInInventory": "Gegenstände im Inventar",
+      "unassignedItems": "Nicht zugewiesene Gegenstände"
     },
-    "433": {
-      "1": "Rohes Fleisch",
-      "2": "Unbekanntes Fleisch",
-      "3": "Verdorbenes Fleisch",
-      "4": "Trockenfleisch",
-      "5": "Gekochtes Fleisch",
-      "6": "Verbranntes Fleisch"
+    "table": {
+      "actions": "Aktionen",
+      "count": {
+        "text": "Anzahl",
+        "tooltip": "Die Menge, die du im Inventar hast"
+      },
+      "id": "ID",
+      "name": "Name",
+      "type": "Typ"
     },
-    "480": {
-      "1": "Roher Arm",
-      "2": "Unbekannter Arm",
-      "3": "Verdorbener Arm",
-      "4": "Getrockneter Arm",
-      "5": "Gekochter Arm",
-      "6": "Verbrannter Arm"
-    },
-    "481": {
-      "1": "Rohes Bein",
-      "2": "Unbekanntes Bein",
-      "3": "Verdorbenes Bein",
-      "4": "Getrocknetes Bein",
-      "5": "Gekochtes Bein",
-      "6": "Verbranntes Bein"
-    }
+    "unknownItem": "??? Unbekannter Gegenstand"
   },
   "items": {
     "78": "Baumstamm",
@@ -1244,112 +820,70 @@
     "677": "Angeln Email A",
     "678": "Angeln Email B"
   },
-  "worldItemTypes": {
-    "GolfCart": "Golfwagen",
-    "HangGlider": "Hängegleiter",
-    "KnightV": "Knight V"
+  "itemTypes": {
+    "ammo": "Munition",
+    "armor": "Rüstung",
+    "attachment": "Aufsatz",
+    "blueprint": "Bauplan",
+    "bodyPart": "Körperteil",
+    "book": "Buch",
+    "clothes": "Kleidung",
+    "consumable": "Verbrauchsmaterial",
+    "container": "Behälter",
+    "document": "Dokument",
+    "electricity": "Elektrizität",
+    "equipment": "Ausrüstung",
+    "food": "Lebensmittel",
+    "key": "Schlüssel",
+    "log": "Stamm",
+    "misc": "Sonstiges",
+    "plant": "Pflanze",
+    "printed": "Gedrucktes",
+    "seed": "Samen",
+    "tool": "Werkzeug",
+    "trophy": "Trophäe",
+    "weapon": "Waffe",
+    "weaponMod": "Waffen-Modifikation"
   },
-  "poiGroups": {
-    "Items": "Gegenstände",
-    "Bunkers": "Bunker",
-    "Printers": "3D-Drucker",
-    "Laptops": "Laptops",
-    "Caves": "Höhlen",
-    "Camps": "Camps",
-    "Villages": "Dörfer",
-    "Helicopters": "Helikopter",
-    "Info": "Info",
-    "Doors": "Türen",
-    "Ammo": "Munition",
-    "CannibalVillages": "Kannibalen-Dörfer",
-    "Lakes": "Seen",
-    "Ponds": "Tümpel",
-    "Supply": "Vorrat",
-    "Crates": "Kisten"
+  "itemVariants": {
+    "433": {
+      "1": "Rohes Fleisch",
+      "2": "Unbekanntes Fleisch",
+      "3": "Verdorbenes Fleisch",
+      "4": "Trockenfleisch",
+      "5": "Gekochtes Fleisch",
+      "6": "Verbranntes Fleisch"
+    },
+    "436": {
+      "1": "Roher Fisch",
+      "2": "Unbekannter Fisch",
+      "3": "Verdorbener Fisch",
+      "4": "Trockenfisch",
+      "5": "Gekochter Fisch",
+      "6": "Verbrannter Fisch"
+    },
+    "480": {
+      "1": "Roher Arm",
+      "2": "Unbekannter Arm",
+      "3": "Verdorbener Arm",
+      "4": "Getrockneter Arm",
+      "5": "Gekochter Arm",
+      "6": "Verbrannter Arm"
+    },
+    "481": {
+      "1": "Rohes Bein",
+      "2": "Unbekanntes Bein",
+      "3": "Verdorbenes Bein",
+      "4": "Getrocknetes Bein",
+      "5": "Gekochtes Bein",
+      "6": "Verbranntes Bein"
+    }
   },
   "map": {
-    "zipLines": "Seilrutschen",
-    "zipLineAnchor": "Seilrutschen-Anker",
-    "pois": "Sehenswürdigkeiten",
-    "options": "Optionen",
-    "details": "Details",
-    "inventoryFilter": "Nur nicht-gesammelte Gegenstände",
-    "isUnderground": "Unterirdisch",
-    "isInInventory": "Im Inventar",
-    "itemId": "Item ID",
-    "coordinates": "Koordinaten",
-    "requirements": "Voraussetzungen",
-    "items": "Gegenstände",
-    "wiki": "Wiki Link",
     "actors": "NPCs",
-    "structures": "Strukturen",
-    "teleportation": "Teleportation",
-    "area": "Bereich",
-    "objects": "Objekte",
     "altItems": "Alternative Gegenstände",
-    "customPois": "Benutzerdefiniert",
     "alwaysOnTop": "Immer im Vordergrund",
-    "followPlayer": "Spieler verfolgen",
-    "followers": "Begleiter",
-    "fill": "Füllen",
-    "isRuntimeCreated": "Ist Kopie",
-    "name": "Name",
-    "mapType": {
-      "dark": "Dunkel",
-      "original": "Original"
-    },
-    "fullText": {
-      "text": "Volltext",
-      "watermark": "Titel, Beschreibung, Item-Name...",
-      "tooltip": "Sucht in Titel, Beschreibung, Gegenstands-Name und Gegenstands-Kategorie der aktuell ausgewählten Markierungs-Kategorien"
-    },
-    "teleportWindow": {
-      "title": "Teleportieren",
-      "destination": "Ziel",
-      "toTeleport": "Zu teleportieren",
-      "offset": "Offset",
-      "doTeleport": "Teleportieren!",
-      "mode": {
-        "Player": "Spieler",
-        "Kelvin": "Kelvin",
-        "Virginia": "Virginia"
-      },
-      "disclaimer": "Du kannst die Ziel-Koordinaten hier verändern. Wenn der Zielpunkt in einem Gegner ist besteht die Möglichkeit, in die Luft katapultiert zu werden. X und Z bestimmen den Ort und Y die Höhe. Bitte stelle sicher dass der korrekte Bereich eingestellt ist."
-    },
-    "spawnWindow": {
-      "title": "Actor spawnen",
-      "disclaimer": "Sei vorsichtig mit der Position oder Anzahl. Es könnte das Spiel zum Absturz bringen. Manche Gegner lassen sich nicht an bestimmten unterirdischen Orten spawnen.",
-      "doSpawn": "Actors erstellen",
-      "information": "Informationen",
-      "position": "Position",
-      "options": "Optionen",
-      "actorType": "Actor Typ",
-      "count": "Anzahl",
-      "familyOfDestinationActor": "Familie des Ziel-Actors",
-      "family": "Familie",
-      "spaceBetween": {
-        "text": "Abstand dazwischen",
-        "tooltip": "Definiert den Abstand zwischen jedem Actor. Die Actors werden in einem gleichmäßigen Raster platziert, wenn dieser Wert > 0 ist"
-      },
-      "spawnPattern": {
-        "text": "Spawn Muster",
-        "Grid": "Raster",
-        "Random": "Zufällig",
-        "Rectangle": "Rechteck",
-        "Cross": "Kreuz",
-        "VerticalLine": "Vertikale Linie",
-        "HorizontalLine": "Horizontale Linie"
-      }
-    },
-    "requirementsFilter": {
-      "text": "Voraussetzungen",
-      "tooltip": "Zeigt nur Gegenstände, Bunker etc. an für die sich die erforderlichen Gegenstände wie die Schaufel im Inventar befinden",
-      "types": {
-        "All": "Alle",
-        "AccessibleOnly": "Nur Erreichbares anzeigen",
-        "InaccessibleOnly": "Nur Unerreichbares anzeigen"
-      }
-    },
+    "area": "Bereich",
     "areaFilter": {
       "text": "Bereiche",
       "types": {
@@ -1359,55 +893,527 @@
       }
     },
     "buttons": {
-      "deselectAll": "Auswahl aufheben",
-      "teleportPlayer": "Spieler hierhin teleportieren",
-      "teleportKelvin": "Kelvin hierhin teleportieren",
-      "teleportVirginia": "Virginia hierhin teleportieren",
-      "deleteBothAnchors": "Beide Anker löschen",
-      "spawnActors": "Spawn Actors",
-      "delete": "Löschen",
-      "moveToNextClickedPosition": {
-        "text": "Zur angeklickten Position verschieben",
-        "tooltip": "Nachdem du den Button angeklickt hast, wird die Position zum nächsten angeklickten Icon verschoben",
-        "hint": "Bitte jetzt einen anderen Ort anklicken"
-      },
       "createNewZipline": {
         "text": "Neue Seilrutsche von hier",
         "tooltip": "Nachdem du den Button angeklickt hast, wird die neue Seilrutsche zwischen der aktuellen und der nächsten angeklickten Position hergestellt"
+      },
+      "delete": "Löschen",
+      "deleteBothAnchors": "Beide Anker löschen",
+      "deselectAll": "Auswahl aufheben",
+      "moveToNextClickedPosition": {
+        "hint": "Bitte jetzt einen anderen Ort anklicken",
+        "text": "Zur angeklickten Position verschieben",
+        "tooltip": "Nachdem du den Button angeklickt hast, wird die Position zum nächsten angeklickten Icon verschoben"
+      },
+      "spawnActors": "Spawn Actors",
+      "teleportKelvin": "Kelvin hierhin teleportieren",
+      "teleportPlayer": "Spieler hierhin teleportieren",
+      "teleportVirginia": "Virginia hierhin teleportieren"
+    },
+    "coordinates": "Koordinaten",
+    "customPois": "Benutzerdefiniert",
+    "details": "Details",
+    "fill": "Füllen",
+    "followers": "Begleiter",
+    "followPlayer": "Spieler verfolgen",
+    "fullText": {
+      "text": "Volltext",
+      "tooltip": "Sucht in Titel, Beschreibung, Gegenstands-Name und Gegenstands-Kategorie der aktuell ausgewählten Markierungs-Kategorien",
+      "watermark": "Titel, Beschreibung, Item-Name..."
+    },
+    "inventoryFilter": "Nur nicht-gesammelte Gegenstände",
+    "isInInventory": "Im Inventar",
+    "isRuntimeCreated": "Ist Kopie",
+    "isUnderground": "Unterirdisch",
+    "itemId": "Item ID",
+    "items": "Gegenstände",
+    "mapType": {
+      "dark": "Dunkel",
+      "original": "Original"
+    },
+    "name": "Name",
+    "objects": "Objekte",
+    "options": "Optionen",
+    "pois": "Sehenswürdigkeiten",
+    "requirements": "Voraussetzungen",
+    "requirementsFilter": {
+      "text": "Voraussetzungen",
+      "tooltip": "Zeigt nur Gegenstände, Bunker etc. an für die sich die erforderlichen Gegenstände wie die Schaufel im Inventar befinden",
+      "types": {
+        "AccessibleOnly": "Nur Erreichbares anzeigen",
+        "All": "Alle",
+        "InaccessibleOnly": "Nur Unerreichbares anzeigen"
       }
+    },
+    "spawnWindow": {
+      "actorType": "Actor Typ",
+      "count": "Anzahl",
+      "disclaimer": "Sei vorsichtig mit der Position oder Anzahl. Es könnte das Spiel zum Absturz bringen. Manche Gegner lassen sich nicht an bestimmten unterirdischen Orten spawnen.",
+      "doSpawn": "Actors erstellen",
+      "family": "Familie",
+      "familyOfDestinationActor": "Familie des Ziel-Actors",
+      "information": "Informationen",
+      "options": "Optionen",
+      "position": "Position",
+      "spaceBetween": {
+        "text": "Abstand dazwischen",
+        "tooltip": "Definiert den Abstand zwischen jedem Actor. Die Actors werden in einem gleichmäßigen Raster platziert, wenn dieser Wert > 0 ist"
+      },
+      "spawnPattern": {
+        "Cross": "Kreuz",
+        "Grid": "Raster",
+        "HorizontalLine": "Horizontale Linie",
+        "Random": "Zufällig",
+        "Rectangle": "Rechteck",
+        "text": "Spawn Muster",
+        "VerticalLine": "Vertikale Linie"
+      },
+      "title": "Actor spawnen"
+    },
+    "structures": "Strukturen",
+    "teleportation": "Teleportation",
+    "teleportWindow": {
+      "destination": "Ziel",
+      "disclaimer": "Du kannst die Ziel-Koordinaten hier verändern. Wenn der Zielpunkt in einem Gegner ist besteht die Möglichkeit, in die Luft katapultiert zu werden. X und Z bestimmen den Ort und Y die Höhe. Bitte stelle sicher dass der korrekte Bereich eingestellt ist.",
+      "doTeleport": "Teleportieren!",
+      "mode": {
+        "Kelvin": "Kelvin",
+        "Player": "Spieler",
+        "Virginia": "Virginia"
+      },
+      "offset": "Offset",
+      "title": "Teleportieren",
+      "toTeleport": "Zu teleportieren"
+    },
+    "wiki": "Wiki Link",
+    "zipLineAnchor": "Seilrutschen-Anker",
+    "zipLines": "Seilrutschen"
+  },
+  "menu": {
+    "companion": {
+      "setup": "Einrichtung",
+      "text": "Companion"
+    },
+    "file": {
+      "deleteAllBackups": "Alle Backups löschen",
+      "exit": "Beenden",
+      "openLastSavegame": "Letzten Spielstand öffnen...",
+      "openLastSavegameWithSavegame": "{0} öffnen...",
+      "openSavegame": "Spielstand öffnen...",
+      "openSavegameDirInExplorer": "Spielstand-Ordner im Explorer öffnen",
+      "reloadCurrentSavegame": "Aktuellen Spielstand neu laden",
+      "restoreFromBackup": {
+        "fromNewestBackup": "Vom neuesten Backup",
+        "fromOldestBackup": "Vom ältesten Backup",
+        "text": "Backup wiederherstellen"
+      },
+      "save": "Speichern",
+      "settings": "Einstellungen",
+      "text": "Datei"
+    },
+    "help": {
+      "about": "Über...",
+      "changelog": "Changelog",
+      "links": {
+        "discord": "Discord",
+        "downloadLatestVersion": "Neueste Version herunterladen",
+        "githubProject": "GitHub Projekt",
+        "nexusMods": "NexusMods",
+        "text": "Links",
+        "thunderstoreIo": "thunderstore.io"
+      },
+      "readme": "Readme",
+      "text": "?",
+      "updates": {
+        "checkNow": "Jetzt prüfen",
+        "checkOnStartup": "Beim Start prüfen",
+        "text": "Aktualisierungen"
+      }
+    },
+    "tools": {
+      "cloneWorldObjects": {
+        "text": "Welt-Gegenstände klonen...",
+        "tooltip": "Klont einen Welt-Gegenstand an der Position des Spielers"
+      },
+      "igniteAndRefuelFires": {
+        "text": "Alle Feuer entzünden und auffüllen",
+        "tooltip": "Entzündet und füllt alle Feuer auf und verlangsamt den Verbrauch von Brennstoff, so dass sie fast ewig brennen sollten."
+      },
+      "map": {
+        "text": "Interaktive Karte",
+        "tooltip": "Eine interaktive Karte"
+      },
+      "modifyConsumedItems": {
+        "text": "Verzehrte Gegenstände bearbeiten...",
+        "tooltip": "Falls du dein Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
+      },
+      "regrowTrees": "Bäume nachwachsen lassen...",
+      "resetKillStatistics": {
+        "text": "Tötungsstatistik zurücksetzen",
+        "tooltip": "Manche Spieler werden von Kannibalen und Monstern überflutet. Das Zurücksetzen der Statistiken könnte zu weniger Spawns führen, oder auch nicht. Wer weiß?"
+      },
+      "resetNumberOfCutTrees": {
+        "text": "Anzahl der gefällten Bäume zurücksetzen",
+        "tooltip": "Dies könnte auch helfen, die Anzahl der Kannibalen zu reduzieren. Eine Theorie besagt, dass sie aufgrund dieser Zahl berechnet wird."
+      },
+      "resetStructureDamage": {
+        "text": "Schadenszähler für Gebäude zurücksetzen",
+        "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
+      },
+      "text": "Tools"
     }
   },
-  "companion": {
-    "address": "IP/Addresse",
-    "port": "Port",
-    "portHint": "Für Ports > 1024 müssen Anwendung und Spiel als Admin gestartet werden!",
-    "connectTimeout": "Verbindungs-Timeout",
-    "keepAliveInterval": "Keep-Alive Intervall",
-    "connect": "Verbinden",
-    "disconnect": "Verbindung trennen",
-    "readme1": "Der \"Companion\" bietet Extra-Funktionalität für das Spiel, wie Ingame-Teleportation, Positions-Verfolgung und einiges mehr.\n\nBevor der Companion genutzt werden kann muss dieser erst eingerichtet werden. Hierfür müssen die folgenden Dinge installiert werden:\n\n- BepInExPack\n- SOTFEdit Companion Plugin\n\nDiese können entweder manuell anhand der README oder einen Mod-Manager eingerichtet werden:",
-    "readme2": "Nachdem beides eingerichtet und das Spiel gestartet wurde, musst du über das Menü eine Verbindung zum Companion herstellen.\n\nDanach stehen im Spiel zwei neue Hotkeys zur Verfügung:\n- Ingame Teleportation zu den meisten Ingame-Orten (Standard: F8)\n- Benutzerdefinierte Location erstellen (F9)\n\nAußerdem wird die Position auf der Karte live aktualisiert.",
-    "settings": "Einstellungen",
-    "readme": "Readme",
-    "mapPositionUpdateInterval": "Aktualisiere Spieler-Positionen alle",
-    "connectionFailed": {
-      "title": "Companion Verbindung fehlgeschlagen",
-      "text": "Der Verbindungsversuch mit dem Companion-Plugin ist fehlgeschlagen",
-      "textException": "Der Verbindungsversuch mit dem Companion-Plugin ist fehlgeschlagen. Fehler: {0}"
-    },
-    "connectionSuccessful": {
-      "title": "Companion verbunden",
-      "text": "Verbindung zum Companion wurde erfolgreich hergestellt.\nDu kannst jetzt die Ingame-Hotkeys, Live-Teleportation über die Karte und Positions-Tracking nutzen."
-    },
-    "disconnectFailed": {
-      "title": "Companion Disconnect fehlgeschlagen",
-      "text": "Der Versuch die Verbindung zum Companion-Plugin zu trennen ist fehlgeschlagen.",
-      "textException": "Der Versuch die Verbindung zum Companion-Plugin zu trennen ist fehlgeschlagen. Fehler: {0}"
-    },
-    "status": {
-      "connected": "Verbunden",
-      "connecting": "Verbinde...",
-      "disconnected": "Verbindung getrennt"
+  "npcs": {
+    "tabs": {
+      "byFamily": {
+        "disclaimer": "Eine Familie stellt eine Gruppe von NPCs dar, die zueinander gehören. Mit anderen Worten: Ein Schwarm, ein Stamm zum Beispiel.",
+        "text": "Nach Familie"
+      },
+      "byType": "Nach Typ"
     }
+  },
+  "player": {
+    "areaMask": "Bereich",
+    "buttons": {
+      "moveToKelvin": "Zu Kelvin teleportieren",
+      "moveToVirginia": "Zu Virginia teleportieren"
+    },
+    "currentHealth": "Aktuelle Gesundheit",
+    "fillAllBars": "Alle Balken füllen",
+    "mapGroupName": "Spieler",
+    "maxHealth": "Maximale Gesundheit",
+    "outfit": "Outfit",
+    "strengthLevel": "Stärke-Level"
+  },
+  "poiGroups": {
+    "Ammo": "Munition",
+    "Bunkers": "Bunker",
+    "Camps": "Camps",
+    "CannibalVillages": "Kannibalen-Dörfer",
+    "Caves": "Höhlen",
+    "Crates": "Kisten",
+    "Doors": "Türen",
+    "Helicopters": "Helikopter",
+    "Info": "Info",
+    "Items": "Gegenstände",
+    "Lakes": "Seen",
+    "Laptops": "Laptops",
+    "Ponds": "Tümpel",
+    "Printers": "3D-Drucker",
+    "Supply": "Vorrat",
+    "Villages": "Dörfer"
+  },
+  "storage": {
+    "batch": {
+      "allSlots": "Alle Plätze",
+      "clearAll": "Alle leeren",
+      "fillAllWith": "Alles füllen mit",
+      "setAllToMax": "Alle auf Maximum setzen"
+    },
+    "buttons": {
+      "fillAllStorages": "Alle Lager füllen"
+    },
+    "errors": {
+      "currentStateNotDefined": "CurrentState für Modul-ID {0} nicht definiert"
+    },
+    "headers": {
+      "selectAStorage": "Wähle ein Lager aus",
+      "storageTypes": "Lager-Typen"
+    },
+    "slot": {
+      "max": "Max",
+      "remove": "Entfernen"
+    }
+  },
+  "structures": {
+    "added": "Hinzugefügt",
+    "applyToAllOfSameType": {
+      "text": "Auf alle des selben Typs anwenden",
+      "tooltip": "Wendet die oben eingestellten Items und Anzahl auf alle Storages des selben Typs an"
+    },
+    "buildCost": "Baukosten",
+    "buttons": {
+      "changeType": "Typ ändern",
+      "setAllToAlmostFinish": "Alle auf \"Fast fertig\" setzen",
+      "setAllToFinish": "Alle auf \"Fertigstellen\" setzen",
+      "setAllToRemove": "Alle auf \"Entfernen\" setzen",
+      "setAllToUnfinish": "Alle auf \"Unvollständig\" setzen",
+      "unmodifyAll": "Alle Änderungen rückgängig"
+    },
+    "categories": {
+      "furniture": "Möbel",
+      "gardening": "Gartenarbeit",
+      "misc": "Sonstiges",
+      "shelter": "Unterkunft",
+      "storage": "Lagerung",
+      "traps": "Fallen",
+      "treeShelter": "Baum-Unterkunft",
+      "utility": "Nützliches"
+    },
+    "category": "Kategorie",
+    "headers": {
+      "batch": "Batch",
+      "finishedStructures": "Fertige Strukturen",
+      "unfinishedStructures": "Unfertige Strukturen"
+    },
+    "modification": "Modifikation",
+    "modificationMode": {
+      "AlmostFinish": "Fast fertig",
+      "Finish": "Fertigstellen",
+      "None": "Keine Änderung",
+      "Remove": "Entfernen",
+      "Unfinish": "Unfertig stellen"
+    },
+    "percentDone": "Fortschritt",
+    "structureTypeSelectorDisclaimer": "Wenn nichts ausgewählt wird, werden alle Strukturen geändert",
+    "types": {
+      "20": "Stuhl aus Stöckern",
+      "21": "Falle des Knochenmachers",
+      "22": "Bett aus Stöckern",
+      "23": "Wand-Pflanzkasten",
+      "24": "Knochenlampe",
+      "25": "Knochenstuhl",
+      "26": "Anbau",
+      "27": "Trockengestell",
+      "28": "Baumunterstand 2",
+      "29": "Stocklager",
+      "31": "Steinlager",
+      "32": "Knochenlager",
+      "34": "Kleine Blockhütte",
+      "35": "Reuse",
+      "36": "Rüstungsständer",
+      "37": "Baumstammlager",
+      "38": "Aussichtsturm",
+      "39": "Vogelscheuche",
+      "40": "Pflanzkasten",
+      "41": "Baumplattform 2",
+      "42": "Falle für Kleintiere",
+      "43": "Baumplattform 1",
+      "44": "Baumunterstand 1",
+      "45": "Fliegende Klatschfalle",
+      "46": "Stockweg",
+      "47": "Jagdhütte",
+      "48": "Tisch",
+      "49": "Regal",
+      "50": "Steinweg",
+      "51": "Wandregal",
+      "52": "Bank",
+      "53": "Wandfackel",
+      "54": "Schädel-Deckenlampe",
+      "55": "Seilrutsche",
+      "56": "Regenfänger",
+      "57": "Federfalle",
+      "58": "Fortgeschrittener Holzschlitten",
+      "59": "Einfacher Holzschlitten",
+      "60": "Stein-Feuerstelle",
+      "61": "Trophäen-Halter",
+      "62": "Felsen-Lager",
+      "63": "Hokey Pokey Falle",
+      "64": "Radio Alarm Falle",
+      "67": "Großer Baumstamm-Halter",
+      "68": "Hirschfell-Teppich",
+      "70": "Item Plating",
+      "71": "Beleuchtetes Kreuz",
+      "72": "Gore Stuhl",
+      "73": "Gore Couch",
+      "74": "Uber-Falle",
+      "75": "Runder Tisch"
+    }
+  },
+  "tabs": {
+    "followers": "Begleiter",
+    "game": "Spiel",
+    "inventory": "Inventar",
+    "npcs": "NPCs",
+    "player": "Spieler",
+    "storage": "Lager",
+    "structures": "Gebäude"
+  },
+  "weather": {
+    "header": "Wetterzustand"
+  },
+  "windows": {
+    "main": {
+      "errors": {
+        "errorCheckingLastVersion": "Beim Überprüfen der neuesten Version ist ein Fehler aufgetreten"
+      },
+      "map": "Karte",
+      "messages": {
+        "alreadyLatestVersion": {
+          "text": "Du verwendest bereits die neueste Version",
+          "title": "Kein Update"
+        },
+        "backupsDeleted": "{0} Backups gelöscht",
+        "changesSaved": "Änderungen wurden erfolgreich gespeichert",
+        "confirmCloseApplication": {
+          "text": "Möchtest du die Anwendung schließen?",
+          "title": "Anwendung schließen"
+        },
+        "confirmCreateBackup": {
+          "text": "Möchtest du ein Backup erstellen?",
+          "title": "Backup erstellen?"
+        },
+        "confirmDeleteBackups": {
+          "text": "Möchtest du wirklich alle Backups löschen?",
+          "title": "Alle Backups löschen"
+        },
+        "confirmOverwriteExternalChanges": {
+          "text": "Das Savegame wurde extern geändert. Möchtest du wirklich alle Änderungen überschreiben?",
+          "title": "Änderungen überschreiben"
+        },
+        "confirmRestoreBackups": {
+          "text": "Bist du sicher, dass du Backups wiederherstellen möchten?",
+          "title": "Backups wiederherstellen"
+        },
+        "followerAlreadyAlive": {
+          "text": "{0} sollte bereits am Leben sein",
+          "title": "Keine Änderungen"
+        },
+        "followerRevived": {
+          "text": "{0} sollte jetzt wieder da sein",
+          "title": "Wiederbelebt"
+        },
+        "followersCreated": {
+          "text": "{0} Begleiter wurden erzeugt",
+          "title": "Begleiter erzeugt"
+        },
+        "noChanges": {
+          "text": "Keine Änderungen - Nichts gespeichert",
+          "title": "Keine Änderungen"
+        },
+        "saveChanges": "Änderungen speichern",
+        "unableToDeleteBackups": "Backups konnten nicht gelöscht werden: {0}",
+        "unableToSpawnFollowers": "Begleiter konnten nicht erzeugt werden"
+      },
+      "title": " (Ausgewählt: {0}, {1} - Gespeichert am: {2}, Zuletzt geändert: {3})"
+    },
+    "modifyConsumedItems": {
+      "key": "Key",
+      "remove": "entfernen",
+      "removeAll": "Alle entfernen",
+      "title": "Verbrauchte Gegenstände bearbeiten"
+    },
+    "regrowTrees": {
+      "all": "Alle",
+      "gone": "Verschwunden",
+      "halfChopped": "Halb gefällt",
+      "messages": {
+        "noTreesRegrown": "Keine Bäume mit dem Zustand \"{0}\" wiederhergestellt",
+        "success": "{0} Bäume mit dem vorherigen Zustand \"{1}\" sollten jetzt wiederhergestellt sein. Bitte speichern, um die Änderungen zu übernehmen."
+      },
+      "pctRegrow": "Prozent nachwachsen lassen",
+      "saveButton": "Bäume wiederherstellen",
+      "stumps": "Baumstümpfe",
+      "title": "Bäume wiederherstellen"
+    },
+    "selectSavegame": {
+      "buttons": {
+        "change": "Ändern...",
+        "setToDefault": "Auf Standard zurücksetzen"
+      },
+      "folderBrowserTitle": "Wähle das \"Saves\" Verzeichnis von Sons of the Forest",
+      "headers": {
+        "location": "Speicherort"
+      },
+      "lastSaveTimeTooltip": "Letzter Schreibzeitpunkt des Spielstandverzeichnisses",
+      "selectedPath": {
+        "label": "Ausgewählter Pfad:",
+        "tooltip": "Normalerweise werden die Speicherstände unter C:\\Users\\[Benutzer]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves gespeichert"
+      },
+      "tabs": {
+        "multiplayer": "Mehrspieler",
+        "multiplayerClient": "Mehrspieler (Client)",
+        "singleplayer": "Einzelspieler"
+      },
+      "title": "Spielstand auswählen..."
+    },
+    "settings": {
+      "askForBackupsEveryTime": "Bei jedem Speichern fragen",
+      "backupMode": "Backup-Modus",
+      "fileMode": {
+        "label": "Datei-Modus",
+        "single": "Ein Backup pro geänderter JSON-Datei",
+        "zip": "ZIP-Archiv"
+      },
+      "language": "Sprache",
+      "messages": {
+        "languageChanged": {
+          "text": "Bitte starte die Anwendung neu damit die geänderte Sprache übernommen wird",
+          "title": "Einstellungen gespeichert"
+        }
+      },
+      "theme": "Theme",
+      "title": "Einstellungen"
+    },
+    "unhandledException": {
+      "applicationVersion": "Anwendungsversion",
+      "buttons": {
+        "copyErrorToClipboard": "Fehler in Zwischenablage kopieren",
+        "exitApplication": "Anwendung beenden"
+      },
+      "callstack": "Callstack",
+      "disclaimer": "Ein unerwarteter Fehler ist aufgetreten. Der Anwendungsstatus könnte beschädigt sein.",
+      "exceptionMessage": "Exception-Message",
+      "exceptionType": "Exception-Typ",
+      "header": "Exception-Details",
+      "innerException": "Innere Exception",
+      "title": "Unbehandelte Ausnahme"
+    },
+    "updateAvailable": {
+      "buttons": {
+        "download": "Herunterladen",
+        "ignore": "Ignorieren"
+      },
+      "header": "Ein Update ist verfügbar",
+      "title": "Update verfügbar"
+    },
+    "worldItemCloner": {
+      "buttons": {
+        "cloneAtPlayerPosition": {
+          "text": "An Spielerposition kopieren",
+          "tooltip": "Erstellt eine Kopie dieses Objekts an der Position des Spielers"
+        },
+        "removeAllCopies": {
+          "text": "Alle Kopien von der Karte entfernen",
+          "tooltip": "Entfernt alle Kopien dieses Objekts von der Karte"
+        },
+        "teleportObjectToPlayer": {
+          "text": "Objekt zum Spieler teleportieren",
+          "tooltip": "Teleportiert das Objekt zum Spieler"
+        },
+        "teleportPlayerToObject": {
+          "text": "Spieler zum Objekt teleportieren",
+          "tooltip": "Teleportiert den Spieler zum Objekt"
+        }
+      },
+      "messages": {
+        "clonesDeleted": {
+          "text": "{0} Kopien von {1} wurden entfernt",
+          "title": "Kopien entfernt"
+        },
+        "nothingToDelete": {
+          "text": "Nichts zum Löschen gefunden",
+          "title": "Nichts gefunden"
+        },
+        "nothingToMove": {
+          "text": "Nichts zum teleportieren gefunden",
+          "title": "Nichts gefunden"
+        },
+        "objectCloned": {
+          "text": "Eine Kopie von {0} wurde an der Position des Spielers erstellt. Bitte speichere die Änderungen, um sie zu übernehmen",
+          "title": "{0} erstellt"
+        }
+      },
+      "pinTooltip": "Zeige Objektposition auf der Karte",
+      "title": "Weltobjekt-Kloner",
+      "unknownItem": "Unbekanntes Objekt ({0})",
+      "unnamedItem": "Unbenannt ({0})",
+      "worldItem": "Weltobjekt"
+    }
+  },
+  "worldItemTypes": {
+    "GolfCart": "Golfwagen",
+    "HangGlider": "Hängegleiter",
+    "KnightV": "Knight V"
   }
 }

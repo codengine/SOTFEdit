@@ -8,7 +8,7 @@ namespace SOTFEdit.Infrastructure;
 
 public static class LanguageManager
 {
-    private static string LangPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "lang");
+    public static string LangPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "lang");
 
     public static IEnumerable<string> GetAvailableCultures()
     {

@@ -593,4 +593,10 @@ public partial class MainWindow
         var aboutWindow = new AboutWindow(this);
         aboutWindow.ShowDialog();
     }
+
+    private void OpenTranslations_Click(object sender, RoutedEventArgs e)
+    {
+        var translationWindow = new TranslationWindow();
+        translationWindow.ShowDialog();
+    }
 }

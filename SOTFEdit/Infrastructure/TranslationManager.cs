@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using libc.translation;
 
 namespace SOTFEdit.Infrastructure;
@@ -32,5 +33,10 @@ public static class TranslationManager
         }
 
         return Localizer.GetFormat(key, args);
+    }
+
+    public static IDictionary<string, string> GetAll(string culture)
+    {
+        return Localizer.GetAll(culture);
     }
 }

@@ -1,138 +1,82 @@
-{
-  "languages": {
-    "de": "Deutsch",
-    "en": "English",
-    "pl": "Polski"
-  },
-  "influences": {
-    "disclaimer": "Sentiment defines the affection, yet it is not clear how this influences enemies.\nWhen the Fear value is high, enemies run away more often.\nA high value in Anger increases the likelihood of attacks.",
-    "sentiment": "Sentiment",
-    "anger": "Anger",
-    "fear": "Fear"
-  },
-  "game": {
-    "setup": {
-      "header": "Game Setup",
-      "spawnEnemies": "Spawn Enemies",
-      "headers": {
-        "enemiesCustom": "Enemies (Custom)",
-        "weatherCustom": "Weather (Custom)"
-      },
-      "mode": {
-        "_label": "Mode",
-        "normal": "Normal",
-        "hard": "Hard",
-        "peaceful": "Peaceful",
-        "custom": "Custom",
-        "hardSurvival": "Hard Survival"
-      },
-      "consumableEffects": {
-        "_label": "Consumable Effects",
-        "_tooltip": "How much damage you take eating bad food"
-      },
-      "playerStatsDamage": {
-        "_label": "Player Stats Damage",
-        "_tooltip": "How much damage you take from starvation and etc."
-      },
-      "animalSpawnRate": {
-        "_label": "Animal Spawn Rate"
-      },
-      "enemyHealth": {
-        "_label": "Enemy Health"
-      },
-      "enemyDamage": {
-        "_label": "Enemy Damage"
-      },
-      "enemyArmour": {
-        "_label": "Enemy Armor"
-      },
-      "enemyAggression": {
-        "_label": "Enemy Aggression"
-      },
-      "startingSeason": {
-        "_label": "Starting Season",
-        "spring": "Spring",
-        "summer": "Summer",
-        "autumn": "Autumn",
-        "winter": "Winter"
-      },
-      "seasonLength": {
-        "_label": "Season Length",
-        "short": "Short",
-        "default": "Default",
-        "long": "Long",
-        "realistic": "Realistic"
-      },
-      "dayLength": {
-        "_label": "Day Length",
-        "short": "Short",
-        "default": "Default",
-        "long": "Long",
-        "realistic": "Realistic"
-      },
-      "precipitationFrequency": {
-        "_label": "Precipitation Frequency",
-        "_tooltip": "How often does the weather change"
-      },
-      "settingsValues": {
-        "low": "Low",
-        "default": "Default",
-        "high": "High",
-        "normal": "Normal",
-        "off": "Off",
-        "hard": "Hard"
-      },
-      "uid": "UID",
-      "inventoryPause": "Pause in Inventory",
-      "customSettings": "Custom Settings",
-      "reducedFoodInContainers": "Reduced Food in Containers",
-      "singleUseContainers": "Single-Use Containers",
-      "coldPenalties": "Cold Penalties"
-    },
-    "state": {
-      "header": "Game State",
-      "worldObjectStates": {
-        "header": "World Object States",
-        "disclaimer": "I haven't fully investigated which values represent which state. Presumably:\n- 0 = Unset/Closed/Not happened\n- 1 or 3 = Set/Opened/Happened"
-      },
-      "headers": {
-        "worldObjectStates": "World Object States"
-      }
-    }
-  },
-  "inventory": {
-    "filterWatermark": "Filter...",
-    "table": {
-      "count": {
-        "tooltip": "The amount that you have in your inventory",
-        "text": "Count"
-      },
-      "id": "ID",
-      "name": "Name",
-      "type": "Type",
-      "actions": "Actions"
-    },
-    "headers": {
-      "itemsInInventory": "Items in Inventory",
-      "unassignedItems": "Unassigned Items"
-    },
-    "buttons": {
-      "addAllFromCategory": "Add All from Category",
-      "setAllToMin": "Set all to Min",
-      "setAllToMax": "Set all to Max",
-      "removeAll": "Remove All",
-      "remove": "Remove",
-      "max": "Max"
-    },
-    "unknownItem": "??? Unknown Item"
-  },
+﻿{
   "actors": {
     "classification": {
+      "animal": "Animal",
       "cannibal": "Cannibal",
       "creep": "Creep",
       "human": "Human",
-      "muddyCannibal": "Muddy Cannibal",
-      "animal": "Animal"
+      "muddyCannibal": "Muddy Cannibal"
+    },
+    "details": {
+      "area": "Area",
+      "classification": "Classification",
+      "family": "Family",
+      "gender": "Gender",
+      "killedByPlayer": "Killed by Player",
+      "lastSpawnTime": "Last Spawn Time",
+      "lastVisitedTime": "Last Visited Time",
+      "spawnedCount": "Spawned Count",
+      "state": "State",
+      "uniqueId": "UniqueID"
+    },
+    "gender": {
+      "female": "Female",
+      "male": "Male"
+    },
+    "grouping": {
+      "animals": "Animals",
+      "creeps": "Creeps",
+      "femaleCannibals": "Female Cannibals",
+      "femaleMuddyCannibals": "Female Muddy Cannibals",
+      "maleCannibals": "Male Cannibals",
+      "maleMuddyCannibals": "Male Muddy Cannibals",
+      "misc": "Misc",
+      "mixed": "Mixed",
+      "mixedCannibals": "Mixed Cannibals",
+      "mixedMuddyCannibals": "Mixed Muddy Cannibals",
+      "noFamily": "No Family"
+    },
+    "headers": {
+      "influences": "Influences",
+      "info": "Info",
+      "killStatistics": "Kill Statistics",
+      "modificationOptions": "Modification Options",
+      "modifications": "Modifications",
+      "selection": "Selection",
+      "stats": "Stats"
+    },
+    "influenceType": {
+      "Cannibal": "Cannibal",
+      "Creepy": "Creepy",
+      "Player": "Player"
+    },
+    "modificationMode": {
+      "Modify": "Modify",
+      "Remove": "Remove"
+    },
+    "modificationOptions": {
+      "allActorSelections": {
+        "allActors": "All Actors",
+        "allActorsOfSameFamily": "All Actors of the same family",
+        "allActorsOfSameType": "All Actors of the same type",
+        "thisActor": "This Actor"
+      },
+      "onlyInSameAreaAsActor": "Only in the same area as this actor",
+      "removeSpawner": {
+        "text": "Remove Spawner",
+        "tooltip": "If selected the NPC should not spawn again"
+      },
+      "replaceType": "Replace Type",
+      "skipKelvin": "Skip Kelvin",
+      "skipVirginia": "Skip Virginia",
+      "teleport": {
+        "disclaimer": "Be careful if you teleport multiple actors to the same location. This might crash your game!",
+        "none": "None",
+        "npcToPlayer": "NPC to Player",
+        "playerToNpc": "Player to NPC",
+        "teleportLabel": "Teleport:"
+      },
+      "updateInfluences": "Update Influences"
     },
     "state": {
       "-1": "None",
@@ -159,18 +103,19 @@
       "50": "Leave Combat",
       "51": "Despawned"
     },
-    "grouping": {
-      "animals": "Animals",
-      "creeps": "Creeps",
-      "misc": "Misc",
-      "maleCannibals": "Male Cannibals",
-      "femaleCannibals": "Female Cannibals",
-      "mixedCannibals": "Mixed Cannibals",
-      "maleMuddyCannibals": "Male Muddy Cannibals",
-      "femaleMuddyCannibals": "Female Muddy Cannibals",
-      "mixedMuddyCannibals": "Mixed Muddy Cannibals",
-      "noFamily": "No Family",
-      "mixed": "Mixed"
+    "stats": {
+      "affection": "Affection",
+      "anger": "Anger",
+      "energy": "Energy",
+      "fear": "Fear",
+      "fullness": "Fullness",
+      "fullnessBuff": "Fullness Buff",
+      "health": "Health",
+      "hydration": "Hydration",
+      "hydrationBuff": "Hydration Buff",
+      "rest": "Rest",
+      "restBuff": "Rest Buff",
+      "stamina": "Stamina"
     },
     "types": {
       "1": "Rabbit",
@@ -225,293 +170,158 @@
       "50": "Armsy",
       "51": "Frank",
       "52": "Eddy",
-      "53": "Greg"
-    },
-    "influenceType": {
-      "Cannibal": "Cannibal",
-      "Creepy": "Creepy",
-      "Player": "Player"
-    },
-    "gender": {
-      "male": "Male",
-      "female": "Female"
-    },
-    "modificationMode": {
-      "Remove": "Remove",
-      "Modify": "Modify"
-    },
-    "details": {
-      "classification": "Classification",
-      "gender": "Gender",
-      "lastVisitedTime": "Last Visited Time",
-      "spawnedCount": "Spawned Count",
-      "lastSpawnTime": "Last Spawn Time",
-      "state": "State",
-      "family": "Family",
-      "uniqueId": "UniqueID",
-      "killedByPlayer": "Killed by Player",
-      "area": "Area"
-    },
-    "stats": {
-      "energy": "Energy",
-      "health": "Health",
-      "anger": "Anger",
-      "fear": "Fear",
-      "hydration": "Hydration",
-      "fullness": "Fullness",
-      "affection": "Affection",
-      "rest": "Rest",
-      "stamina": "Stamina",
-      "fullnessBuff": "Fullness Buff",
-      "hydrationBuff": "Hydration Buff",
-      "restBuff": "Rest Buff"
-    },
-    "modificationOptions": {
-      "allActorSelections": {
-        "thisActor": "This Actor",
-        "allActorsOfSameFamily": "All Actors of the same family",
-        "allActorsOfSameType": "All Actors of the same type",
-        "allActors": "All Actors"
-      },
-      "skipKelvin": "Skip Kelvin",
-      "skipVirginia": "Skip Virginia",
-      "onlyInSameAreaAsActor": "Only in the same area as this actor",
-      "removeSpawner": {
-        "text": "Remove Spawner",
-        "tooltip": "If selected the NPC should not spawn again"
-      },
-      "updateInfluences": "Update Influences",
-      "replaceType": "Replace Type",
-      "teleport": {
-        "disclaimer": "Be careful if you teleport multiple actors to the same location. This might crash your game!",
-        "teleportLabel": "Teleport:",
-        "none": "None",
-        "playerToNpc": "Player to NPC",
-        "npcToPlayer": "NPC to Player"
-      }
-    },
-    "headers": {
-      "info": "Info",
-      "influences": "Influences",
-      "modifications": "Modifications",
-      "selection": "Selection",
-      "killStatistics": "Kill Statistics",
-      "stats": "Stats",
-      "modificationOptions": "Modification Options"
+      "53": "Greg",
+      "54": "Henry"
     }
-  },
-  "structures": {
-    "structureTypeSelectorDisclaimer": "If nothing is selected, all structures will be changed",
-    "buildCost": "Build Cost",
-    "added": "Added",
-    "percentDone": "Percent Done",
-    "modification": "Modification",
-    "category": "Category",
-    "applyToAllOfSameType": {
-      "text": "Apply to all of same type",
-      "tooltip": "Applies the assigned items and count above to all storages of the same type"
-    },
-    "categories": {
-      "shelter": "Shelter",
-      "treeShelter": "Tree Shelter",
-      "furniture": "Furniture",
-      "storage": "Storage",
-      "utility": "Utility",
-      "misc": "Misc",
-      "gardening": "Gardening",
-      "traps": "Traps"
-    },
-    "headers": {
-      "unfinishedStructures": "Unfinished Structures",
-      "finishedStructures": "Finished Structures",
-      "batch": "Batch"
-    },
-    "buttons": {
-      "changeType": "Change Type",
-      "unmodifyAll": "Un-modify all",
-      "setAllToRemove": "Set all to \"Remove\"",
-      "setAllToFinish": "Set all to \"Finish\"",
-      "setAllToAlmostFinish": "Set all to \"Almost Finish\"",
-      "setAllToUnfinish": "Set all to \"Unfinish\""
-    },
-    "types": {
-      "0": "",
-      "20": "Stick Chair",
-      "21": "Bone Maker Trap",
-      "22": "Stick Bed",
-      "23": "Wall Planter",
-      "24": "Bone Chandelier",
-      "25": "Bone Chair",
-      "26": "Lean-to",
-      "27": "Drying Rack",
-      "28": "Tree Shelter 2",
-      "29": "Stick Storage",
-      "31": "Rock Storage",
-      "32": "Bone Storage",
-      "34": "Small Log Cabin",
-      "35": "Fish Trap",
-      "36": "Armor Rack",
-      "37": "Log Storage",
-      "38": "Look Out Tower",
-      "39": "Scarecrow",
-      "40": "Standing Planter",
-      "41": "Tree Platform 2",
-      "42": "Small Animal Trap",
-      "43": "Tree Platform 1",
-      "44": "Tree Shelter 1",
-      "45": "Fly Swatter Trap",
-      "46": "Stick Path",
-      "47": "Hunting Shelter",
-      "48": "Table",
-      "49": "Shelf",
-      "50": "Rock Path",
-      "51": "Wall Shelf",
-      "52": "Bench",
-      "53": "Wall Torch",
-      "54": "Ceiling Skull Lamp",
-      "55": "Zipline",
-      "56": "Rain Catcher",
-      "57": "Spring Trap",
-      "58": "Advanced Log Sled",
-      "59": "Basic Log Sled",
-      "60": "Stone Fireplace",
-      "61": "Head Trophy",
-      "62": "Stone Storage",
-      "63": "Hokey Pokey Trap",
-      "64": "Radio Alarm Trap",
-      "67": "Large Log Holder",
-      "68": "Deer Hide Rug",
-      "70": "Item Plating",
-      "71": "Powered Cross",
-      "72": "Gore Chair",
-      "73": "Gore Couch",
-      "74": "Uber Trap",
-      "75": "Round Table"
-    },
-    "modificationMode": {
-      "None": "None",
-      "Remove": "Remove",
-      "AlmostFinish": "Almost Finish",
-      "Finish": "Finish",
-      "Unfinish": "Un-finish"
-    }
-  },
-  "backup": {
-    "mode": {
-      "Default": "Backup always",
-      "InitialAndOne": "Always keep original, one additional backup",
-      "None": "No Backups",
-      "One": "Keep one backup and overwrite"
-    },
-    "messages": {
-      "backupsRestored": {
-        "text": "{0} backups have been restored. Deleted files were moved to the recycle bin",
-        "title": "Backups restored"
-      }
-    }
-  },
-  "storage": {
-    "errors": {
-      "currentStateNotDefined": "CurrentState not defined for moduleId {0}"
-    },
-    "headers": {
-      "storageTypes": "Storage Types",
-      "selectAStorage": "Select a Storage"
-    },
-    "buttons": {
-      "fillAllStorages": "Fill all Storages"
-    },
-    "batch": {
-      "allSlots": "All Slots",
-      "fillAllWith": "Fill all with",
-      "setAllToMax": "Set All to Max",
-      "clearAll": "Clear All"
-    },
-    "slot": {
-      "remove": "Remove",
-      "max": "Max"
-    }
-  },
-  "errors": {
-    "canNotBeEmpty": "{0} can not be empty"
-  },
-  "generic": {
-    "unknown": "Unknown",
-    "position": "Position",
-    "name": "Name",
-    "edit": "Edit",
-    "add": "Add",
-    "ok": "OK",
-    "cancel": "Cancel",
-    "update": "Update",
-    "save": "Save",
-    "setting": "Setting",
-    "value": "Value",
-    "error": "Error",
-    "exceptionMessage": "An exception has occured: {0}",
-    "success": "Success",
-    "yes": "Yes",
-    "no": "No",
-    "close": "Close",
-    "seconds": "Second(s)"
   },
   "armor": {
-    "header": "Equipped Armor (Max. 10)",
-    "unknownItem": "??? Unknown Item",
-    "durabilityInput": {
-      "tooltip": "The durability of the armor. If it is 0, the armor breaks. Can be very high",
-      "watermark": "Durability"
-    },
     "buttons": {
-      "setToDefault": {
-        "text": "Default",
-        "tooltip": "Set to the armors default durability"
-      },
+      "default": "Default",
+      "max": "Max",
+      "remove": "Remove",
       "setAllToDefault": {
         "text": "Set all to Default",
         "tooltip": "Set durability of all armor pieces to default"
-      },
-      "setToMax": {
-        "text": "Max",
-        "tooltip": "Set the armors durability to an arbitrarily high number"
       },
       "setAllToMax": {
         "text": "Set all to Max",
         "tooltip": "Set durability of all armor pieces to max"
       },
-      "remove": "Remove",
-      "default": "Default",
-      "max": "Max"
+      "setToDefault": {
+        "text": "Default",
+        "tooltip": "Set to the armors default durability"
+      },
+      "setToMax": {
+        "text": "Max",
+        "tooltip": "Set the armors durability to an arbitrarily high number"
+      }
     },
+    "durabilityInput": {
+      "tooltip": "The durability of the armor. If it is 0, the armor breaks. Can be very high",
+      "watermark": "Durability"
+    },
+    "header": "Equipped Armor (Max. 10)",
     "headers": {
-      "slot": "Slot",
+      "actions": "Actions",
+      "durability": "Durability",
       "id": "ID",
       "name": "Name",
-      "durability": "Durability",
-      "actions": "Actions"
+      "slot": "Slot"
+    },
+    "unknownItem": "??? Unknown Item"
+  },
+  "backup": {
+    "messages": {
+      "backupsRestored": {
+        "text": "{0} backups have been restored. Deleted files were moved to the recycle bin",
+        "title": "Backups restored"
+      }
+    },
+    "mode": {
+      "Default": "Backup always",
+      "InitialAndOne": "Always keep original, one additional backup",
+      "None": "No Backups",
+      "One": "Keep one backup and overwrite"
+    }
+  },
+  "companion": {
+    "address": "IP/Address",
+    "connect": "Connect",
+    "connectionFailed": {
+      "text": "An attempt to connect to the companion plugin failed",
+      "textException": "An attempt to connect to the companion plugin failed. Error: {0}",
+      "title": "Companion Connection failed"
+    },
+    "connectionSuccessful": {
+      "text": "Successfully connected to the companion.\nYou may now use the ingame hotkeys, live-teleportation via map and live position tracking",
+      "title": "Companion connected"
+    },
+    "connectTimeout": "Connect Timeout",
+    "disconnect": "Disconnect",
+    "disconnectFailed": {
+      "text": "An attempt to disconnect from the companion plugin failed",
+      "textException": "An attempt to disconnect from the companion plugin failed. Error: {0}",
+      "title": "Companion Disconnect failed"
+    },
+    "keepAliveInterval": "Keep-Alive Interval",
+    "mapPositionUpdateInterval": "Update Player Positions every",
+    "port": "Port",
+    "portHint": "Ports > 1024 require the program and game to be executed as an admin!",
+    "readme": "Readme",
+    "readme1": "The companion provides some added functionality to the game, like ingame teleportation, position tracking and much more.\n\nBefore you can use the Companion, you have to set it up first. In order to do so, you have to setup two things in your game:\n\n- BepInExPack\n- SOTFEdit Companion Plugin\n\nYou can get them here and install them either manually, following the README, or use a mod manager:",
+    "readme2": "After both are setup and the game is launched, you have to connect to the Companion using the menu.\n\nAfterwards, ingame you have two new hotkeys:\n- Ingame Teleport to most of the ingame locations (Default: F8)\n- Create Custom Teleport POI (Default: F9)\n\nAt the same time, your position on the map will be live updated.",
+    "settings": "Settings",
+    "status": {
+      "connected": "Connected",
+      "connecting": "Connecting...",
+      "disconnected": "Disconnected"
+    }
+  },
+  "dialogs": {
+    "changeScrewStructureType": {
+      "disclaimer": "You can select a different structure type here. Please keep in mind that the rotation and location of the structure will stay the same, which could lead to bugs and crashes."
+    },
+    "spawnFollower": {
+      "disclaimer": "If you want to spawn followers, you have to make sure that you are at an open space. The followers will be spawned at the players position above the players current height and a slight offset.\n\nI tried many things for Virginia but only could get a maximum of 4 to spawn. It was better with Kelvin.\n\nThis might kill your FPS and the long term consequences are also not known right now.\n\nIf you want to have more, you should load the game, let everything spawn, save the game, spawn followers and so on.",
+      "title": "Spawn Follower"
+    },
+    "translations": {
+      "filter": "Filter",
+      "missingOnly": "Missing Only"
+    }
+  },
+  "errors": {
+    "canNotBeEmpty": "{0} can not be empty"
+  },
+  "experiments": {
+    "igniteAndRefuelFires": {
+      "noFires": {
+        "text": "No fires found to be modified",
+        "title": "No fires"
+      },
+      "success": {
+        "text": "{0} fires have been lit, refueled and their drain rate lowered",
+        "title": "Fires changed"
+      }
+    },
+    "resetKillStatistics": {
+      "success": {
+        "text": "Changes added. Please save to persist them",
+        "title": "Changes added"
+      }
+    },
+    "resetNumberOfCutTrees": {
+      "success": {
+        "text": "Changes added. Please save to persist them",
+        "title": "Changes added"
+      }
+    },
+    "resetStructureDamage": {
+      "noDamage": {
+        "text": "No structure damage has to be repaired",
+        "title": "No structure damage"
+      },
+      "success": {
+        "text": "{0} structural damages have been repaired",
+        "title": "Damages repaired"
+      }
     }
   },
   "followers": {
-    "reviveTooltip": "Make sure you do this outside of buildings when the body is missing, else you might glitch into the building\\nThe follower will spawn at the players position and will have the items and outfit equipped as configured at the right",
-    "details": {
-      "uniqueId": "Unique ID",
-      "status": "Status"
-    },
-    "status": {
-      "alive": "Alive",
-      "dead": "Dead",
-      "unknown": "???"
-    },
     "buttons": {
+      "fillAllBars": "Fill all bars",
+      "moveToKelvin": "Move to Kelvin",
       "moveToPlayer": "Move to Player",
       "moveToVirginia": "Move to Virginia",
-      "moveToKelvin": "Move to Kelvin",
       "revive": "Revive",
-      "spawn": "Spawn",
-      "fillAllBars": "Fill all bars"
+      "spawn": "Spawn"
     },
-    "outfitLabel": "Outfit",
+    "details": {
+      "status": "Status",
+      "uniqueId": "Unique ID"
+    },
     "equipmentLabel": "Equipment",
+    "outfitLabel": "Outfit",
     "outfits": {
       "9": {
         "-1": "Default",
@@ -535,396 +345,155 @@
         "5": "Teal Dress",
         "6": "Red Dress"
       }
+    },
+    "reviveTooltip": "Make sure you do this outside of buildings when the body is missing, else you might glitch into the building\\nThe follower will spawn at the players position and will have the items and outfit equipped as configured at the right",
+    "status": {
+      "alive": "Alive",
+      "dead": "Dead",
+      "unknown": "???"
     }
   },
-  "dialogs": {
-    "changeScrewStructureType": {
-      "disclaimer": "You can select a different structure type here. Please keep in mind that the rotation and location of the structure will stay the same, which could lead to bugs and crashes."
-    },
-    "spawnFollower": {
-      "title": "Spawn Follower",
-      "disclaimer": "If you want to spawn followers, you have to make sure that you are at an open space. The followers will be spawned at the players position above the players current height and a slight offset.\n\nI tried many things for Virginia but only could get a maximum of 4 to spawn. It was better with Kelvin.\n\nThis might kill your FPS and the long term consequences are also not known right now.\n\nIf you want to have more, you should load the game, let everything spawn, save the game, spawn followers and so on."
-    }
-  },
-  "menu": {
-    "file": {
-      "text": "File",
-      "openSavegame": "Open Savegame...",
-      "openLastSavegame": "Open last savegame...",
-      "openLastSavegameWithSavegame": "Open {0}...",
-      "save": "Save",
-      "reloadCurrentSavegame": "Reload Current Savegame",
-      "openSavegameDirInExplorer": "Open Savegame Dir in Explorer",
-      "restoreFromBackup": {
-        "text": "Restore from Backups",
-        "fromOldestBackup": "From oldest backup",
-        "fromNewestBackup": "From newest backup"
+  "game": {
+    "setup": {
+      "animalSpawnRate": {
+        "_label": "Animal Spawn Rate"
       },
-      "deleteAllBackups": "Delete all backups",
-      "settings": "Settings",
-      "exit": "Exit"
-    },
-    "tools": {
-      "text": "Tools",
-      "regrowTrees": "Regrow Trees...",
-      "igniteAndRefuelFires": {
-        "text": "Ignite and Refuel all Fires",
-        "tooltip": "Will ignite and refuel all fires as well as slowing down the drain rate of the fires fuel, which should make them burn almost eternally"
+      "coldPenalties": "Cold Penalties",
+      "consumableEffects": {
+        "_label": "Consumable Effects",
+        "_tooltip": "How much damage you take eating bad food"
       },
-      "resetStructureDamage": {
-        "text": "Reset Structure Damage",
-        "tooltip": "Lets you repair all structures"
+      "customSettings": "Custom Settings",
+      "dayLength": {
+        "default": "Default",
+        "long": "Long",
+        "realistic": "Realistic",
+        "short": "Short",
+        "_label": "Day Length"
       },
-      "cloneWorldObjects": {
-        "text": "Clone World Items...",
-        "tooltip": "Clones World Items at the players position"
+      "enemyAggression": {
+        "_label": "Enemy Aggression"
       },
-      "modifyConsumedItems": {
-        "text": "Modify Consumed Items...",
-        "tooltip": "In case you want to purge your memory about items that you have consumed already"
+      "enemyArmour": {
+        "_label": "Enemy Armor"
       },
-      "resetKillStatistics": {
-        "text": "Reset Kill Statistics",
-        "tooltip": "Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?"
+      "enemyDamage": {
+        "_label": "Enemy Damage"
       },
-      "resetNumberOfCutTrees": {
-        "text": "Reset Number of Cut Trees",
-        "tooltip": "This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number"
+      "enemyHealth": {
+        "_label": "Enemy Health"
       },
-      "map": {
-        "text": "Interactive Map",
-        "tooltip": "An interactive map"
-      }
-    },
-    "companion": {
-      "text": "Companion",
-      "setup": "Setup"
-    },
-    "help": {
-      "text": "?",
-      "links": {
-        "text": "Links",
-        "githubProject": "GitHub Project",
-        "discord": "Discord",
-        "downloadLatestVersion": "Download Latest Version",
-        "nexusMods": "NexusMods",
-        "thunderstoreIo": "thunderstore.io"
-      },
-      "updates": {
-        "text": "Updates",
-        "checkNow": "Check now",
-        "checkOnStartup": "Check on Startup"
-      },
-      "readme": "Readme",
-      "changelog": "Changelog",
-      "about": "About..."
-    }
-  },
-  "experiments": {
-    "resetNumberOfCutTrees": {
-      "success": {
-        "text": "Changes added. Please save to persist them",
-        "title": "Changes added"
-      }
-    },
-    "resetKillStatistics": {
-      "success": {
-        "text": "Changes added. Please save to persist them",
-        "title": "Changes added"
-      }
-    },
-    "resetStructureDamage": {
-      "noDamage": {
-        "text": "No structure damage has to be repaired",
-        "title": "No structure damage"
-      },
-      "success": {
-        "text": "{0} structural damages have been repaired",
-        "title": "Damages repaired"
-      }
-    },
-    "igniteAndRefuelFires": {
-      "noFires": {
-        "text": "No fires found to be modified",
-        "title": "No fires"
-      },
-      "success": {
-        "text": "{0} fires have been lit, refueled and their drain rate lowered",
-        "title": "Fires changed"
-      }
-    }
-  },
-  "windows": {
-    "main": {
-      "title": " (Selected: {0}, {1} - Saved at: {2}, Last Modified: {3})",
-      "messages": {
-        "confirmRestoreBackups": {
-          "text": "Are you sure that you want to restore backups?",
-          "title": "Restore backups"
-        },
-        "confirmDeleteBackups": {
-          "text": "Do you really want to delete all backups?",
-          "title": "Delete all backups"
-        },
-        "confirmOverwriteExternalChanges": {
-          "text": "The savegame has been modified outside. Do you really want to overwrite any changes?",
-          "title": "Overwrite Changes"
-        },
-        "confirmCreateBackup": {
-          "text": "Do you want to create a backup?",
-          "title": "Create a backup?"
-        },
-        "confirmCloseApplication": {
-          "text": "Do you want to close the application?",
-          "title": "Close Application"
-        },
-        "unableToSpawnFollowers": "Unable to spawn followers",
-        "followersCreated": {
-          "text": "{0} followers have been created",
-          "title": "Followers created"
-        },
-        "alreadyLatestVersion": {
-          "text": "You are already using the latest version",
-          "title": "No update"
-        },
-        "backupsDeleted": "Deleted {0} backups",
-        "changesSaved": "Changes saved successfully",
-        "noChanges": {
-          "text": "No changes - Nothing saved",
-          "title": "No changes"
-        },
-        "unableToDeleteBackups": "Unable to delete backups: {0}",
-        "followerRevived": {
-          "text": "{0} should now be back again",
-          "title": "Revived"
-        },
-        "followerAlreadyAlive": {
-          "text": "{0} should be alive already",
-          "title": "No changes"
-        },
-        "saveChanges": "Save Changes"
-      },
-      "errors": {
-        "errorCheckingLastVersion": "An error occured while checking for latest version"
-      },
-      "map": "Map"
-    },
-    "modifyConsumedItems": {
-      "title": "Modify Consumed Items",
-      "removeAll": "Remove All",
-      "key": "Key",
-      "remove": "remove"
-    },
-    "regrowTrees": {
-      "title": "Regrow Trees",
-      "all": "All",
-      "halfChopped": "Half-chopped",
-      "gone": "Gone",
-      "stumps": "Stumps",
-      "pctRegrow": "Regrow Percent",
-      "messages": {
-        "noTreesRegrown": "No trees with state \"{0}\" regrown",
-        "success": "{0} trees with previous state \"{1}\" should now have regrown. Please save to persist the changes."
-      },
-      "saveButton": "Regrow Trees"
-    },
-    "selectSavegame": {
-      "title": "Select Savegame...",
-      "folderBrowserTitle": "Select Sons of the Forest \"Saves\" Directory",
-      "lastSaveTimeTooltip": "Last write time of the savegame directory",
-      "selectedPath": {
-        "label": "Selected Path:",
-        "tooltip": "Usually the Savegames are stored at C:\\Users\\[user]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves"
-      },
+      "header": "Game Setup",
       "headers": {
-        "location": "Location"
+        "enemiesCustom": "Enemies (Custom)",
+        "weatherCustom": "Weather (Custom)"
       },
-      "tabs": {
-        "singleplayer": "Singleplayer",
-        "multiplayer": "Multiplayer",
-        "multiplayerClient": "Multiplayer (Client)"
+      "inventoryPause": "Pause in Inventory",
+      "mode": {
+        "custom": "Custom",
+        "hard": "Hard",
+        "hardSurvival": "Hard Survival",
+        "normal": "Normal",
+        "peaceful": "Peaceful",
+        "_label": "Mode"
       },
-      "buttons": {
-        "change": "Change...",
-        "setToDefault": "Set to default"
-      }
-    },
-    "settings": {
-      "title": "Settings",
-      "theme": "Theme",
-      "backupMode": "Backup Mode",
-      "askForBackupsEveryTime": "Ask for backups every time",
-      "language": "Language",
-      "messages": {
-        "languageChanged": {
-          "text": "Please restart the application to apply the changed language",
-          "title": "Settings saved"
-        }
+      "playerStatsDamage": {
+        "_label": "Player Stats Damage",
+        "_tooltip": "How much damage you take from starvation and etc."
       },
-      "fileMode": {
-        "label": "File Mode",
-        "single": "One backup per changed JSON file",
-        "zip": "ZIP Archive"
-      }
-    },
-    "unhandledException": {
-      "title": "Unhandled Exception",
-      "disclaimer": "An unexpected error occured. The application state might be corrupted.",
-      "header": "Exception Details",
-      "applicationVersion": "Application Version",
-      "exceptionMessage": "Exception Message",
-      "exceptionType": "Exception Type",
-      "callstack": "Callstack",
-      "innerException": "Inner Exception",
-      "buttons": {
-        "copyErrorToClipboard": "Copy Error to Clipboard",
-        "exitApplication": "Exit Application"
-      }
-    },
-    "updateAvailable": {
-      "title": "Update available",
-      "header": "An Update is available",
-      "buttons": {
-        "download": "Download",
-        "ignore": "Ignore"
-      }
-    },
-    "worldItemCloner": {
-      "title": "World Item Cloner",
-      "worldItem": "World Item",
-      "pinTooltip": "Show Object Position on Map",
-      "unknownItem": "Unknown Item ({0})",
-      "unnamedItem": "Unnamed ({0})",
-      "messages": {
-        "nothingToDelete": {
-          "text": "Nothing to delete",
-          "title": "Nothing found"
-        },
-        "clonesDeleted": {
-          "text": "{0} clones of {1} were removed",
-          "title": "Clones removed"
-        },
-        "nothingToMove": {
-          "text": "Nothing to move found",
-          "title": "Nothing found"
-        },
-        "objectCloned": {
-          "text": "A copy of {0} was created at player position. Please save changes to persist them",
-          "title": "{0} created"
-        }
+      "precipitationFrequency": {
+        "_label": "Precipitation Frequency",
+        "_tooltip": "How often does the weather change"
       },
-      "buttons": {
-        "removeAllCopies": {
-          "text": "Remove all copies from map",
-          "tooltip": "Removes all copies of this type from map"
-        },
-        "cloneAtPlayerPosition": {
-          "text": "Clone at Player Position",
-          "tooltip": "Creates a clone of this object at the players position"
-        },
-        "teleportPlayerToObject": {
-          "text": "Teleport player to object",
-          "tooltip": "Teleports the player to the object"
-        },
-        "teleportObjectToPlayer": {
-          "text": "Teleport object to player",
-          "tooltip": "Teleports the object to the player"
-        }
+      "reducedFoodInContainers": "Reduced Food in Containers",
+      "seasonLength": {
+        "default": "Default",
+        "long": "Long",
+        "realistic": "Realistic",
+        "short": "Short",
+        "_label": "Season Length"
+      },
+      "settingsValues": {
+        "default": "Default",
+        "hard": "Hard",
+        "high": "High",
+        "low": "Low",
+        "normal": "Normal",
+        "off": "Off"
+      },
+      "singleUseContainers": "Single-Use Containers",
+      "spawnEnemies": "Spawn Enemies",
+      "startingSeason": {
+        "autumn": "Autumn",
+        "spring": "Spring",
+        "summer": "Summer",
+        "winter": "Winter",
+        "_label": "Starting Season"
+      },
+      "uid": "UID"
+    },
+    "state": {
+      "header": "Game State",
+      "headers": {
+        "worldObjectStates": "World Object States"
+      },
+      "worldObjectStates": {
+        "disclaimer": "I haven't fully investigated which values represent which state. Presumably:\n- 0 = Unset/Closed/Not happened\n- 1 or 3 = Set/Opened/Happened",
+        "header": "World Object States"
       }
     }
   },
-  "player": {
+  "generic": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "close": "Close",
+    "edit": "Edit",
+    "error": "Error",
+    "exceptionMessage": "An exception has occured: {0}",
+    "name": "Name",
+    "no": "No",
+    "ok": "OK",
+    "position": "Position",
+    "save": "Save",
+    "seconds": "Second(s)",
+    "setting": "Setting",
+    "success": "Success",
+    "unknown": "Unknown",
+    "update": "Update",
+    "value": "Value",
+    "yes": "Yes"
+  },
+  "influences": {
+    "anger": "Anger",
+    "disclaimer": "Sentiment defines the affection, yet it is not clear how this influences enemies.\nWhen the Fear value is high, enemies run away more often.\nA high value in Anger increases the likelihood of attacks.",
+    "fear": "Fear",
+    "sentiment": "Sentiment"
+  },
+  "inventory": {
     "buttons": {
-      "moveToKelvin": "Move to Kelvin",
-      "moveToVirginia": "Move to Virginia"
+      "addAllFromCategory": "Add All from Category",
+      "max": "Max",
+      "remove": "Remove",
+      "removeAll": "Remove All",
+      "setAllToMax": "Set all to Max",
+      "setAllToMin": "Set all to Min"
     },
-    "strengthLevel": "Strength Level",
-    "maxHealth": "Max Health",
-    "currentHealth": "Current Health",
-    "outfit": "Outfit",
-    "fillAllBars": "Fill all bars",
-    "areaMask": "Area",
-    "mapGroupName": "Player"
-  },
-  "npcs": {
-    "tabs": {
-      "byType": "By Type",
-      "byFamily": {
-        "text": "By Family",
-        "disclaimer": "A family represents a group of NPCs which belong to each other. In other words: A swarm, a tribe for example."
-      }
-    }
-  },
-  "tabs": {
-    "player": "Player",
-    "inventory": "Inventory",
-    "storage": "Storage",
-    "followers": "Followers",
-    "game": "Game",
-    "npcs": "NPCs",
-    "structures": "Structures"
-  },
-  "weather": {
-    "header": "Weather State"
-  },
-  "itemTypes": {
-    "key": "Key",
-    "misc": "Misc",
-    "ammo": "Ammo",
-    "printed": "Printed",
-    "food": "Food",
-    "armor": "Armor",
-    "clothes": "Clothes",
-    "weapon": "Weapon",
-    "document": "Document",
-    "plant": "Plant",
-    "container": "Container",
-    "log": "Log",
-    "blueprint": "Blueprint",
-    "attachment": "Attachment",
-    "book": "Book",
-    "tool": "Tool",
-    "weaponMod": "Weapon Modification",
-    "equipment": "Equipment",
-    "bodyPart": "Body Part",
-    "electricity": "Electricity",
-    "seed": "Seed",
-    "consumable": "Consumable",
-    "trophy": "Trophy"
-  },
-  "itemVariants": {
-    "436": {
-      "1": "Raw Fish",
-      "2": "Unknown Fish",
-      "3": "Spoiled Fish",
-      "4": "Dried Fish",
-      "5": "Cooked Fish",
-      "6": "Burned Fish"
+    "filterWatermark": "Filter...",
+    "headers": {
+      "itemsInInventory": "Items in Inventory",
+      "unassignedItems": "Unassigned Items"
     },
-    "433": {
-      "1": "Raw Meat",
-      "2": "Unknown Meat",
-      "3": "Spoiled Meat",
-      "4": "Dried Meat",
-      "5": "Cooked Meat",
-      "6": "Burned Meat"
+    "table": {
+      "actions": "Actions",
+      "count": {
+        "text": "Count",
+        "tooltip": "The amount that you have in your inventory"
+      },
+      "id": "ID",
+      "name": "Name",
+      "type": "Type"
     },
-    "480": {
-      "1": "Raw Arm",
-      "2": "Unknown Arm",
-      "3": "Spoiled Arm",
-      "4": "Dried Arm",
-      "5": "Cooked Arm",
-      "6": "Burned Arm"
-    },
-    "481": {
-      "1": "Raw Leg",
-      "2": "Unknown Leg",
-      "3": "Spoiled Leg",
-      "4": "Dried Leg",
-      "5": "Cooked Leg",
-      "6": "Burned Leg"
-    }
+    "unknownItem": "??? Unknown Item"
   },
   "items": {
     "78": "Log",
@@ -1252,112 +821,75 @@
     "677": "Fishing Email A",
     "678": "Fishing Email B"
   },
-  "worldItemTypes": {
-    "GolfCart": "Golf Cart",
-    "HangGlider": "Hang Glider",
-    "KnightV": "Knight V"
+  "itemTypes": {
+    "ammo": "Ammo",
+    "armor": "Armor",
+    "attachment": "Attachment",
+    "blueprint": "Blueprint",
+    "bodyPart": "Body Part",
+    "book": "Book",
+    "clothes": "Clothes",
+    "consumable": "Consumable",
+    "container": "Container",
+    "document": "Document",
+    "electricity": "Electricity",
+    "equipment": "Equipment",
+    "food": "Food",
+    "key": "Key",
+    "log": "Log",
+    "misc": "Misc",
+    "plant": "Plant",
+    "printed": "Printed",
+    "seed": "Seed",
+    "tool": "Tool",
+    "trophy": "Trophy",
+    "weapon": "Weapon",
+    "weaponMod": "Weapon Modification"
   },
-  "poiGroups": {
-    "Items": "Items",
-    "Bunkers": "Bunkers",
-    "Printers": "3D-Printers",
-    "Laptops": "Laptops",
-    "Caves": "Caves",
-    "Camps": "Camps",
-    "Villages": "Villages",
-    "Helicopters": "Helicopters",
-    "Info": "Info",
-    "Doors": "Doors",
-    "Ammo": "Ammo",
-    "CannibalVillages": "Cannibal Villages",
-    "Lakes": "Lakes",
-    "Ponds": "Ponds",
-    "Supply": "Supply",
-    "Crates": "Crates"
+  "itemVariants": {
+    "433": {
+      "1": "Raw Meat",
+      "2": "Unknown Meat",
+      "3": "Spoiled Meat",
+      "4": "Dried Meat",
+      "5": "Cooked Meat",
+      "6": "Burned Meat"
+    },
+    "436": {
+      "1": "Raw Fish",
+      "2": "Unknown Fish",
+      "3": "Spoiled Fish",
+      "4": "Dried Fish",
+      "5": "Cooked Fish",
+      "6": "Burned Fish"
+    },
+    "480": {
+      "1": "Raw Arm",
+      "2": "Unknown Arm",
+      "3": "Spoiled Arm",
+      "4": "Dried Arm",
+      "5": "Cooked Arm",
+      "6": "Burned Arm"
+    },
+    "481": {
+      "1": "Raw Leg",
+      "2": "Unknown Leg",
+      "3": "Spoiled Leg",
+      "4": "Dried Leg",
+      "5": "Cooked Leg",
+      "6": "Burned Leg"
+    }
+  },
+  "languages": {
+    "de": "Deutsch",
+    "en": "English",
+    "pl": "Polski"
   },
   "map": {
-    "zipLineAnchor": "Zip Line Anchor",
-    "zipLines": "Zip Lines",
-    "pois": "Points of Interest",
-    "options": "Options",
-    "details": "Details",
-    "inventoryFilter": "Show only uncollected items",
-    "isUnderground": "Is underground",
-    "isInInventory": "Owned",
-    "coordinates": "Coordinates",
-    "wiki": "Wiki Link",
-    "itemId": "Item-ID",
-    "requirements": "Requirements",
-    "items": "Items",
     "actors": "Actors",
-    "structures": "Structures",
-    "teleportation": "Teleportation",
-    "area": "Area",
-    "objects": "Objects",
     "altItems": "Alternative Items",
-    "customPois": "Custom",
     "alwaysOnTop": "Always on top",
-    "followPlayer": "Follow Player",
-    "followers": "Followers",
-    "fill": "Fill",
-    "isRuntimeCreated": "Is Copy",
-    "name": "Name",
-    "mapType": {
-      "dark": "Dark",
-      "original": "Original"
-    },
-    "fullText": {
-      "text": "Full Text",
-      "watermark": "Title, Description, Item name...",
-      "tooltip": "Searches in title, description, item name and item category of the currently selected map marker categories"
-    },
-    "teleportWindow": {
-      "title": "Teleport",
-      "destination": "Destination",
-      "toTeleport": "To teleport",
-      "offset": "Offset",
-      "doTeleport": "Teleport!",
-      "mode": {
-        "Player": "Player",
-        "Kelvin": "Kelvin",
-        "Virginia": "Virginia"
-      },
-      "disclaimer": "You can adjust the location here. If you spawn inside an enemy, chances are that you will be rocketed into the sky. X and Z determine the location, Y the height. Please make sure that the correct area is selected."
-    },
-    "spawnWindow": {
-      "title": "Spawn Actors",
-      "disclaimer": "Be careful with the positioning and number of enemies. It might crash the game. Some enemies can not be spawned at certain underground places.",
-      "doSpawn": "Create Actors",
-      "information": "Information",
-      "position": "Position",
-      "options": "Options",
-      "actorType": "Actor Type",
-      "count": "Count",
-      "familyOfDestinationActor": "Family of Destination Actor",
-      "family": "Family",
-      "spaceBetween": {
-        "text": "Space between",
-        "tooltip": "Defines the space between each actor. The actors will be places in a uniform grid if this value is > 0"
-      },
-      "spawnPattern": {
-        "text": "Spawn Pattern",
-        "Grid": "Grid",
-        "Random": "Random",
-        "Rectangle": "Rectangle",
-        "Cross": "Cross",
-        "VerticalLine": "Vertical Line",
-        "HorizontalLine": "Horizontal Line"
-      }
-    },
-    "requirementsFilter": {
-      "text": "Requirements",
-      "tooltip": "Only show items, caves, bunkers etc. where you own the required items to access them, e.g. a shovel or key card",
-      "types": {
-        "All": "All",
-        "AccessibleOnly": "Only show accessible",
-        "InaccessibleOnly": "Only show inaccessible"
-      }
-    },
+    "area": "Area",
     "areaFilter": {
       "text": "Area",
       "types": {
@@ -1367,55 +899,528 @@
       }
     },
     "buttons": {
-      "deselectAll": "Deselect all",
-      "teleportPlayer": "Teleport Player here",
-      "teleportKelvin": "Teleport Kelvin here",
-      "teleportVirginia": "Teleport Virginia here",
-      "deleteBothAnchors": "Delete both anchors",
-      "spawnActors": "Spawn Actors",
-      "delete": "Delete",
-      "moveToNextClickedPosition": {
-        "text": "Move to clicked position",
-        "tooltip": "After you have clicked this button, the anchor will be moved to the next point that you click",
-        "hint": "Please click now another location"
-      },
       "createNewZipline": {
         "text": "New Zipline from here",
         "tooltip": "After you have clicked this button, the new zipline will be created between the current position and the next point that you click"
+      },
+      "delete": "Delete",
+      "deleteBothAnchors": "Delete both anchors",
+      "deselectAll": "Deselect all",
+      "moveToNextClickedPosition": {
+        "hint": "Please click now another location",
+        "text": "Move to clicked position",
+        "tooltip": "After you have clicked this button, the anchor will be moved to the next point that you click"
+      },
+      "spawnActors": "Spawn Actors",
+      "teleportKelvin": "Teleport Kelvin here",
+      "teleportPlayer": "Teleport Player here",
+      "teleportVirginia": "Teleport Virginia here"
+    },
+    "coordinates": "Coordinates",
+    "customPois": "Custom",
+    "details": "Details",
+    "fill": "Fill",
+    "followers": "Followers",
+    "followPlayer": "Follow Player",
+    "fullText": {
+      "text": "Full Text",
+      "tooltip": "Searches in title, description, item name and item category of the currently selected map marker categories",
+      "watermark": "Title, Description, Item name..."
+    },
+    "inventoryFilter": "Show only uncollected items",
+    "isInInventory": "Owned",
+    "isRuntimeCreated": "Is Copy",
+    "isUnderground": "Is underground",
+    "itemId": "Item-ID",
+    "items": "Items",
+    "mapType": {
+      "dark": "Dark",
+      "original": "Original"
+    },
+    "name": "Name",
+    "objects": "Objects",
+    "options": "Options",
+    "pois": "Points of Interest",
+    "requirements": "Requirements",
+    "requirementsFilter": {
+      "text": "Requirements",
+      "tooltip": "Only show items, caves, bunkers etc. where you own the required items to access them, e.g. a shovel or key card",
+      "types": {
+        "AccessibleOnly": "Only show accessible",
+        "All": "All",
+        "InaccessibleOnly": "Only show inaccessible"
       }
+    },
+    "spawnWindow": {
+      "actorType": "Actor Type",
+      "count": "Count",
+      "disclaimer": "Be careful with the positioning and number of enemies. It might crash the game. Some enemies can not be spawned at certain underground places.",
+      "doSpawn": "Create Actors",
+      "family": "Family",
+      "familyOfDestinationActor": "Family of Destination Actor",
+      "information": "Information",
+      "options": "Options",
+      "position": "Position",
+      "spaceBetween": {
+        "text": "Space between",
+        "tooltip": "Defines the space between each actor. The actors will be places in a uniform grid if this value is > 0"
+      },
+      "spawnPattern": {
+        "Cross": "Cross",
+        "Grid": "Grid",
+        "HorizontalLine": "Horizontal Line",
+        "Random": "Random",
+        "Rectangle": "Rectangle",
+        "text": "Spawn Pattern",
+        "VerticalLine": "Vertical Line"
+      },
+      "title": "Spawn Actors"
+    },
+    "structures": "Structures",
+    "teleportation": "Teleportation",
+    "teleportWindow": {
+      "destination": "Destination",
+      "disclaimer": "You can adjust the location here. If you spawn inside an enemy, chances are that you will be rocketed into the sky. X and Z determine the location, Y the height. Please make sure that the correct area is selected.",
+      "doTeleport": "Teleport!",
+      "mode": {
+        "Kelvin": "Kelvin",
+        "Player": "Player",
+        "Virginia": "Virginia"
+      },
+      "offset": "Offset",
+      "title": "Teleport",
+      "toTeleport": "To teleport"
+    },
+    "wiki": "Wiki Link",
+    "zipLineAnchor": "Zip Line Anchor",
+    "zipLines": "Zip Lines"
+  },
+  "menu": {
+    "companion": {
+      "setup": "Setup",
+      "text": "Companion"
+    },
+    "file": {
+      "deleteAllBackups": "Delete all backups",
+      "exit": "Exit",
+      "openLastSavegame": "Open last savegame...",
+      "openLastSavegameWithSavegame": "Open {0}...",
+      "openSavegame": "Open Savegame...",
+      "openSavegameDirInExplorer": "Open Savegame Dir in Explorer",
+      "reloadCurrentSavegame": "Reload Current Savegame",
+      "restoreFromBackup": {
+        "fromNewestBackup": "From newest backup",
+        "fromOldestBackup": "From oldest backup",
+        "text": "Restore from Backups"
+      },
+      "save": "Save",
+      "settings": "Settings",
+      "text": "File"
+    },
+    "help": {
+      "about": "About...",
+      "changelog": "Changelog",
+      "links": {
+        "discord": "Discord",
+        "downloadLatestVersion": "Download Latest Version",
+        "githubProject": "GitHub Project",
+        "nexusMods": "NexusMods",
+        "text": "Links",
+        "thunderstoreIo": "thunderstore.io"
+      },
+      "readme": "Readme",
+      "text": "?",
+      "translations": "Translations",
+      "updates": {
+        "checkNow": "Check now",
+        "checkOnStartup": "Check on Startup",
+        "text": "Updates"
+      }
+    },
+    "tools": {
+      "cloneWorldObjects": {
+        "text": "Clone World Items...",
+        "tooltip": "Clones World Items at the players position"
+      },
+      "igniteAndRefuelFires": {
+        "text": "Ignite and Refuel all Fires",
+        "tooltip": "Will ignite and refuel all fires as well as slowing down the drain rate of the fires fuel, which should make them burn almost eternally"
+      },
+      "map": {
+        "text": "Interactive Map",
+        "tooltip": "An interactive map"
+      },
+      "modifyConsumedItems": {
+        "text": "Modify Consumed Items...",
+        "tooltip": "In case you want to purge your memory about items that you have consumed already"
+      },
+      "regrowTrees": "Regrow Trees...",
+      "resetKillStatistics": {
+        "text": "Reset Kill Statistics",
+        "tooltip": "Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?"
+      },
+      "resetNumberOfCutTrees": {
+        "text": "Reset Number of Cut Trees",
+        "tooltip": "This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number"
+      },
+      "resetStructureDamage": {
+        "text": "Reset Structure Damage",
+        "tooltip": "Lets you repair all structures"
+      },
+      "text": "Tools"
     }
   },
-  "companion": {
-    "address": "IP/Address",
-    "port": "Port",
-    "portHint": "Ports > 1024 require the program and game to be executed as an admin!",
-    "connectTimeout": "Connect Timeout",
-    "keepAliveInterval": "Keep-Alive Interval",
-    "connect": "Connect",
-    "disconnect": "Disconnect",
-    "readme1": "The companion provides some added functionality to the game, like ingame teleportation, position tracking and much more.\n\nBefore you can use the Companion, you have to set it up first. In order to do so, you have to setup two things in your game:\n\n- BepInExPack\n- SOTFEdit Companion Plugin\n\nYou can get them here and install them either manually, following the README, or use a mod manager:",
-    "readme2": "After both are setup and the game is launched, you have to connect to the Companion using the menu.\n\nAfterwards, ingame you have two new hotkeys:\n- Ingame Teleport to most of the ingame locations (Default: F8)\n- Create Custom Teleport POI (Default: F9)\n\nAt the same time, your position on the map will be live updated.",
-    "settings": "Settings",
-    "readme": "Readme",
-    "mapPositionUpdateInterval": "Update Player Positions every",
-    "connectionFailed": {
-      "title": "Companion Connection failed",
-      "text": "An attempt to connect to the companion plugin failed",
-      "textException": "An attempt to connect to the companion plugin failed. Error: {0}"
-    },
-    "connectionSuccessful": {
-      "title": "Companion connected",
-      "text": "Successfully connected to the companion.\nYou may now use the ingame hotkeys, live-teleportation via map and live position tracking"
-    },
-    "disconnectFailed": {
-      "title": "Companion Disconnect failed",
-      "text": "An attempt to disconnect from the companion plugin failed",
-      "textException": "An attempt to disconnect from the companion plugin failed. Error: {0}"
-    },
-    "status": {
-      "connected": "Connected",
-      "connecting": "Connecting...",
-      "disconnected": "Disconnected"
+  "npcs": {
+    "tabs": {
+      "byFamily": {
+        "disclaimer": "A family represents a group of NPCs which belong to each other. In other words: A swarm, a tribe for example.",
+        "text": "By Family"
+      },
+      "byType": "By Type"
     }
+  },
+  "player": {
+    "areaMask": "Area",
+    "buttons": {
+      "moveToKelvin": "Move to Kelvin",
+      "moveToVirginia": "Move to Virginia"
+    },
+    "currentHealth": "Current Health",
+    "fillAllBars": "Fill all bars",
+    "mapGroupName": "Player",
+    "maxHealth": "Max Health",
+    "outfit": "Outfit",
+    "strengthLevel": "Strength Level"
+  },
+  "poiGroups": {
+    "Ammo": "Ammo",
+    "Bunkers": "Bunkers",
+    "Camps": "Camps",
+    "CannibalVillages": "Cannibal Villages",
+    "Caves": "Caves",
+    "Crates": "Crates",
+    "Doors": "Doors",
+    "Helicopters": "Helicopters",
+    "Info": "Info",
+    "Items": "Items",
+    "Lakes": "Lakes",
+    "Laptops": "Laptops",
+    "Ponds": "Ponds",
+    "Printers": "3D-Printers",
+    "Supply": "Supply",
+    "Villages": "Villages"
+  },
+  "storage": {
+    "batch": {
+      "allSlots": "All Slots",
+      "clearAll": "Clear All",
+      "fillAllWith": "Fill all with",
+      "setAllToMax": "Set All to Max"
+    },
+    "buttons": {
+      "fillAllStorages": "Fill all Storages"
+    },
+    "errors": {
+      "currentStateNotDefined": "CurrentState not defined for moduleId {0}"
+    },
+    "headers": {
+      "selectAStorage": "Select a Storage",
+      "storageTypes": "Storage Types"
+    },
+    "slot": {
+      "max": "Max",
+      "remove": "Remove"
+    }
+  },
+  "structures": {
+    "added": "Added",
+    "applyToAllOfSameType": {
+      "text": "Apply to all of same type",
+      "tooltip": "Applies the assigned items and count above to all storages of the same type"
+    },
+    "buildCost": "Build Cost",
+    "buttons": {
+      "changeType": "Change Type",
+      "setAllToAlmostFinish": "Set all to \"Almost Finish\"",
+      "setAllToFinish": "Set all to \"Finish\"",
+      "setAllToRemove": "Set all to \"Remove\"",
+      "setAllToUnfinish": "Set all to \"Unfinish\"",
+      "unmodifyAll": "Un-modify all"
+    },
+    "categories": {
+      "furniture": "Furniture",
+      "gardening": "Gardening",
+      "misc": "Misc",
+      "shelter": "Shelter",
+      "storage": "Storage",
+      "traps": "Traps",
+      "treeShelter": "Tree Shelter",
+      "utility": "Utility"
+    },
+    "category": "Category",
+    "headers": {
+      "batch": "Batch",
+      "finishedStructures": "Finished Structures",
+      "unfinishedStructures": "Unfinished Structures"
+    },
+    "modification": "Modification",
+    "modificationMode": {
+      "AlmostFinish": "Almost Finish",
+      "Finish": "Finish",
+      "None": "None",
+      "Remove": "Remove",
+      "Unfinish": "Un-finish"
+    },
+    "percentDone": "Percent Done",
+    "structureTypeSelectorDisclaimer": "If nothing is selected, all structures will be changed",
+    "types": {
+      "20": "Stick Chair",
+      "21": "Bone Maker Trap",
+      "22": "Stick Bed",
+      "23": "Wall Planter",
+      "24": "Bone Chandelier",
+      "25": "Bone Chair",
+      "26": "Lean-to",
+      "27": "Drying Rack",
+      "28": "Tree Shelter 2",
+      "29": "Stick Storage",
+      "31": "Rock Storage",
+      "32": "Bone Storage",
+      "34": "Small Log Cabin",
+      "35": "Fish Trap",
+      "36": "Armor Rack",
+      "37": "Log Storage",
+      "38": "Look Out Tower",
+      "39": "Scarecrow",
+      "40": "Standing Planter",
+      "41": "Tree Platform 2",
+      "42": "Small Animal Trap",
+      "43": "Tree Platform 1",
+      "44": "Tree Shelter 1",
+      "45": "Fly Swatter Trap",
+      "46": "Stick Path",
+      "47": "Hunting Shelter",
+      "48": "Table",
+      "49": "Shelf",
+      "50": "Rock Path",
+      "51": "Wall Shelf",
+      "52": "Bench",
+      "53": "Wall Torch",
+      "54": "Ceiling Skull Lamp",
+      "55": "Zipline",
+      "56": "Rain Catcher",
+      "57": "Spring Trap",
+      "58": "Advanced Log Sled",
+      "59": "Basic Log Sled",
+      "60": "Stone Fireplace",
+      "61": "Head Trophy",
+      "62": "Stone Storage",
+      "63": "Hokey Pokey Trap",
+      "64": "Radio Alarm Trap",
+      "67": "Large Log Holder",
+      "68": "Deer Hide Rug",
+      "70": "Item Plating",
+      "71": "Powered Cross",
+      "72": "Gore Chair",
+      "73": "Gore Couch",
+      "74": "Uber Trap",
+      "75": "Round Table"
+    }
+  },
+  "tabs": {
+    "followers": "Followers",
+    "game": "Game",
+    "inventory": "Inventory",
+    "npcs": "NPCs",
+    "player": "Player",
+    "storage": "Storage",
+    "structures": "Structures"
+  },
+  "weather": {
+    "header": "Weather State"
+  },
+  "windows": {
+    "main": {
+      "errors": {
+        "errorCheckingLastVersion": "An error occured while checking for latest version"
+      },
+      "map": "Map",
+      "messages": {
+        "alreadyLatestVersion": {
+          "text": "You are already using the latest version",
+          "title": "No update"
+        },
+        "backupsDeleted": "Deleted {0} backups",
+        "changesSaved": "Changes saved successfully",
+        "confirmCloseApplication": {
+          "text": "Do you want to close the application?",
+          "title": "Close Application"
+        },
+        "confirmCreateBackup": {
+          "text": "Do you want to create a backup?",
+          "title": "Create a backup?"
+        },
+        "confirmDeleteBackups": {
+          "text": "Do you really want to delete all backups?",
+          "title": "Delete all backups"
+        },
+        "confirmOverwriteExternalChanges": {
+          "text": "The savegame has been modified outside. Do you really want to overwrite any changes?",
+          "title": "Overwrite Changes"
+        },
+        "confirmRestoreBackups": {
+          "text": "Are you sure that you want to restore backups?",
+          "title": "Restore backups"
+        },
+        "followerAlreadyAlive": {
+          "text": "{0} should be alive already",
+          "title": "No changes"
+        },
+        "followerRevived": {
+          "text": "{0} should now be back again",
+          "title": "Revived"
+        },
+        "followersCreated": {
+          "text": "{0} followers have been created",
+          "title": "Followers created"
+        },
+        "noChanges": {
+          "text": "No changes - Nothing saved",
+          "title": "No changes"
+        },
+        "saveChanges": "Save Changes",
+        "unableToDeleteBackups": "Unable to delete backups: {0}",
+        "unableToSpawnFollowers": "Unable to spawn followers"
+      },
+      "title": " (Selected: {0}, {1} - Saved at: {2}, Last Modified: {3})"
+    },
+    "modifyConsumedItems": {
+      "key": "Key",
+      "remove": "remove",
+      "removeAll": "Remove All",
+      "title": "Modify Consumed Items"
+    },
+    "regrowTrees": {
+      "all": "All",
+      "gone": "Gone",
+      "halfChopped": "Half-chopped",
+      "messages": {
+        "noTreesRegrown": "No trees with state \"{0}\" regrown",
+        "success": "{0} trees with previous state \"{1}\" should now have regrown. Please save to persist the changes."
+      },
+      "pctRegrow": "Regrow Percent",
+      "saveButton": "Regrow Trees",
+      "stumps": "Stumps",
+      "title": "Regrow Trees"
+    },
+    "selectSavegame": {
+      "buttons": {
+        "change": "Change...",
+        "setToDefault": "Set to default"
+      },
+      "folderBrowserTitle": "Select Sons of the Forest \"Saves\" Directory",
+      "headers": {
+        "location": "Location"
+      },
+      "lastSaveTimeTooltip": "Last write time of the savegame directory",
+      "selectedPath": {
+        "label": "Selected Path:",
+        "tooltip": "Usually the Savegames are stored at C:\\Users\\[user]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves"
+      },
+      "tabs": {
+        "multiplayer": "Multiplayer",
+        "multiplayerClient": "Multiplayer (Client)",
+        "singleplayer": "Singleplayer"
+      },
+      "title": "Select Savegame..."
+    },
+    "settings": {
+      "askForBackupsEveryTime": "Ask for backups every time",
+      "backupMode": "Backup Mode",
+      "fileMode": {
+        "label": "File Mode",
+        "single": "One backup per changed JSON file",
+        "zip": "ZIP Archive"
+      },
+      "language": "Language",
+      "messages": {
+        "languageChanged": {
+          "text": "Please restart the application to apply the changed language",
+          "title": "Settings saved"
+        }
+      },
+      "theme": "Theme",
+      "title": "Settings"
+    },
+    "unhandledException": {
+      "applicationVersion": "Application Version",
+      "buttons": {
+        "copyErrorToClipboard": "Copy Error to Clipboard",
+        "exitApplication": "Exit Application"
+      },
+      "callstack": "Callstack",
+      "disclaimer": "An unexpected error occured. The application state might be corrupted.",
+      "exceptionMessage": "Exception Message",
+      "exceptionType": "Exception Type",
+      "header": "Exception Details",
+      "innerException": "Inner Exception",
+      "title": "Unhandled Exception"
+    },
+    "updateAvailable": {
+      "buttons": {
+        "download": "Download",
+        "ignore": "Ignore"
+      },
+      "header": "An Update is available",
+      "title": "Update available"
+    },
+    "worldItemCloner": {
+      "buttons": {
+        "cloneAtPlayerPosition": {
+          "text": "Clone at Player Position",
+          "tooltip": "Creates a clone of this object at the players position"
+        },
+        "removeAllCopies": {
+          "text": "Remove all copies from map",
+          "tooltip": "Removes all copies of this type from map"
+        },
+        "teleportObjectToPlayer": {
+          "text": "Teleport object to player",
+          "tooltip": "Teleports the object to the player"
+        },
+        "teleportPlayerToObject": {
+          "text": "Teleport player to object",
+          "tooltip": "Teleports the player to the object"
+        }
+      },
+      "messages": {
+        "clonesDeleted": {
+          "text": "{0} clones of {1} were removed",
+          "title": "Clones removed"
+        },
+        "nothingToDelete": {
+          "text": "Nothing to delete",
+          "title": "Nothing found"
+        },
+        "nothingToMove": {
+          "text": "Nothing to move found",
+          "title": "Nothing found"
+        },
+        "objectCloned": {
+          "text": "A copy of {0} was created at player position. Please save changes to persist them",
+          "title": "{0} created"
+        }
+      },
+      "pinTooltip": "Show Object Position on Map",
+      "title": "World Item Cloner",
+      "unknownItem": "Unknown Item ({0})",
+      "unnamedItem": "Unnamed ({0})",
+      "worldItem": "World Item"
+    }
+  },
+  "worldItemTypes": {
+    "GolfCart": "Golf Cart",
+    "HangGlider": "Hang Glider",
+    "KnightV": "Knight V"
   }
 }
