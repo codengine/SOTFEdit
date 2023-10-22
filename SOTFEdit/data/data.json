@@ -3457,7 +3457,9 @@
     {
       "id": 54,
       "classification": "cannibal",
-      "gender": "male"
+      "gender": "male",
+      "image": "henry.jpg",
+      "icon": "henry.png"
     }
   ],
   "namedIntKeys": [
