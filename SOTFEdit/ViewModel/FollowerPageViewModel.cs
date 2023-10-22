@@ -76,7 +76,6 @@ public partial class FollowerPageViewModel : ObservableObject
             return;
         }
 
-        Update(SavegameManager.SelectedSavegame);
         Reload(SavegameManager.SelectedSavegame);
     }
 

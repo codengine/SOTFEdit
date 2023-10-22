@@ -487,6 +487,7 @@ public partial class MainWindow
             WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
                 TranslationManager.GetFormatted("windows.main.messages.followerRevived.text", actorName),
                 TranslationManager.Get("windows.main.messages.followerRevived.title")));
+            WeakReferenceMessenger.Default.Send(new JsonModelChangedEvent(SavegameStore.FileType.SaveData));
         }
         else
         {
