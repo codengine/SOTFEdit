@@ -34,7 +34,8 @@
                           Margin="0 0 10 0" />
                 <TextBox Width="300" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Margin="0 0 10 0" mah:TextBoxHelper.ClearTextButton="True" />
-                <Button Content="{infrastructure:Translate 'dialogs.translations.filter'}" Command="{Binding DoFilterCommand}" />
+                <Button Content="{infrastructure:Translate 'dialogs.translations.filter'}"
+                        Command="{Binding DoFilterCommand}" />
                 <Button Content="{infrastructure:Translate 'generic.save'}" Command="{Binding SaveCommand}" />
             </StackPanel>
         </Grid>
@@ -45,7 +46,7 @@
                   CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Key, Mode=OneTime}" Header="Key" IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding En, Mode=OneTime}" Header="EN" IsReadOnly="False">
+                <DataGridTextColumn Binding="{Binding En, Mode=TwoWay}" Header="EN" IsReadOnly="False">
                     <DataGridTextColumn.EditingElementStyle>
                         <Style TargetType="TextBox">
                             <Setter Property="TextWrapping" Value="Wrap" />
