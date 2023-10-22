@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.11.14
+
+### Features
+
+- Added blueprints for Gore Chair, Gore Couch, Uber Trap and Round Table
+- Added Artifact Piece C and D
+- Added Old Note A-C
+- Added Fishing Email A and B
+- Added map locations for new items
+- Added structure info for new furnitures and trap
+- Added some polish translations
+- Added some missing german translations
+- Added translation editor
+- Added new cannibal "Henry"
+
+### Bugfixes
+
+- Reviving of followers should now set their vital stats to 100
+
 ## v0.11.13
 
 ### Bugfixes
