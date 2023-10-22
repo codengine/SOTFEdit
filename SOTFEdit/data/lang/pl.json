@@ -1,4 +1,4 @@
-﻿{
+{
   "actors": {
     "classification": {
       "animal": "Zwierzę",
@@ -164,7 +164,14 @@
       "44": "Umalowana Kobieta",
       "45": "Demon Boss",
       "46": "Pan Puffton",
-      "47": "Pani Puffton"
+      "47": "Pani Puffton",
+      "48": "Boss Mutant",
+      "49": "Virginia-Mutant",
+      "50": "Armsy",
+      "51": "Frank",
+      "52": "Eddy",
+      "53": "Greg",
+      "54": "Henry"
     }
   },
   "armor": {
@@ -225,6 +232,10 @@
       "textException": "Próba połączenia do plugina nieudana. Error: {0}",
       "title": "Połączenie do Companion nieudane"
     },
+    "connectionSuccessful": {
+      "text": "Połączono do Companion\r\nMożesz teraz używać hotkeyów w grze, teleportacji i śledzenia pozycji na żywo",
+      "title": "Companion Połączony"
+    },
     "connectTimeout": "Limit czasu połączenia",
     "disconnect": "Rozłącz",
     "disconnectFailed": {
@@ -233,6 +244,7 @@
       "title": "Rozłączenie Companion Nieudane"
     },
     "keepAliveInterval": "Interwał zostań-żywy",
+    "mapPositionUpdateInterval": "Aktualizuj pozycję gracza co",
     "port": "Port",
     "portHint": "Ports > 1024 wymagają uruchomienia programu i gry jako admin!",
     "readme": "Readme",
@@ -252,6 +264,10 @@
     "spawnFollower": {
       "disclaimer": "Jeśli chcesz zrodzić Kelvina/Virginię, musisz się upewnić, że jesteś na otwartej przestrzeni. Będą oni się pojawiać w pozycji gracza powyżej jego aktualnej wysokości i z lekkim przesunięciem.\n\nPróbowałem wielu rzeczy dla Virginii, ale tylko mogłem zespawnić maksymalnie 4. Z Kelvinem było lepiej.\n\nThis might kill your FPS and the long term consequences are also not known right now, bla bla bla.\n\nKontunuj na własne ryzyko.",
       "title": "Spawn Follower"
+    },
+    "translations": {
+      "filter": "Fi",
+      "missingOnly": "Tylko Brakujące"
     }
   },
   "errors": {
@@ -342,6 +358,7 @@
       "animalSpawnRate": {
         "_label": "Ilość zwierząt"
       },
+      "coldPenalties": "Kary za Zimno",
       "consumableEffects": {
         "_label": "Efekty złego jedzenia",
         "_tooltip": "Ile obrażeń dostaniesz po zjedzeniu złego jedzenia"
@@ -375,6 +392,7 @@
       "mode": {
         "custom": "Własny",
         "hard": "Trudny",
+        "hardSurvival": "Trudny Survival",
         "normal": "Normalny",
         "peaceful": "Spokojny",
         "_label": "Tryb"
@@ -387,6 +405,7 @@
         "_label": "Zmiany pogody",
         "_tooltip": "Jak szybko zmienia się pogoda"
       },
+      "reducedFoodInContainers": "Zmniejszona ilość jedzenia w pojemnikach",
       "seasonLength": {
         "default": "Normalne",
         "long": "Długie",
@@ -402,6 +421,7 @@
         "normal": "Średnia",
         "off": "Off"
       },
+      "singleUseContainers": "Pojemniki jednorazowego użytku",
       "spawnEnemies": "Przywołaj przeciwników",
       "startingSeason": {
         "autumn": "Jesień",
@@ -779,6 +799,7 @@
     "654": "Notatka Osobista B",
     "655": "Notatka Osobista C",
     "656": "Projekt Pułapki Hokey Pokey",
+    "657": "Wydrukowana opakówka na GPS",
     "658": "Projekt RadioPułapki",
     "659": "Projekt Radia",
     "661": "Bateria Wózka Golfowego",
@@ -789,7 +810,16 @@
     "666": "Plan zasilonego krzyża",
     "667": "Część Artefaktu B",
     "668": "Część Artefaktu C",
-    "669": "Część Artefaktu D"
+    "669": "Część Artefaktu D",
+    "670": "Projekt krzesła z flaków",
+    "671": "Projekt kanapy z flaków",
+    "672": "Plan Pułapki-Uber",
+    "673": "Plan okrągłego stołu",
+    "674": "Stara notatka A",
+    "675": "Stara notatka B",
+    "676": "Stara notatka C",
+    "677": "Email Rybacki A",
+    "678": "Email Rybacki B"
   },
   "itemTypes": {
     "ammo": "Ammunicja",
@@ -850,6 +880,11 @@
       "6": "Spalona Noga"
     }
   },
+  "languages": {
+    "de": "Niemiecki (German)",
+    "en": "Angielski (English)",
+    "pl": "Polski (Polish)"
+  },
   "map": {
     "actors": "NPC-y",
     "altItems": "Alternatywne przedmioty",
@@ -894,6 +929,7 @@
     },
     "inventoryFilter": "Pokaż tylko niezebrane przedmioty",
     "isInInventory": "Posiadane",
+    "isRuntimeCreated": "Jest kopią",
     "isUnderground": "Jest podziemią",
     "itemId": "ID przedmiotu",
     "items": "Przedmioty",
@@ -901,6 +937,7 @@
       "dark": "Ciemna",
       "original": "Oryginalna"
     },
+    "name": "Nazwa",
     "objects": "Przedmioty",
     "options": "Opcje",
     "pois": "Punkty zainteresowań",
@@ -993,6 +1030,7 @@
       },
       "readme": "Przeczytaj mnie!",
       "text": "?",
+      "translations": "Tłumaczenia",
       "updates": {
         "checkNow": "Sprawdź teraz",
         "checkOnStartup": "Sprawdź przy włączeniu",
@@ -1000,6 +1038,10 @@
       }
     },
     "tools": {
+      "cloneWorldObjects": {
+        "text": "Klonuj przedmioty ze świata",
+        "tooltip": "Klonuje przedmioty ze świata do pozycji gracza"
+      },
       "igniteAndRefuelFires": {
         "text": "Podpal i dołóż paliwa do ognisk i pochodni",
         "tooltip": "Podpali i dołoży paliwa do ognisk i pochodni jakże it zmniejszy ich zużycie paliwa, przez co powinny płonąć wiecznie"
@@ -1092,6 +1134,10 @@
   },
   "structures": {
     "added": "Dodano",
+    "applyToAllOfSameType": {
+      "text": "Zaaplikuj do wszystich tego samego typu",
+      "tooltip": "Aplikuje do wszystkich tego samego typu"
+    },
     "buildCost": "Koszt budowy",
     "buttons": {
       "changeType": "Zmień typ",
@@ -1104,6 +1150,7 @@
     "categories": {
       "furniture": "Meble",
       "gardening": "Ogrodnictwo",
+      "misc": "Inne",
       "shelter": "Schronienie",
       "storage": "Magazyn",
       "traps": "Pułapki",
@@ -1160,10 +1207,24 @@
       "52": "Ławka",
       "53": "Pochodnia ścienna",
       "54": "Lampa z Czaszki",
+      "55": "Tyrolka",
       "56": "Zbiornik na Deszczówkę",
       "57": "Pułapka Sprężynowa",
       "58": "Sanie na Kłody",
-      "59": "Proste Sanie na Kłody"
+      "59": "Proste Sanie na Kłody",
+      "60": "Kamienny kominek",
+      "61": "Trofeum z głowy",
+      "62": "Magazyn kamieni",
+      "63": "Pułapka Hokey Pokey",
+      "64": "Pułapka Radio-Alarmowa",
+      "67": "Duży magazyn kłód",
+      "68": "Dywan z futra jelenia",
+      "70": "Plating przedmiotu",
+      "71": "Ulepszony Krzyż",
+      "72": "Krzesło z flaków",
+      "73": "Kanapa z Flaków",
+      "74": "Pułapka Uber",
+      "75": "Okrągły stół"
     }
   },
   "tabs": {
@@ -1323,6 +1384,10 @@
           "text": "Usuń wszystkie kopie",
           "tooltip": "Usuwa wszystkie kopie tego typu z mapy"
         },
+        "teleportObjectToPlayer": {
+          "text": "Teleportuj obiekt do gracza",
+          "tooltip": "Teleportuje obiekty do gracza"
+        },
         "teleportPlayerToObject": {
           "text": "Teleportuj gracza do obiektu",
           "tooltip": "Teleportuje gracza do obiektu"
@@ -1347,6 +1412,7 @@
         }
       },
       "pinTooltip": "Pokaż pozycje przedmiotu na mapie",
+      "title": "Kopiarka obiektów",
       "unknownItem": "Nieznany przedmiot ({0})",
       "unnamedItem": "Nienazwane ({0})",
       "worldItem": "Przedmiot"

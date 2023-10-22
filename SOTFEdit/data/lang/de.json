@@ -170,7 +170,8 @@
       "50": "Armsy",
       "51": "Frank",
       "52": "Eddy",
-      "53": "Greg"
+      "53": "Greg",
+      "54": "Henry"
     }
   },
   "armor": {
@@ -878,6 +879,11 @@
       "5": "Gekochtes Bein",
       "6": "Verbranntes Bein"
     }
+  },
+  "languages": {
+    "de": "Deutsch (German)",
+    "en": "Englisch (English)",
+    "pl": "Polnisch (Polish)"
   },
   "map": {
     "actors": "NPCs",
