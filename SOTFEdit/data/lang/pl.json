@@ -1185,7 +1185,19 @@
     "652": "Głowa Łosia",
     "653": "Notatka Osobista A",
     "654": "Notatka Osobista B",
-    "655": "Notatka Osobista C"
+    "655": "Notatka Osobista C",
+    "656": "Projekt Pułapki Hokey Pokey",
+    "658": "Projekt RadioPułapki",
+    "659": "Projekt Radia",
+    "661": "Bateria Wózka Golfowego",
+    "662": "Część Artefaktu A",
+    "663": "Kilof",
+    "664": "Ruda Solafitu",
+    "665": "Plan Ulepszania Broni",
+    "666": "Plan zasilonego krzyża",
+    "667": "Część Artefaktu B",
+    "668": "Część Artefaktu C",
+    "669": "Część Artefaktu D"
   },
   "worldItemTypes": {
     "GolfCart": "Wózek golfowy",
