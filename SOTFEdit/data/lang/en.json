@@ -382,7 +382,11 @@
       "67": "Large Log Holder",
       "68": "Deer Hide Rug",
       "70": "Item Plating",
-      "71": "Powered Cross"
+      "71": "Powered Cross",
+      "72": "Gore Chair",
+      "73": "Gore Couch",
+      "74": "Uber Trap",
+      "75": "Round Table"
     },
     "modificationMode": {
       "None": "None",
@@ -1235,7 +1239,18 @@
     "664": "Solafite Ore",
     "665": "Item Plating Blueprint",
     "666": "Powered Cross Blueprint",
-    "667": "Artifact Piece B"
+    "667": "Artifact Piece B",
+    "668": "Artifact Piece C",
+    "669": "Artifact Piece D",
+    "670": "Gore Chair Blueprint",
+    "671": "Gore Couch Blueprint",
+    "672": "Uber Trap Blueprint",
+    "673": "Round Table Blueprint",
+    "674": "Old Note A",
+    "675": "Old Note B",
+    "676": "Old Note C",
+    "677": "Fishing Email A",
+    "678": "Fishing Email B"
   },
   "worldItemTypes": {
     "GolfCart": "Golf Cart",

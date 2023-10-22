@@ -7645,6 +7645,144 @@
           ]
         }
       ]
+    },
+    "668": {
+      "pois": [
+        {
+          "x": -1089.28,
+          "y": -129.56,
+          "teleport": {
+            "x": -1089.28,
+            "y": 85.25,
+            "z": -129.56,
+            "areaMask": 4
+          },
+          "screenshot": "artifact_c.jpg"
+        }
+      ]
+    },
+    "669": {
+      "pois": [
+        {
+          "x": -405.64,
+          "y": -878.48,
+          "teleport": {
+            "x": -405.64,
+            "y": 205.24,
+            "z": -878.48,
+            "areaMask": 16
+          },
+          "screenshot": "artifact_d.jpg",
+          "requirements": [
+            444
+          ]
+        }
+      ]
+    },
+    "670": {
+      "pois": [
+        {
+          "x": 1823.01,
+          "y": -495.64,
+          "teleport": {
+            "x": 1823.01,
+            "y": 49.17,
+            "z": -495.64,
+            "areaMask": 0
+          },
+          "screenshot": "blueprint_gore_chair.jpg"
+        }
+      ]
+    },
+    "671": {
+      "pois": [
+        {
+          "x": 1694.03,
+          "y": 1037.16,
+          "teleport": {
+            "x": 1694.03,
+            "y": 29.31,
+            "z": 1037.16,
+            "areaMask": 0
+          },
+          "screenshot": "blueprint_gore_couch.jpg"
+        }
+      ]
+    },
+    "672": {
+      "pois": [
+        {
+          "x": -413.54,
+          "y": -876.22,
+          "teleport": {
+            "x": -413.54,
+            "y": 200.38,
+            "z": -876.22,
+            "areaMask": 16
+          },
+          "screenshot": "blueprint_uber_trap.jpg"
+        }
+      ]
+    },
+    "674": {
+      "pois": [
+        {
+          "x": 1702.83,
+          "y": 1014.24,
+          "teleport": {
+            "x": 1702.83,
+            "y": 28.65,
+            "z": 1014.24,
+            "areaMask": 0
+          },
+          "screenshot": "old_note_a.jpg"
+        }
+      ]
+    },
+    "675": {
+      "pois": [
+        {
+          "x": 1832.24,
+          "y": -475.64,
+          "teleport": {
+            "x": 1832.24,
+            "y": 50.00,
+            "z": -475.64,
+            "areaMask": 0
+          },
+          "screenshot": "old_note_b.jpg"
+        }
+      ]
+    },
+    "677": {
+      "pois": [
+        {
+          "x": -1172.67,
+          "y": 31.39,
+          "teleport": {
+            "x": -1172.67,
+            "y": 66.37,
+            "z": 31.39,
+            "areaMask": 524288
+          },
+          "screenshot": "fishing_email_a.jpg"
+        }
+      ]
+    },
+    "678": {
+      "pois": [
+        {
+          "x": 1165.60,
+          "y": -654.36,
+          "teleport": {
+            "x": 1165.60,
+            "y": 210.42,
+            "z": -654.36,
+            "areaMask": 4194304
+          },
+          "screenshot": "fishing_email_b.jpg"
+        }
+      ]
     }
   }
 }

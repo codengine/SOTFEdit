@@ -2781,7 +2781,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 666,
@@ -2789,7 +2790,8 @@
       "storageMax": {
         "shelf": 0,
         "inventory": 1
-      }
+      },
+      "image": "Paper.png"
     },
     {
       "id": 667,
@@ -2799,6 +2801,104 @@
         "inventory": 1
       },
       "image": "ArtifactPieceB.png"
+    },
+    {
+      "id": 668,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "ArtifactPieceC.png"
+    },
+    {
+      "id": 669,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "ArtifactPieceD.png"
+    },
+    {
+      "id": 670,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 671,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 672,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 673,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 674,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 675,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 676,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 677,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 678,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
     }
   ],
   "storages": [
@@ -3674,6 +3774,30 @@
       "category": "misc",
       "icon": "../items/Cross_tn.png",
       "canFinish": false
+    },
+    {
+      "id": 72,
+      "buildCost": 1,
+      "category": "furniture",
+      "icon": "wooden-chair.png"
+    },
+    {
+      "id": 73,
+      "buildCost": 60,
+      "category": "furniture",
+      "icon": "wooden-chair.png"
+    },
+    {
+      "id": 74,
+      "buildCost": 49,
+      "category": "trap",
+      "icon": "trap.png"
+    },
+    {
+      "id": 75,
+      "buildCost": 9,
+      "category": "furniture",
+      "icon": "table.png"
     }
   ],
   "areas": [

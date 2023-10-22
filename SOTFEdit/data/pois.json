@@ -170,7 +170,8 @@
           614,
           615,
           617,
-          637
+          637,
+          678
         ],
         "screenshot": "residential_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Residential_Bunker_Check_on_map"
@@ -205,7 +206,8 @@
           546,
           555,
           567,
-          575
+          575,
+          677
         ],
         "screenshot": "cave_leading_to_entertainment_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Entertainment_Bunker_Check_on_map"
@@ -483,7 +485,9 @@
         "items": [
           354,
           572,
-          361
+          361,
+          669,
+          672
         ],
         "screenshot": "golden_armor_cave.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Lake/Golden_Armor_Cave_Check_on_map"
@@ -535,7 +539,8 @@
           521,
           522,
           545,
-          612
+          612,
+          668
         ],
         "screenshot": "rope_gun_cave_main_entrance.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Lakeside/Rope_Gun_Cave_Check_on_map"

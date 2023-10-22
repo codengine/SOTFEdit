@@ -374,7 +374,11 @@
       "67": "Großer Baumstamm-Halter",
       "68": "Hirschfell-Teppich",
       "70": "Item Plating",
-      "71": "Beleuchtetes Kreuz"
+      "71": "Beleuchtetes Kreuz",
+      "72": "Gore Stuhl",
+      "73": "Gore Couch",
+      "74": "Uber-Falle",
+      "75": "Runder Tisch"
     },
     "modificationMode": {
       "None": "Keine Änderung",
@@ -1210,7 +1214,7 @@
     "646": "Kaninchenkopf",
     "647": "Eichhörnchen-Kopf",
     "648": "Möwenkopf",
-    "649": "Blaupause Stein-Lager",
+    "649": "Bauplan Stein-Lager",
     "650": "Schildkrötenkopf",
     "651": "Hirschkopf",
     "652": "Elchkopf",
@@ -1227,7 +1231,18 @@
     "664": "Solafit-Erz",
     "665": "Bauplan Item Plating",
     "666": "Bauplan beleuchtetes Kreuz",
-    "667": "Artefakt Teil B"
+    "667": "Artefakt Teil B",
+    "668": "Artefakt Teil C",
+    "669": "Artefakt Teil D",
+    "670": "Bauplan Gore Stuhl",
+    "671": "Bauplan Gore Couch",
+    "672": "Bauplan Uber-Falle",
+    "673": "Bauplan Runder Tisch",
+    "674": "Alte Notiz A",
+    "675": "Alte Notiz B",
+    "676": "Alte Notiz C",
+    "677": "Angeln Email A",
+    "678": "Angeln Email B"
   },
   "worldItemTypes": {
     "GolfCart": "Golfwagen",

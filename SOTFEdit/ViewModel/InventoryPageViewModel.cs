@@ -20,6 +20,9 @@ public partial class InventoryPageViewModel : ObservableObject
 {
     private const int ItemPlatingItemId = 665;
     private const int PoweredCrossItemId = 666;
+    private const int GoreChairItemId = 670;
+    private const int GoreCouchItemId = 671;
+    private const int UberTrapItemId = 672;
     private readonly ObservableCollectionEx<InventoryItem> _inventory = new();
 
     private readonly DispatcherTimer _inventoryFilterTimer = new()
@@ -247,7 +250,7 @@ public partial class InventoryPageViewModel : ObservableObject
 
         var blueprintItemIds = new HashSet<int>
         {
-            ItemPlatingItemId, PoweredCrossItemId
+            ItemPlatingItemId, PoweredCrossItemId, GoreChairItemId, GoreCouchItemId, UberTrapItemId
         };
 
         var addedBlueprintItems = new HashSet<int>();
