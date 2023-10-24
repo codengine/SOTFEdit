@@ -75,7 +75,7 @@ nothing more, nothing less.
 ## Requirements
 
 - Windows 8+
-- [.net 6.0+ Runtime](https://dotnet.microsoft.com/en-us/download/dotnet)
+- [.net 6.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
 ## Usage
 
@@ -249,6 +249,25 @@ I get errors and the application does strange things
 I can not change "IsRobbyDead" or "IsVirginiaDead"
 
 - In order to revive both there is a special button at "Followers" that does the job
+
+The program does not start
+
+- Make sure that .net 6.0 Desktop Runtime is installed. Also make sure to extract all files from the archive if you
+  downloaded the zip archive manually. Lastly, check if any antivirus is blocking the editor
+
+Antivirus (Windows Defender for example, Smartscreen) is complaining
+
+- This is due to the fact that it is a self-developed application which is not signed. It's safe to just ignore the
+  warning. The code is all hosted on Github.
+
+"Could not load file or assembly"
+
+- Make sure to have .net 6.0 Desktop Runtime installed (either x86 or x64)
+
+My changes are not applied or reverted
+
+- In some cases, the Cloud Saving Feature of Steam overwrites changes done by SOTFEdit. You can fix that if you start
+  the Game (not a game session!), edit a savegame and THEN start the game session.
 
 ## Contributing
 
