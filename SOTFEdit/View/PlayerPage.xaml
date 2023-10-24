@@ -82,6 +82,7 @@
                         </StackPanel>
                         <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Minimum="0" Interval="1"
                                            NumericInputMode="Decimal"
+                                           IsEnabled="False"
                                            Value="{Binding PlayerState.MaxHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Heal.png" Width="32"
