@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.11.15
+
+### Bugfixes
+
+- Fixed duplicate key exception introduced in Update 14
+
 ## v0.11.14
 
 ### Features
