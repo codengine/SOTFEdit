@@ -91,8 +91,15 @@ public partial class NpcsPageViewModel : ObservableObject
             return;
         }
 
+        var groupBy = vailWorldSim["Spawners"]?.ToObject<List<Spawner>>()?
+            .GroupBy(s => s.UniqueId)
+            .Where(g => g.ToList().Count > 1)
+            .ToDictionary(g => g.Key, g => g.ToList());
+
+
         var spawnersBySpawnerUniqueId = vailWorldSim["Spawners"]?.ToObject<List<Spawner>>()?
-            .ToDictionary(s => s.UniqueId) ?? new Dictionary<int, Spawner>();
+            .GroupBy(s => s.UniqueId)
+            .ToDictionary(s => s.Key, s => s.First()) ?? new Dictionary<int, Spawner>();
         var influenceMemoryByUniqueId = vailWorldSim["InfluenceMemory"]?.ToObject<List<InfluenceMemory>>()?
             .GroupBy(s => s.UniqueId)
             .ToDictionary(s => s.Key, s => s.ToList()) ?? new Dictionary<int, List<InfluenceMemory>>();
