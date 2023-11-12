@@ -4121,6 +4121,11 @@
       "graphMask": 4096
     },
     {
+      "name": "Cave G",
+      "areaMask": 128,
+      "graphMask": 4096
+    },
+    {
       "name": "Raft",
       "areaMask": 8388608,
       "graphMask": 512

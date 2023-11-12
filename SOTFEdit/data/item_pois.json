@@ -7783,6 +7783,197 @@
           "screenshot": "fishing_email_b.jpg"
         }
       ]
+    },
+    "679": {
+      "pois": [
+        {
+          "x": 1719.69,
+          "y": 1065.29,
+          "teleport": {
+            "x": 1719.69,
+            "y": -30.94,
+            "z": 1065.29,
+            "areaMask": 128
+          },
+          "screenshot": "blueprint_grind_trap.jpg"
+        }
+      ]
+    },
+    "680": {
+      "pois": [
+        {
+          "x": 1820.94,
+          "y": -498.0,
+          "teleport": {
+            "x": 1820.94,
+            "y": 49.88,
+            "z": -498.0,
+            "areaMask": 0
+          },
+          "screenshot": "blueprint_spotlight.jpg"
+        }
+      ]
+    },
+    "681": {
+      "pois": [
+        {
+          "x": 461.09,
+          "y": -227.89,
+          "teleport": {
+            "x": 461.09,
+            "y": 498.66,
+            "z": -227.89,
+            "areaMask": 0
+          },
+          "screenshot": "blueprint_clock.jpg"
+        }
+      ]
+    },
+    "682": {
+      "pois": [
+        {
+          "x": 1453.54,
+          "y": 752.82,
+          "teleport": {
+            "x": 1453.54,
+            "y": 88.29,
+            "z": 752.82,
+            "areaMask": 0
+          },
+          "screenshot": "blueprint_spin_trap.jpg"
+        }
+      ]
+    },
+    "684": {
+      "pois": [
+        {
+          "x": 1693.67,
+          "y": 1032.73,
+          "teleport": {
+            "x": 1693.67,
+            "y": 21.37,
+            "z": 1032.73,
+            "areaMask": 0
+          },
+          "screenshot": "old_note_e.jpg"
+        }
+      ]
+    },
+    "686": {
+      "pois": [
+        {
+          "x": 465.82,
+          "y": 1211.98,
+          "teleport": {
+            "x": 465.82,
+            "y": 17.04,
+            "z": 1211.98,
+            "areaMask": 0
+          },
+          "screenshot": "cult_sign_f1.jpg"
+        },
+        {
+          "x": -111.23,
+          "y": -91.82,
+          "teleport": {
+            "x": -111.23,
+            "y": 393.56,
+            "z": -91.82,
+            "areaMask": 0
+          },
+          "screenshot": "cult_sign_f2.jpg"
+        }
+      ]
+    },
+    "687": {
+      "pois": [
+        {
+          "x": 1133.77,
+          "y": -646.11,
+          "teleport": {
+            "x": 1133.77,
+            "y": 210.42,
+            "z": -646.11,
+            "areaMask": 4194304
+          },
+          "screenshot": "puffton_email_a.jpg"
+        }
+      ]
+    },
+    "688": {
+      "pois": [
+        {
+          "x": -115.44,
+          "y": -1038.4,
+          "teleport": {
+            "x": -115.44,
+            "y": 386.59,
+            "z": -1038.4,
+            "areaMask": 0
+          },
+          "screenshot": "blueprint_spear_thrower.jpg"
+        }
+      ]
+    },
+    "689": {
+      "pois": [
+        {
+          "x": 1729.93,
+          "y": 1049.61,
+          "teleport": {
+            "x": 1729.93,
+            "y": -30.08,
+            "z": 1049.61,
+            "areaMask": 128
+          },
+          "screenshot": "artifact_e.jpg"
+        }
+      ]
+    },
+    "691": {
+      "pois": [
+        {
+          "x": 458.72,
+          "y": -226.45,
+          "teleport": {
+            "x": 458.72,
+            "y": 515.57,
+            "z": -226.45,
+            "areaMask": 0
+          },
+          "screenshot": "old_note_f.jpg"
+        }
+      ]
+    },
+    "692": {
+      "pois": [
+        {
+          "x": 1140.15,
+          "y": 1048.67,
+          "teleport": {
+            "x": 1140.15,
+            "y": 118.86,
+            "z": 1048.67,
+            "areaMask": 524288
+          },
+          "screenshot": "fishing_email_c.jpg"
+        }
+      ]
+    },
+    "694": {
+      "pois": [
+        {
+          "x": -704.09,
+          "y": 445.93,
+          "teleport": {
+            "x": -704.09,
+            "y": 102.98,
+            "z": 445.93,
+            "areaMask": 0
+          },
+          "screenshot": "jianzu_email.jpg"
+        }
+      ]
     }
   }
 }

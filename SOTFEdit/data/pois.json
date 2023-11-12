@@ -28,7 +28,8 @@
           540,
           541,
           548,
-          574
+          574,
+          692
         ],
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Luxury_Bunker_Check_on_map",
         "screenshot": "luxury_bunker.jpg"
@@ -171,7 +172,8 @@
           615,
           617,
           637,
-          678
+          678,
+          687
         ],
         "screenshot": "residential_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Residential_Bunker_Check_on_map"
@@ -620,7 +622,7 @@
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Beach/Rebreather_Cave_Check_on_map"
       },
       {
-        "id": 50,
+        "id": 51,
         "title": "Cave F",
         "x": 1296.531,
         "y": 587.34,
@@ -638,6 +640,23 @@
           444
         ],
         "screenshot": "cave_f_entrance.jpg"
+      },
+      {
+        "id": 52,
+        "title": "Cave G",
+        "x": 1692.04,
+        "y": 1042.00,
+        "teleport": {
+          "x": 1692.04,
+          "y": 28.64,
+          "z": 1042.00,
+          "areaMask": 0
+        },
+        "items": [
+          689,
+          679
+        ],
+        "screenshot": "cave_g_entrance.jpg"
       }
     ]
   },
