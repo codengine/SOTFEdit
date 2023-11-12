@@ -275,13 +275,13 @@
     "canNotBeEmpty": "{0} darf nicht leer sein"
   },
   "experiments": {
-    "igniteAndRefuelFires": {
+    "fires": {
       "noFires": {
         "text": "Keine Feuer zum Bearbeiten gefunden",
         "title": "Keine Feuer"
       },
       "success": {
-        "text": "{0} Feuer wurden entzündet, aufgefüllt und ihre Brennrate gesenkt",
+        "text": "{0} Feuer wurden entzündet, aufgefüllt und ihre Brennrate geändert",
         "title": "Feuer verändert"
       }
     },
@@ -1065,9 +1065,13 @@
         "text": "Welt-Gegenstände klonen...",
         "tooltip": "Klont einen Welt-Gegenstand an der Position des Spielers"
       },
-      "igniteAndRefuelFires": {
-        "text": "Alle Feuer entzünden und auffüllen",
-        "tooltip": "Entzündet und füllt alle Feuer auf und verlangsamt den Verbrauch von Brennstoff, so dass sie fast ewig brennen sollten."
+      "eternalFires": {
+        "text": "Ewige Feuer",
+        "tooltip": "Entzündet Feuer, setzt Brenstoff-Vebrauch auf niedrig und setzt den Brennstoff-Wert hoch"
+      },
+      "fires": {
+        "text": "Feuer",
+        "tooltip": "Verändert Feuer in der Spielwelt"
       },
       "map": {
         "text": "Interaktive Karte",
@@ -1078,6 +1082,10 @@
         "tooltip": "Falls du dein Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
       },
       "regrowTrees": "Bäume nachwachsen lassen...",
+      "resetFires": {
+        "text": "Feuer zurücksetzen",
+        "tooltip": "Entzündet Feuer und setzt Brennstoff-Verbrauch und Menge auf Standard"
+      },
       "resetKillStatistics": {
         "text": "Tötungsstatistik zurücksetzen",
         "tooltip": "Manche Spieler werden von Kannibalen und Monstern überflutet. Das Zurücksetzen der Statistiken könnte zu weniger Spawns führen, oder auch nicht. Wer weiß?"

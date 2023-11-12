@@ -171,7 +171,8 @@ public partial class MainViewModel : ObservableObject
         RestoreBackupsCommand.NotifyCanExecuteChanged();
         RegrowTreesCommand.NotifyCanExecuteChanged();
         ModifyConsumedItemsCommand.NotifyCanExecuteChanged();
-        IgniteAndRefuelFiresCommand.NotifyCanExecuteChanged();
+        EternalFiresCommand.NotifyCanExecuteChanged();
+        ResetFiresCommand.NotifyCanExecuteChanged();
         ResetStructureDamageCommand.NotifyCanExecuteChanged();
         TeleportWorldItemCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(CanEditTabs));
@@ -494,7 +495,18 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
-    private void IgniteAndRefuelFires()
+    private void EternalFires()
+    {
+        _changeFires(true, 65535f, 0.00001f);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
+    private void ResetFires()
+    {
+        _changeFires(true, 300f, 1.0f);
+    }
+
+    private static void _changeFires(bool isLit, float fuel, float fuelDrainRate)
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame ||
             selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.FiresSaveData) is not
@@ -503,8 +515,8 @@ public partial class MainViewModel : ObservableObject
             fires["FiresPerStructureType"] is not { } firesPerStructureType)
         {
             WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-                TranslationManager.Get("experiments.igniteAndRefuelFires.noFires.text"),
-                TranslationManager.Get("experiments.igniteAndRefuelFires.noFires.title")));
+                TranslationManager.Get("experiments.fires.noFires.text"),
+                TranslationManager.Get("experiments.fires.noFires.title")));
             return;
         }
 
@@ -514,16 +526,16 @@ public partial class MainViewModel : ObservableObject
         foreach (var firesByType in fireType.Children())
         foreach (var fire in firesByType)
         {
-            fire["IsLit"] = true;
-            fire["Fuel"] = 65535f;
-            fire["FuelDrainRate"] = 0.00001f;
+            fire["IsLit"] = isLit;
+            fire["Fuel"] = fuel;
+            fire["FuelDrainRate"] = fuelDrainRate;
             countChanged++;
         }
 
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.Fires);
         WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-            TranslationManager.GetFormatted("experiments.igniteAndRefuelFires.success.text", countChanged),
-            TranslationManager.Get("experiments.igniteAndRefuelFires.success.title")));
+            TranslationManager.GetFormatted("experiments.fires.success.text", countChanged),
+            TranslationManager.Get("experiments.fires.success.title")));
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]

@@ -275,13 +275,13 @@
     "canNotBeEmpty": "{0} can not be empty"
   },
   "experiments": {
-    "igniteAndRefuelFires": {
+    "fires": {
       "noFires": {
         "text": "No fires found to be modified",
         "title": "No fires"
       },
       "success": {
-        "text": "{0} fires have been lit, refueled and their drain rate lowered",
+        "text": "{0} fires have been lit, refueled and their drain rate changed",
         "title": "Fires changed"
       }
     },
@@ -1065,9 +1065,13 @@
         "text": "Clone World Items...",
         "tooltip": "Clones World Items at the players position"
       },
-      "igniteAndRefuelFires": {
-        "text": "Ignite and Refuel all Fires",
-        "tooltip": "Will ignite and refuel all fires as well as slowing down the drain rate of the fires fuel, which should make them burn almost eternally"
+      "eternalFires": {
+        "text": "Eternal Fires",
+        "tooltip": "Fires will be ignited, fuel drain rate is set low and amount of fuel is set very high"
+      },
+      "fires": {
+        "text": "Fires",
+        "tooltip": "Modify fires around the world"
       },
       "map": {
         "text": "Interactive Map",
@@ -1078,6 +1082,10 @@
         "tooltip": "In case you want to purge your memory about items that you have consumed already"
       },
       "regrowTrees": "Regrow Trees...",
+      "resetFires": {
+        "text": "Reset Fires",
+        "tooltip": "Fires will be ignited, fuel drain rate and fuel amount is set to default"
+      },
       "resetKillStatistics": {
         "text": "Reset Kill Statistics",
         "tooltip": "Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?"

@@ -134,12 +134,18 @@
                             <iconPacks:FontAwesome Kind="TreeSolid" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.text'}"
-                              ToolTip="{infrastructure:Translate 'menu.tools.igniteAndRefuelFires.tooltip'}"
-                              Command="{Binding IgniteAndRefuelFiresCommand}">
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.fires.text'}" ToolTip="{infrastructure:Translate 'menu.tools.fires.tooltip'}">
                         <MenuItem.Icon>
                             <iconPacks:FontAwesome Kind="FireSolid" />
                         </MenuItem.Icon>
+                        <MenuItem Header="{infrastructure:Translate 'menu.tools.eternalFires.text'}"
+                                  ToolTip="{infrastructure:Translate 'menu.tools.eternalFires.tooltip'}"
+                                  Command="{Binding EternalFiresCommand}">
+                        </MenuItem>
+                        <MenuItem Header="{infrastructure:Translate 'menu.tools.resetFires.text'}"
+                                  ToolTip="{infrastructure:Translate 'menu.tools.resetFires.tooltip'}"
+                                  Command="{Binding ResetFiresCommand}">
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.resetStructureDamage.text'}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetStructureDamage.tooltip'}"
