@@ -819,7 +819,29 @@
     "675": "Old Note B",
     "676": "Old Note C",
     "677": "Fishing Email A",
-    "678": "Fishing Email B"
+    "678": "Fishing Email B",
+    "679": "Grind Trap Blueprint",
+    "680": "Spotlight Blueprint",
+    "681": "Clock Blueprint",
+    "682": "Spin Trap Blueprint",
+    "683": "Double Bed Blueprint",
+    "684": "Old Note E",
+    "685": "Old Note D",
+    "686": "Cult Sign F",
+    "687": "Puffton Email A",
+    "688": "Spear Thrower Trap Blueprint",
+    "689": "Artifact Piece E",
+    "690": "Story Pages",
+    "691": "Old Note F",
+    "692": "Fishing Email C",
+    "693": "Bunker Map A",
+    "694": "Jianyu Email Printout A",
+    "695": "Cult Sign G",
+    "696": "Cult Sign H",
+    "697": "Cult Sign I",
+    "698": "Cult Sign J",
+    "699": "Cult Sign K",
+    "700": "Spear Storage Blueprint"
   },
   "itemTypes": {
     "ammo": "Ammo",
@@ -1224,7 +1246,14 @@
       "72": "Gore Chair",
       "73": "Gore Couch",
       "74": "Uber Trap",
-      "75": "Round Table"
+      "75": "Round Table",
+      "76": "Grind Trap",
+      "77": "Spotlight",
+      "78": "Clock",
+      "79": "Spin Trap",
+      "80": "Double Bed",
+      "81": "Spear Thrower Trap",
+      "82": "Spear Holder"
     }
   },
   "tabs": {

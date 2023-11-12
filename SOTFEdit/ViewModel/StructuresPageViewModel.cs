@@ -108,9 +108,16 @@ public partial class StructuresPageViewModel : ObservableObject
             }
 
             ScrewStructure? screwStructure = null;
-            if (structure["Id"]?.Value<int>() is { } id)
+
+            var screwStructureId = structure["Id"]?.Value<int>();
+            if (screwStructureId is { } id)
             {
                 screwStructure = screwStructuresById.GetValueOrDefault(id);
+            }
+
+            if (screwStructure == null && screwStructureId != null)
+            {
+                Logger.Debug($"Unknown finished Screw Structure: {screwStructureId}");
             }
 
             var position = structure["Pos"]?.ToObject<Position>() ?? null;
@@ -139,13 +146,20 @@ public partial class StructuresPageViewModel : ObservableObject
         foreach (var structure in structures)
         {
             ScrewStructure? screwStructure = null;
-            if (structure["Id"]?.Value<int>() is { } id)
+            var screwStructureId = structure["Id"]?.Value<int>();
+            if (screwStructureId is { } id)
             {
                 screwStructure = screwStructuresById.GetValueOrDefault(id);
             }
 
             var added = structure["Added"]?.Value<int>() ?? 0;
             var position = structure["Pos"]?.ToObject<Position>() ?? null;
+
+            if (screwStructure == null && screwStructureId != null)
+            {
+                Logger.Debug($"Unknown unfinished Screw Structure: {screwStructureId}, added: {added}");
+            }
+
             wrappers.Add(new ScrewStructureWrapper(screwStructure, structure, added, position,
                 ScrewStructureOrigin.Unfinished));
         }

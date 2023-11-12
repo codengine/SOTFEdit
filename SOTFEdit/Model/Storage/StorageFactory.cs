@@ -32,6 +32,7 @@ public class StorageFactory
             case StorageType.Logs:
             case StorageType.Sticks:
             case StorageType.Stones:
+            case StorageType.Spears:
             case StorageType.Bones:
                 return new ResourceStorage(storageDefinition, _items, index);
             default:

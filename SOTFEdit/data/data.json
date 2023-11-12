@@ -2479,7 +2479,7 @@
     },
     {
       "id": 629,
-      "type": "misc",
+      "type": "blueprint",
       "storageMax": {
         "shelf": 0,
         "inventory": 1
@@ -2899,6 +2899,202 @@
         "inventory": 1
       },
       "image": "Paper.png"
+    },
+    {
+      "id": 679,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 680,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 681,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 682,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 683,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 684,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 685,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 686,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 687,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 688,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 689,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "ArtifactPieceE.png"
+    },
+    {
+      "id": 690,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "TactiTabNotes.png"
+    },
+    {
+      "id": 691,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 692,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 693,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 694,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 695,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 696,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 697,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 698,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 699,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 700,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     }
   ],
   "storages": [
@@ -3017,6 +3213,15 @@
         78
       ],
       "type": "Logs"
+    },
+    {
+      "id": 82,
+      "slots": 1,
+      "maxPerSlot": 10,
+      "restrictedItemIds": [
+        474
+      ],
+      "type": "Spears"
     }
   ],
   "advancedStorages": [
@@ -3497,7 +3702,7 @@
       "id": 21,
       "buildCost": 10,
       "category": "traps",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 22,
@@ -3509,7 +3714,7 @@
       "id": 23,
       "buildCost": 16,
       "category": "gardening",
-      "icon": "plant.png"
+      "icon": "../items/TactiTabGardening_tn.png"
     },
     {
       "id": 24,
@@ -3527,20 +3732,20 @@
       "id": 26,
       "buildCost": 72,
       "category": "shelter",
-      "icon": "cabin.png",
+      "icon": "../items/TactiTabShelter_tn.png",
       "canFinish": false
     },
     {
       "id": 27,
       "buildCost": 9,
       "category": "storage",
-      "icon": "basket.png"
+      "icon": "../items/Meat_tn.png"
     },
     {
       "id": 28,
       "buildCost": 131,
       "category": "treeShelter",
-      "icon": "cabin.png",
+      "icon": "../items/TactiTabShelter_tn.png",
       "canFinish": false
     },
     {
@@ -3565,14 +3770,14 @@
       "id": 34,
       "buildCost": 95,
       "category": "shelter",
-      "icon": "cabin.png",
+      "icon": "../items/TactiTabShelter_tn.png",
       "canFinish": false
     },
     {
       "id": 35,
       "buildCost": 25,
       "category": "traps",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 36,
@@ -3590,7 +3795,7 @@
       "id": 38,
       "buildCost": 74,
       "category": "shelter",
-      "icon": "cabin.png",
+      "icon": "../items/TactiTabShelter_tn.png",
       "canFinish": false
     },
     {
@@ -3603,40 +3808,40 @@
       "id": 40,
       "buildCost": 18,
       "category": "gardening",
-      "icon": "plant.png"
+      "icon": "../items/TactiTabGardening_tn.png"
     },
     {
       "id": 41,
       "buildCost": 54,
       "category": "treeShelter",
-      "icon": "cabin.png",
+      "icon": "../items/TactiTabShelter_tn.png",
       "canFinish": false
     },
     {
       "id": 42,
       "buildCost": 14,
       "category": "traps",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 43,
       "buildCost": 10,
       "category": "treeShelter",
-      "icon": "cabin.png",
+      "icon": "../items/TactiTabShelter_tn.png",
       "canFinish": false
     },
     {
       "id": 44,
       "buildCost": 97,
       "category": "treeShelter",
-      "icon": "cabin.png",
+      "icon": "../items/TactiTabShelter_tn.png",
       "canFinish": false
     },
     {
       "id": 45,
       "buildCost": 14,
       "category": "traps",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 46,
@@ -3648,13 +3853,13 @@
       "id": 47,
       "buildCost": 20,
       "category": "shelter",
-      "icon": "cabin.png"
+      "icon": "../items/TactiTabShelter_tn.png"
     },
     {
       "id": 48,
       "buildCost": 7,
       "category": "furniture",
-      "icon": "table.png"
+      "icon": "../items/TactiTabFurniture_tn.png"
     },
     {
       "id": 49,
@@ -3711,7 +3916,7 @@
       "id": 57,
       "buildCost": 10,
       "category": "traps",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 58,
@@ -3749,13 +3954,13 @@
       "id": 63,
       "buildCost": 34,
       "category": "traps",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 64,
       "buildCost": 25,
       "category": "traps",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 67,
@@ -3798,13 +4003,55 @@
       "id": 74,
       "buildCost": 49,
       "category": "trap",
-      "icon": "trap.png"
+      "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 75,
       "buildCost": 9,
       "category": "furniture",
-      "icon": "table.png"
+      "icon": "../items/TactiTabFurniture_tn.png"
+    },
+    {
+      "id": 76,
+      "buildCost": 75,
+      "category": "trap",
+      "icon": "../items/TactitabTraps_tn.png"
+    },
+    {
+      "id": 77,
+      "buildCost": 42,
+      "category": "misc",
+      "icon": "../items/Lightbulb_tn.png"
+    },
+    {
+      "id": 78,
+      "buildCost": 29,
+      "category": "misc",
+      "icon": "../items/WristWatch_tn.png"
+    },
+    {
+      "id": 79,
+      "buildCost": 44,
+      "category": "trap",
+      "icon": "../items/TactitabTraps_tn.png"
+    },
+    {
+      "id": 80,
+      "buildCost": 52,
+      "category": "furniture",
+      "icon": "bed.png"
+    },
+    {
+      "id": 81,
+      "buildCost": 27,
+      "category": "trap",
+      "icon": "../items/TactitabTraps_tn.png"
+    },
+    {
+      "id": 82,
+      "buildCost": 10,
+      "category": "storage",
+      "icon": "../items/Stick_tn.png"
     }
   ],
   "areas": [

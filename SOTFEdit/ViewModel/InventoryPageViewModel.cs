@@ -18,11 +18,20 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryPageViewModel : ObservableObject
 {
-    private const int ItemPlatingItemId = 665;
-    private const int PoweredCrossItemId = 666;
-    private const int GoreChairItemId = 670;
-    private const int GoreCouchItemId = 671;
-    private const int UberTrapItemId = 672;
+    private readonly HashSet<int> _blueprintItemIds = new()
+    {
+        665, //Item Plating
+        666, //Powered Cross
+        670, //Gore Chair
+        671, //Gore Couch
+        672, //Uber Trap
+        679, //Grind Trap
+        680, //Spotlight
+        681, //Clock
+        682, //Spin Trap
+        688 //Spear Thrower Trap
+    };
+
     private readonly ObservableCollectionEx<InventoryItem> _inventory = new();
 
     private readonly DispatcherTimer _inventoryFilterTimer = new()
@@ -248,17 +257,12 @@ public partial class InventoryPageViewModel : ObservableObject
             return false;
         }
 
-        var blueprintItemIds = new HashSet<int>
-        {
-            ItemPlatingItemId, PoweredCrossItemId, GoreChairItemId, GoreCouchItemId, UberTrapItemId
-        };
-
         var addedBlueprintItems = new HashSet<int>();
 
         var hasChanges = false;
 
         foreach (var inventoryItem in
-                 inventoryItems.Where(inventoryItem => blueprintItemIds.Contains(inventoryItem.Id)))
+                 inventoryItems.Where(inventoryItem => _blueprintItemIds.Contains(inventoryItem.Id)))
         {
             addedBlueprintItems.Add(inventoryItem.Id);
         }
@@ -269,7 +273,7 @@ public partial class InventoryPageViewModel : ObservableObject
         {
             var name = jToken["Name"]?.Value<string>();
 
-            foreach (var itemId in blueprintItemIds.Where(itemId => name == $"DiscoverablePageUnlocked_{itemId}"))
+            foreach (var itemId in _blueprintItemIds.Where(itemId => name == $"DiscoverablePageUnlocked_{itemId}"))
             {
                 blueprintTokensExisting.Add(itemId);
 
@@ -285,7 +289,7 @@ public partial class InventoryPageViewModel : ObservableObject
             }
         }
 
-        foreach (var blueprintItemId in blueprintItemIds)
+        foreach (var blueprintItemId in _blueprintItemIds)
         {
             if (blueprintTokensExisting.Contains(blueprintItemId) || !addedBlueprintItems.Contains(blueprintItemId))
             {

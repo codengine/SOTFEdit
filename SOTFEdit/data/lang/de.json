@@ -819,7 +819,29 @@
     "675": "Alte Notiz B",
     "676": "Alte Notiz C",
     "677": "Angeln Email A",
-    "678": "Angeln Email B"
+    "678": "Angeln Email B",
+    "679": "Bauplan Häcksler-Falle",
+    "680": "Bauplan Scheinwerfer",
+    "681": "Bauplan Wanduhr",
+    "682": "Bauplan Drehende Falle",
+    "683": "Bauplan Doppelbett",
+    "684": "Alte Notiz E",
+    "685": "Alte Notiz D",
+    "686": "Alte Notiz F",
+    "687": "Puffton Email A",
+    "688": "Bauplan Speerwerfer-Falle",
+    "689": "Artefakt Teil E",
+    "690": "Notizbuch",
+    "691": "Alte Notiz F",
+    "692": "Angeln Email C",
+    "693": "Bunker-Karte A",
+    "694": "Jianyu Email Ausdruck A",
+    "695": "Kult-Zeichen G",
+    "696": "Kult-Zeichen H",
+    "697": "Kult-Zeichen I",
+    "698": "Kult-Zeichen J",
+    "699": "Kult-Zeichen K",
+    "700": "Bauplan Speerhalter"
   },
   "itemTypes": {
     "ammo": "Munition",
@@ -1030,6 +1052,7 @@
       },
       "readme": "Readme",
       "text": "?",
+      "translations": "Übersetzungen",
       "updates": {
         "checkNow": "Jetzt prüfen",
         "checkOnStartup": "Beim Start prüfen",
@@ -1223,7 +1246,14 @@
       "72": "Gore Stuhl",
       "73": "Gore Couch",
       "74": "Uber-Falle",
-      "75": "Runder Tisch"
+      "75": "Runder Tisch",
+      "76": "Hächsler-Falle",
+      "77": "Scheinwerfer",
+      "78": "Wanduhr",
+      "79": "Drehende Falle",
+      "80": "Doppelbett",
+      "81": "Speerwerfer-Falle",
+      "82": "Speerhalter"
     }
   },
   "tabs": {

@@ -33,5 +33,6 @@ public enum StorageType
     Logs,
     Sticks,
     Stones,
+    Spears,
     Bones
 }

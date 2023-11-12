@@ -335,8 +335,6 @@ collect all data.
 - [Wood icons created by Nikita Golubev - Flaticon](https://www.flaticon.com/free-icons/wood)
 - [Shelter icons created by Muhammad_Usman - Flaticon](https://www.flaticon.com/free-icons/shelter)
 - [Grow icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/grow)
-- [Basket icons created by ToZ Icon - Flaticon](https://www.flaticon.com/free-icons/basket)
-- [Trap icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/trap)
 - [Glider icons created by Pop Vectors - Flaticon](https://www.flaticon.com/free-icons/glider)
 - [Monowheel icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/monowheel)
 - [Pole dance icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/pole-dance)
