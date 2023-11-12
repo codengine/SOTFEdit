@@ -3665,6 +3665,13 @@
       "gender": "male",
       "image": "henry.jpg",
       "icon": "henry.png"
+    },
+    {
+      "id": 55,
+      "classification": "cannibal",
+      "gender": "male",
+      "image": "igor.jpg",
+      "icon": "igor.png"
     }
   ],
   "namedIntKeys": [
