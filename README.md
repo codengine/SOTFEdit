@@ -269,6 +269,10 @@ My changes are not applied or reverted
 - In some cases, the Cloud Saving Feature of Steam overwrites changes done by SOTFEdit. You can fix that if you start
   the Game (not a game session!), edit a savegame and THEN start the game session.
 
+Lakes, rivers etc. are gone
+
+- This happens after teleporting in and out of caves. This should be fixed when you teleport again in and out
+
 ## Contributing
 
 Feel free to report any unknown items or any feature requests. PRs are also welcome.

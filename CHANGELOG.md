@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.11.16
+
+### Features
+
+- Added blueprints for Grind Trap, Spotlight, Clock, Spin Trap, Double Bed, Spear Thrower Trap, Spear Storage
+- Added Old Note D-F
+- Added Fishing Email C
+- Added Cult Sign F-K
+- Added Puffton Email A
+- Added Story Pages (Collected documents)
+- Added Bunker Map A
+- Added Jianyu Email Printout A
+- Added new actor type (Igor)
+- Added new screw structures: Grind Trap, Spotlight, Clock, Spin Trap, Double Bed, Spear Thrower Trap, Spear Storage
+- Added new icons
+- Added new cave (Cave G)
+- Added POIs of new items
+- Added new tool to reset fires to their defaults
+
 ## v0.11.15
 
 ### Bugfixes
