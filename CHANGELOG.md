@@ -2,6 +2,12 @@
 
 ## v0.11.16
 
+### Bugfixes
+
+- Preserve ordering of screw structures to prevent gardening plots from shuffling around
+
+## v0.11.16
+
 ### Features
 
 - Added blueprints for Grind Trap, Spotlight, Clock, Spin Trap, Double Bed, Spear Thrower Trap, Spear Storage
