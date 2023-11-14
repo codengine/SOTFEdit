@@ -24,12 +24,13 @@ public partial class ScrewStructureWrapper : ObservableObject
     private ScrewStructure? _screwStructure;
 
     public ScrewStructureWrapper(ScrewStructure? screwStructure, JToken token, int added, Position? position,
-        ScrewStructureOrigin origin)
+        ScrewStructureOrigin origin, int index)
     {
         Token = token;
         Added = added;
         Position = position;
         Origin = origin;
+        Index = index;
         ScrewStructure = screwStructure;
         var canFinish = screwStructure?.CanFinish ?? false;
         var canEdit = screwStructure?.CanEdit ?? false;
@@ -60,6 +61,7 @@ public partial class ScrewStructureWrapper : ObservableObject
     public JToken Token { get; }
     public Position? Position { get; }
     public ScrewStructureOrigin Origin { get; }
+    public int Index { get; }
 
     public string Name => ScrewStructure?.Name ?? "???";
     public string Category => ScrewStructure?.CategoryName ?? TranslationManager.Get("generic.unknown");

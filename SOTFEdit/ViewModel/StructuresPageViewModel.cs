@@ -99,9 +99,10 @@ public partial class StructuresPageViewModel : ObservableObject
         }
 
         var screwStructuresById = _structureTypes.ToDictionary(screwStructure => screwStructure.Id);
-
-        foreach (var structure in structures)
+        
+        for (var i = 0; i < structures.Count; i++)
         {
+            var structure = structures[i];
             if (structure.Type == JTokenType.Null)
             {
                 continue;
@@ -122,7 +123,7 @@ public partial class StructuresPageViewModel : ObservableObject
 
             var position = structure["Pos"]?.ToObject<Position>() ?? null;
             wrappers.Add(new ScrewStructureWrapper(screwStructure, structure, screwStructure?.BuildCost ?? 0, position,
-                ScrewStructureOrigin.Finished));
+                ScrewStructureOrigin.Finished, i));
         }
 
         return wrappers;
@@ -142,9 +143,10 @@ public partial class StructuresPageViewModel : ObservableObject
         }
 
         var screwStructuresById = _structureTypes.ToDictionary(screwStructure => screwStructure.Id);
-
-        foreach (var structure in structures)
+        
+        for (var i = 0; i < structures.Count; i++)
         {
+            var structure = structures[i];
             ScrewStructure? screwStructure = null;
             var screwStructureId = structure["Id"]?.Value<int>();
             if (screwStructureId is { } id)
@@ -161,7 +163,7 @@ public partial class StructuresPageViewModel : ObservableObject
             }
 
             wrappers.Add(new ScrewStructureWrapper(screwStructure, structure, added, position,
-                ScrewStructureOrigin.Unfinished));
+                ScrewStructureOrigin.Unfinished, i));
         }
 
         return wrappers;
@@ -203,7 +205,7 @@ public partial class StructuresPageViewModel : ObservableObject
         var unfinishedStructures = new JArray();
         var finishedStructures = new JArray();
 
-        foreach (var wrapper in Structures)
+        foreach (var wrapper in Structures.OrderBy(wrapper => wrapper.Index))
         {
             if (wrapper.ModificationMode == ScrewStructureModificationMode.Remove)
             {
