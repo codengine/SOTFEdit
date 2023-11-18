@@ -171,7 +171,8 @@
       "51": "Frank",
       "52": "Eddy",
       "53": "Greg",
-      "54": "Henry"
+      "54": "Henry",
+      "55": "Igor"
     }
   },
   "armor": {
@@ -819,7 +820,29 @@
     "675": "Stara notatka B",
     "676": "Stara notatka C",
     "677": "Email Rybacki A",
-    "678": "Email Rybacki B"
+    "678": "Email Rybacki B",
+    "679": "Plan Pułapki Mielarki",
+    "680": "Plan Reflektora",
+    "681": "Plan zagara",
+    "682": "Plan pułapki obrotowej",
+    "683": "Plan podwójnego łóżka",
+    "684": "Stara notatka E",
+    "685": "Stara Notatka D",
+    "686": "Stara notatka F",
+    "687": "Email Pufftona A",
+    "688": "Plan pułapki rzucającej włóczniami",
+    "689": "Część artefaktu E",
+    "690": "Strony fabularne",
+    "691": "Stara notatka F",
+    "692": "Mail Rybacki C",
+    "693": "Mapa Bunkra A",
+    "694": "Wydruk Emailu Jianyu A",
+    "695": "Znak kultu G",
+    "696": "Znak kultu H",
+    "697": "Znak kultu I",
+    "698": "Znak kultu J",
+    "699": "Znak kultu K",
+    "700": "Plan magazynu na włócznie"
   },
   "itemTypes": {
     "ammo": "Ammunicja",
@@ -1042,6 +1065,14 @@
         "text": "Klonuj przedmioty ze świata",
         "tooltip": "Klonuje przedmioty ze świata do pozycji gracza"
       },
+      "eternalFires": {
+        "text": "Wieczne ognie",
+        "tooltip": "Ognie zostaną zapalone, zużycie paliwa będzie niskie a jego ilość duża"
+      },
+      "fires": {
+        "text": "Ognie",
+        "tooltip": "Modyfikuj ognie na świecie"
+      },
       "map": {
         "text": "Interaktywna mapa",
         "tooltip": "Po prosu interaktywna mapa."
@@ -1051,6 +1082,10 @@
         "tooltip": "W przypadku, gdy chcesz oczyścić pamięć o przedmiotach, które już zjadłeś"
       },
       "regrowTrees": "Odrośnij drzewa...",
+      "resetFires": {
+        "text": "Zresetuj ognie",
+        "tooltip": "Ognie zostaną zapalone, a prędkość zużycia i ilość paliwa ustawione na domyślne"
+      },
       "resetKillStatistics": {
         "text": "Resetuj statystyki zabójstw",
         "tooltip": "Niektórzy toną w  kanibalach i potworach. Resetowanie statystyk może doprowadzić do mniejszej ilości przeciwników, lub nie. Kto wie?"
@@ -1220,7 +1255,14 @@
       "72": "Krzesło z flaków",
       "73": "Kanapa z Flaków",
       "74": "Pułapka Uber",
-      "75": "Okrągły stół"
+      "75": "Okrągły stół",
+      "76": "Pułapka Mielarka",
+      "77": "Reflektor",
+      "78": "Zegar",
+      "79": "Pułapka obrotowa",
+      "80": "Podwójne łóżko",
+      "81": "Pułapka rzucająca włóczniami",
+      "82": "Magazyn na włócznie"
     }
   },
   "tabs": {
