@@ -90,6 +90,16 @@ public class ItemsStorage : BaseStorage
                         });
                     }
                 }
+                else if (storedItem.Modules?.Count > 0)
+                {
+                    for (var i = 0; i < storedItem.Count; i++)
+                    {
+                        storageItemBlock.UniqueItems.Add(new UniqueItem
+                        {
+                            Modules = storedItem.Modules
+                        });
+                    }
+                }
 
                 storageBlock.ItemBlocks.Add(storageItemBlock);
             }

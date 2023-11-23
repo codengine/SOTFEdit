@@ -98,8 +98,10 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
 
                 if (foundCandidate != null)
                 {
+                    var modules = itemBlock.UniqueItems.FirstOrDefault()?.Modules;
+
                     var storedItem = new StoredItem(foundCandidate, itemBlock.TotalCount, supportedItems,
-                        Definition.MaxPerSlot);
+                        Definition.MaxPerSlot, modules);
                     storedItem.PropertyChanged += OnStoredItemPropertyChanged;
                     Slots[currentSlot++].StoredItems.Add(storedItem);
                 }
