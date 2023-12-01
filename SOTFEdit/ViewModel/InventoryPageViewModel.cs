@@ -29,7 +29,8 @@ public partial class InventoryPageViewModel : ObservableObject
         680, //Spotlight
         681, //Clock
         682, //Spin Trap
-        688 //Spear Thrower Trap
+        688, //Spear Thrower Trap
+        701 //Leg Lamp
     };
 
     private readonly ObservableCollectionEx<InventoryItem> _inventory = new();

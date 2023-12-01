@@ -7974,6 +7974,69 @@
           "screenshot": "jianzu_email.jpg"
         }
       ]
+    },
+    "701": {
+      "pois": [
+        {
+          "x": 1474.47,
+          "y": 71.51,
+          "teleport": {
+            "x": 1474.47,
+            "y": 77.14,
+            "z": 71.51,
+            "areaMask": 0
+          },
+          "screenshot": "blueprint_leg_lamp.jpg"
+        }
+      ]
+    },
+    "703": {
+      "pois": [
+        {
+          "x": 185.79,
+          "y": -331.96,
+          "teleport": {
+            "x": 185.79,
+            "y": 524.08,
+            "z": -331.96,
+            "areaMask": 0
+          },
+          "screenshot": "priest_outfit.jpg"
+        }
+      ]
+    },
+    "705": {
+      "pois": [
+        {
+          "x": -1078.22,
+          "y": 13.13,
+          "teleport": {
+            "x": -1078.22,
+            "y": 59.31,
+            "z": 13.13,
+            "areaMask": 1048576
+          },
+          "requirements": [
+            566
+          ],
+          "screenshot": "circus_pamphlet.jpg"
+        }
+      ]
+    },
+    "706": {
+      "pois": [
+        {
+          "x": 1942.71,
+          "y": 453.7,
+          "teleport": {
+            "x": 1942.71,
+            "y": 14.84,
+            "z": 453.7,
+            "areaMask": 0
+          },
+          "screenshot": "newspaper_d_cutout.jpg"
+        }
+      ]
     }
   }
 }

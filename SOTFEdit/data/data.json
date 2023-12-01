@@ -3095,9 +3095,90 @@
         "shelf": 0,
         "inventory": 1
       }
+    },
+    {
+      "id": 701,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 702,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 703,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Clothing.png"
+    },
+    {
+      "id": 704,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 705,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "BunkerPamphlet.png"
+    },
+    {
+      "id": 706,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
     }
   ],
   "storages": [
+    {
+      "id": 19,
+      "slots": 4,
+      "maxPerSlot": 1,
+      "type": "Items",
+      "restrictedItemIds": [
+        340,
+        353,
+        355,
+        356,
+        358,
+        359,
+        360,
+        361,
+        365,
+        367,
+        386,
+        394,
+        396,
+        422,
+        431,
+        443,
+        477,
+        485,
+        522,
+        525,
+        663
+      ]
+    },
     {
       "id": 27,
       "slots": 6,
@@ -3222,6 +3303,44 @@
         474
       ],
       "type": "Spears"
+    },
+    {
+      "id": 84,
+      "slots": 1,
+      "maxPerSlot": 12,
+      "restrictedItemIds": [
+        576
+      ],
+      "type": "Items"
+    },
+    {
+      "id": 86,
+      "slots": 1,
+      "maxPerSlot": 1,
+      "type": "Items",
+      "restrictedItemIds": [
+        340,
+        353,
+        355,
+        356,
+        358,
+        359,
+        360,
+        361,
+        365,
+        367,
+        386,
+        394,
+        396,
+        422,
+        431,
+        443,
+        477,
+        485,
+        522,
+        525,
+        663
+      ]
     }
   ],
   "advancedStorages": [
@@ -3294,7 +3413,10 @@
         3,
         4,
         5,
-        6
+        6,
+        7,
+        8,
+        9
       ],
       "10": [
         -1,
@@ -3672,6 +3794,13 @@
       "gender": "male",
       "image": "igor.jpg",
       "icon": "igor.png"
+    },
+    {
+      "id": 56,
+      "classification": "cannibal",
+      "gender": "female",
+      "image": "elise.jpg",
+      "icon": "elise.png"
     }
   ],
   "namedIntKeys": [
@@ -3699,6 +3828,12 @@
     "HellCave.MutantDemonBossIntro"
   ],
   "screwStructures": [
+    {
+      "id": 19,
+      "buildCost": 13,
+      "category": "storage",
+      "icon": "shelf.png"
+    },
     {
       "id": 20,
       "buildCost": 14,
@@ -4059,6 +4194,24 @@
       "buildCost": 10,
       "category": "storage",
       "icon": "../items/Stick_tn.png"
+    },
+    {
+      "id": 84,
+      "buildCost": 20,
+      "category": "storage",
+      "icon": "fireplace.png"
+    },
+    {
+      "id": 85,
+      "buildCost": 20,
+      "category": "misc",
+      "icon": "../items/Lightbulb_tn.png"
+    },
+    {
+      "id": 86,
+      "buildCost": 6,
+      "category": "storage",
+      "icon": "shelf.png"
     }
   ],
   "areas": [

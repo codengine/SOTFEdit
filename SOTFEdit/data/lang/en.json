@@ -172,7 +172,8 @@
       "52": "Eddy",
       "53": "Greg",
       "54": "Henry",
-      "55": "Igor"
+      "55": "Igor",
+      "56": "Elise"
     }
   },
   "armor": {
@@ -334,7 +335,8 @@
         "5": "Blue TShirt",
         "6": "Blazer",
         "7": "Black Leather Jacket",
-        "8": "Space Suit"
+        "8": "Space Suit",
+        "9": "Priest Outfit"
       },
       "10": {
         "-1": "Default",
@@ -719,8 +721,8 @@
     "573": "Sleeping Bag",
     "574": "Novel [Rescued]",
     "575": "Novel [Parallel Universes]",
-    "576": "Quarter Log plank",
-    "577": "Half Log plank",
+    "576": "Quarter Log Plank",
+    "577": "Half Log Plank",
     "578": "Three Quarter Log Plank",
     "579": "Bone Chair Blueprint",
     "580": "Stick Ladder Blueprint",
@@ -842,7 +844,13 @@
     "697": "Cult Sign I",
     "698": "Cult Sign J",
     "699": "Cult Sign K",
-    "700": "Spear Storage Blueprint"
+    "700": "Spear Storage Blueprint",
+    "701": "Leg Lamp Blueprint",
+    "702": "Firewood Storage Blueprint",
+    "703": "Priest Outfit",
+    "704": "Wall Weapon Rack Blueprint",
+    "705": "Circus Pamphlet",
+    "706": "Newspaper Cutout [Husbands]"
   },
   "itemTypes": {
     "ammo": "Ammo",
@@ -1205,6 +1213,7 @@
     "percentDone": "Percent Done",
     "structureTypeSelectorDisclaimer": "If nothing is selected, all structures will be changed",
     "types": {
+      "19": "Weapon Rack",
       "20": "Stick Chair",
       "21": "Bone Maker Trap",
       "22": "Stick Bed",
@@ -1262,7 +1271,10 @@
       "79": "Spin Trap",
       "80": "Double Bed",
       "81": "Spear Thrower Trap",
-      "82": "Spear Holder"
+      "82": "Spear Holder",
+      "84": "Firewood Storage",
+      "85": "Leg Lamp",
+      "86": "Wall Weapon Rack"
     }
   },
   "tabs": {
