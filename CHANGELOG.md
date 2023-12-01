@@ -1,6 +1,24 @@
 # Changelog
 
-## v0.11.16
+## v0.11.18
+
+### Features
+
+- Added blueprints for leg lamp, firewood storage, wall weapon rack
+- Added Priest Outfit (Player, Player Inventory & Kelvin)
+- Added Circus Pamphlet
+- Added Newspaper Cutout (Husbands)
+- Added new structures: Firewood Storage, Weapon Rack, Wall Weapon Rack, Leg Lamp
+- Added new outfits for Kelvin
+- Added new actor type (Elise)
+- Added POIs of new items
+- Added missing polish translations
+
+### Bugfixes
+
+- Preserve item modifications of stored items (solves issue #22)
+
+## v0.11.17
 
 ### Bugfixes
 
@@ -19,7 +37,7 @@
 - Added Bunker Map A
 - Added Jianyu Email Printout A
 - Added new actor type (Igor)
-- Added new screw structures: Grind Trap, Spotlight, Clock, Spin Trap, Double Bed, Spear Thrower Trap, Spear Storage
+- Added new structures: Grind Trap, Spotlight, Clock, Spin Trap, Double Bed, Spear Thrower Trap, Spear Storage
 - Added new icons
 - Added new cave (Cave G)
 - Added POIs of new items

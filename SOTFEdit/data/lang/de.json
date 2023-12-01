@@ -172,7 +172,8 @@
       "52": "Eddy",
       "53": "Greg",
       "54": "Henry",
-      "55": "Igor"
+      "55": "Igor",
+      "56": "Elise"
     }
   },
   "armor": {
@@ -334,7 +335,8 @@
         "5": "Blaues T-Shirt",
         "6": "Blazer",
         "7": "Schwarze Lederjacke",
-        "8": "Raumanzug"
+        "8": "Raumanzug",
+        "9": "Priester-Outfit"
       },
       "10": {
         "-1": "Standard",
@@ -842,7 +844,13 @@
     "697": "Kult-Zeichen I",
     "698": "Kult-Zeichen J",
     "699": "Kult-Zeichen K",
-    "700": "Bauplan Speerhalter"
+    "700": "Bauplan Speerhalter",
+    "701": "Bauplan Bein-Lampe",
+    "702": "Feuerholz-Lager",
+    "703": "Priester-Outfit",
+    "704": "Bauplan Wand-Waffenhalter",
+    "705": "Zirkus-Flugblatt",
+    "706": "Zeitungsausschnitt [Ehemänner]"
   },
   "itemTypes": {
     "ammo": "Munition",
@@ -1205,6 +1213,7 @@
     "percentDone": "Fortschritt",
     "structureTypeSelectorDisclaimer": "Wenn nichts ausgewählt wird, werden alle Strukturen geändert",
     "types": {
+      "19": "Waffenhalter",
       "20": "Stuhl aus Stöckern",
       "21": "Falle des Knochenmachers",
       "22": "Bett aus Stöckern",
@@ -1262,7 +1271,10 @@
       "79": "Drehende Falle",
       "80": "Doppelbett",
       "81": "Speerwerfer-Falle",
-      "82": "Speerhalter"
+      "82": "Speerhalter",
+      "84": "Feuerholz-Lager",
+      "85": "Bein-Lampe",
+      "86": "Wand-Waffenhalter"
     }
   },
   "tabs": {
