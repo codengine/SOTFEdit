@@ -6,10 +6,13 @@ namespace SOTFEdit.View.Storage;
 public class ItemWrapper
 {
     private readonly int? _maxPerSlot;
+    private readonly bool _preferHolder;
 
-    public ItemWrapper(Item item, int? maxPerSlot, FoodSpoilStorageModuleWrapper? foodSpoilStorageModuleWrapper = null)
+    public ItemWrapper(Item item, int? maxPerSlot, bool? preferHolder = false,
+        FoodSpoilStorageModuleWrapper? foodSpoilStorageModuleWrapper = null)
     {
         _maxPerSlot = maxPerSlot;
+        _preferHolder = preferHolder ?? false;
         Item = item;
         FoodSpoilStorageModuleWrapper = foodSpoilStorageModuleWrapper;
     }
@@ -19,5 +22,15 @@ public class ItemWrapper
 
     public string Name => FoodSpoilStorageModuleWrapper?.Name ?? Item.Name;
 
-    public int Max => _maxPerSlot ?? Item.StorageMax?.Shelf ?? 1;
+    public int Max => _maxPerSlot ?? (MaxPerSlotFromItemDefinition() ?? 1);
+
+    private int? MaxPerSlotFromItemDefinition()
+    {
+        return _preferHolder ? MaxPerSlotPreferringHolder() : Item.StorageMax?.Shelf;
+    }
+
+    private int? MaxPerSlotPreferringHolder()
+    {
+        return Item.StorageMax?.Holder ?? Item.StorageMax?.Shelf;
+    }
 }

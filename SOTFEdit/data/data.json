@@ -301,7 +301,8 @@
       "type": "weapon",
       "storageMax": {
         "shelf": 5,
-        "inventory": 10
+        "inventory": 10,
+        "holder": 6
       },
       "image": "Grenade.png"
     },
@@ -353,7 +354,8 @@
       "type": "weapon",
       "storageMax": {
         "shelf": 6,
-        "inventory": 6
+        "inventory": 6,
+        "holder": 3
       },
       "image": "Molotov.png"
     },
@@ -3341,6 +3343,29 @@
         525,
         663
       ]
+    },
+    {
+      "id": 95,
+      "slots": 5,
+      "maxPerSlot": 10,
+      "restrictedItemIds": [
+        368,
+        373,
+        507,
+        618
+      ],
+      "type": "Items"
+    },
+    {
+      "id": 104,
+      "slots": 4,
+      "preferHolder": true,
+      "restrictedItemIds": [
+        381,
+        417,
+        388
+      ],
+      "type": "Items"
     }
   ],
   "advancedStorages": [
@@ -4212,6 +4237,42 @@
       "buildCost": 6,
       "category": "storage",
       "icon": "shelf.png"
+    },
+    {
+      "id": 91,
+      "buildCost": 29,
+      "category": "furniture",
+      "icon": "couch.png"
+    },
+    {
+      "id": 93,
+      "buildCost": 8,
+      "category": "trap",
+      "icon": "../items/TactitabTraps_tn.png"
+    },
+    {
+      "id": 94,
+      "buildCost": 3,
+      "category": "trap",
+      "icon": "../items/TactitabTraps_tn.png"
+    },
+    {
+      "id": 95,
+      "buildCost": 11,
+      "category": "storage",
+      "icon": "../items/CraftedArrow_tn.png"
+    },
+    {
+      "id": 97,
+      "buildCost": 21,
+      "category": "furniture",
+      "icon": "wooden-chair.png"
+    },
+    {
+      "id": 104,
+      "buildCost": 12,
+      "category": "storage",
+      "icon": "../items/Molotov_tn.png"
     }
   ],
   "areas": [

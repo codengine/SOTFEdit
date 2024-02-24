@@ -227,13 +227,13 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
         {
             target.AddRange(
                 from variant in foodSpoilModule.Variants
-                select new ItemWrapper(item, storageDefinition.MaxPerSlot,
+                select new ItemWrapper(item, storageDefinition.MaxPerSlot, storageDefinition.PreferHolder,
                     BuildFoodSpoilStorageModuleWrapper(foodSpoilModule, item.Id, variant))
             );
         }
         else
         {
-            target.Add(new ItemWrapper(item, storageDefinition.MaxPerSlot));
+            target.Add(new ItemWrapper(item, storageDefinition.MaxPerSlot, storageDefinition.PreferHolder));
         }
     }
 

@@ -32,7 +32,8 @@ public class ItemsStorage : BaseStorage
         }
         else
         {
-            baseQ = baseQ.Where(item => item is { IsInventoryItem: true, StorageMax.Shelf: > 0 });
+            baseQ = baseQ.Where(item =>
+                item is { IsInventoryItem: true } && (item.StorageMax?.Shelf > 0 || item.StorageMax?.Holder > 0));
         }
 
         foreach (var item in baseQ)

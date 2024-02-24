@@ -6,16 +6,19 @@ namespace SOTFEdit.Model.Storage;
 // ReSharper disable once ClassNeverInstantiated.Global
 public sealed class StorageDefinition : IStorageDefinition
 {
-    public StorageDefinition(int id, int slots, int? maxPerSlot = null,
+    public StorageDefinition(int id, int slots, int? maxPerSlot = null, bool? preferHolder = null,
         HashSet<int>? restrictedItemIds = null,
         StorageType type = StorageType.Items)
     {
         Id = id;
         Slots = slots;
         MaxPerSlot = maxPerSlot;
+        PreferHolder = preferHolder;
         RestrictedItemIds = restrictedItemIds;
         Type = type;
     }
+
+    public bool? PreferHolder { get; }
 
     public int Slots { get; }
     public int? MaxPerSlot { get; }

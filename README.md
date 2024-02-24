@@ -349,3 +349,4 @@ collect all data.
 - [Golf cart icons created by surang - Flaticon](https://www.flaticon.com/free-icons/golf-cart)
 - [Gun icons created by Nikita Golubev - Flaticon](https://www.flaticon.com/free-icons/gun)
 - [Furnace icons created by amonrat rungreangfangsai - Flaticon](https://www.flaticon.com/free-icons/furnace)
+- [Couch icons created by Stockio - Flaticon](https://www.flaticon.com/free-icons/couch)

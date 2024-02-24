@@ -1274,7 +1274,13 @@
       "82": "Spear Holder",
       "84": "Firewood Storage",
       "85": "Leg Lamp",
-      "86": "Wall Weapon Rack"
+      "86": "Wall Weapon Rack",
+      "91": "Couch",
+      "93": "Molotov Tripwire",
+      "94": "Explosive Tripwire",
+      "95": "Arrow Storage",
+      "97": "Chair",
+      "104": "Explosives Holder"
     }
   },
   "tabs": {
