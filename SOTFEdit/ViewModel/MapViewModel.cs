@@ -60,7 +60,7 @@ public partial class MapViewModel : ObservableObject
     static MapViewModel()
     {
         var converter = new BrushConverter();
-        DarkMapColorBrush = (SolidColorBrush)converter.ConvertFromString("#3d6bab")!;
+        DarkMapColorBrush = (SolidColorBrush)converter.ConvertFromString("#6186be")!;
         BrightMapColorBrush = (SolidColorBrush)converter.ConvertFromString("#9db4d4")!;
     }
 
