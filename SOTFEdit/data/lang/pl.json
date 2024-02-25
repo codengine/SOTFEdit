@@ -172,7 +172,11 @@
       "52": "Eddy",
       "53": "Greg",
       "54": "Henry",
-      "55": "Igor"
+      "55": "Igor",
+      "56": "Elise",
+      "57": "Szop Pracz",
+      "58": "Legsy",
+      "59": "Holey"
     }
   },
   "armor": {
@@ -334,7 +338,8 @@
         "5": "Niebieski TShirt",
         "6": "Garnitur",
         "7": "Czarna skórzana kurtka",
-        "8": "Skafander Kosmiczny"
+        "8": "Skafander Kosmiczny",
+        "9": "Strój Księdza"
       },
       "10": {
         "-1": "Bazowy",
@@ -359,11 +364,13 @@
       "animalSpawnRate": {
         "_label": "Ilość zwierząt"
       },
+      "buildingResistance": "Odporność Budynków",
       "coldPenalties": "Kary za Zimno",
       "consumableEffects": {
         "_label": "Efekty złego jedzenia",
         "_tooltip": "Ile obrażeń dostaniesz po zjedzeniu złego jedzenia"
       },
+      "creativeMode": "Tryb Kreatywny",
       "customSettings": "Specjane ustawienia",
       "dayLength": {
         "default": "Normalna",
@@ -384,13 +391,20 @@
       "enemyHealth": {
         "_label": "Zdrowie przeciwników"
       },
+      "enemySearchParties": {
+        "_label": "Ekipy poszukiwawcze przeciwników"
+      },
+      "forcePlaceFullLoad": "Natychmiastowe Budowanie",
       "header": "Ustawienia gry",
       "headers": {
         "enemiesCustom": "Przeciwnicy (Custom)",
+        "multiplayer": "Mulitplayer",
         "weatherCustom": "Pogoda (Custom)"
       },
+      "immortalMode": "God-Mode",
       "inventoryPause": "Pauzuj w ekwipunku",
       "mode": {
+        "creative": "Kreatywny",
         "custom": "Własny",
         "hard": "Trudny",
         "hardSurvival": "Trudny Survival",
@@ -398,14 +412,19 @@
         "peaceful": "Spokojny",
         "_label": "Tryb"
       },
+      "noCuttingsSpawn": "No Cuttings Spawn",
+      "oneHitToCutTrees": "1 trafienie do zniszczenia drzewa",
       "playerStatsDamage": {
         "_label": "Obrażenia od odwodnienia itp.",
         "_tooltip": "Ile obrażeń otrzymasz od odwodnienia itp."
       },
+      "playersTriggerTraps": "Gracze uruchamiają pułapki",
       "precipitationFrequency": {
         "_label": "Zmiany pogody",
         "_tooltip": "Jak szybko zmienia się pogoda"
       },
+      "pvpDamage": "Obrażenia PvP",
+      "reducedAmmoInContainers": "Mniej ammunicji w pojemnikach",
       "reducedFoodInContainers": "Zmniejszona ilość jedzenia w pojemnikach",
       "seasonLength": {
         "default": "Normalne",
@@ -420,7 +439,8 @@
         "high": "Często",
         "low": "Rzadko",
         "normal": "Średnia",
-        "off": "Off"
+        "off": "Off",
+        "reduced": "Zredukowane"
       },
       "singleUseContainers": "Pojemniki jednorazowego użytku",
       "spawnEnemies": "Przywołaj przeciwników",
@@ -715,7 +735,7 @@
     "569": "Kąsek mózgu",
     "570": "Kąsek stekowy",
     "571": "Kąsek ze steku i bekonu",
-    "572": "Złoty pancerz",
+    "572": "Starożytny Pancerz",
     "573": "Śpiwór",
     "574": "Powieść C",
     "575": "Powieść D",
@@ -842,7 +862,33 @@
     "697": "Znak kultu I",
     "698": "Znak kultu J",
     "699": "Znak kultu K",
-    "700": "Plan magazynu na włócznie"
+    "700": "Plan magazynu na włócznie",
+    "701": "Plan Nogo-Lampy",
+    "702": "Plan magazynu na drewno opałowe",
+    "703": "Strój Księdza",
+    "704": "Plan półki na broń",
+    "705": "Broszura Cyrkowa",
+    "706": "Wycinek Gazety (Mąż)",
+    "707": "Artefakt",
+    "708": "Część Arefaktu F",
+    "709": "Plan teleportera",
+    "710": "Plan Kapliczki Odpychania",
+    "711": "Plan Kapliczki Przyciągania",
+    "712": "Część Artefaktu G",
+    "713": "Plan Plater Counter",
+    "714": "Plan Pokrywacza Zbrój",
+    "715": "Głowa Szopa Pracza",
+    "716": "Papier z Bibli D",
+    "717": "Stara notatka G",
+    "718": "Personalna Notatka E",
+    "719": "Personalna Notatka F",
+    "720": "Personalna Notatka G",
+    "721": "Wycinek Bibli A",
+    "722": "Email Pufftona B",
+    "723": "Email Pufftona C",
+    "724": "Nasion Jagody Bliźniaczej",
+    "725": "Nasiono Śnieźnej Jagody",
+    "726": "Plan Wyrzutni Składanej Lotni"
   },
   "itemTypes": {
     "ammo": "Ammunicja",
@@ -1121,6 +1167,7 @@
     "mapGroupName": "Gracz",
     "maxHealth": "Maksymalne zdrowie",
     "outfit": "Strój",
+    "sickness": "Choroba",
     "strengthLevel": "Poziom siły"
   },
   "poiGroups": {
@@ -1205,6 +1252,7 @@
     "percentDone": "Dodano procent",
     "structureTypeSelectorDisclaimer": "Jeżeli nic nie będzie wybrane, wszystkie struktury zostaną zmienione!",
     "types": {
+      "19": "Stojak na Broń",
       "20": "Krzesło z Patyków",
       "21": "Pułapka Robiąca Kości",
       "22": "Łóżko z Patyków",
@@ -1262,7 +1310,27 @@
       "79": "Pułapka obrotowa",
       "80": "Podwójne łóżko",
       "81": "Pułapka rzucająca włóczniami",
-      "82": "Magazyn na włócznie"
+      "82": "Magazyn na włócznie",
+      "84": "Magazyn na Drewno Opałowe",
+      "85": "Nogo-Lampa",
+      "86": "Półka na Bronie",
+      "88": "Teleporter",
+      "89": "Kapliczka Odpychania",
+      "90": "Kapliczka Przyciągania",
+      "91": "Kanapa",
+      "92": "Pułapka Liściowa",
+      "93": "Pułapka z Mołotwem",
+      "94": "Eksplodująca pułapka",
+      "95": "Magazyn na strzały",
+      "96": "Magazyn na Kłody",
+      "97": "Futrzane Krzesło",
+      "98": "Mała Platforma",
+      "99": "Średnia Platforma",
+      "100": "Plater Counter",
+      "101": "Gold Armor Plater",
+      "102": "Wyrzutnia Składanych Lotni",
+      "103": "Wyrzutnia Składanych Lotni",
+      "104": "Magazyn na materiały wybuchowe"
     }
   },
   "tabs": {
@@ -1458,7 +1526,8 @@
   },
   "worldItemTypes": {
     "GolfCart": "Wózek golfowy",
-    "HangGlider": "Lotnia",
-    "KnightV": "Knight V"
+    "HangGlider": "Składana Lotnia",
+    "KnightV": "Knight V",
+    "Radio": "Radio"
   }
 }
