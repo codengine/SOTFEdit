@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
+using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
@@ -18,6 +19,8 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryPageViewModel : ObservableObject
 {
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
     private readonly HashSet<int> _blueprintItemIds = new()
     {
         665, //Item Plating
@@ -213,7 +216,17 @@ public partial class InventoryPageViewModel : ObservableObject
         if (saveData != null)
         {
             var inventoryItems = saveData.Data.PlayerInventory.ItemInstanceManagerData.ItemBlocks
-                .Select(itemBlock => new InventoryItem(itemBlock, _itemList.GetItem(itemBlock.ItemId)))
+                .Select(itemBlock =>
+                {
+                    var item = _itemList.GetItem(itemBlock.ItemId);
+                    if (item?.StorageMax?.Inventory is { } maxInInventory && maxInInventory < itemBlock.TotalCount)
+                    {
+                        Logger.Info(
+                            $"Defined max in inventory for {item.Id} is lower ({maxInInventory}) than in savedata ({itemBlock.TotalCount})");
+                    }
+
+                    return new InventoryItem(itemBlock, item);
+                })
                 .ToList();
             _inventory.ReplaceRange(inventoryItems);
 

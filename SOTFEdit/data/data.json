@@ -6,7 +6,10 @@
     {
       "id": 78,
       "type": "log",
-      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 2
+      },
       "image": "Log.png"
     },
     {
@@ -85,9 +88,7 @@
       "id": 357,
       "type": "weapon",
       "image": "Airgun.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 358,
@@ -163,10 +164,8 @@
     {
       "id": 366,
       "type": "weapon",
-      "storageMax": {
-        "inventory": 5
-      },
-      "image": "TrackerDart.png"
+      "image": "TrackerDart.png",
+      "isInventoryItem": false
     },
     {
       "id": 367,
@@ -182,7 +181,7 @@
       "type": "ammo",
       "storageMax": {
         "shelf": 20,
-        "inventory": 15
+        "inventory": 20
       },
       "image": "CrossbowAmmoBolt.png"
     },
@@ -230,7 +229,7 @@
       "type": "ammo",
       "storageMax": {
         "shelf": 20,
-        "inventory": 25
+        "inventory": 20
       },
       "image": "TacticalBowAmmo.png"
     },
@@ -265,9 +264,7 @@
       "id": 377,
       "type": "weaponMod",
       "image": "ScopeMod.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 378,
@@ -301,7 +298,7 @@
       "type": "weapon",
       "storageMax": {
         "shelf": 5,
-        "inventory": 10,
+        "inventory": 5,
         "holder": 6
       },
       "image": "Grenade.png"
@@ -325,10 +322,6 @@
       "id": 384,
       "type": "weapon",
       "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      },
       "image": "CrossbowQuiver.png"
     },
     {
@@ -468,7 +461,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 8,
-        "inventory": 10
+        "inventory": 4
       },
       "image": "TurtleEgg.png"
     },
@@ -519,7 +512,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 10,
-        "inventory": 50
+        "inventory": 10
       },
       "image": "WristWatch.png"
     },
@@ -564,7 +557,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 6,
-        "inventory": 10
+        "inventory": 6
       },
       "image": "CircuitBoard.png"
     },
@@ -600,7 +593,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 3,
-        "inventory": 10
+        "inventory": 3
       },
       "image": "C4Brick.png"
     },
@@ -609,7 +602,7 @@
       "type": "food",
       "storageMax": {
         "shelf": 4,
-        "inventory": 10
+        "inventory": 4
       },
       "image": "RamenNoodles.png"
     },
@@ -662,9 +655,7 @@
       "id": 427,
       "type": "printed",
       "image": "3DPrintedKnife.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 428,
@@ -679,9 +670,7 @@
       "id": 429,
       "type": "printed",
       "image": "3DPrintedScubaMask.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 430,
@@ -951,10 +940,6 @@
       "id": 458,
       "type": "electricity",
       "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      },
       "image": "BatteryCharger.png"
     },
     {
@@ -969,10 +954,7 @@
     {
       "id": 460,
       "type": "electricity",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 10
-      }
+      "isInventoryItem": false
     },
     {
       "id": 461,
@@ -996,16 +978,14 @@
       "id": 463,
       "type": "clothes",
       "image": "Flippers.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 464,
       "type": "food",
       "storageMax": {
         "shelf": 0,
-        "inventory": 5
+        "inventory": 1
       },
       "image": "CatFood.png"
     },
@@ -1058,9 +1038,7 @@
       "id": 470,
       "type": "weaponMod",
       "image": "AirgunScope.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 471,
@@ -1076,7 +1054,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 3,
-        "inventory": 10
+        "inventory": 5
       },
       "image": "DeerHide.png"
     },
@@ -1107,10 +1085,7 @@
     {
       "id": 475,
       "type": "equipment",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 476,
@@ -1134,10 +1109,6 @@
       "id": 478,
       "type": "weapon",
       "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      },
       "image": "ClimbingAxe.png"
     },
     {
@@ -1251,9 +1222,7 @@
       "id": 488,
       "type": "clothes",
       "image": "Clothing.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 489,
@@ -1336,18 +1305,13 @@
     {
       "id": 497,
       "type": "food",
-      "storageMax": {
-        "inventory": 1
-      },
+      "isInventoryItem": false,
       "image": "FoodTray.png"
     },
     {
       "id": 498,
       "type": "equipment",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 499,
@@ -1407,9 +1371,7 @@
       "id": 505,
       "type": "equipment",
       "image": "LaserMeasureTool.png",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 506,
@@ -1450,54 +1412,35 @@
     {
       "id": 511,
       "type": "misc",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 512,
       "type": "food",
-      "storageMax": {
-        "inventory": 1
-      },
+      "isInventoryItem": false,
       "image": "FoodTrayFilled.png"
     },
     {
       "id": 513,
       "type": "misc",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 514,
       "type": "misc",
       "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      },
       "image": "SpringTrigger.png"
     },
     {
       "id": 515,
       "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      },
+      "isInventoryItem": false,
       "image": "Paper.png"
     },
     {
       "id": 516,
       "type": "document",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      },
+      "isInventoryItem": false,
       "image": "Paper.png"
     },
     {
@@ -1560,7 +1503,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 4,
-        "inventory": 10
+        "inventory": 4
       },
       "image": "ZiplineRope.png"
     },
@@ -1569,7 +1512,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 20,
-        "inventory": 20
+        "inventory": 8
       },
       "image": "GolfBall.png"
     },
@@ -1881,26 +1824,21 @@
     {
       "id": 559,
       "type": "printed",
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 20
-      }
+      "isInventoryItem": false
     },
     {
       "id": 560,
       "type": "printed",
       "storageMax": {
         "shelf": 10,
-        "inventory": 10
+        "inventory": 2
       },
       "image": "ZiplineHook.png"
     },
     {
       "id": 561,
       "type": "printed",
-      "storageMax": {
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 562,
@@ -1970,7 +1908,7 @@
       "type": "food",
       "storageMax": {
         "shelf": 10,
-        "inventory": 10
+        "inventory": 1
       },
       "image": "MeatBite.png"
     },
@@ -1979,7 +1917,7 @@
       "type": "food",
       "storageMax": {
         "shelf": 10,
-        "inventory": 10
+        "inventory": 1
       },
       "image": "MeatBite.png"
     },
@@ -1988,7 +1926,7 @@
       "type": "food",
       "storageMax": {
         "shelf": 10,
-        "inventory": 10
+        "inventory": 1
       },
       "image": "MeatBite.png"
     },
@@ -2006,10 +1944,6 @@
       "id": 573,
       "type": "misc",
       "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      },
       "image": "SleepingBag.png"
     },
     {
@@ -2080,11 +2014,7 @@
     {
       "id": 583,
       "type": "container",
-      "isInventoryItem": false,
-      "storageMax": {
-        "shelf": 0,
-        "inventory": 1
-      }
+      "isInventoryItem": false
     },
     {
       "id": 584,
@@ -2492,7 +2422,10 @@
     {
       "id": 630,
       "type": "misc",
-      "isInventoryItem": false
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     },
     {
       "id": 631,
@@ -2575,7 +2508,10 @@
     {
       "id": 640,
       "type": "misc",
-      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
       "image": "stone-block.png"
     },
     {
@@ -2723,7 +2659,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 0,
-        "inventory": 10
+        "inventory": 5
       },
       "image": "Sat.png"
     },
@@ -2775,7 +2711,7 @@
       "type": "misc",
       "storageMax": {
         "shelf": 6,
-        "inventory": 12
+        "inventory": 20
       },
       "image": "Solafite.png"
     },
