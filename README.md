@@ -354,3 +354,4 @@ collect all data.
 - [Dangerous icons created by Smashicons - Flaticon](https://www.flaticon.com/free-icons/dangerous)
 - [Teleportation icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/teleportation)
 - [Wood icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/wood)
+- [Radio icons created by Eucalyp - Flaticon](https://www.flaticon.com/free-icons/radio)

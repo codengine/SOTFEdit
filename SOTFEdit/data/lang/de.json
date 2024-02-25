@@ -1518,6 +1518,7 @@
   "worldItemTypes": {
     "GolfCart": "Golfwagen",
     "HangGlider": "Hängegleiter",
-    "KnightV": "Knight V"
+    "KnightV": "Knight V",
+    "Radio": "Radio"
   }
 }

@@ -1518,6 +1518,7 @@
   "worldItemTypes": {
     "GolfCart": "Golf Cart",
     "HangGlider": "Hang Glider",
-    "KnightV": "Knight V"
+    "KnightV": "Knight V",
+    "Radio": "Radio"
   }
 }

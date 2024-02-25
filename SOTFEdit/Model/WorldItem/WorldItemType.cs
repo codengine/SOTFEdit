@@ -5,5 +5,6 @@ public enum WorldItemType
     HangGlider,
     KnightV,
     GolfCart,
+    Radio,
     Unknown
 }

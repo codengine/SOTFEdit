@@ -34,6 +34,8 @@
                               Content="{infrastructure:Translate 'worldItemTypes.HangGlider' }" />
                 <ComboBoxItem Tag="{x:Static local:WorldItemType.KnightV}"
                               Content="{infrastructure:Translate 'worldItemTypes.KnightV' }" />
+                <ComboBoxItem Tag="{x:Static local:WorldItemType.Radio}"
+                              Content="{infrastructure:Translate 'worldItemTypes.Radio' }" />
             </ComboBox.Items>
         </ComboBox>
         <Button Command="{Binding RemoveAllOfThisTypeCommand}"

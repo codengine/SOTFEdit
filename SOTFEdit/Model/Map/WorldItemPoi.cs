@@ -25,6 +25,7 @@ public class WorldItemPoi : BasePoi
             WorldItemType.HangGlider => "/images/worldobjects/hang-gliding.png".LoadAppLocalImage(width, height),
             WorldItemType.KnightV => "/images/worldobjects/monowheel.png".LoadAppLocalImage(width, height),
             WorldItemType.GolfCart => "/images/worldobjects/golf-cart.png".LoadAppLocalImage(width, height),
+            WorldItemType.Radio => "/images/worldobjects/radio.png".LoadAppLocalImage(width, height),
             _ => DefaultIcon
         };
     }

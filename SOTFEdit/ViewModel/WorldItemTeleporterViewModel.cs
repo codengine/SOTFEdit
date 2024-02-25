@@ -19,7 +19,8 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
     private static readonly Dictionary<int, WorldItemType> ItemIdsToWorldItemTypes = new()
     {
         { 626, WorldItemType.HangGlider },
-        { 630, WorldItemType.KnightV }
+        { 630, WorldItemType.KnightV },
+        { 590, WorldItemType.Radio }
     };
 
     private static readonly Dictionary<string, WorldItemType> ObjectNameIdToItemTypes = new()
@@ -212,12 +213,12 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
 
     private static JObject? CreateClone(WorldItemType? selectedWorldItemType)
     {
-        if (!CanClone(selectedWorldItemType))
+        if (selectedWorldItemType is not { } worldItemType || !CanClone(worldItemType))
         {
             return null;
         }
 
-        var itemId = ItemIdsToWorldItemTypes.Where(kvp => kvp.Value == selectedWorldItemType)
+        var itemId = ItemIdsToWorldItemTypes.Where(kvp => kvp.Value == worldItemType)
             .Select(kvp => kvp.Key)
             .FirstOrDefault(-1);
 
@@ -230,7 +231,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
 
         return new JObject
         {
-            { "ObjectNameId", Guid.NewGuid().ToString() },
+            { "ObjectNameId", GetObjectNameId(worldItemType) },
             { "ItemId", itemId },
             { "Position", JToken.FromObject(playerPos) },
             {
@@ -242,6 +243,15 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 }
             },
             { "RuntimeCreated", true }
+        };
+    }
+
+    private static string GetObjectNameId(WorldItemType worldItemType)
+    {
+        return worldItemType switch
+        {
+            WorldItemType.Radio => "",
+            _ => Guid.NewGuid().ToString()
         };
     }
 
@@ -261,6 +271,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         {
             WorldItemType.HangGlider => true,
             WorldItemType.KnightV => true,
+            WorldItemType.Radio => true,
             _ => false
         };
     }
