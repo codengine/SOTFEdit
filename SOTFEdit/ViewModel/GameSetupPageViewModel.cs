@@ -18,15 +18,23 @@ public class GameSetupPageViewModel : ObservableObject
     public const string HardGameMode = "Hard";
     public const string HardSurvivalGameMode = "HardSurvival";
     public const string SettingValueHigh = "High";
+    public const string SettingValueDefault = "Default";
 
     // ReSharper disable once InconsistentNaming
     public const string SettingValueLOW = "LOW";
 
     // ReSharper disable once InconsistentNaming
     public const string SettingValueNORMAL = "NORMAL";
+    public const string SettingValueNormal = "Normal";
+    public const string SettingValueOff = "Off";
     public const string SettingValueHard = "Hard";
     private const string NameKey = "Name";
     private const string SettingTypeKey = "SettingType";
+
+    private readonly Dictionary<string, bool> _boolSettingDefaults = new()
+    {
+        { GameSetupKeys.InventoryPause, true }
+    };
 
 
     private readonly Dictionary<string, bool?> _boolSettings = new();
@@ -54,8 +62,12 @@ public class GameSetupPageViewModel : ObservableObject
         { GameSetupKeys.EnemySpawn, SettingTypeBool },
         { GameSetupKeys.InventoryPause, SettingTypeBool },
         { GameSetupKeys.ReducedFoodInContainers, SettingTypeBool },
+        { GameSetupKeys.ReducedAmmoInContainers, SettingTypeBool },
         { GameSetupKeys.SingleUseContainers, SettingTypeBool },
-        { GameSetupKeys.ColdPenalties, SettingTypeString }
+        { GameSetupKeys.ColdPenalties, SettingTypeString },
+        { GameSetupKeys.EnemySearchParties, SettingTypeString },
+        { GameSetupKeys.PlayersTriggerTraps, SettingTypeBool },
+        { GameSetupKeys.BuildingResistance, SettingTypeString }
     };
 
     private readonly Dictionary<string, string> _stringSettings = new();
@@ -79,31 +91,37 @@ public class GameSetupPageViewModel : ObservableObject
 
     public string? SelectedEnemyHealth
     {
-        get => GetStringSetting(GameSetupKeys.EnemyHealth) ?? "NORMAL";
+        get => GetStringSetting(GameSetupKeys.EnemyHealth) ?? SettingValueNORMAL;
         set => SetStringSetting(GameSetupKeys.EnemyHealth, value);
     }
 
     public string? SelectedEnemyDamage
     {
-        get => GetStringSetting(GameSetupKeys.EnemyDamage) ?? "NORMAL";
+        get => GetStringSetting(GameSetupKeys.EnemyDamage) ?? SettingValueNORMAL;
         set => SetStringSetting(GameSetupKeys.EnemyDamage, value);
     }
 
     public string? SelectedEnemyArmour
     {
-        get => GetStringSetting(GameSetupKeys.EnemyArmour) ?? "NORMAL";
+        get => GetStringSetting(GameSetupKeys.EnemyArmour) ?? SettingValueNORMAL;
         set => SetStringSetting(GameSetupKeys.EnemyArmour, value);
     }
 
     public string? SelectedEnemyAggression
     {
-        get => GetStringSetting(GameSetupKeys.EnemyAggression) ?? "NORMAL";
+        get => GetStringSetting(GameSetupKeys.EnemyAggression) ?? SettingValueNORMAL;
         set => SetStringSetting(GameSetupKeys.EnemyAggression, value);
+    }
+
+    public string? SelectedEnemySearchParties
+    {
+        get => GetStringSetting(GameSetupKeys.EnemySearchParties) ?? SettingValueNORMAL;
+        set => SetStringSetting(GameSetupKeys.EnemySearchParties, value);
     }
 
     public string? SelectedAnimalSpawnRate
     {
-        get => GetStringSetting(GameSetupKeys.AnimalSpawnRate) ?? "NORMAL";
+        get => GetStringSetting(GameSetupKeys.AnimalSpawnRate) ?? SettingValueNORMAL;
         set => SetStringSetting(GameSetupKeys.AnimalSpawnRate, value);
     }
 
@@ -115,13 +133,13 @@ public class GameSetupPageViewModel : ObservableObject
 
     public string? SelectedSeasonLength
     {
-        get => GetStringSetting(GameSetupKeys.SeasonLength) ?? "Default";
+        get => GetStringSetting(GameSetupKeys.SeasonLength) ?? SettingValueDefault;
         set => SetStringSetting(GameSetupKeys.SeasonLength, value);
     }
 
     public string? SelectedDayLength
     {
-        get => GetStringSetting(GameSetupKeys.DayLength) ?? "Default";
+        get => GetStringSetting(GameSetupKeys.DayLength) ?? SettingValueDefault;
         set => SetStringSetting(GameSetupKeys.DayLength, value);
     }
 
@@ -145,7 +163,7 @@ public class GameSetupPageViewModel : ObservableObject
         {
             if (GetBoolSetting(GameSetupKeys.InventoryPause, out var boolValue))
             {
-                return boolValue ?? false;
+                return boolValue ?? true;
             }
 
             return true;
@@ -155,26 +173,32 @@ public class GameSetupPageViewModel : ObservableObject
 
     public string? SelectedConsumableEffects
     {
-        get => GetStringSetting(GameSetupKeys.ConsumableEffects) ?? "Normal";
+        get => GetStringSetting(GameSetupKeys.ConsumableEffects) ?? SettingValueNormal;
         set => SetStringSetting(GameSetupKeys.ConsumableEffects, value);
     }
 
     public string? SelectedPlayerStatsDamage
     {
-        get => GetStringSetting(GameSetupKeys.PlayerStatsDamage) ?? "Off";
+        get => GetStringSetting(GameSetupKeys.PlayerStatsDamage) ?? SettingValueOff;
         set => SetStringSetting(GameSetupKeys.PlayerStatsDamage, value);
     }
 
     public string? SelectedPrecipitationFrequency
     {
-        get => GetStringSetting(GameSetupKeys.PrecipitationFrequency) ?? "Default";
+        get => GetStringSetting(GameSetupKeys.PrecipitationFrequency) ?? SettingValueDefault;
         set => SetStringSetting(GameSetupKeys.PrecipitationFrequency, value);
     }
 
     public string? SelectedColdPenalties
     {
-        get => GetStringSetting(GameSetupKeys.ColdPenalties) ?? "Normal";
+        get => GetStringSetting(GameSetupKeys.ColdPenalties) ?? SettingValueNormal;
         set => SetStringSetting(GameSetupKeys.ColdPenalties, value);
+    }
+
+    public string? SelectedBuildingResistance
+    {
+        get => GetStringSetting(GameSetupKeys.BuildingResistance) ?? SettingValueNORMAL;
+        set => SetStringSetting(GameSetupKeys.BuildingResistance, value);
     }
 
     public bool SelectedReducedFoodInContainers
@@ -191,6 +215,20 @@ public class GameSetupPageViewModel : ObservableObject
         set => SetBoolSetting(GameSetupKeys.ReducedFoodInContainers, value);
     }
 
+    public bool SelectedReducedAmmoInContainers
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.ReducedAmmoInContainers, out var boolValue))
+            {
+                return boolValue ?? true;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.ReducedAmmoInContainers, value);
+    }
+
     public bool SelectedSingleUseContainers
     {
         get
@@ -203,6 +241,20 @@ public class GameSetupPageViewModel : ObservableObject
             return false;
         }
         set => SetBoolSetting(GameSetupKeys.SingleUseContainers, value);
+    }
+
+    public bool SelectedPlayersTriggerTraps
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.PlayersTriggerTraps, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.PlayersTriggerTraps, value);
     }
 
     private void SetStringSetting(string key, string? value)
@@ -265,6 +317,7 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedEnemyDamage));
         OnPropertyChanged(nameof(SelectedEnemyArmour));
         OnPropertyChanged(nameof(SelectedEnemyAggression));
+        OnPropertyChanged(nameof(SelectedEnemySearchParties));
         OnPropertyChanged(nameof(SelectedAnimalSpawnRate));
         OnPropertyChanged(nameof(SelectedStartingSeason));
         OnPropertyChanged(nameof(SelectedSeasonLength));
@@ -276,7 +329,10 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedInventoryPause));
         OnPropertyChanged(nameof(SelectedColdPenalties));
         OnPropertyChanged(nameof(SelectedReducedFoodInContainers));
+        OnPropertyChanged(nameof(SelectedReducedAmmoInContainers));
         OnPropertyChanged(nameof(SelectedSingleUseContainers));
+        OnPropertyChanged(nameof(SelectedPlayersTriggerTraps));
+        OnPropertyChanged(nameof(SelectedBuildingResistance));
     }
 
     private void LoadSettings(Savegame? savegame)
@@ -317,7 +373,7 @@ public class GameSetupPageViewModel : ObservableObject
                     break;
                 case SettingTypeBool:
                     var boolValue = SettingReader.ReadBool(setting);
-                    _boolSettings[name] = boolValue ?? false;
+                    _boolSettings[name] = boolValue ?? _boolSettingDefaults.GetValueOrDefault(name, false);
 
                     break;
             }
@@ -384,7 +440,8 @@ public class GameSetupPageViewModel : ObservableObject
                 _boolSettings[GameSetupKeys.EnemySpawn] = true;
                 _boolSettings[GameSetupKeys.ReducedFoodInContainers] = true;
                 _boolSettings[GameSetupKeys.SingleUseContainers] = true;
-                _boolSettings[GameSetupKeys.InventoryPause] = true;
+                _boolSettings[GameSetupKeys.InventoryPause] = false;
+                _boolSettings[GameSetupKeys.PlayersTriggerTraps] = true;
                 _stringSettings[GameSetupKeys.EnemyAggression] = SettingValueHigh;
                 _stringSettings[GameSetupKeys.EnemyArmour] = SettingValueHigh;
                 _stringSettings[GameSetupKeys.EnemyDamage] = SettingValueHigh;

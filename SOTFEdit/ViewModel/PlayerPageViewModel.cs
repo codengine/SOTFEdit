@@ -161,6 +161,7 @@ public partial class PlayerPageViewModel : ObservableObject
         PlayerState.HydrationBuff = 65535;
         PlayerState.RestBuff = 1;
         PlayerState.FullnessBuff = 65535;
+        PlayerState.Sickness = 0;
     }
 
     private void LoadPlayerData(Savegame savegame)
@@ -224,6 +225,9 @@ public partial class PlayerPageViewModel : ObservableObject
                     break;
                 case "Stamina":
                     PlayerState.Stamina = SettingReader.ReadFloat(entry) ?? 0f;
+                    break;
+                case "Sickness":
+                    PlayerState.Sickness = SettingReader.ReadFloat(entry) ?? 0f;
                     break;
             }
         }
@@ -334,6 +338,9 @@ public partial class PlayerPageViewModel : ObservableObject
                 case "CurrentHealth":
                     hasChanges = SettingWriter.WriteFloat(entry, PlayerState.CurrentHealth) || hasChanges;
                     break;
+                case "TargetHealth":
+                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.CurrentHealth) || hasChanges;
+                    break;
                 case "Hydration":
                     hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Hydration) || hasChanges;
                     break;
@@ -354,6 +361,17 @@ public partial class PlayerPageViewModel : ObservableObject
                     break;
                 case "Stamina":
                     hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Stamina) || hasChanges;
+                    break;
+                case "Sickness":
+                    if (PlayerState.Sickness == 0)
+                    {
+                        hasChanges = SettingWriter.RemoveFloat(entry) || hasChanges;
+                    }
+                    else
+                    {
+                        hasChanges = SettingWriter.WriteFloat(entry, PlayerState.Sickness) || hasChanges;
+                    }
+
                     break;
             }
         }

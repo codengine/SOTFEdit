@@ -350,3 +350,7 @@ collect all data.
 - [Gun icons created by Nikita Golubev - Flaticon](https://www.flaticon.com/free-icons/gun)
 - [Furnace icons created by amonrat rungreangfangsai - Flaticon](https://www.flaticon.com/free-icons/furnace)
 - [Couch icons created by Stockio - Flaticon](https://www.flaticon.com/free-icons/couch)
+- [Raccoon icons created by Icongeek26 - Flaticon](https://www.flaticon.com/free-icons/raccoon)
+- [Dangerous icons created by Smashicons - Flaticon](https://www.flaticon.com/free-icons/dangerous)
+- [Teleportation icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/teleportation)
+- [Wood icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/wood)

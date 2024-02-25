@@ -33,6 +33,7 @@ public static class Constants
         public const string EnemyDamage = "GameSetting.Vail.EnemyDamage";
         public const string EnemyArmour = "GameSetting.Vail.EnemyArmour";
         public const string EnemyAggression = "GameSetting.Vail.EnemyAggression";
+        public const string EnemySearchParties = "GameSetting.Vail.EnemySearchParties";
         public const string AnimalSpawnRate = "GameSetting.Vail.AnimalSpawnRate";
         public const string StartingSeason = "GameSetting.Environment.StartingSeason";
         public const string SeasonLength = "GameSetting.Environment.SeasonLength";
@@ -40,10 +41,13 @@ public static class Constants
         public const string PrecipitationFrequency = "GameSetting.Environment.PrecipitationFrequency";
         public const string ConsumableEffects = "GameSetting.Survival.ConsumableEffects";
         public const string PlayerStatsDamage = "GameSetting.Survival.PlayerStatsDamage";
+        public const string PlayersTriggerTraps = "GameSetting.Survival.PlayersTriggerTraps";
+        public const string BuildingResistance = "GameSetting.Survival.BuildingResistance";
         public const string EnemySpawn = "GameSetting.Vail.EnemySpawn";
         public const string InventoryPause = "GameSetting.Vail.InventoryPause";
         public const string ColdPenalties = "GameSetting.Survival.ColdPenalties";
         public const string ReducedFoodInContainers = "GameSetting.Survival.ReducedFoodInContainers";
+        public const string ReducedAmmoInContainers = "GameSetting.Survival.ReducedAmmoInContainers";
         public const string SingleUseContainers = "GameSetting.Survival.SingleUseContainers";
     }
 

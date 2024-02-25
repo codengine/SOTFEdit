@@ -361,6 +361,7 @@
       "animalSpawnRate": {
         "_label": "Tier-Spawngeschwindigkeit"
       },
+      "buildingResistance": "Gebäude-Langlebigkeit",
       "coldPenalties": "Kälte-Nachteile",
       "consumableEffects": {
         "_label": "Verderb-Effekte",
@@ -386,6 +387,9 @@
       "enemyHealth": {
         "_label": "Feind-Gesundheit"
       },
+      "enemySearchParties": {
+        "_label": "Feind-Suchtrupps"
+      },
       "header": "Spiel-Setup",
       "headers": {
         "enemiesCustom": "Feinde (benutzerdefiniert)",
@@ -404,10 +408,12 @@
         "_label": "Spielerstatus-Schaden",
         "_tooltip": "Wie viel Schaden du durch Hunger und so weiter nimmst."
       },
+      "playersTriggerTraps": "Spieler lösen Fallen aus",
       "precipitationFrequency": {
         "_label": "Niederschlagsfrequenz",
         "_tooltip": "Wie oft ändert sich das Wetter"
       },
+      "reducedAmmoInContainers": "Weniger Munition in Containern",
       "reducedFoodInContainers": "Weniger Essen in Containern",
       "seasonLength": {
         "default": "Standard",
@@ -771,7 +777,7 @@
     "623": "Bauplan Wandregal",
     "624": "Bauplan Wandfackel",
     "625": "Bauplan Schädel-Lampe",
-    "626": "Hängegleiter",
+    "626": "Faltbarer Gleiter",
     "627": "Tischkarte von Mr. Puffton",
     "628": "Tischkarte von Mrs. Puffton",
     "629": "Wassersammler",
@@ -850,7 +856,27 @@
     "703": "Priester-Outfit",
     "704": "Bauplan Wand-Waffenhalter",
     "705": "Zirkus-Flugblatt",
-    "706": "Zeitungsausschnitt [Ehemänner]"
+    "706": "Zeitungsausschnitt [Ehemänner]",
+    "707": "Artefakt",
+    "708": "Artefakt Teil F",
+    "709": "Bauplan Teleporter",
+    "710": "Bauplan Abwehr-Schrein",
+    "711": "Bauplan Anziehungs-Schrein",
+    "712": "Artefakt Teil G",
+    "713": "Bauplan Plater Counter",
+    "714": "Bauplan Armor Plater",
+    "715": "Waschbär-Kopf",
+    "716": "Biebel-Ausschnitt D",
+    "717": "Alte Notiz G",
+    "718": "Persönliche Notiz E",
+    "719": "Persönliche Notiz F",
+    "720": "Persönliche Notiz G",
+    "721": "Bibel-Papierschnipsel A",
+    "722": "Puffton Email B",
+    "723": "Puffton Email C",
+    "724": "Heckenkirsche-Samen",
+    "725": "Schneebeeren-Samen",
+    "726": "Hängegleiter-Startvorrichtung Blaupause"
   },
   "itemTypes": {
     "ammo": "Munition",
@@ -1129,6 +1155,7 @@
     "mapGroupName": "Spieler",
     "maxHealth": "Maximale Gesundheit",
     "outfit": "Outfit",
+    "sickness": "Krankheit",
     "strengthLevel": "Stärke-Level"
   },
   "poiGroups": {
@@ -1274,7 +1301,24 @@
       "82": "Speerhalter",
       "84": "Feuerholz-Lager",
       "85": "Bein-Lampe",
-      "86": "Wand-Waffenhalter"
+      "86": "Wand-Waffenhalter",
+      "88": "Teleporter",
+      "89": "Abwehr-Schrein",
+      "90": "Anziehungs-Schrein",
+      "91": "Sofa",
+      "92": "Blätter-Falle",
+      "93": "Molotov-Stolperdraht-Falle",
+      "94": "Explosiv-Stolperdraht-Falle",
+      "95": "Pfeil-Lager",
+      "96": "Baumstamm-Halter",
+      "97": "Fell-Stuhl",
+      "98": "Kleine Plattform",
+      "99": "Mittlere Plattform",
+      "100": "Plater Counter",
+      "101": "Goldrüstungs-Beschichter",
+      "102": "Hängegleiter-Plattform",
+      "103": "Hängegleiter-Plattform",
+      "104": "Explosiv-Lager"
     }
   },
   "tabs": {

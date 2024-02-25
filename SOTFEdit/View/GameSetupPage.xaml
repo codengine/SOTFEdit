@@ -73,6 +73,9 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0"
                        Content="{infrastructure:Translate 'game.setup.consumableEffects._label'}"
@@ -132,14 +135,35 @@
                 </ComboBox>
 
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="4"
-                       Content="{infrastructure:Translate 'game.setup.inventoryPause'}" />
-                <CheckBox IsChecked="{Binding SelectedInventoryPause}" Grid.Row="4" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.buildingResistance'}" />
+                <ComboBox Grid.Column="1" Grid.Row="4"
+                          SelectedValue="{Binding SelectedBuildingResistance, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValuePath="Tag">
+                    <ComboBoxItem />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueLOW}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.high'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
+                </ComboBox>
+
+
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="5"
-                       Content="{infrastructure:Translate 'game.setup.reducedFoodInContainers'}" />
-                <CheckBox IsChecked="{Binding SelectedReducedFoodInContainers}" Grid.Row="5" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.inventoryPause'}" />
+                <CheckBox IsChecked="{Binding SelectedInventoryPause}" Grid.Row="5" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="6"
+                       Content="{infrastructure:Translate 'game.setup.reducedFoodInContainers'}" />
+                <CheckBox IsChecked="{Binding SelectedReducedFoodInContainers}" Grid.Row="6" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="7"
+                       Content="{infrastructure:Translate 'game.setup.reducedAmmoInContainers'}" />
+                <CheckBox IsChecked="{Binding SelectedReducedAmmoInContainers}" Grid.Row="7" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="8"
                        Content="{infrastructure:Translate 'game.setup.singleUseContainers'}" />
-                <CheckBox IsChecked="{Binding SelectedSingleUseContainers}" Grid.Row="6" Grid.Column="1" />
+                <CheckBox IsChecked="{Binding SelectedSingleUseContainers}" Grid.Row="8" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="9"
+                       Content="{infrastructure:Translate 'game.setup.playersTriggerTraps'}" />
+                <CheckBox IsChecked="{Binding SelectedPlayersTriggerTraps}" Grid.Row="9" Grid.Column="1" />
             </Grid>
         </GroupBox>
         <GroupBox Margin="0 0 0 10" Header="{infrastructure:Translate 'game.setup.headers.enemiesCustom'}" Grid.Row="2"
@@ -151,6 +175,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
@@ -204,6 +229,19 @@
                        Content="{infrastructure:Translate 'game.setup.enemyAggression._label'}" />
                 <ComboBox Grid.Column="1" Grid.Row="4"
                           SelectedValue="{Binding SelectedEnemyAggression, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValuePath="Tag">
+                    <ComboBoxItem />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueLOW}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNORMAL}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.high'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
+                </ComboBox>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="5"
+                       Content="{infrastructure:Translate 'game.setup.enemySearchParties._label'}" />
+                <ComboBox Grid.Column="1" Grid.Row="5"
+                          SelectedValue="{Binding SelectedEnemySearchParties, UpdateSourceTrigger=PropertyChanged}"
                           SelectedValuePath="Tag">
                     <ComboBoxItem />
                     <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.low'}"

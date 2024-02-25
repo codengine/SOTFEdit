@@ -361,6 +361,7 @@
       "animalSpawnRate": {
         "_label": "Animal Spawn Rate"
       },
+      "buildingResistance": "Building Resistance",
       "coldPenalties": "Cold Penalties",
       "consumableEffects": {
         "_label": "Consumable Effects",
@@ -386,6 +387,9 @@
       "enemyHealth": {
         "_label": "Enemy Health"
       },
+      "enemySearchParties": {
+        "_label": "Enemy Search Parties"
+      },
       "header": "Game Setup",
       "headers": {
         "enemiesCustom": "Enemies (Custom)",
@@ -404,10 +408,12 @@
         "_label": "Player Stats Damage",
         "_tooltip": "How much damage you take from starvation and etc."
       },
+      "playersTriggerTraps": "Players Trigger Traps",
       "precipitationFrequency": {
         "_label": "Precipitation Frequency",
         "_tooltip": "How often does the weather change"
       },
+      "reducedAmmoInContainers": "Reduced Ammo in Containers",
       "reducedFoodInContainers": "Reduced Food in Containers",
       "seasonLength": {
         "default": "Default",
@@ -771,7 +777,7 @@
     "623": "Wall Shelf Blueprint",
     "624": "Wall Torch Blueprint",
     "625": "Hanging Skull Light Blueprint",
-    "626": "Hang Glider",
+    "626": "Foldable Glider",
     "627": "Mr. Puffton's Reservation Card",
     "628": "Mrs. Puffton's Reservation Card",
     "629": "Rain Catcher Blueprint",
@@ -850,7 +856,27 @@
     "703": "Priest Outfit",
     "704": "Wall Weapon Rack Blueprint",
     "705": "Circus Pamphlet",
-    "706": "Newspaper Cutout [Husbands]"
+    "706": "Newspaper Cutout [Husbands]",
+    "707": "Artifact",
+    "708": "Artifact Piece F",
+    "709": "Teleporter Blueprint",
+    "710": "Repel Shrine Blueprint",
+    "711": "Attract Shrine Blueprint",
+    "712": "Artifact Piece G",
+    "713": "Plater Counter Blueprint",
+    "714": "Gold Armor Plater Blueprint",
+    "715": "Raccoon Head",
+    "716": "Bible Paper D",
+    "717": "Old Note G",
+    "718": "Personal Note E",
+    "719": "Personal Note F",
+    "720": "Personal Note G",
+    "721": "Bible Paper Scrap A",
+    "722": "Puffton Email B",
+    "723": "Puffton Email C",
+    "724": "Twinberry Seed",
+    "725": "Snowberry Seed",
+    "726": "Hang Glider Launcher Blueprint"
   },
   "itemTypes": {
     "ammo": "Ammo",
@@ -1129,6 +1155,7 @@
     "mapGroupName": "Player",
     "maxHealth": "Max Health",
     "outfit": "Outfit",
+    "sickness": "Sickness",
     "strengthLevel": "Strength Level"
   },
   "poiGroups": {
@@ -1275,12 +1302,23 @@
       "84": "Firewood Storage",
       "85": "Leg Lamp",
       "86": "Wall Weapon Rack",
+      "88": "Teleporter",
+      "89": "Repel Shrine",
+      "90": "Attract Shrine",
       "91": "Couch",
-      "93": "Molotov Tripwire",
-      "94": "Explosive Tripwire",
-      "95": "Arrow Storage",
-      "97": "Chair",
-      "104": "Explosives Holder"
+      "92": "Leaf Trap",
+      "93": "Molotov Tripwire Trap",
+      "94": "Explosive Tripwire Trap",
+      "95": "Arrow Holder",
+      "96": "Log Holder",
+      "97": "Chair (Fur)",
+      "98": "Small Platform",
+      "99": "Medium Platform",
+      "100": "Plater Counter",
+      "101": "Gold Armor Plater",
+      "102": "Hang Glider Launcher",
+      "103": "Hang Glider Launcher",
+      "104": "Explosive Storage"
     }
   },
   "tabs": {

@@ -2458,7 +2458,10 @@
     {
       "id": 626,
       "type": "misc",
-      "isInventoryItem": false,
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
       "wiki": "https://sonsoftheforest.wiki.gg/wiki/Hang_Glider"
     },
     {
@@ -3149,6 +3152,180 @@
         "inventory": 1
       },
       "image": "Paper.png"
+    },
+    {
+      "id": 707,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Artifact.png"
+    },
+    {
+      "id": 708,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "ArtifactPieceF.png"
+    },
+    {
+      "id": 709,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 710,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 711,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 712,
+      "type": "misc",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "ArtifactPieceG.png"
+    },
+    {
+      "id": 713,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 714,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
+    },
+    {
+      "id": 715,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "raccoon-head.png"
+    },
+    {
+      "id": 716,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 717,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 718,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 719,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 720,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 721,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 722,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 723,
+      "type": "document",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Paper.png"
+    },
+    {
+      "id": 724,
+      "type": "seed",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      },
+      "image": "Seeds.png"
+    },
+    {
+      "id": 725,
+      "type": "seed",
+      "storageMax": {
+        "shelf": 50,
+        "inventory": 20
+      },
+      "image": "Seeds.png"
+    },
+    {
+      "id": 726,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     }
   ],
   "storages": [
@@ -3276,7 +3453,8 @@
         648,
         650,
         651,
-        652
+        652,
+        715
       ]
     },
     {
@@ -4239,10 +4417,34 @@
       "icon": "shelf.png"
     },
     {
+      "id": 88,
+      "buildCost": 91,
+      "category": "misc",
+      "icon": "teleportation.png"
+    },
+    {
+      "id": 89,
+      "buildCost": 62,
+      "category": "misc",
+      "icon": "skull-crossed.png"
+    },
+    {
+      "id": 90,
+      "buildCost": 45,
+      "category": "misc",
+      "icon": "skull-candle.png"
+    },
+    {
       "id": 91,
       "buildCost": 29,
       "category": "furniture",
       "icon": "couch.png"
+    },
+    {
+      "id": 92,
+      "buildCost": 20,
+      "category": "trap",
+      "icon": "../items/Leaf_tn.png"
     },
     {
       "id": 93,
@@ -4267,6 +4469,38 @@
       "buildCost": 21,
       "category": "furniture",
       "icon": "wooden-chair.png"
+    },
+    {
+      "id": 98,
+      "category": "misc",
+      "icon": "platform.png",
+      "canFinish": false,
+      "canEdit": false
+    },
+    {
+      "id": 99,
+      "category": "misc",
+      "icon": "platform.png",
+      "canFinish": false,
+      "canEdit": false
+    },
+    {
+      "id": 101,
+      "buildCost": 67,
+      "category": "utility",
+      "icon": "furnace.png"
+    },
+    {
+      "id": 102,
+      "buildCost": 41,
+      "category": "misc",
+      "icon": "../worldobjects/hang-gliding.png"
+    },
+    {
+      "id": 103,
+      "buildCost": 41,
+      "category": "misc",
+      "icon": "../worldobjects/hang-gliding.png"
     },
     {
       "id": 104,

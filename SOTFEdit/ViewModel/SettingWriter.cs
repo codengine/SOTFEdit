@@ -28,4 +28,16 @@ public static class SettingWriter
         target[IntValue] = newValue;
         return true;
     }
+
+    public static bool RemoveFloat(JToken? target)
+    {
+        if (target is not JObject obj)
+        {
+            return false;
+        }
+
+        obj.Remove(FloatValue);
+
+        return true;
+    }
 }

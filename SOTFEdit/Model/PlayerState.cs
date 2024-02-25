@@ -38,6 +38,9 @@ public partial class PlayerState : ObservableObject
     private Item? _selectedCloth;
 
     [ObservableProperty]
+    private float _sickness;
+
+    [ObservableProperty]
     private float _stamina;
 
     [ObservableProperty]
@@ -71,6 +74,7 @@ public partial class PlayerState : ObservableObject
         RestBuff = 0;
         Rest = 0;
         Stamina = 0;
+        Sickness = 0;
         SelectedCloth = null;
     }
 }

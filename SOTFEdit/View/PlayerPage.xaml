@@ -94,6 +94,15 @@
                                 Maximum="{Binding PlayerState.MaxHealth}"
                                 Value="{Binding PlayerState.CurrentHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Heal.png" Width="32"
+                                   Height="32" />
+                            <Label Style="{StaticResource LabelStyle}"
+                                   Content="{infrastructure:Translate 'player.sickness'}" />
+                        </StackPanel>
+                        <Slider Style="{StaticResource PlayerSliderStyle}" Minimum="0"
+                                Maximum="{Binding PlayerState.MaxHealth}"
+                                Value="{Binding PlayerState.Sickness, UpdateSourceTrigger=PropertyChanged}" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Image Source="pack://application:,,,/SOTFEdit;component/images/icons/Fullness.png"
                                    Width="32" Height="32" />
                             <Label Style="{StaticResource LabelStyle}"

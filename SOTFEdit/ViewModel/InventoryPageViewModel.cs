@@ -30,7 +30,13 @@ public partial class InventoryPageViewModel : ObservableObject
         681, //Clock
         682, //Spin Trap
         688, //Spear Thrower Trap
-        701 //Leg Lamp
+        701, //Leg Lamp
+        709, //Teleporter
+        710, //Repel Shrine
+        711, //Attract Shrine
+        713, //Plater Counter
+        714, //Gold Armor Plater
+        726 //Hang Glider Launcher
     };
 
     private readonly ObservableCollectionEx<InventoryItem> _inventory = new();
