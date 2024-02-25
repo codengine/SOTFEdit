@@ -4004,6 +4004,24 @@
       "gender": "female",
       "image": "elise.jpg",
       "icon": "elise.png"
+    },
+    {
+      "id": 57,
+      "classification": "animal",
+      "image": "raccoon.jpg",
+      "icon": "raccoon.png"
+    },
+    {
+      "id": 58,
+      "classification": "creep",
+      "image": "legsy.jpg",
+      "icon": "legsy.png"
+    },
+    {
+      "id": 59,
+      "classification": "creep",
+      "image": "holey.jpg",
+      "icon": "holey.png"
     }
   ],
   "namedIntKeys": [
