@@ -1386,8 +1386,8 @@
       "id": 507,
       "type": "ammo",
       "storageMax": {
-        "shelf": 20,
-        "inventory": 10
+        "shelf": 10,
+        "inventory": 20
       },
       "image": "CraftedArrow.png"
     },
