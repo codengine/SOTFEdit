@@ -2138,7 +2138,6 @@
     {
       "id": 590,
       "type": "misc",
-      "isInventoryItem": false,
       "storageMax": {
         "shelf": 0,
         "inventory": 1
