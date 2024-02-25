@@ -508,7 +508,7 @@
     "unknownItem": "??? Unknown Item"
   },
   "items": {
-    "78": "Log (Legacy)",
+    "78": "Log",
     "340": "Guitar",
     "341": "Binoculars",
     "346": "Shotgun Rail",
@@ -1259,7 +1259,7 @@
       "34": "Small Log Cabin",
       "35": "Fish Trap",
       "36": "Armor Rack",
-      "37": "Log Storage",
+      "37": "Log Storage (Old)",
       "38": "Look Out Tower",
       "39": "Scarecrow",
       "40": "Standing Planter",
@@ -1313,7 +1313,7 @@
       "93": "Molotov Tripwire Trap",
       "94": "Explosive Tripwire Trap",
       "95": "Arrow Holder",
-      "96": "Log Holder",
+      "96": "Log Storage",
       "97": "Chair (Fur)",
       "98": "Small Platform",
       "99": "Medium Platform",

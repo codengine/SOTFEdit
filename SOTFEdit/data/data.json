@@ -3470,6 +3470,15 @@
       "type": "Items"
     },
     {
+      "id": 96,
+      "slots": 1,
+      "maxPerSlot": 6,
+      "restrictedItemIds": [
+        78
+      ],
+      "type": "Logs"
+    },
+    {
       "id": 104,
       "slots": 4,
       "preferHolder": true,
@@ -4416,6 +4425,12 @@
       "buildCost": 11,
       "category": "storage",
       "icon": "../items/CraftedArrow_tn.png"
+    },
+    {
+      "id": 96,
+      "buildCost": 8,
+      "category": "storage",
+      "icon": "../items/Log_tn.png"
     },
     {
       "id": 97,

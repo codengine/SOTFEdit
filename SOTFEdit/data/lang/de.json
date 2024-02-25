@@ -508,7 +508,7 @@
     "unknownItem": "??? Unbekannter Gegenstand"
   },
   "items": {
-    "78": "Baumstamm (Legacy)",
+    "78": "Baumstamm",
     "340": "Gitarre",
     "341": "Fernglas",
     "346": "Schrotflintenaufsatz",
@@ -1259,7 +1259,7 @@
       "34": "Kleine Blockhütte",
       "35": "Reuse",
       "36": "Rüstungsständer",
-      "37": "Baumstammlager",
+      "37": "Baumstammlager (Alt)",
       "38": "Aussichtsturm",
       "39": "Vogelscheuche",
       "40": "Pflanzkasten",
@@ -1313,7 +1313,7 @@
       "93": "Molotov-Stolperdraht-Falle",
       "94": "Explosiv-Stolperdraht-Falle",
       "95": "Pfeil-Lager",
-      "96": "Baumstamm-Halter",
+      "96": "Baumstammlager",
       "97": "Fell-Stuhl",
       "98": "Kleine Plattform",
       "99": "Mittlere Plattform",
