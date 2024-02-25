@@ -370,6 +370,7 @@
         "_label": "Verderb-Effekte",
         "_tooltip": "Wie viel Schaden du nimmst, wenn du schlechtes Essen isst"
       },
+      "creativeMode": "Kreativ-Modus",
       "customSettings": "Benutzerdefinierte Einstellungen",
       "dayLength": {
         "default": "Standard",
@@ -393,13 +394,17 @@
       "enemySearchParties": {
         "_label": "Feind-Suchtrupps"
       },
+      "forcePlaceFullLoad": "Instant Bauen",
       "header": "Spiel-Setup",
       "headers": {
-        "enemiesCustom": "Feinde (benutzerdefiniert)",
-        "weatherCustom": "Wetter (benutzerdefiniert)"
+        "enemiesCustom": "Feinde",
+        "multiplayer": "Mehrspieler",
+        "weatherCustom": "Wetter"
       },
+      "immortalMode": "Unverwundbarkeit",
       "inventoryPause": "Pause im Inventar",
       "mode": {
+        "creative": "Kreativ",
         "custom": "Benutzerdefiniert",
         "hard": "Schwer",
         "hardSurvival": "Hard Survival",
@@ -407,6 +412,8 @@
         "peaceful": "Friedlich",
         "_label": "Modus"
       },
+      "noCuttingsSpawn": "No Cuttings Spawn",
+      "oneHitToCutTrees": "Bäume sofort fällen",
       "playerStatsDamage": {
         "_label": "Spielerstatus-Schaden",
         "_tooltip": "Wie viel Schaden du durch Hunger und so weiter nimmst."
@@ -416,6 +423,7 @@
         "_label": "Niederschlagsfrequenz",
         "_tooltip": "Wie oft ändert sich das Wetter"
       },
+      "pvpDamage": "PvP Schaden",
       "reducedAmmoInContainers": "Weniger Munition in Containern",
       "reducedFoodInContainers": "Weniger Essen in Containern",
       "seasonLength": {
@@ -431,7 +439,8 @@
         "high": "Hoch",
         "low": "Niedrig",
         "normal": "Normal",
-        "off": "Aus"
+        "off": "Aus",
+        "reduced": "Reduziert"
       },
       "singleUseContainers": "Einwegbehälter",
       "spawnEnemies": "Feinde spawnen",

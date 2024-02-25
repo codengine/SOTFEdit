@@ -14,6 +14,7 @@ public class GameSetupPageViewModel : ObservableObject
 {
     private const string SettingsKey = "_settings";
     public const string CustomGameMode = "Custom";
+    public const string CreativeGameMode = "Creative";
     public const string PeacefulGameMode = "Peaceful";
     public const string HardGameMode = "Hard";
     public const string HardSurvivalGameMode = "HardSurvival";
@@ -26,6 +27,7 @@ public class GameSetupPageViewModel : ObservableObject
     // ReSharper disable once InconsistentNaming
     public const string SettingValueNORMAL = "NORMAL";
     public const string SettingValueNormal = "Normal";
+    public const string SettingValueReduced = "Reduced";
     public const string SettingValueOff = "Off";
     public const string SettingValueHard = "Hard";
     private const string NameKey = "Name";
@@ -67,7 +69,13 @@ public class GameSetupPageViewModel : ObservableObject
         { GameSetupKeys.ColdPenalties, SettingTypeString },
         { GameSetupKeys.EnemySearchParties, SettingTypeString },
         { GameSetupKeys.PlayersTriggerTraps, SettingTypeBool },
-        { GameSetupKeys.BuildingResistance, SettingTypeString }
+        { GameSetupKeys.BuildingResistance, SettingTypeString },
+        { GameSetupKeys.CreativeMode, SettingTypeBool },
+        { GameSetupKeys.PlayersImmortalMode, SettingTypeBool },
+        { GameSetupKeys.OneHitToCutTrees, SettingTypeBool },
+        { GameSetupKeys.ForcePlaceFullLoad, SettingTypeBool },
+        { GameSetupKeys.NoCuttingsSpawn, SettingTypeBool },
+        { GameSetupKeys.PvpDamage, SettingTypeString }
     };
 
     private readonly Dictionary<string, string> _stringSettings = new();
@@ -201,13 +209,19 @@ public class GameSetupPageViewModel : ObservableObject
         set => SetStringSetting(GameSetupKeys.BuildingResistance, value);
     }
 
+    public string? SelectedPvpDamage
+    {
+        get => GetStringSetting(GameSetupKeys.PvpDamage) ?? SettingValueNormal;
+        set => SetStringSetting(GameSetupKeys.PvpDamage, value);
+    }
+
     public bool SelectedReducedFoodInContainers
     {
         get
         {
             if (GetBoolSetting(GameSetupKeys.ReducedFoodInContainers, out var boolValue))
             {
-                return boolValue ?? true;
+                return boolValue ?? false;
             }
 
             return false;
@@ -221,7 +235,7 @@ public class GameSetupPageViewModel : ObservableObject
         {
             if (GetBoolSetting(GameSetupKeys.ReducedAmmoInContainers, out var boolValue))
             {
-                return boolValue ?? true;
+                return boolValue ?? false;
             }
 
             return false;
@@ -235,7 +249,7 @@ public class GameSetupPageViewModel : ObservableObject
         {
             if (GetBoolSetting(GameSetupKeys.SingleUseContainers, out var boolValue))
             {
-                return boolValue ?? true;
+                return boolValue ?? false;
             }
 
             return false;
@@ -255,6 +269,76 @@ public class GameSetupPageViewModel : ObservableObject
             return false;
         }
         set => SetBoolSetting(GameSetupKeys.PlayersTriggerTraps, value);
+    }
+
+    public bool SelectedCreativeMode
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.CreativeMode, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.CreativeMode, value);
+    }
+
+    public bool SelectedPlayersImmortalMode
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.PlayersImmortalMode, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.PlayersImmortalMode, value);
+    }
+
+    public bool SelectedOneHitToCutTrees
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.OneHitToCutTrees, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.OneHitToCutTrees, value);
+    }
+
+    public bool SelectedForcePlaceFullLoad
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.ForcePlaceFullLoad, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.ForcePlaceFullLoad, value);
+    }
+
+    public bool SelectedNoCuttingsSpawn
+    {
+        get
+        {
+            if (GetBoolSetting(GameSetupKeys.NoCuttingsSpawn, out var boolValue))
+            {
+                return boolValue ?? false;
+            }
+
+            return false;
+        }
+        set => SetBoolSetting(GameSetupKeys.NoCuttingsSpawn, value);
     }
 
     private void SetStringSetting(string key, string? value)
@@ -333,6 +417,12 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedSingleUseContainers));
         OnPropertyChanged(nameof(SelectedPlayersTriggerTraps));
         OnPropertyChanged(nameof(SelectedBuildingResistance));
+        OnPropertyChanged(nameof(SelectedCreativeMode));
+        OnPropertyChanged(nameof(SelectedPlayersImmortalMode));
+        OnPropertyChanged(nameof(SelectedOneHitToCutTrees));
+        OnPropertyChanged(nameof(SelectedForcePlaceFullLoad));
+        OnPropertyChanged(nameof(SelectedNoCuttingsSpawn));
+        OnPropertyChanged(nameof(SelectedPvpDamage));
     }
 
     private void LoadSettings(Savegame? savegame)
@@ -432,6 +522,18 @@ public class GameSetupPageViewModel : ObservableObject
 
         switch (SelectedMode)
         {
+            case CreativeGameMode:
+                _boolSettings[GameSetupKeys.EnemySpawn] = false;
+                _boolSettings[GameSetupKeys.ReducedFoodInContainers] = false;
+                _boolSettings[GameSetupKeys.SingleUseContainers] = false;
+                _boolSettings[GameSetupKeys.InventoryPause] = true;
+                _boolSettings[GameSetupKeys.PlayersTriggerTraps] = false;
+                _stringSettings[GameSetupKeys.AnimalSpawnRate] = SettingValueHigh;
+                _stringSettings[GameSetupKeys.ConsumableEffects] = SettingValueOff;
+                _stringSettings[GameSetupKeys.PlayerStatsDamage] = SettingValueOff;
+                _stringSettings[GameSetupKeys.ColdPenalties] = SettingValueOff;
+                _stringSettings[GameSetupKeys.BuildingResistance] = SettingValueHigh;
+                break;
             case PeacefulGameMode:
                 _boolSettings[GameSetupKeys.EnemySpawn] = false;
                 _stringSettings[GameSetupKeys.AnimalSpawnRate] = SettingValueHigh;

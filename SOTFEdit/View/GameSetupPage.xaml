@@ -28,6 +28,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0 0 0 10">
             <Grid.ColumnDefinitions>
@@ -50,6 +51,8 @@
                               Tag="{x:Static viewModel:GameSetupPageViewModel.HardSurvivalGameMode}" />
                 <ComboBoxItem Content="{infrastructure:Translate 'game.setup.mode.peaceful'}"
                               Tag="{x:Static viewModel:GameSetupPageViewModel.PeacefulGameMode}" />
+                <ComboBoxItem Content="{infrastructure:Translate 'game.setup.mode.creative'}"
+                              Tag="{x:Static viewModel:GameSetupPageViewModel.CreativeGameMode}" />
                 <ComboBoxItem Content="{infrastructure:Translate 'game.setup.mode.custom'}"
                               Tag="{x:Static viewModel:GameSetupPageViewModel.CustomGameMode}" />
             </ComboBox>
@@ -66,6 +69,11 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
@@ -164,6 +172,21 @@
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="9"
                        Content="{infrastructure:Translate 'game.setup.playersTriggerTraps'}" />
                 <CheckBox IsChecked="{Binding SelectedPlayersTriggerTraps}" Grid.Row="9" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="10"
+                       Content="{infrastructure:Translate 'game.setup.creativeMode'}" />
+                <CheckBox IsChecked="{Binding SelectedCreativeMode}" Grid.Row="10" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="11"
+                       Content="{infrastructure:Translate 'game.setup.immortalMode'}" />
+                <CheckBox IsChecked="{Binding SelectedPlayersImmortalMode}" Grid.Row="11" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="12"
+                       Content="{infrastructure:Translate 'game.setup.oneHitToCutTrees'}" />
+                <CheckBox IsChecked="{Binding SelectedOneHitToCutTrees}" Grid.Row="12" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="13"
+                       Content="{infrastructure:Translate 'game.setup.forcePlaceFullLoad'}" />
+                <CheckBox IsChecked="{Binding SelectedForcePlaceFullLoad}" Grid.Row="13" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="14"
+                       Content="{infrastructure:Translate 'game.setup.noCuttingsSpawn'}" />
+                <CheckBox IsChecked="{Binding SelectedNoCuttingsSpawn}" Grid.Row="14" Grid.Column="1" />
             </Grid>
         </GroupBox>
         <GroupBox Margin="0 0 0 10" Header="{infrastructure:Translate 'game.setup.headers.enemiesCustom'}" Grid.Row="2"
@@ -253,7 +276,30 @@
                 </ComboBox>
             </Grid>
         </GroupBox>
-        <GroupBox Header="{infrastructure:Translate 'game.setup.headers.weatherCustom'}" Padding="10" Grid.Row="3"
+        <GroupBox Margin="0 0 0 10" Header="{infrastructure:Translate 'game.setup.headers.multiplayer'}" Padding="10"
+                  Grid.Row="3"
+                  Visibility="{Binding SelectedMode, Converter={StaticResource GameModeToVisibilityConverter}}">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="0"
+                       Content="{infrastructure:Translate 'game.setup.pvpDamage'}" />
+                <ComboBox Grid.Column="1" Grid.Row="0"
+                          SelectedValue="{Binding SelectedPvpDamage, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValuePath="Tag">
+                    <ComboBoxItem />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.off'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueOff}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.reduced'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueReduced}" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueNormal}" />
+                </ComboBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="{infrastructure:Translate 'game.setup.headers.weatherCustom'}" Padding="10" Grid.Row="4"
                   Visibility="{Binding SelectedMode, Converter={StaticResource GameModeToVisibilityConverter}}">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>

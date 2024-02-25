@@ -370,6 +370,7 @@
         "_label": "Consumable Effects",
         "_tooltip": "How much damage you take eating bad food"
       },
+      "creativeMode": "Creative Mode",
       "customSettings": "Custom Settings",
       "dayLength": {
         "default": "Default",
@@ -393,13 +394,17 @@
       "enemySearchParties": {
         "_label": "Enemy Search Parties"
       },
+      "forcePlaceFullLoad": "Instant Building",
       "header": "Game Setup",
       "headers": {
-        "enemiesCustom": "Enemies (Custom)",
-        "weatherCustom": "Weather (Custom)"
+        "enemiesCustom": "Enemies",
+        "multiplayer": "Multiplayer",
+        "weatherCustom": "Weather"
       },
+      "immortalMode": "God Mode",
       "inventoryPause": "Pause in Inventory",
       "mode": {
+        "creative": "Creative",
         "custom": "Custom",
         "hard": "Hard",
         "hardSurvival": "Hard Survival",
@@ -407,6 +412,8 @@
         "peaceful": "Peaceful",
         "_label": "Mode"
       },
+      "noCuttingsSpawn": "No Cuttings Spawn",
+      "oneHitToCutTrees": "One hit to cut trees",
       "playerStatsDamage": {
         "_label": "Player Stats Damage",
         "_tooltip": "How much damage you take from starvation and etc."
@@ -416,6 +423,7 @@
         "_label": "Precipitation Frequency",
         "_tooltip": "How often does the weather change"
       },
+      "pvpDamage": "PvP Damage",
       "reducedAmmoInContainers": "Reduced Ammo in Containers",
       "reducedFoodInContainers": "Reduced Food in Containers",
       "seasonLength": {
@@ -431,7 +439,8 @@
         "high": "High",
         "low": "Low",
         "normal": "Normal",
-        "off": "Off"
+        "off": "Off",
+        "reduced": "Reduced"
       },
       "singleUseContainers": "Single-Use Containers",
       "spawnEnemies": "Spawn Enemies",
