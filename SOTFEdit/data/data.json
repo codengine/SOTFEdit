@@ -228,7 +228,7 @@
       "id": 373,
       "type": "ammo",
       "storageMax": {
-        "shelf": 20,
+        "shelf": 10,
         "inventory": 20
       },
       "image": "TacticalBowAmmo.png"
@@ -365,7 +365,7 @@
       "id": 390,
       "type": "printed",
       "storageMax": {
-        "shelf": 20,
+        "shelf": 1000,
         "inventory": 1000
       },
       "image": "3DPrintedResin.png"
@@ -752,7 +752,7 @@
         ]
       },
       "storageMax": {
-        "shelf": 7,
+        "shelf": 3,
         "inventory": 3
       },
       "image": "Fish.png"
@@ -914,7 +914,7 @@
       "id": 455,
       "type": "consumable",
       "storageMax": {
-        "shelf": 7,
+        "shelf": 10,
         "inventory": 3
       },
       "image": "HealthMix.png"
@@ -923,7 +923,7 @@
       "id": 456,
       "type": "consumable",
       "storageMax": {
-        "shelf": 9,
+        "shelf": 10,
         "inventory": 3
       },
       "image": "HealthMixPlus.png"
@@ -960,7 +960,7 @@
       "id": 461,
       "type": "consumable",
       "storageMax": {
-        "shelf": 7,
+        "shelf": 10,
         "inventory": 3
       },
       "image": "EnergyMix.png"
@@ -969,7 +969,7 @@
       "id": 462,
       "type": "consumable",
       "storageMax": {
-        "shelf": 9,
+        "shelf": 10,
         "inventory": 3
       },
       "image": "EnergyMixPlus.png"
@@ -1297,7 +1297,7 @@
       "id": 496,
       "type": "misc",
       "storageMax": {
-        "shelf": 1000,
+        "shelf": 100,
         "inventory": 1000000
       },
       "image": "Money.png"
@@ -1387,7 +1387,7 @@
       "type": "ammo",
       "storageMax": {
         "shelf": 20,
-        "inventory": 20
+        "inventory": 10
       },
       "image": "CraftedArrow.png"
     },
@@ -2323,7 +2323,7 @@
       "id": 618,
       "type": "ammo",
       "storageMax": {
-        "shelf": 20,
+        "shelf": 10,
         "inventory": 20
       }
     },
@@ -3308,7 +3308,7 @@
     {
       "id": 29,
       "slots": 1,
-      "maxPerSlot": 90,
+      "maxPerSlot": 30,
       "restrictedItemIds": [
         392
       ],
@@ -3395,7 +3395,7 @@
     {
       "id": 62,
       "slots": 1,
-      "maxPerSlot": 27,
+      "maxPerSlot": 28,
       "restrictedItemIds": [
         640
       ],
