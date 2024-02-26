@@ -22,14 +22,19 @@
         ],
         "items": [
           346,
-          468,
-          487,
+          526,
           539,
           540,
           541,
           548,
           574,
-          692
+          637,
+          692,
+          698,
+          699,
+          714,
+          720,
+          721
         ],
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Luxury_Bunker_Check_on_map",
         "screenshot": "luxury_bunker.jpg"
@@ -56,7 +61,6 @@
           375,
           423,
           431,
-          467,
           492,
           538,
           566
@@ -126,15 +130,13 @@
           566
         ],
         "items": [
-          346,
           365,
-          536,
-          542,
-          544,
-          556,
+          547,
           568,
+          590,
           627,
-          628
+          628,
+          677
         ],
         "screenshot": "food_and_dining_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Food_and_Dining_Bunker_Check_on_map"
@@ -158,22 +160,22 @@
           346,
           355,
           367,
-          376,
           378,
           424,
           435,
+          517,
           525,
           537,
-          547,
           557,
           567,
-          611,
           614,
-          615,
           617,
           637,
           678,
-          687
+          687,
+          718,
+          722,
+          723
         ],
         "screenshot": "residential_bunker.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Bunkers#Residential_Bunker_Check_on_map"
@@ -200,16 +202,16 @@
           346,
           394,
           467,
-          487,
-          526,
-          534,
-          535,
           543,
           546,
           555,
+          556,
           567,
           575,
-          677,
+          590,
+          611,
+          655,
+          693,
           705
         ],
         "screenshot": "cave_leading_to_entertainment_bunker.jpg",
@@ -486,11 +488,9 @@
           "areaMask": 0
         },
         "items": [
-          354,
           572,
           361,
-          669,
-          672
+          669
         ],
         "screenshot": "golden_armor_cave.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Lake/Golden_Armor_Cave_Check_on_map"
@@ -506,9 +506,6 @@
           "z": -1060.542,
           "areaMask": 0
         },
-        "items": [
-          354
-        ],
         "screenshot": "pond_grotto.jpg",
         "wiki": "https://sonsoftheforest.wiki.gg/wiki/Caves#Pond_Grotto_Check_on_map"
       },
@@ -528,7 +525,7 @@
       },
       {
         "id": 45,
-        "title": "Rope Gun Cave Main Entrance",
+        "title": "Rope Gun Cave (B)",
         "x": -1104,
         "y": -179,
         "teleport": {
@@ -541,8 +538,9 @@
           468,
           521,
           522,
+          540,
           545,
-          612,
+          590,
           668
         ],
         "screenshot": "rope_gun_cave_main_entrance.jpg",
@@ -600,7 +598,7 @@
       },
       {
         "id": 50,
-        "title": "Rebreather Cave",
+        "title": "Rebreather Cave (A)",
         "x": -423,
         "y": 1512,
         "teleport": {
@@ -612,9 +610,8 @@
         "items": [
           353,
           444,
-          490,
-          493,
-          495,
+          517,
+          590,
           613,
           662,
           666
