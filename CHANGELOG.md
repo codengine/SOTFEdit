@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.12.0
+
+Due to the amount of changes, teleportation to items might fail for now. This will be the next task on my list.
+Moreover, an update of the SOTFEdit Companion is required which will also arrive soon.
+
+### Features
+
+- Updated the map
+- Added blueprints and structures: Teleporter, Repel Shrine, Attract Shrine, Gold Armor Plater, Hang Glider Launcher
+- Added all new items
+- Added new furniture: Couch, Chair (Fur)
+- Added new traps: Leaf Trap, Molotov Tripwire Trap, Explosive Tripwire Trap
+- Added new storages: Arrow Holder, Log Storage (has a new ID), Explosive Storage
+- Added new structures: Small Platform, Medium Platform
+- Added new game setup options (mostly for custom) and support for Creative Mode
+- Added "Sickness" slider
+- Added new area (Cave H)
+- Added new enemies: Holey, Legsy
+- Renamed Golden Armour to Ancient Armor
+- Added Hang Glider and Radio as Inventory items
+- Added Radio as World Item, which allows cloning
+- Updated max. inventory and shelf count for all items
+- Added/Updated map POIs for new and existing items
+- Polish translations
+
 ## v0.11.18
 
 ### Features
