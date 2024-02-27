@@ -156,7 +156,8 @@ public class FollowerModifier
     {
         if (actor["EquippedItems"] is not { } oldEquippedItemsToken)
         {
-            return false;
+            oldEquippedItemsToken = new JArray();
+            actor["EquippedItems"] = oldEquippedItemsToken;
         }
 
         var usedOldItemIds = oldEquippedItemsToken.ToObject<HashSet<int>>() ?? new HashSet<int>();
