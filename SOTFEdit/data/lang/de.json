@@ -1128,6 +1128,10 @@
         "tooltip": "Falls du dein Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
       },
       "regrowTrees": "Bäume nachwachsen lassen...",
+      "resetContainers": {
+        "text": "Behälter zurücksetzen",
+        "tooltip": "Setzt Behälter in Höhlen und der Spielwelt zurück"
+      },
       "resetFires": {
         "text": "Feuer zurücksetzen",
         "tooltip": "Entzündet Feuer und setzt Brennstoff-Verbrauch und Menge auf Standard"
@@ -1422,6 +1426,18 @@
       "saveButton": "Bäume wiederherstellen",
       "stumps": "Baumstümpfe",
       "title": "Bäume wiederherstellen"
+    },
+    "resetContainers": {
+      "messages": {
+        "containersReset": {
+          "text": "{0} Behälter wurden zurückgesetzt. Bitte speichere die Änderungen um sie anzuwenden",
+          "title": "Behälter zurückgesetzt"
+        },
+        "nothingToReset": {
+          "text": "Nichts zum zurücksetzen gefunden",
+          "title": "Nichts gefunden"
+        }
+      }
     },
     "selectSavegame": {
       "buttons": {

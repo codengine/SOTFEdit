@@ -1128,6 +1128,10 @@
         "tooltip": "In case you want to purge your memory about items that you have consumed already"
       },
       "regrowTrees": "Regrow Trees...",
+      "resetContainers": {
+        "text": "Reset Containers",
+        "tooltip": "Resets crates, boxes and cases in caves and the open world"
+      },
       "resetFires": {
         "text": "Reset Fires",
         "tooltip": "Fires will be ignited, fuel drain rate and fuel amount is set to default"
@@ -1143,10 +1147,6 @@
       "resetStructureDamage": {
         "text": "Reset Structure Damage",
         "tooltip": "Lets you repair all structures"
-      },
-      "resetContainers": {
-        "text": "Reset Containers",
-        "tooltip": "Resets crates, boxes and cases in caves and the open world"
       },
       "text": "Tools",
       "unlocks": {
@@ -1429,13 +1429,13 @@
     },
     "resetContainers": {
       "messages": {
-        "nothingToReset": {
-          "text": "Nothing to reset found",
-          "title": "Nothing found"
-        },
         "containersReset": {
           "text": "{0} Containers have been reset. Please save the changes to apply them to the savegame",
           "title": "Containers reset"
+        },
+        "nothingToReset": {
+          "text": "Nothing to reset found",
+          "title": "Nothing found"
         }
       }
     },
