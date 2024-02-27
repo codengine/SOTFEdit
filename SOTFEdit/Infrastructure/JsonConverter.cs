@@ -62,4 +62,10 @@ public static class JsonConverter
     {
         return JsonConvert.DeserializeObject<T>(json, DefaultJsonSerializerSettings);
     }
+
+    public static JToken DeserializeJObjectFromFile(string path)
+    {
+        var json = File.ReadAllText(path, JsonEncoding);
+        return JObject.Parse(json);
+    }
 }

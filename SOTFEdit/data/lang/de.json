@@ -1144,7 +1144,11 @@
         "text": "Schadenszähler für Gebäude zurücksetzen",
         "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
       },
-      "text": "Tools"
+      "text": "Tools",
+      "unlocks": {
+        "text": "Freischaltung",
+        "tooltip": "Schaltet bestimmte Spiel-Features frei"
+      }
     }
   },
   "npcs": {
@@ -1471,6 +1475,16 @@
       "header": "Exception-Details",
       "innerException": "Innere Exception",
       "title": "Unbehandelte Ausnahme"
+    },
+    "unlocks": {
+      "coreGameCompleted": "Kern-Spiel abgeschlossen",
+      "creativeMode": "Creative Modus",
+      "creativeModeItem": "Creative Modus Item (?)",
+      "escapedIsland": "Insel entkommen",
+      "messages": {
+        "playerProfileNotFound": "PlayerProfile.json konnte nicht unter \"{0}\" gefunden werden"
+      },
+      "title": "Freischaltung"
     },
     "updateAvailable": {
       "buttons": {

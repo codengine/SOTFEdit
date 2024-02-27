@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -56,6 +57,8 @@ public partial class MainWindow
             (_, message) => OnSavegameStored(message));
         WeakReferenceMessenger.Default.Register<RequestRegrowTreesEvent>(this,
             (_, _) => OnRequestRegrowTreesEvent());
+        WeakReferenceMessenger.Default.Register<RequestChangeUnlocksEvent>(this,
+            (_, _) => OnRequestChangeUnlocksEvent());
         WeakReferenceMessenger.Default.Register<RequestReviveFollowersEvent>(this,
             (_, message) => OnRequestReviveFollowersEvent(message));
         WeakReferenceMessenger.Default.Register<RequestSaveChangesEvent>(this,
@@ -206,6 +209,42 @@ public partial class MainWindow
         var applicationSettings = Ioc.Default.GetRequiredService<ApplicationSettings>();
         var dialog = new SettingsDialog(this, applicationSettings);
         dialog.ShowDialog();
+    }
+
+    private async void OnRequestChangeUnlocksEvent()
+    {
+        var savePath = SavegameManager.GetSavegamePathFromAppData();
+        if (string.IsNullOrEmpty(savePath) || !Directory.Exists(savePath) ||
+            GetPathToPlayerProfile(savePath) is not { } playerProfilePath)
+        {
+            await ShowMessageDialog(
+                string.Format(TranslationManager.Get("windows.unlocks.messages.playerProfileNotFound"), savePath),
+                TranslationManager.Get("generic.error"));
+            return;
+        }
+
+        var dialog = new UnlocksWindow(this, playerProfilePath);
+        dialog.ShowDialog();
+    }
+
+    private static string? GetPathToPlayerProfile(string savePath)
+    {
+        string? fallback = null;
+        foreach (var directoryInfo in new DirectoryInfo(savePath).GetDirectories())
+        {
+            var path = Path.Combine(directoryInfo.FullName, "PlayerProfile.json");
+            if (File.Exists(path))
+            {
+                return path;
+            }
+
+            if (fallback == null && directoryInfo.Name.All(char.IsDigit))
+            {
+                fallback = path;
+            }
+        }
+
+        return fallback;
     }
 
     private void OnZoomToPos(ZoomToPosEvent message)

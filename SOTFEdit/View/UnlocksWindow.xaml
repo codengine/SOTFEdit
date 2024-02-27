@@ -1,0 +1,36 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.UnlocksWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 mc:Ignorable="d"
+                 Title="{infrastructure:Translate 'windows.unlocks.title'}" MinWidth="300"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 ResizeMode="NoResize"
+                 SizeToContent="WidthAndHeight"
+                 ShowMaxRestoreButton="False"
+                 IsMaxRestoreButtonEnabled="False"
+                 ShowMinButton="False"
+                 IsMinButtonEnabled="False"
+                 d:DataContext="{d:DesignInstance viewModel:UnlocksViewModel}"
+                 TitleCharacterCasing="Normal">
+    <st:AutoGrid Margin="20" Columns="Auto,*" Rows="Auto" VerticalAlignment="Top"
+                 HorizontalAlignment="Stretch" ChildMargin="3">
+        <Label Content="{infrastructure:Translate 'windows.unlocks.creativeMode'}" />
+        <CheckBox IsChecked="{Binding CreativeMode}" />
+        <Label Content="{infrastructure:Translate 'windows.unlocks.creativeModeItem'}" />
+        <CheckBox IsChecked="{Binding CreativeModeItem}" />
+        <Label Content="{infrastructure:Translate 'windows.unlocks.coreGameCompleted'}" />
+        <CheckBox IsChecked="{Binding CoreGameCompleted}" />
+        <Label Content="{infrastructure:Translate 'windows.unlocks.escapedIsland'}" />
+        <CheckBox IsChecked="{Binding EscapedIsland}" />
+        <Button Content="{infrastructure:Translate 'generic.save'}" Command="{Binding SaveCommand}"
+                Background="{DynamicResource MahApps.Brushes.Accent}"
+                st:AutoGrid.ColumnSpan="2" />
+    </st:AutoGrid>
+</mah:MetroWindow>

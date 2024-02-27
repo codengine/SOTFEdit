@@ -134,18 +134,17 @@
                             <iconPacks:FontAwesome Kind="TreeSolid" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="{infrastructure:Translate 'menu.tools.fires.text'}" ToolTip="{infrastructure:Translate 'menu.tools.fires.tooltip'}">
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.fires.text'}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.fires.tooltip'}">
                         <MenuItem.Icon>
                             <iconPacks:FontAwesome Kind="FireSolid" />
                         </MenuItem.Icon>
                         <MenuItem Header="{infrastructure:Translate 'menu.tools.eternalFires.text'}"
                                   ToolTip="{infrastructure:Translate 'menu.tools.eternalFires.tooltip'}"
-                                  Command="{Binding EternalFiresCommand}">
-                        </MenuItem>
+                                  Command="{Binding EternalFiresCommand}" />
                         <MenuItem Header="{infrastructure:Translate 'menu.tools.resetFires.text'}"
                                   ToolTip="{infrastructure:Translate 'menu.tools.resetFires.tooltip'}"
-                                  Command="{Binding ResetFiresCommand}">
-                        </MenuItem>
+                                  Command="{Binding ResetFiresCommand}" />
                     </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.resetStructureDamage.text'}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetStructureDamage.tooltip'}"
@@ -167,6 +166,9 @@
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.text'}"
                               Command="{Binding ExperimentResetNumberCutTreesCommand}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.tooltip'}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.unlocks.text'}"
+                              Command="{Binding UnlocksCommand}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.unlocks.tooltip'}" />
                 </MenuItem>
                 <MenuItem Header="{infrastructure:Translate 'menu.tools.map.text'}"
                           Command="{Binding OpenMapCommand}"

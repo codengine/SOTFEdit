@@ -1144,7 +1144,11 @@
         "text": "Reset Structure Damage",
         "tooltip": "Lets you repair all structures"
       },
-      "text": "Tools"
+      "text": "Tools",
+      "unlocks": {
+        "text": "Unlocks",
+        "tooltip": "Lets unlock certain game features"
+      }
     }
   },
   "npcs": {
@@ -1471,6 +1475,16 @@
       "header": "Exception Details",
       "innerException": "Inner Exception",
       "title": "Unhandled Exception"
+    },
+    "unlocks": {
+      "coreGameCompleted": "Core Game completed",
+      "creativeMode": "Creative Mode",
+      "creativeModeItem": "Creative Mode Item (?)",
+      "escapedIsland": "Escaped Island",
+      "messages": {
+        "playerProfileNotFound": "PlayerProfile.json could not be found at \"{0}\""
+      },
+      "title": "Unlocks"
     },
     "updateAvailable": {
       "buttons": {

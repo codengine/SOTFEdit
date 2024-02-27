@@ -452,6 +452,12 @@ public partial class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new RequestRegrowTreesEvent());
     }
 
+    [RelayCommand]
+    private static void Unlocks()
+    {
+        WeakReferenceMessenger.Default.Send(new RequestChangeUnlocksEvent());
+    }
+
     public void OnPreviewKeyDown(KeyEventArgs e)
     {
         if (e.Key == Key.F5 && ReloadSavegameCommand.CanExecute(null))
