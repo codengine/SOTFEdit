@@ -18,5 +18,8 @@ public record CompanionTeleportMessage : ICompanionMessage
     public float Z { get; set; }
 
     [Key(4)]
-    public int Mask { get; set; }
+    public int AreaMask { get; set; }
+
+    [Key(5)]
+    public int GraphMask { get; set; }
 }

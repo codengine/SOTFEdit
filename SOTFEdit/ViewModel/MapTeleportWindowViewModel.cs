@@ -22,6 +22,8 @@ public partial class MapTeleportWindowViewModel : ObservableObject
         Virginia
     }
 
+    private readonly AreaMaskManager _areaMaskManager;
+
     private readonly CompanionConnectionManager _companionConnectionManager;
 
     private readonly BasePoi _destination;
@@ -42,12 +44,13 @@ public partial class MapTeleportWindowViewModel : ObservableObject
     private float _zOffset;
 
     public MapTeleportWindowViewModel(ICloseable parent, BasePoi destination, TeleportationMode teleportationMode,
-        CompanionConnectionManager companionConnectionManager)
+        CompanionConnectionManager companionConnectionManager, AreaMaskManager areaMaskManager)
     {
         _parent = parent;
         _destination = destination;
         _teleportationMode = teleportationMode;
         _companionConnectionManager = companionConnectionManager;
+        _areaMaskManager = areaMaskManager;
         X = destination.Position?.X ?? destination.X;
         Y = destination.Position?.Y ?? 0;
         Z = destination.Position?.Z ?? destination.Z;
@@ -105,7 +108,8 @@ public partial class MapTeleportWindowViewModel : ObservableObject
             var teleport = new CompanionTeleportMessage
             {
                 Target = CharacterTarget.Player,
-                Mask = newPosition.Area.AreaMask,
+                AreaMask = newPosition.Area.AreaMask,
+                GraphMask = _areaMaskManager.GetAreaForAreaMask(newPosition.Area.AreaMask).GraphMask,
                 X = newPosition.X,
                 Y = newPosition.Y,
                 Z = newPosition.Z
@@ -150,7 +154,8 @@ public partial class MapTeleportWindowViewModel : ObservableObject
         var teleport = new CompanionTeleportMessage
         {
             Target = characterTarget,
-            Mask = newPosition.Area.GraphMask,
+            AreaMask = newPosition.Area.AreaMask,
+            GraphMask = _areaMaskManager.GetAreaForAreaMask(newPosition.Area.AreaMask).GraphMask,
             X = newPosition.X,
             Y = newPosition.Y,
             Z = newPosition.Z

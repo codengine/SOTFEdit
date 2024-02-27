@@ -852,12 +852,13 @@ namespace MessagePack.Formatters.SOTFEdit.Companion.Shared.Messages
             }
 
             global::MessagePack.IFormatterResolver formatterResolver = options.Resolver;
-            writer.WriteArrayHeader(5);
+            writer.WriteArrayHeader(6);
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::SOTFEdit.Companion.Shared.CharacterTarget>(formatterResolver).Serialize(ref writer, value.Target, options);
             writer.Write(value.X);
             writer.Write(value.Y);
             writer.Write(value.Z);
-            writer.Write(value.Mask);
+            writer.Write(value.AreaMask);
+            writer.Write(value.GraphMask);
         }
 
         public global::SOTFEdit.Companion.Shared.Messages.CompanionTeleportMessage Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -889,7 +890,10 @@ namespace MessagePack.Formatters.SOTFEdit.Companion.Shared.Messages
                         ____result.Z = reader.ReadSingle();
                         break;
                     case 4:
-                        ____result.Mask = reader.ReadInt32();
+                        ____result.AreaMask = reader.ReadInt32();
+                        break;
+                    case 5:
+                        ____result.GraphMask = reader.ReadInt32();
                         break;
                     default:
                         reader.Skip();
