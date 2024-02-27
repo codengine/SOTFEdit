@@ -1144,6 +1144,10 @@
         "text": "Reset Structure Damage",
         "tooltip": "Lets you repair all structures"
       },
+      "resetContainers": {
+        "text": "Reset Containers",
+        "tooltip": "Resets crates, boxes and cases in caves and the open world"
+      },
       "text": "Tools",
       "unlocks": {
         "text": "Unlocks",
@@ -1422,6 +1426,18 @@
       "saveButton": "Regrow Trees",
       "stumps": "Stumps",
       "title": "Regrow Trees"
+    },
+    "resetContainers": {
+      "messages": {
+        "nothingToReset": {
+          "text": "Nothing to reset found",
+          "title": "Nothing found"
+        },
+        "containersReset": {
+          "text": "{0} Containers have been reset. Please save the changes to apply them to the savegame",
+          "title": "Containers reset"
+        }
+      }
     },
     "selectSavegame": {
       "buttons": {

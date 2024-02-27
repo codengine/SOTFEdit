@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json.Linq;
 using NLog;
+using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.SaveData;
@@ -15,6 +17,9 @@ public class GameStatePageViewModel
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
     private readonly GameData _gameData;
+
+    private readonly Regex _resetCrateNameIdPattern =
+        new(@"(\..*Crate.*\.)|(\..*Storage.*\.)|(\..*Case.*\.)|(.*\.Meds\..*)");
 
     public GameStatePageViewModel(GameData gameData)
     {
@@ -38,10 +43,46 @@ public class GameStatePageViewModel
         }
     }
 
+    private void OnRequestResetContainers()
+    {
+        var filtered = NamedIntDatas.Where(setting => !_resetCrateNameIdPattern.Match(setting.Name).Success)
+            .ToList();
+
+        var numFixed = NamedIntDatas.Count - filtered.Count;
+
+        if (numFixed < 1)
+        {
+            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+                TranslationManager.Get("windows.resetContainers.messages.nothingToReset.text"),
+                TranslationManager.Get("windows.resetContainers.messages.nothingToReset.title")
+            ));
+            return;
+        }
+        
+        NamedIntDatas.Clear();
+        
+        filtered.ForEach(setting => NamedIntDatas.Add(setting));
+        
+        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+            TranslationManager.GetFormatted("windows.resetContainers.messages.containersReset.text", numFixed),
+            TranslationManager.Get("windows.resetContainers.messages.containersReset.title")
+        ));
+    }
+
+    private static void ShowNothingToResetMessage()
+    {
+        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+            TranslationManager.Get("windows.resetContainers.messages.nothingToReset.text"),
+            TranslationManager.Get("windows.resetContainers.messages.nothingToReset.title")
+        ));
+    }
+
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
             (_, m) => OnSelectedSavegameChanged(m));
+        WeakReferenceMessenger.Default.Register<RequestResetContainersEvent>(this,
+            (_, _) => OnRequestResetContainers());
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)

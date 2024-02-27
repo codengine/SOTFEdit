@@ -175,6 +175,7 @@ public partial class MainViewModel : ObservableObject
         ResetFiresCommand.NotifyCanExecuteChanged();
         ResetStructureDamageCommand.NotifyCanExecuteChanged();
         TeleportWorldItemCommand.NotifyCanExecuteChanged();
+        ResetContainersCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(CanEditTabs));
     }
 
@@ -456,6 +457,12 @@ public partial class MainViewModel : ObservableObject
     private static void Unlocks()
     {
         WeakReferenceMessenger.Default.Send(new RequestChangeUnlocksEvent());
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
+    private static void ResetContainers()
+    {
+        WeakReferenceMessenger.Default.Send(new RequestResetContainersEvent());
     }
 
     public void OnPreviewKeyDown(KeyEventArgs e)

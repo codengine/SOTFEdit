@@ -169,6 +169,9 @@
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.unlocks.text'}"
                               Command="{Binding UnlocksCommand}"
                               ToolTip="{infrastructure:Translate 'menu.tools.unlocks.tooltip'}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetContainers.text'}"
+                              Command="{Binding ResetContainersCommand}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.resetContainers.tooltip'}" />
                 </MenuItem>
                 <MenuItem Header="{infrastructure:Translate 'menu.tools.map.text'}"
                           Command="{Binding OpenMapCommand}"
