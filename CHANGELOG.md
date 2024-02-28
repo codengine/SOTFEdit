@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.12.1
+
+Make sure to update SOTFEdit Companion to 1.0.2.
+
+### Features
+
+- Added tool to unlock creative mode and other game-related toggles
+- Added tool to reset containers
+- Added tool to reset traps
+- Added screenshots to POIs, also fixed some of them
+
+### Changes
+
+- Set max player strength to 100
+- Changed max stones for sled to 28
+
+### Bugfixes
+
+- Fix live teleportation via SOTFEdit Companion
+- Fix follower inventory storing
+
 ## v0.12.0
 
 Due to the amount of changes, teleportation to items might fail for now. This will be the next task on my list.
