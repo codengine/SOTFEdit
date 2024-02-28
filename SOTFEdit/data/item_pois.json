@@ -144,7 +144,8 @@
             "y": 227.41,
             "z": -1604.05,
             "areaMask": 0
-          }
+          },
+          "screenshot": "nightv_354.jpg"
         }
       ]
     },
@@ -213,7 +214,8 @@
             "y": 17.05,
             "z": 1457.58,
             "areaMask": 0
-          }
+          },
+          "screenshot": "machete_359.jpg"
         }
       ]
     },
@@ -314,7 +316,8 @@
             "y": 233.7,
             "z": -1128.06,
             "areaMask": 0
-          }
+          },
+          "screenshot": "pistol_suppressor_1.jpg"
         }
       ]
     },
@@ -346,7 +349,8 @@
             "y": 77.76,
             "z": 702.88,
             "areaMask": 131072
-          }
+          },
+          "screenshot": "pistol_rail_376.jpg"
         },
         {
           "x": 1056.95,
@@ -356,7 +360,8 @@
             "y": 143.11,
             "z": 1022.79,
             "areaMask": 0
-          }
+          },
+          "screenshot": "pistol_rail_376_3.jpg"
         },
         {
           "x": 1085.09,
@@ -366,7 +371,8 @@
             "y": 89.98,
             "z": 1571.92,
             "areaMask": 0
-          }
+          },
+          "screenshot": "pistol_rail_376_2.jpg"
         }
       ]
     },
@@ -697,7 +703,8 @@
             "y": 228.09,
             "z": -728.57,
             "areaMask": 0
-          }
+          },
+          "screenshot": "can_opener_4.jpg"
         },
         {
           "x": -154.82,
@@ -851,7 +858,8 @@
             "y": 15.86,
             "z": 1168.67,
             "areaMask": 0
-          }
+          },
+          "screenshot": "silk_pajamas_487.jpg"
         }
       ]
     },
@@ -865,7 +873,8 @@
             "y": 233.89,
             "z": -1116.68,
             "areaMask": 0
-          }
+          },
+          "screenshot": "hoodie_490.jpg"
         }
       ]
     },
@@ -880,7 +889,8 @@
             "y": 16.41,
             "z": -1803.1,
             "areaMask": 0
-          }
+          },
+          "screenshot": "blazer_491.jpg"
         }
       ]
     },
@@ -948,7 +958,8 @@
             "y": 89.95,
             "z": 1572.68,
             "areaMask": 0
-          }
+          },
+          "screenshot": "winter_jacket.jpg"
         }
       ]
     },
@@ -971,14 +982,15 @@
     "517": {
       "pois": [
         {
-          "x": 1138.21,
-          "y": -638.2,
+          "x": 1137.6256,
+          "y": -640.0391,
           "teleport": {
-            "x": 1138.21,
-            "y": 210.27,
-            "z": -638.2,
+            "x": 1137.6256,
+            "y": 209.24957,
+            "z": -640.0391,
             "areaMask": 4194304
-          }
+          },
+          "screenshot": "cooking_pot_4.jpg"
         },
         {
           "x": 1614.6,
@@ -988,7 +1000,8 @@
             "y": 22.99,
             "z": 480.4,
             "areaMask": 32
-          }
+          },
+          "screenshot": "cooking_pot_3.jpg"
         },
         {
           "x": -703.05,
@@ -1143,7 +1156,8 @@
             "y": 127.77,
             "z": 989.59,
             "areaMask": 0
-          }
+          },
+          "screenshot": "putter_7.jpg"
         },
         {
           "x": 1036.29,
@@ -1181,7 +1195,8 @@
             "y": 22.14,
             "z": 569.3,
             "areaMask": 32
-          }
+          },
+          "screenshot": "will_526.jpg"
         }
       ]
     },
@@ -1235,7 +1250,8 @@
             "y": 54.78,
             "z": -1412.84,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_6.jpg"
         },
         {
           "x": 1466.83,
@@ -1245,7 +1261,8 @@
             "y": 178.51,
             "z": -656.91,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_7.jpg"
         },
         {
           "x": -1127.2,
@@ -1255,7 +1272,8 @@
             "y": 227.84,
             "z": -1621.57,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_3.jpg"
         },
         {
           "x": -1392.8,
@@ -1265,7 +1283,8 @@
             "y": 234.24,
             "z": -1124.61,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_2.jpg"
         },
         {
           "x": 1053.87,
@@ -1275,7 +1294,8 @@
             "y": 143.64,
             "z": 1048.82,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_12.jpg"
         },
         {
           "x": 1487.51,
@@ -1285,7 +1305,8 @@
             "y": 83.3,
             "z": 68.4,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_9.jpg"
         },
         {
           "x": 1357.87,
@@ -1295,7 +1316,8 @@
             "y": 96.27,
             "z": 1729.13,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_14.jpg"
         },
         {
           "x": 1521.42,
@@ -1305,7 +1327,8 @@
             "y": 98.58,
             "z": 1485.94,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_13.jpg"
         },
         {
           "x": -709.1,
@@ -1315,7 +1338,8 @@
             "y": 103.3,
             "z": -1433.11,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_4.jpg"
         },
         {
           "x": 389.09,
@@ -1325,7 +1349,8 @@
             "y": 443.84,
             "z": -656.01,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_15.jpg"
         },
         {
           "x": 1533.11,
@@ -1335,7 +1360,8 @@
             "y": 188.33,
             "z": -471.77,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_8.jpg"
         },
         {
           "x": -950.01,
@@ -1345,7 +1371,8 @@
             "y": 79.14,
             "z": 217.68,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_loc_529.jpg"
         },
         {
           "x": 1713.79,
@@ -1355,7 +1382,8 @@
             "y": 25.39,
             "z": 73.67,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gps_529_10.jpg"
         }
       ]
     },
@@ -1385,8 +1413,7 @@
             "y": 88.69,
             "z": 1681.74,
             "areaMask": 0
-          },
-          "txt": "/EmailPrintoutGolfBPickup"
+          }
         }
       ]
     },
@@ -1401,7 +1428,8 @@
             "y": 88.65,
             "z": 1682.46,
             "areaMask": 0
-          }
+          },
+          "screenshot": "mail_536.jpg"
         }
       ]
     },
@@ -1449,7 +1477,8 @@
             "y": 111.58,
             "z": -292.88,
             "areaMask": 4
-          }
+          },
+          "screenshot": "email_540.jpg"
         }
       ]
     },
@@ -1464,7 +1493,8 @@
             "y": 143.57,
             "z": 1022.59,
             "areaMask": 0
-          }
+          },
+          "screenshot": "email_542.jpg"
         }
       ]
     },
@@ -1479,7 +1509,8 @@
             "y": 66.65,
             "z": 27.68,
             "areaMask": 1048576
-          }
+          },
+          "screenshot": "email_543.jpg"
         }
       ]
     },
@@ -1494,7 +1525,8 @@
             "y": 233.7,
             "z": -1117.19,
             "areaMask": 0
-          }
+          },
+          "screenshot": "email_544.jpg"
         }
       ]
     },
@@ -1542,7 +1574,8 @@
             "y": 59.91,
             "z": 1036.19,
             "areaMask": 2097152
-          }
+          },
+          "screenshot": "email_547.jpg"
         }
       ]
     },
@@ -1556,7 +1589,8 @@
             "y": 143.51,
             "z": 1033.52,
             "areaMask": 0
-          }
+          },
+          "screenshot": "doc_548.jpg"
         }
       ]
     },
@@ -1571,7 +1605,8 @@
             "y": 58.63,
             "z": 38.23,
             "areaMask": 1048576
-          }
+          },
+          "screenshot": "track_suit.jpg"
         }
       ]
     },
@@ -1585,7 +1620,8 @@
             "y": 22.19,
             "z": 568.18,
             "areaMask": 32
-          }
+          },
+          "screenshot": "dress_556.jpg"
         }
       ]
     },
@@ -1618,7 +1654,8 @@
             "y": 238.83,
             "z": -666.75,
             "areaMask": 0
-          }
+          },
+          "screenshot": "camouflage_suit.jpg"
         }
       ]
     },
@@ -1855,7 +1892,8 @@
             "y": 66.0,
             "z": 103.39,
             "areaMask": 1048576
-          }
+          },
+          "screenshot": "email_611.jpg"
         }
       ]
     },
@@ -1917,7 +1955,8 @@
             "y": 102.98,
             "z": 445.93,
             "areaMask": 0
-          }
+          },
+          "screenshot": "email_615.jpg"
         }
       ]
     },
@@ -1931,7 +1970,8 @@
             "y": 227.51,
             "z": -1603.16,
             "areaMask": 0
-          }
+          },
+          "screenshot": "doc_616.jpg"
         }
       ]
     },
@@ -1984,7 +2024,8 @@
             "y": 15.38,
             "z": 1169.51,
             "areaMask": 0
-          }
+          },
+          "screenshot": "therealmbeyond_631.jpg"
         }
       ]
     },
@@ -2058,7 +2099,8 @@
             "y": 16.22,
             "z": 1166.98,
             "areaMask": 0
-          }
+          },
+          "screenshot": "cult_pamphlet_6.jpg"
         }
       ]
     },
@@ -2072,7 +2114,8 @@
             "y": 143.52,
             "z": 1034.05,
             "areaMask": 0
-          }
+          },
+          "screenshot": "action_camera_3.jpg"
         },
         {
           "x": 1137.46,
@@ -2096,7 +2139,8 @@
             "y": 22.03,
             "z": 498.8,
             "areaMask": 32
-          }
+          },
+          "screenshot": "action_camera_2.jpg"
         },
         {
           "x": 468.03,
@@ -2106,7 +2150,8 @@
             "y": 15.93,
             "z": 1215.92,
             "areaMask": 0
-          }
+          },
+          "screenshot": "action_camera_4.jpg"
         }
       ]
     },
@@ -2138,7 +2183,8 @@
             "y": 58.65,
             "z": 37.1,
             "areaMask": 1048576
-          }
+          },
+          "screenshot": "note_653.jpg"
         }
       ]
     },
@@ -2152,7 +2198,8 @@
             "y": 22.18,
             "z": 511.42,
             "areaMask": 32
-          }
+          },
+          "screenshot": "note_654.jpg"
         }
       ]
     },
@@ -2166,7 +2213,8 @@
             "y": 67.11,
             "z": 62.82,
             "areaMask": 1048576
-          }
+          },
+          "screenshot": "personal_note_c_655.jpg"
         }
       ]
     },
@@ -2312,7 +2360,8 @@
             "y": 524.07,
             "z": -332.15,
             "areaMask": 0
-          }
+          },
+          "screenshot": "gore_couch.jpg"
         }
       ]
     },
@@ -2326,7 +2375,8 @@
             "y": 150.58,
             "z": -1486.19,
             "areaMask": 0
-          }
+          },
+          "screenshot": "blueprint_uber_trap.jpg"
         }
       ]
     },
@@ -2370,7 +2420,8 @@
             "y": 525.45,
             "z": -329.71,
             "areaMask": 0
-          }
+          },
+          "screenshot": "note_676.jpg"
         }
       ]
     },
@@ -2384,7 +2435,8 @@
             "y": 60.87,
             "z": 1036.35,
             "areaMask": 2097152
-          }
+          },
+          "screenshot": "email_677.jpg"
         }
       ]
     },
@@ -2428,7 +2480,8 @@
             "y": 141.83,
             "z": -614.63,
             "areaMask": 0
-          }
+          },
+          "screenshot": "blueprint_spotlight.jpg"
         }
       ]
     },
@@ -2487,7 +2540,8 @@
             "y": 49.88,
             "z": -497.26,
             "areaMask": 0
-          }
+          },
+          "screenshot": "note_685.jpg"
         }
       ]
     },
@@ -2591,7 +2645,8 @@
             "y": 66.36,
             "z": 31.39,
             "areaMask": 1048576
-          }
+          },
+          "screenshot": "bunker_map_a_693.jpg"
         }
       ]
     },
@@ -2605,7 +2660,8 @@
             "y": 79.09,
             "z": 218.23,
             "areaMask": 0
-          }
+          },
+          "screenshot": "email_694.jpg"
         }
       ]
     },
@@ -2619,7 +2675,8 @@
             "y": 16.85,
             "z": 1210.07,
             "areaMask": 0
-          }
+          },
+          "screenshot": "cult_695.jpg"
         }
       ]
     },
@@ -2633,7 +2690,8 @@
             "y": 15.82,
             "z": -1809.75,
             "areaMask": 0
-          }
+          },
+          "screenshot": "cult_sign_696.jpg"
         }
       ]
     },
@@ -2647,7 +2705,8 @@
             "y": 15.75,
             "z": 1171.75,
             "areaMask": 0
-          }
+          },
+          "screenshot": "cult_697.jpg"
         }
       ]
     },
@@ -2661,7 +2720,8 @@
             "y": 21.44,
             "z": 569.48,
             "areaMask": 32
-          }
+          },
+          "screenshot": "cult_698.jpg"
         }
       ]
     },
@@ -2675,7 +2735,8 @@
             "y": 22.01,
             "z": 523.61,
             "areaMask": 32
-          }
+          },
+          "screenshot": "cult_699.jpg"
         }
       ]
     },
@@ -2752,7 +2813,8 @@
             "y": 123.92,
             "z": 304.51,
             "areaMask": 256
-          }
+          },
+          "screenshot": "artifact_f.jpg"
         }
       ]
     },
@@ -2766,7 +2828,8 @@
             "y": 214.38,
             "z": -1608.09,
             "areaMask": 0
-          }
+          },
+          "screenshot": "blueprint_teleporter.jpg"
         }
       ]
     },
@@ -2780,7 +2843,8 @@
             "y": 179.04,
             "z": -448.46,
             "areaMask": 0
-          }
+          },
+          "screenshot": "blueprint_repel_shrine.jpg"
         }
       ]
     },
@@ -2794,7 +2858,8 @@
             "y": 18.26,
             "z": -951.13,
             "areaMask": 0
-          }
+          },
+          "screenshot": "blueprint_attract_shrine.jpg"
         }
       ]
     },
@@ -2808,7 +2873,8 @@
             "y": 138.38,
             "z": -668.46,
             "areaMask": 16
-          }
+          },
+          "screenshot": "artifact_g.jpg"
         }
       ]
     },
@@ -2822,7 +2888,8 @@
             "y": 22.06,
             "z": 486.42,
             "areaMask": 32
-          }
+          },
+          "screenshot": "blueprint_gold_armor_plater.jpg"
         }
       ]
     },
@@ -2836,7 +2903,8 @@
             "y": 77.36,
             "z": 74.49,
             "areaMask": 0
-          }
+          },
+          "screenshot": "bible_716.jpg"
         }
       ]
     },
@@ -2850,7 +2918,8 @@
             "y": 393.57,
             "z": -91.84,
             "areaMask": 0
-          }
+          },
+          "screenshot": "note_717.jpg"
         }
       ]
     },
@@ -2864,7 +2933,8 @@
             "y": 210.19,
             "z": -643.81,
             "areaMask": 4194304
-          }
+          },
+          "screenshot": "note_718.jpg"
         }
       ]
     },
@@ -2878,21 +2948,23 @@
             "y": 22.99,
             "z": 483.69,
             "areaMask": 32
-          }
+          },
+          "screenshot": "note_720.jpg"
         }
       ]
     },
     "721": {
       "pois": [
         {
-          "x": 1153.97,
-          "y": 523.01,
+          "x": 1154.4877,
+          "y": 524.21295,
           "teleport": {
-            "x": 1153.97,
-            "y": -130.43,
-            "z": 523.01,
+            "x": 1154.4877,
+            "y": -130.36641,
+            "z": 524.21295,
             "areaMask": 32
-          }
+          },
+          "screenshot": "bible_721.jpg"
         }
       ]
     },
@@ -2906,7 +2978,8 @@
             "y": 210.69,
             "z": -626.89,
             "areaMask": 4194304
-          }
+          },
+          "screenshot": "puffton_722.jpg"
         }
       ]
     },
@@ -2920,7 +2993,8 @@
             "y": 217.82,
             "z": -603.04,
             "areaMask": 4194304
-          }
+          },
+          "screenshot": "puffton_723.jpg"
         }
       ]
     },
@@ -2934,7 +3008,8 @@
             "y": 76.56,
             "z": 161.72,
             "areaMask": 0
-          }
+          },
+          "screenshot": "blueprint_hang_glider_launcher.jpg"
         }
       ]
     }
