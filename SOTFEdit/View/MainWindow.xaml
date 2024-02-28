@@ -166,12 +166,15 @@
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.text'}"
                               Command="{Binding ExperimentResetNumberCutTreesCommand}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.tooltip'}" />
-                    <MenuItem Header="{infrastructure:Translate 'menu.tools.unlocks.text'}"
-                              Command="{Binding UnlocksCommand}"
-                              ToolTip="{infrastructure:Translate 'menu.tools.unlocks.tooltip'}" />
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.resetContainers.text'}"
                               Command="{Binding ResetContainersCommand}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetContainers.tooltip'}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetTraps.text'}"
+                              Command="{Binding ResetTrapsCommand}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.resetTraps.tooltip'}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.unlocks.text'}"
+                              Command="{Binding UnlocksCommand}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.unlocks.tooltip'}" />
                 </MenuItem>
                 <MenuItem Header="{infrastructure:Translate 'menu.tools.map.text'}"
                           Command="{Binding OpenMapCommand}"

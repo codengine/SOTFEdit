@@ -1148,6 +1148,10 @@
         "text": "Schadenszähler für Gebäude zurücksetzen",
         "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
       },
+      "resetTraps": {
+        "text": "Fallen zurücksetzen",
+        "tooltip": "Setzt alle Fallen zurück"
+      },
       "text": "Tools",
       "unlocks": {
         "text": "Freischaltung",
@@ -1436,6 +1440,18 @@
         "nothingToReset": {
           "text": "Nichts zum zurücksetzen gefunden",
           "title": "Nichts gefunden"
+        }
+      }
+    },
+    "resetTraps": {
+      "messages": {
+        "nothingToReset": {
+          "text": "Nichts zum zurücksetzen gefunden",
+          "title": "Nichts gefunden"
+        },
+        "trapsReset": {
+          "text": "{0} Fallen wurden zurückgesetzt. Bitte speichere die Änderungen um sie anzuwenden",
+          "title": "Fallen zurückgesetzt"
         }
       }
     },

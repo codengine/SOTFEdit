@@ -1148,6 +1148,10 @@
         "text": "Reset Structure Damage",
         "tooltip": "Lets you repair all structures"
       },
+      "resetTraps": {
+        "text": "Reset Traps",
+        "tooltip": "Resets all traps"
+      },
       "text": "Tools",
       "unlocks": {
         "text": "Unlocks",
@@ -1436,6 +1440,18 @@
         "nothingToReset": {
           "text": "Nothing to reset found",
           "title": "Nothing found"
+        }
+      }
+    },
+    "resetTraps": {
+      "messages": {
+        "nothingToReset": {
+          "text": "Nothing to reset found",
+          "title": "Nothing found"
+        },
+        "trapsReset": {
+          "text": "{0} traps have been reset. Please save the changes to apply them to the savegame",
+          "title": "Traps reset"
         }
       }
     },

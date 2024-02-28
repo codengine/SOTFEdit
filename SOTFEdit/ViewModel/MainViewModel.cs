@@ -176,6 +176,7 @@ public partial class MainViewModel : ObservableObject
         ResetStructureDamageCommand.NotifyCanExecuteChanged();
         TeleportWorldItemCommand.NotifyCanExecuteChanged();
         ResetContainersCommand.NotifyCanExecuteChanged();
+        ResetTrapsCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(CanEditTabs));
     }
 
@@ -463,6 +464,55 @@ public partial class MainViewModel : ObservableObject
     private static void ResetContainers()
     {
         WeakReferenceMessenger.Default.Send(new RequestResetContainersEvent());
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
+    private static void ResetTraps()
+    {
+        if (SavegameManager.SelectedSavegame is not { } selectedSavegame ||
+            selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.ScrewTrapsSaveData) is not
+                { } saveDataWrapper ||
+            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.ScrewTraps) is not { } traps ||
+            traps["_tarpStructureData"] is not JArray structureData || structureData.Count == 0)
+        {
+            ShowNoTrapsToResetMessage();
+            return;
+        }
+
+        var countReset = 0;
+
+        foreach (var trapData in structureData)
+        {
+            if (trapData["IsTriggered"] is { } isTriggeredToken && isTriggeredToken.Value<bool>())
+            {
+                trapData["IsTriggered"] = false;
+                countReset++;
+            }
+
+            if (trapData["Data1"] is { } data1Token && data1Token.Value<int>() < 5)
+            {
+                trapData["Data1"] = 5;
+                countReset++;
+            }
+        }
+
+        if (countReset == 0)
+        {
+            ShowNoTrapsToResetMessage();
+            return;
+        }
+
+        saveDataWrapper.MarkAsModified(Constants.JsonKeys.ScrewTraps);
+        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+            TranslationManager.GetFormatted("windows.resetTraps.messages.trapsReset.text", countReset),
+            TranslationManager.Get("windows.resetTraps.messages.trapsReset.title")));
+    }
+
+    private static void ShowNoTrapsToResetMessage()
+    {
+        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
+            TranslationManager.Get("windows.resetTraps.messages.nothingToReset.text"),
+            TranslationManager.Get("windows.resetTraps.messages.nothingToReset.title")));
     }
 
     public void OnPreviewKeyDown(KeyEventArgs e)
