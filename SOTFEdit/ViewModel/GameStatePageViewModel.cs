@@ -58,22 +58,14 @@ public class GameStatePageViewModel
             ));
             return;
         }
-        
+
         NamedIntDatas.Clear();
-        
+
         filtered.ForEach(setting => NamedIntDatas.Add(setting));
-        
+
         WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
             TranslationManager.GetFormatted("windows.resetContainers.messages.containersReset.text", numFixed),
             TranslationManager.Get("windows.resetContainers.messages.containersReset.title")
-        ));
-    }
-
-    private static void ShowNothingToResetMessage()
-    {
-        WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-            TranslationManager.Get("windows.resetContainers.messages.nothingToReset.text"),
-            TranslationManager.Get("windows.resetContainers.messages.nothingToReset.title")
         ));
     }
 
@@ -83,6 +75,48 @@ public class GameStatePageViewModel
             (_, m) => OnSelectedSavegameChanged(m));
         WeakReferenceMessenger.Default.Register<RequestResetContainersEvent>(this,
             (_, _) => OnRequestResetContainers());
+        WeakReferenceMessenger.Default.Register<RequestSetToEndgameEvent>(this,
+            (_, _) => OnRequestSetToEndgameEvent());
+    }
+
+    private void OnRequestSetToEndgameEvent()
+    {
+        GenericSetting? stayedOnIslandSetting = null;
+        GenericSetting? coreGameCompletedSetting = null;
+        
+        foreach (var namedIntData in NamedIntDatas)
+        {
+            switch (namedIntData.Name)
+            {
+                case "Endgame.StayedOnIsland":
+                    stayedOnIslandSetting = namedIntData;
+                    stayedOnIslandSetting.IntValue = 1;
+                    break;
+                case "Endgame.CoreGameCompleted":
+                    coreGameCompletedSetting = namedIntData;
+                    coreGameCompletedSetting.IntValue = 1;
+                    break;
+            }
+        }
+
+        if (stayedOnIslandSetting == null)
+        {
+            var namedIntData = CreateNamedIntData("Endgame.StayedOnIsland");
+            namedIntData.IntValue = 1;
+        }
+        
+        if (coreGameCompletedSetting == null)
+        {
+            var namedIntData = CreateNamedIntData("Endgame.CoreGameCompleted");
+            namedIntData.IntValue = 1;
+        }
+    }
+
+    private GenericSetting CreateNamedIntData(string name)
+    {
+        var setting = new GenericSetting(name, GenericSetting.DataType.Integer);
+        NamedIntDatas.Add(setting);
+        return setting;
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)
@@ -168,14 +202,6 @@ public class GameStatePageViewModel
                         IntValue = child.Value.Value<int>(),
                         MinInt = 0,
                         MaxInt = 999
-                    };
-                    break;
-                case "CoreGameCompleted":
-                case "EscapedIsland":
-                case "StayedOnIsland":
-                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Boolean, child.Path)
-                    {
-                        BoolValue = child.Value.Value<bool>()
                     };
                     break;
             }

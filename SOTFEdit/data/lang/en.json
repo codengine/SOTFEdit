@@ -92,14 +92,17 @@
       "20": "Burning",
       "21": "Electrocuted",
       "22": "Swimming",
-      "23": "Stunned",
+      "23": "Stunned/Hit",
       "24": "Drowning",
-      "40": "OnRock",
-      "41": "OnTree",
+      "40": "On Rock",
+      "41": "On Tree",
       "42": "Under Leaves",
       "43": "Wall Walking",
       "44": "Captured",
       "45": "Boss Intro",
+      "46": "Spawn Intro",
+      "47": "Ceiling",
+      "48": "Underground Cave",
       "50": "Leave Combat",
       "51": "Despawned"
     },
@@ -1147,6 +1150,10 @@
       "resetStructureDamage": {
         "text": "Reset Structure Damage",
         "tooltip": "Lets you repair all structures"
+      },
+      "setToEndgame": {
+        "text": "Set to Endgame",
+        "tooltip": "Set to Endgame"
       },
       "resetTraps": {
         "text": "Reset Traps",

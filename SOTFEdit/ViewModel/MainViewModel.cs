@@ -177,6 +177,7 @@ public partial class MainViewModel : ObservableObject
         TeleportWorldItemCommand.NotifyCanExecuteChanged();
         ResetContainersCommand.NotifyCanExecuteChanged();
         ResetTrapsCommand.NotifyCanExecuteChanged();
+        SetToEndgameCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(CanEditTabs));
     }
 
@@ -458,6 +459,12 @@ public partial class MainViewModel : ObservableObject
     private static void Unlocks()
     {
         WeakReferenceMessenger.Default.Send(new RequestChangeUnlocksEvent());
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
+    private static void SetToEndgame()
+    {
+        WeakReferenceMessenger.Default.Send(new RequestSetToEndgameEvent());
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
