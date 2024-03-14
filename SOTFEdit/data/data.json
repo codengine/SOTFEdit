@@ -488,7 +488,7 @@
       "type": "bodyPart",
       "storageMax": {
         "shelf": 0,
-        "inventory": 15
+        "inventory": 16
       },
       "image": "Bone.png"
     },
@@ -3261,6 +3261,21 @@
         "shelf": 0,
         "inventory": 1
       }
+    },
+    {
+      "id": 727,
+      "type": "armor",
+      "isEquippableArmor": true,
+      "durability": {
+        "default": 130,
+        "min": 1,
+        "max": 65535
+      },
+      "storageMax": {
+        "shelf": 5,
+        "inventory": 10
+      },
+      "image": "SolafiteArmour.png"
     }
   ],
   "storages": [
@@ -3341,7 +3356,8 @@
         554,
         593,
         473,
-        519
+        519,
+        727
       ]
     },
     {

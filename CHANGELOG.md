@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.12.2
+
+### Features
+
+- Added Solafite Armor
+- Added tool to mark game as endgame
+- Increased max bone amount to 16
+
 ## v0.12.1
 
 Make sure to update SOTFEdit Companion to 1.0.2.

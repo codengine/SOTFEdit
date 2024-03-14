@@ -222,10 +222,13 @@
                         <Separator />
                         <MenuItem Header="{infrastructure:Translate 'menu.help.links.nexusMods'}"
                                   Command="{Binding OpenUrlCommand}"
-                                  CommandParameter="https://www.nexusmods.com/sonsoftheforest/mods/41" />
+                                  CommandParameter="https://www.nexusmods.com/sonsoftheforest/users/127549423?tab=user+files" />
                         <MenuItem Header="{infrastructure:Translate 'menu.help.links.thunderstoreIo'}"
                                   Command="{Binding OpenUrlCommand}"
-                                  CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/SOTFEdit/" />
+                                  CommandParameter="https://thunderstore.io/c/sons-of-the-forest/p/codengine/" />
+                        <MenuItem Header="sotf-mods.com"
+                                  Command="{Binding OpenUrlCommand}"
+                                  CommandParameter="https://sotf-mods.com/profile/codengine" />
                     </MenuItem>
                     <MenuItem Header="{infrastructure:Translate 'menu.help.updates.text'}">
                         <MenuItem Header="{infrastructure:Translate 'menu.help.updates.checkNow'}"
