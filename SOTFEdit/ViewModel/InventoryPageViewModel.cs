@@ -215,7 +215,8 @@ public partial class InventoryPageViewModel : ObservableObject
                 .PlayerInventorySaveData)?.Parent.ToObject<PlayerInventoryDataModel>();
         if (saveData != null)
         {
-            var inventoryItems = saveData.Data.PlayerInventory.ItemInstanceManagerData.ItemBlocks
+            var playerInventoryModel = saveData.Data.PlayerInventory;
+            var inventoryItems = playerInventoryModel.ItemInstanceManagerData.ItemBlocks
                 .Select(itemBlock =>
                 {
                     var item = _itemList.GetItem(itemBlock.ItemId);
@@ -228,6 +229,27 @@ public partial class InventoryPageViewModel : ObservableObject
                     return new InventoryItem(itemBlock, item);
                 })
                 .ToList();
+
+            var equippedItems = playerInventoryModel.EquippedItems?.Select(itemBlock =>
+                {
+                    var item = _itemList.GetItem(itemBlock.ItemId);
+                    if (item?.StorageMax?.Inventory is { } maxInInventory && maxInInventory < itemBlock.TotalCount)
+                    {
+                        Logger.Info(
+                            $"Defined max in inventory for {item.Id} is lower ({maxInInventory}) than in savedata ({itemBlock.TotalCount})");
+                    }
+
+                    itemBlock.TotalCount = 1;
+
+                    return new InventoryItem(itemBlock, item, true);
+                })
+                .ToList();
+
+            if (equippedItems != null)
+            {
+                inventoryItems.AddRange(equippedItems);
+            }
+
             _inventory.ReplaceRange(inventoryItems);
 
             foreach (var inventoryItem in inventoryItems)

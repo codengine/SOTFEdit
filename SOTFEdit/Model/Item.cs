@@ -82,7 +82,7 @@ public class Item
         return Id;
     }
 
-    public bool HasModules()
+    public bool HasFoodSpoilModuleDefinition()
     {
         return FoodSpoilModuleDefinition != null;
     }

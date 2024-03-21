@@ -9,13 +9,15 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryItem : ObservableObject
 {
-    public InventoryItem(ItemBlockModel itemBlock, Item? item)
+    public InventoryItem(ItemBlockModel itemBlock, Item? item, bool isEquipped = false)
     {
         ItemBlock = itemBlock;
         Item = item;
+        IsEquipped = isEquipped;
     }
 
     public Item? Item { get; }
+    public bool IsEquipped { get; }
 
     public ItemBlockModel ItemBlock { get; }
 

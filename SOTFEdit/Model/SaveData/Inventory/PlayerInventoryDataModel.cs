@@ -10,7 +10,7 @@ public record PlayerInventoryDataModel
 {
     public DataModel Data { get; set; }
 
-    public static bool Merge(SaveDataWrapper saveDataWrapper, IEnumerable<InventoryItem> selectedItems)
+    public static bool Merge(SaveDataWrapper saveDataWrapper, List<InventoryItem> selectedItems)
     {
         if (saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.PlayerInventory) is not { } playerInventory)
         {
