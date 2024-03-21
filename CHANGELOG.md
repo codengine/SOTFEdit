@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.12.3
+
+### Features
+
+- Merged and renamed tools to reset kill and chopped tree statistics into one ("Reset cannibal anger level")
+    - This will lower their anger level and in turn makes them less likely to attack and makes their attacks weaker
+
+### Bugfixes
+
+- Added red and golden masks to weapon storages (closes #30)
+- Fixed handling of equipped items, so that they appear as collected (closes #31)
+- Items removed from inventory will also be removed from quick select
+- Removed duplicate "type" colum at left (assigned) inventory page
+
 ## v0.12.2
 
 ### Features
