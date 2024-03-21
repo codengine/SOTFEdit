@@ -7,7 +7,7 @@ namespace SOTFEdit;
 
 public static class LabExperiments
 {
-    public static void ResetKillStatistics(Savegame selectedSavegame)
+    public static void ResetCannibalAnger(Savegame selectedSavegame)
     {
         if (selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not { } saveDataWrapper ||
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim) is not { } vailWorldSim)
@@ -20,18 +20,8 @@ public static class LabExperiments
             killStat["PlayerKilled"]?.Replace(0);
         }
 
-        saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
-    }
-
-    public static void ResetNumberCutTrees(Savegame selectedSavegame)
-    {
-        if (selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not { } saveDataWrapper ||
-            saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim) is not { } vailWorldSim)
-        {
-            return;
-        }
-
         vailWorldSim["PlayerStats"]?["CutTrees"]?.Replace(0);
+        vailWorldSim["PlayerStats"]?["SeenInVillageCount"]?.Replace(0);
 
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
     }

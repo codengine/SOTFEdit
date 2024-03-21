@@ -166,8 +166,7 @@ public partial class MainViewModel : ObservableObject
         ReloadSavegameCommand.NotifyCanExecuteChanged();
         OpenSavegameDirCommand.NotifyCanExecuteChanged();
         DeleteBackupsCommand.NotifyCanExecuteChanged();
-        ExperimentResetKillStatisticsCommand.NotifyCanExecuteChanged();
-        ExperimentResetNumberCutTreesCommand.NotifyCanExecuteChanged();
+        ResetCannibalAngerCommand.NotifyCanExecuteChanged();
         RestoreBackupsCommand.NotifyCanExecuteChanged();
         RegrowTreesCommand.NotifyCanExecuteChanged();
         ModifyConsumedItemsCommand.NotifyCanExecuteChanged();
@@ -303,7 +302,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
-    private void ExperimentResetKillStatistics()
+    private void ResetCannibalAnger()
     {
         if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
         {
@@ -312,10 +311,10 @@ public partial class MainViewModel : ObservableObject
 
         try
         {
-            LabExperiments.ResetKillStatistics(selectedSavegame);
+            LabExperiments.ResetCannibalAnger(selectedSavegame);
             WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-                TranslationManager.Get("experiments.resetKillStatistics.success.text"),
-                TranslationManager.Get("experiments.resetKillStatistics.success.title")));
+                TranslationManager.Get("experiments.resetCannibalAngerLevel.success.text"),
+                TranslationManager.Get("experiments.resetCannibalAngerLevel.success.title")));
         }
         catch (Exception ex)
         {
@@ -398,30 +397,6 @@ public partial class MainViewModel : ObservableObject
                 CompanionConnectCommand.NotifyCanExecuteChanged();
                 OnPropertyChanged(nameof(CompanionConnectMenuText));
             });
-        }
-    }
-
-    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
-    private void ExperimentResetNumberCutTrees()
-    {
-        if (SavegameManager.SelectedSavegame is not { } selectedSavegame)
-        {
-            return;
-        }
-
-        try
-        {
-            LabExperiments.ResetNumberCutTrees(selectedSavegame);
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-                TranslationManager.Get("experiments.resetNumberOfCutTrees.success.text"),
-                TranslationManager.Get("experiments.resetNumberOfCutTrees.success.title")));
-        }
-        catch (Exception ex)
-        {
-            Logger.Error(ex);
-            WeakReferenceMessenger.Default.Send(new GenericMessageEvent(
-                TranslationManager.GetFormatted("generic.exceptionMessage", ex.Message),
-                TranslationManager.Get("generic.error")));
         }
     }
 

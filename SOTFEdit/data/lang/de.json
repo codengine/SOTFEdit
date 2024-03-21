@@ -292,13 +292,7 @@
         "title": "Feuer verändert"
       }
     },
-    "resetKillStatistics": {
-      "success": {
-        "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
-        "title": "Änderungen hinzugefügt"
-      }
-    },
-    "resetNumberOfCutTrees": {
+    "resetCannibalAngerLevel": {
       "success": {
         "text": "Änderungen hinzugefügt. Bitte speichern, um sie zu übernehmen",
         "title": "Änderungen hinzugefügt"
@@ -1140,13 +1134,9 @@
         "text": "Feuer zurücksetzen",
         "tooltip": "Entzündet Feuer und setzt Brennstoff-Verbrauch und Menge auf Standard"
       },
-      "resetKillStatistics": {
-        "text": "Tötungsstatistik zurücksetzen",
-        "tooltip": "Manche Spieler werden von Kannibalen und Monstern überflutet. Das Zurücksetzen der Statistiken könnte zu weniger Spawns führen, oder auch nicht. Wer weiß?"
-      },
-      "resetNumberOfCutTrees": {
-        "text": "Anzahl der gefällten Bäume zurücksetzen",
-        "tooltip": "Dies könnte auch helfen, die Anzahl der Kannibalen zu reduzieren. Eine Theorie besagt, dass sie aufgrund dieser Zahl berechnet wird."
+      "resetCannibalAngerLevel": {
+        "text": "Kannibalen-Wut-Level zurücksetzen",
+        "tooltip": "Setzt die Tötungsstatistik, Anzahl gefallene Bäume und Anzahl Sichtungen zurück, was zu kleineren und weniger Angriffen führt"
       },
       "resetStructureDamage": {
         "text": "Schadenszähler für Gebäude zurücksetzen",

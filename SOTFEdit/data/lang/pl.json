@@ -289,13 +289,7 @@
         "title": "Zmodyfikowano ogniska"
       }
     },
-    "resetKillStatistics": {
-      "success": {
-        "text": "Dodano zmiany. Zapisz, żeby je zatrzymać",
-        "title": "Dodano zmiany"
-      }
-    },
-    "resetNumberOfCutTrees": {
+    "resetCannibalAngerLevel": {
       "success": {
         "text": "Dodano zmiany. Zapisz, żeby je zatrzymać",
         "title": "Dodano zmiany"
@@ -1131,14 +1125,6 @@
       "resetFires": {
         "text": "Zresetuj ognie",
         "tooltip": "Ognie zostaną zapalone, a prędkość zużycia i ilość paliwa ustawione na domyślne"
-      },
-      "resetKillStatistics": {
-        "text": "Resetuj statystyki zabójstw",
-        "tooltip": "Niektórzy toną w  kanibalach i potworach. Resetowanie statystyk może doprowadzić do mniejszej ilości przeciwników, lub nie. Kto wie?"
-      },
-      "resetNumberOfCutTrees": {
-        "text": "Resetuj ilość zciętych drzew",
-        "tooltip": "Może to też pomóc w zmniejszeniu liczby kanibali. Teoria mówi, że jest to obliczane na podstawie tej liczby"
       },
       "resetStructureDamage": {
         "text": "Zresetuj obrażenia struktur",

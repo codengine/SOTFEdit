@@ -292,13 +292,7 @@
         "title": "Fires changed"
       }
     },
-    "resetKillStatistics": {
-      "success": {
-        "text": "Changes added. Please save to persist them",
-        "title": "Changes added"
-      }
-    },
-    "resetNumberOfCutTrees": {
+    "resetCannibalAngerLevel": {
       "success": {
         "text": "Changes added. Please save to persist them",
         "title": "Changes added"
@@ -1140,13 +1134,9 @@
         "text": "Reset Fires",
         "tooltip": "Fires will be ignited, fuel drain rate and fuel amount is set to default"
       },
-      "resetKillStatistics": {
-        "text": "Reset Kill Statistics",
-        "tooltip": "Some people are flooded by cannibals and monsters. Resetting the stats might lead to less spawns, or not. Who knows?"
-      },
-      "resetNumberOfCutTrees": {
-        "text": "Reset Number of Cut Trees",
-        "tooltip": "This might also help to reduce the number of cannibals. A theory is that it is calculated based on that number"
+      "resetCannibalAngerLevel": {
+        "text": "Reset Cannibal Anger Level",
+        "tooltip": "Resets the kill statistics, number of cut trees and village visit count, which leads to fewer and smaller cannibal raids"
       },
       "resetStructureDamage": {
         "text": "Reset Structure Damage",

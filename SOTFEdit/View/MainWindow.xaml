@@ -160,12 +160,9 @@
                               Command="{Binding ModifyConsumedItemsCommand}"
                               ToolTip="{infrastructure:Translate 'menu.tools.modifyConsumedItems.tooltip'}" />
                     <Separator />
-                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetKillStatistics.text'}"
-                              Command="{Binding ExperimentResetKillStatisticsCommand}"
-                              ToolTip="{infrastructure:Translate 'menu.tools.resetKillStatistics.tooltip'}" />
-                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.text'}"
-                              Command="{Binding ExperimentResetNumberCutTreesCommand}"
-                              ToolTip="{infrastructure:Translate 'menu.tools.resetNumberOfCutTrees.tooltip'}" />
+                    <MenuItem Header="{infrastructure:Translate 'menu.tools.resetCannibalAngerLevel.text'}"
+                              Command="{Binding ResetCannibalAngerCommand}"
+                              ToolTip="{infrastructure:Translate 'menu.tools.resetCannibalAngerLevel.tooltip'}" />
                     <MenuItem Header="{infrastructure:Translate 'menu.tools.resetContainers.text'}"
                               Command="{Binding ResetContainersCommand}"
                               ToolTip="{infrastructure:Translate 'menu.tools.resetContainers.tooltip'}" />
