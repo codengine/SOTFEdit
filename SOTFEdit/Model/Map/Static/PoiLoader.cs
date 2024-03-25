@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 using SOTFEdit.Companion.Shared;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Infrastructure.Companion;
@@ -16,14 +17,17 @@ public class PoiLoader
     private readonly CompanionPoiStorage _companionPoiStorage;
     private readonly InventoryPageViewModel _inventoryPageViewModel;
     private readonly ItemList _items;
+    private readonly PlayerPageViewModel _playerPageViewModel;
     private readonly ConcurrentDictionary<PoiGroupType, IPoiGrouper> _rawPoiCache = new();
 
     public PoiLoader(GameData gameData, InventoryPageViewModel inventoryPageViewModel,
+        PlayerPageViewModel playerPageViewModel,
         CompanionPoiStorage companionPoiStorage)
     {
         _items = gameData.Items;
         _areaMaskManager = gameData.AreaManager;
         _inventoryPageViewModel = inventoryPageViewModel;
+        _playerPageViewModel = playerPageViewModel;
         _companionPoiStorage = companionPoiStorage;
     }
 
@@ -52,9 +56,73 @@ public class PoiLoader
 
     private HashSet<int> GetInventoryItems()
     {
-        return _inventoryPageViewModel.InventoryCollectionView.OfType<InventoryItem>()
-            .Select(item => item.Id)
+        var itemsWithHashes = _items.GetItemsWithHashes();
+
+        var inventoryItems = _inventoryPageViewModel.InventoryCollectionView.OfType<InventoryItem>()
+            .SelectMany(item =>
+            {
+                var itemIds = new HashSet<int> { item.Id };
+                AddItemIdsFromWeaponMods(item, itemIds, itemsWithHashes);
+
+                return itemIds;
+            })
             .ToHashSet();
+
+        if (_playerPageViewModel.PlayerState.SelectedCloth is { } selectedCloth)
+        {
+            inventoryItems.Add(selectedCloth.Id);
+        }
+
+        return inventoryItems;
+    }
+
+    private static void AddItemIdsFromWeaponMods(InventoryItem item, ISet<int> itemIds,
+        IReadOnlyCollection<Item> itemsWithHashes)
+    {
+        List<JToken> modules;
+
+        if (item.ItemBlock.Modules is { Count: > 0 } m)
+        {
+            modules = m;
+        }
+        else if (item.ItemBlock.UniqueItems is { Count: > 0 } uniqueItems)
+        {
+            modules = new List<JToken>();
+            foreach (var uniqueItem in uniqueItems)
+            {
+                if (uniqueItem["Modules"] is JArray mUnique)
+                {
+                    modules.AddRange(mUnique);
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+
+        foreach (var module in modules)
+        {
+            if (module["WeaponModIds"] is not JArray weaponModIds)
+            {
+                continue;
+            }
+
+            foreach (var weaponModId in weaponModIds)
+            {
+                var modItemId = weaponModId.Value<int>();
+
+                foreach (
+                    var itemId in
+                    from itemWithHashes in itemsWithHashes
+                    where itemWithHashes.ModHashes?.Contains(modItemId) ?? false
+                    select itemWithHashes.Id)
+                {
+                    itemIds.Add(itemId);
+                    break;
+                }
+            }
+        }
     }
 
     private IPoiGrouper LoadCustomPois()

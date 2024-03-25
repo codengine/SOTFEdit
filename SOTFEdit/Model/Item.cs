@@ -20,6 +20,7 @@ public class Item
     public bool IsWearableCloth { get; init; } = false;
     public DefaultMinMax? Durability { get; init; }
     public StorageMax? StorageMax { get; init; }
+    public HashSet<int>? ModHashes { get; init; }
     public string? Image { get; init; }
     public string? Wiki { get; init; }
 

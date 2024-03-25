@@ -35,4 +35,11 @@ public class ItemList : IEnumerable<KeyValuePair<int, Item>>
             .Select(item => item!)
             .ToList();
     }
+
+    public List<Item> GetItemsWithHashes()
+    {
+        return _items.Where(item => item.Value.ModHashes is { Count: > 0 })
+            .Select(item => item.Value)
+            .ToList();
+    }
 }
