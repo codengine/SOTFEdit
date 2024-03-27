@@ -19,6 +19,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "Guitar.png"
     },
     {
@@ -76,6 +77,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "CompactPistol.png"
     },
     {
@@ -85,6 +87,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "ModernAxe.png"
     },
     {
@@ -100,6 +103,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "ShotgunPumpAction.png"
     },
     {
@@ -109,6 +113,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "Machete.png"
     },
     {
@@ -126,6 +131,7 @@
       "storageMax": {
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "Rifle.png"
     },
     {
@@ -177,6 +183,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "Katana.png"
     },
     {
@@ -303,6 +310,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "TacticalAxe.png"
     },
     {
@@ -355,6 +363,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "Revolver.png"
     },
     {
@@ -712,6 +721,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "FireAxe.png"
     },
     {
@@ -1047,6 +1057,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "Cross.png"
     },
     {
@@ -1127,6 +1138,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "CraftedClub.png"
     },
     {
@@ -1547,6 +1559,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "Putter.png"
     },
     {
@@ -1960,6 +1973,7 @@
       "isEquippableArmor": false,
       "isWearableCloth": true,
       "image": "GoldArmour.png",
+      "isPlatable": true,
       "storageMax": {
         "inventory": 1
       }
@@ -2728,6 +2742,7 @@
         "shelf": 0,
         "inventory": 1
       },
+      "isPlatable": true,
       "image": "PickAxe.png"
     },
     {
@@ -3422,6 +3437,7 @@
       "slots": 1,
       "maxPerSlot": 1,
       "restrictedItemIds": [
+        482,
         642,
         643,
         644,
@@ -4041,7 +4057,8 @@
       "id": 19,
       "buildCost": 13,
       "category": "storage",
-      "icon": "shelf.png"
+      "icon": "shelf.png",
+      "isWeaponHolder": true
     },
     {
       "id": 20,
@@ -4353,7 +4370,7 @@
     {
       "id": 74,
       "buildCost": 49,
-      "category": "trap",
+      "category": "traps",
       "icon": "../items/TactitabTraps_tn.png"
     },
     {
@@ -4365,7 +4382,7 @@
     {
       "id": 76,
       "buildCost": 75,
-      "category": "trap",
+      "category": "traps",
       "icon": "../items/TactitabTraps_tn.png"
     },
     {
@@ -4383,7 +4400,7 @@
     {
       "id": 79,
       "buildCost": 44,
-      "category": "trap",
+      "category": "traps",
       "icon": "../items/TactitabTraps_tn.png"
     },
     {
@@ -4395,7 +4412,7 @@
     {
       "id": 81,
       "buildCost": 27,
-      "category": "trap",
+      "category": "traps",
       "icon": "../items/TactitabTraps_tn.png"
     },
     {
@@ -4420,6 +4437,7 @@
       "id": 86,
       "buildCost": 6,
       "category": "storage",
+      "isWeaponHolder": true,
       "icon": "shelf.png"
     },
     {
@@ -4449,19 +4467,19 @@
     {
       "id": 92,
       "buildCost": 20,
-      "category": "trap",
+      "category": "traps",
       "icon": "../items/Leaf_tn.png"
     },
     {
       "id": 93,
       "buildCost": 8,
-      "category": "trap",
+      "category": "traps",
       "icon": "../items/TactitabTraps_tn.png"
     },
     {
       "id": 94,
       "buildCost": 3,
-      "category": "trap",
+      "category": "traps",
       "icon": "../items/TactitabTraps_tn.png"
     },
     {
@@ -4601,6 +4619,643 @@
       "name": "Raft",
       "areaMask": 8388608,
       "graphMask": 1
+    }
+  ],
+  "elementProfiles": [
+    {
+      "id": 1,
+      "goldPlatedId": 362,
+      "category": "Log"
+    },
+    {
+      "id": 2,
+      "goldPlatedId": 363,
+      "category": "Log"
+    },
+    {
+      "id": 3,
+      "goldPlatedId": 360,
+      "category": "Log"
+    },
+    {
+      "id": 4,
+      "goldPlatedId": 361,
+      "category": "Log"
+    },
+    {
+      "id": 5,
+      "goldPlatedId": 357,
+      "category": "Log"
+    },
+    {
+      "id": 6,
+      "goldPlatedId": 381,
+      "category": "LogPlank"
+    },
+    {
+      "id": 7,
+      "goldPlatedId": 373,
+      "category": "Log"
+    },
+    {
+      "id": 8,
+      "goldPlatedId": 374,
+      "category": "Log"
+    },
+    {
+      "id": 9,
+      "goldPlatedId": 372,
+      "category": "Log"
+    },
+    {
+      "id": 12,
+      "goldPlatedId": 480,
+      "category": "Stick"
+    },
+    {
+      "id": 13,
+      "goldPlatedId": 369,
+      "category": "Log"
+    },
+    {
+      "id": 19,
+      "goldPlatedId": 382,
+      "category": "LogPlank"
+    },
+    {
+      "id": 20,
+      "goldPlatedId": 385,
+      "category": "LogPlank"
+    },
+    {
+      "id": 21,
+      "goldPlatedId": 377,
+      "category": "LogPlank"
+    },
+    {
+      "id": 22,
+      "goldPlatedId": 378,
+      "category": "LogPlank"
+    },
+    {
+      "id": 23,
+      "goldPlatedId": 379,
+      "category": "LogPlank"
+    },
+    {
+      "id": 33,
+      "goldPlatedId": 383,
+      "category": "Log"
+    },
+    {
+      "id": 40,
+      "goldPlatedId": 366,
+      "category": "Log"
+    },
+    {
+      "id": 41,
+      "goldPlatedId": 365,
+      "category": "Log"
+    },
+    {
+      "id": 42,
+      "goldPlatedId": 364,
+      "category": "Log"
+    },
+    {
+      "id": 66,
+      "goldPlatedId": 476,
+      "category": "Log"
+    },
+    {
+      "id": 68,
+      "goldPlatedId": 486,
+      "category": "Item"
+    },
+    {
+      "id": 69,
+      "goldPlatedId": 482,
+      "category": "Item"
+    },
+    {
+      "id": 75,
+      "goldPlatedId": 481,
+      "category": "Item"
+    },
+    {
+      "id": 86,
+      "goldPlatedId": 485,
+      "category": "Stick"
+    },
+    {
+      "id": 92,
+      "goldPlatedId": 483,
+      "category": "Item"
+    },
+    {
+      "id": 116,
+      "goldPlatedId": 368,
+      "category": "Log"
+    },
+    {
+      "id": 117,
+      "goldPlatedId": 367,
+      "category": "Log"
+    },
+    {
+      "id": 118,
+      "goldPlatedId": 370,
+      "category": "Log"
+    },
+    {
+      "id": 136,
+      "goldPlatedId": 386,
+      "category": "LogPlank"
+    },
+    {
+      "id": 137,
+      "goldPlatedId": 387,
+      "category": "LogPlank"
+    },
+    {
+      "id": 138,
+      "goldPlatedId": 388,
+      "category": "LogPlank"
+    },
+    {
+      "id": 148,
+      "goldPlatedId": 484,
+      "category": "Stick"
+    },
+    {
+      "id": 152,
+      "goldPlatedId": 376,
+      "category": "LogPlank"
+    },
+    {
+      "id": 153,
+      "goldPlatedId": 375,
+      "category": "LogPlank"
+    },
+    {
+      "id": 154,
+      "goldPlatedId": 371,
+      "category": "LogPlank"
+    },
+    {
+      "id": 191,
+      "goldPlatedId": 390,
+      "category": "Stick"
+    },
+    {
+      "id": 192,
+      "goldPlatedId": 391,
+      "category": "Stick"
+    },
+    {
+      "id": 204,
+      "goldPlatedId": 454,
+      "category": "Stone"
+    },
+    {
+      "id": 205,
+      "goldPlatedId": 413,
+      "category": "Stone"
+    },
+    {
+      "id": 206,
+      "goldPlatedId": 409,
+      "category": "Stone"
+    },
+    {
+      "id": 212,
+      "goldPlatedId": 453,
+      "category": "Stone"
+    },
+    {
+      "id": 213,
+      "goldPlatedId": 429,
+      "category": "Stone"
+    },
+    {
+      "id": 214,
+      "goldPlatedId": 434,
+      "category": "Stone"
+    },
+    {
+      "id": 217,
+      "goldPlatedId": 446,
+      "category": "Stone"
+    },
+    {
+      "id": 218,
+      "goldPlatedId": 410,
+      "category": "Stone"
+    },
+    {
+      "id": 219,
+      "goldPlatedId": 411,
+      "category": "Stone"
+    },
+    {
+      "id": 220,
+      "goldPlatedId": 412,
+      "category": "Stone"
+    },
+    {
+      "id": 221,
+      "goldPlatedId": 459,
+      "category": "Stone"
+    },
+    {
+      "id": 222,
+      "goldPlatedId": 438,
+      "category": "Stone"
+    },
+    {
+      "id": 223,
+      "goldPlatedId": 431,
+      "category": "Stone"
+    },
+    {
+      "id": 226,
+      "goldPlatedId": 477,
+      "category": "Stone"
+    },
+    {
+      "id": 227,
+      "goldPlatedId": 428,
+      "category": "Stone"
+    },
+    {
+      "id": 230,
+      "goldPlatedId": 458,
+      "category": "Stone"
+    },
+    {
+      "id": 231,
+      "goldPlatedId": 462,
+      "category": "Stone"
+    },
+    {
+      "id": 232,
+      "goldPlatedId": 448,
+      "category": "Stone"
+    },
+    {
+      "id": 233,
+      "goldPlatedId": 432,
+      "category": "Stone"
+    },
+    {
+      "id": 234,
+      "goldPlatedId": 430,
+      "category": "Stone"
+    },
+    {
+      "id": 235,
+      "goldPlatedId": 437,
+      "category": "Stone"
+    },
+    {
+      "id": 236,
+      "goldPlatedId": 442,
+      "category": "Stone"
+    },
+    {
+      "id": 237,
+      "goldPlatedId": 447,
+      "category": "Stone"
+    },
+    {
+      "id": 238,
+      "goldPlatedId": 427,
+      "category": "Stone"
+    },
+    {
+      "id": 239,
+      "goldPlatedId": 433,
+      "category": "Stone"
+    },
+    {
+      "id": 240,
+      "goldPlatedId": 426,
+      "category": "Stone"
+    },
+    {
+      "id": 241,
+      "goldPlatedId": 445,
+      "category": "Stone"
+    },
+    {
+      "id": 242,
+      "goldPlatedId": 464,
+      "category": "Stone"
+    },
+    {
+      "id": 243,
+      "goldPlatedId": 435,
+      "category": "Stone"
+    },
+    {
+      "id": 244,
+      "goldPlatedId": 463,
+      "category": "Stone"
+    },
+    {
+      "id": 245,
+      "goldPlatedId": 425,
+      "category": "Stone"
+    },
+    {
+      "id": 246,
+      "goldPlatedId": 457,
+      "category": "Stone"
+    },
+    {
+      "id": 247,
+      "goldPlatedId": 452,
+      "category": "Stone"
+    },
+    {
+      "id": 248,
+      "goldPlatedId": 440,
+      "category": "Stone"
+    },
+    {
+      "id": 249,
+      "goldPlatedId": 404,
+      "category": "Stone"
+    },
+    {
+      "id": 250,
+      "goldPlatedId": 439,
+      "category": "Stone"
+    },
+    {
+      "id": 251,
+      "goldPlatedId": 444,
+      "category": "Stone"
+    },
+    {
+      "id": 252,
+      "goldPlatedId": 420,
+      "category": "Stone"
+    },
+    {
+      "id": 253,
+      "goldPlatedId": 421,
+      "category": "Stone"
+    },
+    {
+      "id": 254,
+      "goldPlatedId": 422,
+      "category": "Stone"
+    },
+    {
+      "id": 255,
+      "goldPlatedId": 423,
+      "category": "Stone"
+    },
+    {
+      "id": 256,
+      "goldPlatedId": 424,
+      "category": "Stone"
+    },
+    {
+      "id": 257,
+      "goldPlatedId": 451,
+      "category": "Stone"
+    },
+    {
+      "id": 258,
+      "goldPlatedId": 455,
+      "category": "Stone"
+    },
+    {
+      "id": 259,
+      "goldPlatedId": 436,
+      "category": "Stone"
+    },
+    {
+      "id": 260,
+      "goldPlatedId": 466,
+      "category": "Stone"
+    },
+    {
+      "id": 261,
+      "goldPlatedId": 450,
+      "category": "Stone"
+    },
+    {
+      "id": 262,
+      "goldPlatedId": 441,
+      "category": "Stone"
+    },
+    {
+      "id": 263,
+      "goldPlatedId": 449,
+      "category": "Stone"
+    },
+    {
+      "id": 264,
+      "goldPlatedId": 467,
+      "category": "Stone"
+    },
+    {
+      "id": 265,
+      "goldPlatedId": 415,
+      "category": "Stone"
+    },
+    {
+      "id": 266,
+      "goldPlatedId": 416,
+      "category": "Stone"
+    },
+    {
+      "id": 267,
+      "goldPlatedId": 417,
+      "category": "Stone"
+    },
+    {
+      "id": 268,
+      "goldPlatedId": 418,
+      "category": "Stone"
+    },
+    {
+      "id": 269,
+      "goldPlatedId": 419,
+      "category": "Stone"
+    },
+    {
+      "id": 270,
+      "goldPlatedId": 443,
+      "category": "Stone"
+    },
+    {
+      "id": 271,
+      "goldPlatedId": 460,
+      "category": "Stone"
+    },
+    {
+      "id": 272,
+      "goldPlatedId": 456,
+      "category": "Stone"
+    },
+    {
+      "id": 273,
+      "goldPlatedId": 461,
+      "category": "Stone"
+    },
+    {
+      "id": 274,
+      "goldPlatedId": 465,
+      "category": "Stone"
+    },
+    {
+      "id": 295,
+      "goldPlatedId": 487,
+      "category": "Stone"
+    },
+    {
+      "id": 298,
+      "goldPlatedId": 392,
+      "category": "LogPlank"
+    },
+    {
+      "id": 300,
+      "goldPlatedId": 393,
+      "category": "LogPlank"
+    },
+    {
+      "id": 302,
+      "goldPlatedId": 380,
+      "category": "LogPlank"
+    },
+    {
+      "id": 312,
+      "goldPlatedId": 358,
+      "category": "Log"
+    },
+    {
+      "id": 313,
+      "goldPlatedId": 359,
+      "category": "Log"
+    },
+    {
+      "id": 314,
+      "goldPlatedId": 394,
+      "category": "LogPlank"
+    },
+    {
+      "id": 315,
+      "goldPlatedId": 395,
+      "category": "LogPlank"
+    },
+    {
+      "id": 317,
+      "goldPlatedId": 414,
+      "category": "Stone"
+    },
+    {
+      "id": 318,
+      "goldPlatedId": 405,
+      "category": "Stone"
+    },
+    {
+      "id": 319,
+      "goldPlatedId": 406,
+      "category": "Stone"
+    },
+    {
+      "id": 320,
+      "goldPlatedId": 407,
+      "category": "Stone"
+    },
+    {
+      "id": 321,
+      "goldPlatedId": 408,
+      "category": "Stone"
+    },
+    {
+      "id": 322,
+      "goldPlatedId": 396,
+      "category": "LogPlank"
+    },
+    {
+      "id": 323,
+      "goldPlatedId": 384,
+      "category": "LogPlank"
+    },
+    {
+      "id": 333,
+      "goldPlatedId": 397,
+      "category": "LogPlank"
+    },
+    {
+      "id": 334,
+      "goldPlatedId": 398,
+      "category": "LogPlank"
+    },
+    {
+      "id": 335,
+      "goldPlatedId": 399,
+      "category": "LogPlank"
+    },
+    {
+      "id": 346,
+      "goldPlatedId": 475,
+      "category": "Item"
+    },
+    {
+      "id": 347,
+      "goldPlatedId": 474,
+      "category": "Item"
+    },
+    {
+      "id": 348,
+      "goldPlatedId": 472,
+      "category": "Item"
+    },
+    {
+      "id": 349,
+      "goldPlatedId": 473,
+      "category": "Item"
+    },
+    {
+      "id": 355,
+      "goldPlatedId": 478,
+      "category": "Item"
+    },
+    {
+      "id": 356,
+      "goldPlatedId": 479,
+      "category": "Item"
+    },
+    {
+      "id": 488,
+      "goldPlatedId": 494,
+      "category": "Stone"
+    },
+    {
+      "id": 490,
+      "goldPlatedId": 495,
+      "category": "Stone"
+    },
+    {
+      "id": 491,
+      "goldPlatedId": 496,
+      "category": "Stone"
+    },
+    {
+      "id": 492,
+      "goldPlatedId": 497,
+      "category": "Stone"
+    },
+    {
+      "id": 493,
+      "goldPlatedId": 498,
+      "category": "Stone"
     }
   ]
 }

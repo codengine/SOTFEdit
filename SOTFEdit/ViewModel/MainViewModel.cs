@@ -177,6 +177,7 @@ public partial class MainViewModel : ObservableObject
         ResetContainersCommand.NotifyCanExecuteChanged();
         ResetTrapsCommand.NotifyCanExecuteChanged();
         SetToEndgameCommand.NotifyCanExecuteChanged();
+        ItemPlaterCommand.NotifyCanExecuteChanged();
         OnPropertyChanged(nameof(CanEditTabs));
     }
 
@@ -440,6 +441,12 @@ public partial class MainViewModel : ObservableObject
     private static void SetToEndgame()
     {
         WeakReferenceMessenger.Default.Send(new RequestSetToEndgameEvent());
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]
+    private static void ItemPlater()
+    {
+        WeakReferenceMessenger.Default.Send(new RequestItemPlaterEvent());
     }
 
     [RelayCommand(CanExecute = nameof(CanSaveAndEdit))]

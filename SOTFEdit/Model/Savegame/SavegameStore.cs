@@ -31,7 +31,8 @@ public class SavegameStore
         StructureDestructionSaveData,
         WorldItemManagerSaveData,
         ZipLineManagerSaveData,
-        ScrewTrapsSaveData
+        ScrewTrapsSaveData,
+        ConstructionsSaveData
     }
 
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
@@ -193,8 +194,7 @@ public class SavegameStore
     public bool SaveAllModified(ApplicationSettings.BackupMode backupMode)
     {
         var changedWrappers = _rawData.Where(kvp => kvp.Value != null && kvp.Value.HasModified())
-            .Select(kvp => KeyValuePair.Create(kvp.Key, kvp.Value!))
-            .ToList();
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value!);
 
         if (changedWrappers.Count == 0)
         {
@@ -202,6 +202,14 @@ public class SavegameStore
             return false;
         }
 
+        SaveWrappers(backupMode, changedWrappers);
+
+        return true;
+    }
+
+    public void SaveWrappers(ApplicationSettings.BackupMode backupMode,
+        Dictionary<FileType, SaveDataWrapper> changedWrappers)
+    {
         if (backupMode != ApplicationSettings.BackupMode.None)
         {
             BackupManager.BackupArchive(_path, backupMode);
@@ -213,8 +221,6 @@ public class SavegameStore
             saveDataWrapper.SerializeAllModified();
             StoreJson(fileType, saveDataWrapper.Parent);
         }
-
-        return true;
     }
 }
 

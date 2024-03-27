@@ -1117,6 +1117,10 @@
         "text": "Feuer",
         "tooltip": "Verändert Feuer in der Spielwelt"
       },
+      "itemPlater": {
+        "text": "Gegenstands- und Struktur-Beschichter",
+        "tooltip": "Entfernt oder fügt eine Solafit-Beschichtung zu Gegenständen im Inventar, Waffenhaltern, Begleiter-Items und Gebäuden/Strukturen hinzu"
+      },
       "map": {
         "text": "Interaktive Karte",
         "tooltip": "Eine interaktive Karte"
@@ -1126,6 +1130,10 @@
         "tooltip": "Falls du dein Gedächtnis über bereits verzehrte Gegenstände löschen möchten."
       },
       "regrowTrees": "Bäume nachwachsen lassen...",
+      "resetCannibalAngerLevel": {
+        "text": "Kannibalen-Wut-Level zurücksetzen",
+        "tooltip": "Setzt die Tötungsstatistik, Anzahl gefallene Bäume und Anzahl Sichtungen zurück, was zu kleineren und weniger Angriffen führt"
+      },
       "resetContainers": {
         "text": "Behälter zurücksetzen",
         "tooltip": "Setzt Behälter in Höhlen und der Spielwelt zurück"
@@ -1134,10 +1142,6 @@
         "text": "Feuer zurücksetzen",
         "tooltip": "Entzündet Feuer und setzt Brennstoff-Verbrauch und Menge auf Standard"
       },
-      "resetCannibalAngerLevel": {
-        "text": "Kannibalen-Wut-Level zurücksetzen",
-        "tooltip": "Setzt die Tötungsstatistik, Anzahl gefallene Bäume und Anzahl Sichtungen zurück, was zu kleineren und weniger Angriffen führt"
-      },
       "resetStructureDamage": {
         "text": "Schadenszähler für Gebäude zurücksetzen",
         "tooltip": "Ermöglicht es, alle Gebäude zu reparieren."
@@ -1145,6 +1149,10 @@
       "resetTraps": {
         "text": "Fallen zurücksetzen",
         "tooltip": "Setzt alle Fallen zurück"
+      },
+      "setToEndgame": {
+        "text": "Auf Endspiel setzen",
+        "tooltip": "Setzt das Spiel auf \"Endspiel\" welches bestimmte Gegner freischaltet"
       },
       "text": "Tools",
       "unlocks": {
@@ -1352,6 +1360,30 @@
     "header": "Wetterzustand"
   },
   "windows": {
+    "itemPlater": {
+      "buttons": {
+        "addPlating": "Beschichten",
+        "removePlating": "Beschichtung entfernen"
+      },
+      "constructionCategories": {
+        "Item": "Gegenstand",
+        "Log": "Baumstamm",
+        "LogPlank": "Brett",
+        "Stick": "Stock",
+        "Stone": "Stein"
+      },
+      "constructions": "Bauwerke",
+      "disclaimer": "Vorsicht: Das Tool speichert NUR Änderungen an der Beschichtung läd das Savegame danach erneut.\r\n\r\nStelle also sicher dass es keine ungespeicherten Änderungen gibt. Falls doch, dann speicher zuerst die Änderungen, öffne DANN das Tool und führe die Beschichtung durch.\r\n\r\nEs kann außerdem eine Weile dauern bis die Änderungen gespeichert wurden.",
+      "followerItems": "Begleiter-Gegenstände",
+      "itemsInInventory": "Gegenstände im Inventar",
+      "itemsInWeaponRacks": "Gegenstände in Waffenhaltern",
+      "messages": {
+        "addPlating": "{0} Beschichtungen wurden hinzugefügt",
+        "removePlating": "{0} Beschichtungen wurden entfernt"
+      },
+      "structures": "Strukturen",
+      "title": "Gegenstands- und Struktur-Beschichter"
+    },
     "main": {
       "errors": {
         "errorCheckingLastVersion": "Beim Überprüfen der neuesten Version ist ein Fehler aufgetreten"

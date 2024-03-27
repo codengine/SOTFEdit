@@ -84,6 +84,7 @@ public static class Constants
         public const string WorldItemManager = "Data.WorldItemManager";
         public const string ZipLineManager = "Data.ZipLineManager";
         public const string ScrewTraps = "Data.ScrewTraps";
+        public const string Constructions = "Data.Constructions";
     }
 
 

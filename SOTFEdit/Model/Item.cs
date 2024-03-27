@@ -18,6 +18,7 @@ public class Item
     public bool IsInventoryItem { get; init; } = true;
     public bool IsEquippableArmor { get; init; } = false;
     public bool IsWearableCloth { get; init; } = false;
+    public bool IsPlatable { get; init; } = false;
     public DefaultMinMax? Durability { get; init; }
     public StorageMax? StorageMax { get; init; }
     public HashSet<int>? ModHashes { get; init; }

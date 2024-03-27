@@ -1,0 +1,75 @@
+﻿<mah:MetroWindow x:Class="SOTFEdit.View.ItemPlaterWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:viewModel="clr-namespace:SOTFEdit.ViewModel"
+                 xmlns:st="http://schemas.spicytaco.io/"
+                 xmlns:infrastructure="clr-namespace:SOTFEdit.Infrastructure"
+                 mc:Ignorable="d"
+                 Title="{infrastructure:Translate 'windows.itemPlater.title'}" MaxWidth="800" MinWidth="800"
+                 WindowStartupLocation="CenterOwner"
+                 WindowTransitionsEnabled="False"
+                 ResizeMode="NoResize"
+                 SizeToContent="WidthAndHeight"
+                 ShowMaxRestoreButton="False"
+                 IsMaxRestoreButtonEnabled="False"
+                 ShowMinButton="False"
+                 IsMinButtonEnabled="False"
+                 d:DataContext="{d:DesignInstance viewModel:ItemPlaterViewModel}"
+                 TitleCharacterCasing="Normal">
+    <st:AutoGrid Margin="20" Columns="Auto,*" Rows="Auto" VerticalAlignment="Top"
+                 HorizontalAlignment="Stretch" ChildMargin="3">
+        <TextBlock Text="{infrastructure:Translate 'windows.itemPlater.disclaimer'}" TextWrapping="Wrap"
+                   st:AutoGrid.ColumnSpan="2" />
+        <Label Content="{infrastructure:Translate 'windows.itemPlater.itemsInInventory'}" />
+        <CheckBox IsChecked="{Binding ItemsInInventory}" />
+        <Label Content="{infrastructure:Translate 'windows.itemPlater.itemsInWeaponRacks'}" />
+        <CheckBox IsChecked="{Binding ItemsInWeaponRacks}" />
+        <Label Content="{infrastructure:Translate 'windows.itemPlater.followerItems'}" />
+        <CheckBox IsChecked="{Binding FollowerItems}" />
+        <Label Content="{infrastructure:Translate 'windows.itemPlater.structures'}" />
+        <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding StorageStructures}"
+                      Content="{infrastructure:Translate 'structures.categories.storage'}" Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding FurnitureStructures}"
+                      Content="{infrastructure:Translate 'structures.categories.furniture'}" Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding TrapsStructures}"
+                      Content="{infrastructure:Translate 'structures.categories.traps'}" Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding UtilityStructures}"
+                      Content="{infrastructure:Translate 'structures.categories.utility'}" Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding GardeningStructures}"
+                      Content="{infrastructure:Translate 'structures.categories.gardening'}" Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding MiscStructures}"
+                      Content="{infrastructure:Translate 'structures.categories.misc'}" />
+        </StackPanel>
+        <Label Content="{infrastructure:Translate 'windows.itemPlater.constructions'}" />
+        <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding LogConstruction}"
+                      Content="{infrastructure:Translate 'windows.itemPlater.constructionCategories.Log'}"
+                      Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding LogPlankConstruction}"
+                      Content="{infrastructure:Translate 'windows.itemPlater.constructionCategories.LogPlank'}"
+                      Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding StickConstruction}"
+                      Content="{infrastructure:Translate 'windows.itemPlater.constructionCategories.Stick'}"
+                      Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding ItemConstruction}"
+                      Content="{infrastructure:Translate 'windows.itemPlater.constructionCategories.Item'}"
+                      Margin="0 0 5 0" />
+            <CheckBox IsChecked="{Binding StoneConstruction}"
+                      Content="{infrastructure:Translate 'windows.itemPlater.constructionCategories.Stone'}" />
+        </StackPanel>
+        <st:AutoGrid Columns="*,*" Rows="Auto" VerticalAlignment="Top"
+                     ChildMargin="3"
+                     HorizontalAlignment="Stretch" st:AutoGrid.ColumnSpan="2">
+            <Button Content="{infrastructure:Translate 'windows.itemPlater.buttons.addPlating'}"
+                    Command="{Binding AddPlatingCommand}"
+                    Background="{DynamicResource MahApps.Brushes.Accent}" />
+            <Button Content="{infrastructure:Translate 'windows.itemPlater.buttons.removePlating'}"
+                    Command="{Binding RemovePlatingCommand}"
+                    Background="DarkRed" />
+        </st:AutoGrid>
+    </st:AutoGrid>
+</mah:MetroWindow>

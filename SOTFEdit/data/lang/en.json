@@ -1117,6 +1117,10 @@
         "text": "Fires",
         "tooltip": "Modify fires around the world"
       },
+      "itemPlater": {
+        "text": "Item and Structure Plater",
+        "tooltip": "Adds or removes solafite plating to items in inventory, weapon racks, follower items and structures"
+      },
       "map": {
         "text": "Interactive Map",
         "tooltip": "An interactive map"
@@ -1126,6 +1130,10 @@
         "tooltip": "In case you want to purge your memory about items that you have consumed already"
       },
       "regrowTrees": "Regrow Trees...",
+      "resetCannibalAngerLevel": {
+        "text": "Reset Cannibal Anger Level",
+        "tooltip": "Resets the kill statistics, number of cut trees and village visit count, which leads to fewer and smaller cannibal raids"
+      },
       "resetContainers": {
         "text": "Reset Containers",
         "tooltip": "Resets crates, boxes and cases in caves and the open world"
@@ -1134,21 +1142,17 @@
         "text": "Reset Fires",
         "tooltip": "Fires will be ignited, fuel drain rate and fuel amount is set to default"
       },
-      "resetCannibalAngerLevel": {
-        "text": "Reset Cannibal Anger Level",
-        "tooltip": "Resets the kill statistics, number of cut trees and village visit count, which leads to fewer and smaller cannibal raids"
-      },
       "resetStructureDamage": {
         "text": "Reset Structure Damage",
         "tooltip": "Lets you repair all structures"
       },
-      "setToEndgame": {
-        "text": "Set to Endgame",
-        "tooltip": "Set to Endgame"
-      },
       "resetTraps": {
         "text": "Reset Traps",
         "tooltip": "Resets all traps"
+      },
+      "setToEndgame": {
+        "text": "Set to Endgame",
+        "tooltip": "Sets the game to \"Endgame\" which will unlock some enemies"
       },
       "text": "Tools",
       "unlocks": {
@@ -1356,6 +1360,30 @@
     "header": "Weather State"
   },
   "windows": {
+    "itemPlater": {
+      "buttons": {
+        "addPlating": "Add Plating",
+        "removePlating": "Remove Plating"
+      },
+      "constructionCategories": {
+        "Item": "Item",
+        "Log": "Log",
+        "LogPlank": "Log Plank",
+        "Stick": "Stick",
+        "Stone": "Stone"
+      },
+      "constructions": "Constructions",
+      "disclaimer": "Be careful: The tool ONLY saves changes to the plating and reloads the savegame afterwards.\r\n\r\nSo make sure that there are no unsaved changes, else save the other changes before, THEN open the tool and apply the plating.\r\n\r\nMoreover, when you save, it can take some time if your savegame is rather huge.",
+      "followerItems": "Follower Items",
+      "itemsInInventory": "Items in Inventory",
+      "itemsInWeaponRacks": "Items in Weapon Racks",
+      "messages": {
+        "addPlating": "{0} item platings have been added",
+        "removePlating": "{0} item platings have been removed"
+      },
+      "structures": "Structures",
+      "title": "Item and Structure Plater"
+    },
     "main": {
       "errors": {
         "errorCheckingLastVersion": "An error occured while checking for latest version"

@@ -13,7 +13,8 @@ public class GameData
     public GameData(IEnumerable<Item> items, [JsonProperty("storages")] List<StorageDefinition> storageDefinitions,
         [JsonProperty("advancedStorages")] List<AdvancedStorageDefinition> advancedStorageDefinitions,
         [JsonProperty("followers")] FollowerData followerData, Configuration config, List<string> namedIntKeys,
-        List<ActorType> actorTypes, List<ScrewStructure> screwStructures, List<Area> areas)
+        List<ActorType> actorTypes, List<ScrewStructure> screwStructures, List<Area> areas,
+        List<ElementProfile> elementProfiles)
     {
         Items = new ItemList(items.OrderBy(item => item.Name));
         StorageDefinitions = storageDefinitions;
@@ -23,11 +24,13 @@ public class GameData
         NamedIntKeys = namedIntKeys.OrderBy(key => key).ToList();
         ActorTypes = actorTypes;
         ScrewStructures = screwStructures;
+        ElementProfiles = elementProfiles;
         AreaManager = new AreaMaskManager(areas);
     }
 
     public AreaMaskManager AreaManager { get; }
     public List<ScrewStructure> ScrewStructures { get; }
+    public List<ElementProfile> ElementProfiles { get; }
 
     public List<ActorType> ActorTypes { get; }
 
@@ -39,27 +42,53 @@ public class GameData
     public List<string> NamedIntKeys { get; }
 }
 
+public class ElementProfile
+{
+    public ElementProfile(ElementProfileCategory category, int id, int goldPlatedId)
+    {
+        Category = category;
+        Id = id;
+        GoldPlatedId = goldPlatedId;
+    }
+
+    public ElementProfileCategory Category { get; }
+    public int Id { get; }
+    public int GoldPlatedId { get; }
+}
+
+public enum ElementProfileCategory
+{
+    Log,
+    LogPlank,
+    Stone,
+    Item,
+    Stick
+}
+
 public class ScrewStructure
 {
-    private readonly string _category;
-
     public ScrewStructure(string category, int id, int buildCost, bool? canFinish, string icon, bool? canEdit,
-        bool? showOnMap)
+        bool? showOnMap, bool? isWeaponHolder)
     {
-        _category = category;
+        Category = category;
         Id = id;
         BuildCost = buildCost;
         Icon = icon;
         CanFinish = canFinish ?? true;
         CanEdit = canEdit ?? true;
+        IsWeaponHolder = isWeaponHolder ?? false;
         ShowOnMap = showOnMap ?? true;
     }
 
+    public string Category { get; }
+
+    public bool IsWeaponHolder { get; }
+
     public string Name => TranslationManager.Get("structures.types." + Id);
 
-    public string CategoryName => string.IsNullOrEmpty(_category)
+    public string CategoryName => string.IsNullOrEmpty(Category)
         ? ""
-        : TranslationManager.Get("structures.categories." + _category);
+        : TranslationManager.Get("structures.categories." + Category);
 
     public int Id { get; }
     public int BuildCost { get; }

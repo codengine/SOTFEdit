@@ -59,6 +59,8 @@ public partial class MainWindow
             (_, _) => OnRequestRegrowTreesEvent());
         WeakReferenceMessenger.Default.Register<RequestChangeUnlocksEvent>(this,
             (_, _) => OnRequestChangeUnlocksEvent());
+        WeakReferenceMessenger.Default.Register<RequestItemPlaterEvent>(this,
+            (_, _) => OnRequestItemPlaterEvent());
         WeakReferenceMessenger.Default.Register<RequestReviveFollowersEvent>(this,
             (_, message) => OnRequestReviveFollowersEvent(message));
         WeakReferenceMessenger.Default.Register<RequestSaveChangesEvent>(this,
@@ -224,6 +226,12 @@ public partial class MainWindow
         }
 
         var dialog = new UnlocksWindow(this, playerProfilePath);
+        dialog.ShowDialog();
+    }
+
+    private void OnRequestItemPlaterEvent()
+    {
+        var dialog = new ItemPlaterWindow(this, Ioc.Default.GetRequiredService<GameData>());
         dialog.ShowDialog();
     }
 

@@ -29,7 +29,7 @@ public partial class StructuresPageViewModel : ObservableObject
     {
         _structureTypes = gameData.ScrewStructures.OrderBy(screwStructure => screwStructure.CategoryName)
             .ThenBy(screwStructure => screwStructure.Name).ToList();
-        _structureTypes.Insert(0, new ScrewStructure("", 0, 0, false, "", false, false));
+        _structureTypes.Insert(0, new ScrewStructure("", 0, 0, false, "", false, false, false));
 
         StructureTypes = CollectionViewSource.GetDefaultView(_structureTypes);
         StructureTypes.GroupDescriptions.Add(new PropertyGroupDescription("CategoryName"));
@@ -99,7 +99,7 @@ public partial class StructuresPageViewModel : ObservableObject
         }
 
         var screwStructuresById = _structureTypes.ToDictionary(screwStructure => screwStructure.Id);
-        
+
         for (var i = 0; i < structures.Count; i++)
         {
             var structure = structures[i];
@@ -143,7 +143,7 @@ public partial class StructuresPageViewModel : ObservableObject
         }
 
         var screwStructuresById = _structureTypes.ToDictionary(screwStructure => screwStructure.Id);
-        
+
         for (var i = 0; i < structures.Count; i++)
         {
             var structure = structures[i];
