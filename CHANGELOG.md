@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.12.4
+
+### Features
+
+- Add Item/Structure/Construction plater tool (Menu -> Tools)
+
+### Bugfixes
+
+- Fixed handling of equipped cloths and weapon mods on interactive map
+
 ## v0.12.3
 
 ### Features
