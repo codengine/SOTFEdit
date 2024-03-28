@@ -1,10 +1,16 @@
 # Changelog
 
+## v0.12.5
+
+### Features
+
+- Added support for mods that increase the maximum inventory size (closes #23)
+
 ## v0.12.4
 
 ### Features
 
-- Add Item/Structure/Construction plater tool (Menu -> Tools)
+- Added Item/Structure/Construction plater tool (Menu -> Tools)
 
 ### Bugfixes
 

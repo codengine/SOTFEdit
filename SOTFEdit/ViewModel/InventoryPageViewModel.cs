@@ -222,6 +222,9 @@ public partial class InventoryPageViewModel : ObservableObject
                     var item = _itemList.GetItem(itemBlock.ItemId);
                     if (item?.StorageMax?.Inventory is { } maxInInventory && maxInInventory < itemBlock.TotalCount)
                     {
+                        item = (Item)item.Clone();
+                        item.StorageMax = new StorageMax(itemBlock.TotalCount, item.StorageMax?.Shelf ?? 0,
+                            item.StorageMax?.Holder);
                         Logger.Info(
                             $"Defined max in inventory for {item.Id} is lower ({maxInInventory}) than in savedata ({itemBlock.TotalCount})");
                     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Media.Imaging;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model.SaveData.Storage.Module;
@@ -6,7 +7,7 @@ using SOTFEdit.Model.Storage;
 
 namespace SOTFEdit.Model;
 
-public class Item
+public class Item : ICloneable
 {
     private string? _normalizedLowercaseName;
     private string? _normalizedLowercaseType;
@@ -20,7 +21,7 @@ public class Item
     public bool IsWearableCloth { get; init; } = false;
     public bool IsPlatable { get; init; } = false;
     public DefaultMinMax? Durability { get; init; }
-    public StorageMax? StorageMax { get; init; }
+    public StorageMax? StorageMax { get; set; }
     public HashSet<int>? ModHashes { get; init; }
     public string? Image { get; init; }
     public string? Wiki { get; init; }
@@ -37,6 +38,11 @@ public class Item
     private string NormalizedLowercaseType
     {
         get { return _normalizedLowercaseType ??= TranslationHelper.Normalize(Type).ToLower(); }
+    }
+
+    public object Clone()
+    {
+        return MemberwiseClone();
     }
 
     private BitmapImage? GetThumbImage()
