@@ -18,6 +18,7 @@ public partial class EditActorWindow
         Owner = owner;
         SetupListeners();
         var allActorTypes = Ioc.Default.GetRequiredService<GameData>().ActorTypes.OrderBy(type => type.Name).ToList();
+        allActorTypes.Insert(0, new EmptyActorType());
         DataContext = new EditActorViewModel(messageActor, allActorTypes);
         InitializeComponent();
     }

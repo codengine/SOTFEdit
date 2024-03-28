@@ -140,7 +140,7 @@ public class ActorModifier
                 }
             }
 
-            if (data.ModifyOptions.ReplaceType is { } replaceType)
+            if (data.ModifyOptions.ReplaceType is { } replaceType and not EmptyActorType)
             {
                 actor["TypeId"] = replaceType.Id;
             }

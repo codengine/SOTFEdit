@@ -35,7 +35,7 @@ public partial class EditActorViewModel : ObservableObject
         Actor = actor;
         AllActorTypes = allActorTypes;
         ActorSelection = AllActorSelections.FirstOrDefault()?.Value;
-        ModifyOptions.ReplaceType = Actor.ActorType;
+        ModifyOptions.ReplaceType = allActorTypes.First();
         ModifyOptions.ActorEnergy = Actor.Stats?.GetValueOrDefault("Energy", 100f) ?? 100f;
         ModifyOptions.UpdateEnergy = !Actor.Stats?.ContainsKey("Energy") ?? true;
         ModifyOptions.ActorHealth = Actor.Stats?.GetValueOrDefault("Health", 100f) ?? 100f;

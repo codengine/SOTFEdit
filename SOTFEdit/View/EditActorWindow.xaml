@@ -218,7 +218,7 @@
                                   Content="{infrastructure:Translate 'generic.update'}" />
                         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"
                                    Text="{infrastructure:Translate 'actors.stats.health'}" />
-                        <mah:NumericUpDown Margin="0 0 10 0" Grid.Row="1" Grid.Column="1" Minimum="1" Maximum="100"
+                        <mah:NumericUpDown Margin="0 0 10 0" Grid.Row="1" Grid.Column="1" Minimum="1" Maximum="99999"
                                            NumericInputMode="Numbers" Interval="10"
                                            Value="{Binding ModifyOptions.ActorHealth, UpdateSourceTrigger=PropertyChanged}" />
                         <CheckBox Grid.Row="1" Grid.Column="2" IsChecked="{Binding ModifyOptions.UpdateHealth}"

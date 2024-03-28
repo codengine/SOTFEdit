@@ -60,3 +60,8 @@ public record ActorType(int Id, string Classification, string? Gender = null, st
         return Id is Constants.Actors.KelvinTypeId or Constants.Actors.VirginiaTypeId;
     }
 }
+
+internal record EmptyActorType() : ActorType(-1, "")
+{
+    public new string Name => "";
+}
