@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.12.6
+
+### Features
+
+- Added actors: Skunks, Helicopters and PlayerRobby(?)
+- Added structures: Small Rabbit Hutch, Rabbit Hutch
+- Added items: Skunk Head, Living Rabbit
+
+### Bugfixes
+
+- Fixed max enemy health
+
+### Improvements
+
+- Added blank option for not having to replace enemy type
+
 ## v0.12.5
 
 ### Features

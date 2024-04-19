@@ -5,7 +5,8 @@
       "cannibal": "Cannibal",
       "creep": "Creep",
       "human": "Human",
-      "muddyCannibal": "Muddy Cannibal"
+      "muddyCannibal": "Muddy Cannibal",
+      "misc": "Misc"
     },
     "details": {
       "area": "Area",
@@ -93,7 +94,8 @@
       "21": "Electrocuted",
       "22": "Swimming",
       "23": "Stunned/Hit",
-      "24": "Drowning",
+      "24": "Drowning/Thrown",
+      "25": "Golf Cart",
       "40": "On Rock",
       "41": "On Tree",
       "42": "Under Leaves",
@@ -179,7 +181,10 @@
       "56": "Elise",
       "57": "Raccoon",
       "58": "Legsy",
-      "59": "Holey"
+      "59": "Holey",
+      "60": "Skunk",
+      "90": "Helicopter",
+      "100": "PlayerRobby"
     }
   },
   "armor": {
@@ -886,7 +891,10 @@
     "724": "Twinberry Seed",
     "725": "Snowberry Seed",
     "726": "Hang Glider Launcher Blueprint",
-    "727": "Solafite Armor"
+    "727": "Solafite Armor",
+    "728": "Living Rabbit",
+    "729": "Skunk Head",
+    "730": "Small Rabbit Hutch Blueprint"
   },
   "itemTypes": {
     "ammo": "Ammo",
@@ -1344,7 +1352,9 @@
       "101": "Gold Armor Plater",
       "102": "Hang Glider Launcher",
       "103": "Hang Glider Launcher",
-      "104": "Explosive Storage"
+      "104": "Explosive Storage",
+      "106": "Rabbit Hutch",
+      "107": "Small Rabbit Hutch"
     }
   },
   "tabs": {

@@ -19,8 +19,7 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
     private readonly int _index;
     private readonly ItemList _items;
 
-    [ObservableProperty]
-    private Position? _pos;
+    [ObservableProperty] private Position? _pos;
 
     public AdvancedItemsStorage(AdvancedStorageDefinition definition, ItemList items, int index)
     {
@@ -221,8 +220,13 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
         return itemWrappers;
     }
 
-    private static int? GetSlotIndex(int currentSlot)
+    private int? GetSlotIndex(int currentSlot)
     {
+        if (_definition.Id != 58) //58 = Advanced Log Sled, fix for Rabbit Holders
+        {
+            return currentSlot;
+        }
+
         if (currentSlot <= 10)
         {
             return (currentSlot - 1) / 2;

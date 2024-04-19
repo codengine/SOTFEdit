@@ -5,6 +5,7 @@
       "cannibal": "Kannibale",
       "creep": "Gruselwesen",
       "human": "Mensch",
+      "misc": "Sonstige",
       "muddyCannibal": "Schlammiger Kannibale"
     },
     "details": {
@@ -94,6 +95,7 @@
       "22": "Schwimmend",
       "23": "Benommen/Getroffen",
       "24": "Ertrinkend",
+      "25": "Golfmobil",
       "40": "Auf Felsen",
       "41": "Auf Baum",
       "42": "Unter Blättern",
@@ -179,7 +181,10 @@
       "56": "Elise",
       "57": "Waschbär",
       "58": "Legsy",
-      "59": "Holey"
+      "59": "Holey",
+      "60": "Stinktier",
+      "90": "Helikopter",
+      "100": "PlayerRobby"
     }
   },
   "armor": {
@@ -886,7 +891,10 @@
     "724": "Heckenkirsche-Samen",
     "725": "Schneebeeren-Samen",
     "726": "Hängegleiter-Startvorrichtung Blaupause",
-    "727": "Solafitrüstung"
+    "727": "Solafitrüstung",
+    "728": "Lebendiges Kaninchen",
+    "729": "Stinktier-Kopf",
+    "730": "Kleiner Kaninchenstall Blaupause"
   },
   "itemTypes": {
     "ammo": "Munition",
@@ -1344,7 +1352,9 @@
       "101": "Goldrüstungs-Beschichter",
       "102": "Hängegleiter-Plattform",
       "103": "Hängegleiter-Plattform",
-      "104": "Explosiv-Lager"
+      "104": "Explosiv-Lager",
+      "106": "Kaninchenstall",
+      "107": "Kleiner Kaninchenstall"
     }
   },
   "tabs": {

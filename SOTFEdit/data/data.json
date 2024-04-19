@@ -3315,6 +3315,29 @@
         "inventory": 10
       },
       "image": "SolafiteArmour.png"
+    },
+    {
+      "id": 728,
+      "type": "misc",
+      "isInventoryItem": false,
+      "image": "rabbit-head.png"
+    },
+    {
+      "id": 729,
+      "type": "trophy",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "skunk.png"
+    },
+    {
+      "id": 730,
+      "type": "blueprint",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      }
     }
   ],
   "storages": [
@@ -3447,7 +3470,8 @@
         650,
         651,
         652,
-        715
+        715,
+        729
       ]
     },
     {
@@ -3604,6 +3628,50 @@
           "slotOrder": [
             392,
             405
+          ]
+        }
+      ],
+      "type": "Items"
+    },
+    {
+      "id": 106,
+      "slots": [
+        {
+          "restrictedItems": {
+            "728": 6
+          },
+          "slotOrder": [
+            728
+          ]
+        },
+        {
+          "restrictedItems": {
+            "484": 12
+          },
+          "slotOrder": [
+            484
+          ]
+        }
+      ],
+      "type": "Items"
+    },
+    {
+      "id": 107,
+      "slots": [
+        {
+          "restrictedItems": {
+            "728": 2
+          },
+          "slotOrder": [
+            728
+          ]
+        },
+        {
+          "restrictedItems": {
+            "484": 12
+          },
+          "slotOrder": [
+            484
           ]
         }
       ],
@@ -4026,6 +4094,21 @@
       "classification": "creep",
       "image": "holey.jpg",
       "icon": "holey.png"
+    },
+    {
+      "id": 60,
+      "classification": "animal",
+      "image": "skunk.jpg",
+      "icon": "skunk.png"
+    },
+    {
+      "id": 90,
+      "classification": "misc",
+      "image": "helicopter.jpg"
+    },
+    {
+      "id": 100,
+      "classification": "misc"
     }
   ],
   "namedIntKeys": [
@@ -4537,6 +4620,18 @@
       "buildCost": 12,
       "category": "storage",
       "icon": "../items/Molotov_tn.png"
+    },
+    {
+      "id": 106,
+      "buildCost": 89,
+      "category": "storage",
+      "icon": "../items/rabbit-head_tn.png"
+    },
+    {
+      "id": 107,
+      "buildCost": 37,
+      "category": "storage",
+      "icon": "../items/rabbit-head_tn.png"
     }
   ],
   "areas": [

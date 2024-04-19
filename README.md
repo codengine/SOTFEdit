@@ -355,3 +355,4 @@ collect all data.
 - [Teleportation icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/teleportation)
 - [Wood icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/wood)
 - [Radio icons created by Eucalyp - Flaticon](https://www.flaticon.com/free-icons/radio)
+- [Skunk icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/skunk)
