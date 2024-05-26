@@ -100,6 +100,9 @@
       "43": "Chodzi po ścianach",
       "44": "Złapany",
       "45": "Intro do bossa",
+      "46": "Spawn Intro",
+      "47": "Sufit",
+      "48": "Podziemna Jaskinia",
       "50": "Opuszcza walkę",
       "51": "Zdespawnował się"
     },
@@ -882,7 +885,8 @@
     "723": "Email Pufftona C",
     "724": "Nasion Jagody Bliźniaczej",
     "725": "Nasiono Śnieźnej Jagody",
-    "726": "Plan Wyrzutni Składanej Lotni"
+    "726": "Plan Wyrzutni Składanej Lotni",
+    "727": "Zbroja z solafitu"
   },
   "itemTypes": {
     "ammo": "Ammunicja",
@@ -1113,6 +1117,10 @@
         "text": "Ognie",
         "tooltip": "Modyfikuj ognie na świecie"
       },
+      "itemPlater": {
+        "text": "Plater przedmiotów i struktur",
+        "tooltip": "Dodaje lub usuwa solafitowy plating do przemiotów w ekwipunku"
+      },
       "map": {
         "text": "Interaktywna mapa",
         "tooltip": "Po prosu interaktywna mapa."
@@ -1122,6 +1130,14 @@
         "tooltip": "W przypadku, gdy chcesz oczyścić pamięć o przedmiotach, które już zjadłeś"
       },
       "regrowTrees": "Odrośnij drzewa...",
+      "resetCannibalAngerLevel": {
+        "text": "Zresetuj poziom agresji kanibali",
+        "tooltip": "Zresetuj statystyki zabójstw, liczbę ściętch drzew, i ilość odwiedzonych wiosek, co przełoży się na mniej najazdów"
+      },
+      "resetContainers": {
+        "text": "Zresetuj pojemniki",
+        "tooltip": "Resetuje pojemniki, w jaskiniach i otwartym świecie"
+      },
       "resetFires": {
         "text": "Zresetuj ognie",
         "tooltip": "Ognie zostaną zapalone, a prędkość zużycia i ilość paliwa ustawione na domyślne"
@@ -1130,7 +1146,19 @@
         "text": "Zresetuj obrażenia struktur",
         "tooltip": "Naprawia wszystkie struktury"
       },
-      "text": "Narzędzia"
+      "resetTraps": {
+        "text": "Zresetuj pułapki",
+        "tooltip": "Resetuje pułapki"
+      },
+      "setToEndgame": {
+        "text": "Ustaw na Koniec Gry",
+        "tooltip": "Ustawia grę na \"Koniec gry\" co odblokowywuje nowych przeciwników"
+      },
+      "text": "Narzędzia",
+      "unlocks": {
+        "text": "Odblokowywania",
+        "tooltip": "Pozwala odblokować niektóre części gry"
+      }
     }
   },
   "npcs": {
@@ -1332,6 +1360,30 @@
     "header": "Pogoda"
   },
   "windows": {
+    "itemPlater": {
+      "buttons": {
+        "addPlating": "Dodaj plating",
+        "removePlating": "Usuń plating"
+      },
+      "constructionCategories": {
+        "Item": "Przedmiot",
+        "Log": "Kłoda",
+        "LogPlank": "Deska",
+        "Stick": "Patyk",
+        "Stone": "Kamień"
+      },
+      "constructions": "Konstrukcje",
+      "disclaimer": "Bądż ostrożny. Narzędzie TYLKO zapisuje zmniany do platingu i następnie ładuje zapis.\r\n\r\nUpewnij się więc, że nie ma nie żadnych niezapisanych zmian, które mogłyby zostać stracone\r\n\r\nProces może zająć trochę czasu, jeżeli twój zapis jest duży",
+      "followerItems": "Przedmioty towarzyszy",
+      "itemsInInventory": "Przedmioty w ekwipunku",
+      "itemsInWeaponRacks": "Przedmioty na stojakach na broń",
+      "messages": {
+        "addPlating": "Dodano platingi przedmiotów",
+        "removePlating": "Usunięto platingi przedmiotów"
+      },
+      "structures": "Struktury",
+      "title": "Plater przedmiotów i struktur"
+    },
     "main": {
       "errors": {
         "errorCheckingLastVersion": "Pojawił się błąd podczas sprawdzania dostępność nowszej wersji"
@@ -1405,6 +1457,30 @@
       "stumps": "Pieńki",
       "title": "Odrośnij drzewa"
     },
+    "resetContainers": {
+      "messages": {
+        "containersReset": {
+          "text": "Zaktualizowano pojemniki. Zapisz zmiany aby zmienić zapis gry",
+          "title": "Reset pojemników"
+        },
+        "nothingToReset": {
+          "text": "Nic nie znaleziono do zresetowania",
+          "title": "Nic nie znaleziono"
+        }
+      }
+    },
+    "resetTraps": {
+      "messages": {
+        "nothingToReset": {
+          "text": "Nic nie znaleziono do zresetowania",
+          "title": "Nic nie znaleziono"
+        },
+        "trapsReset": {
+          "text": "{0} pułapek zostało zresetowanych.  Zapisz zmiany aby zmienić zapis gry",
+          "title": "Reset pułapek"
+        }
+      }
+    },
     "selectSavegame": {
       "buttons": {
         "change": "Zmień...",
@@ -1457,6 +1533,16 @@
       "header": "Szczegóły Wyjątku",
       "innerException": "Wewnętrzny Wyjątek",
       "title": "Nieobsłużony Wyjątek"
+    },
+    "unlocks": {
+      "coreGameCompleted": "Ukończono bazową grę",
+      "creativeMode": "Tryb Kreatywny",
+      "creativeModeItem": "Przedmiot trybu kreatywnego (?)",
+      "escapedIsland": "Opuszczono wyspę",
+      "messages": {
+        "playerProfileNotFound": "Nie można było znaleźć PlayerProfile.json w \"{0}\""
+      },
+      "title": "Odblokowywania"
     },
     "updateAvailable": {
       "buttons": {
