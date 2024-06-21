@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.12.7
+
+- Added new game setting: Stat Regeneration Penalties
+- Added function to drag and drop savegame directories directly into the main window
+- Updated polish translations
+
 ## v0.12.6
 
 ### Features
