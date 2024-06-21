@@ -55,6 +55,7 @@ public static class Constants
         public const string ForcePlaceFullLoad = "GameSetting.FreeForm.ForcePlaceFullLoad";
         public const string NoCuttingsSpawn = "GameSetting.Construction.NoCuttingsSpawn";
         public const string PvpDamage = "GameSetting.Multiplayer.PvpDamage";
+        public const string ColdPenaltiesStatReduction = "GameSetting.Survival.ColdPenaltiesStatReduction";
     }
 
     public static class SettingValueKeys

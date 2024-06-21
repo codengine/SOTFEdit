@@ -368,6 +368,7 @@
       },
       "buildingResistance": "Gebäude-Langlebigkeit",
       "coldPenalties": "Kälte-Nachteile",
+      "coldPenaltiesStatReduction": "Werte-Regenerationsstrafe",
       "consumableEffects": {
         "_label": "Verderb-Effekte",
         "_tooltip": "Wie viel Schaden du nimmst, wenn du schlechtes Essen isst"

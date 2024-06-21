@@ -84,6 +84,7 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0"
                        Content="{infrastructure:Translate 'game.setup.consumableEffects._label'}"
@@ -156,37 +157,49 @@
                                   Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHigh}" />
                 </ComboBox>
 
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="5" Grid.Column="0"
+                       Content="{infrastructure:Translate 'game.setup.coldPenaltiesStatReduction'}" />
+                <ComboBox Grid.Column="1" Grid.Row="5"
+                          SelectedValue="{Binding SelectedColdPenaltiesStatReduction, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValuePath="Tag">
+                    <ComboBoxItem />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.off'}" Tag="Off" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.normal'}"
+                                  Tag="Normal" />
+                    <ComboBoxItem Content="{infrastructure:Translate 'game.setup.settingsValues.hard'}"
+                                  Tag="{x:Static viewModel:GameSetupPageViewModel.SettingValueHard}" />
+                </ComboBox>
 
-                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="5"
-                       Content="{infrastructure:Translate 'game.setup.inventoryPause'}" />
-                <CheckBox IsChecked="{Binding SelectedInventoryPause}" Grid.Row="5" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="6"
-                       Content="{infrastructure:Translate 'game.setup.reducedFoodInContainers'}" />
-                <CheckBox IsChecked="{Binding SelectedReducedFoodInContainers}" Grid.Row="6" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.inventoryPause'}" />
+                <CheckBox IsChecked="{Binding SelectedInventoryPause}" Grid.Row="6" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="7"
-                       Content="{infrastructure:Translate 'game.setup.reducedAmmoInContainers'}" />
-                <CheckBox IsChecked="{Binding SelectedReducedAmmoInContainers}" Grid.Row="7" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.reducedFoodInContainers'}" />
+                <CheckBox IsChecked="{Binding SelectedReducedFoodInContainers}" Grid.Row="7" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="8"
-                       Content="{infrastructure:Translate 'game.setup.singleUseContainers'}" />
-                <CheckBox IsChecked="{Binding SelectedSingleUseContainers}" Grid.Row="8" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.reducedAmmoInContainers'}" />
+                <CheckBox IsChecked="{Binding SelectedReducedAmmoInContainers}" Grid.Row="8" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="9"
-                       Content="{infrastructure:Translate 'game.setup.playersTriggerTraps'}" />
-                <CheckBox IsChecked="{Binding SelectedPlayersTriggerTraps}" Grid.Row="9" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.singleUseContainers'}" />
+                <CheckBox IsChecked="{Binding SelectedSingleUseContainers}" Grid.Row="9" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="10"
-                       Content="{infrastructure:Translate 'game.setup.creativeMode'}" />
-                <CheckBox IsChecked="{Binding SelectedCreativeMode}" Grid.Row="10" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.playersTriggerTraps'}" />
+                <CheckBox IsChecked="{Binding SelectedPlayersTriggerTraps}" Grid.Row="10" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="11"
-                       Content="{infrastructure:Translate 'game.setup.immortalMode'}" />
-                <CheckBox IsChecked="{Binding SelectedPlayersImmortalMode}" Grid.Row="11" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.creativeMode'}" />
+                <CheckBox IsChecked="{Binding SelectedCreativeMode}" Grid.Row="11" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="12"
-                       Content="{infrastructure:Translate 'game.setup.oneHitToCutTrees'}" />
-                <CheckBox IsChecked="{Binding SelectedOneHitToCutTrees}" Grid.Row="12" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.immortalMode'}" />
+                <CheckBox IsChecked="{Binding SelectedPlayersImmortalMode}" Grid.Row="12" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="13"
-                       Content="{infrastructure:Translate 'game.setup.forcePlaceFullLoad'}" />
-                <CheckBox IsChecked="{Binding SelectedForcePlaceFullLoad}" Grid.Row="13" Grid.Column="1" />
+                       Content="{infrastructure:Translate 'game.setup.oneHitToCutTrees'}" />
+                <CheckBox IsChecked="{Binding SelectedOneHitToCutTrees}" Grid.Row="13" Grid.Column="1" />
                 <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="14"
+                       Content="{infrastructure:Translate 'game.setup.forcePlaceFullLoad'}" />
+                <CheckBox IsChecked="{Binding SelectedForcePlaceFullLoad}" Grid.Row="14" Grid.Column="1" />
+                <Label Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="15"
                        Content="{infrastructure:Translate 'game.setup.noCuttingsSpawn'}" />
-                <CheckBox IsChecked="{Binding SelectedNoCuttingsSpawn}" Grid.Row="14" Grid.Column="1" />
+                <CheckBox IsChecked="{Binding SelectedNoCuttingsSpawn}" Grid.Row="15" Grid.Column="1" />
             </Grid>
         </GroupBox>
         <GroupBox Margin="0 0 0 10" Header="{infrastructure:Translate 'game.setup.headers.enemiesCustom'}" Grid.Row="2"

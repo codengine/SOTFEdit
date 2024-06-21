@@ -453,6 +453,7 @@
         "winter": "Winter",
         "_label": "Starting Season"
       },
+      "coldPenaltiesStatReduction": "Stat Regeneration Penalties",
       "uid": "UID"
     },
     "state": {

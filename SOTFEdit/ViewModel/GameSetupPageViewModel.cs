@@ -75,7 +75,8 @@ public class GameSetupPageViewModel : ObservableObject
         { GameSetupKeys.OneHitToCutTrees, SettingTypeBool },
         { GameSetupKeys.ForcePlaceFullLoad, SettingTypeBool },
         { GameSetupKeys.NoCuttingsSpawn, SettingTypeBool },
-        { GameSetupKeys.PvpDamage, SettingTypeString }
+        { GameSetupKeys.PvpDamage, SettingTypeString },
+        { GameSetupKeys.ColdPenaltiesStatReduction, SettingTypeString }
     };
 
     private readonly Dictionary<string, string> _stringSettings = new();
@@ -213,6 +214,12 @@ public class GameSetupPageViewModel : ObservableObject
     {
         get => GetStringSetting(GameSetupKeys.PvpDamage) ?? SettingValueNormal;
         set => SetStringSetting(GameSetupKeys.PvpDamage, value);
+    }
+    
+    public string? SelectedColdPenaltiesStatReduction
+    {
+        get => GetStringSetting(GameSetupKeys.ColdPenaltiesStatReduction) ?? SettingValueOff;
+        set => SetStringSetting(GameSetupKeys.ColdPenaltiesStatReduction, value);
     }
 
     public bool SelectedReducedFoodInContainers
@@ -423,6 +430,7 @@ public class GameSetupPageViewModel : ObservableObject
         OnPropertyChanged(nameof(SelectedForcePlaceFullLoad));
         OnPropertyChanged(nameof(SelectedNoCuttingsSpawn));
         OnPropertyChanged(nameof(SelectedPvpDamage));
+        OnPropertyChanged(nameof(SelectedColdPenaltiesStatReduction));
     }
 
     private void LoadSettings(Savegame? savegame)
