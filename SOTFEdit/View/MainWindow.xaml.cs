@@ -646,4 +646,27 @@ public partial class MainWindow
         var translationWindow = new TranslationWindow();
         translationWindow.ShowDialog();
     }
+
+    private void MainWindow_OnDragEnter(object sender, DragEventArgs e)
+    {
+        e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Move : DragDropEffects.None;
+    }
+
+    private void MainWindow_OnDrop(object sender, DragEventArgs e)
+    {
+        // Handle the drop operation
+        if (!e.Data.GetDataPresent(DataFormats.FileDrop) || (string[]?)e.Data.GetData(DataFormats.FileDrop) is not
+            {
+                Length: 1
+            } files)
+        {
+            return;
+        }
+
+        var path = files[0];
+        if (Directory.Exists(path))
+        {
+            SavegameManager.SelectedSavegame = SavegameManager.CreateSaveInfo(new DirectoryInfo(path));
+        }
+    }
 }
