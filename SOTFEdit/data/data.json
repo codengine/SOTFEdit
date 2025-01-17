@@ -4453,6 +4453,12 @@
       "icon": "../items/TactitabTraps_tn.png"
     },
     {
+      "id": 66,
+      "buildCost": 1,
+      "category": "misc",
+      "icon": "../items/PaperTarget_tn.png"
+    },
+    {
       "id": 67,
       "buildCost": 40,
       "category": "storage",
