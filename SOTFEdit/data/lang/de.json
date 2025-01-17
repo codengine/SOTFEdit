@@ -341,7 +341,8 @@
         "6": "Blazer",
         "7": "Schwarze Lederjacke",
         "8": "Raumanzug",
-        "9": "Priester-Outfit"
+        "9": "Priester-Outfit",
+        "10": "Stewardess Outfit"
       },
       "10": {
         "-1": "Standard",
@@ -895,7 +896,8 @@
     "727": "Solafitrüstung",
     "728": "Lebendiges Kaninchen",
     "729": "Stinktier-Kopf",
-    "730": "Kleiner Kaninchenstall Blaupause"
+    "730": "Kleiner Kaninchenstall Blaupause",
+    "749": "Stewardess Outfit"
   },
   "itemTypes": {
     "ammo": "Munition",
@@ -1252,6 +1254,7 @@
       "furniture": "Möbel",
       "gardening": "Gartenarbeit",
       "misc": "Sonstiges",
+      "raft": "Floß",
       "shelter": "Unterkunft",
       "storage": "Lagerung",
       "traps": "Fallen",
@@ -1355,7 +1358,14 @@
       "103": "Hängegleiter-Plattform",
       "104": "Explosiv-Lager",
       "106": "Kaninchenstall",
-      "107": "Kleiner Kaninchenstall"
+      "107": "Kleiner Kaninchenstall",
+      "108": "Hausboot",
+      "109": "Knight-V Halter",
+      "110": "Vogelhaus",
+      "113": "Faltbarer Gleitschirmhalter",
+      "117": "Kleines Floß",
+      "118": "Anlegestelle",
+      "119": "Großes Floß"
     }
   },
   "tabs": {

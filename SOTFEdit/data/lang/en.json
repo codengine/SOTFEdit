@@ -341,7 +341,8 @@
         "6": "Blazer",
         "7": "Black Leather Jacket",
         "8": "Space Suit",
-        "9": "Priest Outfit"
+        "9": "Priest Outfit",
+        "10": "Stewardess Outfit"
       },
       "10": {
         "-1": "Default",
@@ -895,7 +896,8 @@
     "727": "Solafite Armor",
     "728": "Living Rabbit",
     "729": "Skunk Head",
-    "730": "Small Rabbit Hutch Blueprint"
+    "730": "Small Rabbit Hutch Blueprint",
+    "749": "Stewardess Outfit"
   },
   "itemTypes": {
     "ammo": "Ammo",
@@ -1252,6 +1254,7 @@
       "furniture": "Furniture",
       "gardening": "Gardening",
       "misc": "Misc",
+      "raft": "Raft",
       "shelter": "Shelter",
       "storage": "Storage",
       "traps": "Traps",
@@ -1355,7 +1358,14 @@
       "103": "Hang Glider Launcher",
       "104": "Explosive Storage",
       "106": "Rabbit Hutch",
-      "107": "Small Rabbit Hutch"
+      "107": "Small Rabbit Hutch",
+      "108": "House Boat",
+      "109": "Knight-V Holder",
+      "110": "Bird House",
+      "113": "Foldable Glider Holder",
+      "117": "Small Raft",
+      "118": "Mooring",
+      "119": "Large Raft"
     }
   },
   "tabs": {

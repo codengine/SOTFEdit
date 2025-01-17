@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.12.8
+
+- Added new screw structures: Small Raft, Large Raft, Houseboat, Mooring, KnightV Holder, Foldable Glider Holder
+- Added Stewardess Outfit for Player and Kelvin
+- Enabled Teal and Red Dress for Virginia
+- Added Golf Cart Battery to Shelf Storage
+- Added bird house
+
 ## v0.12.7
 
 - Added new game setting: Stat Regeneration Penalties

@@ -1325,7 +1325,7 @@
       "type": "clothes",
       "storageMax": {
         "shelf": 0,
-        "inventory": 2
+        "inventory": 1
       },
       "image": "Clothing.png"
     },
@@ -2721,7 +2721,7 @@
       "id": 661,
       "type": "electricity",
       "storageMax": {
-        "shelf": 0,
+        "shelf": 1,
         "inventory": 3
       },
       "image": "BatteryPackGolf.png"
@@ -3338,6 +3338,15 @@
         "shelf": 0,
         "inventory": 1
       }
+    },
+    {
+      "id": 749,
+      "type": "clothes",
+      "storageMax": {
+        "shelf": 0,
+        "inventory": 1
+      },
+      "image": "Clothing.png"
     }
   ],
   "storages": [
@@ -3572,6 +3581,33 @@
         388
       ],
       "type": "Items"
+    },
+    {
+      "id": 109,
+      "slots": 1,
+      "maxPerSlot": 1,
+      "restrictedItemIds": [
+        630
+      ],
+      "type": "Items"
+    },
+    {
+      "id": 110,
+      "slots": 1,
+      "maxPerSlot": 1,
+      "restrictedItemIds": [
+        479
+      ],
+      "type": "Items"
+    },
+    {
+      "id": 113,
+      "slots": 1,
+      "maxPerSlot": 1,
+      "restrictedItemIds": [
+        626
+      ],
+      "type": "Items"
     }
   ],
   "advancedStorages": [
@@ -3691,7 +3727,8 @@
         6,
         7,
         8,
-        9
+        9,
+        10
       ],
       "10": [
         -1,
@@ -3699,7 +3736,9 @@
         1,
         2,
         3,
-        4
+        4,
+        5,
+        6
       ]
     },
     "equippableItems": {
@@ -4632,6 +4671,48 @@
       "buildCost": 37,
       "category": "storage",
       "icon": "../items/rabbit-head_tn.png"
+    },
+    {
+      "id": 108,
+      "buildCost": 128,
+      "category": "raft",
+      "icon": "raft.png"
+    },
+    {
+      "id": 109,
+      "buildCost": 11,
+      "category": "storage",
+      "icon": "../icons/unicycle.png"
+    },
+    {
+      "id": 110,
+      "buildCost": 18,
+      "category": "misc",
+      "icon": "birdhouse.png"
+    },
+    {
+      "id": 113,
+      "buildCost": 11,
+      "category": "storage",
+      "icon": "../worldobjects/hang-gliding.png"
+    },
+    {
+      "id": 117,
+      "buildCost": 19,
+      "category": "raft",
+      "icon": "raft.png"
+    },
+    {
+      "id": 118,
+      "buildCost": 7,
+      "category": "misc",
+      "icon": "mooring.png"
+    },
+    {
+      "id": 119,
+      "buildCost": 165,
+      "category": "raft",
+      "icon": "raft.png"
     }
   ],
   "areas": [

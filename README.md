@@ -356,3 +356,7 @@ collect all data.
 - [Wood icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/wood)
 - [Radio icons created by Eucalyp - Flaticon](https://www.flaticon.com/free-icons/radio)
 - [Skunk icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/skunk)
+- [Raft icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/raft)
+- [Unicycle icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/unicycle)
+- [Bird house icons created by Smashicons - Flaticon](https://www.flaticon.com/free-icons/bird-house)
+- [Mooring icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/mooring)
