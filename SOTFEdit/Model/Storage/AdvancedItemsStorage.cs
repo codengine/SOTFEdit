@@ -59,7 +59,7 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
                 break;
             }
 
-            var supportedItems = GetSupportedItems(_definition.Slots[slotIndex]);
+            var supportedItems = GetSupportedItems(slotIndex);
             var candidate = supportedItems.FirstOrDefault(item => item.Item.Id == itemBlock.ItemId);
 
             if (candidate == null)
@@ -90,7 +90,7 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
             }
             else
             {
-                var supportedItems = GetSupportedItems(_definition.Slots[i]);
+                var supportedItems = GetSupportedItems(i);
                 var emptyStoredItem = new StoredItem(null, 0, supportedItems, null);
                 emptyStoredItem.PropertyChanged += OnStoredItemPropertyChanged;
                 slot.StoredItems.Add(emptyStoredItem);
@@ -202,9 +202,18 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
         }
     }
 
-    private List<ItemWrapper> GetSupportedItems(AdvancedStorageSlotDefinition slotDefinition)
+    private List<ItemWrapper> GetSupportedItems(int slotIndex)
     {
         var itemWrappers = new List<ItemWrapper>();
+
+        if (slotIndex >= _definition.Slots.Count)
+        {
+            Logger.Warn(
+                $"Found more slots than expected for {_definition.Name} ({_definition.Id}), will skip remaining ones");
+            return itemWrappers;
+        }
+
+        var slotDefinition = _definition.Slots[slotIndex];
 
         foreach (var (itemId, max) in slotDefinition.RestrictedItems)
         {
