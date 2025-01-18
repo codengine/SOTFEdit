@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.12.9
+
+- Updated polish translation
+- Fix drying racks
+  - Food was always created as cooked
+- Fix crash due to unexpected storage data
+  - This may be a bug in the game. Logs were assigned to stick holders, skulls were assigned to hutches etc.
+- Add paper target as screw structure
+
 ## v0.12.8
 
 - Added new screw structures: Small Raft, Large Raft, Houseboat, Mooring, KnightV Holder, Foldable Glider Holder
