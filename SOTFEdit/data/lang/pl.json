@@ -5,6 +5,7 @@
       "cannibal": "Kanibal",
       "creep": "Mutant",
       "human": "Człowiek",
+      "misc": "Inne",
       "muddyCannibal": "Błotnisty Kanibal"
     },
     "details": {
@@ -94,6 +95,7 @@
       "22": "Pływa",
       "23": "Ogłuszony",
       "24": "Topi się",
+      "25": "Wózek Golfowy",
       "40": "Na skale",
       "41": "Na drzewie",
       "42": "Pod liśćmi",
@@ -179,7 +181,10 @@
       "56": "Elise",
       "57": "Szop Pracz",
       "58": "Legsy",
-      "59": "Holey"
+      "59": "Holey",
+      "60": "Skunks",
+      "90": "Helikopter",
+      "100": "PlayerRobby"
     }
   },
   "armor": {
@@ -336,7 +341,8 @@
         "6": "Garnitur",
         "7": "Czarna skórzana kurtka",
         "8": "Skafander Kosmiczny",
-        "9": "Strój Księdza"
+        "9": "Strój Księdza",
+        "10": "Strój Stewardessy"
       },
       "10": {
         "-1": "Bazowy",
@@ -363,6 +369,7 @@
       },
       "buildingResistance": "Odporność Budynków",
       "coldPenalties": "Kary za Zimno",
+      "coldPenaltiesStatReduction": "Kary do odnowiania statystyk",
       "consumableEffects": {
         "_label": "Efekty złego jedzenia",
         "_tooltip": "Ile obrażeń dostaniesz po zjedzeniu złego jedzenia"
@@ -886,7 +893,11 @@
     "724": "Nasion Jagody Bliźniaczej",
     "725": "Nasiono Śnieźnej Jagody",
     "726": "Plan Wyrzutni Składanej Lotni",
-    "727": "Zbroja z solafitu"
+    "727": "Zbroja z solafitu",
+    "728": "Żyjący królik",
+    "729": "Głowa skunksa",
+    "730": "Plan małej klatki dla królików",
+    "749": "Strój Stewardessy"
   },
   "itemTypes": {
     "ammo": "Ammunicja",
@@ -1243,6 +1254,7 @@
       "furniture": "Meble",
       "gardening": "Ogrodnictwo",
       "misc": "Inne",
+      "raft": "Tratfa",
       "shelter": "Schronienie",
       "storage": "Magazyn",
       "traps": "Pułapki",
@@ -1344,7 +1356,16 @@
       "101": "Gold Armor Plater",
       "102": "Wyrzutnia Składanych Lotni",
       "103": "Wyrzutnia Składanych Lotni",
-      "104": "Magazyn na materiały wybuchowe"
+      "104": "Magazyn na materiały wybuchowe",
+      "106": "Klatka dla królików",
+      "107": "Mała klatka dla królików",
+      "108": "Łódź mieszkalna",
+      "109": "Magazyn na Knight-V",
+      "110": "Domek dla ptaków",
+      "113": "Składana lotnia",
+      "117": "Mała tratwa",
+      "118": "Poler",
+      "119": "Duża tratwa"
     }
   },
   "tabs": {
