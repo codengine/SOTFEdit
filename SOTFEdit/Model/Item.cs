@@ -95,6 +95,11 @@ public class Item : ICloneable
         return FoodSpoilModuleDefinition != null;
     }
 
+    public bool HasSourceActorModuleDefinition()
+    {
+        return SourceActorModuleDefinition != null;
+    }
+
     public bool Matches(string normalizedLowercaseFullText)
     {
         return NormalizedLowercaseName.Contains(normalizedLowercaseFullText) ||

@@ -3,6 +3,7 @@ using System.Linq;
 using NLog;
 using SOTFEdit.Model.SaveData.Storage;
 using SOTFEdit.Model.SaveData.Storage.Module;
+using SOTFEdit.View.Storage;
 
 namespace SOTFEdit.Model.Storage;
 
@@ -116,16 +117,12 @@ public class FoodStorage : RestrictedStorage
 
             foreach (var storedItem in grouped.Value)
             {
-                if (storedItem.Count == 0 || storedItem.SelectedItem is not { } item)
+                if (storedItem.Count == 0 || storedItem.SelectedItem is not { } selectedItem)
                 {
                     continue;
                 }
 
-                var modules = storedItem.Modules == null
-                    ? new List<IStorageModule>()
-                    : new List<IStorageModule>(storedItem.Modules);
-
-                UpdateModules(item.Item, modules);
+                var modules = SelectModules(storedItem, selectedItem);
 
                 storageItemBlock.UniqueItems.Add(new UniqueItem
                 {
@@ -139,19 +136,47 @@ public class FoodStorage : RestrictedStorage
         return storageSaveData;
     }
 
-    private static void UpdateModules(Item item, ICollection<IStorageModule> modules)
+    private static List<IStorageModule> SelectModules(StoredItem storedItem, ItemWrapper selectedItem)
     {
-        if (item.FoodSpoilModuleDefinition is { } foodSpoilModuleDefinition &&
-            !modules.OfType<FoodSpoilStorageModule>().Any())
-        {
-            modules.Add(foodSpoilModuleDefinition.BuildNewModuleWithDefaults());
-        }
+        var hasFoodSpoilModule = false;
+        var hasSourceActorModule = false;
+        var storedModules = storedItem.Modules?.Where(module => !ModuleShouldBeFiltered(selectedItem, module)).Select(
+            module =>
+            {
+                switch (module)
+                {
+                    case FoodSpoilStorageModule:
+                        hasFoodSpoilModule = true;
+                        break;
+                    case SourceActorStorageModule:
+                        hasSourceActorModule = true;
+                        break;
+                }
 
-        if (item.SourceActorModuleDefinition is { } sourceActorModuleDefinition &&
-            !modules.OfType<SourceActorStorageModule>().Any())
-        {
-            modules.Add(sourceActorModuleDefinition.BuildNewModuleWithDefaults());
-        }
+                if (module is not FoodSpoilStorageModule foodSpoilStorageModule) return module;
+
+                var newFoodSpoilStorageModule = selectedItem.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule;
+                if (newFoodSpoilStorageModule != null && !Equals(foodSpoilStorageModule,
+                        selectedItem.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule))
+                    return newFoodSpoilStorageModule;
+
+                return foodSpoilStorageModule;
+            }).ToList() ?? new List<IStorageModule>();
+
+        if (selectedItem.Item.FoodSpoilModuleDefinition is { } foodSpoilModuleDefinition && !hasFoodSpoilModule)
+            storedModules.Add(selectedItem.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule ??
+                              foodSpoilModuleDefinition.BuildNewModuleWithDefaults());
+
+        if (selectedItem.Item.SourceActorModuleDefinition is { } sourceActorModuleDefinition && !hasSourceActorModule)
+            storedModules.Add(sourceActorModuleDefinition.BuildNewModuleWithDefaults());
+
+        return storedModules;
+    }
+
+    private static bool ModuleShouldBeFiltered(ItemWrapper selectedItem, IStorageModule module)
+    {
+        return (module is FoodSpoilStorageModule && !selectedItem.Item.HasFoodSpoilModuleDefinition()) ||
+               (module is SourceActorStorageModule && !selectedItem.Item.HasSourceActorModuleDefinition());
     }
 
     public override void SetAllToMax()
