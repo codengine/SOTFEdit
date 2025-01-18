@@ -2,12 +2,12 @@
 
 ## v0.12.9
 
-- Updated polish translation
-- Fix drying racks
+- Updated Polish translation
+- Fixed drying racks
   - Food was always created as cooked
-- Fix crash due to unexpected storage data
+- Fixed crash due to unexpected storage data
   - This may be a bug in the game. Logs were assigned to stick holders, skulls were assigned to hutches etc.
-- Add paper target as screw structure
+- Added paper target as screw structure
 
 ## v0.12.8
 
@@ -21,7 +21,7 @@
 
 - Added new game setting: Stat Regeneration Penalties
 - Added function to drag and drop savegame directories directly into the main window
-- Updated polish translations
+- Updated Polish translations
 
 ## v0.12.6
 
@@ -135,7 +135,7 @@ Moreover, an update of the SOTFEdit Companion is required which will also arrive
 - Added new outfits for Kelvin
 - Added new actor type (Elise)
 - Added POIs of new items
-- Added missing polish translations
+- Added missing Polish translations
 
 ### Bugfixes
 
@@ -182,7 +182,7 @@ Moreover, an update of the SOTFEdit Companion is required which will also arrive
 - Added Fishing Email A and B
 - Added map locations for new items
 - Added structure info for new furnitures and trap
-- Added some polish translations
+- Added some Polish translations
 - Added some missing german translations
 - Added translation editor
 - Added new cannibal "Henry"
