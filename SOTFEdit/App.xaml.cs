@@ -32,7 +32,7 @@ namespace SOTFEdit;
 /// </summary>
 public partial class App
 {
-    public const string Version = "0.12.9";
+    public const string Version = "0.12.10";
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
     public App()

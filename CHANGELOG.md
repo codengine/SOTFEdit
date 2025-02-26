@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.12.10
+
+Fix crash due to corrupt storages (caused by ingame bug)
+
+- There was a bug which has been hotfixed
+  here: https://steamcommunity.com/games/1326470/announcements/detail/587257174530458334
+- The bug lead to linking between structures that don't belong to each other
+
 ## v0.12.9
 
 - Updated Polish translation

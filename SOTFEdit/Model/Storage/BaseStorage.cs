@@ -103,6 +103,15 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
                     var storedItem = new StoredItem(foundCandidate, itemBlock.TotalCount, supportedItems,
                         Definition.MaxPerSlot, modules);
                     storedItem.PropertyChanged += OnStoredItemPropertyChanged;
+
+                    if (currentSlot >= Slots.Count)
+                    {
+                        _logger.Warn(
+                            $"Current slot {currentSlot} exceeds max slot count {Slots.Count} for {Definition.Name} ({Definition.Id})");
+                        var storageSlot = new StorageSlot();
+                        Slots.Add(storageSlot);
+                    }
+                    
                     Slots[currentSlot++].StoredItems.Add(storedItem);
                 }
                 else

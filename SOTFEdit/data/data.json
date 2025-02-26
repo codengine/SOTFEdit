@@ -1325,7 +1325,7 @@
       "type": "clothes",
       "storageMax": {
         "shelf": 0,
-        "inventory": 1
+        "inventory": 2
       },
       "image": "Clothing.png"
     },
