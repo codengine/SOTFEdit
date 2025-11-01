@@ -6,10 +6,12 @@
 
 ![Screenshot](https://abload.de/img/sotfeditfadso.jpg)
 
-[![Build](https://github.com/Za-Pa-Al/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/Za-Pa-Al/SOTFEdit/actions/workflows/build.yaml)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Za-Pa-Al/SOTFEdit)](https://github.com/Za-Pa-Al/SOTFEdit/releases)
-[![GitHub all releases](https://img.shields.io/github/downloads/Za-Pa-Al/SOTFEdit/total)](https://github.com/Za-Pa-Al/SOTFEdit/releases)
-![GitHub](https://img.shields.io/github/license/Za-Pa-Al/SOTFEdit)
+
+# Badges (may require workflow/release setup)
+[![Build Status](https://github.com/Za-Pa-Al/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/Za-Pa-Al/SOTFEdit/actions/workflows/build.yaml)
+[![Latest Release](https://img.shields.io/github/v/release/Za-Pa-Al/SOTFEdit?label=release)](https://github.com/Za-Pa-Al/SOTFEdit/releases)
+[![Downloads](https://img.shields.io/github/downloads/Za-Pa-Al/SOTFEdit/total?label=downloads)](https://github.com/Za-Pa-Al/SOTFEdit/releases)
+[![License](https://img.shields.io/github/license/Za-Pa-Al/SOTFEdit)](https://github.com/Za-Pa-Al/SOTFEdit/blob/master/LICENSE)
 
 A savegame editor for "Sons of The Forest".
 

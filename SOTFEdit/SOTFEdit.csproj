@@ -8,6 +8,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <ApplicationIcon>icons8-kleine-axt-doodle-96.ico</ApplicationIcon>
+  <Version>1.0.0</Version>
   </PropertyGroup>
 
     <PropertyGroup>
