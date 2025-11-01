@@ -22,8 +22,11 @@ public sealed class NaturalStringComparer : IComparer<string>
     ///     Zero: x equals y.
     ///     Greater than zero: x is greater than y.
     /// </returns>
-    public int Compare(string x, string y)
+    public int Compare(string? x, string? y)
     {
+        if (ReferenceEquals(x, y)) return 0;
+        if (x is null) return y is null ? 0 : -1;
+        if (y is null) return 1;
         var indexX = 0;
         var indexY = 0;
         while (true)

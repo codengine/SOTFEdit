@@ -102,12 +102,11 @@ public partial class TranslationViewModel : ObservableObject
             }
             else
             {
-                if (!dict.ContainsKey(keys[i]))
+                if (!dict.ContainsKey(keys[i]) || dict[keys[i]] is not Dictionary<string, object>)
                 {
                     dict[keys[i]] = new Dictionary<string, object>();
                 }
-
-                dict = dict[keys[i]] as Dictionary<string, object>;
+                dict = dict[keys[i]] as Dictionary<string, object> ?? throw new InvalidOperationException("Dictionary structure corrupted");
             }
         }
     }

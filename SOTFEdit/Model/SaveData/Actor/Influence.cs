@@ -16,7 +16,7 @@ public partial class Influence : ObservableObject
     [ObservableProperty]
     private float _sentiment;
 
-    public string TypeId { get; init; }
+    public string TypeId { get; init; } = string.Empty;
 
     [JsonIgnore]
     public static IEnumerable<string> AllTypes => new[] { Type.Player, Type.Cannibal, Type.Creepy };

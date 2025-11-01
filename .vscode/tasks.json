@@ -1,0 +1,110 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Clean Release",
+            "type": "process",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "cls; dotnet clean SOTFEdit.sln --configuration Release --verbosity quiet"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never",
+                "echo": false,
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Build Release",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "SOTFEdit\\SOTFEdit.csproj",
+                "--configuration",
+                "Release"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": ["Clean Release"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Clean Debug",
+            "type": "process",
+            "command": "pwsh",
+            "args": [
+                "-Command",
+                "cls; dotnet clean SOTFEdit.sln --configuration Debug --verbosity quiet"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never",
+                "echo": false,
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Build Debug",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "SOTFEdit\\SOTFEdit.csproj",
+                "--configuration",
+                "Debug"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": ["Clean Debug"],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "Run Release",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "SOTFEdit\\SOTFEdit.csproj",
+                "--configuration",
+                "Release"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Debug Debug",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "SOTFEdit\\SOTFEdit.csproj",
+                "--configuration",
+                "Debug"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "presentation": {
+                "reveal": "always"
+            }
+        }
+    ]
+}

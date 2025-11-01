@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <!-- No custom OutputPath or IntermediateOutputPath: use MSBuild defaults -->
+  </PropertyGroup>
+</Project>

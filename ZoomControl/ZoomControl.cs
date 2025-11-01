@@ -72,6 +72,7 @@ public class ZoomControl : ContentControl
 
     public ZoomControl()
     {
+        _transformGroup = new TransformGroup();
         PreviewMouseWheel += ZoomControlMouseWheel;
         PreviewMouseDown += (_, e) => OnMouseDown(e, true);
         MouseDown += (_, e) => OnMouseDown(e, false);

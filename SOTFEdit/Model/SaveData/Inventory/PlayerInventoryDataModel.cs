@@ -8,7 +8,7 @@ namespace SOTFEdit.Model.SaveData.Inventory;
 // ReSharper disable once ClassNeverInstantiated.Global
 public record PlayerInventoryDataModel
 {
-    public DataModel Data { get; set; }
+    public DataModel? Data { get; set; }
 
     public static bool Merge(SaveDataWrapper saveDataWrapper, List<InventoryItem> selectedItems)
     {
@@ -30,6 +30,6 @@ public record PlayerInventoryDataModel
     public class DataModel
     {
         [JsonConverter(typeof(StringTypeConverter))]
-        public PlayerInventoryModel PlayerInventory { get; set; }
+    public PlayerInventoryModel? PlayerInventory { get; set; }
     }
 }

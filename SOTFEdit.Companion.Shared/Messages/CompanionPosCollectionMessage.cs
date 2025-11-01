@@ -7,4 +7,9 @@ public class CompanionPosCollectionMessage : ICompanionMessage
 {
     [Key(0)]
     public List<CompanionPosMessage> Positions { get; set; }
+
+    public CompanionPosCollectionMessage()
+    {
+        Positions = new List<CompanionPosMessage>();
+    }
 }

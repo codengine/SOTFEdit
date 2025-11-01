@@ -11,7 +11,7 @@ namespace SOTFEdit.Model.SaveData.Inventory;
 public record PlayerInventoryModel
 {
     public List<ItemBlockModel>? EquippedItems { get; set; }
-    public ItemInstanceManagerDataModel ItemInstanceManagerData { get; set; }
+    public ItemInstanceManagerDataModel? ItemInstanceManagerData { get; set; }
 
     public static bool Merge(JToken playerInventory, List<InventoryItem> selectedItems)
     {

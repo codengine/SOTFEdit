@@ -172,8 +172,9 @@ public class ActorModifier
 
         if (data.ModifyOptions.TeleportMode == "PlayerToNpc")
         {
-            var actorPos = data.Actor.Position;
-            var playerPos = _playerPageViewModel.PlayerState.Pos;
+
+            var actorPos = data.Actor.Position!;
+            var playerPos = _playerPageViewModel.PlayerState.Pos!;
             Teleporter.MovePlayerToPos(ref playerPos, ref actorPos);
 
             if (actorTokenForActorInData != null)

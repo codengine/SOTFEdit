@@ -1,152 +1,155 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationIcon>icons8-kleine-axt-doodle-96.ico</ApplicationIcon>
+  </PropertyGroup>
+
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
-        <Nullable>enable</Nullable>
-        <UseWPF>true</UseWPF>
-        <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <ApplicationIcon>icons8-kleine-axt-doodle-96.ico</ApplicationIcon>
-    </PropertyGroup>
+    </PropertyGroup>  
 
-    <ItemGroup>
-        <None Update="data\*">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="data\lang\*">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
+  <ItemGroup>
+    <None Update="data\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="data\lang\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
-    <ItemGroup>
-        <Content Include="icons8-kleine-axt-doodle-96.ico" />
-        <Resource Include="images\*" />
-        <Resource Include="images\items\*" />
-        <Resource Include="images\actors\*" />
-        <Resource Include="images\actors\icons\*" />
-        <Resource Include="images\icons\*" />
-        <Resource Include="images\structures\*" />
-        <Resource Include="images\worldobjects\*" />
-        <Content Include="images\map\*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <None Include="..\README.md">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="..\CHANGELOG.md">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons8-kleine-axt-doodle-96.ico"/>
+    <Resource Include="images\*"/>
+    <Resource Include="images\items\*"/>
+    <Resource Include="images\actors\*"/>
+    <Resource Include="images\actors\icons\*"/>
+    <Resource Include="images\icons\*"/>
+    <Resource Include="images\structures\*"/>
+    <Resource Include="images\worldobjects\*"/>
+    <Content Include="images\map\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="..\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\CHANGELOG.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-        <PackageReference Include="libc.translation" Version="7.1.0" />
-        <PackageReference Include="MahApps.Metro" Version="2.4.9" />
-        <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0" />
-        <PackageReference Include="Markdig" Version="0.31.0" />
-        <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="NLog" Version="5.1.4" />
-        <PackageReference Include="Semver" Version="2.3.0" />
-        <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29" />
-        <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7" />
-        <PackageReference Include="WatsonWebsocket" Version="4.0.9" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0"/>
+    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1"/>
+    <PackageReference Include="libc.translation" Version="7.1.0"/>
+    <PackageReference Include="MahApps.Metro" Version="2.4.9"/>
+    <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0"/>
+    <PackageReference Include="Markdig" Version="0.31.0"/>
+    <PackageReference Include="Markdig.Wpf" Version="0.5.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+    <PackageReference Include="NLog" Version="5.1.4"/>
+    <PackageReference Include="Semver" Version="2.3.0"/>
+    <PackageReference Include="TqkLibrary.AutoGrid" Version="1.2.29"/>
+    <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7"/>
+    <PackageReference Include="WatsonWebsocket" Version="4.0.9"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <Compile Update="Settings.Designer.cs">
-            <DesignTimeSharedInput>True</DesignTimeSharedInput>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Settings.settings</DependentUpon>
-        </Compile>
-        <Compile Update="View\Storage\AdvancedItemStorageUserControl.xaml.cs">
-            <SubType>Code</SubType>
-            <DependentUpon>AdvancedItemStorageUserControl.xaml</DependentUpon>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="View\Storage\AdvancedItemStorageUserControl.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>AdvancedItemStorageUserControl.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
-    <ItemGroup>
-        <None Update="NLog.config">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Update="Settings.settings">
-            <Generator>SettingsSingleFileGenerator</Generator>
-            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-        </None>
-    </ItemGroup>
+  <ItemGroup>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 
-    <ItemGroup>
-        <Page Update="View\UpdateAvailableWindow.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="View\MapSpawnActorsWindow.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="View\Map\MapItemsControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="View\Map\MapRequirementsControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="View\Map\MapTeleportButtonsControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="View\Map\ZiplineTeleportButtonsControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="View\Map\Details\ItemPoiDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\CaveOrBunkerDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\GenericInformationalPoiDetailTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\WorldItemPoiDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\ActorPoiDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\StructurePoiDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\DefaultPoiDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\ZipPointPoiDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
-        <Page Update="View\Map\Details\CustomPoiDetailsTemplate.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-        <Page Update="View\Storage\AdvancedItemStorageUserControl.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-            <SubType>Designer</SubType>
-        </Page>
-    </ItemGroup>
+  <ItemGroup>
+    <Page Update="View\UpdateAvailableWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MapSpawnActorsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Map\MapItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Map\MapRequirementsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Map\MapTeleportButtonsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Map\ZiplineTeleportButtonsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Map\Details\ItemPoiDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\CaveOrBunkerDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\GenericInformationalPoiDetailTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\WorldItemPoiDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\ActorPoiDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\StructurePoiDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\DefaultPoiDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\ZipPointPoiDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\Map\Details\CustomPoiDetailsTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Storage\AdvancedItemStorageUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\SOTFEdit.Companion.Shared\SOTFEdit.Companion.Shared.csproj" />
-        <ProjectReference Include="..\ZoomControl\ZoomControl.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SOTFEdit.Companion.Shared\SOTFEdit.Companion.Shared.csproj"/>
+    <ProjectReference Include="..\ZoomControl\ZoomControl.csproj"/>
+  </ItemGroup>
 </Project>

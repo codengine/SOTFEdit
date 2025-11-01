@@ -6,13 +6,13 @@ namespace SOTFEdit.Companion.Shared.Messages;
 public class CompanionAddPoiMessage : ICompanionMessage
 {
     [Key(0)]
-    public string Title { get; set; }
+    public string Title { get; set; } = string.Empty;
 
     [Key(1)]
-    public string Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 
     [Key(2)]
-    public byte[] Screenshot { get; set; }
+    public byte[] Screenshot { get; set; } = Array.Empty<byte>();
 
     [Key(3)]
     public float X { get; set; }

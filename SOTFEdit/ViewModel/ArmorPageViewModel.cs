@@ -66,9 +66,9 @@ public partial class ArmorPageViewModel
             m.SelectedSavegame?.SavegameStore.LoadJsonRaw(SavegameStore.FileType
                 .PlayerArmourSystemSaveData)?.Parent.ToObject<PlayerArmourDataModel>();
 
-        if (armour != null)
+        if (armour?.Data?.PlayerArmourSystem?.ArmourPieces != null)
         {
-            foreach (var armourPiece in armour.Data.PlayerArmourSystem.ArmourPieces)
+            foreach (var armourPiece in armour.Data!.PlayerArmourSystem!.ArmourPieces!)
             {
                 _armour.Add(new ArmourData(armourPiece, _itemList.GetItem(armourPiece.ItemId)));
             }
@@ -88,7 +88,9 @@ public partial class ArmorPageViewModel
         }
 
         var selectedArmorPieces = _armour.Select(a => a.ArmourPiece).ToList();
-        var hasChanges = PlayerArmourSystemModel.Merge(playerArmourData.Data.PlayerArmourSystem, selectedArmorPieces);
+        var hasChanges = playerArmourData.Data?.PlayerArmourSystem != null
+            ? PlayerArmourSystemModel.Merge(playerArmourData.Data!.PlayerArmourSystem!, selectedArmorPieces)
+            : false;
 
         if (!hasChanges)
         {
@@ -96,7 +98,7 @@ public partial class ArmorPageViewModel
         }
 
         saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.PlayerArmourSystem)?["ArmourPieces"]?
-            .Replace(JToken.FromObject(playerArmourData.Data.PlayerArmourSystem.ArmourPieces));
+            .Replace(JToken.FromObject(playerArmourData.Data!.PlayerArmourSystem!.ArmourPieces!));
         saveDataWrapper.MarkAsModified(Constants.JsonKeys.PlayerArmourSystem);
 
         return hasChanges;

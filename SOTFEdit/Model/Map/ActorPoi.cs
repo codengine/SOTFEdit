@@ -11,7 +11,7 @@ public partial class ActorPoi : BasePoi
 {
     private readonly bool _isFollower;
 
-    public ActorPoi(Actor actor) : base(actor.Position)
+    public ActorPoi(Actor actor) : base(actor.Position!)
     {
         Actor = actor;
         if (actor.TypeId is not (Constants.Actors.KelvinTypeId or Constants.Actors.VirginiaTypeId))

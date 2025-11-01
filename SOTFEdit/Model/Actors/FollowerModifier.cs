@@ -451,7 +451,8 @@ public class FollowerModifier
             return true;
         }
 
-        var newInfluencesByType = newInfluences.DistinctBy(influence => influence.TypeId)
+        var newInfluencesByType = newInfluences
+            .DistinctBy(influence => influence.TypeId)
             .ToDictionary(influence => influence.TypeId);
 
         foreach (var existingInfluence in existingInfluences)

@@ -13,7 +13,7 @@ public class Item : ICloneable
     private string? _normalizedLowercaseType;
     public int Id { get; init; }
     public string Name => TranslationManager.Get("items." + Id);
-    public string Type { get; init; }
+    public string Type { get; init; } = string.Empty;
     public FoodSpoilModuleDefinition? FoodSpoilModuleDefinition { get; init; }
     public SourceActorModuleDefinition? SourceActorModuleDefinition { get; init; }
     public bool IsInventoryItem { get; init; } = true;
@@ -37,7 +37,7 @@ public class Item : ICloneable
 
     private string NormalizedLowercaseType
     {
-        get { return _normalizedLowercaseType ??= TranslationHelper.Normalize(Type).ToLower(); }
+    get { return _normalizedLowercaseType ??= TranslationHelper.Normalize(Type).ToLower(); }
     }
 
     public object Clone()

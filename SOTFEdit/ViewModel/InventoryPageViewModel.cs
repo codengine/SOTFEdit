@@ -85,7 +85,7 @@ public partial class InventoryPageViewModel : ObservableObject
         _itemList = gameData.Items;
 
         var categories = gameData.Items
-            .Where(item => item.Value.IsInventoryItem)
+            .Where(item => item.Value.IsInventoryItem && !string.IsNullOrEmpty(item.Value.Type))
             .Select(item => item.Value.Type)
             .Distinct()
             .OrderBy(type => type)
@@ -208,15 +208,18 @@ public partial class InventoryPageViewModel : ObservableObject
             return;
         }
 
-        HashSet<int> assignedItems = new();
+    // assignedItems is already declared above, remove duplicate
 
         var saveData =
             m.SelectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType
                 .PlayerInventorySaveData)?.Parent.ToObject<PlayerInventoryDataModel>();
-        if (saveData != null)
+        HashSet<int> assignedItems = new();
+        List<InventoryItem> inventoryItems = new();
+        List<InventoryItem> equippedItems = new();
+        if (saveData?.Data?.PlayerInventory?.ItemInstanceManagerData?.ItemBlocks != null)
         {
             var playerInventoryModel = saveData.Data.PlayerInventory;
-            var inventoryItems = playerInventoryModel.ItemInstanceManagerData.ItemBlocks
+            inventoryItems = playerInventoryModel.ItemInstanceManagerData.ItemBlocks
                 .Select(itemBlock =>
                 {
                     var item = _itemList.GetItem(itemBlock.ItemId);
@@ -233,32 +236,32 @@ public partial class InventoryPageViewModel : ObservableObject
                 })
                 .ToList();
 
-            var equippedItems = playerInventoryModel.EquippedItems?.Select(itemBlock =>
-                {
-                    var item = _itemList.GetItem(itemBlock.ItemId);
-                    if (item?.StorageMax?.Inventory is { } maxInInventory && maxInInventory < itemBlock.TotalCount)
+            if (playerInventoryModel.EquippedItems != null)
+            {
+                equippedItems = playerInventoryModel.EquippedItems.Select(itemBlock =>
                     {
-                        Logger.Info(
-                            $"Defined max in inventory for {item.Id} is lower ({maxInInventory}) than in savedata ({itemBlock.TotalCount})");
-                    }
+                        var item = _itemList.GetItem(itemBlock.ItemId);
+                        if (item?.StorageMax?.Inventory is { } maxInInventory && maxInInventory < itemBlock.TotalCount)
+                        {
+                            Logger.Info(
+                                $"Defined max in inventory for {item.Id} is lower ({maxInInventory}) than in savedata ({itemBlock.TotalCount})");
+                        }
 
-                    itemBlock.TotalCount = 1;
+                        itemBlock.TotalCount = 1;
 
-                    return new InventoryItem(itemBlock, item, true);
-                })
-                .ToList();
-
-            if (equippedItems != null)
-            {
-                inventoryItems.AddRange(equippedItems);
+                        return new InventoryItem(itemBlock, item, true);
+                    })
+                    .ToList();
             }
+        }
 
-            _inventory.ReplaceRange(inventoryItems);
+        inventoryItems.AddRange(equippedItems);
 
-            foreach (var inventoryItem in inventoryItems)
-            {
-                assignedItems.Add(inventoryItem.Id);
-            }
+        _inventory.ReplaceRange(inventoryItems);
+
+        foreach (var inventoryItem in inventoryItems)
+        {
+            assignedItems.Add(inventoryItem.Id);
         }
 
         var unassignedItems = _itemList.Where(item => !assignedItems.Contains(item.Value.Id))

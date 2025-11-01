@@ -149,11 +149,11 @@ public class PoiLoader
 
         var poisByType = rawPoiCollection.Items.SelectMany(kvp => kvp.Value.Pois.Select(poi =>
                 ItemPoi.Of(kvp.Key, kvp.Value, poi, _items, inventoryItems, _areaMaskManager, false)))
-            .Where(poi => poi != null)
+            .Where(poi => poi != null && !string.IsNullOrEmpty(poi.Item.Item.Type))
             .Select(poi => poi!)
             .Where(poi =>
-                !filterForCompanion || rawPoiCollection.AllowedGroupsForCompanion.Contains(poi.Item.Item.Type))
-            .GroupBy(poi => poi.Item.Item.Type)
+                !filterForCompanion || rawPoiCollection.AllowedGroupsForCompanion.Contains(poi.Item.Item.Type!))
+            .GroupBy(poi => poi.Item.Item.Type!)
             .OrderBy(g => g.Key)
             .ToDictionary(g => g.Key, g => g.ToList());
 
