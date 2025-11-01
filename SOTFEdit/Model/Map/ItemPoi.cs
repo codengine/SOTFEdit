@@ -90,7 +90,20 @@ public class ItemPoi : InformationalPoi
 
     private bool HasAllItemsInInventory()
     {
-        return HasItemInInventory(_item) && (_altItems?.All(HasItemInInventory) ?? true);
+        // Check if the main item is in inventory
+        if (!HasItemInInventory(_item))
+        {
+            return false;
+        }
+
+        // If there are no alternative items, return true
+        if (_altItems == null)
+        {
+            return true;
+        }
+
+        // All alternative items must be in inventory
+        return _altItems.All(HasItemInInventory);
     }
 
     private bool HasItemInInventory(Item item)

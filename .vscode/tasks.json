@@ -28,11 +28,10 @@
                 "Release"
             ],
             "problemMatcher": "$msCompile",
-            "dependsOn": ["Clean Release"],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "dependsOn": [
+                "Clean Release"
+            ],
+            "group": "build"
         },
         {
             "label": "Clean Debug",
@@ -61,7 +60,9 @@
                 "Debug"
             ],
             "problemMatcher": "$msCompile",
-            "dependsOn": ["Clean Debug"],
+            "dependsOn": [
+                "Clean Debug"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": false
@@ -99,12 +100,13 @@
                 "Debug"
             ],
             "group": {
-                "kind": "test",
-                "isDefault": false
+                "kind": "build",
+                "isDefault": true
             },
             "presentation": {
                 "reveal": "always"
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }

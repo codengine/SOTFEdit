@@ -249,5 +249,18 @@ namespace SOTFEdit {
                 this["AskForBackups"] = value;
             }
         }
+
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowOnlyUncollectedItems {
+            get {
+                return ((bool)(this["ShowOnlyUncollectedItems"]));
+            }
+            set {
+                this["ShowOnlyUncollectedItems"] = value;
+            }
+        }
     }
 }

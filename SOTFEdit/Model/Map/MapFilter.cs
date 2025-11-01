@@ -25,7 +25,7 @@ public partial class MapFilter : ObservableObject
     private RequirementsFilterType _requirementsFilter = RequirementsFilterType.All;
 
     [ObservableProperty]
-    private bool _showOnlyUncollectedItems;
+    private bool _showOnlyUncollectedItems = SOTFEdit.Settings.Default.ShowOnlyUncollectedItems;
 
     public string? NormalizedLowercaseFullText;
 
@@ -52,5 +52,10 @@ public partial class MapFilter : ObservableObject
     partial void OnFullTextChanged(string? value)
     {
         NormalizedLowercaseFullText = value != null ? TranslationHelper.Normalize(value).ToLower() : null;
+    }
+    partial void OnShowOnlyUncollectedItemsChanged(bool value)
+    {
+        SOTFEdit.Settings.Default.ShowOnlyUncollectedItems = value;
+        SOTFEdit.Settings.Default.Save();
     }
 }

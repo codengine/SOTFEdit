@@ -90,12 +90,15 @@ public partial class MapViewModel : ObservableObject
 
         Pois = new ObservableCollectionEx<IPoi>(enabled.Where(poi => _poisAdded.Add(poi)));
 
-        MapFilter = new MapFilter(gameData.AreaManager);
-        MapFilter.PropertyChanged += MapFilterOnPropertyChanged;
+    MapFilter = new MapFilter(gameData.AreaManager);
+    MapFilter.PropertyChanged += MapFilterOnPropertyChanged;
 
-        _fullTextFilterDispatcherTimer.Tick += OnFullTextFilter;
+    // Ensure filter is applied immediately on load (e.g., ShowOnlyUncollectedItems)
+    ApplyFilterToAllPois();
 
-        SetupListeners();
+    _fullTextFilterDispatcherTimer.Tick += OnFullTextFilter;
+
+    SetupListeners();
     }
 
     public Brush NetworkPlayerForeground => GetNetworkPlayerBrushForMapMode();
@@ -672,6 +675,8 @@ public partial class MapViewModel : ObservableObject
 
         var selectedString = string.Join(SaveSelectedPoiGroupSeparator, selected);
         Settings.Default.SelectedMapGroups = selectedString;
+        // Ensure ShowOnlyUncollectedItems is always saved
+        Settings.Default.ShowOnlyUncollectedItems = MapFilter.ShowOnlyUncollectedItems;
         Settings.Default.Save();
     }
 
