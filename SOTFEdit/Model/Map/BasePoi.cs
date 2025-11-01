@@ -11,6 +11,51 @@ namespace SOTFEdit.Model.Map;
 
 public abstract partial class BasePoi : ObservableObject, IPoi
 {
+    public virtual int Id { get; init; } = -1;
+    public bool HasValidId => Id != -1;
+
+    public bool IsDone
+    {
+    get => SOTFEdit.Settings.Default.DonePoiIdList?.Contains(Id.ToString()) == true;
+        set
+        {
+            var ids = SOTFEdit.Settings.Default.DonePoiIdList;
+            if (ids == null) return;
+            var idStr = Id.ToString();
+            if (value)
+            {
+                if (!ids.Contains(idStr))
+                {
+                    ids.Add(idStr);
+                    SOTFEdit.Settings.Default.Save();
+                }
+            }
+            else
+            {
+                if (ids.Contains(idStr))
+                {
+                    ids.Remove(idStr);
+                    SOTFEdit.Settings.Default.Save();
+                }
+            }
+            OnPropertyChanged(nameof(IsDone));
+            OnPropertyChanged(nameof(DoneButtonText));
+            // Re-apply filter if hiding should be triggered by setting done
+            var mainWindow = System.Windows.Application.Current?.MainWindow;
+            if (mainWindow?.DataContext is SOTFEdit.ViewModel.MapViewModel mapViewModel && mapViewModel.MapFilter != null)
+            {
+                ApplyFilter(mapViewModel.MapFilter);
+            }
+        }
+    }
+
+    public string DoneButtonText => IsDone ? "Mark as Undone" : "Mark as Done";
+
+    [RelayCommand]
+    private void ToggleDone()
+    {
+        IsDone = !IsDone;
+    }
     [NotifyPropertyChangedFor(nameof(Visible))]
     [ObservableProperty]
     private bool _enabled;

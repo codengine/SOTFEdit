@@ -14,14 +14,14 @@ public partial class CustomMapPoi : DefaultGenericInformationalPoi
     private readonly string _screenshotDirectory;
 
     private CustomMapPoi(int id, Position teleport, string title, string? description, string screenshotDirectory,
-        string? screenshot) : base(teleport.X, teleport.Z, teleport, title, description, screenshot, IconFile, null,
+        string? screenshot) : base(id, teleport.X, teleport.Z, teleport, title, description, screenshot, IconFile, null,
         teleport.Area.IsUnderground())
     {
         _screenshotDirectory = screenshotDirectory;
         Id = id;
     }
 
-    public int Id { get; }
+    public override int Id { get; init; }
 
     public static BitmapImage CategoryIcon => LoadBaseIcon(IconFile, 24, 24);
 

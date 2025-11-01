@@ -156,8 +156,8 @@ Some positions are missing but they may be added in the future.
 
 ### Features
 
-- Show/hide information about 3D Printers, Actors/NPCs, Ammunition, Bunkers, Camps, Cannibal Villages, Caves, Crates,
-  Doors, Helicopters, Generic Information, Items, Lakes, Laptops, Player, Structures, Supplies and Villages
+    - Show/hide information about 3D Printers, Actors/NPCs, Ammunition, Bunkers, Camps, Cannibal Villages, Caves, Crates,
+      Doors, Helicopters, Generic Information, Items, Lakes, Laptops, Player, Structures, Supplies and Villages
 - Teleport the Player and Followers to Actors/NPCs, the player, Zip Lines, Structures, Caves, Bunkers, Helicopters
 - Remove Zip Lines from the map
 - Spawn Actors/NPCs at target areas
@@ -168,9 +168,20 @@ You can enable or disable icons using the "Options" button in the top left corne
 
 Some important notes regarding the filters:
 
-- "Show only uncollected items" will show/hide uncollected items including bunkers and caves where they can be found
+  - "Hide completed" will hide all items and POIs that are either collected or marked as done, including those in bunkers and caves
 - Area - Mainly affects Actors or, in general terms, positions where we have the exact coordinates
 - Requirements - Show/Hide caves, bunkers and items which are accessible/inaccessible
+
+### Marking POIs as Done
+
+Some points of interest (POIs) on the map can now be manually marked as "done" (completed) by the user. This allows you to keep track of which locations you have already visited or completed, even if the game does not automatically track this for you.
+
+- To mark a POI as done, use the context menu or the checkbox (where available) in the map interface.
+- POIs that are marked as done will display a special overlay icon on the map.
+- The "Hide completed" filter will hide all POIs that are either collected (for items) or manually marked as done.
+- Not all POIs can be marked as done—only those with a real in-game identifier support this feature.
+
+This feature helps you organize your exploration and avoid revisiting locations you have already completed.
 
 ### Teleportation
 

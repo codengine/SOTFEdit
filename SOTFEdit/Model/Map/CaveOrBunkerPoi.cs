@@ -10,13 +10,13 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
     private readonly IEnumerable<Item>? _items;
     private readonly IEnumerable<string>? _objects;
 
-    private CaveOrBunkerPoi(float x, float y, Position? teleport, string title, string? description,
+    private CaveOrBunkerPoi(int id, float x, float y, Position? teleport, string title, string? description,
         string? screenshot, string icon,
         IEnumerable<Item>? requirements, IEnumerable<Item>? items, HashSet<int> inventoryItems,
         IEnumerable<string>? objects,
         bool isUnderground = false,
         string? wikiLink = null) :
-        base(x, y, teleport, title, description, screenshot, icon, requirements, isUnderground, wikiLink)
+        base(id, x, y, teleport, title, description, screenshot, icon, requirements, isUnderground, wikiLink)
     {
         _items = items;
         _objects = objects;
@@ -43,7 +43,11 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
 
     protected override bool ShouldFilter(MapFilter mapFilter)
     {
-        return (mapFilter.ShowOnlyUncollectedItems && HasAllItemsInInventory()) || base.ShouldFilter(mapFilter);
+    if (mapFilter.HideCompleted && (HasAllItemsInInventory() || IsDone))
+        {
+            return true;
+        }
+        return base.ShouldFilter(mapFilter);
     }
 
     protected override bool FullTextFilter(string normalizedLowercaseFullText)
@@ -65,6 +69,7 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
         AreaMaskManager areaMaskManager, bool enabled)
     {
         var poi = new CaveOrBunkerPoi(
+            rawPoi.Id,
             rawPoi.X,
             rawPoi.Y,
             rawPoi.Teleport?.ToPosition(areaMaskManager),

@@ -26,7 +26,6 @@ public partial class MapViewModel : ObservableObject
 
     private static readonly SolidColorBrush DarkMapColorBrush;
     private static readonly SolidColorBrush BrightMapColorBrush;
-
     private static readonly Brush DarkMapNetworkPlayerForeground = Brushes.White;
     private static readonly Brush BrightMapNetworkPlayerForeground = Brushes.Black;
 
@@ -34,6 +33,20 @@ public partial class MapViewModel : ObservableObject
     {
         Interval = TimeSpan.FromMilliseconds(1000)
     };
+    // ...existing code...
+
+    [RelayCommand]
+    private void ResetAllDone()
+    {
+        foreach (var poi in Pois)
+        {
+            if (poi is BasePoi basePoi && basePoi.IsDone)
+            {
+                basePoi.IsDone = false;
+            }
+        }
+    }
+// ...existing code...
 
     private readonly GameData _gameData;
     private readonly MapManager _mapManager;
@@ -93,7 +106,7 @@ public partial class MapViewModel : ObservableObject
     MapFilter = new MapFilter(gameData.AreaManager);
     MapFilter.PropertyChanged += MapFilterOnPropertyChanged;
 
-    // Ensure filter is applied immediately on load (e.g., ShowOnlyUncollectedItems)
+    // Ensure filter is applied immediately on load (e.g., HideCompleted)
     ApplyFilterToAllPois();
 
     _fullTextFilterDispatcherTimer.Tick += OnFullTextFilter;
@@ -675,8 +688,8 @@ public partial class MapViewModel : ObservableObject
 
         var selectedString = string.Join(SaveSelectedPoiGroupSeparator, selected);
         Settings.Default.SelectedMapGroups = selectedString;
-        // Ensure ShowOnlyUncollectedItems is always saved
-        Settings.Default.ShowOnlyUncollectedItems = MapFilter.ShowOnlyUncollectedItems;
+    // Ensure HideCompleted is always saved
+    Settings.Default.HideCompleted = MapFilter.HideCompleted;
         Settings.Default.Save();
     }
 

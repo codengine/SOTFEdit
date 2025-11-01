@@ -189,6 +189,10 @@
   },
   "armor": {
     "buttons": {
+      "resetAllDone": {
+        "text": "Resetuj wszystkie ukończone",
+        "tooltip": "Odznacz wszystkie ukończone POI jako nieukończone"
+      },
       "default": "Zwykły",
       "max": "Max",
       "remove": "Usuń",
@@ -993,6 +997,18 @@
       "teleportKelvin": "Teleportuj tutaj Kelvina",
       "teleportPlayer": "Teleportuj tutaj Gracza",
       "teleportVirginia": "Teleportuj tutaj Virginię"
+      ,"resetAllDone": {
+        "text": "Zresetuj wszystkie ukończone",
+        "tooltip": "Odznacz wszystkie POI jako ukończone"
+      },
+      "markAsDone": {
+        "text": "Oznacz jako ukończone",
+        "tooltip": "Oznacz ten punkt jako ukończony"
+      },
+      "markAsUndone": {
+        "text": "Cofnij ukończenie",
+        "tooltip": "Odznacz ten punkt jako ukończony"
+      }
     },
     "coordinates": "Koordynaty",
     "customPois": "Własne",
@@ -1005,7 +1021,7 @@
       "tooltip": "Szuka zarówno w nazwach lokalizacji, przedmiotów i innych znaczników na mapie, oraz w ich opisach",
       "watermark": "Nazwa lokalizacji, przedmiotu, czy ich opis"
     },
-    "inventoryFilter": "Pokaż tylko niezebrane przedmioty",
+    "inventoryFilter": "Ukryj ukończone",
     "isInInventory": "Posiadane",
     "isRuntimeCreated": "Jest kopią",
     "isUnderground": "Jest podziemią",
@@ -1381,6 +1397,12 @@
     "header": "Pogoda"
   },
   "windows": {
+    "map": {
+      "buttons": {
+        "markAsDone": "Oznacz jako ukończone",
+        "markAsUndone": "Oznacz jako nieukończone"
+      }
+    },
     "itemPlater": {
       "buttons": {
         "addPlating": "Dodaj plating",
@@ -1623,4 +1645,6 @@
     "KnightV": "Knight V",
     "Radio": "Radio"
   }
+  ,
+  "resetAllDone": "Resetuj wszystkie ukończone"
 }

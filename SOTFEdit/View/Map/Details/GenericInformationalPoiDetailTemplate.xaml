@@ -49,6 +49,11 @@
             <map:MapRequirementsControl Poi="{Binding}" Grid.ColumnSpan="2" />
 
             <map:MapTeleportButtonsControl Poi="{Binding}" Grid.ColumnSpan="2" Margin="4" />
+            <Button Grid.ColumnSpan="2" Padding="10" MinWidth="120"
+                    Command="{Binding ToggleDoneCommand}"
+                    HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding DoneButtonText}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
         </st:AutoGrid>
     </DataTemplate>
 </ResourceDictionary>

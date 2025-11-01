@@ -27,6 +27,14 @@
             <Label Content="{Binding AreaName}"
                    Visibility="{Binding AreaName, Converter={StaticResource NullToVisibilityConverter}}" />
             <map:MapTeleportButtonsControl Poi="{Binding}" Grid.ColumnSpan="2" Margin="4" />
+            <Button Grid.ColumnSpan="2" Padding="10" MinWidth="120"
+                    Command="{Binding ToggleDoneCommand}"
+                    HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="/images/icons/done.png" Width="32" Height="32" Margin="0,0,8,0"/>
+                    <TextBlock Text="{Binding DoneButtonText}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
         </st:AutoGrid>
     </DataTemplate>
 </ResourceDictionary>

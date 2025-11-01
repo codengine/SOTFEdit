@@ -8,6 +8,7 @@ namespace SOTFEdit.Model.Map;
 
 public class ItemPoi : InformationalPoi
 {
+    public override int Id { get; init; }
     private readonly IEnumerable<Item>? _altItems;
     private readonly HashSet<int> _inventoryItems;
 
@@ -73,7 +74,12 @@ public class ItemPoi : InformationalPoi
 
     protected override bool ShouldFilter(MapFilter mapFilter)
     {
-        return (mapFilter.ShowOnlyUncollectedItems && HasAllItemsInInventory()) || base.ShouldFilter(mapFilter);
+    // Hide if done and HideCompleted is set
+    if (mapFilter.HideCompleted && (HasAllItemsInInventory() || IsDone))
+        {
+            return true;
+        }
+        return base.ShouldFilter(mapFilter);
     }
 
     protected override bool FullTextFilter(string normalizedLowercaseFullText)

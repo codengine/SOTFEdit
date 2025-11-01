@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.0.1 (2025-11-01)
+
+### Features
+- Added ability to manually mark certain POIs as "done" (completed) on the map.
+- POIs marked as done now display a special overlay icon.
+- The "Hide completed" filter now hides both collected and manually completed POIs, including those in bunkers and caves.
+- Not all POIs can be marked as done—only those with a real in-game identifier support this feature.
+
+### Improvements
+- Updated translations and documentation to reflect the new filter and POI features.
+- Cleaned up VS Code debug tasks and launch configuration to remove duplicates and confusion.
+
+## v1.0.0
+
+### Major Changes
+- Migrated the entire project from .NET 6 to .NET 8 for improved performance, security, and long-term support.
+- Updated all dependencies and project files to be compatible with .NET 8.
+- Improved build and runtime stability on modern Windows systems.
+
+### Notes
+- This update may include further enhancements or fixes as part of the migration process.
+- Please ensure you have the .NET 8.0 Desktop Runtime installed to run this version.
+
 ## v0.12.10
 
 Fix crash due to corrupt storages (caused by ingame bug)

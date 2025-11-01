@@ -254,12 +254,24 @@ namespace SOTFEdit {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ShowOnlyUncollectedItems {
+    public bool HideCompleted {
             get {
-                return ((bool)(this["ShowOnlyUncollectedItems"]));
+                return ((bool)(this["HideCompleted"]));
             }
             set {
-                this["ShowOnlyUncollectedItems"] = value;
+                this["HideCompleted"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+    public global::System.Collections.Specialized.StringCollection DonePoiIdList {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DonePoiIdList"]));
+            }
+            set {
+                this["DonePoiIdList"] = value;
             }
         }
     }

@@ -189,6 +189,10 @@
   },
   "armor": {
     "buttons": {
+      "resetAllDone": {
+        "text": "Alle erledigten zurücksetzen",
+        "tooltip": "Setzt alle als erledigt markierten POIs zurück"
+      },
       "default": "Standard",
       "max": "Max",
       "remove": "Entfernen",
@@ -993,6 +997,18 @@
       "teleportKelvin": "Kelvin hierhin teleportieren",
       "teleportPlayer": "Spieler hierhin teleportieren",
       "teleportVirginia": "Virginia hierhin teleportieren"
+      ,"resetAllDone": {
+    "text": "Alle Abgeschlossen zurücksetzen",
+    "tooltip": "Setzt alle POIs auf nicht abgeschlossen"
+      },
+      "markAsDone": {
+        "text": "Als erledigt markieren",
+        "tooltip": "Markiert diesen POI als erledigt"
+      },
+      "markAsUndone": {
+        "text": "Als nicht erledigt markieren",
+        "tooltip": "Setzt diesen POI auf nicht erledigt"
+      }
     },
     "coordinates": "Koordinaten",
     "customPois": "Benutzerdefiniert",
@@ -1005,7 +1021,7 @@
       "tooltip": "Sucht in Titel, Beschreibung, Gegenstands-Name und Gegenstands-Kategorie der aktuell ausgewählten Markierungs-Kategorien",
       "watermark": "Titel, Beschreibung, Item-Name..."
     },
-    "inventoryFilter": "Nur nicht-gesammelte Gegenstände",
+    "inventoryFilter": "Abgeschlossene ausblenden",
     "isInInventory": "Im Inventar",
     "isRuntimeCreated": "Ist Kopie",
     "isUnderground": "Unterirdisch",
@@ -1381,6 +1397,12 @@
     "header": "Wetterzustand"
   },
   "windows": {
+    "map": {
+      "buttons": {
+        "markAsDone": "Als erledigt markieren",
+        "markAsUndone": "Als unerledigt markieren"
+      }
+    },
     "itemPlater": {
       "buttons": {
         "addPlating": "Beschichten",
@@ -1623,4 +1645,6 @@
     "KnightV": "Knight V",
     "Radio": "Radio"
   }
+  ,
+  "resetAllDone": "Alle erledigten zurücksetzen"
 }

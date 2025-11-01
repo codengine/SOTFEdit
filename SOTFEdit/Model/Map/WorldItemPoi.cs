@@ -37,6 +37,10 @@ public class WorldItemPoi : BasePoi
 
     protected override bool ShouldFilter(MapFilter mapFilter)
     {
+    if (mapFilter.HideCompleted && IsDone)
+        {
+            return true;
+        }
         return mapFilter.RequirementsFilter == MapFilter.RequirementsFilterType.InaccessibleOnly ||
                base.ShouldFilter(mapFilter);
     }

@@ -25,7 +25,7 @@ public partial class MapFilter : ObservableObject
     private RequirementsFilterType _requirementsFilter = RequirementsFilterType.All;
 
     [ObservableProperty]
-    private bool _showOnlyUncollectedItems = SOTFEdit.Settings.Default.ShowOnlyUncollectedItems;
+    private bool _hideCompleted = SOTFEdit.Settings.Default.HideCompleted;
 
     public string? NormalizedLowercaseFullText;
 
@@ -53,9 +53,9 @@ public partial class MapFilter : ObservableObject
     {
         NormalizedLowercaseFullText = value != null ? TranslationHelper.Normalize(value).ToLower() : null;
     }
-    partial void OnShowOnlyUncollectedItemsChanged(bool value)
+    partial void OnHideCompletedChanged(bool value)
     {
-        SOTFEdit.Settings.Default.ShowOnlyUncollectedItems = value;
+        SOTFEdit.Settings.Default.HideCompleted = value;
         SOTFEdit.Settings.Default.Save();
     }
 }

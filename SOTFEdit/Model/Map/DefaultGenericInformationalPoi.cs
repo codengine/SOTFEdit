@@ -6,9 +6,10 @@ namespace SOTFEdit.Model.Map;
 
 public class DefaultGenericInformationalPoi : InformationalPoi
 {
+    public override int Id { get; init; }
     private readonly string _icon;
 
-    protected DefaultGenericInformationalPoi(float x, float y, Position? teleport, string title, string? description,
+    protected DefaultGenericInformationalPoi(int id, float x, float y, Position? teleport, string title, string? description,
         string? screenshot,
         string icon,
         IEnumerable<Item>? requirements, bool isUnderground = false, string? wikiLink = null) : base(x, y, teleport,
@@ -17,6 +18,7 @@ public class DefaultGenericInformationalPoi : InformationalPoi
         requirements, screenshot,
         isUnderground, wikiLink)
     {
+        Id = id;
         _icon = icon;
     }
 
@@ -27,6 +29,7 @@ public class DefaultGenericInformationalPoi : InformationalPoi
         HashSet<int> inventoryItems, AreaMaskManager areaMaskManager, bool enabled)
     {
         var poi = new DefaultGenericInformationalPoi(
+            rawPoi.Id,
             rawPoi.X,
             rawPoi.Y,
             rawPoi.Teleport?.ToPosition(areaMaskManager),
@@ -44,5 +47,14 @@ public class DefaultGenericInformationalPoi : InformationalPoi
         poi.SetEnabledNoRefresh(enabled);
 
         return poi;
+    }
+
+    protected override bool ShouldFilter(MapFilter mapFilter)
+    {
+    if (mapFilter.HideCompleted && IsDone)
+        {
+            return true;
+        }
+        return base.ShouldFilter(mapFilter);
     }
 }

@@ -10,7 +10,7 @@
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <converters:BoolTranslationConverter x:Key="BoolTranslationConverter" />
         </DataTemplate.Resources>
-        <st:AutoGrid Columns="Auto,*" ChildVerticalAlignment="Center" Margin="4" ChildMargin="2">
+    <st:AutoGrid Columns="Auto,*" ChildVerticalAlignment="Center" Margin="4" ChildMargin="2">
             <st:AutoGrid Grid.ColumnSpan="2" Columns="Auto, *">
                 <Image Source="{Binding Icon}" Width="32" Height="32" Margin="0 0 5 0" />
                 <TextBlock FontSize="20" Text="{Binding Title}" TextWrapping="Wrap" />
@@ -52,6 +52,14 @@
             <map:MapItemsControl Poi="{Binding}" Grid.ColumnSpan="2" />
 
             <map:MapTeleportButtonsControl Poi="{Binding}" Grid.ColumnSpan="2" Margin="4" />
+            <Button Grid.ColumnSpan="2" Padding="10" MinWidth="120"
+                    Command="{Binding ToggleDoneCommand}"
+                    HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Image Source="/images/icons/done.png" Width="32" Height="32" Margin="0,0,8,0"/>
+                    <TextBlock Text="{Binding DoneButtonText}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
         </st:AutoGrid>
     </DataTemplate>
 </ResourceDictionary>

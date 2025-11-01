@@ -98,10 +98,19 @@
                     <Border.RenderTransformOrigin>
                         <Point X="0.5" Y="0.5" />
                     </Border.RenderTransformOrigin>
-                    <Image Cursor="Hand"
-                           Tag="{Binding}"
-                           Source="{Binding Icon, Mode=OneTime}" Width="{Binding IconWidth, Mode=OneTime}"
-                           Height="{Binding IconHeight, Mode=OneTime}" ToolTip="{Binding Title, Mode=OneTime}" />
+                    <Grid>
+               <Image Cursor="Hand"
+                   Tag="{Binding}"
+                   Source="{Binding Icon, Mode=OneTime}" Width="{Binding IconWidth, Mode=OneTime}"
+                   Height="{Binding IconHeight, Mode=OneTime}" ToolTip="{Binding Title, Mode=OneTime}" />
+               <Image Source="/images/icons/done.png"
+                   Width="{Binding IconWidth, Mode=OneTime}"
+                   Height="{Binding IconHeight, Mode=OneTime}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Visibility="{Binding IsDone, Converter={StaticResource BooleanToVisibilityConverter}}"
+                   Margin="0,0,0,0"
+                   IsHitTestVisible="False" />
+                    </Grid>
                 </Border>
             </DataTemplate>
 
@@ -188,8 +197,8 @@
                     </Grid.RowDefinitions>
                     <GroupBox Header="{infrastructure:Translate 'map.options'}" Margin="0 0 0 6">
                         <st:AutoGrid Columns="Auto,*" ChildMargin="4">
-                            <CheckBox Grid.ColumnSpan="2" Content="{infrastructure:Translate 'map.inventoryFilter'}"
-                                      IsChecked="{Binding MapFilter.ShowOnlyUncollectedItems}" />
+                <CheckBox Grid.ColumnSpan="2" Content="{infrastructure:Translate 'map.inventoryFilter'}"
+                      IsChecked="{Binding MapFilter.HideCompleted}" />
                             <Label Content="{infrastructure:Translate 'map.areaFilter.text'}" />
                             <ComboBox
                                 ItemsSource="{Binding MapFilter.AreaFilterTypeValues, UpdateSourceTrigger=PropertyChanged}"
@@ -207,6 +216,10 @@
                                      mah:TextBoxHelper.WatermarkTrimming="CharacterEllipsis"
                                      mah:TextBoxHelper.UseFloatingWatermark="True"
                                      mah:TextBoxHelper.ClearTextButton="True" />
+                            <Button Grid.ColumnSpan="2" Margin="0 4 0 4" Padding="6"
+                                Content="{infrastructure:Translate 'map.buttons.resetAllDone.text'}"
+                                ToolTip="{infrastructure:Translate 'map.buttons.resetAllDone.tooltip'}"
+                                Command="{Binding ResetAllDoneCommand}" />
                         </st:AutoGrid>
                     </GroupBox>
                     <GroupBox Grid.Row="1" Header="{infrastructure:Translate 'map.pois'}">

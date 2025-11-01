@@ -993,6 +993,18 @@
       "teleportKelvin": "Teleport Kelvin here",
       "teleportPlayer": "Teleport Player here",
       "teleportVirginia": "Teleport Virginia here"
+      ,"resetAllDone": {
+        "text": "Reset All Done",
+        "tooltip": "Unmark all POIs as done"
+      },
+      "markAsDone": {
+        "text": "Mark as done",
+        "tooltip": "Mark this POI as completed"
+      },
+      "markAsUndone": {
+        "text": "Mark as undone",
+        "tooltip": "Unmark this POI as completed"
+      }
     },
     "coordinates": "Coordinates",
     "customPois": "Custom",
@@ -1005,7 +1017,7 @@
       "tooltip": "Searches in title, description, item name and item category of the currently selected map marker categories",
       "watermark": "Title, Description, Item name..."
     },
-    "inventoryFilter": "Show only uncollected items",
+    "inventoryFilter": "Hide completed",
     "isInInventory": "Owned",
     "isRuntimeCreated": "Is Copy",
     "isUnderground": "Is underground",
@@ -1381,6 +1393,12 @@
     "header": "Weather State"
   },
   "windows": {
+    "map": {
+      "buttons": {
+        "markAsDone": "Mark as done",
+        "markAsUndone": "Mark as undone"
+      }
+    },
     "itemPlater": {
       "buttons": {
         "addPlating": "Add Plating",

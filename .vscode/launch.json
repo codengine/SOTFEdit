@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Build Debug",
+            "name": "Run Debug",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "Build Debug",
