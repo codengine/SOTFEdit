@@ -1,11 +1,15 @@
+
 # SOTFEdit - Sons of The Forest Savegame Editor
+
+**Main reason for this fork:** Migration to .NET 8 for improved performance, security, and long-term support. This fork updates the project from .NET 6 to .NET 8 and may include further enhancements or fixes.
+
 
 ![Screenshot](https://abload.de/img/sotfeditfadso.jpg)
 
-[![Build](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/codengine/SOTFEdit)](https://github.com/codengine/SOTFEdit/releases)
-[![GitHub all releases](https://img.shields.io/github/downloads/codengine/SOTFEdit/total)](https://github.com/codengine/SOTFEdit/releases)
-![GitHub](https://img.shields.io/github/license/codengine/SOTFEdit)
+[![Build](https://github.com/Za-Pa-Al/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/Za-Pa-Al/SOTFEdit/actions/workflows/build.yaml)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Za-Pa-Al/SOTFEdit)](https://github.com/Za-Pa-Al/SOTFEdit/releases)
+[![GitHub all releases](https://img.shields.io/github/downloads/Za-Pa-Al/SOTFEdit/total)](https://github.com/Za-Pa-Al/SOTFEdit/releases)
+![GitHub](https://img.shields.io/github/license/Za-Pa-Al/SOTFEdit)
 
 A savegame editor for "Sons of The Forest".
 
@@ -33,10 +37,18 @@ A savegame editor for "Sons of The Forest".
     - [Attributions](#attributions)
     - [Icons](#icons)
 
+nothing more, nothing less.
+
+## About This Fork
+
+This is a fork of [codengine/SOTFEdit](https://github.com/codengine/SOTFEdit) maintained by [Za-Pa-Al](https://github.com/Za-Pa-Al).
+It may include custom changes, fixes, or experimental features not present in the original project.
+
+**Original project credits and license apply.**
+
 ## Disclaimer
 
-This project is in no way or form associated with the developers of the game. It is just a non-commercial fan project,
-nothing more, nothing less.
+This project is in no way or form associated with the developers of the game. It is just a non-commercial fan project, nothing more, nothing less.
 
 ## Features
 
@@ -68,14 +80,16 @@ nothing more, nothing less.
 - Backup changed files automatically
 - ... more features are planned
 
+
 ## Download
 
-- You can find the newest version at the [Releases page](https://github.com/codengine/SOTFEdit/releases)
+- You can find the newest version at the [Releases page](https://github.com/Za-Pa-Al/SOTFEdit/releases)
+
 
 ## Requirements
 
-- Windows 8+
-- [.net 6.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- Windows 10+
+- [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
 ## Usage
 
@@ -231,6 +245,7 @@ Be careful: This feature will most likely kill your performance and may corrupt 
 Make sure to enable backups!  
 ```
 
+
 ## Troubleshooting
 
 One of the items in inventory is listed as "Unknown"?
@@ -239,8 +254,7 @@ One of the items in inventory is listed as "Unknown"?
 
 My game does not work anymore?
 
-- If you have selected to create backups before saving, you can just delete the old files and restore the files that are
-  suffixed with ".bak*".
+- If you have selected to create backups before saving, you can just delete the old files and restore the files that are suffixed with ".bak*".
 
 I get errors and the application does strange things
 
@@ -252,30 +266,43 @@ I can not change "IsRobbyDead" or "IsVirginiaDead"
 
 The program does not start
 
-- Make sure that .net 6.0 Desktop Runtime is installed. Also make sure to extract all files from the archive if you
-  downloaded the zip archive manually. Lastly, check if any antivirus is blocking the editor
+- Make sure that .NET 8.0 Desktop Runtime is installed. Also make sure to extract all files from the archive if you downloaded the zip archive manually. Lastly, check if any antivirus is blocking the editor
 
 Antivirus (Windows Defender for example, Smartscreen) is complaining
 
-- This is due to the fact that it is a self-developed application which is not signed. It's safe to just ignore the
-  warning. The code is all hosted on Github.
+- This is due to the fact that it is a self-developed application which is not signed. It's safe to just ignore the warning. The code is all hosted on Github.
 
 "Could not load file or assembly"
 
-- Make sure to have .net 6.0 Desktop Runtime installed (either x86 or x64)
+- Make sure to have .NET 8.0 Desktop Runtime installed (either x86 or x64)
 
 My changes are not applied or reverted
 
-- In some cases, the Cloud Saving Feature of Steam overwrites changes done by SOTFEdit. You can fix that if you start
-  the Game (not a game session!), edit a savegame and THEN start the game session.
+- In some cases, the Cloud Saving Feature of Steam overwrites changes done by SOTFEdit. You can fix that if you start the Game (not a game session!), edit a savegame and THEN start the game session.
 
 Lakes, rivers etc. are gone
 
 - This happens after teleporting in and out of caves. This should be fixed when you teleport again in and out
 
+
 ## Contributing
 
-Feel free to report any unknown items or any feature requests. PRs are also welcome.
+Feel free to report any unknown items or feature requests. Pull requests are welcome!
+
+If you want to contribute, please fork this repository ([Za-Pa-Al/SOTFEdit](https://github.com/Za-Pa-Al/SOTFEdit)), make your changes, and open a pull request. To keep your fork up to date with the original, add the original repo as an upstream remote:
+
+```sh
+git remote add upstream https://github.com/codengine/SOTFEdit.git
+```
+
+Then fetch and merge as needed:
+
+```sh
+git fetch upstream
+git merge upstream/master
+```
+
+See the [GitHub documentation on forking](https://docs.github.com/en/get-started/quickstart/fork-a-repo) for more details.
 
 ## Final Words
 
