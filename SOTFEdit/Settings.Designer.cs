@@ -7,245 +7,306 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SOTFEdit {
-    
-    
+namespace SOTFEdit
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+
+        public static Settings Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SavegamePath {
-            get {
+        public string SavegamePath
+        {
+            get
+            {
                 return ((string)(this["SavegamePath"]));
             }
-            set {
+            set
+            {
                 this["SavegamePath"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UpgradeRequired {
-            get {
+        public bool UpgradeRequired
+        {
+            get
+            {
                 return ((bool)(this["UpgradeRequired"]));
             }
-            set {
+            set
+            {
                 this["UpgradeRequired"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CheckForUpdates {
-            get {
+        public bool CheckForUpdates
+        {
+            get
+            {
                 return ((bool)(this["CheckForUpdates"]));
             }
-            set {
+            set
+            {
                 this["CheckForUpdates"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastFoundVersion {
-            get {
+        public string LastFoundVersion
+        {
+            get
+            {
                 return ((string)(this["LastFoundVersion"]));
             }
-            set {
+            set
+            {
                 this["LastFoundVersion"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Dark")]
-        public string Theme {
-            get {
+        public string Theme
+        {
+            get
+            {
                 return ((string)(this["Theme"]));
             }
-            set {
+            set
+            {
                 this["Theme"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
-        public string ThemeAccent {
-            get {
+        public string ThemeAccent
+        {
+            get
+            {
                 return ((string)(this["ThemeAccent"]));
             }
-            set {
+            set
+            {
                 this["ThemeAccent"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("InitialAndOne")]
-        public global::SOTFEdit.ApplicationSettings.BackupMode BackupMode {
-            get {
+        public global::SOTFEdit.ApplicationSettings.BackupMode BackupMode
+        {
+            get
+            {
                 return ((global::SOTFEdit.ApplicationSettings.BackupMode)(this["BackupMode"]));
             }
-            set {
+            set
+            {
                 this["BackupMode"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastSavegame {
-            get {
+        public string LastSavegame
+        {
+            get
+            {
                 return ((string)(this["LastSavegame"]));
             }
-            set {
+            set
+            {
                 this["LastSavegame"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Language {
-            get {
+        public string Language
+        {
+            get
+            {
                 return ((string)(this["Language"]));
             }
-            set {
+            set
+            {
                 this["Language"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastSavegameName {
-            get {
+        public string LastSavegameName
+        {
+            get
+            {
                 return ((string)(this["LastSavegameName"]));
             }
-            set {
+            set
+            {
                 this["LastSavegameName"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool FirstRun {
-            get {
+        public bool FirstRun
+        {
+            get
+            {
                 return ((bool)(this["FirstRun"]));
             }
-            set {
+            set
+            {
                 this["FirstRun"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("_null_")]
-        public string SelectedMapGroups {
-            get {
+        public string SelectedMapGroups
+        {
+            get
+            {
                 return ((string)(this["SelectedMapGroups"]));
             }
-            set {
+            set
+            {
                 this["SelectedMapGroups"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string CompanionAddress {
-            get {
+        public string CompanionAddress
+        {
+            get
+            {
                 return ((string)(this["CompanionAddress"]));
             }
-            set {
+            set
+            {
                 this["CompanionAddress"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("35321")]
-        public int CompanionPort {
-            get {
+        public int CompanionPort
+        {
+            get
+            {
                 return ((int)(this["CompanionPort"]));
             }
-            set {
+            set
+            {
                 this["CompanionPort"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("15")]
-        public short CompanionConnectTimeout {
-            get {
+        public short CompanionConnectTimeout
+        {
+            get
+            {
                 return ((short)(this["CompanionConnectTimeout"]));
             }
-            set {
+            set
+            {
                 this["CompanionConnectTimeout"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Dark")]
-        public global::SOTFEdit.ViewModel.MapType MapType {
-            get {
+        public global::SOTFEdit.ViewModel.MapType MapType
+        {
+            get
+            {
                 return ((global::SOTFEdit.ViewModel.MapType)(this["MapType"]));
             }
-            set {
+            set
+            {
                 this["MapType"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public short CompanionKeepAliveInterval {
-            get {
+        public short CompanionKeepAliveInterval
+        {
+            get
+            {
                 return ((short)(this["CompanionKeepAliveInterval"]));
             }
-            set {
+            set
+            {
                 this["CompanionKeepAliveInterval"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
-        public decimal CompanionMapPositionUpdateInterval {
-            get {
+        public decimal CompanionMapPositionUpdateInterval
+        {
+            get
+            {
                 return ((decimal)(this["CompanionMapPositionUpdateInterval"]));
             }
-            set {
+            set
+            {
                 this["CompanionMapPositionUpdateInterval"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AskForBackups {
-            get {
+        public bool AskForBackups
+        {
+            get
+            {
                 return ((bool)(this["AskForBackups"]));
             }
-            set {
+            set
+            {
                 this["AskForBackups"] = value;
             }
         }
@@ -254,11 +315,14 @@ namespace SOTFEdit {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-    public bool HideCompleted {
-            get {
+        public bool HideCompleted
+        {
+            get
+            {
                 return ((bool)(this["HideCompleted"]));
             }
-            set {
+            set
+            {
                 this["HideCompleted"] = value;
             }
         }
@@ -266,12 +330,15 @@ namespace SOTFEdit {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-    public global::System.Collections.Specialized.StringCollection DonePoiIdList {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["DonePoiIdList"]));
+        public string DonePoiIdListString
+        {
+            get
+            {
+                return ((string)(this["DonePoiIdListString"]));
             }
-            set {
-                this["DonePoiIdList"] = value;
+            set
+            {
+                this["DonePoiIdListString"] = value;
             }
         }
     }

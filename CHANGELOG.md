@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.0.2 (2025-11-02)
+
+### Changed
+- Migrated POI completion tracking from StringCollection to a comma-separated string in settings for improved compatibility and performance.
+- Refactored POI completion logic in BasePoi.cs to use the new string-based storage.
+- Removed all legacy StringCollection logic for POI completion.
+
+### Notes
+- All code referencing POI completion now uses `DonePoiIdListString`.
+- This is a breaking change for users with old settings files; migration will occur automatically on first use.
+
 ## v1.0.1 (2025-11-01)
 
 ### Features

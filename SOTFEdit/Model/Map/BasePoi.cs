@@ -1,4 +1,6 @@
-﻿using System.Windows.Media.Imaging;
+﻿using System;
+using System.Windows.Media.Imaging;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -14,32 +16,51 @@ public abstract partial class BasePoi : ObservableObject, IPoi
     public virtual int Id { get; init; } = -1;
     public bool HasValidId => Id != -1;
 
+    private static readonly char[] DonePoiSeparator = [','];
+
     public bool IsDone
     {
-    get => SOTFEdit.Settings.Default.DonePoiIdList?.Contains(Id.ToString()) == true;
+        get
+        {
+            var ids = (SOTFEdit.Settings.Default.DonePoiIdListString ?? "")
+                .Split(DonePoiSeparator, StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => int.TryParse(s, out var id) ? (int?)id : null)
+                .Where(id => id.HasValue)
+                .Select(id => id.GetValueOrDefault())
+                .ToList();
+            return ids.Contains(Id);
+        }
         set
         {
-            var ids = SOTFEdit.Settings.Default.DonePoiIdList;
-            if (ids == null) return;
-            var idStr = Id.ToString();
+            var idList = (SOTFEdit.Settings.Default.DonePoiIdListString ?? "")
+                .Split(DonePoiSeparator, StringSplitOptions.RemoveEmptyEntries)
+                .Select(s => int.TryParse(s, out var id) ? (int?)id : null)
+                .Where(id => id.HasValue)
+                .Select(id => id.GetValueOrDefault())
+                .ToList();
+
             if (value)
             {
-                if (!ids.Contains(idStr))
+                if (!idList.Contains(Id))
                 {
-                    ids.Add(idStr);
+                    idList.Add(Id);
+                    SOTFEdit.Settings.Default.DonePoiIdListString = string.Join(",", idList);
                     SOTFEdit.Settings.Default.Save();
                 }
             }
             else
             {
-                if (ids.Contains(idStr))
+                if (idList.Contains(Id))
                 {
-                    ids.Remove(idStr);
+                    idList.Remove(Id);
+                    SOTFEdit.Settings.Default.DonePoiIdListString = string.Join(",", idList);
                     SOTFEdit.Settings.Default.Save();
                 }
             }
+
             OnPropertyChanged(nameof(IsDone));
             OnPropertyChanged(nameof(DoneButtonText));
+
             // Re-apply filter if hiding should be triggered by setting done
             var mainWindow = System.Windows.Application.Current?.MainWindow;
             if (mainWindow?.DataContext is SOTFEdit.ViewModel.MapViewModel mapViewModel && mapViewModel.MapFilter != null)

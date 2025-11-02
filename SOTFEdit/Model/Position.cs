@@ -119,8 +119,8 @@ public class Position : ObservableObject
         var currentLevel = 0;
         var currentDirection = 0;
 
-        float[] directionX = { 1, 0, -1, 0 };
-        float[] directionY = { 0, -1, 0, 1 };
+        float[] directionX = [1, 0, -1, 0];
+        float[] directionY = [0, -1, 0, 1];
 
         var curX = X;
         var curZ = Z;

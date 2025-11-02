@@ -63,7 +63,7 @@
         <Setting Name="HideCompleted" Type="System.Boolean" Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
-        <Setting Name="DonePoiIdList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+        <Setting Name="DonePoiIdListString" Type="System.String" Scope="User">
             <Value Profile="(Default)" />
         </Setting>
     </Settings>
