@@ -71,7 +71,7 @@
     </mah:MetroWindow.Flyouts>
     <st:AutoGrid Rows="Auto,*" Columns="*">
         <Border BorderThickness="0 0 0 1" BorderBrush="Black">
-            <Menu Background="{DynamicResource MahApps.Brushes.MenuItem.Background}" Padding="3">
+            <Menu x:Name="MainMenu" Background="{DynamicResource MahApps.Brushes.MenuItem.Background}" Padding="3">
                 <MenuItem Header="{infrastructure:Translate 'menu.file.text'}">
                     <MenuItem Header="{infrastructure:Translate 'menu.file.openSavegame'}"
                               Command="{Binding SelectSavegameCommand}">

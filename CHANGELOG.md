@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.2.0 (2025-11-05)
+
+### Features
+- **Hot-Swap Language Switching:**
+  - Language changes now apply immediately without requiring application restart
+  - All UI elements update in real-time when changing language in settings
+  - Menu items, buttons, labels, and other text automatically refresh
+
+### Improvements
+- **Translation System:**
+  - Migrated from JSON to YAML format for translation files (20% smaller file size)
+  - Implemented reactive translation bindings for dynamic language updates
+  - Added translation caching for improved performance (eliminated ~4000+ redundant YAML deserializations during map load)
+  - Fixed translation loading performance issue that caused application hang on map load
+
+### Technical Changes
+- Created `TranslationProxy` class with `INotifyPropertyChanged` for reactive bindings
+- Enhanced `TranslateExtension` to support both reactive bindings and static strings (FallbackValue compatibility)
+- Added `LanguageChangedEvent` messaging for ViewModel property refresh
+- Implemented `TranslationManager.ChangeCulture()` for centralized culture switching
+- Added smart context detection to `TranslateExtension` (DependencyProperty vs. non-bindable contexts)
+
 ## v1.1.0 (2025-11-04)
 
 ### Features

@@ -95,6 +95,9 @@ public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
 
     private void SetupListeners()
     {
+        // Subscribe to language changes for hot-swap support
+        TranslationManager.LanguageChanged += OnLanguageChanged;
+        
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
             (_, message) => OnSavegameStored(message));
         WeakReferenceMessenger.Default.Register<RequestRegrowTreesEvent>(this,
@@ -147,6 +150,23 @@ public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
             (_, message) => OnUpdateActorsEvent(message));
         WeakReferenceMessenger.Default.Register<OpenCompanionSetupWindowEvent>(this,
             (_, _) => OnOpenCompanionSetupWindowEvent());
+    }
+
+    private void OnLanguageChanged(object? sender, EventArgs e)
+    {
+        // The TranslateExtension now uses reactive bindings that auto-update
+        // We just need to refresh DataContext-bound properties and window title
+        
+        // 1. Re-bind DataContext to refresh ViewModel properties
+        var currentContext = DataContext;
+        DataContext = null;
+        DataContext = currentContext;
+        
+        // 2. Invalidate all commands
+        CommandManager.InvalidateRequerySuggested();
+        
+        // 3. Update window title
+        UpdateWindowTitle();
     }
 
     private void OnOpenCompanionSetupWindowEvent()

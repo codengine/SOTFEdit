@@ -148,6 +148,17 @@ public partial class MainViewModel : ObservableObject
                 OnPropertyChanged(nameof(CompanionConnectMenuText));
             });
         });
+
+        WeakReferenceMessenger.Default.Register<LanguageChangedEvent>(this, (_, _) =>
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // Refresh all properties that use TranslationManager.Get()
+                OnPropertyChanged(nameof(CompanionConnectMenuText));
+                OnPropertyChanged(nameof(LastSaveGameMenuItem));
+                UpdateLastSaveGameMenuItem();
+            });
+        });
     }
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent message)

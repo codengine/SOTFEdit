@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -43,6 +44,15 @@ public partial class SettingsDialogViewModel : ObservableObject
                 new ComboBoxItemAndValue<string>(TranslationManager.Get("languages." + culture), culture))
             .ToList();
         _selectedLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+        
+        // Subscribe to language changes to refresh BackupMode names
+        WeakReferenceMessenger.Default.Register<LanguageChangedEvent>(this, (_, _) =>
+        {
+            foreach (var mode in BackupModes)
+            {
+                mode.RefreshName();
+            }
+        });
     }
 
     public List<ComboBoxItemAndValue<string>> Languages { get; }
@@ -56,9 +66,20 @@ public partial class SettingsDialogViewModel : ObservableObject
     {
         _applicationSettings.CurrentThemeAccent = CurrentThemeAccent;
         _applicationSettings.CurrentBackupMode = CurrentBackupMode.BackupMode;
-        Settings.Default.Language = SelectedLanguage;
+        
+        var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+        var newLanguage = SelectedLanguage;
+        
+        Settings.Default.Language = newLanguage;
         Settings.Default.AskForBackups = AskForBackups;
         _applicationSettings.Save();
+        
+        // Apply language change immediately if it changed
+        if (currentCulture != newLanguage)
+        {
+            TranslationManager.ChangeCulture(newLanguage);
+        }
+        
         WeakReferenceMessenger.Default.Send(new SettingsSavedEvent());
     }
 
@@ -67,7 +88,7 @@ public partial class SettingsDialogViewModel : ObservableObject
         ThemeManager.Current.ChangeThemeColorScheme(Application.Current, value.Name);
     }
 
-    public class BackupModeWrapper
+    public class BackupModeWrapper : INotifyPropertyChanged
     {
         public BackupModeWrapper(ApplicationSettings.BackupMode backupMode)
         {
@@ -78,6 +99,13 @@ public partial class SettingsDialogViewModel : ObservableObject
 
         // ReSharper disable once UnusedMember.Global
         public string Name => TranslationManager.Get("backup.mode." + BackupMode);
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void RefreshName()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+        }
 
         private bool Equals(BackupModeWrapper other)
         {

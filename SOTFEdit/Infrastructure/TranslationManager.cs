@@ -1,12 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using CommunityToolkit.Mvvm.Messaging;
 using JetBrains.Annotations;
 using libc.translation;
+using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.Infrastructure;
 
 public static class TranslationManager
 {
     private static readonly ILocalizer Localizer = LanguageManager.BuildLocalizer();
+
+    public static event EventHandler? LanguageChanged;
 
     [ContractAnnotation("fallback:null => null")]
     public static string Get(string key, string? fallback = null, bool fallbackIsTranslationKey = true)
@@ -38,5 +44,17 @@ public static class TranslationManager
     public static IDictionary<string, string> GetAll(string culture)
     {
         return Localizer.GetAll(culture);
+    }
+
+    public static void ChangeCulture(string culture)
+    {
+        var cultureInfo = new CultureInfo(culture);
+        CultureInfo.CurrentCulture = cultureInfo;
+        CultureInfo.CurrentUICulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+        
+        LanguageChanged?.Invoke(null, EventArgs.Empty);
+        WeakReferenceMessenger.Default.Send(new LanguageChangedEvent());
     }
 }

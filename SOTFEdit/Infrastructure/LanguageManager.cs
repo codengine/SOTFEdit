@@ -12,7 +12,7 @@ public static class LanguageManager
 
     public static IEnumerable<string> GetAvailableCultures()
     {
-        return new DirectoryInfo(LangPath).GetFiles("*.json")
+        return new DirectoryInfo(LangPath).GetFiles("*.yaml")
             .Select(fileInfo => Path.GetFileNameWithoutExtension(fileInfo.FullName))
             .ToList();
     }
@@ -20,7 +20,7 @@ public static class LanguageManager
     public static ILocalizer BuildLocalizer()
     {
         ILocalizationSource source =
-            new FlatExtractingJsonLocalizationSource(LangPath, PropertyCaseSensitivity.CaseSensitive);
+            new FlatExtractingYamlLocalizationSource(LangPath, PropertyCaseSensitivity.CaseSensitive);
         return new Localizer(source);
     }
 }

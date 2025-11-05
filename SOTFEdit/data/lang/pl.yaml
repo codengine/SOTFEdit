@@ -1,0 +1,1504 @@
+actors:
+  classification:
+    animal: Zwierzę
+    cannibal: Kanibal
+    creep: Mutant
+    human: Człowiek
+    misc: Inne
+    muddyCannibal: Błotnisty Kanibal
+  details:
+    area: Obszar
+    classification: Klasyfikacja
+    family: Rodzina
+    gender: Płeć
+    killedByPlayer: Zabity przez gracza
+    lastSpawnTime: Ostatni czas respa
+    lastVisitedTime: Ostatni odwiedzony czas
+    spawnedCount: Ilość zrespionych
+    state: Stan
+    uniqueId: UniqueID
+  gender:
+    female: Kobieta
+    male: Mężczyzna
+  grouping:
+    animals: Zwierzęta
+    creeps: Mutanty
+    femaleCannibals: Kanibale Kobiety
+    femaleMuddyCannibals: Błotniste Kanibale Kobiety
+    maleCannibals: Kanibale Mężczyźni
+    maleMuddyCannibals: Błotniści Kanibale Mężczyźni
+    misc: Inne
+    mixed: Mieszane
+    mixedCannibals: Mieszane Kanibale
+    mixedMuddyCannibals: Błotniste Kanibale Mieszane
+    noFamily: Bez rodziny
+  headers:
+    influences: Odziaływania
+    info: Informacje
+    killStatistics: Statystyki zabójstw
+    modificationOptions: Opcje modyfikacji
+    modifications: Modyfikacje
+    selection: Selekcja
+    stats: Statystyki
+  influenceType:
+    Cannibal: Kanibal
+    Creepy: Mutant
+    Player: Gracz
+  modificationMode:
+    Modify: Zmień
+    Remove: Usuń
+  modificationOptions:
+    allActorSelections:
+      allActors: Wszyscy NPC
+      allActorsOfSameFamily: Wszyscy NPC tej rodziny
+      allActorsOfSameType: Wszyscy NPC tego typu
+      thisActor: Ten NPC
+    onlyInSameAreaAsActor: Tylko w okolicy tego NPC
+    removeSpawner:
+      text: Usuń Spawner
+      tooltip: Jeżeli wybrane NPC nie powinien się zrespić
+    replaceType: Zamień typ
+    skipKelvin: Pomiń Kelvins
+    skipVirginia: Pomiń Virginię
+    teleport:
+      disclaimer: Bądź ostrożny przy teleportowaniu kilku NPC do tego samego miejsca. To może zcrashować grę!
+      none: Nic
+      npcToPlayer: NPC to Gracza
+      playerToNpc: Gracz do NPC
+      teleportLabel: 'Teleportuj:'
+    updateInfluences: Zaktualizuj oddziałwyania
+  state:
+    -1: Brak
+    0: Dowolny
+    1: Walka
+    2: Świat
+    3: Śpi
+    4: Umiera
+    5: Ranny
+    6: Martwy
+    7: Lata
+    8: Podkrada się
+    20: Pali się
+    21: Porażony prądem
+    22: Pływa
+    23: Ogłuszony
+    24: Topi się
+    25: Wózek Golfowy
+    40: Na skale
+    41: Na drzewie
+    42: Pod liśćmi
+    43: Chodzi po ścianach
+    44: Złapany
+    45: Intro do bossa
+    46: Spawn Intro
+    47: Sufit
+    48: Podziemna Jaskinia
+    50: Opuszcza walkę
+    51: Zdespawnował się
+  stats:
+    affection: Przywiązanie
+    anger: Złość
+    energy: Energia
+    fear: Strach
+    fullness: Nasycenie
+    fullnessBuff: Wzmocnienie nasycenia
+    health: Zdrowie
+    hydration: Nawodnienie
+    hydrationBuff: Wzmocnienie nawodnienia
+    rest: Odpoczynek
+    restBuff: Wzmocnienie odpoczynku
+    stamina: Stamina
+  types:
+    1: Królik
+    2: Wiewiórka
+    3: Rzułf
+    4: Rekin
+    5: Mewa
+    6: Orzeł
+    7: Kaczka
+    8: Timmy
+    9: Kelvin / Robby
+    10: Virginia
+    11: Fingers
+    12: Carl
+    13: Andy
+    14: Danny
+    15: Billy
+    16: Złota Maska
+    17: Łoś
+    18: Dziecko
+    19: Bliźniaki
+    20: Mutant jaskiniowy - Mężczyzna
+    21: Mutant jaskiniowy - Kobieta
+    22: Glut
+    23: Anioł
+    24: Łosoś
+    25: Brandy
+    26: Crystal
+    27: Destiny
+    28: Błotnista Kobieta
+    29: Błotnisy Mężczyzna
+    30: Ciężki Mężczyzna
+    31: Gąbka testowa
+    32: Nietoperz
+    33: Jeleń
+    34: Niebieski ptak
+    35: Koliber
+    36: Orka
+    37: Żółw Lądowy
+    38: Gruby Mężczyzna
+    39: Gruba Kobieta
+    40: Jan2
+    41: Bezimienny
+    42: Demon
+    43: Umalowany Mężczyzna
+    44: Umalowana Kobieta
+    45: Demon Boss
+    46: Pan Puffton
+    47: Pani Puffton
+    48: Boss Mutant
+    49: Virginia-Mutant
+    50: Armsy
+    51: Frank
+    52: Eddy
+    53: Greg
+    54: Henry
+    55: Igor
+    56: Elise
+    57: Szop Pracz
+    58: Legsy
+    59: Holey
+    60: Skunks
+    90: Helikopter
+    100: PlayerRobby
+armor:
+  buttons:
+    default: Zwykły
+    max: Max
+    remove: Usuń
+    setAllToDefault:
+      text: Ustaw wszystkie na zwykłą
+      tooltip: Ustawia wytrzymałość wszystkich pancerzów na zwykłą
+    setAllToMax:
+      text: Set all to Max
+      tooltip: Ustawia wytrzymałość wszystkich pancerzów na maksymalną
+    setToDefault:
+      text: Zwykły
+      tooltip: Ustawia wytrzymałość pancerza na zwykłą
+    setToMax:
+      text: Max
+      tooltip: Ustawia wytrzymałość pancerza na maksymalną
+  durabilityInput:
+    tooltip: Wytrzymałość pancerza. Jeżeli będzie równe 0, pancerz się niszczy. Może być bardzo wysoka
+    watermark: Wytrzymałość
+  header: Założony pancerz (Max. 10)
+  headers:
+    actions: Akcje
+    durability: Wytrzymałość
+    id: ID
+    name: Nazwa
+    slot: Slot
+  unknownItem: ??? Nieznany przedmiot
+backup:
+  messages:
+    backupsRestored:
+      text: '{0} backups zostały przywrócone. Usunięte pliki przesunięto do kosza'
+      title: Backupy przywrócone
+  mode:
+    Default: Zawsze backupuj
+    InitialAndOne: Zawsze zostaw orginał i jeden dodatkowy bakup
+    None: Bez Backupów
+    One: Zostaw jeden backup i nadpisuj
+companion:
+  address: IP/Addres
+  connect: Połącz
+  connectionFailed:
+    text: Próba połączenia do plugina nieudana
+    textException: 'Próba połączenia do plugina nieudana. Error: {0}'
+    title: Połączenie do Companion nieudane
+  connectionSuccessful:
+    text: >-
+      Połączono do Companion
+
+      Możesz teraz używać hotkeyów w grze, teleportacji i śledzenia pozycji na żywo
+    title: Companion Połączony
+  connectTimeout: Limit czasu połączenia
+  disconnect: Rozłącz
+  disconnectFailed:
+    text: Próba rozłączenia do plugina nieudana
+    textException: 'Próba rozłączenia do plugina nieudana. Error: {0}'
+    title: Rozłączenie Companion Nieudane
+  keepAliveInterval: Interwał zostań-żywy
+  mapPositionUpdateInterval: Aktualizuj pozycję gracza co
+  port: Port
+  portHint: Ports > 1024 wymagają uruchomienia programu i gry jako admin!
+  readme: Readme
+  readme1: >-
+    Companion dodaje niektóre dodatkowe funkcje do gry, takie jak teleportacja w grze, śledzenie pozycji i wiele innych.
+
+
+    Zanim będziesz mógł używać Companiona, musisz najpierw go skonfigurować. Aby to zrobić, musisz skonfigurować dwie rzeczy w swojej grze:
+
+
+    - BepInExPack
+
+    - SOTFEdit Companion Plugin
+
+
+    Możesz je pobrać stąd i zainstalować ręcznie, postępując zgodnie z instrukcjami w README, lub użyć menedżera modów:
+  readme2: >-
+    Po przygotowaniu obydwóch, i włączeniu gry, musisz połączyć do Companion używając menu.
+
+
+    Następnie, w grze, masz do dyspozycji dwie nowe skróty klawiszowe:
+
+
+    - Teleportacja w grze do większości lokalizacji w grze (Domyślnie: F8)
+
+    - Tworzenie niestandardowego punktu teleportacji POI (Domyślnie: F9)
+
+
+    Jednocześnie, Twoja pozycja na mapie będzie na bieżąco aktualizowana.
+  settings: Ustawienia
+  status:
+    connected: Połączony
+    connecting: Łączenie...
+    disconnected: Rozłączony
+dialogs:
+  changeScrewStructureType:
+    disclaimer: Możesz tutaj wybrać inny typ struktury. Pamiętaj, że obrót i położenie struktury pozostaną takie same, co może prowadzić do błędów i crashów.
+  spawnFollower:
+    disclaimer: >-
+      Jeśli chcesz zrodzić Kelvina/Virginię, musisz się upewnić, że jesteś na otwartej przestrzeni. Będą oni się pojawiać w pozycji gracza powyżej jego aktualnej wysokości i z lekkim przesunięciem.
+
+
+      Próbowałem wielu rzeczy dla Virginii, ale tylko mogłem zespawnić maksymalnie 4. Z Kelvinem było lepiej.
+
+
+      This might kill your FPS and the long term consequences are also not known right now, bla bla bla.
+
+
+      Kontunuj na własne ryzyko.
+    title: Spawn Follower
+  translations:
+    filter: Fi
+    missingOnly: Tylko Brakujące
+errors:
+  canNotBeEmpty: '{0} nie może być pusty'
+experiments:
+  fires:
+    noFires:
+      text: Nie znaleziono ognisk do zmodyfikowania
+      title: Brak ognisk
+    success:
+      text: '{0} ognisk zostało podpalonych'
+      title: Zmodyfikowano ogniska
+  resetCannibalAngerLevel:
+    success:
+      text: Dodano zmiany. Zapisz, żeby je zatrzymać
+      title: Dodano zmiany
+  resetStructureDamage:
+    noDamage:
+      text: Brak obrażeń do naprawienia
+      title: Brak obrażeń zadanych
+    success:
+      text: '{0} obrażeń zostało naprawionych'
+      title: Damages repaired
+followers:
+  buttons:
+    fillAllBars: Uzupełnij wszystkie paski
+    moveToKelvin: Przesuń do Kelvin
+    moveToPlayer: Przesuń do gracza
+    moveToVirginia: Przesuń do Virginii
+    revive: Odródź
+    spawn: Przywołaj
+  details:
+    status: Status
+    uniqueId: Unique ID
+  equipmentLabel: Wyposażenie
+  outfitLabel: Strój
+  outfits:
+    9:
+      -1: Bazowy
+      0: Taktyczna kurtka
+      1: Smoking
+      2: Piżamy
+      3: Brązowa skórzana kurtka
+      4: Bluza z Kapturem
+      5: Niebieski TShirt
+      6: Garnitur
+      7: Czarna skórzana kurtka
+      8: Skafander Kosmiczny
+      9: Strój Księdza
+      10: Strój Stewardessy
+    10:
+      -1: Bazowy
+      0: Strój Kąpielowy
+      1: Dres
+      2: Strój skórzany
+      3: Strój kamuflujący
+      4: Sukienka
+      5: Turkusowa Sukienka
+      6: Czerwona Sukienka
+  reviveTooltip: Upewnij się, że robisz to poza budynkami, gdy brakuje ciała, w przeciwnym razie możesz wglithować do budynku\n Kelwin/Virinia pojawi się na pozycji gracza i będzie miał przedmioty i strój skonfigurowane po prawej stronie.
+  status:
+    alive: Żywy
+    dead: Martwy
+    unknown: ???
+game:
+  setup:
+    animalSpawnRate:
+      _label: Ilość zwierząt
+    buildingResistance: Odporność Budynków
+    coldPenalties: Kary za Zimno
+    coldPenaltiesStatReduction: Kary do odnowiania statystyk
+    consumableEffects:
+      _label: Efekty złego jedzenia
+      _tooltip: Ile obrażeń dostaniesz po zjedzeniu złego jedzenia
+    creativeMode: Tryb Kreatywny
+    customSettings: Specjane ustawienia
+    dayLength:
+      default: Normalna
+      long: Długa
+      realistic: Realistyczna
+      short: Krótka
+      _label: Długość dnia
+    enemyAggression:
+      _label: Agresja przeciwników
+    enemyArmour:
+      _label: Pancerz przeciwników
+    enemyDamage:
+      _label: Obrażenia od przeciwników
+    enemyHealth:
+      _label: Zdrowie przeciwników
+    enemySearchParties:
+      _label: Ekipy poszukiwawcze przeciwników
+    forcePlaceFullLoad: Natychmiastowe Budowanie
+    header: Ustawienia gry
+    headers:
+      enemiesCustom: Przeciwnicy (Custom)
+      multiplayer: Mulitplayer
+      weatherCustom: Pogoda (Custom)
+    immortalMode: God-Mode
+    inventoryPause: Pauzuj w ekwipunku
+    mode:
+      creative: Kreatywny
+      custom: Własny
+      hard: Trudny
+      hardSurvival: Trudny Survival
+      normal: Normalny
+      peaceful: Spokojny
+      _label: Tryb
+    noCuttingsSpawn: No Cuttings Spawn
+    oneHitToCutTrees: 1 trafienie do zniszczenia drzewa
+    playerStatsDamage:
+      _label: Obrażenia od odwodnienia itp.
+      _tooltip: Ile obrażeń otrzymasz od odwodnienia itp.
+    playersTriggerTraps: Gracze uruchamiają pułapki
+    precipitationFrequency:
+      _label: Zmiany pogody
+      _tooltip: Jak szybko zmienia się pogoda
+    pvpDamage: Obrażenia PvP
+    reducedAmmoInContainers: Mniej ammunicji w pojemnikach
+    reducedFoodInContainers: Zmniejszona ilość jedzenia w pojemnikach
+    seasonLength:
+      default: Normalne
+      long: Długie
+      realistic: Realistyczne
+      short: Krótkie
+      _label: Długość pór roku
+    settingsValues:
+      default: Normalnie
+      hard: Trudny
+      high: Często
+      low: Rzadko
+      normal: Średnia
+      off: Off
+      reduced: Zredukowane
+    singleUseContainers: Pojemniki jednorazowego użytku
+    spawnEnemies: Przywołaj przeciwników
+    startingSeason:
+      autumn: Jesień
+      spring: Wiosna
+      summer: Lato
+      winter: Zima
+      _label: Początkowa pora roku
+    uid: UID
+  state:
+    header: Game State
+    headers:
+      worldObjectStates: Stany obiektów w świecie
+    worldObjectStates:
+      disclaimer: >-
+        Nie jest pewne co każdy stan oznacza. Prawdopodobnie:
+
+        - 0 = Nie ustawiony/Zamknięty/Nie wydarzyło się
+
+        - 1 or 3 = Ustawiony/Otwarty/Wydarzyło się
+      header: Stany obiektów w świecie
+generic:
+  add: Dodaj
+  cancel: Anuluj
+  close: Zamknij
+  edit: Edytuj
+  error: Błąd
+  exceptionMessage: 'Pojawił się wyjątek: {0}'
+  name: Nazwa
+  no: Nie
+  ok: OK
+  position: Pozycja
+  save: Zapisz
+  seconds: Sekund
+  setting: Ustawienia
+  success: Sukces
+  unknown: Nieznane
+  update: Aktualizuj
+  value: Wartość
+  yes: Tak
+influences:
+  anger: Złość
+  disclaimer: >-
+    Sentyment odpowiada za przywiązanie, aczkolwiek ciągle nie rozumiemy jak oddziałowywuje to na przeciwników.
+
+    Wyższa wartość strachu zwiększa szansę na ucieczkę przeiwników podczas walki.
+
+    Wyższy poziom złości zwiększa częstotliwość ataków.
+  fear: Strach
+  sentiment: Sentyment
+inventory:
+  buttons:
+    addAllFromCategory: Dodaj wszystkie z kategorii
+    max: Max
+    remove: Usuń
+    removeAll: Usuń wszystkie
+    setAllToMax: Ustaw ilość wszystkich na maksymalną
+    setAllToMin: Ustaw ilość wszystkich na minimalną
+  filterWatermark: Filtruj...
+  headers:
+    itemsInInventory: Przedmioty w ekwipunku
+    unassignedItems: Nieprzypisane przedmioty
+  table:
+    actions: Akcje
+    count:
+      text: Ilość
+      tooltip: Ilość ile masz w ekwipunku
+    id: ID
+    name: Nazwa
+    type: Typ
+  unknownItem: ??? Nieznany przedmiot
+items:
+  78: Kłoda
+  340: Gitara
+  341: Lornetka
+  346: Szyna do strzelby
+  351: Torba z łatwym dostępem
+  353: Paralizator
+  354: Noktowizor
+  355: Pistolet
+  356: Nowoczesna siekiera
+  357: Wiatrówka
+  358: Strzelba
+  359: Maczeta
+  360: Taktyczny łuk
+  361: Karabin
+  362: Amunicja do pistoletu
+  363: Śrut do strzelby
+  364: Kulki do strzelby
+  365: Kusza
+  366: Rzutka śledząca
+  367: Katana
+  368: Bełt do kuszy
+  369: Amunicja do paralizatora
+  370: Amunicja do pistoletu
+  371: Kulki do strzelby
+  372: Śrut do strzelby
+  373: Taktyczna strzała
+  374: Tłumik
+  375: Celownik laserowy
+  376: Szyna do pistoletu
+  377: Luneta
+  378: Mocowanie latarki
+  379: Taktyczna siekiera
+  380: Nóż bojowy
+  381: Granat
+  382: Amunicja do granatnika
+  383: Szyna do karabinu
+  384: Kołczan do kuszy
+  386: Rewolwer
+  387: Amunicja do karabinu
+  388: Molotow
+  389: Amunicja do molotowa
+  390: Żywica do drukarki
+  391: Czerwona maska
+  392: Patyk
+  393: Kamień
+  394: Piła łańcuchowa
+  395: Deska
+  396: Pałka ogłuszająca
+  397: Shiitake
+  398: Boczniak mikołajkowy
+  399: Kolczak obłączasty
+  400: Muchomor Czerwony
+  401: Jajo żółwia
+  402: Plecak
+  403: Lina
+  405: Kość
+  406: Ćwierć kłody
+  408: Pół kłody
+  409: Trzy czwarte kłody
+  410: Zegarek
+  412: Nadajnik GPS
+  413: Zapalniczka plazmowa
+  414: Butelka wódki
+  415: Szmatka
+  416: Płytka drukowana
+  417: Bomba czasowa
+  418: Przewód
+  419: Taśma klejąca
+  420: Ładunek C4
+  421: Ramen
+  422: Narzędzie naprawcze
+  423: Powieść A
+  424: Powieść B
+  425: Płatki śniadaniowe
+  426: Drukowana manierka
+  427: Drukowany nóż
+  428: Drukowane sanki
+  429: Drukowana maska do nurkowania
+  430: Czaszka
+  431: Topór strażacki
+  432: Otwieracz do puszek
+  433: Mięso
+  434: Konserwy
+  435: Złota maska
+  436: Ryba
+  437: Leki
+  438: Pakiet MRE
+  439: Napój energetyczny
+  440: Flara
+  441: Baton energetyczny
+  443: Łuk własnej roboty
+  444: Oddycharka
+  445: Borówki
+  446: Wiciokrzew
+  447: Maliny
+  448: Śnieguliczka
+  449: Kolcosił straszliwy
+  450: Skrzyp polny
+  451: Aloes
+  452: Krwawnik pospolity
+  453: Wierzbówka kiprzyca
+  454: Ostryż
+  455: Mieszanka lecząca
+  456: Mieszanka lecząca+
+  457: Amunicja do paralizatora
+  458: Ładowarka do baterii
+  459: Proca
+  460: Pudełko Baterii
+  461: Mieszanka energetyczna
+  462: Mieszanka energetyczna+
+  463: Płetwy
+  464: Karma dla kota
+  465: Cykoria
+  466: Ostryga
+  467: Okładka albumu
+  468: Krzyż
+  469: Butla z powietrzem
+  470: Celownik do wiatrówki
+  471: Latarka
+  472: Skóra jelenia
+  473: Zbroja z liści
+  474: Włócznia własnej roboty
+  475: Manierka
+  476: Mały kamień
+  477: Maczuga własnej roboty
+  478: Czekan
+  479: Pióro
+  480: Odcięta ręka
+  481: Odcięta noga
+  482: Odcięta głowa
+  483: Pakiet ratunkowy
+  484: Liść
+  485: Łopata
+  486: Krótkofalówka
+  487: Piżamy
+  488: Niebieska koszulka
+  489: Taktyczne spodnie
+  490: Bluza z kapturem
+  491: Marynarka
+  492: Smoking
+  493: Skórzana kurtka
+  494: Pancerz kościany
+  495: Kurtka taktyczna
+  496: Pieniądze
+  497: Tacka na jedzenie
+  498: Celownik laserowy GRABS
+  499: Kombinezon nurkowy
+  500: Puchowa kurtka
+  501: Buty taktyczne
+  502: Monety
+  503: Latarka
+  504: Plandeka
+  505: Miernik laserowy
+  506: Skorupa żółwia
+  507: Ręcznie robione strzały
+  508: Skórzana torba
+  509: Broszura Holosprings
+  511: Wyłącznik kontaktowy
+  512: Pełna tacka na jedzenie
+  513: Sprężyna
+  514: Kontaktowa sprężyna
+  515: Podstawowa strona poradnika budowania
+  516: Strona poradnika budowania namiotu z plandeki
+  517: Garnek
+  518: Cel papierowy
+  519: Pancerz z jeleniej skóry
+  520: Element struktury
+  521: Email o oświetleniu jaskini
+  522: Pistolet do tyrolek
+  523: Linka do tyrolek
+  524: Piłka golfowa
+  525: Kij golfowy
+  526: Testament E. Pufftona
+  527: Baterie
+  528: Finanse E. Pufftona
+  529: Lokalizator GPS
+  530: Projekt stojaka do suszenia
+  531: Projekt krzesła ze patyków
+  532: Projekt łóżka ze patyków
+  533: Projekt stojaka na broń
+  534: Email o golfa, cz. 1
+  535: Email o golfa, cz. 2
+  536: Email o golfa, cz. 3
+  537: Email o golfa, cz. 4
+  538: Email o malarstwie
+  539: Email o astrologii, cz. 1
+  540: Email o astrologii, cz. 2
+  541: Email o astrologii, cz. 3
+  542: Email polityka, cz. 1
+  543: Email polityka, cz. 2
+  544: List od polityków, część 1
+  545: List od polityków, część 2
+  546: List od polityków, część 3
+  547: List od baletnicy
+  548: List o skrzypiących butach, część 1
+  549: Projektowanie kości
+  550: Projektowanie lotki na muchy
+  551: Projektowanie pułapki na małe zwierzęta
+  552: Książka z projektami
+  553: Siatka techniczna
+  554: Pancarz Techniczny
+  555: Dres
+  556: Sukienka
+  557: Skórzany garnitur
+  558: Kamuflażowy kombinezon
+  559: Drukowane groty strzał
+  560: Drukowany hak wspinaczkowy
+  561: Drukowany doniczka
+  562: Ogłoszenie Holoville A
+  563: Ogłoszenie Holoville B
+  564: Ogłoszenie Holoville C
+  565: Ogłoszenie Holoville D
+  566: Karta dostępu do konserwacji
+  567: Karta dostępu gości
+  568: Karta dostępu VIP
+  569: Kąsek mózgu
+  570: Kąsek stekowy
+  571: Kąsek ze steku i bekonu
+  572: Starożytny Pancerz
+  573: Śpiwór
+  574: Powieść C
+  575: Powieść D
+  576: Ćwierć deski
+  577: Pół deski
+  578: Trzy czwarte deski
+  579: Projektowanie krzesła z kości
+  580: Projektowanie drabiny z patyków
+  581: Projektowanie domku dla ptaków
+  582: Projektowanie pułapki na ryby
+  583: Projektowanie skrzynki na przechowywanie
+  584: Projektowanie manekina
+  585: Projektowanie stracha na wróble
+  586: Projektowanie ściennego doniczka
+  587: Projektowanie podłogowego doniczka
+  588: Projektowanie żyrandola z kości
+  589: S.C.R.E.W. / Samouczki
+  590: Radio
+  591: Projektowanie małego drewnianego domku
+  592: Przerażająca skóra
+  593: Przerażający pancerz
+  594: Jagody guarany
+  595: Jeżyny
+  596: Nasiona aloesu
+  597: Nasiona ostryżu
+  598: Nasiona jeżyn
+  599: Nasiona jagód
+  600: Nasiona Kolcosiła straszliwego
+  601: Nasiona wierzbówki kiprzyca
+  602: Nasiona Gurany
+  603: Nasiona skrzypu polnego
+  604: Nasiona malin
+  605: Nasiona Chicory
+  606: Nasiona Krwawnika pospolitego
+  607: Projekt magazynu kamieni
+  608: Projekt magazynu kości
+  609: Projekt magazynu kłód
+  610: Projekt magazynu patyków
+  611: Wydruk z numerami
+  612: Wycinek z gazety
+  613: Wycinek z gazety 2/2
+  614: Email
+  615: Email
+  616: Email
+  617: Cena akcji
+  618: Wystrzelona strzała
+  619: Kostium kąpielowy
+  620: Projekt stołu
+  621: Projekt półki
+  622: Projekt ścieżki z kamieni
+  623: Projekt półki ściennego
+  624: Projekt pochodni ściennych
+  625: Projekt wiszącej czaszki
+  626: Lotnia
+  627: Karta stołowa Pana Pufftona
+  628: Karta stołowa Pani Puffton
+  629: Zbiornik na deszczówkę
+  630: Knight V
+  631: The Realm Beyond
+  632: Plan pułapki sprężynowej
+  633: Broszura kultu
+  634: Panel słoneczny
+  635: Żarówka
+  636: TemplateD
+  637: Kamera
+  638: Plan Prostych Sań na Kłody
+  639: Skafander Kosmiczny
+  640: Kamień
+  641: Projaekt kamiennego kominka
+  642: Głowa Kaczki
+  643: Głowa Orła
+  644: Mała Głowa Żółwia
+  645: Plan stojaku na trofea
+  646: Głowa Królika
+  647: Głowa Wiewiórki
+  648: Głowa Mewy
+  649: Plan przechowywalni kamieni
+  650: Głowa Żółwia
+  651: Głowa Jelenia
+  652: Głowa Łosia
+  653: Notatka Osobista A
+  654: Notatka Osobista B
+  655: Notatka Osobista C
+  656: Projekt Pułapki Hokey Pokey
+  657: Wydrukowana opakówka na GPS
+  658: Projekt RadioPułapki
+  659: Projekt Radia
+  661: Bateria Wózka Golfowego
+  662: Część Artefaktu A
+  663: Kilof
+  664: Ruda Solafitu
+  665: Plan Ulepszania Broni
+  666: Plan zasilonego krzyża
+  667: Część Artefaktu B
+  668: Część Artefaktu C
+  669: Część Artefaktu D
+  670: Projekt krzesła z flaków
+  671: Projekt kanapy z flaków
+  672: Plan Pułapki-Uber
+  673: Plan okrągłego stołu
+  674: Stara notatka A
+  675: Stara notatka B
+  676: Stara notatka C
+  677: Email Rybacki A
+  678: Email Rybacki B
+  679: Plan Pułapki Mielarki
+  680: Plan Reflektora
+  681: Plan zagara
+  682: Plan pułapki obrotowej
+  683: Plan podwójnego łóżka
+  684: Stara notatka E
+  685: Stara Notatka D
+  686: Stara notatka F
+  687: Email Pufftona A
+  688: Plan pułapki rzucającej włóczniami
+  689: Część artefaktu E
+  690: Strony fabularne
+  691: Stara notatka F
+  692: Mail Rybacki C
+  693: Mapa Bunkra A
+  694: Wydruk Emailu Jianyu A
+  695: Znak kultu G
+  696: Znak kultu H
+  697: Znak kultu I
+  698: Znak kultu J
+  699: Znak kultu K
+  700: Plan magazynu na włócznie
+  701: Plan Nogo-Lampy
+  702: Plan magazynu na drewno opałowe
+  703: Strój Księdza
+  704: Plan półki na broń
+  705: Broszura Cyrkowa
+  706: Wycinek Gazety (Mąż)
+  707: Artefakt
+  708: Część Arefaktu F
+  709: Plan teleportera
+  710: Plan Kapliczki Odpychania
+  711: Plan Kapliczki Przyciągania
+  712: Część Artefaktu G
+  713: Plan Plater Counter
+  714: Plan Pokrywacza Zbrój
+  715: Głowa Szopa Pracza
+  716: Papier z Bibli D
+  717: Stara notatka G
+  718: Personalna Notatka E
+  719: Personalna Notatka F
+  720: Personalna Notatka G
+  721: Wycinek Bibli A
+  722: Email Pufftona B
+  723: Email Pufftona C
+  724: Nasion Jagody Bliźniaczej
+  725: Nasiono Śnieźnej Jagody
+  726: Plan Wyrzutni Składanej Lotni
+  727: Zbroja z solafitu
+  728: Żyjący królik
+  729: Głowa skunksa
+  730: Plan małej klatki dla królików
+  749: Strój Stewardessy
+itemTypes:
+  ammo: Ammunicja
+  armor: Pancerz
+  attachment: Dodatki na broń
+  blueprint: Projekt
+  bodyPart: Część ciała
+  book: Książki
+  clothes: Ubrania
+  consumable: Zużywalne
+  container: Pojemnik
+  document: Dokument
+  electricity: Elektryczność
+  equipment: Wyposażenia
+  food: Jedzenie
+  key: Klucz
+  log: Kłoda
+  misc: Inne
+  plant: Roślina
+  printed: Wydruk
+  seed: Nasiona
+  tool: Narzędzia
+  trophy: Trofeum
+  weapon: Broń
+  weaponMod: Modyfikacje broni
+itemVariants:
+  433:
+    1: Surowe Mięso
+    2: Nieznane Mięso
+    3: Zepsute Mięso
+    4: Suszone Mięso
+    5: Gotowane Mięso
+    6: Spalone Mięso
+  436:
+    1: Surowa Ryba
+    2: Nieznana Ryba
+    3: Zesputa Ryba
+    4: Suszona Ryba
+    5: Ugotowana Ryba
+    6: Spalona Ryba
+  480:
+    1: Surowe Ramię
+    2: Nieznane Ramię
+    3: Zepsute Ramię
+    4: Suszone Ramię
+    5: Gotowane Ramię
+    6: Spalone Ramię
+  481:
+    1: Surowa Noga
+    2: Nieznana Noga
+    3: Zesputa Noga
+    4: Suszona Noga
+    5: Ugotowana Noga
+    6: Spalona Noga
+languages:
+  de: Niemiecki (German)
+  en: Angielski (English)
+  pl: Polski (Polish)
+map:
+  actors: NPC-y
+  altItems: Alternatywne przedmioty
+  alwaysOnTop: Zawsze na wierzchu
+  area: Obszar
+  areaFilter:
+    text: Obszar
+    types:
+      all: Wszystkie
+      surfaceOnly: Tylko na powierzchni
+      undergroundOnly: Tylko w Jaskiniach/Bunkrach
+  buttons:
+    createNewZipline:
+      text: Nowa tyrolka stąd
+      tooltip: Po wsiśnieciu stworzy się tyrolka pomiędzy obecnie wybranym punktem a następnie wybranym
+    delete: Usuń
+    deleteBothAnchors: Usuń obydwa końce tyrolki
+    deselectAll: Odznacz wszystkie
+    moveToNextClickedPosition:
+      hint: Wybierz nową lokalicaję
+      text: Przenieś do wybranej pozycjii
+      tooltip: Przenieś koniec tyrolki do następnego wybrnego miejsca
+    spawnActors: Przywołaj NPC
+    teleportKelvin: Teleportuj tutaj Kelvina
+    teleportPlayer: Teleportuj tutaj Gracza
+    teleportVirginia: Teleportuj tutaj Virginię
+    resetAllDone:
+      text: Zresetuj wszystkie ukończone
+      tooltip: Odznacz wszystkie POI jako ukończone
+    markAsDone:
+      text: Oznacz jako ukończone
+      tooltip: Oznacz ten punkt jako ukończony
+    markAsUndone:
+      text: Cofnij ukończenie
+      tooltip: Odznacz ten punkt jako ukończony
+  coordinates: Koordynaty
+  customPois: Własne
+  details: Szczegóły
+  fill: Wypełnij
+  followers: Towarzysze
+  followPlayer: Podążaj za graczem
+  fullText:
+    text: Nazwa
+    tooltip: Szuka zarówno w nazwach lokalizacji, przedmiotów i innych znaczników na mapie, oraz w ich opisach
+    watermark: Nazwa lokalizacji, przedmiotu, czy ich opis
+  inventoryFilter: Ukryj ukończone
+  isInInventory: Posiadane
+  isRuntimeCreated: Jest kopią
+  isUnderground: Jest podziemią
+  itemId: ID przedmiotu
+  items: Przedmioty
+  mapType:
+    dark: Ciemna
+    original: Oryginalna
+  name: Nazwa
+  objects: Przedmioty
+  options: Opcje
+  pois: Punkty zainteresowań
+  requirements: Wymgania
+  requirementsFilter:
+    text: Wymagania
+    tooltip: Pokaż tylko przedmioty i miejsca do których masz dostęp (Masz kartę itp.)
+    types:
+      AccessibleOnly: Pokaż tylko dostępne
+      All: Wszystko
+      InaccessibleOnly: Pokaż tylko niedostępne
+  spawnWindow:
+    actorType: Typ NPC-a
+    count: Ilość
+    disclaimer: Bądź ostrożny z ilością i pozycją respionych NPC. Może zcrashować to grę. Niektórzy przeciwnicy mogę zostać zrespieni w jaskiniach.
+    doSpawn: Stwórz NPC-a
+    family: Rodzina
+    familyOfDestinationActor: Rodzina docelowego NPC-a
+    information: Informacja
+    options: Opcje
+    position: Pozycja
+    spaceBetween:
+      text: Odległość pomiędzy
+      tooltip: Definiuje odległości pomiędzy przywoływanymi NPC-ami
+    spawnPattern:
+      Cross: Krzyż
+      Grid: Siatka
+      HorizontalLine: Pozioma Linia
+      Random: Losowa
+      Rectangle: Prostokąt
+      text: Wzór przywołania
+      VerticalLine: Pionowa Linia
+    title: Przywołaj NPC-a
+  structures: Struktury
+  teleportation: Teleportacja
+  teleportWindow:
+    destination: Cel
+    disclaimer: Tutaj możesz dostosowywać pozycję NPC-a. Jeżeli zrespisz przeciwnika w sobie, jest możliwe, że polecisz w kosmos. X i Z to lokalizacja, Y to wysokość. Upewnij się że ustawiony obszar jest poprawny.
+    doTeleport: Teleportuj!
+    mode:
+      Kelvin: Kelvin
+      Player: Gracz
+      Virginia: Virginia
+    offset: Przesunięcie
+    title: Teleport
+    toTeleport: Teleport
+  wiki: Link do Wikipedii
+  zipLineAnchor: Końce tyrolek
+  zipLines: Tyrolki
+menu:
+  companion:
+    setup: Konfiguracja
+    text: Companion
+  file:
+    deleteAllBackups: Usuń wszystkie backupy
+    exit: Wyjdź
+    openLastSavegame: Otwórz ostatni zapis...
+    openLastSavegameWithSavegame: Otwórz {0}...
+    openSavegame: Otwórz zapis...
+    openSavegameDirInExplorer: Otwórz zapis Dir w eksplorerze
+    reloadCurrentSavegame: Załaduj obecny zapis
+    restoreFromBackup:
+      fromNewestBackup: Z najnowszego backupa
+      fromOldestBackup: Z najstarszego backupa
+      text: Odtwórz z backupów
+    save: Zapisz
+    settings: Ustawienia
+    text: Plik
+  help:
+    about: O programie
+    changelog: Changelog
+    links:
+      discord: Discord
+      downloadLatestVersion: Pobierz najnowszą wersję
+      githubProject: Projekt na GitHubie
+      nexusMods: NexusMods
+      text: Linki
+      thunderstoreIo: thunderstore.io
+    readme: Przeczytaj mnie!
+    text: '?'
+    translations: Tłumaczenia
+    updates:
+      checkNow: Sprawdź teraz
+      checkOnStartup: Sprawdź przy włączeniu
+      text: Aktualizacje
+  tools:
+    cloneWorldObjects:
+      text: Klonuj przedmioty ze świata
+      tooltip: Klonuje przedmioty ze świata do pozycji gracza
+    eternalFires:
+      text: Wieczne ognie
+      tooltip: Ognie zostaną zapalone, zużycie paliwa będzie niskie a jego ilość duża
+    fires:
+      text: Ognie
+      tooltip: Modyfikuj ognie na świecie
+    itemPlater:
+      text: Plater przedmiotów i struktur
+      tooltip: Dodaje lub usuwa solafitowy plating do przemiotów w ekwipunku
+    map:
+      text: Interaktywna mapa
+      tooltip: Po prosu interaktywna mapa.
+    modifyConsumedItems:
+      text: Modyfikuj zjedzone przedmioty...
+      tooltip: W przypadku, gdy chcesz oczyścić pamięć o przedmiotach, które już zjadłeś
+    regrowTrees: Odrośnij drzewa...
+    resetCannibalAngerLevel:
+      text: Zresetuj poziom agresji kanibali
+      tooltip: Zresetuj statystyki zabójstw, liczbę ściętch drzew, i ilość odwiedzonych wiosek, co przełoży się na mniej najazdów
+    resetContainers:
+      text: Zresetuj pojemniki
+      tooltip: Resetuje pojemniki, w jaskiniach i otwartym świecie
+    resetFires:
+      text: Zresetuj ognie
+      tooltip: Ognie zostaną zapalone, a prędkość zużycia i ilość paliwa ustawione na domyślne
+    resetStructureDamage:
+      text: Zresetuj obrażenia struktur
+      tooltip: Naprawia wszystkie struktury
+    resetTraps:
+      text: Zresetuj pułapki
+      tooltip: Resetuje pułapki
+    setToEndgame:
+      text: Ustaw na Koniec Gry
+      tooltip: Ustawia grę na "Koniec gry" co odblokowywuje nowych przeciwników
+    text: Narzędzia
+    unlocks:
+      text: Odblokowywania
+      tooltip: Pozwala odblokować niektóre części gry
+    resetAllDone:
+      text: Zresetuj wszystkie ukończone
+      tooltip: Odznacz wszystkie POI jako ukończone
+autoConnect: Automatyczne łączenie
+autoReload: Automatyczne przeładowanie
+npcs:
+  tabs:
+    byFamily:
+      disclaimer: Rodzina oznacza grupę przeciwników, np plemię.
+      text: Rodziną
+    byType: Typem
+player:
+  areaMask: Obszar
+  buttons:
+    moveToKelvin: Przeteleportj do Kelvina
+    moveToVirginia: Przeteleportj do Virginii
+  currentHealth: Obecne zdrowie
+  fillAllBars: Wypełnij wszystkie paski
+  mapGroupName: Gracz
+  maxHealth: Maksymalne zdrowie
+  outfit: Strój
+  sickness: Choroba
+  strengthLevel: Poziom siły
+poiGroups:
+  Ammo: Ammunicja
+  Bunkers: Bunkry
+  Camps: Obozowiska
+  CannibalVillages: Wioski kanibalów
+  Caves: Jaskinie
+  Crates: Skrzynie
+  Doors: Drzwi
+  Helicopters: Helikoptery
+  Info: Informacje
+  Items: Przedmioty
+  Lakes: Jeziora
+  Laptops: Laptopy
+  Ponds: Jeziorka
+  Printers: Drukarki 3D
+  Supply: Zapasy
+  Villages: Wioski
+storage:
+  batch:
+    allSlots: Wszystkie miejca
+    clearAll: Usuń wszystkie
+    fillAllWith: Wypełnij wszystko
+    setAllToMax: Ustaw wszystkie na
+  buttons:
+    fillAllStorages: Wypełnij wszystkie magazyny
+  errors:
+    currentStateNotDefined: CurrentState nie zdefiniowane dla id {0}
+  headers:
+    selectAStorage: Wybierz magazyn
+    storageTypes: Typ magazynu
+  slot:
+    max: Dodaj
+    remove: Usuń
+structures:
+  added: Dodano
+  applyToAllOfSameType:
+    text: Zaaplikuj do wszystich tego samego typu
+    tooltip: Aplikuje do wszystkich tego samego typu
+  buildCost: Koszt budowy
+  buttons:
+    changeType: Zmień typ
+    setAllToAlmostFinish: Ustaw wszystkie na prawie ukończone"
+    setAllToFinish: Ustaw wszystkie na "Ukończone"
+    setAllToRemove: Ustaw wszystkie na "Usunięte"
+    setAllToUnfinish: Ustaw wszystkie na "Nieukończone"
+    unmodifyAll: Od-modyfikuj wszystkie
+  categories:
+    furniture: Meble
+    gardening: Ogrodnictwo
+    misc: Inne
+    raft: Tratfa
+    shelter: Schronienie
+    storage: Magazyn
+    traps: Pułapki
+    treeShelter: Schronienie na drzewie
+    utility: Użytkowość
+  category: Kategoria
+  headers:
+    batch: Partia
+    finishedStructures: Ukończone struktury
+    unfinishedStructures: Nieukończone struktury
+  modification: Modyfikacja
+  modificationMode:
+    AlmostFinish: Prawie ukończone
+    Finish: Ukończ
+    None: Nic
+    Remove: Usuń
+    Unfinish: Od-ukończ
+  percentDone: Dodano procent
+  structureTypeSelectorDisclaimer: Jeżeli nic nie będzie wybrane, wszystkie struktury zostaną zmienione!
+  types:
+    19: Stojak na Broń
+    20: Krzesło z Patyków
+    21: Pułapka Robiąca Kości
+    22: Łóżko z Patyków
+    23: Donica Ścienna
+    24: Żyrandol z Kości
+    25: Krzesło z Kości
+    26: Dobudówka
+    27: Suszarka
+    28: Schronienie na drzewie 2
+    29: Magazyn na Patyki
+    31: Magazyn na Kamienie
+    32: Magazyn na Kości
+    34: Mała Chatka
+    35: Pułapka na Ryby
+    36: Stojak na Zbroje
+    37: Magazyn na Kłody
+    38: Wieża obserwacyjna
+    39: Strach na Wróble
+    40: Stojąca Donica
+    41: Platforma na Drzewie 2
+    42: Mała Pułapka na zwierzęta
+    43: Platforma na drzewie 1
+    44: Schronienie na drzewie 1
+    45: Pułapka z Łapką na Muchy
+    46: Ścieżka z Patyków
+    47: Schronienie Myśliwego
+    48: Stół
+    49: Półka
+    50: Ścieżka z Kamieni
+    51: Półka Naścienna
+    52: Ławka
+    53: Pochodnia ścienna
+    54: Lampa z Czaszki
+    55: Tyrolka
+    56: Zbiornik na Deszczówkę
+    57: Pułapka Sprężynowa
+    58: Sanie na Kłody
+    59: Proste Sanie na Kłody
+    60: Kamienny kominek
+    61: Trofeum z głowy
+    62: Magazyn kamieni
+    63: Pułapka Hokey Pokey
+    64: Pułapka Radio-Alarmowa
+    67: Duży magazyn kłód
+    68: Dywan z futra jelenia
+    70: Plating przedmiotu
+    71: Ulepszony Krzyż
+    72: Krzesło z flaków
+    73: Kanapa z Flaków
+    74: Pułapka Uber
+    75: Okrągły stół
+    76: Pułapka Mielarka
+    77: Reflektor
+    78: Zegar
+    79: Pułapka obrotowa
+    80: Podwójne łóżko
+    81: Pułapka rzucająca włóczniami
+    82: Magazyn na włócznie
+    84: Magazyn na Drewno Opałowe
+    85: Nogo-Lampa
+    86: Półka na Bronie
+    88: Teleporter
+    89: Kapliczka Odpychania
+    90: Kapliczka Przyciągania
+    91: Kanapa
+    92: Pułapka Liściowa
+    93: Pułapka z Mołotwem
+    94: Eksplodująca pułapka
+    95: Magazyn na strzały
+    96: Magazyn na Kłody
+    97: Futrzane Krzesło
+    98: Mała Platforma
+    99: Średnia Platforma
+    100: Plater Counter
+    101: Gold Armor Plater
+    102: Wyrzutnia Składanych Lotni
+    103: Wyrzutnia Składanych Lotni
+    104: Magazyn na materiały wybuchowe
+    106: Klatka dla królików
+    107: Mała klatka dla królików
+    108: Łódź mieszkalna
+    109: Magazyn na Knight-V
+    110: Domek dla ptaków
+    113: Składana lotnia
+    117: Mała tratwa
+    118: Poler
+    119: Duża tratwa
+tabs:
+  followers: Towarzysze
+  game: Gra
+  inventory: Ekwipunek
+  npcs: NPC
+  player: Gracz
+  storage: Magazyn
+  structures: Struktury
+weather:
+  header: Pogoda
+windows:
+  main:
+    title: '{0} v{1} [{2}, {3} ({4})]'
+    connection:
+      connected: 'Połączono: {0}:{1}'
+      connecting: Łączenie...
+      disconnected: Nie połączono
+    savegame:
+      loaded: 'Zapis gry: {0}\{1}'
+      none: Brak wczytanego zapisu gry
+    modified: '{0}'
+    map:
+      buttons:
+        markAsDone: Oznacz jako ukończone
+        markAsUndone: Oznacz jako nieukończone
+    itemPlater:
+      buttons:
+        addPlating: Dodaj plating
+        removePlating: Usuń plating
+      constructionCategories:
+        Item: Przedmiot
+        Log: Kłoda
+        LogPlank: Deska
+        Stick: Patyk
+        Stone: Kamień
+      constructions: Konstrukcje
+      disclaimer: >-
+        Bądż ostrożny. Narzędzie TYLKO zapisuje zmniany do platingu i następnie ładuje zapis.
+
+
+        Upewnij się więc, że nie ma nie żadnych niezapisanych zmian, które mogłyby zostać stracone
+
+
+        Proces może zająć trochę czasu, jeżeli twój zapis jest duży
+      followerItems: Przedmioty towarzyszy
+      itemsInInventory: Przedmioty w ekwipunku
+      itemsInWeaponRacks: Przedmioty na stojakach na broń
+      messages:
+        addPlating: Dodano platingi przedmiotów
+        removePlating: Usunięto platingi przedmiotów
+      structures: Struktury
+      title: Plater przedmiotów i struktur
+    errors:
+      errorCheckingLastVersion: Pojawił się błąd podczas sprawdzania dostępność nowszej wersji
+    messages:
+      alreadyLatestVersion:
+        text: Używasz najnowszej wersji
+        title: Brak aktualizacji
+      backupsDeleted: Usunięto {0} backupów
+      changesSaved: Zapisano zmiany
+      confirmCloseApplication:
+        text: Czy chcesz zamknąć aplikację?
+        title: Zamknij aplikację
+      confirmCreateBackup:
+        text: Czy chcesz stworzyć backup?
+        title: Tworzenie backupa
+      confirmDeleteBackups:
+        text: Czy chcesz usunąć backupy?
+        title: Usuwanie backupów
+      confirmOverwriteExternalChanges:
+        text: Zapis został zmodyfikowany na zewnątrz. Czy naprawdę chcesz nadpisać wszelkie zmiany?
+        title: Nadpisywanie zmian
+      confirmRestoreBackups:
+        text: Jesteś pewien, że chcesz przywrócić backupy?
+        title: Przywracanie backupów
+      followerAlreadyAlive:
+        text: '{0} jest już żywy'
+        title: Brak zmian
+      followerRevived:
+        text: '{0} powinien być spowrotem'
+        title: Odrodzono
+      followersCreated:
+        text: '{0} followerów zostało zrespionych'
+        title: Towarzysze zrespieni
+      noChanges:
+        text: Brak zmian - nic nie zapisano
+        title: Brak zmian
+      saveChanges: Zapisz zmiany
+      unableToDeleteBackups: 'Nie można usunąć backupów: {0}'
+      unableToSpawnFollowers: Nie można zrespić followera
+  modifyConsumedItems:
+    key: Klucz
+    remove: Usuń
+    removeAll: Usuń wszystkie
+    title: Modyfikuj zjedzone jedzenie
+  regrowTrees:
+    all: Wszystkie
+    gone: Brak pozostałości
+    halfChopped: Pół ścięte
+    messages:
+      noTreesRegrown: Brak drzew ze statusem "{0}" odrosło
+      success: '{0} drzew z stanem "{1}" powinno odrosnąć. Zapisz aby je zatrzymać.'
+    pctRegrow: Procent odrośnięcia
+    saveButton: Odrośnij drzewa
+    stumps: Pieńki
+    title: Odrośnij drzewa
+  resetContainers:
+    messages:
+      containersReset:
+        text: Zaktualizowano pojemniki. Zapisz zmiany aby zmienić zapis gry
+        title: Reset pojemników
+      nothingToReset:
+        text: Nic nie znaleziono do zresetowania
+        title: Nic nie znaleziono
+  resetTraps:
+    messages:
+      nothingToReset:
+        text: Nic nie znaleziono do zresetowania
+        title: Nic nie znaleziono
+      trapsReset:
+        text: '{0} pułapek zostało zresetowanych.  Zapisz zmiany aby zmienić zapis gry'
+        title: Reset pułapek
+  selectSavegame:
+    buttons:
+      change: Zmień...
+      setToDefault: Ustaw na bazowe
+    folderBrowserTitle: Wybierz Sons of the Forest "Saves" Directory
+    headers:
+      location: Pozycja
+    lastSaveTimeTooltip: Last write time of the savegame directory
+    selectedPath:
+      label: 'Wybrana ścieżka:'
+      tooltip: Zazwyczaj zapisy przechowywane są w C:\Users\[user]\AppData\LocalLow\Endnight\SonsOfTheForest\Saves
+    tabs:
+      multiplayer: Multiplayer
+      multiplayerClient: Multiplayer (Client)
+      singleplayer: Singleplayer
+    title: Wybierz zapis...
+  settings:
+    askForBackupsEveryTime: Pytaj o backupy za każdym razem
+    backupMode: Tryb backupów
+    fileMode:
+      label: Tryb plików
+      single: Jeden backup na zmieniony plik JSON
+      zip: Archiwum ZIP
+    language: Język
+    messages:
+      languageChanged:
+        text: Zrestartuj aplikację aby zapisać zmianę języka
+        title: Zapisano ustawienia
+    theme: motyw
+    title: Ustawienia
+  unhandledException:
+    applicationVersion: Wersja Aplikacji
+    buttons:
+      copyErrorToClipboard: Skopiuj błąd do schowka
+      exitApplication: Wyjdź z Aplikacji
+    callstack: callstack
+    disclaimer: Wystąpił nieoczekiwany błąd. Stan aplikacji może być uszkodzony.
+    exceptionMessage: Komunikat Wyjątku
+    exceptionType: Typ Wyjątku
+    header: Szczegóły Wyjątku
+    innerException: Wewnętrzny Wyjątek
+    title: Nieobsłużony Wyjątek
+  unlocks:
+    coreGameCompleted: Ukończono bazową grę
+    creativeMode: Tryb Kreatywny
+    creativeModeItem: Przedmiot trybu kreatywnego (?)
+    escapedIsland: Opuszczono wyspę
+    messages:
+      playerProfileNotFound: Nie można było znaleźć PlayerProfile.json w "{0}"
+    title: Odblokowywania
+  updateAvailable:
+    buttons:
+      download: Pobierz
+      ignore: Ignoruj
+    header: Dostępna aktulizacja
+    title: Dostępna aktulizacja
+  worldItemCloner:
+    buttons:
+      cloneAtPlayerPosition:
+        text: Klonuj przy pozycji gracza
+        tooltip: Tworzy kopie tego obiektu przy graczu
+      removeAllCopies:
+        text: Usuń wszystkie kopie
+        tooltip: Usuwa wszystkie kopie tego typu z mapy
+      teleportObjectToPlayer:
+        text: Teleportuj obiekt do gracza
+        tooltip: Teleportuje obiekty do gracza
+      teleportPlayerToObject:
+        text: Teleportuj gracza do obiektu
+        tooltip: Teleportuje gracza do obiektu
+    messages:
+      clonesDeleted:
+        text: Usunięto {0} klonów {1}
+        title: Klony usunięte
+      nothingToDelete:
+        text: Nic do usunięcia
+        title: Nic nie znaleziono
+      nothingToMove:
+        text: Nic do przesunięcia
+        title: Nic nie znaleziono
+      objectCloned:
+        text: Kopia {0} stworzona w lokalizacji gracza. Zapisz and zatrzymać zmiany
+        title: '{0} stworzony'
+    pinTooltip: Pokaż pozycje przedmiotu na mapie
+    title: Kopiarka obiektów
+    unknownItem: Nieznany przedmiot ({0})
+    unnamedItem: Nienazwane ({0})
+    worldItem: Przedmiot
+  map:
+    title: Mapa - {0}, {1} ({2})
+worldItemTypes:
+  GolfCart: Wózek golfowy
+  HangGlider: Składana Lotnia
+  KnightV: Knight V
+  Radio: Radio
