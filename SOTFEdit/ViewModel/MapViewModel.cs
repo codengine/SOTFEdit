@@ -19,9 +19,13 @@ using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Map;
 
 namespace SOTFEdit.ViewModel;
-
 public partial class MapViewModel : ObservableObject
 {
+    [ObservableProperty]
+    private bool _autoConnect = Settings.Default.AutoConnect;
+
+    [ObservableProperty]
+    private bool _autoReload = Settings.Default.AutoReload;
     private const char SaveSelectedPoiGroupSeparator = '|';
 
     private static readonly SolidColorBrush DarkMapColorBrush;
@@ -106,7 +110,7 @@ public partial class MapViewModel : ObservableObject
     MapFilter = new MapFilter(gameData.AreaManager);
     MapFilter.PropertyChanged += MapFilterOnPropertyChanged;
 
-    // Ensure filter is applied immediately on load (e.g., HideCompleted)
+    // Ensure filter is applied immediately on load (e.g., MapFilterHideCompleted)
     ApplyFilterToAllPois();
 
     _fullTextFilterDispatcherTimer.Tick += OnFullTextFilter;
@@ -639,7 +643,9 @@ public partial class MapViewModel : ObservableObject
 
     public void SaveSettings()
     {
-        Settings.Default.MapType = MapSelection;
+    Settings.Default.MapType = MapSelection;
+    Settings.Default.AutoConnect = AutoConnect;
+    Settings.Default.AutoReload = AutoReload;
 
         GetSeletedPoiGroupsFromSettings(out var selected);
 
@@ -688,8 +694,8 @@ public partial class MapViewModel : ObservableObject
 
         var selectedString = string.Join(SaveSelectedPoiGroupSeparator, selected);
         Settings.Default.SelectedMapGroups = selectedString;
-    // Ensure HideCompleted is always saved
-    Settings.Default.HideCompleted = MapFilter.HideCompleted;
+    // Ensure MapFilterHideCompleted is always saved
+    Settings.Default.MapFilterHideCompleted = MapFilter.HideCompleted;
         Settings.Default.Save();
     }
 

@@ -22,7 +22,7 @@ public abstract partial class BasePoi : ObservableObject, IPoi
     {
         get
         {
-            var ids = (SOTFEdit.Settings.Default.DonePoiIdListString ?? "")
+            var ids = (Settings.Default.DonePoiIdListString ?? "")
                 .Split(DonePoiSeparator, StringSplitOptions.RemoveEmptyEntries)
                 .Select(s => int.TryParse(s, out var id) ? (int?)id : null)
                 .Where(id => id.HasValue)
@@ -32,7 +32,7 @@ public abstract partial class BasePoi : ObservableObject, IPoi
         }
         set
         {
-            var idList = (SOTFEdit.Settings.Default.DonePoiIdListString ?? "")
+            var idList = (Settings.Default.DonePoiIdListString ?? "")
                 .Split(DonePoiSeparator, StringSplitOptions.RemoveEmptyEntries)
                 .Select(s => int.TryParse(s, out var id) ? (int?)id : null)
                 .Where(id => id.HasValue)
@@ -44,8 +44,8 @@ public abstract partial class BasePoi : ObservableObject, IPoi
                 if (!idList.Contains(Id))
                 {
                     idList.Add(Id);
-                    SOTFEdit.Settings.Default.DonePoiIdListString = string.Join(",", idList);
-                    SOTFEdit.Settings.Default.Save();
+                    Settings.Default.DonePoiIdListString = string.Join(",", idList);
+                    Settings.Default.Save();
                 }
             }
             else
@@ -53,8 +53,8 @@ public abstract partial class BasePoi : ObservableObject, IPoi
                 if (idList.Contains(Id))
                 {
                     idList.Remove(Id);
-                    SOTFEdit.Settings.Default.DonePoiIdListString = string.Join(",", idList);
-                    SOTFEdit.Settings.Default.Save();
+                    Settings.Default.DonePoiIdListString = string.Join(",", idList);
+                    Settings.Default.Save();
                 }
             }
 

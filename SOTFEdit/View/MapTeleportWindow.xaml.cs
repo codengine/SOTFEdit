@@ -9,7 +9,7 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
 
-public partial class MapTeleportWindow : ICloseable
+public partial class MapTeleportWindow : MahApps.Metro.Controls.MetroWindow, ICloseable
 {
     public MapTeleportWindow(Window owner, BasePoi destination,
         MapTeleportWindowViewModel.TeleportationMode teleportationMode)

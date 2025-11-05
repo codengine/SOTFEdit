@@ -9,7 +9,7 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.View;
 
-public partial class MapSpawnActorsWindow : ICloseable
+public partial class MapSpawnActorsWindow : MahApps.Metro.Controls.MetroWindow, ICloseable
 {
     public MapSpawnActorsWindow(Window owner, BasePoi destination)
     {

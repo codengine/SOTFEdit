@@ -71,8 +71,35 @@ namespace SOTFEdit
             }
         }
 
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.Configuration.UserScopedSettingAttribute()]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+            public string MapWindowState
+            {
+                get
+                {
+                    return ((string)(this["MapWindowState"]));
+                }
+                set
+                {
+                    this["MapWindowState"] = value;
+                }
+            }
+
+            [global::System.Configuration.UserScopedSettingAttribute()]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.Configuration.DefaultSettingValueAttribute("0")]
+            public int MapWindowScreenIndex
+            {
+                get
+                {
+                    return ((int)(this["MapWindowScreenIndex"]));
+                }
+                set
+                {
+                    this["MapWindowScreenIndex"] = value;
+                }
+            }
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string LastFoundVersion
         {
@@ -311,19 +338,63 @@ namespace SOTFEdit
             }
         }
 
-
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool HideCompleted
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MapFilterHideCompleted
         {
             get
             {
-                return ((bool)(this["HideCompleted"]));
+                return ((bool)(this["MapFilterHideCompleted"]));
             }
             set
             {
-                this["HideCompleted"] = value;
+                this["MapFilterHideCompleted"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("All")]
+        public string MapFilterAreaFilter
+        {
+            get
+            {
+                return ((string)(this["MapFilterAreaFilter"]));
+            }
+            set
+            {
+                this["MapFilterAreaFilter"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("All")]
+        public string MapFilterRequirementsFilter
+        {
+            get
+            {
+                return ((string)(this["MapFilterRequirementsFilter"]));
+            }
+            set
+            {
+                this["MapFilterRequirementsFilter"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MapFilterFullText
+        {
+            get
+            {
+                return ((string)(this["MapFilterFullText"]));
+            }
+            set
+            {
+                this["MapFilterFullText"] = value;
             }
         }
 
@@ -340,6 +411,60 @@ namespace SOTFEdit
             {
                 this["DonePoiIdListString"] = value;
             }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MapWindowLeft
+        {
+            get { return ((double)(this["MapWindowLeft"])); }
+            set { this["MapWindowLeft"] = value; }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double MapWindowTop
+        {
+            get { return ((double)(this["MapWindowTop"])); }
+            set { this["MapWindowTop"] = value; }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800")]
+        public double MapWindowWidth
+        {
+            get { return ((double)(this["MapWindowWidth"])); }
+            set { this["MapWindowWidth"] = value; }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600")]
+        public double MapWindowHeight
+        {
+            get { return ((double)(this["MapWindowHeight"])); }
+            set { this["MapWindowHeight"] = value; }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoConnect
+        {
+            get { return ((bool)(this["AutoConnect"])); }
+            set { this["AutoConnect"] = value; }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoReload
+        {
+            get { return ((bool)(this["AutoReload"])); }
+            set { this["AutoReload"] = value; }
         }
     }
 }

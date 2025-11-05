@@ -5,8 +5,8 @@
       "cannibal": "Cannibal",
       "creep": "Creep",
       "human": "Human",
-      "muddyCannibal": "Muddy Cannibal",
-      "misc": "Misc"
+      "misc": "Misc",
+      "muddyCannibal": "Muddy Cannibal"
     },
     "details": {
       "area": "Area",
@@ -369,6 +369,7 @@
       },
       "buildingResistance": "Building Resistance",
       "coldPenalties": "Cold Penalties",
+      "coldPenaltiesStatReduction": "Stat Regeneration Penalties",
       "consumableEffects": {
         "_label": "Consumable Effects",
         "_tooltip": "How much damage you take eating bad food"
@@ -454,7 +455,6 @@
         "winter": "Winter",
         "_label": "Starting Season"
       },
-      "coldPenaltiesStatReduction": "Stat Regeneration Penalties",
       "uid": "UID"
     },
     "state": {
@@ -992,8 +992,8 @@
       "spawnActors": "Spawn Actors",
       "teleportKelvin": "Teleport Kelvin here",
       "teleportPlayer": "Teleport Player here",
-      "teleportVirginia": "Teleport Virginia here"
-      ,"resetAllDone": {
+      "teleportVirginia": "Teleport Virginia here",
+      "resetAllDone": {
         "text": "Reset All Done",
         "tooltip": "Unmark all POIs as done"
       },
@@ -1182,8 +1182,14 @@
         "text": "Unlocks",
         "tooltip": "Lets unlock certain game features"
       }
+    },
+    "resetAllDone": {
+      "text": "Reset POIs",
+      "tooltip": "Reset POIs marked as done"
     }
   },
+  "autoConnect": "Auto Connect",
+  "autoReload": "Auto Reload",
   "npcs": {
     "tabs": {
       "byFamily": {
@@ -1393,41 +1399,51 @@
     "header": "Weather State"
   },
   "windows": {
-    "map": {
-      "buttons": {
-        "markAsDone": "Mark as done",
-        "markAsUndone": "Mark as undone"
-      }
-    },
-    "itemPlater": {
-      "buttons": {
-        "addPlating": "Add Plating",
-        "removePlating": "Remove Plating"
-      },
-      "constructionCategories": {
-        "Item": "Item",
-        "Log": "Log",
-        "LogPlank": "Log Plank",
-        "Stick": "Stick",
-        "Stone": "Stone"
-      },
-      "constructions": "Constructions",
-      "disclaimer": "Be careful: The tool ONLY saves changes to the plating and reloads the savegame afterwards.\r\n\r\nSo make sure that there are no unsaved changes, else save the other changes before, THEN open the tool and apply the plating.\r\n\r\nMoreover, when you save, it can take some time if your savegame is rather huge.",
-      "followerItems": "Follower Items",
-      "itemsInInventory": "Items in Inventory",
-      "itemsInWeaponRacks": "Items in Weapon Racks",
-      "messages": {
-        "addPlating": "{0} item platings have been added",
-        "removePlating": "{0} item platings have been removed"
-      },
-      "structures": "Structures",
-      "title": "Item and Structure Plater"
-    },
     "main": {
+      "title": "{0} v{1} [{2}, {3} ({4})]",
+      "connection": {
+        "connected": "Connected: {0}:{1}",
+        "connecting": "Connecting...",
+        "disconnected": "Not connected"
+      },
+      "savegame": {
+        "loaded": "Savegame: {0}\\{1}",
+        "none": "No Savegame loaded"
+      },
+      "map": {
+        "buttons": {
+          "markAsDone": "Mark as done",
+          "markAsUndone": "Mark as undone"
+        }
+      },
+      "itemPlater": {
+        "buttons": {
+          "addPlating": "Add Plating",
+          "removePlating": "Remove Plating"
+        },
+        "constructionCategories": {
+          "Item": "Item",
+          "Log": "Log",
+          "LogPlank": "Log Plank",
+          "Stick": "Stick",
+          "Stone": "Stone"
+        },
+        "constructions": "Constructions",
+        "disclaimer": "Be careful: The tool ONLY saves changes to the plating and reloads the savegame afterwards.\r\n\r\nSo make sure that there are no unsaved changes, else save the other changes before, THEN open the tool and apply the plating.\r\n\r\nMoreover, when you save, it can take some time if your savegame is rather huge.",
+        "followerItems": "Follower Items",
+        "itemsInInventory": "Items in Inventory",
+        "itemsInWeaponRacks": "Items in Weapon Racks",
+        "messages": {
+          "addPlating": "{0} item platings have been added",
+          "removePlating": "{0} item platings have been removed"
+        },
+        "structures": "Structures",
+        "title": "Item and Structure Plater"
+      },
+      "modified": "{0}",
       "errors": {
         "errorCheckingLastVersion": "An error occured while checking for latest version"
       },
-      "map": "Map",
       "messages": {
         "alreadyLatestVersion": {
           "text": "You are already using the latest version",
@@ -1474,165 +1490,167 @@
         "saveChanges": "Save Changes",
         "unableToDeleteBackups": "Unable to delete backups: {0}",
         "unableToSpawnFollowers": "Unable to spawn followers"
-      },
-      "title": " (Selected: {0}, {1} - Saved at: {2}, Last Modified: {3})"
+      }
     },
     "modifyConsumedItems": {
-      "key": "Key",
-      "remove": "remove",
-      "removeAll": "Remove All",
-      "title": "Modify Consumed Items"
-    },
-    "regrowTrees": {
-      "all": "All",
-      "gone": "Gone",
-      "halfChopped": "Half-chopped",
-      "messages": {
-        "noTreesRegrown": "No trees with state \"{0}\" regrown",
-        "success": "{0} trees with previous state \"{1}\" should now have regrown. Please save to persist the changes."
+        "key": "Key",
+        "remove": "remove",
+        "removeAll": "Remove All",
+        "title": "Modify Consumed Items"
       },
-      "pctRegrow": "Regrow Percent",
-      "saveButton": "Regrow Trees",
-      "stumps": "Stumps",
-      "title": "Regrow Trees"
-    },
-    "resetContainers": {
-      "messages": {
-        "containersReset": {
-          "text": "{0} Containers have been reset. Please save the changes to apply them to the savegame",
-          "title": "Containers reset"
+      "regrowTrees": {
+        "all": "All",
+        "gone": "Gone",
+        "halfChopped": "Half-chopped",
+        "messages": {
+          "noTreesRegrown": "No trees with state \"{0}\" regrown",
+          "success": "{0} trees with previous state \"{1}\" should now have regrown. Please save to persist the changes."
         },
-        "nothingToReset": {
-          "text": "Nothing to reset found",
-          "title": "Nothing found"
-        }
-      }
-    },
-    "resetTraps": {
-      "messages": {
-        "nothingToReset": {
-          "text": "Nothing to reset found",
-          "title": "Nothing found"
-        },
-        "trapsReset": {
-          "text": "{0} traps have been reset. Please save the changes to apply them to the savegame",
-          "title": "Traps reset"
-        }
-      }
-    },
-    "selectSavegame": {
-      "buttons": {
-        "change": "Change...",
-        "setToDefault": "Set to default"
+        "pctRegrow": "Regrow Percent",
+        "saveButton": "Regrow Trees",
+        "stumps": "Stumps",
+        "title": "Regrow Trees"
       },
-      "folderBrowserTitle": "Select Sons of the Forest \"Saves\" Directory",
-      "headers": {
-        "location": "Location"
-      },
-      "lastSaveTimeTooltip": "Last write time of the savegame directory",
-      "selectedPath": {
-        "label": "Selected Path:",
-        "tooltip": "Usually the Savegames are stored at C:\\Users\\[user]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves"
-      },
-      "tabs": {
-        "multiplayer": "Multiplayer",
-        "multiplayerClient": "Multiplayer (Client)",
-        "singleplayer": "Singleplayer"
-      },
-      "title": "Select Savegame..."
-    },
-    "settings": {
-      "askForBackupsEveryTime": "Ask for backups every time",
-      "backupMode": "Backup Mode",
-      "fileMode": {
-        "label": "File Mode",
-        "single": "One backup per changed JSON file",
-        "zip": "ZIP Archive"
-      },
-      "language": "Language",
-      "messages": {
-        "languageChanged": {
-          "text": "Please restart the application to apply the changed language",
-          "title": "Settings saved"
+      "resetContainers": {
+        "messages": {
+          "containersReset": {
+            "text": "{0} Containers have been reset. Please save the changes to apply them to the savegame",
+            "title": "Containers reset"
+          },
+          "nothingToReset": {
+            "text": "Nothing to reset found",
+            "title": "Nothing found"
+          }
         }
       },
-      "theme": "Theme",
-      "title": "Settings"
-    },
-    "unhandledException": {
-      "applicationVersion": "Application Version",
-      "buttons": {
-        "copyErrorToClipboard": "Copy Error to Clipboard",
-        "exitApplication": "Exit Application"
-      },
-      "callstack": "Callstack",
-      "disclaimer": "An unexpected error occured. The application state might be corrupted.",
-      "exceptionMessage": "Exception Message",
-      "exceptionType": "Exception Type",
-      "header": "Exception Details",
-      "innerException": "Inner Exception",
-      "title": "Unhandled Exception"
-    },
-    "unlocks": {
-      "coreGameCompleted": "Core Game completed",
-      "creativeMode": "Creative Mode",
-      "creativeModeItem": "Creative Mode Item (?)",
-      "escapedIsland": "Escaped Island",
-      "messages": {
-        "playerProfileNotFound": "PlayerProfile.json could not be found at \"{0}\""
-      },
-      "title": "Unlocks"
-    },
-    "updateAvailable": {
-      "buttons": {
-        "download": "Download",
-        "ignore": "Ignore"
-      },
-      "header": "An Update is available",
-      "title": "Update available"
-    },
-    "worldItemCloner": {
-      "buttons": {
-        "cloneAtPlayerPosition": {
-          "text": "Clone at Player Position",
-          "tooltip": "Creates a clone of this object at the players position"
-        },
-        "removeAllCopies": {
-          "text": "Remove all copies from map",
-          "tooltip": "Removes all copies of this type from map"
-        },
-        "teleportObjectToPlayer": {
-          "text": "Teleport object to player",
-          "tooltip": "Teleports the object to the player"
-        },
-        "teleportPlayerToObject": {
-          "text": "Teleport player to object",
-          "tooltip": "Teleports the player to the object"
+      "resetTraps": {
+        "messages": {
+          "nothingToReset": {
+            "text": "Nothing to reset found",
+            "title": "Nothing found"
+          },
+          "trapsReset": {
+            "text": "{0} traps have been reset. Please save the changes to apply them to the savegame",
+            "title": "Traps reset"
+          }
         }
       },
-      "messages": {
-        "clonesDeleted": {
-          "text": "{0} clones of {1} were removed",
-          "title": "Clones removed"
+      "selectSavegame": {
+        "buttons": {
+          "change": "Change...",
+          "setToDefault": "Set to default"
         },
-        "nothingToDelete": {
-          "text": "Nothing to delete",
-          "title": "Nothing found"
+        "folderBrowserTitle": "Select Sons of the Forest \"Saves\" Directory",
+        "headers": {
+          "location": "Location"
         },
-        "nothingToMove": {
-          "text": "Nothing to move found",
-          "title": "Nothing found"
+        "lastSaveTimeTooltip": "Last write time of the savegame directory",
+        "selectedPath": {
+          "label": "Selected Path:",
+          "tooltip": "Usually the Savegames are stored at C:\\Users\\[user]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves"
         },
-        "objectCloned": {
-          "text": "A copy of {0} was created at player position. Please save changes to persist them",
-          "title": "{0} created"
-        }
+        "tabs": {
+          "multiplayer": "Multiplayer",
+          "multiplayerClient": "Multiplayer (Client)",
+          "singleplayer": "Singleplayer"
+        },
+        "title": "Select Savegame..."
       },
-      "pinTooltip": "Show Object Position on Map",
-      "title": "World Item Cloner",
-      "unknownItem": "Unknown Item ({0})",
-      "unnamedItem": "Unnamed ({0})",
-      "worldItem": "World Item"
+      "settings": {
+        "askForBackupsEveryTime": "Ask for backups every time",
+        "backupMode": "Backup Mode",
+        "fileMode": {
+          "label": "File Mode",
+          "single": "One backup per changed JSON file",
+          "zip": "ZIP Archive"
+        },
+        "language": "Language",
+        "messages": {
+          "languageChanged": {
+            "text": "Please restart the application to apply the changed language",
+            "title": "Settings saved"
+          }
+        },
+        "theme": "Theme",
+        "title": "Settings"
+      },
+      "unhandledException": {
+        "applicationVersion": "Application Version",
+        "buttons": {
+          "copyErrorToClipboard": "Copy Error to Clipboard",
+          "exitApplication": "Exit Application"
+        },
+        "callstack": "Callstack",
+        "disclaimer": "An unexpected error occured. The application state might be corrupted.",
+        "exceptionMessage": "Exception Message",
+        "exceptionType": "Exception Type",
+        "header": "Exception Details",
+        "innerException": "Inner Exception",
+        "title": "Unhandled Exception"
+      },
+      "unlocks": {
+        "coreGameCompleted": "Core Game completed",
+        "creativeMode": "Creative Mode",
+        "creativeModeItem": "Creative Mode Item (?)",
+        "escapedIsland": "Escaped Island",
+        "messages": {
+          "playerProfileNotFound": "PlayerProfile.json could not be found at \"{0}\""
+        },
+        "title": "Unlocks"
+      },
+      "updateAvailable": {
+        "buttons": {
+          "download": "Download",
+          "ignore": "Ignore"
+        },
+        "header": "An Update is available",
+        "title": "Update available"
+      },
+      "worldItemCloner": {
+        "buttons": {
+          "cloneAtPlayerPosition": {
+            "text": "Clone at Player Position",
+            "tooltip": "Creates a clone of this object at the players position"
+          },
+          "removeAllCopies": {
+            "text": "Remove all copies from map",
+            "tooltip": "Removes all copies of this type from map"
+          },
+          "teleportObjectToPlayer": {
+            "text": "Teleport object to player",
+            "tooltip": "Teleports the object to the player"
+          },
+          "teleportPlayerToObject": {
+            "text": "Teleport player to object",
+            "tooltip": "Teleports the player to the object"
+          }
+        },
+        "messages": {
+          "clonesDeleted": {
+            "text": "{0} clones of {1} were removed",
+            "title": "Clones removed"
+          },
+          "nothingToDelete": {
+            "text": "Nothing to delete",
+            "title": "Nothing found"
+          },
+          "nothingToMove": {
+            "text": "Nothing to move found",
+            "title": "Nothing found"
+          },
+          "objectCloned": {
+            "text": "A copy of {0} was created at player position. Please save changes to persist them",
+            "title": "{0} created"
+          }
+        },
+        "pinTooltip": "Show Object Position on Map",
+        "title": "World Item Cloner",
+        "unknownItem": "Unknown Item ({0})",
+        "unnamedItem": "Unnamed ({0})",
+        "worldItem": "World Item"
+      },
+    "map": {
+      "title": "Map - {0}, {1} ({2})"
     }
   },
   "worldItemTypes": {

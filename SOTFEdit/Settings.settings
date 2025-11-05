@@ -1,71 +1,169 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
-              GeneratedClassNamespace="SOTFEdit" GeneratedClassName="Settings">
-    <Profiles/>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings"
+              CurrentProfile="(Default)"
+              GeneratedClassNamespace="SOTFEdit"
+              GeneratedClassName="Settings">
+    <Profiles />
     <Settings>
-        <Setting Name="SavegamePath" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
+        <Setting Name="SavegamePath"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
+        <Setting Name="UpgradeRequired"
+                 Type="System.Boolean"
+                 Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
-        <Setting Name="CheckForUpdates" Type="System.Boolean" Scope="User">
+        <Setting Name="CheckForUpdates"
+                 Type="System.Boolean"
+                 Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
-        <Setting Name="LastFoundVersion" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
+        <Setting Name="MapWindowState"
+                 Type="System.Windows.WindowState"
+                 Scope="User">
+            <Value Profile="(Default)">Normal</Value>
         </Setting>
-        <Setting Name="Theme" Type="System.String" Scope="User">
+        <Setting Name="MapWindowScreenIndex"
+                 Type="System.Int32"
+                 Scope="User">
+            <Value Profile="(Default)">0</Value>
+        </Setting>
+        <Setting Name="LastFoundVersion"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="Theme"
+                 Type="System.String"
+                 Scope="User">
             <Value Profile="(Default)">Dark</Value>
         </Setting>
-        <Setting Name="ThemeAccent" Type="System.String" Scope="User">
+        <Setting Name="ThemeAccent"
+                 Type="System.String"
+                 Scope="User">
             <Value Profile="(Default)">Blue</Value>
         </Setting>
-        <Setting Name="BackupMode" Type="SOTFEdit.ApplicationSettings.BackupMode" Scope="User">
+        <Setting Name="BackupMode"
+                 Type="SOTFEdit.ApplicationSettings.BackupMode"
+                 Scope="User">
             <Value Profile="(Default)">InitialAndOne</Value>
         </Setting>
-        <Setting Name="LastSavegame" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
+        <Setting Name="LastSavegame"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="Language" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
+        <Setting Name="Language"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="LastSavegameName" Type="System.String" Scope="User">
-            <Value Profile="(Default)"/>
+        <Setting Name="LastSavegameName"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)" />
         </Setting>
-        <Setting Name="FirstRun" Type="System.Boolean" Scope="User">
+        <Setting Name="FirstRun"
+                 Type="System.Boolean"
+                 Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
-        <Setting Name="SelectedMapGroups" Type="System.String" Scope="User">
+        <Setting Name="SelectedMapGroups"
+                 Type="System.String"
+                 Scope="User">
             <Value Profile="(Default)">_null_</Value>
         </Setting>
-        <Setting Name="CompanionAddress" Type="System.String" Scope="User">
+        <Setting Name="CompanionAddress"
+                 Type="System.String"
+                 Scope="User">
             <Value Profile="(Default)">127.0.0.1</Value>
         </Setting>
-        <Setting Name="CompanionPort" Type="System.Int32" Scope="User">
+        <Setting Name="CompanionPort"
+                 Type="System.Int32"
+                 Scope="User">
             <Value Profile="(Default)">35321</Value>
         </Setting>
-        <Setting Name="CompanionConnectTimeout" Type="System.Int16" Scope="User">
+        <Setting Name="CompanionConnectTimeout"
+                 Type="System.Int16"
+                 Scope="User">
             <Value Profile="(Default)">15</Value>
         </Setting>
-        <Setting Name="MapType" Type="SOTFEdit.ViewModel.MapType" Scope="User">
+        <Setting Name="MapType"
+                 Type="SOTFEdit.ViewModel.MapType"
+                 Scope="User">
             <Value Profile="(Default)">Dark</Value>
         </Setting>
-        <Setting Name="CompanionKeepAliveInterval" Type="System.Int16" Scope="User">
+        <Setting Name="CompanionKeepAliveInterval"
+                 Type="System.Int16"
+                 Scope="User">
             <Value Profile="(Default)">30</Value>
         </Setting>
-        <Setting Name="CompanionMapPositionUpdateInterval" Type="System.Decimal" Scope="User">
+        <Setting Name="CompanionMapPositionUpdateInterval"
+                 Type="System.Decimal"
+                 Scope="User">
             <Value Profile="(Default)">0.1</Value>
         </Setting>
-        <Setting Name="AskForBackups" Type="System.Boolean" Scope="User">
+        <Setting Name="AskForBackups"
+                 Type="System.Boolean"
+                 Scope="User">
             <Value Profile="(Default)">False</Value>
         </Setting>
-        <Setting Name="HideCompleted" Type="System.Boolean" Scope="User">
+        <Setting Name="MapFilterHideCompleted"
+                 Type="System.Boolean"
+                 Scope="User">
             <Value Profile="(Default)">True</Value>
         </Setting>
-        <Setting Name="DonePoiIdListString" Type="System.String" Scope="User">
+        <Setting Name="MapFilterAreaFilter"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)">All</Value>
+        </Setting>
+        <Setting Name="MapFilterRequirementsFilter"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)">All</Value>
+        </Setting>
+        <Setting Name="MapFilterFullText"
+                 Type="System.String"
+                 Scope="User">
             <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="DonePoiIdListString"
+                 Type="System.String"
+                 Scope="User">
+            <Value Profile="(Default)" />
+        </Setting>
+        <Setting Name="MapWindowLeft"
+                 Type="System.Double"
+                 Scope="User">
+            <Value Profile="(Default)">0</Value>
+        </Setting>
+        <Setting Name="MapWindowTop"
+                 Type="System.Double"
+                 Scope="User">
+            <Value Profile="(Default)">0</Value>
+        </Setting>
+        <Setting Name="MapWindowWidth"
+                 Type="System.Double"
+                 Scope="User">
+            <Value Profile="(Default)">800</Value>
+        </Setting>
+        <Setting Name="MapWindowHeight"
+                 Type="System.Double"
+                 Scope="User">
+            <Value Profile="(Default)">600</Value>
+        </Setting>
+        <Setting Name="AutoConnect"
+                 Type="System.Boolean"
+                 Scope="User">
+            <Value Profile="(Default)">False</Value>
+        </Setting>
+        <Setting Name="AutoReload"
+                 Type="System.Boolean"
+                 Scope="User">
+            <Value Profile="(Default)">False</Value>
         </Setting>
     </Settings>
 </SettingsFile>
-

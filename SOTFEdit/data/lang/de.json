@@ -1,4 +1,4 @@
-﻿{
+{
   "actors": {
     "classification": {
       "animal": "Tier",
@@ -996,10 +996,10 @@
       "spawnActors": "Spawn Actors",
       "teleportKelvin": "Kelvin hierhin teleportieren",
       "teleportPlayer": "Spieler hierhin teleportieren",
-      "teleportVirginia": "Virginia hierhin teleportieren"
-      ,"resetAllDone": {
-    "text": "Alle Abgeschlossen zurücksetzen",
-    "tooltip": "Setzt alle POIs auf nicht abgeschlossen"
+      "teleportVirginia": "Virginia hierhin teleportieren",
+      "resetAllDone": {
+        "text": "Alle Abgeschlossen zurücksetzen",
+        "tooltip": "Setzt alle POIs auf nicht abgeschlossen"
       },
       "markAsDone": {
         "text": "Als erledigt markieren",
@@ -1188,6 +1188,8 @@
       }
     }
   },
+  "autoConnect": "Automatisch verbinden",
+  "autoReload": "Automatisch neu laden",
   "npcs": {
     "tabs": {
       "byFamily": {
@@ -1397,41 +1399,51 @@
     "header": "Wetterzustand"
   },
   "windows": {
-    "map": {
-      "buttons": {
-        "markAsDone": "Als erledigt markieren",
-        "markAsUndone": "Als unerledigt markieren"
-      }
-    },
-    "itemPlater": {
-      "buttons": {
-        "addPlating": "Beschichten",
-        "removePlating": "Beschichtung entfernen"
-      },
-      "constructionCategories": {
-        "Item": "Gegenstand",
-        "Log": "Baumstamm",
-        "LogPlank": "Brett",
-        "Stick": "Stock",
-        "Stone": "Stein"
-      },
-      "constructions": "Bauwerke",
-      "disclaimer": "Vorsicht: Das Tool speichert NUR Änderungen an der Beschichtung läd das Savegame danach erneut.\r\n\r\nStelle also sicher dass es keine ungespeicherten Änderungen gibt. Falls doch, dann speicher zuerst die Änderungen, öffne DANN das Tool und führe die Beschichtung durch.\r\n\r\nEs kann außerdem eine Weile dauern bis die Änderungen gespeichert wurden.",
-      "followerItems": "Begleiter-Gegenstände",
-      "itemsInInventory": "Gegenstände im Inventar",
-      "itemsInWeaponRacks": "Gegenstände in Waffenhaltern",
-      "messages": {
-        "addPlating": "{0} Beschichtungen wurden hinzugefügt",
-        "removePlating": "{0} Beschichtungen wurden entfernt"
-      },
-      "structures": "Strukturen",
-      "title": "Gegenstands- und Struktur-Beschichter"
-    },
     "main": {
+      "title": "{0} v{1} [{2}, {3} ({4})]",
+      "connection": {
+        "connected": "Verbunden: {0}:{1}",
+        "connecting": "Verbinde...",
+        "disconnected": "Nicht verbunden"
+      },
+      "savegame": {
+        "loaded": "Spielstand: {0}\\{1}",
+        "none": "Kein Spielstand geladen"
+      },
+      "modified": "{0}",
+      "map": {
+        "buttons": {
+          "markAsDone": "Als erledigt markieren",
+          "markAsUndone": "Als unerledigt markieren"
+        }
+      },
+      "itemPlater": {
+        "buttons": {
+          "addPlating": "Beschichten",
+          "removePlating": "Beschichtung entfernen"
+        },
+        "constructionCategories": {
+          "Item": "Gegenstand",
+          "Log": "Baumstamm",
+          "LogPlank": "Brett",
+          "Stick": "Stock",
+          "Stone": "Stein"
+        },
+        "constructions": "Bauwerke",
+        "disclaimer": "Vorsicht: Das Tool speichert NUR Änderungen an der Beschichtung läd das Savegame danach erneut.\r\n\r\nStelle also sicher dass es keine ungespeicherten Änderungen gibt. Falls doch, dann speicher zuerst die Änderungen, öffne DANN das Tool und führe die Beschichtung durch.\r\n\r\nEs kann außerdem eine Weile dauern bis die Änderungen gespeichert wurden.",
+        "followerItems": "Begleiter-Gegenstände",
+        "itemsInInventory": "Gegenstände im Inventar",
+        "itemsInWeaponRacks": "Gegenstände in Waffenhaltern",
+        "messages": {
+          "addPlating": "{0} Beschichtungen wurden hinzugefügt",
+          "removePlating": "{0} Beschichtungen wurden entfernt"
+        },
+        "structures": "Strukturen",
+        "title": "Gegenstands- und Struktur-Beschichter"
+      },
       "errors": {
         "errorCheckingLastVersion": "Beim Überprüfen der neuesten Version ist ein Fehler aufgetreten"
       },
-      "map": "Karte",
       "messages": {
         "alreadyLatestVersion": {
           "text": "Du verwendest bereits die neueste Version",
@@ -1478,8 +1490,7 @@
         "saveChanges": "Änderungen speichern",
         "unableToDeleteBackups": "Backups konnten nicht gelöscht werden: {0}",
         "unableToSpawnFollowers": "Begleiter konnten nicht erzeugt werden"
-      },
-      "title": " (Ausgewählt: {0}, {1} - Gespeichert am: {2}, Zuletzt geändert: {3})"
+      }
     },
     "modifyConsumedItems": {
       "key": "Key",
@@ -1637,6 +1648,9 @@
       "unknownItem": "Unbekanntes Objekt ({0})",
       "unnamedItem": "Unbenannt ({0})",
       "worldItem": "Weltobjekt"
+    },
+    "map": {
+      "title": "Karte - {0}, {1} ({2})"
     }
   },
   "worldItemTypes": {
@@ -1645,6 +1659,4 @@
     "KnightV": "Knight V",
     "Radio": "Radio"
   }
-  ,
-  "resetAllDone": "Alle erledigten zurücksetzen"
 }

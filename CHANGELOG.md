@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.1.0 (2025-11-04)
+
+### Features
+- **Map Window Enhancements:**
+  - Added "Auto Reload" feature to automatically reload the savegame when it changes on disk
+  - Auto Reload now automatically loads the most recent savegame if none is selected
+  - Auto Reload triggers immediately when the map window opens (no 5-second delay)
+  - Added "Auto Connect" feature for companion app connectivity
+  - Map window now remembers which monitor it was on and opens maximized on the correct screen
+  - Fixed window restore behavior - properly restores to saved size when un-maximizing
+  - Added "Map -" / "Karte -" / "Mapa -" prefix to map window title for clarity
+
+### Improvements
+- **Translation System:**
+  - Fixed main window title to show connection status, savegame info, and modified date
+  - Modified date display now shows just the date without "Modified:" / "Zuletzt geändert:" / "Zmodyfikowano:" prefix
+
+### Technical Changes
+- Improved window position and state management using WPF RestoreBounds
+- Added System.IO using directive for directory modification detection
+- Enhanced multi-monitor support with proper window positioning
+
 ## v1.0.2 (2025-11-02)
 
 ### Changed

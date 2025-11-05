@@ -189,10 +189,6 @@
   },
   "armor": {
     "buttons": {
-      "resetAllDone": {
-        "text": "Resetuj wszystkie ukończone",
-        "tooltip": "Odznacz wszystkie ukończone POI jako nieukończone"
-      },
       "default": "Zwykły",
       "max": "Max",
       "remove": "Usuń",
@@ -996,8 +992,8 @@
       "spawnActors": "Przywołaj NPC",
       "teleportKelvin": "Teleportuj tutaj Kelvina",
       "teleportPlayer": "Teleportuj tutaj Gracza",
-      "teleportVirginia": "Teleportuj tutaj Virginię"
-      ,"resetAllDone": {
+      "teleportVirginia": "Teleportuj tutaj Virginię",
+      "resetAllDone": {
         "text": "Zresetuj wszystkie ukończone",
         "tooltip": "Odznacz wszystkie POI jako ukończone"
       },
@@ -1185,9 +1181,15 @@
       "unlocks": {
         "text": "Odblokowywania",
         "tooltip": "Pozwala odblokować niektóre części gry"
+      },
+      "resetAllDone": {
+        "text": "Zresetuj wszystkie ukończone",
+        "tooltip": "Odznacz wszystkie POI jako ukończone"
       }
     }
   },
+  "autoConnect": "Automatyczne łączenie",
+  "autoReload": "Automatyczne przeładowanie",
   "npcs": {
     "tabs": {
       "byFamily": {
@@ -1397,13 +1399,25 @@
     "header": "Pogoda"
   },
   "windows": {
-    "map": {
-      "buttons": {
-        "markAsDone": "Oznacz jako ukończone",
-        "markAsUndone": "Oznacz jako nieukończone"
-      }
-    },
-    "itemPlater": {
+    "main": {
+      "title": "{0} v{1} [{2}, {3} ({4})]",
+      "connection": {
+        "connected": "Połączono: {0}:{1}",
+        "connecting": "Łączenie...",
+        "disconnected": "Nie połączono"
+      },
+      "savegame": {
+        "loaded": "Zapis gry: {0}\\{1}",
+        "none": "Brak wczytanego zapisu gry"
+      },
+      "modified": "{0}",
+      "map": {
+        "buttons": {
+          "markAsDone": "Oznacz jako ukończone",
+          "markAsUndone": "Oznacz jako nieukończone"
+        }
+      },
+      "itemPlater": {
       "buttons": {
         "addPlating": "Dodaj plating",
         "removePlating": "Usuń plating"
@@ -1427,12 +1441,10 @@
       "structures": "Struktury",
       "title": "Plater przedmiotów i struktur"
     },
-    "main": {
-      "errors": {
-        "errorCheckingLastVersion": "Pojawił się błąd podczas sprawdzania dostępność nowszej wersji"
-      },
-      "map": "Mapa",
-      "messages": {
+    "errors": {
+      "errorCheckingLastVersion": "Pojawił się błąd podczas sprawdzania dostępność nowszej wersji"
+    },
+    "messages": {
         "alreadyLatestVersion": {
           "text": "Używasz najnowszej wersji",
           "title": "Brak aktualizacji"
@@ -1478,165 +1490,167 @@
         "saveChanges": "Zapisz zmiany",
         "unableToDeleteBackups": "Nie można usunąć backupów: {0}",
         "unableToSpawnFollowers": "Nie można zrespić followera"
-      },
-      "title": " (Wybrano: {0}, {1} - Zapisano: {2}, Ostatnio modyfikowano: {3})"
+      }
     },
     "modifyConsumedItems": {
-      "key": "Klucz",
-      "remove": "Usuń",
-      "removeAll": "Usuń wszystkie",
-      "title": "Modyfikuj zjedzone jedzenie"
-    },
-    "regrowTrees": {
-      "all": "Wszystkie",
-      "gone": "Brak pozostałości",
-      "halfChopped": "Pół ścięte",
-      "messages": {
-        "noTreesRegrown": "Brak drzew ze statusem \"{0}\" odrosło",
-        "success": "{0} drzew z stanem \"{1}\" powinno odrosnąć. Zapisz aby je zatrzymać."
+        "key": "Klucz",
+        "remove": "Usuń",
+        "removeAll": "Usuń wszystkie",
+        "title": "Modyfikuj zjedzone jedzenie"
       },
-      "pctRegrow": "Procent odrośnięcia",
-      "saveButton": "Odrośnij drzewa",
-      "stumps": "Pieńki",
-      "title": "Odrośnij drzewa"
-    },
-    "resetContainers": {
-      "messages": {
-        "containersReset": {
-          "text": "Zaktualizowano pojemniki. Zapisz zmiany aby zmienić zapis gry",
-          "title": "Reset pojemników"
+      "regrowTrees": {
+        "all": "Wszystkie",
+        "gone": "Brak pozostałości",
+        "halfChopped": "Pół ścięte",
+        "messages": {
+          "noTreesRegrown": "Brak drzew ze statusem \"{0}\" odrosło",
+          "success": "{0} drzew z stanem \"{1}\" powinno odrosnąć. Zapisz aby je zatrzymać."
         },
-        "nothingToReset": {
-          "text": "Nic nie znaleziono do zresetowania",
-          "title": "Nic nie znaleziono"
-        }
-      }
-    },
-    "resetTraps": {
-      "messages": {
-        "nothingToReset": {
-          "text": "Nic nie znaleziono do zresetowania",
-          "title": "Nic nie znaleziono"
-        },
-        "trapsReset": {
-          "text": "{0} pułapek zostało zresetowanych.  Zapisz zmiany aby zmienić zapis gry",
-          "title": "Reset pułapek"
-        }
-      }
-    },
-    "selectSavegame": {
-      "buttons": {
-        "change": "Zmień...",
-        "setToDefault": "Ustaw na bazowe"
+        "pctRegrow": "Procent odrośnięcia",
+        "saveButton": "Odrośnij drzewa",
+        "stumps": "Pieńki",
+        "title": "Odrośnij drzewa"
       },
-      "folderBrowserTitle": "Wybierz Sons of the Forest \"Saves\" Directory",
-      "headers": {
-        "location": "Pozycja"
-      },
-      "lastSaveTimeTooltip": "Last write time of the savegame directory",
-      "selectedPath": {
-        "label": "Wybrana ścieżka:",
-        "tooltip": "Zazwyczaj zapisy przechowywane są w C:\\Users\\[user]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves"
-      },
-      "tabs": {
-        "multiplayer": "Multiplayer",
-        "multiplayerClient": "Multiplayer (Client)",
-        "singleplayer": "Singleplayer"
-      },
-      "title": "Wybierz zapis..."
-    },
-    "settings": {
-      "askForBackupsEveryTime": "Pytaj o backupy za każdym razem",
-      "backupMode": "Tryb backupów",
-      "fileMode": {
-        "label": "Tryb plików",
-        "single": "Jeden backup na zmieniony plik JSON",
-        "zip": "Archiwum ZIP"
-      },
-      "language": "Język",
-      "messages": {
-        "languageChanged": {
-          "text": "Zrestartuj aplikację aby zapisać zmianę języka",
-          "title": "Zapisano ustawienia"
+      "resetContainers": {
+        "messages": {
+          "containersReset": {
+            "text": "Zaktualizowano pojemniki. Zapisz zmiany aby zmienić zapis gry",
+            "title": "Reset pojemników"
+          },
+          "nothingToReset": {
+            "text": "Nic nie znaleziono do zresetowania",
+            "title": "Nic nie znaleziono"
+          }
         }
       },
-      "theme": "motyw",
-      "title": "Ustawienia"
-    },
-    "unhandledException": {
-      "applicationVersion": "Wersja Aplikacji",
-      "buttons": {
-        "copyErrorToClipboard": "Skopiuj błąd do schowka",
-        "exitApplication": "Wyjdź z Aplikacji"
-      },
-      "callstack": "callstack",
-      "disclaimer": "Wystąpił nieoczekiwany błąd. Stan aplikacji może być uszkodzony.",
-      "exceptionMessage": "Komunikat Wyjątku",
-      "exceptionType": "Typ Wyjątku",
-      "header": "Szczegóły Wyjątku",
-      "innerException": "Wewnętrzny Wyjątek",
-      "title": "Nieobsłużony Wyjątek"
-    },
-    "unlocks": {
-      "coreGameCompleted": "Ukończono bazową grę",
-      "creativeMode": "Tryb Kreatywny",
-      "creativeModeItem": "Przedmiot trybu kreatywnego (?)",
-      "escapedIsland": "Opuszczono wyspę",
-      "messages": {
-        "playerProfileNotFound": "Nie można było znaleźć PlayerProfile.json w \"{0}\""
-      },
-      "title": "Odblokowywania"
-    },
-    "updateAvailable": {
-      "buttons": {
-        "download": "Pobierz",
-        "ignore": "Ignoruj"
-      },
-      "header": "Dostępna aktulizacja",
-      "title": "Dostępna aktulizacja"
-    },
-    "worldItemCloner": {
-      "buttons": {
-        "cloneAtPlayerPosition": {
-          "text": "Klonuj przy pozycji gracza",
-          "tooltip": "Tworzy kopie tego obiektu przy graczu"
-        },
-        "removeAllCopies": {
-          "text": "Usuń wszystkie kopie",
-          "tooltip": "Usuwa wszystkie kopie tego typu z mapy"
-        },
-        "teleportObjectToPlayer": {
-          "text": "Teleportuj obiekt do gracza",
-          "tooltip": "Teleportuje obiekty do gracza"
-        },
-        "teleportPlayerToObject": {
-          "text": "Teleportuj gracza do obiektu",
-          "tooltip": "Teleportuje gracza do obiektu"
+      "resetTraps": {
+        "messages": {
+          "nothingToReset": {
+            "text": "Nic nie znaleziono do zresetowania",
+            "title": "Nic nie znaleziono"
+          },
+          "trapsReset": {
+            "text": "{0} pułapek zostało zresetowanych.  Zapisz zmiany aby zmienić zapis gry",
+            "title": "Reset pułapek"
+          }
         }
       },
-      "messages": {
-        "clonesDeleted": {
-          "text": "Usunięto {0} klonów {1}",
-          "title": "Klony usunięte"
+      "selectSavegame": {
+        "buttons": {
+          "change": "Zmień...",
+          "setToDefault": "Ustaw na bazowe"
         },
-        "nothingToDelete": {
-          "text": "Nic do usunięcia",
-          "title": "Nic nie znaleziono"
+        "folderBrowserTitle": "Wybierz Sons of the Forest \"Saves\" Directory",
+        "headers": {
+          "location": "Pozycja"
         },
-        "nothingToMove": {
-          "text": "Nic do przesunięcia",
-          "title": "Nic nie znaleziono"
+        "lastSaveTimeTooltip": "Last write time of the savegame directory",
+        "selectedPath": {
+          "label": "Wybrana ścieżka:",
+          "tooltip": "Zazwyczaj zapisy przechowywane są w C:\\Users\\[user]\\AppData\\LocalLow\\Endnight\\SonsOfTheForest\\Saves"
         },
-        "objectCloned": {
-          "text": "Kopia {0} stworzona w lokalizacji gracza. Zapisz and zatrzymać zmiany",
-          "title": "{0} stworzony"
-        }
+        "tabs": {
+          "multiplayer": "Multiplayer",
+          "multiplayerClient": "Multiplayer (Client)",
+          "singleplayer": "Singleplayer"
+        },
+        "title": "Wybierz zapis..."
       },
-      "pinTooltip": "Pokaż pozycje przedmiotu na mapie",
-      "title": "Kopiarka obiektów",
-      "unknownItem": "Nieznany przedmiot ({0})",
-      "unnamedItem": "Nienazwane ({0})",
-      "worldItem": "Przedmiot"
+      "settings": {
+        "askForBackupsEveryTime": "Pytaj o backupy za każdym razem",
+        "backupMode": "Tryb backupów",
+        "fileMode": {
+          "label": "Tryb plików",
+          "single": "Jeden backup na zmieniony plik JSON",
+          "zip": "Archiwum ZIP"
+        },
+        "language": "Język",
+        "messages": {
+          "languageChanged": {
+            "text": "Zrestartuj aplikację aby zapisać zmianę języka",
+            "title": "Zapisano ustawienia"
+          }
+        },
+        "theme": "motyw",
+        "title": "Ustawienia"
+      },
+      "unhandledException": {
+        "applicationVersion": "Wersja Aplikacji",
+        "buttons": {
+          "copyErrorToClipboard": "Skopiuj błąd do schowka",
+          "exitApplication": "Wyjdź z Aplikacji"
+        },
+        "callstack": "callstack",
+        "disclaimer": "Wystąpił nieoczekiwany błąd. Stan aplikacji może być uszkodzony.",
+        "exceptionMessage": "Komunikat Wyjątku",
+        "exceptionType": "Typ Wyjątku",
+        "header": "Szczegóły Wyjątku",
+        "innerException": "Wewnętrzny Wyjątek",
+        "title": "Nieobsłużony Wyjątek"
+      },
+      "unlocks": {
+        "coreGameCompleted": "Ukończono bazową grę",
+        "creativeMode": "Tryb Kreatywny",
+        "creativeModeItem": "Przedmiot trybu kreatywnego (?)",
+        "escapedIsland": "Opuszczono wyspę",
+        "messages": {
+          "playerProfileNotFound": "Nie można było znaleźć PlayerProfile.json w \"{0}\""
+        },
+        "title": "Odblokowywania"
+      },
+      "updateAvailable": {
+        "buttons": {
+          "download": "Pobierz",
+          "ignore": "Ignoruj"
+        },
+        "header": "Dostępna aktulizacja",
+        "title": "Dostępna aktulizacja"
+      },
+      "worldItemCloner": {
+        "buttons": {
+          "cloneAtPlayerPosition": {
+            "text": "Klonuj przy pozycji gracza",
+            "tooltip": "Tworzy kopie tego obiektu przy graczu"
+          },
+          "removeAllCopies": {
+            "text": "Usuń wszystkie kopie",
+            "tooltip": "Usuwa wszystkie kopie tego typu z mapy"
+          },
+          "teleportObjectToPlayer": {
+            "text": "Teleportuj obiekt do gracza",
+            "tooltip": "Teleportuje obiekty do gracza"
+          },
+          "teleportPlayerToObject": {
+            "text": "Teleportuj gracza do obiektu",
+            "tooltip": "Teleportuje gracza do obiektu"
+          }
+        },
+        "messages": {
+          "clonesDeleted": {
+            "text": "Usunięto {0} klonów {1}",
+            "title": "Klony usunięte"
+          },
+          "nothingToDelete": {
+            "text": "Nic do usunięcia",
+            "title": "Nic nie znaleziono"
+          },
+          "nothingToMove": {
+            "text": "Nic do przesunięcia",
+            "title": "Nic nie znaleziono"
+          },
+          "objectCloned": {
+            "text": "Kopia {0} stworzona w lokalizacji gracza. Zapisz and zatrzymać zmiany",
+            "title": "{0} stworzony"
+          }
+        },
+        "pinTooltip": "Pokaż pozycje przedmiotu na mapie",
+        "title": "Kopiarka obiektów",
+        "unknownItem": "Nieznany przedmiot ({0})",
+        "unnamedItem": "Nienazwane ({0})",
+        "worldItem": "Przedmiot"
+      },
+    "map": {
+      "title": "Mapa - {0}, {1} ({2})"
     }
   },
   "worldItemTypes": {
@@ -1645,6 +1659,4 @@
     "KnightV": "Knight V",
     "Radio": "Radio"
   }
-  ,
-  "resetAllDone": "Resetuj wszystkie ukończone"
 }

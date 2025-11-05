@@ -156,15 +156,22 @@ Some positions are missing but they may be added in the future.
 
 ### Features
 
-    - Show/hide information about 3D Printers, Actors/NPCs, Ammunition, Bunkers, Camps, Cannibal Villages, Caves, Crates,
-      Doors, Helicopters, Generic Information, Items, Lakes, Laptops, Player, Structures, Supplies and Villages
+- Show/hide information about 3D Printers, Actors/NPCs, Ammunition, Bunkers, Camps, Cannibal Villages, Caves, Crates,
+  Doors, Helicopters, Generic Information, Items, Lakes, Laptops, Player, Structures, Supplies and Villages
 - Teleport the Player and Followers to Actors/NPCs, the player, Zip Lines, Structures, Caves, Bunkers, Helicopters
 - Remove Zip Lines from the map
 - Spawn Actors/NPCs at target areas
+- **Auto Reload**: Automatically reloads the savegame when changes are detected on disk, keeping the map synchronized with your game
+- **Auto Connect**: Automatically connects to the companion app when available
+- Multi-monitor support with window position memory
 
 ### Options
 
 You can enable or disable icons using the "Options" button in the top left corner.
+
+**Auto Reload and Auto Connect** checkboxes are available at the top of the map window:
+- **Auto Reload**: When enabled, the map will automatically detect when your savegame is modified and reload the data. If no savegame is loaded, it will automatically load the most recent one.
+- **Auto Connect**: When enabled, the map will automatically attempt to connect to the companion app.
 
 Some important notes regarding the filters:
 

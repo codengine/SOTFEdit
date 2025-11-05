@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace SOTFEdit.View;
 
-public partial class ShowImageWindow
+public partial class ShowImageWindow : MahApps.Metro.Controls.MetroWindow
 {
     public ShowImageWindow(Window owner, string imageSource, string title)
     {

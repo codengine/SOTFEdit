@@ -25,7 +25,7 @@ namespace SOTFEdit.View;
 ///     Interaction logic for MainWindow.xaml
 /// </summary>
 // ReSharper disable once UnusedMember.Global
-public partial class MainWindow
+public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
 {
     private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
@@ -39,16 +39,58 @@ public partial class MainWindow
 
     public MainWindow()
     {
-        SetupListeners();
-        DataContext = _dataContext = Ioc.Default.GetRequiredService<MainViewModel>();
-        InitializeComponent();
+    SetupListeners();
+    DataContext = _dataContext = Ioc.Default.GetRequiredService<MainViewModel>();
+    InitializeComponent();
 
-        App.GetAssemblyVersion(out var assemblyName, out var assemblyVersion);
+    App.GetAssemblyVersion(out var assemblyName, out var assemblyVersion);
+    _baseTitle = $"{assemblyName} v{assemblyVersion}";
+    Title = _baseTitle;
+    UpdateWindowTitle();
+    Loaded += OnLoaded;
+    }
 
-        _baseTitle = $"{assemblyName} v{assemblyVersion}";
-        Title = _baseTitle;
+    private void UpdateWindowTitle()
+    {
+        var companionManager = Ioc.Default.GetRequiredService<Infrastructure.Companion.CompanionConnectionManager>();
+        var isConnected = companionManager.IsConnected();
+        var status = companionManager.Status;
+        string connectionPart;
+        if (isConnected)
+        {
+            var ip = SOTFEdit.Settings.Default.CompanionAddress;
+            var port = SOTFEdit.Settings.Default.CompanionPort;
+            connectionPart = TranslationManager.GetFormatted("windows.main.connection.connected", ip, port);
+        }
+        else if (status == Infrastructure.Companion.CompanionConnectionManager.ConnectionStatus.Connecting)
+        {
+            connectionPart = TranslationManager.Get("windows.main.connection.connecting");
+        }
+        else
+        {
+            connectionPart = TranslationManager.Get("windows.main.connection.disconnected");
+        }
 
-        Loaded += OnLoaded;
+        var savegame = SavegameManager.SelectedSavegame;
+        string savegamePart;
+        string modifiedPart = string.Empty;
+        if (savegame != null)
+        {
+            string type = savegame.PrintableType;
+            var fileName = savegame.FullPath.Split(System.IO.Path.DirectorySeparatorChar).LastOrDefault();
+            savegamePart = TranslationManager.GetFormatted("windows.main.savegame.loaded", type!, fileName!);
+            var modified = savegame.SavegameStore.LastWriteTime;
+            modifiedPart = TranslationManager.GetFormatted("windows.main.modified", modified.ToString("yyyy-MM-dd HH:mm")!);
+        }
+        else
+        {
+            savegamePart = TranslationManager.Get("windows.main.savegame.none");
+        }
+
+    string assemblyName;
+    Semver.SemVersion assemblyVersion;
+    App.GetAssemblyVersion(out assemblyName, out assemblyVersion);
+    Title = TranslationManager.GetFormatted("windows.main.title", assemblyName, assemblyVersion.ToString(), connectionPart, savegamePart, modifiedPart);
     }
 
     private void SetupListeners()
@@ -445,11 +487,7 @@ public partial class MainWindow
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
-            Title = _baseTitle + (selectedSavegame != null
-                ? TranslationManager.GetFormatted("windows.main.title", selectedSavegame.Title,
-                    selectedSavegame.PrintableType, selectedSavegame.LastSaveTime,
-                    selectedSavegame.SavegameStore.LastWriteTime)
-                : "");
+            UpdateWindowTitle();
         });
     }
 
