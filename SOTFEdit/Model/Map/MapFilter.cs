@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using SOTFEdit.Infrastructure;
+using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.Model.Map;
 
@@ -56,6 +58,15 @@ public partial class MapFilter : ObservableObject
             Settings.Default.MapFilterRequirementsFilter, out RequirementsFilterType req))
             _requirementsFilter = req;
         _hideCompleted = Settings.Default.MapFilterHideCompleted;
+
+        // Listen for language changes to refresh filter names
+        WeakReferenceMessenger.Default.Register<LanguageChangedEvent>(this, (_, _) => OnLanguageChanged());
+    }
+
+    private void OnLanguageChanged()
+    {
+        // Notify that AreaFilterTypeValues may have changed (StaticAreaFilter.Name is now dynamic)
+        OnPropertyChanged(nameof(AreaFilterTypeValues));
     }
 
     public List<IAreaFilter> AreaFilterTypeValues { get; }

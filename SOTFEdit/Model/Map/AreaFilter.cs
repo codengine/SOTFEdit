@@ -5,13 +5,13 @@ namespace SOTFEdit.Model.Map;
 public class AreaFilter : IAreaFilter
 {
     public static readonly IAreaFilter All =
-        new StaticAreaFilter(TranslationManager.Get("map.areaFilter.types.all"), _ => true);
+        new StaticAreaFilter("map.areaFilter.types.all", _ => true);
 
     public static readonly IAreaFilter Surface =
-        new StaticAreaFilter(TranslationManager.Get("map.areaFilter.types.surfaceOnly"), poi => !poi.IsUnderground);
+        new StaticAreaFilter("map.areaFilter.types.surfaceOnly", poi => !poi.IsUnderground);
 
     public static readonly IAreaFilter CavesOrBunkers =
-        new StaticAreaFilter(TranslationManager.Get("map.areaFilter.types.undergroundOnly"), poi => poi.IsUnderground);
+        new StaticAreaFilter("map.areaFilter.types.undergroundOnly", poi => poi.IsUnderground);
 
     private readonly Area _area;
 
@@ -31,4 +31,9 @@ public class AreaFilter : IAreaFilter
     }
 
     public string Name => _area.Name;
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

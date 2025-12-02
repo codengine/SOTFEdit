@@ -77,6 +77,12 @@ public abstract partial class BasePoi : ObservableObject, IPoi
     {
         IsDone = !IsDone;
     }
+
+    public void RefreshDoneStatus()
+    {
+        OnPropertyChanged(nameof(IsDone));
+        OnPropertyChanged(nameof(DoneButtonText));
+    }
     [NotifyPropertyChangedFor(nameof(Visible))]
     [ObservableProperty]
     private bool _enabled;

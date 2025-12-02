@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.2.1 (2025-12-02)
+
+### Bug Fixes
+- **Map Window:**
+  - Fixed POI "done" status not refreshing when savegame auto-reloads
+  - Fixed "Hide Completed" filter not updating after auto-reload
+  - POI icons and visibility now correctly update when inventory changes are detected
+  - Fixed Area and Requirements filters not persisting between sessions
+  - Fixed Area filter values not updating when language is changed
+
+### Technical Changes
+- Added `SelectedSavegameChangedEvent` listener to `MapViewModel`
+- Implemented `RefreshAllPoiStatus()` method to refresh `IsDone` property and re-apply filters
+- Added `RefreshDoneStatus()` public method to `BasePoi` class
+- Added `ToString()` override to `AreaFilter` and `StaticAreaFilter` for proper serialization
+- Made `StaticAreaFilter.Name` dynamic by storing translation key instead of translated string
+- Added `LanguageChangedEvent` listener to `MapFilter` to refresh filter names
+
 ## v1.2.0 (2025-11-05)
 
 ### Features

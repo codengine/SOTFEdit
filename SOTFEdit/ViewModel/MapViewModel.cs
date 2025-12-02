@@ -297,6 +297,32 @@ public partial class MapViewModel : ObservableObject
                 Application.Current.Dispatcher.Invoke(() => OnCompanionNetworkPlayerUpdateMessage(message)));
         WeakReferenceMessenger.Default.Register<CompanionConnectionStatusEvent>(this,
             (_, message) => OnCompanionConnectionStatusEvent(message.Status));
+        WeakReferenceMessenger.Default.Register<SelectedSavegameChangedEvent>(this,
+            (_, _) => OnSelectedSavegameChanged());
+    }
+
+    private void OnSelectedSavegameChanged()
+    {
+        // Refresh IsDone status and filters for all POIs after savegame reload
+        RefreshAllPoiStatus();
+    }
+
+    private void RefreshAllPoiStatus()
+    {
+        lock (Pois)
+        {
+            foreach (var poi in Pois)
+            {
+                // Notify IsDone property changed for BasePoi objects
+                if (poi is BasePoi basePoi)
+                {
+                    basePoi.RefreshDoneStatus();
+                }
+
+                // Re-apply filter to update visibility based on HideCompleted and inventory status
+                poi.ApplyFilter(MapFilter);
+            }
+        }
     }
 
     private void OnCompanionConnectionStatusEvent(CompanionConnectionManager.ConnectionStatus status)
