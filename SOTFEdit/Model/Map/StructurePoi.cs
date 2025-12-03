@@ -29,10 +29,20 @@ public class StructurePoi : BasePoi
 
     protected override bool ShouldFilter(MapFilter mapFilter)
     {
-    if (mapFilter.HideCompleted && IsDone)
+        var hideCompleted = mapFilter.HideCompleted;
+        var isDone = IsDone;
+
+        if (hideCompleted && isDone)
         {
+            NLog.LogManager.GetCurrentClassLogger().Debug($"StructurePoi.ShouldFilter: Hiding {Title} (ID={Id}), HideCompleted={hideCompleted}, IsDone={isDone}");
             return true;
         }
+
+        if (hideCompleted && !isDone)
+        {
+            NLog.LogManager.GetCurrentClassLogger().Trace($"StructurePoi.ShouldFilter: NOT hiding {Title} (ID={Id}), HideCompleted={hideCompleted}, IsDone={isDone}");
+        }
+
         return mapFilter.RequirementsFilter == MapFilter.RequirementsFilterType.InaccessibleOnly ||
                base.ShouldFilter(mapFilter);
     }

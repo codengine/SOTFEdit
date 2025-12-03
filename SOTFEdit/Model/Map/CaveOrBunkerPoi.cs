@@ -6,7 +6,7 @@ namespace SOTFEdit.Model.Map;
 
 public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
 {
-    private readonly HashSet<int> _inventoryItems;
+    private HashSet<int> _inventoryItems;
     private readonly IEnumerable<Item>? _items;
     private readonly IEnumerable<string>? _objects;
 
@@ -63,6 +63,12 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
     private bool HasAllItemsInInventory()
     {
         return _items?.All(HasItemInInventory) ?? true;
+    }
+
+    public void RefreshInventory(HashSet<int> inventoryItems)
+    {
+        _inventoryItems = inventoryItems;
+        OnPropertyChanged(nameof(Items));
     }
 
     public new static CaveOrBunkerPoi Of(RawPoi rawPoi, ItemList itemList, string icon, HashSet<int> inventoryItems,

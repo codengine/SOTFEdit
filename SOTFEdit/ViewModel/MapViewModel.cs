@@ -7,8 +7,10 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using NLog;
 using SOTFEdit.Companion.Shared;
 using SOTFEdit.Companion.Shared.Messages;
 using SOTFEdit.Infrastructure;
@@ -17,10 +19,13 @@ using SOTFEdit.Model;
 using SOTFEdit.Model.Actors;
 using SOTFEdit.Model.Events;
 using SOTFEdit.Model.Map;
+using SOTFEdit.Model.Map.Static;
 
 namespace SOTFEdit.ViewModel;
 public partial class MapViewModel : ObservableObject
 {
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
     [ObservableProperty]
     private bool _autoConnect = Settings.Default.AutoConnect;
 
@@ -116,6 +121,18 @@ public partial class MapViewModel : ObservableObject
     _fullTextFilterDispatcherTimer.Tick += OnFullTextFilter;
 
     SetupListeners();
+
+    // If a savegame is already loaded, immediately refresh all POIs
+    // This handles the case where the map opens after ViewModels have loaded but we missed their events
+    if (SavegameManager.SelectedSavegame != null)
+    {
+        Logger.Debug($"MapViewModel: Constructor - savegame loaded, refreshing all POI done status. Total POIs: {Pois.Count}");
+        RefreshAllPoiDoneStatus();
+    }
+    else
+    {
+        Logger.Debug("MapViewModel: Constructor - no savegame loaded");
+    }
     }
 
     public Brush NetworkPlayerForeground => GetNetworkPlayerBrushForMapMode();
@@ -285,6 +302,10 @@ public partial class MapViewModel : ObservableObject
             (_, message) => RefreshPois(message));
         PoiMessenger.Instance.Register<NpcsReloadedEvent>(this,
             (_, _) => OnNpcsReloaded());
+        PoiMessenger.Instance.Register<StructuresReloadedEvent>(this,
+            (_, _) => OnStructuresChanged());
+        WeakReferenceMessenger.Default.Register<InventoryReloadedEvent>(this,
+            (_, _) => OnInventoryReloaded());
         PoiMessenger.Instance.Register<RemovePoiEvent>(this,
             (_, message) => OnRemovePoiEvent(message));
         PoiMessenger.Instance.Register<ReapplyPoiFilterEvent>(this, (_, message) => OnReapplyPoiFilterEvent(message));
@@ -303,26 +324,160 @@ public partial class MapViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged()
     {
-        // Refresh IsDone status and filters for all POIs after savegame reload
-        RefreshAllPoiStatus();
+        Logger.Debug("MapViewModel: OnSelectedSavegameChanged - SelectedSavegameChangedEvent received");
+        // Use BeginInvoke instead of Invoke to allow other ViewModels to finish reloading first
+        // This avoids race conditions where we try to read data that's still being reloaded
+        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+        {
+            // When savegame reloads:
+            // - NPCs are automatically handled via NpcsReloadedEvent from NpcsPageViewModel
+            // - Structures are automatically handled via StructuresReloadedEvent from StructuresPageViewModel
+            // - WorldItems need to be manually reloaded since they're loaded directly from savegame
+            // - Static POIs (caves/bunkers) need inventory and done status refreshed
+
+            Logger.Debug("MapViewModel: OnSelectedSavegameChanged - BeginInvoke callback executing");
+
+            // Reload WorldItems with fresh data from the savegame
+            if (SavegameManager.SelectedSavegame != null)
+            {
+                Logger.Debug("MapViewModel: OnSelectedSavegameChanged - Reloading world items");
+                OnWorldItemsChangedEvent();
+            }
+
+            // Refresh done status and inventory for all POIs
+            // This handles static POIs and ensures UI reflects current state
+            Logger.Debug($"MapViewModel: OnSelectedSavegameChanged - Refreshing all POI done status, Total POIs: {Pois.Count}");
+            RefreshAllPoiDoneStatus();
+        }));
     }
 
-    private void RefreshAllPoiStatus()
+    private void OnStructuresChanged()
     {
+        Logger.Debug("MapViewModel: OnStructuresChanged - StructuresReloadedEvent received");
+        // Recreate structure POIs from fresh structure data
+        var newStructureGroups = _mapManager.GetStructurePois()
+            .Select(kvp =>
+                new PoiGroup(false, kvp.Value, kvp.Key, PoiGroupKeys.Structures + kvp.Key, PoiGroupType.Structures,
+                    kvp.Value.First().Icon))
+            .ToList();
+
+        Logger.Debug($"MapViewModel: OnStructuresChanged - Loaded {newStructureGroups.Count} new structure groups");
+
+        var oldStructureGroups = _poiGroups.Where(group => group.GroupType == PoiGroupType.Structures).ToList();
+        Logger.Debug($"MapViewModel: OnStructuresChanged - Found {oldStructureGroups.Count} old structure groups: [{string.Join(", ", oldStructureGroups.Select(g => g.BaseTitle))}]");
+
+        if (oldStructureGroups.Count == 0)
+        {
+            Logger.Debug("MapViewModel: OnStructuresChanged - Taking EARLY RETURN path (first load)");
+            foreach (var newStructureGroup in newStructureGroups)
+            {
+                _poiGroups.Add(newStructureGroup);
+            }
+            // Refresh done status for newly-added structures on first load
+            Logger.Debug("MapViewModel: OnStructuresChanged - Calling RefreshAllPoiDoneStatus before return");
+            RefreshAllPoiDoneStatus();
+            return;
+        }
+
+        Logger.Debug("MapViewModel: OnStructuresChanged - Taking NORMAL path (reload existing structures)");
+
+        // Remove old structure groups
+        foreach (var group in oldStructureGroups)
+        {
+            _poiGroups.Remove(group);
+        }
+
+        // Remove old structure POIs from tracking
+        _poisAdded.RemoveWhere(poi => poi is StructurePoi);
+
+        var oldPoiGroupsByTitle = oldStructureGroups.ToDictionary(group => group.BaseTitle);
+
+        // Add new structure groups with preserved enabled state
+        foreach (var poiGroup in newStructureGroups)
+        {
+            if (oldPoiGroupsByTitle.GetValueOrDefault(poiGroup.BaseTitle) is { } existingOldGroupByTitle)
+            {
+                poiGroup.SetEnabledNoRefresh(existingOldGroupByTitle.Enabled);
+            }
+
+            foreach (var poi in poiGroup.Pois)
+            {
+                poi.ApplyFilter(MapFilter);
+            }
+
+            _poiGroups.Add(poiGroup);
+        }
+
+        // Clear selected POI if it's a structure
+        if (SelectedPoi is StructurePoi)
+        {
+            SelectedPoi = null;
+        }
+
+        // Update the Pois collection
+        var newPois = newStructureGroups.SelectMany(group => group.Pois).ToList();
+        var addedPois = newPois.Where(poi => poi.Enabled && _poisAdded.Add(poi)).ToList();
+
+        if (addedPois.Count > 0)
+        {
+            Pois.RemoveAndAdd(poi => poi is StructurePoi, addedPois);
+        }
+
+        Logger.Debug($"MapViewModel: OnStructuresChanged - NORMAL path completed, added {addedPois.Count} POIs. NOT calling refresh (inventory not loaded yet - OnSelectedSavegameChanged will handle it)");
+    }
+
+    private void RefreshAllPoiDoneStatus()
+    {
+        Logger.Debug($"MapViewModel: RefreshAllPoiDoneStatus - Starting refresh for {Pois.Count} POIs");
+        // Get fresh inventory items for cave/bunker completion check
+        var inventoryItems = GetInventoryItems();
+        Logger.Debug($"MapViewModel: RefreshAllPoiDoneStatus - Got {inventoryItems.Count} inventory items");
+
         lock (Pois)
         {
+            var caveCount = 0;
+            var basePoiCount = 0;
+            var visibleBeforeCount = Pois.Count(p => p.Visible);
+
             foreach (var poi in Pois)
             {
-                // Notify IsDone property changed for BasePoi objects
+                // Refresh inventory for caves/bunkers to check if all items were collected
+                if (poi is CaveOrBunkerPoi caveOrBunkerPoi)
+                {
+                    caveOrBunkerPoi.RefreshInventory(inventoryItems);
+                    caveCount++;
+                }
+
+                // Refresh IsDone status for all POIs
                 if (poi is BasePoi basePoi)
                 {
                     basePoi.RefreshDoneStatus();
+                    basePoiCount++;
                 }
 
-                // Re-apply filter to update visibility based on HideCompleted and inventory status
+                // Re-apply filter to update visibility based on completion status
                 poi.ApplyFilter(MapFilter);
             }
+
+            var visibleAfterCount = Pois.Count(p => p.Visible);
+            Logger.Debug($"MapViewModel: RefreshAllPoiDoneStatus - Refreshed {caveCount} caves/bunkers, {basePoiCount} base POIs. Filter HideCompleted: {MapFilter.HideCompleted}. Visible POIs: {visibleBeforeCount} -> {visibleAfterCount}");
         }
+
+        // Force UI to refresh by triggering collection reset
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            // ReplaceRange triggers CollectionChanged with Reset action, forcing WPF to re-render all items
+            var currentPois = Pois.ToList();
+            Pois.ReplaceRange(currentPois);
+            Logger.Debug("MapViewModel: RefreshAllPoiDoneStatus - Forced Pois.ReplaceRange() to trigger UI refresh");
+        });
+    }
+
+    private HashSet<int> GetInventoryItems()
+    {
+        // Use PoiLoader to get fresh inventory items with all weapon mods included
+        var poiLoader = Ioc.Default.GetRequiredService<PoiLoader>();
+        return poiLoader.GetInventoryItemsPublic();
     }
 
     private void OnCompanionConnectionStatusEvent(CompanionConnectionManager.ConnectionStatus status)
@@ -565,9 +720,14 @@ public partial class MapViewModel : ObservableObject
 
     private void OnNpcsReloaded()
     {
+        Logger.Debug("MapViewModel: OnNpcsReloaded - NpcsReloadedEvent received");
+
         var oldActorGroup = _poiGroups.OfType<PoiGroupCollection>()
             .FirstOrDefault(group => group.GroupType == PoiGroupType.Actors);
         var newActorPoiGroups = _mapManager.GetActorPois();
+
+        Logger.Debug($"MapViewModel: OnNpcsReloaded - Loaded {newActorPoiGroups.Count} new actor POI groups");
+        Logger.Debug($"MapViewModel: OnNpcsReloaded - Old actor group exists: {oldActorGroup != null}, POI count: {oldActorGroup?.PoiGroups.Sum(g => g.Pois.Count) ?? 0}");
 
         var newActorGroupCollection = PoiGroupCollection.ForActors(newActorPoiGroups, oldActorGroup?.Enabled ?? false);
         AddFollowersIfMissing(new List<IPoiGrouper>
@@ -577,9 +737,15 @@ public partial class MapViewModel : ObservableObject
 
         if (oldActorGroup == null)
         {
+            Logger.Debug("MapViewModel: OnNpcsReloaded - Taking EARLY RETURN path (first load)");
             _poiGroups.Add(newActorGroupCollection);
+            // Refresh done status for newly-added actors on first load
+            Logger.Debug("MapViewModel: OnNpcsReloaded - Calling RefreshAllPoiDoneStatus before return");
+            RefreshAllPoiDoneStatus();
             return;
         }
+
+        Logger.Debug("MapViewModel: OnNpcsReloaded - Taking NORMAL path (reload existing actors)");
 
         var oldPoiGroupsByTitle = oldActorGroup.PoiGroups
             .ToDictionary(group => group.BaseTitle);
@@ -612,6 +778,14 @@ public partial class MapViewModel : ObservableObject
         {
             Pois.RemoveAndAdd(poi => poi is ActorPoi, addedPois);
         }
+
+        Logger.Debug($"MapViewModel: OnNpcsReloaded - NORMAL path completed, added {addedPois.Count} POIs");
+    }
+
+    private void OnInventoryReloaded()
+    {
+        Logger.Debug("MapViewModel: OnInventoryReloaded - InventoryReloadedEvent received, calling RefreshAllPoiDoneStatus");
+        RefreshAllPoiDoneStatus();
     }
 
     private void RefreshPois(PoiRefreshEvent message)

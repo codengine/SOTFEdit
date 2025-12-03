@@ -193,7 +193,7 @@ public class Savegame : ObservableObject
         var patternMatch = _nameFilePattern.Match(Path.GetFileName(nameFile));
         if (!patternMatch.Success || patternMatch.Groups.Count < 2)
         {
-            Logger.Warn($"Name pattern does not match on {nameFile}, will return raw filename");
+            Logger.Trace($"Name pattern does not match on {nameFile}, will return raw filename");
             return Path.GetFileNameWithoutExtension(nameFile).Replace("_", " ");
         }
 

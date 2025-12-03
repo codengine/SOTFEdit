@@ -11,6 +11,7 @@ using NLog;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Model;
 using SOTFEdit.Model.Events;
+using SOTFEdit.Model.Map;
 using SOTFEdit.Model.SaveData.Storage;
 using SOTFEdit.Model.Savegame;
 
@@ -66,15 +67,22 @@ public partial class StructuresPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChangedEvent(SelectedSavegameChangedEvent message)
     {
+        Logger.Debug("StructuresPageViewModel: SelectedSavegameChangedEvent received, clearing structures");
         Structures.Clear();
         if (message.SelectedSavegame is { } selectedSavegame)
         {
-            Structures.AddRange(LoadStructures(selectedSavegame).OrderBy(wrapper => wrapper.Category)
-                .ThenBy(wrapper => wrapper.Name));
+            var loadedStructures = LoadStructures(selectedSavegame).OrderBy(wrapper => wrapper.Category)
+                .ThenBy(wrapper => wrapper.Name).ToList();
+            Logger.Debug($"StructuresPageViewModel: Loaded {loadedStructures.Count} structures");
+            Structures.AddRange(loadedStructures);
         }
 
         StructureView.Refresh();
         SetModificationModeCommand.NotifyCanExecuteChanged();
+
+        // Notify map that structures have been reloaded
+        Logger.Debug($"StructuresPageViewModel: Sending StructuresReloadedEvent, total structures: {Structures.Count}");
+        PoiMessenger.Instance.Send(new StructuresReloadedEvent());
     }
 
     private IEnumerable<ScrewStructureWrapper> LoadStructures(Savegame selectedSavegame)

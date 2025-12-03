@@ -251,7 +251,7 @@ public class GameStatePageViewModel
         {
             if (!namedIntDatasByName.ContainsKey(storedNamedIntSetting.Name))
             {
-                Logger.Info($"New NamedIntData found: {storedNamedIntSetting.Name}");
+                Logger.Trace($"New NamedIntData found: {storedNamedIntSetting.Name}");
                 NamedIntDatas.Add(storedNamedIntSetting);
             }
             else

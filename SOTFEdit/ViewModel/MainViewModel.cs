@@ -610,7 +610,9 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void OpenMap()
     {
+        Logger.Debug("MainViewModel: OpenMap - Loading POI groups");
         var actorPoiGroups = _mapManager.GetActorPois();
+        Logger.Debug($"MainViewModel: OpenMap - Loaded {actorPoiGroups.Count} actor POI groups");
 
         var structurePoiGroups = _mapManager.GetStructurePois()
             .Select(kvp => new PoiGroup(false, kvp.Value, kvp.Key,
@@ -618,6 +620,7 @@ public partial class MainViewModel : ObservableObject
                 (kvp.Value.FirstOrDefault()?.ScrewStructureWrapper.ScrewStructure?.Id.ToString() ?? ""),
                 PoiGroupType.Structures, kvp.Value.First().Icon))
             .ToList();
+        Logger.Debug($"MainViewModel: OpenMap - Loaded {structurePoiGroups.Count} structure POI groups");
 
         var poiGroups = new List<IPoiGrouper>
         {

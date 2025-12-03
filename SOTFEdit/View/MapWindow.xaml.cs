@@ -175,7 +175,10 @@ namespace SOTFEdit.View
                 savegamePart = SOTFEdit.Infrastructure.TranslationManager.Get("windows.main.savegame.none");
             }
 
-            Title = SOTFEdit.Infrastructure.TranslationManager.GetFormatted("windows.map.title", connectionPart, savegamePart, modifiedPart);
+            Dispatcher.Invoke(() =>
+            {
+                Title = SOTFEdit.Infrastructure.TranslationManager.GetFormatted("windows.map.title", connectionPart, savegamePart, modifiedPart);
+            });
         }
 
         private void DataContextOnPropertyChanged(object? sender, PropertyChangedEventArgs e)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using NLog;
 using SOTFEdit.Companion.Shared;
 using SOTFEdit.Infrastructure;
 using SOTFEdit.Infrastructure.Companion;
@@ -13,6 +14,8 @@ namespace SOTFEdit.Model.Map.Static;
 
 public class PoiLoader
 {
+    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+
     private readonly AreaMaskManager _areaMaskManager;
     private readonly CompanionPoiStorage _companionPoiStorage;
     private readonly InventoryPageViewModel _inventoryPageViewModel;
@@ -54,9 +57,17 @@ public class PoiLoader
         };
     }
 
+    public HashSet<int> GetInventoryItemsPublic()
+    {
+        return GetInventoryItems();
+    }
+
     private HashSet<int> GetInventoryItems()
     {
         var itemsWithHashes = _items.GetItemsWithHashes();
+
+        var collectionCount = _inventoryPageViewModel.InventoryCollectionView.Cast<object>().Count();
+        Logger.Debug($"PoiLoader: GetInventoryItems - InventoryCollectionView has {collectionCount} items");
 
         var inventoryItems = _inventoryPageViewModel.InventoryCollectionView.OfType<InventoryItem>()
             .SelectMany(item =>
@@ -73,6 +84,7 @@ public class PoiLoader
             inventoryItems.Add(selectedCloth.Id);
         }
 
+        Logger.Debug($"PoiLoader: GetInventoryItems - Returning {inventoryItems.Count} inventory item IDs");
         return inventoryItems;
     }
 

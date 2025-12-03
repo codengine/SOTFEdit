@@ -201,8 +201,10 @@ public partial class InventoryPageViewModel : ObservableObject
 
     private void OnSelectedSavegameChanged(SelectedSavegameChangedEvent m)
     {
+        Logger.Debug("InventoryPageViewModel: OnSelectedSavegameChanged - START loading inventory");
         if (m.SelectedSavegame == null)
         {
+            Logger.Debug("InventoryPageViewModel: OnSelectedSavegameChanged - No savegame, clearing inventory");
             _inventory.Clear();
             _unassignedItems.Clear();
             return;
@@ -228,7 +230,7 @@ public partial class InventoryPageViewModel : ObservableObject
                         item = (Item)item.Clone();
                         item.StorageMax = new StorageMax(itemBlock.TotalCount, item.StorageMax?.Shelf ?? 0,
                             item.StorageMax?.Holder);
-                        Logger.Info(
+                        Logger.Trace(
                             $"Defined max in inventory for {item.Id} is lower ({maxInInventory}) than in savedata ({itemBlock.TotalCount})");
                     }
 
@@ -243,7 +245,7 @@ public partial class InventoryPageViewModel : ObservableObject
                         var item = _itemList.GetItem(itemBlock.ItemId);
                         if (item?.StorageMax?.Inventory is { } maxInInventory && maxInInventory < itemBlock.TotalCount)
                         {
-                            Logger.Info(
+                            Logger.Trace(
                                 $"Defined max in inventory for {item.Id} is lower ({maxInInventory}) than in savedata ({itemBlock.TotalCount})");
                         }
 
@@ -257,7 +259,10 @@ public partial class InventoryPageViewModel : ObservableObject
 
         inventoryItems.AddRange(equippedItems);
 
+        Logger.Debug($"InventoryPageViewModel: OnSelectedSavegameChanged - Replacing inventory with {inventoryItems.Count} items");
         _inventory.ReplaceRange(inventoryItems);
+        Logger.Debug($"InventoryPageViewModel: OnSelectedSavegameChanged - COMPLETED loading inventory, _inventory.Count = {_inventory.Count}");
+        WeakReferenceMessenger.Default.Send(new InventoryReloadedEvent());
 
         foreach (var inventoryItem in inventoryItems)
         {
