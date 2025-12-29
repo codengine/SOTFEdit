@@ -1,6 +1,6 @@
 # SOTFEdit - Sons of The Forest Savegame Editor
 
-![Screenshot](https://raw.githubusercontent.com/codengine/SOTFEdit/refs/heads/master/SOTFEdit.jpg)
+![Screenshot](https://github.com/codengine/SOTFEdit/blob/master/SOTFEdit.jpg?raw=true)
 
 [![Build](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml/badge.svg)](https://github.com/codengine/SOTFEdit/actions/workflows/build.yaml)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/codengine/SOTFEdit)](https://github.com/codengine/SOTFEdit/releases)
