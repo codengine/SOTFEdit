@@ -1,53 +1,56 @@
-name: "Build"
+name: CI
 
 on:
   push:
-    branches:
-      - master
-    paths-ignore:
-      - '**/*.md'
-      - '**/*.gitignore'
-      - '**/*.gitattributes'
-      - '**/.github/workflows/release.yaml'
   pull_request:
-    branches:
-      - master
-    paths-ignore:
-      - '**/*.md'
-      - '**/*.gitignore'
-      - '**/*.gitattributes'
-      - '**/.github/workflows/release.yaml'
-  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  build:
+  publish_windows:
+    name: Publish (${{ matrix.rid }})
     runs-on: windows-latest
-    permissions:
-      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        rid: [win-x64, win-x86]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-  
-      - name: Restore NuGet packages
-        run: dotnet restore
-      - name: Build project
-        run: dotnet build --configuration Release --no-restore # Build the app in Release mode
-      - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal # Run tests
-      - name: Get short SHA
-        run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
+          global-json-file: global.json
+          cache: true
+          cache-dependency-path: |
+            **/*.csproj
+
+      - name: Restore
+        run: dotnet restore SOTFEdit.sln
+
+      - name: Test (Windows)
+        run: dotnet test SOTFEdit.sln -c Release --no-restore --verbosity normal
+
+      - name: Publish (Windows)
+        shell: pwsh
+        env:
+          RID: ${{ matrix.rid }}
+        run: |
+          Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue
+          dotnet publish SOTFEdit/SOTFEdit.csproj -c Release -r $env:RID --self-contained false -o dist/$env:RID/SOTFEdit
+
+      - name: Package (Windows)
+        shell: pwsh
+        env:
+          RID: ${{ matrix.rid }}
+        run: |
+          Compress-Archive -Path dist/$env:RID/* -DestinationPath SOTFEdit-$env:RID.zip -Force
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
-          name: ${{ github.event.repository.name }}-${{ env.SHORT_SHA }}
-          path: ${{ github.workspace }}/${{ github.event.repository.name }}/bin/Release/net8.0-windows/
+          name: SOTFEdit-${{ matrix.rid }}
+          path: SOTFEdit-${{ matrix.rid }}.zip

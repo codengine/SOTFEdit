@@ -1,43 +1,76 @@
-name: "Tag Release"
+name: Release
 
 on:
   push:
     tags:
-      - 'v*'           # Push events to every tag not containing /
+      - '*'
+
+permissions:
+  contents: write
+
 jobs:
   build:
+    name: Build assets (${{ matrix.rid }})
     runs-on: windows-latest
-    permissions:
-      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        rid: [win-x64, win-x86]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '8.0.x'
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2        
-      - name: Restore NuGet packages
-        run: dotnet restore
-      - name: Clean build directories
-        run: dotnet clean --configuration Release        
-      - name: Run tests
-        run: dotnet test --configuration Release --no-restore --verbosity normal # Run tests
-      - name: Build project
-        run: dotnet publish ${{ github.event.repository.name }} --configuration Release --no-restore --framework net8.0-windows --maxcpucount:1 # Build the app in Release mode
-      - name: Create artifacts directory
+          global-json-file: global.json
+          cache: true
+          cache-dependency-path: |
+            **/*.csproj
+
+      - name: Restore
+        run: dotnet restore SOTFEdit.sln
+
+      - name: Test (Windows)
+        run: dotnet test SOTFEdit.sln -c Release --no-restore --verbosity normal
+
+      - name: Publish (Windows)
         shell: pwsh
-        run: New-Item -ItemType Directory -Force -Path artifacts | Out-Null
-      - name: Zip artifacts with PowerShell script
-        shell: pwsh # Use PowerShell as the shell
+        env:
+          RID: ${{ matrix.rid }}
         run: |
-          # Zip the output files with the assembly name and version
-          Compress-Archive -Path ${{ github.workspace }}\${{ github.event.repository.name }}\bin\Release\net8.0-windows\publish\* -DestinationPath ${{ github.workspace }}\artifacts\${{ github.event.repository.name }}-${{ github.ref_name }}.zip
-      - name: Create Release
-        id: create_release
-        uses: ncipollo/release-action@v1
+          Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue
+          dotnet publish SOTFEdit/SOTFEdit.csproj -c Release -r $env:RID --self-contained false -o dist/$env:RID/SOTFEdit
+
+      - name: Package (Windows)
+        shell: pwsh
+        env:
+          RID: ${{ matrix.rid }}
+        run: |
+          Compress-Archive -Path dist/$env:RID/* -DestinationPath SOTFEdit-$env:RID.zip -Force
+
+      - name: Upload asset artifact
+        uses: actions/upload-artifact@v6
         with:
-          artifacts: "artifacts/*"
-          omitBody: true
-          makeLatest: true
-          generateReleaseNotes: true
+          name: release-asset-${{ matrix.rid }}
+          path: SOTFEdit-${{ matrix.rid }}.zip
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download assets
+        uses: actions/download-artifact@v7
+        with:
+          path: release-assets
+          merge-multiple: true
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/*.zip
+          fail_on_unmatched_files: true
+          generate_release_notes: true
