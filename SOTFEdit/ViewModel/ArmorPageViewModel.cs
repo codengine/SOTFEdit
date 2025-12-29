@@ -16,7 +16,7 @@ namespace SOTFEdit.ViewModel;
 
 public partial class ArmorPageViewModel
 {
-    private readonly ObservableCollection<ArmourData> _armour = new();
+    private readonly ObservableCollection<ArmourData> _armour = [];
     private readonly ItemList _itemList;
 
     public ArmorPageViewModel(GameData gameData)
@@ -42,7 +42,7 @@ public partial class ArmorPageViewModel
     }
 
     public ICollectionView ArmourView { get; }
-    public ObservableCollection<Item> ArmourTypes { get; } = new();
+    public ObservableCollection<Item> ArmourTypes { get; } = [];
 
     public NewArmourPiece NewArmour { get; }
 
@@ -130,8 +130,7 @@ public partial class ArmorPageViewModel
         private readonly Func<bool> _savegameSelected;
         private readonly Collection<ArmourData> _sink;
 
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(AddArmorCommand))]
+        [ObservableProperty] [NotifyCanExecuteChangedFor(nameof(AddArmorCommand))]
         private int _remainingArmourpoints;
 
         [ObservableProperty]

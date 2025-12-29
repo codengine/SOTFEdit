@@ -2,15 +2,8 @@ using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.Model.Actors;
 
-public class ActorGrouping
+public class ActorGrouping(string name)
 {
-    private readonly string _name;
-
-    public ActorGrouping(string name)
-    {
-        _name = name;
-    }
-
-    public string Name => $"{_name} ({ActorCollections.Count})";
-    public ObservableCollectionEx<ActorCollection> ActorCollections { get; } = new();
+    public string Name => $"{name} ({ActorCollections.Count})";
+    public ObservableCollectionEx<ActorCollection> ActorCollections { get; } = [];
 }

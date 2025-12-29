@@ -15,13 +15,11 @@ namespace SOTFEdit.Model;
 
 public partial class ScrewStructureWrapper : ObservableObject
 {
-    [ObservableProperty]
-    private int _added;
+    [ObservableProperty] private int _added;
 
     private ScrewStructureModificationMode _modificationMode = ScrewStructureModificationMode.None;
 
-    [ObservableProperty]
-    private ScrewStructure? _screwStructure;
+    [ObservableProperty] private ScrewStructure? _screwStructure;
 
     public ScrewStructureWrapper(ScrewStructure? screwStructure, JToken token, int added, Position? position,
         ScrewStructureOrigin origin, int index)
@@ -106,19 +104,14 @@ public partial class ScrewStructureWrapper : ObservableObject
             return mode == ScrewStructureModificationMode.None;
         }
 
-        switch (mode)
+        return mode switch
         {
-            case ScrewStructureModificationMode.None:
-            case ScrewStructureModificationMode.Remove:
-                return true;
-            case ScrewStructureModificationMode.AlmostFinish:
-            case ScrewStructureModificationMode.Unfinish:
-                return origin == ScrewStructureOrigin.Unfinished || canFinish;
-            case ScrewStructureModificationMode.Finish:
-                return origin == ScrewStructureOrigin.Unfinished && canFinish;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
-        }
+            ScrewStructureModificationMode.None or ScrewStructureModificationMode.Remove => true,
+            ScrewStructureModificationMode.AlmostFinish or ScrewStructureModificationMode.Unfinish => origin ==
+                ScrewStructureOrigin.Unfinished || canFinish,
+            ScrewStructureModificationMode.Finish => origin == ScrewStructureOrigin.Unfinished && canFinish,
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null)
+        };
     }
 
     [RelayCommand]
@@ -132,7 +125,7 @@ public partial class ScrewStructureWrapper : ObservableObject
 
     private bool CanChangeType()
     {
-        return Origin == ScrewStructureOrigin.Unfinished || (_screwStructure?.CanFinish ?? false);
+        return Origin == ScrewStructureOrigin.Unfinished || (ScrewStructure?.CanFinish ?? false);
     }
 
     [RelayCommand(CanExecute = nameof(CanChangeType))]

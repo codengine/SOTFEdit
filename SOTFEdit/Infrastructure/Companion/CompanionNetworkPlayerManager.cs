@@ -8,7 +8,7 @@ namespace SOTFEdit.Infrastructure.Companion;
 
 public class CompanionNetworkPlayerManager : MessageHandler<CompanionNetworkPlayerUpdateMessage>
 {
-    public readonly HashSet<int> InstanceIds = new();
+    public readonly HashSet<int> InstanceIds = [];
 
     protected override void Handle(CompanionNetworkPlayerUpdateMessage message)
     {

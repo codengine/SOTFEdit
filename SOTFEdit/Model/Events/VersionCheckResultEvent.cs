@@ -2,23 +2,15 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class VersionCheckResultEvent
+public class VersionCheckResultEvent(
+    SemVersion? latestTagVersion, bool isNewer, bool invokedManually,
+    string? changelog = null,
+    bool isError = false)
 {
-    public VersionCheckResultEvent(SemVersion? latestTagVersion, bool isNewer, bool invokedManually,
-        string? changelog = null,
-        bool isError = false)
-    {
-        LatestTagVersion = latestTagVersion;
-        IsNewer = isNewer;
-        InvokedManually = invokedManually;
-        Changelog = changelog;
-        IsError = isError;
-    }
-
-    public SemVersion? LatestTagVersion { get; }
-    public bool IsNewer { get; }
-    public bool InvokedManually { get; }
-    public string? Changelog { get; }
-    public bool IsError { get; }
+    public SemVersion? LatestTagVersion { get; } = latestTagVersion;
+    public bool IsNewer { get; } = isNewer;
+    public bool InvokedManually { get; } = invokedManually;
+    public string? Changelog { get; } = changelog;
+    public bool IsError { get; } = isError;
     public string? Link { get; init; }
 }

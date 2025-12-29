@@ -3,14 +3,8 @@ using SOTFEdit.Model.Actors;
 
 namespace SOTFEdit.Model.Events;
 
-public class RequestEditActorEvent
+public class RequestEditActorEvent(Actor actor, Window? owner = null)
 {
-    public RequestEditActorEvent(Actor actor, Window? owner = null)
-    {
-        Actor = actor;
-        Owner = owner;
-    }
-
-    public Actor Actor { get; }
-    public Window? Owner { get; }
+    public Actor Actor { get; } = actor;
+    public Window? Owner { get; } = owner;
 }

@@ -5,7 +5,7 @@ namespace SOTFEdit.Model.Storage;
 
 public class StorageSlot
 {
-    public ObservableCollection<StoredItem> StoredItems { get; } = new();
+    public ObservableCollection<StoredItem> StoredItems { get; } = [];
 
     public int GetTotalStored()
     {

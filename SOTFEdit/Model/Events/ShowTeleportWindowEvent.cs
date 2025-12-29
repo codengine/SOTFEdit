@@ -3,14 +3,9 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.Events;
 
-public class ShowTeleportWindowEvent
+public class ShowTeleportWindowEvent(
+    BasePoi destination, MapTeleportWindowViewModel.TeleportationMode teleportationMode)
 {
-    public ShowTeleportWindowEvent(BasePoi destination, MapTeleportWindowViewModel.TeleportationMode teleportationMode)
-    {
-        Destination = destination;
-        TeleportationMode = teleportationMode;
-    }
-
-    public BasePoi Destination { get; }
-    public MapTeleportWindowViewModel.TeleportationMode TeleportationMode { get; }
+    public BasePoi Destination { get; } = destination;
+    public MapTeleportWindowViewModel.TeleportationMode TeleportationMode { get; } = teleportationMode;
 }

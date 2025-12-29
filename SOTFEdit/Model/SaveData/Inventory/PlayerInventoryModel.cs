@@ -16,7 +16,7 @@ public record PlayerInventoryModel
     public static bool Merge(JToken playerInventory, List<InventoryItem> selectedItems)
     {
         var hasChanges = false;
-        HashSet<int> processedItemIds = new();
+        HashSet<int> processedItemIds = [];
 
         if (playerInventory.SelectToken("EquippedItems") is JArray equippedItems)
         {
@@ -47,7 +47,7 @@ public record PlayerInventoryModel
     }
 
     private static bool ProcessInventoryItems(IReadOnlyCollection<InventoryItem> selectedItems, JArray inventoryItems,
-        ISet<int> processedItemIds)
+        HashSet<int> processedItemIds)
     {
         var selectedItemsDict = selectedItems.Where(item => !item.IsEquipped)
             .ToDictionary(item => item.Id);
@@ -69,7 +69,7 @@ public record PlayerInventoryModel
 
         finalTokens.AddRange(newItemsFromDict);
 
-        hasChanges = hasChanges || newItemsFromDict.Any();
+        hasChanges = hasChanges || newItemsFromDict.Count != 0;
 
         if (hasChanges)
         {
@@ -94,11 +94,11 @@ public record PlayerInventoryModel
         return hasChanges;
     }
 
-    private static bool ProcessItemBlocks(JArray itemBlocks, IReadOnlyDictionary<int, InventoryItem> selectedItemsDict,
+    private static bool ProcessItemBlocks(JArray itemBlocks, Dictionary<int, InventoryItem> selectedItemsDict,
         out List<JToken> finalTokens, ISet<int> processedItemIds)
     {
         var hasChanges = false;
-        finalTokens = new List<JToken>();
+        finalTokens = [];
         foreach (var itemBlock in itemBlocks)
         {
             if (itemBlock["ItemId"]?.Value<int>() is { } itemId)
@@ -149,7 +149,7 @@ public record PlayerInventoryModel
 
         if (itemBlock["UniqueItems"] is not JArray uniqueItems)
         {
-            uniqueItems = new JArray();
+            uniqueItems = [];
         }
 
         var uniqueItemsCount = uniqueItems.Count;

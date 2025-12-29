@@ -18,11 +18,9 @@ public partial class TranslationViewModel : ObservableObject
     private readonly ICloseable _owner;
     private readonly ObservableCollection<TranslationEntry> _translationEntries;
 
-    [ObservableProperty]
-    private string _filterText = "";
+    [ObservableProperty] private string _filterText = "";
 
-    [ObservableProperty]
-    private bool _onlyMissing;
+    [ObservableProperty] private bool _onlyMissing;
 
     public TranslationViewModel(ICloseable owner)
     {
@@ -30,16 +28,15 @@ public partial class TranslationViewModel : ObservableObject
         var deEntries = TranslationManager.GetAll("de");
         var plEntries = TranslationManager.GetAll("pl");
 
-        var naturalStringComparer = new NaturalStringComparer();
+        var naturalStringComparer = new NaturalStringComparator();
 
-        var enEntries = TranslationManager.GetAll("en").Select(
-                kvp =>
-                {
-                    deEntries.TryGetValue(kvp.Key, out var deValue);
-                    plEntries.TryGetValue(kvp.Key, out var plValue);
+        var enEntries = TranslationManager.GetAll("en").Select(kvp =>
+            {
+                deEntries.TryGetValue(kvp.Key, out var deValue);
+                plEntries.TryGetValue(kvp.Key, out var plValue);
 
-                    return new TranslationEntry(kvp.Key, kvp.Value, deValue, plValue);
-                })
+                return new TranslationEntry(kvp.Key, kvp.Value, deValue, plValue);
+            })
             .OrderBy(entry => entry.Key, naturalStringComparer)
             .ToList();
         _translationEntries = new ObservableCollection<TranslationEntry>(enEntries);
@@ -92,23 +89,25 @@ public partial class TranslationViewModel : ObservableObject
         _owner.Close();
     }
 
-    private static void AddToDictionary(Dictionary<string, object> dict, IReadOnlyList<string> keys, string value)
+    private static void AddToDictionary(Dictionary<string, object> dict, string[] keys, string value)
     {
-        for (var i = 0; i < keys.Count; i++)
+        for (var i = 0; i < keys.Length; i++)
         {
-            if (i == keys.Count - 1) // Last key, add the value
-            {
-                dict[keys[i]] = value;
-            }
-            else
-            {
-                if (!dict.ContainsKey(keys[i]))
-                {
-                    dict[keys[i]] = new Dictionary<string, object>();
-                }
+            var key = keys[i];
 
-                dict = dict[keys[i]] as Dictionary<string, object>;
+            if (i == keys.Length - 1)
+            {
+                dict[key] = value;
+                return;
             }
+
+            if (!dict.TryGetValue(key, out var existing) || existing is not Dictionary<string, object> child)
+            {
+                child = new Dictionary<string, object>();
+                dict[key] = child;
+            }
+
+            dict = child;
         }
     }
 
@@ -140,25 +139,14 @@ public partial class TranslationViewModel : ObservableObject
     }
 }
 
-public partial class TranslationEntry : ObservableObject
+public partial class TranslationEntry(string key, string en, string? de = null, string? pl = null)
+    : ObservableObject
 {
-    [ObservableProperty]
-    private string? _de;
+    [ObservableProperty] private string? _de = de;
 
-    [ObservableProperty]
-    private string _en;
+    [ObservableProperty] private string _en = en;
 
-    [ObservableProperty]
-    private string _key;
+    [ObservableProperty] private string _key = key;
 
-    [ObservableProperty]
-    private string? _pl;
-
-    public TranslationEntry(string key, string en, string? de = null, string? pl = null)
-    {
-        _key = key;
-        _en = en;
-        _de = de;
-        _pl = pl;
-    }
+    [ObservableProperty] private string? _pl = pl;
 }

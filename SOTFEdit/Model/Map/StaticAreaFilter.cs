@@ -2,20 +2,12 @@
 
 namespace SOTFEdit.Model.Map;
 
-public class StaticAreaFilter : IAreaFilter
+public class StaticAreaFilter(string name, Predicate<IPoi> predicate) : IAreaFilter
 {
-    private readonly Predicate<IPoi> _predicate;
-
-    public StaticAreaFilter(string name, Predicate<IPoi> predicate)
-    {
-        _predicate = predicate;
-        Name = name;
-    }
-
-    public string Name { get; }
+    public string Name { get; } = name;
 
     public bool ShouldInclude(IPoi poi)
     {
-        return _predicate.Invoke(poi);
+        return predicate.Invoke(poi);
     }
 }

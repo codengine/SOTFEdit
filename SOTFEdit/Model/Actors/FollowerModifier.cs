@@ -11,18 +11,11 @@ using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.Model.Actors;
 
-public class FollowerModifier
+public class FollowerModifier(SaveDataWrapper saveDataWrapper)
 {
-    private readonly SaveDataWrapper _saveDataWrapper;
-
-    public FollowerModifier(SaveDataWrapper saveDataWrapper)
-    {
-        _saveDataWrapper = saveDataWrapper;
-    }
-
     public bool Revive(int typeId, HashSet<int> itemIds, Outfit? outfit, Position pos)
     {
-        var vailWorldSim = _saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim);
+        var vailWorldSim = saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim);
         if (vailWorldSim == null)
         {
             return false;
@@ -102,12 +95,12 @@ public class FollowerModifier
 
         if (hasChangesInVailWorldSim)
         {
-            _saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
         }
 
         if (hasChangesInNpcItemInstances)
         {
-            _saveDataWrapper.MarkAsModified(Constants.JsonKeys.NpcItemInstances);
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.NpcItemInstances);
         }
 
         return hasChangesInVailWorldSim || hasChangesInNpcItemInstances;
@@ -115,44 +108,45 @@ public class FollowerModifier
 
     private static void AddInfluencesForNewFollower(JToken vailWorldSim, int uniqueId)
     {
-        AddInfluences(vailWorldSim, uniqueId, new List<Influence>
-        {
-            new()
+        AddInfluences(vailWorldSim, uniqueId, [
+            new Influence
             {
                 TypeId = Influence.Type.Player,
                 Anger = NoAnger,
                 Fear = NoFear,
                 Sentiment = FullSentiment
             },
-            new()
+
+            new Influence
             {
                 TypeId = Influence.Type.Cannibal,
                 Anger = FullAnger,
                 Fear = FullFear,
                 Sentiment = LowestSentiment
             },
-            new()
+
+            new Influence
             {
                 TypeId = Influence.Type.Creepy,
                 Anger = FullAnger,
                 Fear = FullFear,
                 Sentiment = LowestSentiment
             }
-        });
+        ]);
     }
 
     private static void AddInfluences(JToken vailWorldSim, int uniqueId, List<Influence> influences)
     {
         if (vailWorldSim["InfluenceMemory"] is not JArray influenceMemoryToken)
         {
-            influenceMemoryToken = new JArray();
+            influenceMemoryToken = [];
             vailWorldSim["InfluenceMemory"] = influenceMemoryToken;
         }
 
         influenceMemoryToken.Add(JToken.FromObject(new InfluenceMemory(uniqueId, influences)));
     }
 
-    private static bool EquipItemsInActor(JToken actor, IReadOnlySet<int> itemIds)
+    private static bool EquipItemsInActor(JToken actor, HashSet<int> itemIds)
     {
         if (actor["EquippedItems"] is not { } oldEquippedItemsToken)
         {
@@ -160,7 +154,7 @@ public class FollowerModifier
             actor["EquippedItems"] = oldEquippedItemsToken;
         }
 
-        var usedOldItemIds = oldEquippedItemsToken.ToObject<HashSet<int>>() ?? new HashSet<int>();
+        var usedOldItemIds = oldEquippedItemsToken.ToObject<HashSet<int>>() ?? [];
 
         if (itemIds.SetEquals(usedOldItemIds))
         {
@@ -171,9 +165,9 @@ public class FollowerModifier
         return true;
     }
 
-    private bool EquipItemsInNpcItemInstances(int uniqueId, IReadOnlySet<int> itemIds)
+    private bool EquipItemsInNpcItemInstances(int uniqueId, HashSet<int> itemIds)
     {
-        if (_saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.NpcItemInstances) is not { } npcItemInstances)
+        if (saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.NpcItemInstances) is not { } npcItemInstances)
         {
             return false;
         }
@@ -239,7 +233,7 @@ public class FollowerModifier
 
         foreach (var itemId in itemIds.Where(itemId => !itemIdsExisting.Contains(itemId)))
         {
-            itemBlocks.Add(JToken.FromObject(new ActorItemBlock(itemId, 1, new List<JToken>())));
+            itemBlocks.Add(JToken.FromObject(new ActorItemBlock(itemId, 1, [])));
             hasChanges = true;
         }
 
@@ -337,7 +331,7 @@ public class FollowerModifier
 
     public bool Update(IEnumerable<FollowerState> followerStates)
     {
-        var vailWorldSim = _saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim);
+        var vailWorldSim = saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim);
         if (vailWorldSim == null)
         {
             return false;
@@ -400,12 +394,12 @@ public class FollowerModifier
 
         if (hasChangesInVailWorldSim)
         {
-            _saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
         }
 
         if (hasChangesInNpcItemInstances)
         {
-            _saveDataWrapper.MarkAsModified(Constants.JsonKeys.NpcItemInstances);
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.NpcItemInstances);
         }
 
         return hasChangesInVailWorldSim || hasChangesInNpcItemInstances;
@@ -424,7 +418,7 @@ public class FollowerModifier
 
         if (followersInfluenceMemory == null)
         {
-            influenceMemory.Add(JToken.FromObject(new InfluenceMemory(uniqueId, new List<Influence>(influences))));
+            influenceMemory.Add(JToken.FromObject(new InfluenceMemory(uniqueId, [..influences])));
             return true;
         }
 
@@ -503,7 +497,7 @@ public class FollowerModifier
 
     public bool CreateFollowers(int typeId, int count, HashSet<int> itemIds, Outfit? outfit, Position pos)
     {
-        var vailWorldSim = _saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim);
+        var vailWorldSim = saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.VailWorldSim);
         if (vailWorldSim == null || count <= 0)
         {
             return false;
@@ -536,12 +530,12 @@ public class FollowerModifier
 
         if (hasChangesInVailWorldSim)
         {
-            _saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.VailWorldSim);
         }
 
         if (hasChangesInNpcItemInstances)
         {
-            _saveDataWrapper.MarkAsModified(Constants.JsonKeys.NpcItemInstances);
+            saveDataWrapper.MarkAsModified(Constants.JsonKeys.NpcItemInstances);
         }
 
         return hasChangesInVailWorldSim || hasChangesInNpcItemInstances;

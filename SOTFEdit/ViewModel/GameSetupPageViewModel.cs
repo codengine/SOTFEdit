@@ -41,10 +41,7 @@ public class GameSetupPageViewModel : ObservableObject
 
     private readonly Dictionary<string, bool?> _boolSettings = new();
 
-    private readonly HashSet<string> _settingsForNonCustom = new()
-    {
-        GameSetupKeys.Uid, GameSetupKeys.Mode
-    };
+    private readonly HashSet<string> _settingsForNonCustom = [GameSetupKeys.Uid, GameSetupKeys.Mode];
 
     private readonly Dictionary<string, int> _settingTypes = new()
     {
@@ -215,7 +212,7 @@ public class GameSetupPageViewModel : ObservableObject
         get => GetStringSetting(GameSetupKeys.PvpDamage) ?? SettingValueNormal;
         set => SetStringSetting(GameSetupKeys.PvpDamage, value);
     }
-    
+
     public string? SelectedColdPenaltiesStatReduction
     {
         get => GetStringSetting(GameSetupKeys.ColdPenaltiesStatReduction) ?? SettingValueOff;
@@ -580,11 +577,11 @@ public class GameSetupPageViewModel : ObservableObject
             return false;
         }
 
-        List<JToken> finalSettings = new();
+        List<JToken> finalSettings = [];
 
         var hasChanges = false;
 
-        HashSet<string> existingSettings = new();
+        HashSet<string> existingSettings = [];
 
         foreach (var setting in settings)
         {

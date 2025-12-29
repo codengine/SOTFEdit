@@ -12,7 +12,7 @@ namespace SOTFEdit;
 
 public class SavegameManager : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private static Savegame? _selectedSavegame;
 

@@ -2,14 +2,8 @@
 
 namespace SOTFEdit.ViewModel;
 
-public class UpdateAvailableViewModel
+public class UpdateAvailableViewModel(string? changelog, SemVersion? version)
 {
-    public UpdateAvailableViewModel(string? changelog, SemVersion? version)
-    {
-        Changelog = changelog;
-        Version = version;
-    }
-
-    public string? Changelog { get; }
-    public SemVersion? Version { get; }
+    public string? Changelog { get; } = changelog;
+    public SemVersion? Version { get; } = version;
 }

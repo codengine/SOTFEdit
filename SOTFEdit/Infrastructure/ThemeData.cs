@@ -2,17 +2,11 @@
 
 namespace SOTFEdit.Infrastructure;
 
-public class ThemeData
+public class ThemeData(string name, Brush colorBrush)
 {
-    public ThemeData(string name, Brush colorBrush)
-    {
-        Name = name;
-        ColorBrush = colorBrush;
-    }
+    public string Name { get; } = name;
 
-    public string Name { get; }
-
-    public Brush ColorBrush { get; }
+    public Brush ColorBrush { get; } = colorBrush;
 
     public override string ToString()
     {

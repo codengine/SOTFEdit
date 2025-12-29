@@ -2,17 +2,10 @@
 
 namespace SOTFEdit.Infrastructure.Companion;
 
-public class CompanionAddPoiMessageHandler : MessageHandler<CompanionAddPoiMessage>
+public class CompanionAddPoiMessageHandler(CompanionPoiStorage poiStorage) : MessageHandler<CompanionAddPoiMessage>
 {
-    private readonly CompanionPoiStorage _poiStorage;
-
-    public CompanionAddPoiMessageHandler(CompanionPoiStorage poiStorage)
-    {
-        _poiStorage = poiStorage;
-    }
-
     protected override void Handle(CompanionAddPoiMessage message)
     {
-        _poiStorage.Add(message);
+        poiStorage.Add(message);
     }
 }

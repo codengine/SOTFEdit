@@ -10,7 +10,7 @@ public class StorageSaveData
     public int Id { get; init; }
     public Position? Pos { get; init; }
     public JToken? Rot { get; init; }
-    public List<StorageBlock> Storages { get; init; } = new();
+    public List<StorageBlock> Storages { get; init; } = [];
 
     private bool Equals(StorageSaveData other)
     {

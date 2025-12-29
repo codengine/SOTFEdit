@@ -1,11 +1,6 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class SavegameStoredEvent
+public class SavegameStoredEvent(string message)
 {
-    public SavegameStoredEvent(string message)
-    {
-        Message = message;
-    }
-
-    public string Message { get; }
+    public string Message { get; } = message;
 }

@@ -2,21 +2,13 @@
 
 namespace SOTFEdit.Model.Actors;
 
-public partial class EquippableItem : ObservableObject
+public partial class EquippableItem(Item item, bool isTemporary = false) : ObservableObject
 {
-    [ObservableProperty]
-    private bool _selected;
+    [ObservableProperty] private bool _selected;
 
-    public EquippableItem(Item item, bool isTemporary = false)
-    {
-        IsTemporary = isTemporary;
-        ItemId = item.Id;
-        Name = item.Name;
-    }
-
-    public bool IsTemporary { get; }
-    public int ItemId { get; }
-    public string Name { get; }
+    public bool IsTemporary { get; } = isTemporary;
+    public int ItemId { get; } = item.Id;
+    public string Name { get; } = item.Name;
 
     private bool Equals(EquippableItem other)
     {

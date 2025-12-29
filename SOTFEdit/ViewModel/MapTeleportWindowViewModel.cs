@@ -31,17 +31,13 @@ public partial class MapTeleportWindowViewModel : ObservableObject
     private readonly ICloseable _parent;
     private readonly TeleportationMode _teleportationMode;
 
-    [ObservableProperty]
-    private Area _selectedArea;
+    [ObservableProperty] private Area _selectedArea;
 
-    [ObservableProperty]
-    private float _xOffset;
+    [ObservableProperty] private float _xOffset;
 
-    [ObservableProperty]
-    private float _yOffset;
+    [ObservableProperty] private float _yOffset;
 
-    [ObservableProperty]
-    private float _zOffset;
+    [ObservableProperty] private float _zOffset;
 
     public MapTeleportWindowViewModel(ICloseable parent, BasePoi destination, TeleportationMode teleportationMode,
         CompanionConnectionManager companionConnectionManager, AreaMaskManager areaMaskManager)
@@ -95,7 +91,8 @@ public partial class MapTeleportWindowViewModel : ObservableObject
                 TeleportVirginia(newPosition);
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(_teleportationMode), _teleportationMode,
+                    "Unknown teleportation mode.");
         }
 
         _parent.Close();

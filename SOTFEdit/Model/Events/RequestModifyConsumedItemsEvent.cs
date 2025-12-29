@@ -1,5 +1,3 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class RequestModifyConsumedItemsEvent
-{
-}
+public class RequestModifyConsumedItemsEvent;

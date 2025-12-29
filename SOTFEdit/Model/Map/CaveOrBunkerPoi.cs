@@ -25,9 +25,10 @@ public class CaveOrBunkerPoi : DefaultGenericInformationalPoi, IPoiWithItems
 
     public string? Objects => _objects == null || !_objects.Any() ? null : string.Join(", ", _objects);
 
-    public IEnumerable<ItemInInventoryWrapper>? Items => !_items?.Any() ?? false
-        ? null
-        : _items?.Select(item => new ItemInInventoryWrapper(item, HasItemInInventory(item)));
+    public IEnumerable<ItemInInventoryWrapper>? Items =>
+        !_items?.Any() ?? false
+            ? null
+            : _items?.Select(item => new ItemInInventoryWrapper(item, HasItemInInventory(item)));
 
     public bool HasAnyItems => Items?.Any() ?? false;
 

@@ -1,10 +1,13 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
+using NLog;
+using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.View;
 
 public partial class SplashWindow
 {
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private MainWindow? _mainWindow;
 
     public SplashWindow()
@@ -19,7 +22,12 @@ public partial class SplashWindow
 
     public string AssemblyVersion { get; }
 
-    private async void SplashWindow_Loaded(object sender, RoutedEventArgs e)
+    private void SplashWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        SplashWindow_LoadedAsync().Forget(ex => Logger.Error(ex, "Error while loading SplashWindow"));
+    }
+
+    private async Task SplashWindow_LoadedAsync()
     {
         // Create a TaskCompletionSource to signal when the MainWindow is shown
         var mainWindowShown = new TaskCompletionSource<bool>();

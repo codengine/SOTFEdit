@@ -18,7 +18,7 @@ namespace SOTFEdit.ViewModel;
 
 public partial class FollowerPageViewModel : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     public FollowerPageViewModel(GameData gameData)
     {
@@ -300,7 +300,7 @@ public partial class FollowerPageViewModel : ObservableObject
         }
 
         var followerModifier = new FollowerModifier(saveDataWrapper);
-        return followerModifier.Update(new[] { KelvinState, VirginiaState });
+        return followerModifier.Update([KelvinState, VirginiaState]);
     }
 
     [RelayCommand]

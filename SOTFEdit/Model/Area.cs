@@ -2,18 +2,11 @@
 
 namespace SOTFEdit.Model;
 
-public class Area
+public class Area(string name, int areaMask, int graphMask)
 {
-    public Area(string name, int areaMask, int graphMask)
-    {
-        Name = name;
-        AreaMask = areaMask;
-        GraphMask = graphMask;
-    }
-
-    public string Name { get; }
-    public int AreaMask { get; }
-    public int GraphMask { get; }
+    public string Name { get; } = name;
+    public int AreaMask { get; } = areaMask;
+    public int GraphMask { get; } = graphMask;
 
     public bool IsUnderground()
     {
@@ -37,12 +30,7 @@ public class Area
             return true;
         }
 
-        if (obj.GetType() != GetType())
-        {
-            return false;
-        }
-
-        return Equals((Area)obj);
+        return obj.GetType() == GetType() && Equals((Area)obj);
     }
 
     public override int GetHashCode()

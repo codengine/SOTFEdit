@@ -15,20 +15,15 @@ namespace SOTFEdit.ViewModel;
 
 public partial class EditActorViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private short? _actorSelection;
+    [ObservableProperty] private short? _actorSelection;
 
-    [ObservableProperty]
-    private ActorModificationMode _modificationMode = ActorModificationMode.Modify;
+    [ObservableProperty] private ActorModificationMode _modificationMode = ActorModificationMode.Modify;
 
-    [ObservableProperty]
-    private bool _onlyInSameAreaAsActor = true;
+    [ObservableProperty] private bool _onlyInSameAreaAsActor = true;
 
-    [ObservableProperty]
-    private bool _skipKelvin = true;
+    [ObservableProperty] private bool _skipKelvin = true;
 
-    [ObservableProperty]
-    private bool _skipVirginia = true;
+    [ObservableProperty] private bool _skipVirginia = true;
 
     public EditActorViewModel(Actor actor, List<ActorType> allActorTypes)
     {
@@ -43,7 +38,7 @@ public partial class EditActorViewModel : ObservableObject
 
         Influences = actor.Influences is { } influences
             ? new ObservableCollectionEx<Influence>(influences)
-            : new ObservableCollectionEx<Influence>();
+            : [];
         Influences.CollectionChanged += InfluencesOnCollectionChanged;
 
         AllInfluences = Influence.AllTypes.Select(type =>
@@ -93,32 +88,24 @@ public partial class EditActorViewModel : ObservableObject
 
 public partial class ModifyOptions : ObservableObject
 {
-    [ObservableProperty]
-    private float _actorEnergy;
+    [ObservableProperty] private float _actorEnergy;
 
-    [ObservableProperty]
-    private float _actorHealth;
+    [ObservableProperty] private float _actorHealth;
 
     private float? _originalEnergy;
     private float? _originalHealth;
 
-    [ObservableProperty]
-    private bool _removeSpawner;
+    [ObservableProperty] private bool _removeSpawner;
 
-    [ObservableProperty]
-    private ActorType? _replaceType;
+    [ObservableProperty] private ActorType? _replaceType;
 
-    [ObservableProperty]
-    private string _teleportMode = "";
+    [ObservableProperty] private string _teleportMode = "";
 
-    [ObservableProperty]
-    private bool _updateEnergy;
+    [ObservableProperty] private bool _updateEnergy;
 
-    [ObservableProperty]
-    private bool _updateHealth;
+    [ObservableProperty] private bool _updateHealth;
 
-    [ObservableProperty]
-    private bool _updateInfluences;
+    [ObservableProperty] private bool _updateInfluences;
 
 
     partial void OnActorEnergyChanging(float value)

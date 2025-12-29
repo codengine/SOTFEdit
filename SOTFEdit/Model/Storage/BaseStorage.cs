@@ -16,12 +16,11 @@ namespace SOTFEdit.Model.Storage;
 public abstract partial class BaseStorage : ObservableObject, IStorage
 {
     private readonly int _index;
-    private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+    private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
     protected readonly StorageDefinition Definition;
 
-    [ObservableProperty]
-    private Position? _pos;
+    [ObservableProperty] private Position? _pos;
 
     protected BaseStorage(StorageDefinition definition, int index)
     {
@@ -35,7 +34,7 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
         }
     }
 
-    public ObservableCollection<StorageSlot> Slots { get; } = new();
+    public ObservableCollection<StorageSlot> Slots { get; } = [];
 
     public List<ItemWrapper> SupportedItems => GetSupportedItems();
 
@@ -111,7 +110,7 @@ public abstract partial class BaseStorage : ObservableObject, IStorage
                         var storageSlot = new StorageSlot();
                         Slots.Add(storageSlot);
                     }
-                    
+
                     Slots[currentSlot++].StoredItems.Add(storedItem);
                 }
                 else

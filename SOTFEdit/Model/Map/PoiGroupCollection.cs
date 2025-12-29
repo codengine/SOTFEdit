@@ -8,25 +8,17 @@ using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.Model.Map;
 
-public partial class PoiGroupCollection : ObservableObject, IPoiGrouper
+public partial class PoiGroupCollection(
+    bool enabled, string title, string groupKey, IEnumerable<PoiGroup> groups,
+    PoiGroupType groupType)
+    : ObservableObject, IPoiGrouper
 {
-    [ObservableProperty]
-    private bool _enabled;
+    [ObservableProperty] private bool _enabled = enabled;
 
-    public PoiGroupCollection(bool enabled, string title, string groupKey, IEnumerable<PoiGroup> groups,
-        PoiGroupType groupType)
-    {
-        _enabled = enabled;
-        GroupType = groupType;
-        PoiGroups = new List<PoiGroup>(groups);
-        BaseTitle = title;
-        GroupKey = groupKey;
-    }
-
-    public List<PoiGroup> PoiGroups { get; }
+    public List<PoiGroup> PoiGroups { get; } = [..groups];
 
     private int Count => PoiGroups.Select(group => group.Count).Sum();
-    public string GroupKey { get; }
+    public string GroupKey { get; } = groupKey;
 
     public void SetEnabledNoRefresh(bool value)
     {
@@ -34,12 +26,14 @@ public partial class PoiGroupCollection : ObservableObject, IPoiGrouper
     }
 
     public string Title => $"{BaseTitle} ({Count})";
-    public string BaseTitle { get; }
-    public PoiGroupType GroupType { get; }
+    public string BaseTitle { get; } = title;
+    public PoiGroupType GroupType { get; } = groupType;
 
     public void SetEnabledNoRefresh(bool value, bool collectionOnly)
     {
+#pragma warning disable MVVMTK0034
         _enabled = value;
+#pragma warning restore MVVMTK0034
         if (collectionOnly)
         {
             OnPropertyChanged(nameof(Enabled));

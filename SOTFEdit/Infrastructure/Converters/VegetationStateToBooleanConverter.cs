@@ -10,16 +10,25 @@ public class VegetationStateToBooleanConverter : IValueConverter
 {
     private VegetationState _target;
 
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        var mask = (VegetationState)parameter;
-        _target = (VegetationState)value;
+        if (parameter is not VegetationState mask || value is not VegetationState target)
+        {
+            return Binding.DoNothing;
+        }
+
+        _target = target;
         return (mask & _target) != 0;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        _target ^= (VegetationState)parameter;
+        if (parameter is not VegetationState mask)
+        {
+            return Binding.DoNothing;
+        }
+
+        _target ^= mask;
         return _target;
     }
 }

@@ -1,13 +1,7 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class ShowMapImageEvent
+public class ShowMapImageEvent(string url, string title)
 {
-    public ShowMapImageEvent(string url, string title)
-    {
-        Url = url;
-        Title = title;
-    }
-
-    public string Url { get; }
-    public string Title { get; }
+    public string Url { get; } = url;
+    public string Title { get; } = title;
 }

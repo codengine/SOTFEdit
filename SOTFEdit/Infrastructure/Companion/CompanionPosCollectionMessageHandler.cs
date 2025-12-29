@@ -10,19 +10,12 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Infrastructure.Companion;
 
-public class CompanionPosCollectionMessageHandler : MessageHandler<CompanionPosCollectionMessage>
+public class CompanionPosCollectionMessageHandler(
+    GameData gameData, PlayerPageViewModel playerPageViewModel,
+    FollowerPageViewModel followerPageViewModel)
+    : MessageHandler<CompanionPosCollectionMessage>
 {
-    private readonly AreaMaskManager _areaMaskManager;
-    private readonly FollowerPageViewModel _followerPageViewModel;
-    private readonly PlayerPageViewModel _playerPageViewModel;
-
-    public CompanionPosCollectionMessageHandler(GameData gameData, PlayerPageViewModel playerPageViewModel,
-        FollowerPageViewModel followerPageViewModel)
-    {
-        _playerPageViewModel = playerPageViewModel;
-        _followerPageViewModel = followerPageViewModel;
-        _areaMaskManager = gameData.AreaManager;
-    }
+    private readonly AreaMaskManager _areaMaskManager = gameData.AreaManager;
 
     protected override void Handle(CompanionPosCollectionMessage message)
     {
@@ -67,11 +60,11 @@ public class CompanionPosCollectionMessageHandler : MessageHandler<CompanionPosC
 
         if (position.Target == CharacterTarget.Kelvin)
         {
-            _followerPageViewModel.KelvinState.Pos = newPos;
+            followerPageViewModel.KelvinState.Pos = newPos;
         }
         else
         {
-            _followerPageViewModel.VirginiaState.Pos = newPos;
+            followerPageViewModel.VirginiaState.Pos = newPos;
         }
     }
 
@@ -82,6 +75,6 @@ public class CompanionPosCollectionMessageHandler : MessageHandler<CompanionPosC
             Area = _areaMaskManager.GetAreaForAreaMask(position.Mask),
             Rotation = position.Rotation
         };
-        _playerPageViewModel.PlayerState.Pos = newPos;
+        playerPageViewModel.PlayerState.Pos = newPos;
     }
 }

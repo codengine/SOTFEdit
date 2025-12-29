@@ -10,28 +10,29 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1        
+        uses: microsoft/setup-msbuild@v2        
       - name: Restore NuGet packages
         run: dotnet restore
       - name: Clean build directories
         run: dotnet clean --configuration Release        
       - name: Run tests
-        run: dotnet test --no-restore --verbosity normal # Run tests
+        run: dotnet test --configuration Release --no-restore --verbosity normal # Run tests
       - name: Build project
-        run: dotnet publish ${{ github.event.repository.name }} --configuration Release --no-restore --framework net6.0-windows --maxcpucount:1 # Build the app in Release mode
+        run: dotnet publish ${{ github.event.repository.name }} --configuration Release --no-restore --framework net8.0-windows --maxcpucount:1 # Build the app in Release mode
       - name: Create artifacts directory
-        run: mkdir -p artifacts
+        shell: pwsh
+        run: New-Item -ItemType Directory -Force -Path artifacts | Out-Null
       - name: Zip artifacts with PowerShell script
         shell: pwsh # Use PowerShell as the shell
         run: |
           # Zip the output files with the assembly name and version
-          Compress-Archive -Path ${{ github.workspace }}\${{ github.event.repository.name }}\bin\Release\net6.0-windows\publish\* -DestinationPath ${{ github.workspace }}\artifacts\${{ github.event.repository.name }}-${{ github.ref_name }}.zip
+          Compress-Archive -Path ${{ github.workspace }}\${{ github.event.repository.name }}\bin\Release\net8.0-windows\publish\* -DestinationPath ${{ github.workspace }}\artifacts\${{ github.event.repository.name }}-${{ github.ref_name }}.zip
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1

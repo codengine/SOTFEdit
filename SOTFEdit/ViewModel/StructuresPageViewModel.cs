@@ -18,12 +18,11 @@ namespace SOTFEdit.ViewModel;
 
 public partial class StructuresPageViewModel : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly List<ScrewStructure> _structureTypes;
 
-    [ObservableProperty]
-    private ScrewStructure? _batchSelectedStructureType;
+    [ObservableProperty] private ScrewStructure? _batchSelectedStructureType;
 
     public StructuresPageViewModel(GameData gameData)
     {
@@ -44,7 +43,7 @@ public partial class StructuresPageViewModel : ObservableObject
         SetupListeners();
     }
 
-    public ObservableCollectionEx<ScrewStructureWrapper> Structures { get; } = new();
+    public ObservableCollectionEx<ScrewStructureWrapper> Structures { get; } = [];
 
     public ICollectionView StructureTypes { get; }
 
@@ -77,7 +76,7 @@ public partial class StructuresPageViewModel : ObservableObject
         SetModificationModeCommand.NotifyCanExecuteChanged();
     }
 
-    private IEnumerable<ScrewStructureWrapper> LoadStructures(Savegame selectedSavegame)
+    private List<ScrewStructureWrapper> LoadStructures(Savegame selectedSavegame)
     {
         var wrappers = new List<ScrewStructureWrapper>();
         wrappers.AddRange(LoadUnfinishedStructures(selectedSavegame));
@@ -85,7 +84,7 @@ public partial class StructuresPageViewModel : ObservableObject
         return wrappers;
     }
 
-    private IEnumerable<ScrewStructureWrapper> LoadFinishedStructures(Savegame selectedSavegame)
+    private List<ScrewStructureWrapper> LoadFinishedStructures(Savegame selectedSavegame)
     {
         var wrappers = new List<ScrewStructureWrapper>();
         if (
@@ -129,7 +128,7 @@ public partial class StructuresPageViewModel : ObservableObject
         return wrappers;
     }
 
-    private IEnumerable<ScrewStructureWrapper> LoadUnfinishedStructures(Savegame selectedSavegame)
+    private List<ScrewStructureWrapper> LoadUnfinishedStructures(Savegame selectedSavegame)
     {
         var wrappers = new List<ScrewStructureWrapper>();
         if (
@@ -295,7 +294,6 @@ public partial class StructuresPageViewModel : ObservableObject
         var added = wrapper.ModificationMode switch
         {
             ScrewStructureModificationMode.AlmostFinish => wrapper.BuildCost == 1 ? 0 : wrapper.BuildCost - 1,
-            ScrewStructureModificationMode.Unfinish => 0,
             _ => 0
         };
 
@@ -306,8 +304,8 @@ public partial class StructuresPageViewModel : ObservableObject
     [RelayCommand(CanExecute = nameof(HasSavegameSelected))]
     private void SetModificationMode(ScrewStructureModificationWrapper modificationWrapper)
     {
-        foreach (var wrapper in Structures.Where(structure => structure.Origin == modificationWrapper.Origin).Where(
-                     structure =>
+        foreach (var wrapper in Structures.Where(structure => structure.Origin == modificationWrapper.Origin)
+                     .Where(structure =>
                          BatchSelectedStructureType == null || BatchSelectedStructureType.Name == "" ||
                          structure.ScrewStructure?.Id == BatchSelectedStructureType.Id))
         {

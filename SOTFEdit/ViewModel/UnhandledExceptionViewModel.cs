@@ -7,14 +7,9 @@ using CommunityToolkit.Mvvm.Input;
 namespace SOTFEdit.ViewModel;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public partial class UnhandledExceptionViewModel : ObservableObject
+public partial class UnhandledExceptionViewModel(Exception exception) : ObservableObject
 {
-    public UnhandledExceptionViewModel(Exception exception)
-    {
-        Exception = exception;
-    }
-
-    public Exception Exception { get; }
+    public Exception Exception { get; } = exception;
     public string? ExceptionType => Exception.GetType().FullName;
 
     public static string ApplicationVersion

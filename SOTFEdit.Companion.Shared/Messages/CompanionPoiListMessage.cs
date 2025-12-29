@@ -3,17 +3,9 @@
 namespace SOTFEdit.Companion.Shared.Messages;
 
 [MessagePackObject]
-public class CompanionPoiListMessage : ICompanionMessage
+public class CompanionPoiListMessage(PoiGroupType type, List<CompanionPoiMessage> pois) : ICompanionMessage
 {
-    public CompanionPoiListMessage(PoiGroupType type, List<CompanionPoiMessage> pois)
-    {
-        Type = type;
-        Pois = pois;
-    }
+    [Key(0)] public PoiGroupType Type { get; } = type;
 
-    [Key(0)]
-    public PoiGroupType Type { get; }
-
-    [Key(1)]
-    public List<CompanionPoiMessage> Pois { get; }
+    [Key(1)] public List<CompanionPoiMessage> Pois { get; } = pois;
 }

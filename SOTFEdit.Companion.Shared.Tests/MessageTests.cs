@@ -47,6 +47,36 @@ public class MessageTests
     }
 
     [Test]
+    public void TestCompanionPoiMessage_Roundtrip_WithExplicitValues()
+    {
+        var message = new CompanionPoiMessage(
+            "Test",
+            "Desc",
+            1.5f,
+            -2.25f,
+            3f,
+            12345,
+            "path.jpg");
+
+        var copy = CompanionMessageTestUtils.Copy(message);
+        copy.Should().BeEquivalentTo(message);
+    }
+
+    [Test]
+    public void TestCompanionPoiListMessage_Roundtrip_WithExplicitValues()
+    {
+        var message = new CompanionPoiListMessage(
+            PoiGroupType.Actors,
+            [
+                new CompanionPoiMessage("A", null, 1f, 2f, 3f, 4, null),
+                new CompanionPoiMessage("B", "b", -1f, -2f, -3f, 5, "s.png")
+            ]);
+
+        var copy = CompanionMessageTestUtils.Copy(message);
+        copy.Should().BeEquivalentTo(message);
+    }
+
+    [Test]
     public void TestCompanionPosCollectionMessage()
     {
         var message = new Filler<CompanionPosCollectionMessage>().Create();

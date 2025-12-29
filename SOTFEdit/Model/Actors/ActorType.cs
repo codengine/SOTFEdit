@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using JetBrains.Annotations;
 using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.Model.Actors;
@@ -29,11 +30,9 @@ public record ActorType(int Id, string Classification, string? Gender = null, st
 
     public string Name => Id == -1 ? "???" : TranslationManager.Get("actors.types." + Id);
 
-    public string PrintableClassification =>
-        TranslationManager.Get("actors.classification." + Classification);
+    public string PrintableClassification => TranslationManager.Get("actors.classification." + Classification);
 
-    public string PrintableGender =>
-        Gender == null ? "-" : TranslationManager.Get("actors.gender." + Gender);
+    public string PrintableGender => Gender == null ? "-" : TranslationManager.Get("actors.gender." + Gender);
 
     public virtual bool Equals(ActorType? other)
     {
@@ -63,5 +62,7 @@ public record ActorType(int Id, string Classification, string? Gender = null, st
 
 internal record EmptyActorType() : ActorType(-1, "")
 {
-    public new string Name => "";
+#pragma warning disable CA1822
+    [UsedImplicitly] public new string Name => "";
+#pragma warning restore CA1822
 }

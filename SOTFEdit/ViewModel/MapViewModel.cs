@@ -40,13 +40,11 @@ public partial class MapViewModel : ObservableObject
 
     private readonly ObservableCollectionEx<IPoiGrouper> _poiGroups;
 
-    private readonly HashSet<IPoi> _poisAdded = new();
+    private readonly HashSet<IPoi> _poisAdded = [];
 
-    [ObservableProperty]
-    private bool _followPlayer = true;
+    [ObservableProperty] private bool _followPlayer = true;
 
-    [ObservableProperty]
-    private bool _isNotConnected = true;
+    [ObservableProperty] private bool _isNotConnected = true;
 
     [NotifyPropertyChangedFor(nameof(MapImageSource))]
     [NotifyPropertyChangedFor(nameof(MapBackground))]
@@ -54,8 +52,7 @@ public partial class MapViewModel : ObservableObject
     [ObservableProperty]
     private MapType _mapSelection = Settings.Default.MapType;
 
-    [ObservableProperty]
-    private IPoi? _selectedPoi;
+    [ObservableProperty] private IPoi? _selectedPoi;
 
     static MapViewModel()
     {
@@ -84,7 +81,7 @@ public partial class MapViewModel : ObservableObject
             {
                 PoiGroup poiGroup => poiGroup.Pois,
                 PoiGroupCollection poiGroupCollection => poiGroupCollection.PoiGroups.SelectMany(g => g.Pois),
-                _ => Enumerable.Empty<BasePoi>()
+                _ => []
             };
         }).Where(poi => poi.Enabled).ToList();
 
@@ -121,7 +118,7 @@ public partial class MapViewModel : ObservableObject
         }
     }
 
-    private static Brush GetMapBackground(MapType mapSelection)
+    private static SolidColorBrush GetMapBackground(MapType mapSelection)
     {
         return mapSelection switch
         {
@@ -141,7 +138,7 @@ public partial class MapViewModel : ObservableObject
         };
     }
 
-    private void AddFollowersIfMissing(ICollection<IPoiGrouper> poiList)
+    private void AddFollowersIfMissing(List<IPoiGrouper> poiList)
     {
         var actorGroupCollection = poiList.OfType<PoiGroupCollection>()
             .FirstOrDefault(grouper => grouper.GroupType == PoiGroupType.Actors);
@@ -524,10 +521,7 @@ public partial class MapViewModel : ObservableObject
         var newActorPoiGroups = _mapManager.GetActorPois();
 
         var newActorGroupCollection = PoiGroupCollection.ForActors(newActorPoiGroups, oldActorGroup?.Enabled ?? false);
-        AddFollowersIfMissing(new List<IPoiGrouper>
-        {
-            newActorGroupCollection
-        });
+        AddFollowersIfMissing([newActorGroupCollection]);
 
         if (oldActorGroup == null)
         {
@@ -709,13 +703,13 @@ public partial class MapViewModel : ObservableObject
         var selectedGroupsString = Settings.Default.SelectedMapGroups;
         if (selectedGroupsString == "_null_")
         {
-            selectedGroups = new HashSet<string>();
+            selectedGroups = [];
             return false;
         }
 
         if (string.IsNullOrEmpty(selectedGroupsString))
         {
-            selectedGroups = new HashSet<string>();
+            selectedGroups = [];
         }
         else
         {

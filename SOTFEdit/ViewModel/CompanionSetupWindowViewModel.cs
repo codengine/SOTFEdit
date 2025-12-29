@@ -14,28 +14,22 @@ public partial class CompanionSetupWindowViewModel : ObservableObject
     private readonly CompanionConnectionManager _connectionManager;
     private readonly ICloseable _parent;
 
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))] [ObservableProperty]
     private string? _address;
 
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))] [ObservableProperty]
     private short? _connectTimeout;
 
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))] [ObservableProperty]
     private short? _keepAliveInterval;
 
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))] [ObservableProperty]
     private decimal? _mapPositionUpdateInterval;
 
-    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))] [ObservableProperty]
     private int? _port;
 
-    [ObservableProperty]
-    private string _statusText = "";
+    [ObservableProperty] private string _statusText = "";
 
     public CompanionSetupWindowViewModel(CompanionConnectionManager connectionManager, ICloseable parent)
     {

@@ -44,13 +44,13 @@ public class ApplicationSettings
         }
     }
 
-    public BackupMode CurrentBackupMode
+    public static BackupMode CurrentBackupMode
     {
         get => Settings.Default.BackupMode;
         set => Settings.Default.BackupMode = value;
     }
 
-    public void Save()
+    public static void Save()
     {
         Settings.Default.Save();
     }

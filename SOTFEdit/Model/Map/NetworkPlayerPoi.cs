@@ -9,8 +9,7 @@ public partial class NetworkPlayerPoi : BasePoi
 {
     private const string IconFile = "network_player.png";
 
-    [ObservableProperty]
-    private string _title;
+    [ObservableProperty] private string _title;
 
     public NetworkPlayerPoi(Position position, int instanceId, string name) : base(position)
     {

@@ -10,7 +10,7 @@ namespace SOTFEdit.Infrastructure.Companion;
 
 public class CompanionMessageHandler
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private readonly Dictionary<Type, IMessageHandler> _messageHandlers;
 
     public CompanionMessageHandler(IEnumerable<IMessageHandler> messageHandlers)

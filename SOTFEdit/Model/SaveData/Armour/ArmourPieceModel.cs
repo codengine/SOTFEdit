@@ -6,8 +6,7 @@ namespace SOTFEdit.Model.SaveData.Armour;
 
 public partial class ArmourPieceModel : ObservableObject
 {
-    [ObservableProperty]
-    private float _remainingArmourpoints;
+    [ObservableProperty] private float _remainingArmourpoints;
 
     public int ItemId { get; init; }
     public int Slot { get; set; }
@@ -39,13 +38,13 @@ public partial class ArmourPieceModel : ObservableObject
                 return false;
             }
 
-            return x._remainingArmourpoints.Equals(y._remainingArmourpoints) && x.ItemId == y.ItemId &&
+            return x.RemainingArmourpoints.Equals(y.RemainingArmourpoints) && x.ItemId == y.ItemId &&
                    x.Slot == y.Slot;
         }
 
         public int GetHashCode(ArmourPieceModel obj)
         {
-            return HashCode.Combine(obj._remainingArmourpoints, obj.ItemId, obj.Slot);
+            return HashCode.Combine(obj.RemainingArmourpoints, obj.ItemId, obj.Slot);
         }
     }
 }

@@ -1,11 +1,6 @@
 namespace SOTFEdit.Model.Events;
 
-public class ZoomToPosEvent
+public class ZoomToPosEvent(Position pos)
 {
-    public ZoomToPosEvent(Position pos)
-    {
-        Pos = pos;
-    }
-
-    public Position Pos { get; }
+    public Position Pos { get; } = pos;
 }

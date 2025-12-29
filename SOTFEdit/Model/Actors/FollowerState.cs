@@ -12,38 +12,27 @@ namespace SOTFEdit.Model.Actors;
 
 public partial class FollowerState : ObservableObject
 {
-    [ObservableProperty]
-    private float _affection;
+    [ObservableProperty] private float _affection;
 
-    [ObservableProperty]
-    private float _anger;
+    [ObservableProperty] private float _anger;
 
-    [ObservableProperty]
-    private float _energy;
+    [ObservableProperty] private float _energy;
 
-    [ObservableProperty]
-    private float _fear;
+    [ObservableProperty] private float _fear;
 
-    [ObservableProperty]
-    private float _fullness;
+    [ObservableProperty] private float _fullness;
 
-    [ObservableProperty]
-    private float _health;
+    [ObservableProperty] private float _health;
 
-    [ObservableProperty]
-    private float _hydration;
+    [ObservableProperty] private float _hydration;
 
-    [ObservableProperty]
-    private Outfit? _outfit;
+    [ObservableProperty] private Outfit? _outfit;
 
-    [ObservableProperty]
-    private Position _pos = new(0, 0, 0);
+    [ObservableProperty] private Position _pos = new(0, 0, 0);
 
-    [ObservableProperty]
-    private string _status = "???";
+    [ObservableProperty] private string _status = "???";
 
-    [ObservableProperty]
-    private int? _uniqueId;
+    [ObservableProperty] private int? _uniqueId;
 
     public FollowerState(int typeId, List<Outfit> outfits, IEnumerable<Item> equippableItems)
     {
@@ -60,8 +49,8 @@ public partial class FollowerState : ObservableObject
     public int TypeId { get; }
 
     public List<Outfit> Outfits { get; }
-    public ObservableCollection<EquippableItem> Inventory { get; } = new();
-    public ObservableCollection<Influence> Influences { get; } = new();
+    public ObservableCollection<EquippableItem> Inventory { get; } = [];
+    public ObservableCollection<Influence> Influences { get; } = [];
 
     partial void OnPosChanged(Position value)
     {

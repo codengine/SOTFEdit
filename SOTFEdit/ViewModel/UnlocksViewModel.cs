@@ -21,17 +21,13 @@ public partial class UnlocksViewModel : ObservableObject
     private readonly ICloseable _parent;
     private readonly string _playerProfilePath;
 
-    [ObservableProperty]
-    private bool _coreGameCompleted;
+    [ObservableProperty] private bool _coreGameCompleted;
 
-    [ObservableProperty]
-    private bool _creativeMode;
+    [ObservableProperty] private bool _creativeMode;
 
-    [ObservableProperty]
-    private bool _creativeModeItem;
+    [ObservableProperty] private bool _creativeModeItem;
 
-    [ObservableProperty]
-    private bool _escapedIsland;
+    [ObservableProperty] private bool _escapedIsland;
 
     public UnlocksViewModel(string playerProfilePath, ICloseable parent)
     {
@@ -91,7 +87,7 @@ public partial class UnlocksViewModel : ObservableObject
 
         if (model[SettingsKey] is not JArray settings)
         {
-            settings = new JArray();
+            settings = [];
             model[SettingsKey] = settings;
         }
 

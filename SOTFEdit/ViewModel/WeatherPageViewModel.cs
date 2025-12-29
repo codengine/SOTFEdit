@@ -16,7 +16,7 @@ public class WeatherPageViewModel
         SetupListeners();
     }
 
-    public ObservableCollection<GenericSetting> Settings { get; } = new();
+    public ObservableCollection<GenericSetting> Settings { get; } = [];
 
     private void SetupListeners()
     {
@@ -42,56 +42,30 @@ public class WeatherPageViewModel
         var children = weatherSystem.Children();
         foreach (var child in children.OfType<JProperty>())
         {
-            GenericSetting? setting = null;
-            switch (child.Name)
+            var setting = child.Name switch
             {
-                case "_isRaining":
-                case "_rainBlocked":
-                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Boolean, child.Path)
+                "_isRaining" or "_rainBlocked" => new GenericSetting(child.Name, GenericSetting.DataType.Boolean,
+                    child.Path) { BoolValue = child.Value.Value<bool>() },
+                "_cloudState" => new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
+                {
+                    SelectedItem = child.Value.Value<int>(),
+                    PossibleValues =
                     {
-                        BoolValue = child.Value.Value<bool>()
-                    };
-                    break;
-                case "_cloudState":
-                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
-                    {
-                        SelectedItem = child.Value.Value<int>(),
-                        PossibleValues =
-                        {
-                            { 0, "Idle" },
-                            { 1, "GrowingClouds" },
-                            { 2, "ReducingClouds" },
-                            { 3, "Raining" }
-                        }
-                    };
-                    break;
-                case "_currentRainType":
-                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
-                    {
-                        SelectedItem = child.Value.Value<int>(),
-                        PossibleValues =
-                        {
-                            { 0, "None" },
-                            { 1, "Light" },
-                            { 2, "Medium" },
-                            { 3, "Heavy" }
-                        }
-                    };
-                    break;
-                case "_currentSeason":
-                    setting = new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
-                    {
-                        SelectedItem = child.Value.Value<int>(),
-                        PossibleValues =
-                        {
-                            { 0, "Spring" },
-                            { 1, "Summer" },
-                            { 2, "Autumn" },
-                            { 3, "Winter" }
-                        }
-                    };
-                    break;
-            }
+                        { 0, "Idle" }, { 1, "GrowingClouds" }, { 2, "ReducingClouds" }, { 3, "Raining" }
+                    }
+                },
+                "_currentRainType" => new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
+                {
+                    SelectedItem = child.Value.Value<int>(),
+                    PossibleValues = { { 0, "None" }, { 1, "Light" }, { 2, "Medium" }, { 3, "Heavy" } }
+                },
+                "_currentSeason" => new GenericSetting(child.Name, GenericSetting.DataType.Enum, child.Path)
+                {
+                    SelectedItem = child.Value.Value<int>(),
+                    PossibleValues = { { 0, "Spring" }, { 1, "Summer" }, { 2, "Autumn" }, { 3, "Winter" } }
+                },
+                _ => null
+            };
 
             if (setting != null)
             {

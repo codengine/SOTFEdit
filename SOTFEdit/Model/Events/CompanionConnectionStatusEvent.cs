@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class CompanionConnectionStatusEvent
+public class CompanionConnectionStatusEvent(CompanionConnectionManager.ConnectionStatus status)
 {
-    public CompanionConnectionStatusEvent(CompanionConnectionManager.ConnectionStatus status)
-    {
-        Status = status;
-    }
-
-    public CompanionConnectionManager.ConnectionStatus Status { get; }
+    public CompanionConnectionManager.ConnectionStatus Status { get; } = status;
 }

@@ -3,12 +3,7 @@ using SOTFEdit.Model.Map;
 
 namespace SOTFEdit.Model;
 
-public class RequestOpenMapEvent
+public class RequestOpenMapEvent(List<IPoiGrouper> poiGroups)
 {
-    public RequestOpenMapEvent(List<IPoiGrouper> poiGroups)
-    {
-        PoiGroups = poiGroups;
-    }
-
-    public List<IPoiGrouper> PoiGroups { get; }
+    public List<IPoiGrouper> PoiGroups { get; } = poiGroups;
 }

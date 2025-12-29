@@ -3,20 +3,16 @@ using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.Model.Map;
 
-public class StructurePoi : BasePoi
+public class StructurePoi(ScrewStructureWrapper screwStructureWrapper) : BasePoi(screwStructureWrapper.Position!)
 {
-    public StructurePoi(ScrewStructureWrapper screwStructureWrapper) : base(screwStructureWrapper.Position!)
-    {
-        ScrewStructureWrapper = screwStructureWrapper;
-    }
-
-    public ScrewStructureWrapper ScrewStructureWrapper { get; }
+    public ScrewStructureWrapper ScrewStructureWrapper { get; } = screwStructureWrapper;
 
     public override string Title => ScrewStructureWrapper.Name;
 
-    public override BitmapImage Icon => ScrewStructureWrapper.ScrewStructure?.Icon is { } icon
-        ? $"/images/structures/{icon}".LoadAppLocalImage()
-        : DefaultIcon;
+    public override BitmapImage Icon =>
+        ScrewStructureWrapper.ScrewStructure?.Icon is { } icon
+            ? $"/images/structures/{icon}".LoadAppLocalImage()
+            : DefaultIcon;
 
     public override int IconWidth => 24;
     public override int IconHeight => 24;

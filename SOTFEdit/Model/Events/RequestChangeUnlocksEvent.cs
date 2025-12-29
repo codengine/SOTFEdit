@@ -1,5 +1,3 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class RequestChangeUnlocksEvent
-{
-}
+public class RequestChangeUnlocksEvent;

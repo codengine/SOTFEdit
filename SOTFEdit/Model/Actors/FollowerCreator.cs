@@ -22,9 +22,9 @@ internal static class ActorCreator
         var uniqueId = GetNextFreeUniqueId(allUniqueIds);
 
         var templateText = ReadTemplate("actorTemplate.txt")
-            .Replace(@"{uniqueId}", uniqueId.ToString())
-            .Replace(@"{typeId}", typeId.ToString())
-            .Replace(@"{actorSeed}", new Random().Next().ToString());
+            .Replace("{uniqueId}", uniqueId.ToString())
+            .Replace("{typeId}", typeId.ToString())
+            .Replace("{actorSeed}", new Random().Next().ToString());
         var actorTemplate = JToken.Parse(templateText);
 
         actorTemplate["Position"]?.Replace(JToken.FromObject(pos));
@@ -39,7 +39,7 @@ internal static class ActorCreator
         return new KeyValuePair<int, JToken>(uniqueId, actorTemplate);
     }
 
-    private static int GetNextFreeUniqueId(IReadOnlySet<int> allUniqueIds, int uniqueId = 1)
+    private static int GetNextFreeUniqueId(HashSet<int> allUniqueIds, int uniqueId = 1)
     {
         while (allUniqueIds.Contains(uniqueId) && uniqueId < int.MaxValue)
         {
@@ -51,7 +51,7 @@ internal static class ActorCreator
 
     private static void GetAllUniqueAndSpawnerIds(JToken vailWorldSim, out HashSet<int> allUniqueIds)
     {
-        allUniqueIds = new HashSet<int>();
+        allUniqueIds = [];
 
         foreach (var actor in vailWorldSim["Actors"] ?? Enumerable.Empty<JToken>())
         {
@@ -81,9 +81,9 @@ internal static class ActorCreator
         GetAllUniqueAndSpawnerIds(vailWorldSim, out var allUniqueIds);
 
         var templateText = ReadTemplate("actorTemplate.txt")
-            .Replace(@"{uniqueId}", "0")
-            .Replace(@"{typeId}", actorType.Id.ToString())
-            .Replace(@"{actorSeed}", "0");
+            .Replace("{uniqueId}", "0")
+            .Replace("{typeId}", actorType.Id.ToString())
+            .Replace("{actorSeed}", "0");
         var actorTemplate = JToken.Parse(templateText);
 
         actorTemplate["Position"] = JToken.FromObject(position);

@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class ReapplyPoiFilterEvent
+public class ReapplyPoiFilterEvent(IPoi poi)
 {
-    public ReapplyPoiFilterEvent(IPoi poi)
-    {
-        Poi = poi;
-    }
-
-    public IPoi Poi { get; }
+    public IPoi Poi { get; } = poi;
 }

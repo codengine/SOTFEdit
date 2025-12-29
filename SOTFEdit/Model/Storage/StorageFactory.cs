@@ -2,14 +2,9 @@
 
 namespace SOTFEdit.Model.Storage;
 
-public class StorageFactory
+public class StorageFactory(GameData gameData)
 {
-    private readonly ItemList _items;
-
-    public StorageFactory(GameData gameData)
-    {
-        _items = gameData.Items;
-    }
+    private readonly ItemList _items = gameData.Items;
 
     public IStorage Build(IStorageDefinition iStorageDefinition, int index)
     {
@@ -23,24 +18,17 @@ public class StorageFactory
 
     private IStorage Build(StorageDefinition storageDefinition, int index)
     {
-        switch (storageDefinition.Type)
+        return storageDefinition.Type switch
         {
-            case StorageType.Items:
-                return new ItemsStorage(storageDefinition, _items, index);
-            case StorageType.Food:
-                return new FoodStorage(storageDefinition, _items, index);
-            case StorageType.Logs:
-            case StorageType.Sticks:
-            case StorageType.Stones:
-            case StorageType.Spears:
-            case StorageType.Bones:
-                return new ResourceStorage(storageDefinition, _items, index);
-            default:
-                throw new ArgumentOutOfRangeException(storageDefinition.Type.ToString());
-        }
+            StorageType.Items => new ItemsStorage(storageDefinition, _items, index),
+            StorageType.Food => new FoodStorage(storageDefinition, _items, index),
+            StorageType.Logs or StorageType.Sticks or StorageType.Stones or StorageType.Spears or StorageType.Bones =>
+                new ResourceStorage(storageDefinition, _items, index),
+            _ => throw new ArgumentOutOfRangeException(storageDefinition.Type.ToString())
+        };
     }
 
-    private IStorage Build(AdvancedStorageDefinition storageDefinition, int index)
+    private AdvancedItemsStorage Build(AdvancedStorageDefinition storageDefinition, int index)
     {
         return storageDefinition.Type switch
         {

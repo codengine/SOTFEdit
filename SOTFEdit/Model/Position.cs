@@ -6,39 +6,25 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model;
 
-public class Position : ObservableObject
+public class Position(float x, float y, float z) : ObservableObject
 {
-    private readonly float _y;
+    private readonly float _y = y;
 
-    public Position(float x, float y, float z)
-    {
-        X = x;
-        _y = y;
-        Z = z;
-    }
-
-    [JsonIgnore]
-    public Area Area { get; init; } = AreaMaskManager.Surface;
+    [JsonIgnore] public Area Area { get; init; } = AreaMaskManager.Surface;
 
     private float YOffset { get; set; }
 
-    [JsonProperty("x")]
-    public float X { get; init; }
+    [JsonProperty("x")] public float X { get; init; } = x;
 
-    [JsonProperty("y")]
-    public float Y => _y + YOffset;
+    [JsonProperty("y")] public float Y => _y + YOffset;
 
-    [JsonProperty("z")]
-    public float Z { get; init; }
+    [JsonProperty("z")] public float Z { get; init; } = z;
 
-    [JsonIgnore]
-    public string PrintableShort => $"X: {X:F2}, Y: {Y:F2}, Z: {Z:F2}";
+    [JsonIgnore] public string PrintableShort => $"X: {X:F2}, Y: {Y:F2}, Z: {Z:F2}";
 
-    [JsonIgnore]
-    public string Printable => $"X: {X}, Y: {Y}, Z: {Z}";
+    [JsonIgnore] public string Printable => $"X: {X}, Y: {Y}, Z: {Z}";
 
-    [JsonIgnore]
-    public float Rotation { get; set; }
+    [JsonIgnore] public float Rotation { get; set; }
 
 
     public Position WithoutOffset()
@@ -78,12 +64,7 @@ public class Position : ObservableObject
             return true;
         }
 
-        if (obj.GetType() != GetType())
-        {
-            return false;
-        }
-
-        return Equals((Position)obj);
+        return obj.GetType() == GetType() && Equals((Position)obj);
     }
 
     public override int GetHashCode()
@@ -119,8 +100,8 @@ public class Position : ObservableObject
         var currentLevel = 0;
         var currentDirection = 0;
 
-        float[] directionX = { 1, 0, -1, 0 };
-        float[] directionY = { 0, -1, 0, 1 };
+        float[] directionX = [1, 0, -1, 0];
+        float[] directionY = [0, -1, 0, 1];
 
         var curX = X;
         var curZ = Z;
@@ -182,7 +163,6 @@ public class Position : ObservableObject
                 newCoordinates.Add(Tuple.Create(newX, newY));
 
                 newX = X - i * space;
-                newCoordinates.Add(Tuple.Create(newX, newY));
             }
             else
             {
@@ -191,8 +171,9 @@ public class Position : ObservableObject
                 newCoordinates.Add(Tuple.Create(newX, newY));
 
                 newY = Z - i * space;
-                newCoordinates.Add(Tuple.Create(newX, newY));
             }
+
+            newCoordinates.Add(Tuple.Create(newX, newY));
         }
 
         if (count % 2 != 0)

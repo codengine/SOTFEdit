@@ -31,7 +31,7 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
             return new GenericModule(-1, obj);
         }
 
-        var instance = moduleId switch
+        IStorageModule instance = moduleId switch
         {
             1 => BuildSourceActorStorageModule(obj),
             3 => BuildFoodSpoilModule(moduleId, obj),
@@ -45,26 +45,26 @@ public class StorageSaveDataModuleConverter : JsonConverter<IStorageModule>
         return instance;
     }
 
-    private static IStorageModule BuildSourceActorStorageModule(JObject obj)
+    private static SourceActorStorageModule BuildSourceActorStorageModule(JObject obj)
     {
         return new SourceActorStorageModule(obj["SourceActorType"]?.Value<int>() ??
                                             SourceActorStorageModule.DefaultActorType);
     }
 
-    private static IStorageModule BuildGenericModule(int moduleId, JObject moduleToken)
+    private static GenericModule BuildGenericModule(int moduleId, JObject moduleToken)
     {
         return new GenericModule(moduleId, moduleToken);
     }
 
-    private static IStorageModule BuildFoodSpoilModule(int moduleId, JObject obj)
+    private static FoodSpoilStorageModule BuildFoodSpoilModule(int moduleId, JObject obj)
     {
         return new FoodSpoilStorageModule(
             moduleId,
             obj["CurrentState"]?.Value<int>() ??
             throw new Exception(
                 TranslationManager.GetFormatted("storage.errors.currentStateNotDefined", moduleId)),
-            obj["TimeRemainingInState"]?.Value<long>() ?? default,
-            obj["PauseDecay"]?.Value<bool>() ?? default
+            obj["TimeRemainingInState"]?.Value<long>() ?? 0,
+            obj["PauseDecay"]?.Value<bool>() ?? false
         );
     }
 }

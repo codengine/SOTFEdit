@@ -1,13 +1,7 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class UpdateActorPoiPositionEvent
+public class UpdateActorPoiPositionEvent(int typeId, Position newPosition)
 {
-    public UpdateActorPoiPositionEvent(int typeId, Position newPosition)
-    {
-        TypeId = typeId;
-        NewPosition = newPosition;
-    }
-
-    public int TypeId { get; }
-    public Position NewPosition { get; }
+    public int TypeId { get; } = typeId;
+    public Position NewPosition { get; } = newPosition;
 }

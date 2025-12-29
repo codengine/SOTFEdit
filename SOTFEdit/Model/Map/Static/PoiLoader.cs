@@ -11,25 +11,14 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.Map.Static;
 
-public class PoiLoader
+public class PoiLoader(
+    GameData gameData, InventoryPageViewModel inventoryPageViewModel,
+    PlayerPageViewModel playerPageViewModel,
+    CompanionPoiStorage companionPoiStorage)
 {
-    private readonly AreaMaskManager _areaMaskManager;
-    private readonly CompanionPoiStorage _companionPoiStorage;
-    private readonly InventoryPageViewModel _inventoryPageViewModel;
-    private readonly ItemList _items;
-    private readonly PlayerPageViewModel _playerPageViewModel;
+    private readonly AreaMaskManager _areaMaskManager = gameData.AreaManager;
+    private readonly ItemList _items = gameData.Items;
     private readonly ConcurrentDictionary<PoiGroupType, IPoiGrouper> _rawPoiCache = new();
-
-    public PoiLoader(GameData gameData, InventoryPageViewModel inventoryPageViewModel,
-        PlayerPageViewModel playerPageViewModel,
-        CompanionPoiStorage companionPoiStorage)
-    {
-        _items = gameData.Items;
-        _areaMaskManager = gameData.AreaManager;
-        _inventoryPageViewModel = inventoryPageViewModel;
-        _playerPageViewModel = playerPageViewModel;
-        _companionPoiStorage = companionPoiStorage;
-    }
 
     public IPoiGrouper? GetRawPois(PoiGroupType type)
     {
@@ -58,7 +47,7 @@ public class PoiLoader
     {
         var itemsWithHashes = _items.GetItemsWithHashes();
 
-        var inventoryItems = _inventoryPageViewModel.InventoryCollectionView.OfType<InventoryItem>()
+        var inventoryItems = inventoryPageViewModel.InventoryCollectionView.OfType<InventoryItem>()
             .SelectMany(item =>
             {
                 var itemIds = new HashSet<int> { item.Id };
@@ -68,7 +57,7 @@ public class PoiLoader
             })
             .ToHashSet();
 
-        if (_playerPageViewModel.PlayerState.SelectedCloth is { } selectedCloth)
+        if (playerPageViewModel.PlayerState.SelectedCloth is { } selectedCloth)
         {
             inventoryItems.Add(selectedCloth.Id);
         }
@@ -76,7 +65,7 @@ public class PoiLoader
         return inventoryItems;
     }
 
-    private static void AddItemIdsFromWeaponMods(InventoryItem item, ISet<int> itemIds,
+    private static void AddItemIdsFromWeaponMods(InventoryItem item, HashSet<int> itemIds,
         IReadOnlyCollection<Item> itemsWithHashes)
     {
         List<JToken> modules;
@@ -87,7 +76,7 @@ public class PoiLoader
         }
         else if (item.ItemBlock.UniqueItems is { Count: > 0 } uniqueItems)
         {
-            modules = new List<JToken>();
+            modules = [];
             foreach (var uniqueItem in uniqueItems)
             {
                 if (uniqueItem["Modules"] is JArray mUnique)
@@ -125,9 +114,9 @@ public class PoiLoader
         }
     }
 
-    private IPoiGrouper LoadCustomPois()
+    private PoiGroup LoadCustomPois()
     {
-        var customMapPois = _companionPoiStorage.GetAll()
+        var customMapPois = companionPoiStorage.GetAll()
             .Select(poi => CustomMapPoi.FromCustomPoi(poi, _areaMaskManager))
             .ToList();
 
@@ -141,7 +130,7 @@ public class PoiLoader
         return LoadItemPois(inventoryItems, true);
     }
 
-    private IPoiGrouper LoadItemPois(HashSet<int> inventoryItems, bool filterForCompanion = false)
+    private PoiGroupCollection LoadItemPois(HashSet<int> inventoryItems, bool filterForCompanion = false)
     {
         var rawPoiCollection = JsonConverter.DeserializeFromFile<RawItemPoiCollection>(
                                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "item_pois.json")) ??

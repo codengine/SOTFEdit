@@ -14,5 +14,5 @@ public class ActorCollection
     }
 
     public string Name => $"{_name} ({Actors.Count})";
-    public ObservableCollectionEx<Actor> Actors { get; } = new();
+    public ObservableCollectionEx<Actor> Actors { get; } = [];
 }

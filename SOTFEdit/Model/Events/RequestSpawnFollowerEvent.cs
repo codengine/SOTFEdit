@@ -2,5 +2,6 @@
 
 namespace SOTFEdit.Model.Events;
 
-public record RequestSpawnFollowerEvent(Savegame.Savegame Savegame, int TypeId, HashSet<int> ItemIds, Outfit? Outfit,
+public record RequestSpawnFollowerEvent(
+    Savegame.Savegame Savegame, int TypeId, HashSet<int> ItemIds, Outfit? Outfit,
     Position Pos);

@@ -17,17 +17,13 @@ public partial class SettingsDialogViewModel : ObservableObject
 {
     private readonly ApplicationSettings _applicationSettings;
 
-    [ObservableProperty]
-    private BackupModeWrapper _currentBackupMode;
+    [ObservableProperty] private bool _askForBackups;
 
-    [ObservableProperty]
-    private ThemeData _currentThemeAccent;
+    [ObservableProperty] private BackupModeWrapper _currentBackupMode;
 
-    [ObservableProperty]
-    private string _selectedLanguage;
-    
-    [ObservableProperty]
-    private bool _askForBackups;
+    [ObservableProperty] private ThemeData _currentThemeAccent;
+
+    [ObservableProperty] private string _selectedLanguage;
 
     public SettingsDialogViewModel(ApplicationSettings applicationSettings)
     {
@@ -36,7 +32,7 @@ public partial class SettingsDialogViewModel : ObservableObject
         BackupModes = Enum.GetValues<ApplicationSettings.BackupMode>()
             .Select(backupMode => new BackupModeWrapper(backupMode))
             .ToList();
-        _currentBackupMode = BackupModes.First(wrapper => wrapper.BackupMode == applicationSettings.CurrentBackupMode);
+        _currentBackupMode = BackupModes.First(wrapper => wrapper.BackupMode == ApplicationSettings.CurrentBackupMode);
         _askForBackups = Settings.Default.AskForBackups;
         Languages = LanguageManager.GetAvailableCultures()
             .Select(culture =>
@@ -55,10 +51,10 @@ public partial class SettingsDialogViewModel : ObservableObject
     private void Save()
     {
         _applicationSettings.CurrentThemeAccent = CurrentThemeAccent;
-        _applicationSettings.CurrentBackupMode = CurrentBackupMode.BackupMode;
+        ApplicationSettings.CurrentBackupMode = CurrentBackupMode.BackupMode;
         Settings.Default.Language = SelectedLanguage;
         Settings.Default.AskForBackups = AskForBackups;
-        _applicationSettings.Save();
+        ApplicationSettings.Save();
         WeakReferenceMessenger.Default.Send(new SettingsSavedEvent());
     }
 
@@ -67,14 +63,9 @@ public partial class SettingsDialogViewModel : ObservableObject
         ThemeManager.Current.ChangeThemeColorScheme(Application.Current, value.Name);
     }
 
-    public class BackupModeWrapper
+    public class BackupModeWrapper(ApplicationSettings.BackupMode backupMode)
     {
-        public BackupModeWrapper(ApplicationSettings.BackupMode backupMode)
-        {
-            BackupMode = backupMode;
-        }
-
-        public ApplicationSettings.BackupMode BackupMode { get; }
+        public ApplicationSettings.BackupMode BackupMode { get; } = backupMode;
 
         // ReSharper disable once UnusedMember.Global
         public string Name => TranslationManager.Get("backup.mode." + BackupMode);
@@ -96,12 +87,7 @@ public partial class SettingsDialogViewModel : ObservableObject
                 return true;
             }
 
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((BackupModeWrapper)obj);
+            return obj.GetType() == GetType() && Equals((BackupModeWrapper)obj);
         }
 
         public override int GetHashCode()

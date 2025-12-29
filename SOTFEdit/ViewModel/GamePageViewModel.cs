@@ -3,18 +3,11 @@ using SOTFEdit.View;
 
 namespace SOTFEdit.ViewModel;
 
-public class GamePageViewModel
+public class GamePageViewModel(GameSetupPage gameSetupPage, GameStatePage gameStatePage, WeatherPage weatherPage)
 {
-    public GamePageViewModel(GameSetupPage gameSetupPage, GameStatePage gameStatePage, WeatherPage weatherPage)
-    {
-        GameSetup = gameSetupPage;
-        GameState = gameStatePage;
-        Weather = weatherPage;
-    }
-
-    public GameSetupPage GameSetup { get; }
-    public GameStatePage GameState { get; }
-    public WeatherPage Weather { get; }
+    public GameSetupPage GameSetup { get; } = gameSetupPage;
+    public GameStatePage GameState { get; } = gameStatePage;
+    public WeatherPage Weather { get; } = weatherPage;
 
     public bool Update(Savegame savegame)
     {

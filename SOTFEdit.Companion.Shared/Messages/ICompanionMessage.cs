@@ -12,6 +12,4 @@ namespace SOTFEdit.Companion.Shared.Messages;
 [Union(7, typeof(CompanionRequestPoiUpdateMessage))]
 [Union(8, typeof(CompanionNetworkPlayerUpdateMessage))]
 [Union(9, typeof(CompanionSettingsMessage))]
-public interface ICompanionMessage
-{
-}
+public interface ICompanionMessage;

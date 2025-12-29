@@ -1,5 +1,3 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class RequestApplicationExitEvent
-{
-}
+public class RequestApplicationExitEvent;

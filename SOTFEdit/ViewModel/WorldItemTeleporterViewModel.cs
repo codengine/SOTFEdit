@@ -14,7 +14,7 @@ using SOTFEdit.Model.WorldItem;
 
 namespace SOTFEdit.ViewModel;
 
-public partial class WorldItemTeleporterViewModel : ObservableObject
+public partial class WorldItemTeleporterViewModel(Savegame savegame, ICloseableWithResult parent) : ObservableObject
 {
     private static readonly Dictionary<int, WorldItemType> ItemIdsToWorldItemTypes = new()
     {
@@ -30,19 +30,9 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
         { "KnightV", WorldItemType.KnightV }
     };
 
-    private readonly ICloseableWithResult _parent;
+    [ObservableProperty] private WorldItemType? _selectedWorldItemType;
 
-    private readonly Savegame _savegame;
-
-    [ObservableProperty]
-    private WorldItemType? _selectedWorldItemType;
-
-    public WorldItemTeleporterViewModel(Savegame savegame, ICloseableWithResult parent)
-    {
-        _savegame = savegame;
-        _parent = parent;
-    }
-
+    // ReSharper disable once UnusedParameterInPartialMethod
     partial void OnSelectedWorldItemTypeChanged(WorldItemType? value)
     {
         CloneObjectAtPlayerPosCommand.NotifyCanExecuteChanged();
@@ -78,7 +68,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             var worldItemType = GetWorldItemType(itemId, objectNameId);
             var group = worldItemType == WorldItemType.Unknown
                 ? TranslationManager.GetFormatted("windows.worldItemCloner.unknownItem",
-                    objectNameId ?? (itemId?.ToString() ?? ""))
+                    objectNameId ?? itemId?.ToString() ?? "")
                 : TranslationManager.Get("worldItemTypes." + worldItemType);
 
             worldItemTypeCounts[worldItemType] = worldItemTypeCounts.GetOrCreate(worldItemType) + 1;
@@ -127,7 +117,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             return;
         }
 
-        if (_savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
+        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
                 { } saveDataWrapper ||
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
             worldItemManager["WorldItemStates"] is not JArray worldItemStates)
@@ -136,7 +126,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.text"),
                 TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.title")
             ));
-            _parent.Close(false);
+            parent.Close(false);
             return;
         }
 
@@ -151,7 +141,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.text"),
                 TranslationManager.Get("windows.worldItemCloner.messages.nothingToDelete.title")
             ));
-            _parent.Close(false);
+            parent.Close(false);
             return;
         }
 
@@ -164,7 +154,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                     toRemove.Count, TranslationManager.Get("worldItemTypes." + selectedWorldItemType)),
                 TranslationManager.Get("windows.worldItemCloner.messages.clonesDeleted.title")));
 
-        _parent.Close(true);
+        parent.Close(true);
     }
 
     private static bool WorldItemHasType(JToken worldItemState, WorldItemType requestedType)
@@ -185,7 +175,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
             return;
         }
 
-        if (_savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
+        if (savegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.WorldItemManagerSaveData) is not
                 { } saveDataWrapper ||
             saveDataWrapper.GetJsonBasedToken(Constants.JsonKeys.WorldItemManager) is not { } worldItemManager ||
             worldItemManager["WorldItemStates"] is not JArray worldItemStates)
@@ -194,7 +184,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 new GenericMessageEvent(
                     TranslationManager.Get("windows.worldItemCloner.messages.nothingToMove.text"),
                     TranslationManager.Get("windows.worldItemCloner.messages.nothingToMove.title")));
-            _parent.Close(false);
+            parent.Close(false);
             return;
         }
 
@@ -208,7 +198,7 @@ public partial class WorldItemTeleporterViewModel : ObservableObject
                 TranslationManager.GetFormatted("windows.worldItemCloner.messages.objectCloned.text", itemName),
                 TranslationManager.GetFormatted("windows.worldItemCloner.messages.objectCloned.title", itemName)));
 
-        _parent.Close(true);
+        parent.Close(true);
     }
 
     private static JObject? CreateClone(WorldItemType? selectedWorldItemType)

@@ -8,7 +8,7 @@ on:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
-      - '**/.github/workflows/release.yml'
+      - '**/.github/workflows/release.yaml'
   pull_request:
     branches:
       - master
@@ -16,21 +16,23 @@ on:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
-      - '**/.github/workflows/release.yml'
+      - '**/.github/workflows/release.yaml'
   workflow_dispatch:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+        uses: microsoft/setup-msbuild@v2
       - name: Cache NuGet packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
@@ -41,11 +43,11 @@ jobs:
       - name: Build project
         run: dotnet build --configuration Release --no-restore # Build the app in Release mode
       - name: Run tests
-        run: dotnet test --no-restore --verbosity normal # Run tests
+        run: dotnet test --configuration Release --no-build --verbosity normal # Run tests
       - name: Get short SHA
         run: echo "SHORT_SHA=$("${{ github.sha }}".SubString(0, 8))" >> $env:GITHUB_ENV
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }}-${{ env.SHORT_SHA }}
-          path: ${{ github.workspace }}/${{ github.event.repository.name }}/bin/Release/net6.0-windows/
+          path: ${{ github.workspace }}/${{ github.event.repository.name }}/bin/Release/net8.0-windows/

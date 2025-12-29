@@ -12,8 +12,7 @@ public partial class SelectSavegameViewModel : ObservableObject
 {
     private readonly List<Savegame> _savegames;
 
-    [ObservableProperty]
-    private string? _saveDir = SavegameManager.GetSavePath();
+    [ObservableProperty] private string? _saveDir = SavegameManager.GetSavePath();
 
     public SelectSavegameViewModel()
     {
@@ -22,17 +21,20 @@ public partial class SelectSavegameViewModel : ObservableObject
         SetupListeners();
     }
 
-    public List<Savegame> SinglePlayerSaves => _savegames
-        .Where(savegame => savegame.IsSinglePlayer() || savegame.HasUnknownParentDir())
-        .ToList();
+    public List<Savegame> SinglePlayerSaves =>
+        _savegames
+            .Where(savegame => savegame.IsSinglePlayer() || savegame.HasUnknownParentDir())
+            .ToList();
 
-    public List<Savegame> MultiPlayerSaves => _savegames
-        .Where(savegame => savegame.IsMultiPlayer())
-        .ToList();
+    public List<Savegame> MultiPlayerSaves =>
+        _savegames
+            .Where(savegame => savegame.IsMultiPlayer())
+            .ToList();
 
-    public List<Savegame> MultiPlayerClientSaves => _savegames
-        .Where(savegame => savegame.IsMultiPlayerClient())
-        .ToList();
+    public List<Savegame> MultiPlayerClientSaves =>
+        _savegames
+            .Where(savegame => savegame.IsMultiPlayerClient())
+            .ToList();
 
     [RelayCommand]
     private static void SelectSavegame(Savegame savegame)

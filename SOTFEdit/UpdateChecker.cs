@@ -13,7 +13,7 @@ namespace SOTFEdit;
 
 public class UpdateChecker
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private readonly SemVersion _assemblyVersion;
     private readonly string _changelogUrl;
     private readonly HttpClient _client;
@@ -26,7 +26,7 @@ public class UpdateChecker
         _changelogUrl = gameData.Config.ChangelogUrl;
         var assemblyInfo = Assembly.GetExecutingAssembly()
             .GetName();
-        _assemblyVersion = SemVersion.FromVersion(assemblyInfo.Version);
+        _assemblyVersion = SemVersion.FromVersion(assemblyInfo.Version!);
 
         _client = new HttpClient
         {
@@ -71,7 +71,7 @@ public class UpdateChecker
             {
                 case 1:
                     var link = doc["html_url"]?.ToString();
-                    NotifyOnNewerVersion(latestTagVersion, link, invokedManually);
+                    await NotifyOnNewerVersion(latestTagVersion, link, invokedManually);
                     break;
                 case 0 or -1 when notifyOnSameVersion:
                     NotifyOnSameVersion(latestTagVersion, invokedManually);
@@ -110,7 +110,7 @@ public class UpdateChecker
         SendResult(new VersionCheckResultEvent(latestTagVersion, false, invokedManually));
     }
 
-    private async void NotifyOnNewerVersion(SemVersion latestTagVersion, string? link, bool invokedManually)
+    private async Task NotifyOnNewerVersion(SemVersion latestTagVersion, string? link, bool invokedManually)
     {
         Logger.Info($"Newer version found ({latestTagVersion})");
 

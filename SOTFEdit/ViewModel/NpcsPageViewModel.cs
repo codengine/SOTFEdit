@@ -17,15 +17,13 @@ namespace SOTFEdit.ViewModel;
 
 public partial class NpcsPageViewModel : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private readonly Dictionary<int, ActorType> _actorTypes;
     private readonly AreaMaskManager _areaManager;
 
-    [ObservableProperty]
-    private ActorView? _actorView;
+    [ObservableProperty] private ActorView? _actorView;
 
-    [ObservableProperty]
-    private ActorCollection? _selectedActorCollection;
+    [ObservableProperty] private ActorCollection? _selectedActorCollection;
 
     public NpcsPageViewModel(GameData gameData)
     {
@@ -34,10 +32,10 @@ public partial class NpcsPageViewModel : ObservableObject
         SetupListeners();
     }
 
-    public ObservableCollectionEx<ActorGrouping> ActorsByFamily { get; } = new();
-    public ObservableCollectionEx<ActorCollection> ActorsByType { get; } = new();
+    public ObservableCollectionEx<ActorGrouping> ActorsByFamily { get; } = [];
+    public ObservableCollectionEx<ActorCollection> ActorsByType { get; } = [];
 
-    public List<Actor> AllActors { get; } = new();
+    public List<Actor> AllActors { get; } = [];
 
     private void SetupListeners()
     {
@@ -90,12 +88,6 @@ public partial class NpcsPageViewModel : ObservableObject
         {
             return;
         }
-
-        var groupBy = vailWorldSim["Spawners"]?.ToObject<List<Spawner>>()?
-            .GroupBy(s => s.UniqueId)
-            .Where(g => g.ToList().Count > 1)
-            .ToDictionary(g => g.Key, g => g.ToList());
-
 
         var spawnersBySpawnerUniqueId = vailWorldSim["Spawners"]?.ToObject<List<Spawner>>()?
             .GroupBy(s => s.UniqueId)
@@ -201,40 +193,25 @@ public partial class NpcsPageViewModel : ObservableObject
 
         if (subActors.TrueForAll(actor => actor.ActorType?.Classification == "cannibal"))
         {
-            if (allMale)
-            {
-                return TranslationManager.Get("actors.grouping.maleCannibals");
-            }
-
-            if (allFemale)
-            {
-                return TranslationManager.Get("actors.grouping.femaleCannibals");
-            }
-
-            return TranslationManager.Get("actors.grouping.mixedCannibals");
+            return allMale
+                ? TranslationManager.Get("actors.grouping.maleCannibals")
+                : TranslationManager.Get(allFemale
+                    ? "actors.grouping.femaleCannibals"
+                    : "actors.grouping.mixedCannibals");
         }
 
         if (subActors.TrueForAll(actor => actor.ActorType?.Classification == "muddy_cannibal"))
         {
-            if (allMale)
-            {
-                return TranslationManager.Get("actors.grouping.maleMuddyCannibals");
-            }
-
-            if (allFemale)
-            {
-                return TranslationManager.Get("actors.grouping.femaleMuddyCannibals");
-            }
-
-            return TranslationManager.Get("actors.grouping.mixedMuddyCannibals");
+            return allMale
+                ? TranslationManager.Get("actors.grouping.maleMuddyCannibals")
+                : TranslationManager.Get(allFemale
+                    ? "actors.grouping.femaleMuddyCannibals"
+                    : "actors.grouping.mixedMuddyCannibals");
         }
 
-        if (subActors.TrueForAll(actor => actor.FamilyId == 0))
-        {
-            return TranslationManager.Get("actors.grouping.noFamily");
-        }
-
-        return TranslationManager.Get("actors.grouping.mixed");
+        return TranslationManager.Get(subActors.TrueForAll(actor => actor.FamilyId == 0)
+            ? "actors.grouping.noFamily"
+            : "actors.grouping.mixed");
     }
 
     private static HashSet<string> GetUniqueNamesOfActors(IEnumerable<Actor> subActors)

@@ -1,11 +1,6 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class SelectedSavegameChangedEvent
+public class SelectedSavegameChangedEvent(Savegame.Savegame? selectedSavegame)
 {
-    public SelectedSavegameChangedEvent(Savegame.Savegame? selectedSavegame)
-    {
-        SelectedSavegame = selectedSavegame;
-    }
-
-    public Savegame.Savegame? SelectedSavegame { get; }
+    public Savegame.Savegame? SelectedSavegame { get; } = selectedSavegame;
 }

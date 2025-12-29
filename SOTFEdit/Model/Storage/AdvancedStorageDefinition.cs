@@ -4,35 +4,23 @@ using SOTFEdit.Infrastructure;
 namespace SOTFEdit.Model.Storage;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class AdvancedStorageDefinition : IStorageDefinition
+public class AdvancedStorageDefinition(int id, List<AdvancedStorageSlotDefinition> slots, StorageType type)
+    : IStorageDefinition
 {
-    public AdvancedStorageDefinition(int id, List<AdvancedStorageSlotDefinition> slots, StorageType type)
-    {
-        Id = id;
-        Slots = slots;
-        Type = type;
-    }
+    public List<AdvancedStorageSlotDefinition> Slots { get; } = slots;
 
-    public List<AdvancedStorageSlotDefinition> Slots { get; }
-
-    public int Id { get; }
+    public int Id { get; } = id;
 
     public string Name => TranslationManager.Get("structures.types." + Id);
 
-    public StorageType Type { get; }
+    public StorageType Type { get; } = type;
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class AdvancedStorageSlotDefinition
+public class AdvancedStorageSlotDefinition(Dictionary<int, int> restrictedItems, IReadOnlyList<int> slotOrder)
 {
-    public AdvancedStorageSlotDefinition(Dictionary<int, int> restrictedItems, IReadOnlyList<int> slotOrder)
-    {
-        RestrictedItems = restrictedItems;
-        SlotOrder = new SlotOrder(slotOrder);
-    }
-
-    public Dictionary<int, int> RestrictedItems { get; }
-    public SlotOrder SlotOrder { get; }
+    public Dictionary<int, int> RestrictedItems { get; } = restrictedItems;
+    public SlotOrder SlotOrder { get; } = new(slotOrder);
 }
 
 public class SlotOrder

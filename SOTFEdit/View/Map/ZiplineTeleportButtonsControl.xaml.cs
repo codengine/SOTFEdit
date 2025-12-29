@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -47,10 +46,7 @@ public partial class ZiplineTeleportButtonsControl
         var parent = poi.Parent;
         if (ZiplineManager.Remove(parent, savegame))
         {
-            PoiMessenger.Instance.Send(new RemovePoiEvent(new List<IPoi>
-            {
-                parent, parent.PointA, parent.PointB
-            }));
+            PoiMessenger.Instance.Send(new RemovePoiEvent([parent, parent.PointA, parent.PointB]));
         }
     }
 }

@@ -3,16 +3,10 @@ using SOTFEdit.Model.Storage;
 
 namespace SOTFEdit.ViewModel;
 
-public class StorageCollection
+public class StorageCollection(int storageTypeId, string name)
 {
-    public StorageCollection(int storageTypeId, string name)
-    {
-        StorageTypeId = storageTypeId;
-        Name = name;
-    }
+    public int StorageTypeId { get; } = storageTypeId;
+    public string Name { get; } = name;
 
-    public int StorageTypeId { get; }
-    public string Name { get; }
-
-    public ObservableCollection<IStorage> Storages { get; } = new();
+    public ObservableCollection<IStorage> Storages { get; } = [];
 }

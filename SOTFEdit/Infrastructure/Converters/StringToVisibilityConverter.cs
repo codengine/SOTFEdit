@@ -13,7 +13,7 @@ public class StringToVisibilityConverter : IValueConverter
         return value?.ToString() == parameter?.ToString() ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }

@@ -8,25 +8,15 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.Map;
 
-public class MapManager
+public class MapManager(
+    NpcsPageViewModel npcsPageViewModel, StructuresPageViewModel structuresPageViewModel,
+    GameData gameData)
 {
-    private readonly List<ActorType> _actorTypes;
-    private readonly ItemList _items;
-    private readonly NpcsPageViewModel _npcsPageViewModel;
-    private readonly StructuresPageViewModel _structuresPageViewModel;
-
-    public MapManager(NpcsPageViewModel npcsPageViewModel, StructuresPageViewModel structuresPageViewModel,
-        GameData gameData)
-    {
-        _npcsPageViewModel = npcsPageViewModel;
-        _structuresPageViewModel = structuresPageViewModel;
-        _items = gameData.Items;
-        _actorTypes = gameData.ActorTypes;
-    }
+    private readonly List<ActorType> _actorTypes = gameData.ActorTypes;
 
     public List<PoiGroup> GetActorPois()
     {
-        var followerNonFollowerActors = _npcsPageViewModel.AllActors.Select(actor =>
+        var followerNonFollowerActors = npcsPageViewModel.AllActors.Select(actor =>
             {
                 var poi = new ActorPoi(actor);
                 poi.SetEnabledNoRefresh(actor.ActorType?.IsFollower() ?? false);
@@ -68,7 +58,7 @@ public class MapManager
 
     public Dictionary<string, List<StructurePoi>> GetStructurePois()
     {
-        return _structuresPageViewModel.Structures
+        return structuresPageViewModel.Structures
             .Where(wrapper => wrapper.Position != null && (wrapper.ScrewStructure?.ShowOnMap ?? false))
             .Select(structure => new StructurePoi(structure))
             .GroupBy(poi => poi.ScrewStructureWrapper.Name)

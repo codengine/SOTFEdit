@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class PoiRefreshEvent
+public class PoiRefreshEvent(IPoiGrouper grouper)
 {
-    public PoiRefreshEvent(IPoiGrouper grouper)
-    {
-        Grouper = grouper;
-    }
-
-    public IPoiGrouper Grouper { get; }
+    public IPoiGrouper Grouper { get; } = grouper;
 }

@@ -14,7 +14,7 @@ namespace SOTFEdit.Model.Storage;
 
 public partial class AdvancedItemsStorage : ObservableObject, IStorage
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private readonly AdvancedStorageDefinition _definition;
     private readonly int _index;
     private readonly ItemList _items;
@@ -34,7 +34,7 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
         }
     }
 
-    public ObservableCollection<StorageSlot> Slots { get; } = new();
+    public ObservableCollection<StorageSlot> Slots { get; } = [];
 
     public List<ItemWrapper> SupportedItems => GetSupportedItems();
 
@@ -105,7 +105,7 @@ public partial class AdvancedItemsStorage : ObservableObject, IStorage
         var storageSaveData = new StorageSaveData
         {
             Id = _definition.Id,
-            Storages = new List<StorageBlock>(),
+            Storages = [],
             Pos = Pos
         };
 

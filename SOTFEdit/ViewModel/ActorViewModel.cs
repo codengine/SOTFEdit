@@ -6,14 +6,9 @@ using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.ViewModel;
 
-public partial class ActorViewModel
+public partial class ActorViewModel(ActorCollection actorCollection)
 {
-    public ActorViewModel(ActorCollection actorCollection)
-    {
-        ActorCollection = actorCollection;
-    }
-
-    public ActorCollection ActorCollection { get; }
+    public ActorCollection ActorCollection { get; } = actorCollection;
 
     [RelayCommand]
     private static void OpenMap(Position? position)

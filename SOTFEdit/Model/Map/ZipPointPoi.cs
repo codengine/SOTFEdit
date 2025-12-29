@@ -6,22 +6,15 @@ using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.Model.Map;
 
-public partial class ZipPointPoi : BasePoi, IClickToMovePoi
+public partial class ZipPointPoi(Position position, ZiplinePoi parent) : BasePoi(position), IClickToMovePoi
 {
     private const string IconFile = "pole.png";
 
-    [ObservableProperty]
-    private bool _isMoveRequested;
+    [ObservableProperty] private bool _isMoveRequested;
 
-    [ObservableProperty]
-    private bool _isZiplineCreationRequested;
+    [ObservableProperty] private bool _isZiplineCreationRequested;
 
-    public ZipPointPoi(Position position, ZiplinePoi parent) : base(position)
-    {
-        Parent = parent;
-    }
-
-    public ZiplinePoi Parent { get; }
+    public ZiplinePoi Parent { get; } = parent;
 
     public override BitmapImage Icon => LoadBaseIcon(IconFile);
 
@@ -78,6 +71,7 @@ public partial class ZipPointPoi : BasePoi, IClickToMovePoi
         }
     }
 
+    // ReSharper disable once UnusedParameterInPartialMethod
     partial void OnIsMoveRequestedChanged(bool value)
     {
         _isZiplineCreationRequested = false;

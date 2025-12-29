@@ -9,35 +9,26 @@ using SOTFEdit.Model.Events;
 
 namespace SOTFEdit.Model.Map;
 
-public partial class PoiGroup : ObservableObject, IPoiGrouper
+public partial class PoiGroup(
+    bool enabled, IEnumerable<IPoi> pois, string title, string groupKey,
+    PoiGroupType groupType, BitmapImage? icon = null)
+    : ObservableObject, IPoiGrouper
 {
-    [ObservableProperty]
-    private bool _enabled;
+    [ObservableProperty] private bool _enabled = enabled;
 
     public PoiGroup(bool enabled, IEnumerable<IPoi> pois, string title, PoiGroupType groupType,
         BitmapImage? icon = null) : this(enabled, pois, title, groupType.ToString(), groupType, icon)
     {
     }
 
-    public PoiGroup(bool enabled, IEnumerable<IPoi> pois, string title, string groupKey,
-        PoiGroupType groupType, BitmapImage? icon = null)
-    {
-        _enabled = enabled;
-        Icon = icon;
-        GroupType = groupType;
-        Pois = new HashSet<IPoi>(pois);
-        BaseTitle = title;
-        GroupKey = groupKey;
-    }
-
-    public HashSet<IPoi> Pois { get; }
+    public HashSet<IPoi> Pois { get; } = [..pois];
 
     public int Count => Pois.Count;
-    public BitmapImage? Icon { get; }
-    public string GroupKey { get; }
-    public string BaseTitle { get; }
+    public BitmapImage? Icon { get; } = icon;
+    public string GroupKey { get; } = groupKey;
+    public string BaseTitle { get; } = title;
     public string Title => $"{BaseTitle} ({Count})";
-    public PoiGroupType GroupType { get; }
+    public PoiGroupType GroupType { get; } = groupType;
 
     public void SetEnabledNoRefresh(bool value)
     {
@@ -61,8 +52,10 @@ public partial class PoiGroup : ObservableObject, IPoiGrouper
             }
         }
 
+#pragma warning disable MVVMTK0034
         var oldValue = _enabled;
         _enabled = value;
+#pragma warning restore MVVMTK0034
 
         if (emitEvents && oldValue != value)
         {

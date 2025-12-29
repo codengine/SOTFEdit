@@ -13,13 +13,12 @@ using SOTFEdit.Model.Savegame;
 
 namespace SOTFEdit.ViewModel;
 
-public class GameStatePageViewModel
+public partial class GameStatePageViewModel
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private readonly GameData _gameData;
 
-    private readonly Regex _resetCrateNameIdPattern =
-        new(@"(\..*Crate.*\.)|(\..*Storage.*\.)|(\..*Case.*\.)|(.*\.Meds\..*)");
+    private readonly Regex _resetCrateNameIdPattern = ResetCrateNameIdPattern();
 
     public GameStatePageViewModel(GameData gameData)
     {
@@ -28,8 +27,8 @@ public class GameStatePageViewModel
         SetupListeners();
     }
 
-    public ObservableCollection<GenericSetting> Settings { get; } = new();
-    public ObservableCollection<GenericSetting> NamedIntDatas { get; } = new();
+    public ObservableCollection<GenericSetting> Settings { get; } = [];
+    public ObservableCollection<GenericSetting> NamedIntDatas { get; } = [];
 
     private void PrefillNamedIntDatas(List<string> namedIntKeys)
     {
@@ -83,7 +82,7 @@ public class GameStatePageViewModel
     {
         GenericSetting? stayedOnIslandSetting = null;
         GenericSetting? coreGameCompletedSetting = null;
-        
+
         foreach (var namedIntData in NamedIntDatas)
         {
             switch (namedIntData.Name)
@@ -104,7 +103,7 @@ public class GameStatePageViewModel
             var namedIntData = CreateNamedIntData("Endgame.StayedOnIsland");
             namedIntData.IntValue = 1;
         }
-        
+
         if (coreGameCompletedSetting == null)
         {
             var namedIntData = CreateNamedIntData("Endgame.CoreGameCompleted");
@@ -249,14 +248,14 @@ public class GameStatePageViewModel
 
         foreach (var storedNamedIntSetting in storedNamedIntSettings)
         {
-            if (!namedIntDatasByName.ContainsKey(storedNamedIntSetting.Name))
+            if (!namedIntDatasByName.TryGetValue(storedNamedIntSetting.Name, out var value))
             {
                 Logger.Info($"New NamedIntData found: {storedNamedIntSetting.Name}");
                 NamedIntDatas.Add(storedNamedIntSetting);
             }
             else
             {
-                namedIntDatasByName[storedNamedIntSetting.Name].IntValue = storedNamedIntSetting.IntValue;
+                value.IntValue = storedNamedIntSetting.IntValue;
             }
         }
     }
@@ -311,4 +310,7 @@ public class GameStatePageViewModel
 
         return true;
     }
+
+    [GeneratedRegex(@"(\..*Crate.*\.)|(\..*Storage.*\.)|(\..*Case.*\.)|(.*\.Meds\..*)")]
+    private static partial Regex ResetCrateNameIdPattern();
 }

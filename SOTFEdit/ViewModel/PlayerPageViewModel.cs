@@ -20,8 +20,8 @@ namespace SOTFEdit.ViewModel;
 
 public partial class PlayerPageViewModel : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-    private readonly ObservableCollection<Item> _availableClothes = new();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+    private readonly ObservableCollection<Item> _availableClothes = [];
 
     private readonly GameData _gameData;
 
@@ -336,8 +336,6 @@ public partial class PlayerPageViewModel : ObservableObject
                     hasChanges = SettingWriter.WriteFloat(entry, PlayerState.MaxHealth) || hasChanges;
                     break;
                 case "CurrentHealth":
-                    hasChanges = SettingWriter.WriteFloat(entry, PlayerState.CurrentHealth) || hasChanges;
-                    break;
                 case "TargetHealth":
                     hasChanges = SettingWriter.WriteFloat(entry, PlayerState.CurrentHealth) || hasChanges;
                     break;

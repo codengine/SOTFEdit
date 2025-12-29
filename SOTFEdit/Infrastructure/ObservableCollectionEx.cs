@@ -24,10 +24,7 @@ public class ObservableCollectionEx<T> : ObservableCollection<T>
 
     public void AddRange(IEnumerable<T> itemsToAdd)
     {
-        if (itemsToAdd == null)
-        {
-            throw new ArgumentNullException(nameof(itemsToAdd));
-        }
+        ArgumentNullException.ThrowIfNull(itemsToAdd);
 
         foreach (var item in itemsToAdd)
         {

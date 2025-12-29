@@ -6,16 +6,13 @@ namespace SOTFEdit.Model.Map;
 
 public partial class ZiplinePoi : ObservableObject, IPoi
 {
-    [NotifyPropertyChangedFor(nameof(Visible))]
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Visible))] [ObservableProperty]
     private bool _enabled;
 
-    [NotifyPropertyChangedFor(nameof(Visible))]
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Visible))] [ObservableProperty]
     private bool _filtered;
 
-    [ObservableProperty]
-    private bool _isSelected;
+    [ObservableProperty] private bool _isSelected;
 
     public ZiplinePoi(JToken token, Position posA, Position posB)
     {
@@ -34,7 +31,7 @@ public partial class ZiplinePoi : ObservableObject, IPoi
     public ZipPointPoi PointA { get; }
     public ZipPointPoi PointB { get; }
 
-    public bool Visible => _enabled && !Filtered;
+    public bool Visible => Enabled && !Filtered;
 
     public Position? Position => null;
     public string? AreaName => null;
@@ -56,7 +53,9 @@ public partial class ZiplinePoi : ObservableObject, IPoi
 
     public void SetEnabledNoRefresh(bool value)
     {
+#pragma warning disable MVVMTK0034
         _enabled = value;
+#pragma warning restore MVVMTK0034
     }
 
     public string PrintableCoordinates => "";

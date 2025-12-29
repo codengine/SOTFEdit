@@ -11,15 +11,8 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.Actors;
 
-public class ActorModifier
+public class ActorModifier(PlayerPageViewModel playerPageViewModel)
 {
-    private readonly PlayerPageViewModel _playerPageViewModel;
-
-    public ActorModifier(PlayerPageViewModel playerPageViewModel)
-    {
-        _playerPageViewModel = playerPageViewModel;
-    }
-
     public void Modify(Savegame.Savegame selectedSavegame, UpdateActorsEvent data)
     {
         if (selectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType.SaveData) is not { } saveDataWrapper)
@@ -157,7 +150,7 @@ public class ActorModifier
 
             if (data.ModifyOptions.TeleportMode == "NpcToPlayer")
             {
-                var newPos = Teleporter.MoveToPos(_playerPageViewModel.PlayerState.Pos);
+                var newPos = Teleporter.MoveToPos(playerPageViewModel.PlayerState.Pos);
                 actor["Position"] = JToken.FromObject(newPos);
                 actor["GraphMask"] = newPos.Area.GraphMask;
             }
@@ -172,8 +165,8 @@ public class ActorModifier
 
         if (data.ModifyOptions.TeleportMode == "PlayerToNpc")
         {
-            var actorPos = data.Actor.Position;
-            var playerPos = _playerPageViewModel.PlayerState.Pos;
+            var actorPos = data.Actor.Position!;
+            var playerPos = playerPageViewModel.PlayerState.Pos;
             Teleporter.MovePlayerToPos(ref playerPos, ref actorPos);
 
             if (actorTokenForActorInData != null)
@@ -181,11 +174,11 @@ public class ActorModifier
                 actorTokenForActorInData["Position"] = JToken.FromObject(actorPos);
             }
 
-            _playerPageViewModel.PlayerState.Pos = playerPos;
+            playerPageViewModel.PlayerState.Pos = playerPos;
         }
     }
 
-    private static void UpdateInfluences(JToken vailWorldSim, List<Influence> influences, IReadOnlySet<int> uniqueIds)
+    private static void UpdateInfluences(JToken vailWorldSim, List<Influence> influences, HashSet<int> uniqueIds)
     {
         var handledInfluenceMemories = new HashSet<int>();
 
@@ -231,7 +224,7 @@ public class ActorModifier
         influenceMemoriesToBeRemoved.ForEach(influenceMemory => influenceMemory.Remove());
     }
 
-    private static void RemoveSpawners(JToken vailWorldSim, IReadOnlyCollection<int> spawnerIdsToBeRemoved)
+    private static void RemoveSpawners(JToken vailWorldSim, HashSet<int> spawnerIdsToBeRemoved)
     {
         if (spawnerIdsToBeRemoved.Count <= 0)
         {

@@ -31,9 +31,10 @@ public abstract partial class InformationalPoi : BasePoi
 
     protected int[]? MissingRequiredItems { get; init; }
 
-    public string? ScreenshotSmall => _screenshot != null
-        ? GetScreenshotPath(_screenshot.ExtendFilenameWith("_tn"))
-        : null;
+    public string? ScreenshotSmall =>
+        _screenshot != null
+            ? GetScreenshotPath(_screenshot.ExtendFilenameWith("_tn"))
+            : null;
 
     public IEnumerable<ItemInInventoryWrapper> Requirements => GetRequirements();
 
@@ -48,11 +49,11 @@ public abstract partial class InformationalPoi : BasePoi
         return string.Format(ScreenshotUrl, screenshot);
     }
 
-    private IEnumerable<ItemInInventoryWrapper> GetRequirements()
+    private List<ItemInInventoryWrapper> GetRequirements()
     {
         if (_requirements == null || !_requirements.Any())
         {
-            return Enumerable.Empty<ItemInInventoryWrapper>();
+            return [];
         }
 
         return _requirements.Select(item => new ItemInInventoryWrapper(item, HasRequiredItem(item))).ToList();
@@ -60,7 +61,8 @@ public abstract partial class InformationalPoi : BasePoi
 
     private bool HasRequiredItem(Item item)
     {
-        return MissingRequiredItems == null || !MissingRequiredItems.Any() || !MissingRequiredItems.Contains(item.Id);
+        return MissingRequiredItems == null || MissingRequiredItems.Length == 0 ||
+               !MissingRequiredItems.Contains(item.Id);
     }
 
     public override void ApplyFilter(MapFilter mapFilter)

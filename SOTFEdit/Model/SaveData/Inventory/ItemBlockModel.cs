@@ -5,10 +5,10 @@ namespace SOTFEdit.Model.SaveData.Inventory;
 
 public class ItemBlockModel
 {
-    public List<JToken> Modules = new(); //Only used by equipped items...hopefully
+    public List<JToken> Modules = []; //Only used by equipped items...hopefully
 
     // ReSharper disable once UnusedMember.Global
-    public List<JToken> UniqueItems = new();
+    public List<JToken> UniqueItems = [];
     public int ItemId { get; set; }
     public int TotalCount { get; set; }
 

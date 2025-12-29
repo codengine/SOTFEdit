@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class UnhandledExceptionEvent
+public class UnhandledExceptionEvent(Exception exception)
 {
-    public UnhandledExceptionEvent(Exception exception)
-    {
-        Exception = exception;
-    }
-
-    public Exception Exception { get; }
+    public Exception Exception { get; } = exception;
 }

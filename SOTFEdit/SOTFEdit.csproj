@@ -2,12 +2,14 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net8.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <ApplicationIcon>icons8-kleine-axt-doodle-96.ico</ApplicationIcon>
+        <NoWarn>NU1701;CS8618</NoWarn>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,14 +22,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="icons8-kleine-axt-doodle-96.ico" />
-        <Resource Include="images\*" />
-        <Resource Include="images\items\*" />
-        <Resource Include="images\actors\*" />
-        <Resource Include="images\actors\icons\*" />
-        <Resource Include="images\icons\*" />
-        <Resource Include="images\structures\*" />
-        <Resource Include="images\worldobjects\*" />
+        <Content Include="icons8-kleine-axt-doodle-96.ico"/>
+        <Resource Include="images\*"/>
+        <Resource Include="images\items\*"/>
+        <Resource Include="images\actors\*"/>
+        <Resource Include="images\actors\icons\*"/>
+        <Resource Include="images\icons\*"/>
+        <Resource Include="images\structures\*"/>
+        <Resource Include="images\worldobjects\*"/>
         <Content Include="images\map\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
@@ -40,20 +42,20 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-        <PackageReference Include="libc.translation" Version="7.1.0" />
-        <PackageReference Include="MahApps.Metro" Version="2.4.9" />
-        <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0" />
-        <PackageReference Include="Markdig" Version="0.31.0" />
-        <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="NLog" Version="5.1.4" />
-        <PackageReference Include="Semver" Version="2.3.0" />
-        <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29" />
-        <PackageReference Include="VirtualizingWrapPanel" Version="1.5.7" />
-        <PackageReference Include="WatsonWebsocket" Version="4.0.9" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2025.2.4"/>
+        <PackageReference Include="libc.translation" Version="7.1.0"/>
+        <PackageReference Include="MahApps.Metro" Version="2.4.11"/>
+        <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0"/>
+        <PackageReference Include="Markdig" Version="0.44.0"/>
+        <PackageReference Include="Markdig.Wpf" Version="0.5.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.4"/>
+        <PackageReference Include="NLog" Version="6.0.7"/>
+        <PackageReference Include="Semver" Version="3.0.0"/>
+        <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29"/>
+        <PackageReference Include="VirtualizingWrapPanel" Version="2.3.2"/>
+        <PackageReference Include="WatsonWebsocket" Version="4.1.7"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -146,7 +148,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\SOTFEdit.Companion.Shared\SOTFEdit.Companion.Shared.csproj" />
-        <ProjectReference Include="..\ZoomControl\ZoomControl.csproj" />
+        <ProjectReference Include="..\SOTFEdit.Companion.Shared\SOTFEdit.Companion.Shared.csproj"/>
+        <ProjectReference Include="..\ZoomControl\ZoomControl.csproj"/>
     </ItemGroup>
 </Project>

@@ -25,7 +25,7 @@ namespace SOTFEdit.ViewModel;
 
 public partial class MainViewModel : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly ArmorPageViewModel _armorPageViewModel;
     private readonly CompanionConnectionManager _companionConnectionManager;
@@ -33,23 +33,17 @@ public partial class MainViewModel : ObservableObject
     private readonly CompanionNetworkPlayerManager _networkPlayerManager;
     private readonly PoiLoader _poiLoader;
 
-    [ObservableProperty]
-    private bool _checkVersionOnStartup;
+    [ObservableProperty] private bool _checkVersionOnStartup;
 
-    [ObservableProperty]
-    private bool _isMapWindowClosed = true;
+    [ObservableProperty] private bool _isMapWindowClosed = true;
 
-    [ObservableProperty]
-    private string _lastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
+    [ObservableProperty] private string _lastSaveGameMenuItem = TranslationManager.Get("menu.openLastSavegame");
 
-    [ObservableProperty]
-    private double _pinLeft;
+    [ObservableProperty] private double _pinLeft;
 
-    [ObservableProperty]
-    private Position? _pinPos;
+    [ObservableProperty] private Position? _pinPos;
 
-    [ObservableProperty]
-    private double _pinTop;
+    [ObservableProperty] private double _pinTop;
 
     public MainViewModel(ArmorPageViewModel armorPageViewModel, GamePage gamePage, NpcsPage npcsPage,
         StructuresPage structuresPage, MapManager mapManager, PoiLoader poiLoader,
@@ -97,6 +91,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
+    // ReSharper disable once UnusedParameterInPartialMethod
     partial void OnIsMapWindowClosedChanged(bool value)
     {
         RefreshCanExecuteChanged();
@@ -653,7 +648,7 @@ public partial class MainViewModel : ObservableObject
         WeakReferenceMessenger.Default.Send(new RequestOpenMapEvent(poiGroups.OrderBy(group => group.Title).ToList()));
     }
 
-    private IEnumerable<IPoi> BuildPlayerPois(Position playerPos, PlayerPageViewModel playerPageViewModel)
+    private List<IPoi> BuildPlayerPois(Position playerPos, PlayerPageViewModel playerPageViewModel)
     {
         var playerPois = new List<IPoi>
         {

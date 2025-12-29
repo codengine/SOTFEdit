@@ -57,7 +57,7 @@ public class ZoomControl : ContentControl
     private ScaleTransform? _scaleTransform;
 
     private Vector _startTranslate;
-    private TransformGroup _transformGroup;
+    private TransformGroup? _transformGroup;
 
     /// <summary>Applied to the scrollviewer.</summary>
     private TranslateTransform? _translateTransform;
@@ -184,7 +184,7 @@ public class ZoomControl : ContentControl
             case ZoomControlModes.Custom:
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(e), mode, "Unknown zoom control mode.");
         }
     }
 

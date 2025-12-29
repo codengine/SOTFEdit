@@ -1,13 +1,7 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class RequestCheckForUpdatesEvent
+public class RequestCheckForUpdatesEvent(bool notifyOnSameVersion, bool notifyOnError)
 {
-    public RequestCheckForUpdatesEvent(bool notifyOnSameVersion, bool notifyOnError)
-    {
-        NotifyOnSameVersion = notifyOnSameVersion;
-        NotifyOnError = notifyOnError;
-    }
-
-    public bool NotifyOnSameVersion { get; }
-    public bool NotifyOnError { get; }
+    public bool NotifyOnSameVersion { get; } = notifyOnSameVersion;
+    public bool NotifyOnError { get; } = notifyOnError;
 }

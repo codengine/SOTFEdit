@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class AddZipPoiEvent
+public class AddZipPoiEvent(ZiplinePoi poi)
 {
-    public AddZipPoiEvent(ZiplinePoi poi)
-    {
-        Poi = poi;
-    }
-
-    public ZiplinePoi Poi { get; }
+    public ZiplinePoi Poi { get; } = poi;
 }

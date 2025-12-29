@@ -10,12 +10,9 @@ namespace SOTFEdit.ViewModel;
 
 public partial class ItemStorageViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private int _count;
+    [ObservableProperty] private int _count;
 
-    [NotifyPropertyChangedFor(nameof(Max))]
-    [NotifyCanExecuteChangedFor(nameof(FillAllCommand))]
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Max))] [NotifyCanExecuteChangedFor(nameof(FillAllCommand))] [ObservableProperty]
     private ItemWrapper? _selectedItemForAll;
 
     public ItemStorageViewModel(BaseStorage itemsStorage)

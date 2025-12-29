@@ -77,12 +77,7 @@ public class Item : ICloneable
             return true;
         }
 
-        if (obj.GetType() != GetType())
-        {
-            return false;
-        }
-
-        return Equals((Item)obj);
+        return obj.GetType() == GetType() && Equals((Item)obj);
     }
 
     public override int GetHashCode()

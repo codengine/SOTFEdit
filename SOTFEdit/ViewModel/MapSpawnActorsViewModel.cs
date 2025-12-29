@@ -20,34 +20,25 @@ public partial class MapSpawnActorsViewModel : ObservableObject
     private readonly BasePoi _destination;
     private readonly ICloseable _parent;
 
-    [ObservableProperty]
-    private int? _familyId;
+    [ObservableProperty] private int? _familyId;
 
-    [NotifyCanExecuteChangedFor(nameof(DoSpawnCommand))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(DoSpawnCommand))] [ObservableProperty]
     private ActorType? _selectedActorType;
 
-    [ObservableProperty]
-    private Area _selectedArea;
+    [ObservableProperty] private Area _selectedArea;
 
-    [ObservableProperty]
-    private SpawnPattern _selectedSpawnPattern = SpawnPattern.Grid;
+    [ObservableProperty] private SpawnPattern _selectedSpawnPattern = SpawnPattern.Grid;
 
-    [ObservableProperty]
-    private int _spaceBetween;
+    [ObservableProperty] private int _spaceBetween;
 
-    [NotifyCanExecuteChangedFor(nameof(DoSpawnCommand))]
-    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(DoSpawnCommand))] [ObservableProperty]
     private int _spawnCount = 1;
 
-    [ObservableProperty]
-    private float _xOffset = 1;
+    [ObservableProperty] private float _xOffset = 1;
 
-    [ObservableProperty]
-    private float _yOffset = 1;
+    [ObservableProperty] private float _yOffset = 1;
 
-    [ObservableProperty]
-    private float _zOffset = 1;
+    [ObservableProperty] private float _zOffset = 1;
 
     public MapSpawnActorsViewModel(ICloseable parent, BasePoi destination, IList<int> allFamilyIds,
         List<ActorType> allActorTypes)
@@ -97,7 +88,7 @@ public partial class MapSpawnActorsViewModel : ObservableObject
     public List<int> AllFamilyIds { get; }
     public List<ActorType> AllActorTypes { get; }
 
-    public ObservableCollection<Influence> Influences { get; } = new();
+    public ObservableCollection<Influence> Influences { get; } = [];
 
     public List<ComboBoxItemAndValue<SpawnPattern>> AllSpawnPatterns { get; }
 
@@ -134,7 +125,7 @@ public partial class MapSpawnActorsViewModel : ObservableObject
         };
 
         PoiMessenger.Instance.Send(new SpawnActorsEvent(newPosition, SelectedActorType, SpawnCount,
-            FamilyId == -1 ? null : FamilyId, new List<Influence>(Influences), SpaceBetween, SelectedSpawnPattern));
+            FamilyId == -1 ? null : FamilyId, [..Influences], SpaceBetween, SelectedSpawnPattern));
 
         _parent.Close();
     }

@@ -8,20 +8,9 @@ using SOTFEdit.Model.Map.Static;
 
 namespace SOTFEdit.Infrastructure.Companion;
 
-public class CompanionRequestPoiUpdateMessageHandler : MessageHandler<CompanionRequestPoiUpdateMessage>
+public class CompanionRequestPoiUpdateMessageHandler(PoiLoader poiLoader, CompanionPoiStorage companionPoiStorage)
+    : MessageHandler<CompanionRequestPoiUpdateMessage>
 {
-    private readonly CompanionPoiStorage _companionPoiStorage;
-    private readonly MapManager _mapManager;
-    private readonly PoiLoader _poiLoader;
-
-    public CompanionRequestPoiUpdateMessageHandler(PoiLoader poiLoader,
-        MapManager mapManager, CompanionPoiStorage companionPoiStorage)
-    {
-        _poiLoader = poiLoader;
-        _mapManager = mapManager;
-        _companionPoiStorage = companionPoiStorage;
-    }
-
     protected override void Handle(CompanionRequestPoiUpdateMessage message)
     {
         switch (message.Type)
@@ -34,10 +23,10 @@ public class CompanionRequestPoiUpdateMessageHandler : MessageHandler<CompanionR
             case PoiGroupType.Helicopters:
             case PoiGroupType.Doors:
             case PoiGroupType.Lakes:
-                SendPois(message.Type, _poiLoader.GetRawPois(message.Type));
+                SendPois(message.Type, poiLoader.GetRawPois(message.Type));
                 break;
             case PoiGroupType.Items:
-                SendPois(PoiGroupType.Items, _poiLoader.GetItemPoisForCompanion());
+                SendPois(PoiGroupType.Items, poiLoader.GetItemPoisForCompanion());
                 break;
             case PoiGroupType.WorldItems:
                 SendWorldItemPois();
@@ -65,7 +54,7 @@ public class CompanionRequestPoiUpdateMessageHandler : MessageHandler<CompanionR
 
     private void SendCustomPois()
     {
-        var pois = _companionPoiStorage.GetAll()
+        var pois = companionPoiStorage.GetAll()
             .OrderBy(poi => poi.Title);
         SendPoiList(PoiGroupType.Custom, pois);
     }

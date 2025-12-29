@@ -1,11 +1,6 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class RequestDeleteBackupsEvent
+public class RequestDeleteBackupsEvent(Savegame.Savegame savegame)
 {
-    public RequestDeleteBackupsEvent(Savegame.Savegame savegame)
-    {
-        Savegame = savegame;
-    }
-
-    public Savegame.Savegame Savegame { get; }
+    public Savegame.Savegame Savegame { get; } = savegame;
 }

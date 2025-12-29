@@ -2,13 +2,10 @@
 
 namespace SOTFEdit.Model.Storage;
 
-public class ResourceStorage : RestrictedStorage
+public class ResourceStorage(StorageDefinition definition, ItemList itemList, int index) : RestrictedStorage(definition,
+    itemList,
+    index)
 {
-    public ResourceStorage(StorageDefinition definition, ItemList itemList, int index) : base(definition, itemList,
-        index)
-    {
-    }
-
     public override StorageSaveData ToStorageSaveData()
     {
         return ItemsStorage.GenericToStorageSaveData(Definition, Slots);

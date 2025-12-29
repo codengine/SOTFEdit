@@ -18,22 +18,20 @@ namespace SOTFEdit.ViewModel;
 
 public partial class StoragePageViewModel : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly Dictionary<int, AdvancedStorageDefinition> _advancedStorageDefinitions;
     private readonly Dictionary<int, StorageDefinition> _storageDefinitions;
     private readonly StorageFactory _storageFactory;
 
-    [ObservableProperty]
-    private IStorage? _selectedStorage;
+    [ObservableProperty] private IStorage? _selectedStorage;
 
-    [ObservableProperty]
-    private UserControl? _selectedUserControl;
+    [ObservableProperty] private UserControl? _selectedUserControl;
 
     public StoragePageViewModel(StorageFactory storageFactory, GameData gameData)
     {
         _storageFactory = storageFactory;
-        StorageCollections = new ObservableCollection<StorageCollection>();
+        StorageCollections = [];
         _storageDefinitions = gameData.StorageDefinitions.ToDictionary(definition => definition.Id);
         _advancedStorageDefinitions = gameData.AdvancedStorageDefinitions.ToDictionary(definition => definition.Id);
         SetupListeners();
@@ -169,14 +167,14 @@ public partial class StoragePageViewModel : ObservableObject
 
             StorageCollection storageCollection;
 
-            if (!storageCollectionsById.ContainsKey(saveData.Id))
+            if (!storageCollectionsById.TryGetValue(saveData.Id, out var value))
             {
                 storageCollection = new StorageCollection(saveData.Id, storageDefinition.Name);
                 storageCollectionsById.Add(saveData.Id, storageCollection);
             }
             else
             {
-                storageCollection = storageCollectionsById[saveData.Id];
+                storageCollection = value;
             }
 
             var storage = _storageFactory.Build(storageDefinition, storageCollection.Storages.Count + 1);

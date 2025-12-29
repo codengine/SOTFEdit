@@ -3,12 +3,7 @@ using SOTFEdit.Model.Map;
 
 namespace SOTFEdit.Model.Events;
 
-public class RemovePoiEvent
+public class RemovePoiEvent(List<IPoi> pois)
 {
-    public RemovePoiEvent(List<IPoi> pois)
-    {
-        Pois = pois;
-    }
-
-    public List<IPoi> Pois { get; }
+    public List<IPoi> Pois { get; } = pois;
 }

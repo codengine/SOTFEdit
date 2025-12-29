@@ -5,18 +5,13 @@ using SOTFEdit.Infrastructure;
 
 namespace SOTFEdit.Model.Savegame;
 
-public class SaveDataWrapper
+public class SaveDataWrapper(JToken parent)
 {
     private readonly Dictionary<string, JToken?> _jsonStringNodes = new();
-    private readonly HashSet<string> _modified = new();
+    private readonly HashSet<string> _modified = [];
     private readonly ReaderWriterLockSlim _readerWriterLockSlim = new();
 
-    public SaveDataWrapper(JToken parent)
-    {
-        Parent = parent;
-    }
-
-    public JToken Parent { get; }
+    public JToken Parent { get; } = parent;
 
     public JToken? GetJsonBasedToken(string selector)
     {

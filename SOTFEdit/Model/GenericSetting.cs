@@ -4,7 +4,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SOTFEdit.Model;
 
-public partial class GenericSetting : ObservableObject
+public partial class GenericSetting(string name, GenericSetting.DataType type, string? dataPath = null)
+    : ObservableObject
 {
     public enum DataType
     {
@@ -15,28 +16,17 @@ public partial class GenericSetting : ObservableObject
         Enum
     }
 
-    [ObservableProperty]
-    private bool? _boolValue;
+    [ObservableProperty] private bool? _boolValue;
 
-    [ObservableProperty]
-    private int? _intValue = 0;
+    [ObservableProperty] private int? _intValue = 0;
 
-    [ObservableProperty]
-    private object? _selectedItem;
+    [ObservableProperty] private object? _selectedItem;
 
-    [ObservableProperty]
-    private string? _stringValue;
+    [ObservableProperty] private string? _stringValue;
 
-    public GenericSetting(string name, DataType type, string? dataPath = null)
-    {
-        Name = name;
-        DataPath = dataPath;
-        Type = type;
-    }
-
-    public string Name { get; }
-    public string? DataPath { get; }
-    public DataType Type { get; }
+    public string Name { get; } = name;
+    public string? DataPath { get; } = dataPath;
+    public DataType Type { get; } = type;
 
     public Dictionary<object, string> PossibleValues { get; } = new();
     public int MinInt { get; init; }

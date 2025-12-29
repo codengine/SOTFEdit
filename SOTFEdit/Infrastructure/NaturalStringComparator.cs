@@ -1,6 +1,6 @@
-﻿namespace SOTFEdit.Infrastructure;
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+namespace SOTFEdit.Infrastructure;
 
 /// <summary>
 ///     String comparer that applies a “natural sort” algorithm.
@@ -8,22 +8,37 @@ using System.Collections.Generic;
 /// <remarks>
 ///     Original Java code by Stanislav Bokach (https://stackoverflow.com/a/58249974)
 /// </remarks>
-public sealed class NaturalStringComparer : IComparer<string>
+public sealed class NaturalStringComparator : IComparer<string>
 {
     /// <summary>
-    /// Compares two strings and returns a value indicating whether one is less than,
-    //  equal to, or greater than the other, according to a “natural sort” algorithm.
+    ///     Compares two strings and returns a value indicating whether one is less than,
+    ///     equal to, or greater than the other, according to a “natural sort” algorithm.
     /// </summary>
     /// <param name="x">The first string to compare.</param>
     /// <param name="y">The second string to compare.</param>
     /// <returns>
-    ///     A signed integer that indicates the relative values of x and y.
-    ///     Less than zero: x is less than y.
-    ///     Zero: x equals y.
-    ///     Greater than zero: x is greater than y.
+    ///     A signed integer that indicates the relative values of <paramref name="x" /> and <paramref name="y" />.
+    ///     Less than zero: <paramref name="x" /> is less than <paramref name="y" />.
+    ///     Zero: <paramref name="x" /> equals <paramref name="y" />.
+    ///     Greater than zero: <paramref name="x" /> is greater than <paramref name="y" />.
     /// </returns>
-    public int Compare(string x, string y)
+    public int Compare(string? x, string? y)
     {
+        if (ReferenceEquals(x, y))
+        {
+            return 0;
+        }
+
+        if (x is null)
+        {
+            return -1;
+        }
+
+        if (y is null)
+        {
+            return 1;
+        }
+
         var indexX = 0;
         var indexY = 0;
         while (true)

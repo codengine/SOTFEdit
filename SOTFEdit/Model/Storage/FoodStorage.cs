@@ -7,16 +7,12 @@ using SOTFEdit.View.Storage;
 
 namespace SOTFEdit.Model.Storage;
 
-public class FoodStorage : RestrictedStorage
+public class FoodStorage(StorageDefinition definition, ItemList itemList, int index) : RestrictedStorage(definition,
+    itemList, index)
 {
     private const int DefaultItemIdForUnselectedSlot = 436; //fish
     private const int DefaultVariantForUnselectedSlot = 4; //dried
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-
-    public FoodStorage(StorageDefinition definition, ItemList itemList, int index) : base(definition,
-        itemList, index)
-    {
-    }
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     public override void SetSaveData(StorageSaveData saveData)
     {
@@ -87,7 +83,7 @@ public class FoodStorage : RestrictedStorage
         var storageSaveData = new StorageSaveData
         {
             Id = Definition.Id,
-            Storages = new List<StorageBlock>()
+            Storages = []
         };
 
         var groupedByItemIds = Slots.SelectMany(slot => slot.StoredItems)
@@ -140,8 +136,8 @@ public class FoodStorage : RestrictedStorage
     {
         var hasFoodSpoilModule = false;
         var hasSourceActorModule = false;
-        var storedModules = storedItem.Modules?.Where(module => !ModuleShouldBeFiltered(selectedItem, module)).Select(
-            module =>
+        var storedModules = storedItem.Modules?.Where(module => !ModuleShouldBeFiltered(selectedItem, module))
+            .Select(module =>
             {
                 switch (module)
                 {
@@ -153,22 +149,31 @@ public class FoodStorage : RestrictedStorage
                         break;
                 }
 
-                if (module is not FoodSpoilStorageModule foodSpoilStorageModule) return module;
+                if (module is not FoodSpoilStorageModule foodSpoilStorageModule)
+                {
+                    return module;
+                }
 
                 var newFoodSpoilStorageModule = selectedItem.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule;
                 if (newFoodSpoilStorageModule != null && !Equals(foodSpoilStorageModule,
                         selectedItem.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule))
+                {
                     return newFoodSpoilStorageModule;
+                }
 
                 return foodSpoilStorageModule;
-            }).ToList() ?? new List<IStorageModule>();
+            }).ToList() ?? [];
 
         if (selectedItem.Item.FoodSpoilModuleDefinition is { } foodSpoilModuleDefinition && !hasFoodSpoilModule)
+        {
             storedModules.Add(selectedItem.FoodSpoilStorageModuleWrapper?.FoodSpoilStorageModule ??
                               foodSpoilModuleDefinition.BuildNewModuleWithDefaults());
+        }
 
         if (selectedItem.Item.SourceActorModuleDefinition is { } sourceActorModuleDefinition && !hasSourceActorModule)
+        {
             storedModules.Add(sourceActorModuleDefinition.BuildNewModuleWithDefaults());
+        }
 
         return storedModules;
     }

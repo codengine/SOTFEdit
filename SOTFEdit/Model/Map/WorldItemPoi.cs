@@ -4,14 +4,9 @@ using SOTFEdit.Model.WorldItem;
 
 namespace SOTFEdit.Model.Map;
 
-public class WorldItemPoi : BasePoi
+public class WorldItemPoi(WorldItemState state) : BasePoi(state.Position)
 {
-    public WorldItemPoi(WorldItemState state) : base(state.Position)
-    {
-        State = state;
-    }
-
-    public WorldItemState State { get; }
+    public WorldItemState State { get; } = state;
 
     public override BitmapImage Icon => GetIcon();
     public BitmapImage IconSmall => GetIcon(24, 24);

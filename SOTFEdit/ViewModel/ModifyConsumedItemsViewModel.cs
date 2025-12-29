@@ -21,7 +21,7 @@ public partial class ModifyConsumedItemsViewModel
         Load(savegame, gameData.Items);
     }
 
-    public ObservableCollectionEx<ConsumedItemWrapper> ConsumedItems { get; } = new();
+    public ObservableCollectionEx<ConsumedItemWrapper> ConsumedItems { get; } = [];
 
     private void Load(Savegame savegame, ItemList items)
     {
@@ -82,7 +82,7 @@ public partial class ModifyConsumedItemsViewModel
         _parent.Close();
     }
 
-    private static bool RemoveEntries(JArray entries, IReadOnlySet<string> toBeRemoved)
+    private static bool RemoveEntries(JArray entries, HashSet<string> toBeRemoved)
     {
         if (toBeRemoved.Count == 0)
         {
@@ -150,21 +150,12 @@ public partial class ModifyConsumedItemsViewModel
         return null;
     }
 
-    public partial class ConsumedItemWrapper : ObservableObject
+    public partial class ConsumedItemWrapper(string key, Item? item) : ObservableObject
     {
-        private readonly Item? _item;
+        [ObservableProperty] private bool _remove;
 
-        [ObservableProperty]
-        private bool _remove;
+        public string Key { get; } = key;
 
-        public ConsumedItemWrapper(string key, Item? item)
-        {
-            _item = item;
-            Key = key;
-        }
-
-        public string Key { get; }
-
-        public string Name => _item != null ? _item.Name : Key;
+        public string Name => item != null ? item.Name : Key;
     }
 }

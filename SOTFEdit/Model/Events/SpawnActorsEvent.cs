@@ -5,25 +5,15 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.Events;
 
-public class SpawnActorsEvent
+public class SpawnActorsEvent(
+    Position position, ActorType actorType, int spawnCount, int? familyId,
+    List<Influence> influences, int spaceBetween, SpawnPattern spawnPattern)
 {
-    public SpawnActorsEvent(Position position, ActorType actorType, int spawnCount, int? familyId,
-        List<Influence> influences, int spaceBetween, SpawnPattern spawnPattern)
-    {
-        Position = position;
-        ActorType = actorType;
-        SpawnCount = spawnCount;
-        FamilyId = familyId;
-        Influences = influences;
-        SpaceBetween = spaceBetween;
-        SpawnPattern = spawnPattern;
-    }
-
-    public Position Position { get; }
-    public ActorType ActorType { get; }
-    public int SpawnCount { get; }
-    public int? FamilyId { get; }
-    public List<Influence> Influences { get; }
-    public int SpaceBetween { get; }
-    public SpawnPattern SpawnPattern { get; }
+    public Position Position { get; } = position;
+    public ActorType ActorType { get; } = actorType;
+    public int SpawnCount { get; } = spawnCount;
+    public int? FamilyId { get; } = familyId;
+    public List<Influence> Influences { get; } = influences;
+    public int SpaceBetween { get; } = spaceBetween;
+    public SpawnPattern SpawnPattern { get; } = spawnPattern;
 }

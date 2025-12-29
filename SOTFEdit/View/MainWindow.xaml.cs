@@ -27,7 +27,7 @@ namespace SOTFEdit.View;
 // ReSharper disable once UnusedMember.Global
 public partial class MainWindow
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly string _baseTitle;
 
@@ -54,17 +54,20 @@ public partial class MainWindow
     private void SetupListeners()
     {
         WeakReferenceMessenger.Default.Register<SavegameStoredEvent>(this,
-            (_, message) => OnSavegameStored(message));
+            (_, message) => OnSavegameStored(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling SavegameStoredEvent")));
         WeakReferenceMessenger.Default.Register<RequestRegrowTreesEvent>(this,
             (_, _) => OnRequestRegrowTreesEvent());
         WeakReferenceMessenger.Default.Register<RequestChangeUnlocksEvent>(this,
-            (_, _) => OnRequestChangeUnlocksEvent());
+            (_, _) => OnRequestChangeUnlocksEvent()
+                .Forget(ex => Logger.Error(ex, "Error while handling RequestChangeUnlocksEvent")));
         WeakReferenceMessenger.Default.Register<RequestItemPlaterEvent>(this,
             (_, _) => OnRequestItemPlaterEvent());
         WeakReferenceMessenger.Default.Register<RequestReviveFollowersEvent>(this,
             (_, message) => OnRequestReviveFollowersEvent(message));
         WeakReferenceMessenger.Default.Register<RequestSaveChangesEvent>(this,
-            (_, message) => OnRequestSaveChangesEvent(message));
+            (_, message) => OnRequestSaveChangesEvent(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling RequestSaveChangesEvent")));
         WeakReferenceMessenger.Default.Register<RequestSelectSavegameEvent>(this,
             (_, _) => OnRequestSelectSavegameEvent());
         WeakReferenceMessenger.Default.Register<RequestApplicationExitEvent>(this,
@@ -74,15 +77,19 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Register<RequestStartProcessEvent>(this,
             (_, message) => OnRequestStartProcessEvent(message));
         WeakReferenceMessenger.Default.Register<RequestDeleteBackupsEvent>(this,
-            (_, message) => OnRequestDeleteBackupsEvent(message));
+            (_, message) => OnRequestDeleteBackupsEvent(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling RequestDeleteBackupsEvent")));
         WeakReferenceMessenger.Default.Register<RequestCheckForUpdatesEvent>(this,
             (_, message) => OnRequestCheckForUpdatesEvent(message));
         WeakReferenceMessenger.Default.Register<VersionCheckResultEvent>(this,
-            (_, message) => OnVersionCheckResultEvent(message));
+            (_, message) => OnVersionCheckResultEvent(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling VersionCheckResultEvent")));
         WeakReferenceMessenger.Default.Register<RequestSpawnFollowerEvent>(this,
-            (_, message) => OnRequestSpawnFollowerEvent(message));
+            (_, message) => OnRequestSpawnFollowerEvent(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling RequestSpawnFollowerEvent")));
         WeakReferenceMessenger.Default.Register<RequestRestoreBackupsEvent>(this,
-            (_, message) => OnRequestRestoreBackupsEvent(message));
+            (_, message) => OnRequestRestoreBackupsEvent(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling RequestRestoreBackupsEvent")));
         WeakReferenceMessenger.Default.Register<UnhandledExceptionEvent>(this,
             (_, message) => OnUnhandledExceptionEvent(message));
 
@@ -92,13 +99,15 @@ public partial class MainWindow
         WeakReferenceMessenger.Default.Register<RequestEditActorEvent>(this,
             (_, message) => OnRequestEditActorEvent(message));
         WeakReferenceMessenger.Default.Register<GenericMessageEvent>(this,
-            (_, message) => OnGenericMessageEvent(message));
+            (_, message) => OnGenericMessageEvent(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling GenericMessageEvent")));
         WeakReferenceMessenger.Default.Register<RequestModifyConsumedItemsEvent>(this,
             (_, _) => OnRequestModifyConsumedItemsEvent());
         WeakReferenceMessenger.Default.Register<RequestTeleportWorldItemEvent>(this,
             (_, _) => OnRequestTeleportWorldItemEvent());
         WeakReferenceMessenger.Default.Register<ShowDialogEvent>(this,
-            (_, message) => OnShowDialogEvent(message));
+            (_, message) => OnShowDialogEvent(message)
+                .Forget(ex => Logger.Error(ex, "Error while handling ShowDialogEvent")));
         WeakReferenceMessenger.Default.Register<RequestOpenMapEvent>(this,
             (_, message) => OnRequestOpenMapEvent(message));
         WeakReferenceMessenger.Default.Register<UpdateActorsEvent>(this,
@@ -150,7 +159,7 @@ public partial class MainWindow
         _dataContext.IsMapWindowClosed = true;
     }
 
-    private async void OnShowDialogEvent(ShowDialogEvent message)
+    private async Task OnShowDialogEvent(ShowDialogEvent message)
     {
         var dialog = message.DialogFactory.Invoke(this);
         await this.ShowMetroDialogAsync(dialog, new MetroDialogSettings
@@ -195,7 +204,7 @@ public partial class MainWindow
         window.ShowDialog();
     }
 
-    private async void OnGenericMessageEvent(GenericMessageEvent message)
+    private async Task OnGenericMessageEvent(GenericMessageEvent message)
     {
         await ShowMessageDialog(message.Message, message.Title);
     }
@@ -213,7 +222,7 @@ public partial class MainWindow
         dialog.ShowDialog();
     }
 
-    private async void OnRequestChangeUnlocksEvent()
+    private async Task OnRequestChangeUnlocksEvent()
     {
         var savePath = SavegameManager.GetSavegamePathFromAppData();
         if (string.IsNullOrEmpty(savePath) || !Directory.Exists(savePath) ||
@@ -296,7 +305,7 @@ public partial class MainWindow
         }
     }
 
-    private async void OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)
+    private async Task OnRequestRestoreBackupsEvent(RequestRestoreBackupsEvent message)
     {
         var result = await ShowConfirmDialog(TranslationManager.Get("windows.main.messages.confirmRestoreBackups.text"),
             TranslationManager.Get("windows.main.messages.confirmRestoreBackups.title"));
@@ -318,7 +327,7 @@ public partial class MainWindow
             TranslationManager.Get("backup.messages.backupsRestored.title"));
     }
 
-    private async void OnRequestSpawnFollowerEvent(RequestSpawnFollowerEvent message)
+    private async Task OnRequestSpawnFollowerEvent(RequestSpawnFollowerEvent message)
     {
         var dialog = new SpawnFollowerInputDialog(this)
         {
@@ -355,7 +364,7 @@ public partial class MainWindow
         }
     }
 
-    private async void OnVersionCheckResultEvent(VersionCheckResultEvent message)
+    private async Task OnVersionCheckResultEvent(VersionCheckResultEvent message)
     {
         if (!message.InvokedManually && message.LatestTagVersion?.ToString() is { } latestTagVersionAsString)
         {
@@ -411,7 +420,7 @@ public partial class MainWindow
             .CheckForUpdates(notifyOnSameVersion, notifyOnError, invokedManually);
     }
 
-    private async void OnRequestDeleteBackupsEvent(RequestDeleteBackupsEvent message)
+    private async Task OnRequestDeleteBackupsEvent(RequestDeleteBackupsEvent message)
     {
         var result = await ShowConfirmDialog(TranslationManager.Get("windows.main.messages.confirmDeleteBackups.text"),
             TranslationManager.Get("windows.main.messages.confirmDeleteBackups.title"));
@@ -467,7 +476,7 @@ public partial class MainWindow
         window.ShowDialog();
     }
 
-    private async void OnRequestSaveChangesEvent(RequestSaveChangesEvent message)
+    private async Task OnRequestSaveChangesEvent(RequestSaveChangesEvent message)
     {
         if (message.SelectedSavegame.SavegameStore.HasChanged())
         {
@@ -481,8 +490,7 @@ public partial class MainWindow
             }
         }
 
-        var applicationSettings = Ioc.Default.GetRequiredService<ApplicationSettings>();
-        var effectiveBackupMode = applicationSettings.CurrentBackupMode;
+        var effectiveBackupMode = ApplicationSettings.CurrentBackupMode;
 
         if (Settings.Default.AskForBackups && effectiveBackupMode != ApplicationSettings.BackupMode.None)
         {
@@ -544,7 +552,7 @@ public partial class MainWindow
         }
     }
 
-    private async void OnSavegameStored(SavegameStoredEvent message)
+    private async Task OnSavegameStored(SavegameStoredEvent message)
     {
         if (message.Message is { } text)
         {
@@ -602,7 +610,12 @@ public partial class MainWindow
         markdownViewer.ShowDialog();
     }
 
-    private async void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+    private void MainWindow_OnPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        MainWindow_OnPreviewKeyDownAsync(e).Forget(ex => Logger.Error(ex, "Error while handling PreviewKeyDown"));
+    }
+
+    private async Task MainWindow_OnPreviewKeyDownAsync(KeyEventArgs e)
     {
         switch (e.Key)
         {

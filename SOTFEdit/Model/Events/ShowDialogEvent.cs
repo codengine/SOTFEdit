@@ -4,12 +4,7 @@ using MahApps.Metro.Controls.Dialogs;
 
 namespace SOTFEdit.Model.Events;
 
-public class ShowDialogEvent
+public class ShowDialogEvent(Func<MetroWindow, BaseMetroDialog> dialogFactory)
 {
-    public ShowDialogEvent(Func<MetroWindow, BaseMetroDialog> dialogFactory)
-    {
-        DialogFactory = dialogFactory;
-    }
-
-    public Func<MetroWindow, BaseMetroDialog> DialogFactory { get; }
+    public Func<MetroWindow, BaseMetroDialog> DialogFactory { get; } = dialogFactory;
 }

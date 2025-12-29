@@ -4,11 +4,9 @@ namespace SOTFEdit.Infrastructure;
 
 public partial class ZoomHandler : ObservableObject
 {
-    [ObservableProperty]
-    private double _zoom;
+    [ObservableProperty] private double _zoom;
 
-    [ObservableProperty]
-    private double _zoomInverse;
+    [ObservableProperty] private double _zoomInverse;
 
     /// <summary>
     ///     Initializes a new instance of the ZoomHandler class with a default Zoom value of 1.0.

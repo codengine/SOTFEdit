@@ -9,7 +9,7 @@ public class StorageItemBlock
 {
     public int ItemId { get; init; }
     public int TotalCount { get; init; }
-    public List<UniqueItem> UniqueItems { get; init; } = new();
+    public List<UniqueItem> UniqueItems { get; init; } = [];
 
     private bool Equals(StorageItemBlock other)
     {

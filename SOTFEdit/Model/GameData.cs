@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using SOTFEdit.Infrastructure;
@@ -42,18 +41,11 @@ public class GameData
     public List<string> NamedIntKeys { get; }
 }
 
-public class ElementProfile
+public class ElementProfile(ElementProfileCategory category, int id, int goldPlatedId)
 {
-    public ElementProfile(ElementProfileCategory category, int id, int goldPlatedId)
-    {
-        Category = category;
-        Id = id;
-        GoldPlatedId = goldPlatedId;
-    }
-
-    public ElementProfileCategory Category { get; }
-    public int Id { get; }
-    public int GoldPlatedId { get; }
+    public ElementProfileCategory Category { get; } = category;
+    public int Id { get; } = id;
+    public int GoldPlatedId { get; } = goldPlatedId;
 }
 
 public enum ElementProfileCategory
@@ -65,51 +57,34 @@ public enum ElementProfileCategory
     Stick
 }
 
-public class ScrewStructure
+public class ScrewStructure(
+    string category, int id, int buildCost, bool? canFinish, string icon, bool? canEdit,
+    bool? showOnMap, bool? isWeaponHolder)
 {
-    public ScrewStructure(string category, int id, int buildCost, bool? canFinish, string icon, bool? canEdit,
-        bool? showOnMap, bool? isWeaponHolder)
-    {
-        Category = category;
-        Id = id;
-        BuildCost = buildCost;
-        Icon = icon;
-        CanFinish = canFinish ?? true;
-        CanEdit = canEdit ?? true;
-        IsWeaponHolder = isWeaponHolder ?? false;
-        ShowOnMap = showOnMap ?? true;
-    }
+    public string Category { get; } = category;
 
-    public string Category { get; }
-
-    public bool IsWeaponHolder { get; }
+    public bool IsWeaponHolder { get; } = isWeaponHolder ?? false;
 
     public string Name => TranslationManager.Get("structures.types." + Id);
 
-    public string CategoryName => string.IsNullOrEmpty(Category)
-        ? ""
-        : TranslationManager.Get("structures.categories." + Category);
+    public string CategoryName =>
+        string.IsNullOrEmpty(Category)
+            ? ""
+            : TranslationManager.Get("structures.categories." + Category);
 
-    public int Id { get; }
-    public int BuildCost { get; }
-    public string Icon { get; }
-    public bool CanFinish { get; }
-    public bool ShowOnMap { get; }
-    public bool CanEdit { get; }
+    public int Id { get; } = id;
+    public int BuildCost { get; } = buildCost;
+    public string Icon { get; } = icon;
+    public bool CanFinish { get; } = canFinish ?? true;
+    public bool ShowOnMap { get; } = showOnMap ?? true;
+    public bool CanEdit { get; } = canEdit ?? true;
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class Configuration
+public class Configuration(string githubProject)
 {
-    private readonly string _githubProject;
-
-    public Configuration(string githubProject)
-    {
-        _githubProject = githubProject;
-    }
-
-    public string LatestTagUrl => $"https://api.github.com/repos/{_githubProject}/releases/latest";
-    public string ChangelogUrl => $"https://raw.githubusercontent.com/{_githubProject}/master/CHANGELOG.md";
+    public string LatestTagUrl => $"https://api.github.com/repos/{githubProject}/releases/latest";
+    public string ChangelogUrl => $"https://raw.githubusercontent.com/{githubProject}/master/CHANGELOG.md";
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global
@@ -131,12 +106,12 @@ public class FollowerData
 
     public List<Outfit> GetOutfits(int typeId)
     {
-        return _outfits.GetValueOrDefault(typeId) ?? new List<Outfit>();
+        return _outfits.GetValueOrDefault(typeId) ?? [];
     }
 
     public IEnumerable<Item> GetEquippableItems(int typeId, ItemList items)
     {
-        return (_equippableItems.GetValueOrDefault(typeId) ?? Array.Empty<int>())
+        return (_equippableItems.GetValueOrDefault(typeId) ?? [])
             .Select(items.GetItem)
             .Where(item => item is not null)
             .Select(item => item!)
@@ -145,17 +120,9 @@ public class FollowerData
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public class Outfit
+public class Outfit(int typeId, int id)
 {
-    private readonly int _typeId;
+    public int Id { get; } = id;
 
-    public Outfit(int typeId, int id)
-    {
-        _typeId = typeId;
-        Id = id;
-    }
-
-    public int Id { get; }
-
-    public string Name => TranslationManager.Get($"followers.outfits.{_typeId}.{Id}");
+    public string Name => TranslationManager.Get($"followers.outfits.{typeId}.{Id}");
 }

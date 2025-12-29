@@ -19,10 +19,10 @@ namespace SOTFEdit.ViewModel;
 
 public partial class InventoryPageViewModel : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-    private readonly HashSet<int> _blueprintItemIds = new()
-    {
+    private readonly HashSet<int> _blueprintItemIds =
+    [
         665, //Item Plating
         666, //Powered Cross
         670, //Gore Chair
@@ -39,10 +39,10 @@ public partial class InventoryPageViewModel : ObservableObject
         711, //Attract Shrine
         713, //Plater Counter
         714, //Gold Armor Plater
-        726 //Hang Glider Launcher
-    };
+        726
+    ];
 
-    private readonly ObservableCollectionEx<InventoryItem> _inventory = new();
+    private readonly ObservableCollectionEx<InventoryItem> _inventory = [];
 
     private readonly DispatcherTimer _inventoryFilterTimer = new()
     {
@@ -50,21 +50,19 @@ public partial class InventoryPageViewModel : ObservableObject
     };
 
     private readonly ItemList _itemList;
-    private readonly ObservableCollectionEx<InventoryItem> _unassignedItems = new();
+    private readonly ObservableCollectionEx<InventoryItem> _unassignedItems = [];
 
     private readonly DispatcherTimer _unassignedItemsFilterTimer = new()
     {
         Interval = TimeSpan.FromMilliseconds(300)
     };
 
-    [ObservableProperty]
-    private string _inventoryFilter = "";
+    [ObservableProperty] private string _inventoryFilter = "";
 
     private string _normalizedInventoryFilter = "";
     private string _normalizedUnassignedItemsFilter = "";
 
-    [ObservableProperty]
-    private string _unassignedItemsFilter = "";
+    [ObservableProperty] private string _unassignedItemsFilter = "";
 
 
     public InventoryPageViewModel(GameData gameData)
@@ -105,7 +103,7 @@ public partial class InventoryPageViewModel : ObservableObject
         SetupListeners();
     }
 
-    public ObservableCollectionEx<Category> Categories { get; } = new();
+    public ObservableCollectionEx<Category> Categories { get; } = [];
 
     public ICollectionView InventoryCollectionView { get; }
     public ICollectionView UnassignedItemsCollectionView { get; }
@@ -113,14 +111,14 @@ public partial class InventoryPageViewModel : ObservableObject
     private void OnInventoryFilterTimerTick(object? sender, EventArgs e)
     {
         _inventoryFilterTimer.Stop();
-        _normalizedInventoryFilter = TranslationHelper.Normalize(_inventoryFilter).ToLower();
+        _normalizedInventoryFilter = TranslationHelper.Normalize(InventoryFilter).ToLower();
         InventoryCollectionView.Refresh();
     }
 
     private void OnUnassignedItemsFilterTimerTick(object? sender, EventArgs e)
     {
         _unassignedItemsFilterTimer.Stop();
-        _normalizedUnassignedItemsFilter = TranslationHelper.Normalize(_unassignedItemsFilter).ToLower();
+        _normalizedUnassignedItemsFilter = TranslationHelper.Normalize(UnassignedItemsFilter).ToLower();
         UnassignedItemsCollectionView.Refresh();
     }
 
@@ -208,7 +206,7 @@ public partial class InventoryPageViewModel : ObservableObject
             return;
         }
 
-        HashSet<int> assignedItems = new();
+        HashSet<int> assignedItems = [];
 
         var saveData =
             m.SelectedSavegame.SavegameStore.LoadJsonRaw(SavegameStore.FileType
@@ -407,14 +405,9 @@ public partial class InventoryPageViewModel : ObservableObject
     }
 }
 
-public class Category
+public class Category(string type)
 {
-    public Category(string type)
-    {
-        Type = type;
-    }
-
-    public string Type { get; }
+    public string Type { get; } = type;
 
     // ReSharper disable once UnusedMember.Global
     public string TypeRendered => TranslationManager.Get("itemTypes." + Type);

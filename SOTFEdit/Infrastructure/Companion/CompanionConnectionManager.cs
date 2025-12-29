@@ -11,7 +11,7 @@ using WatsonWebsocket;
 
 namespace SOTFEdit.Infrastructure.Companion;
 
-public partial class CompanionConnectionManager : ObservableObject
+public partial class CompanionConnectionManager(CompanionMessageHandler messageHandler) : ObservableObject
 {
     public enum ConnectionStatus
     {
@@ -20,17 +20,10 @@ public partial class CompanionConnectionManager : ObservableObject
         Disconnected
     }
 
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-    private readonly CompanionMessageHandler _messageHandler;
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private WatsonWsClient? _client;
 
-    [ObservableProperty]
-    private ConnectionStatus _status = ConnectionStatus.Disconnected;
-
-    public CompanionConnectionManager(CompanionMessageHandler messageHandler)
-    {
-        _messageHandler = messageHandler;
-    }
+    [ObservableProperty] private ConnectionStatus _status = ConnectionStatus.Disconnected;
 
     partial void OnStatusChanged(ConnectionStatus value)
     {
@@ -104,14 +97,14 @@ public partial class CompanionConnectionManager : ObservableObject
 
     private WatsonWsClient BuildClient()
     {
-        var client = new WatsonWsClient(Settings.Default.CompanionAddress, Settings.Default.CompanionPort, false);
+        var client = new WatsonWsClient(Settings.Default.CompanionAddress, Settings.Default.CompanionPort);
         if (Debugger.IsAttached)
         {
             client.Logger = s => Logger.Info(s);
         }
 
         client.KeepAliveInterval = Settings.Default.CompanionKeepAliveInterval;
-        client.MessageReceived += _messageHandler.Handle;
+        client.MessageReceived += messageHandler.Handle;
         client.ServerConnected += OnConnected;
         client.ServerDisconnected += OnDisconnected;
         return client;

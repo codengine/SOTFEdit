@@ -268,7 +268,7 @@ public partial class ItemPlaterViewModel : ObservableObject
 
             if (structure["Modules"] is not JArray modules)
             {
-                modules = new JArray();
+                modules = [];
                 structure["Modules"] = modules;
             }
 
@@ -295,31 +295,31 @@ public partial class ItemPlaterViewModel : ObservableObject
         if (LogConstruction)
         {
             result.AddRange(
-                _elementProfileCategories.GetValueOrDefault(ElementProfileCategory.Log, new List<ElementProfile>()));
+                _elementProfileCategories.GetValueOrDefault(ElementProfileCategory.Log, []));
         }
 
         if (LogPlankConstruction)
         {
             result.AddRange(_elementProfileCategories.GetValueOrDefault(ElementProfileCategory.LogPlank,
-                new List<ElementProfile>()));
+                []));
         }
 
         if (StickConstruction)
         {
             result.AddRange(_elementProfileCategories.GetValueOrDefault(ElementProfileCategory.Stick,
-                new List<ElementProfile>()));
+                []));
         }
 
         if (ItemConstruction)
         {
             result.AddRange(
-                _elementProfileCategories.GetValueOrDefault(ElementProfileCategory.Item, new List<ElementProfile>()));
+                _elementProfileCategories.GetValueOrDefault(ElementProfileCategory.Item, []));
         }
 
         if (StoneConstruction)
         {
             result.AddRange(_elementProfileCategories.GetValueOrDefault(ElementProfileCategory.Stone,
-                new List<ElementProfile>()));
+                []));
         }
 
         return result.DistinctBy(KeySelector).ToDictionary(KeySelector);
@@ -330,40 +330,40 @@ public partial class ItemPlaterViewModel : ObservableObject
         }
     }
 
-    private ISet<int> GetSelectedStructureTypeIds()
+    private HashSet<int> GetSelectedStructureTypeIds()
     {
         var result = new List<int>();
         if (StorageStructures)
         {
-            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("storage", new HashSet<int>()));
+            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("storage", []));
         }
 
         if (FurnitureStructures)
         {
-            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("furniture", new HashSet<int>()));
+            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("furniture", []));
         }
 
         if (TrapsStructures)
         {
-            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("traps", new HashSet<int>()));
+            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("traps", []));
         }
 
         if (UtilityStructures)
         {
-            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("utility", new HashSet<int>()));
+            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("utility", []));
         }
 
         if (MiscStructures)
         {
-            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("misc", new HashSet<int>()));
+            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("misc", []));
         }
 
         if (GardeningStructures)
         {
-            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("gardening", new HashSet<int>()));
+            result.AddRange(_screwStructureCategoryToIds.GetValueOrDefault("gardening", []));
         }
 
-        return new HashSet<int>(result);
+        return [..result];
     }
 
     private static JObject CreateStructurePlatingModule()
@@ -565,7 +565,7 @@ public partial class ItemPlaterViewModel : ObservableObject
     {
         if (token["UniqueItems"] is not JArray uniqueItems)
         {
-            uniqueItems = new JArray();
+            uniqueItems = [];
             token["UniqueItems"] = uniqueItems;
         }
 
@@ -613,7 +613,7 @@ public partial class ItemPlaterViewModel : ObservableObject
         return foundModules;
     }
 
-    private static IEnumerable<JObject> FindPlatingModules(JArray modules)
+    private static List<JObject> FindPlatingModules(JArray modules)
     {
         return modules.Where(module => module is JObject moduleData && moduleData["ModuleId"]?.Value<int>() == 8)
             .Cast<JObject>()
@@ -791,7 +791,7 @@ public partial class ItemPlaterViewModel : ObservableObject
         return modifiedCount;
     }
 
-    private static JToken RemoveStructurePlatingModule(JArray modules, out int countRemoved)
+    private static JArray RemoveStructurePlatingModule(JArray modules, out int countRemoved)
     {
         countRemoved = 0;
 

@@ -15,27 +15,20 @@ public partial class MapFilter : ObservableObject
         InaccessibleOnly
     }
 
-    [ObservableProperty]
-    private IAreaFilter _areaFilter = Map.AreaFilter.All;
+    [ObservableProperty] private IAreaFilter _areaFilter = Map.AreaFilter.All;
 
-    [ObservableProperty]
-    private string? _fullText;
+    [ObservableProperty] private string? _fullText;
 
-    [ObservableProperty]
-    private RequirementsFilterType _requirementsFilter = RequirementsFilterType.All;
+    [ObservableProperty] private RequirementsFilterType _requirementsFilter = RequirementsFilterType.All;
 
-    [ObservableProperty]
-    private bool _showOnlyUncollectedItems;
+    [ObservableProperty] private bool _showOnlyUncollectedItems;
 
     public string? NormalizedLowercaseFullText;
 
     public MapFilter(AreaMaskManager areaManager)
     {
         var allAreas = areaManager.GetAllAreas();
-        AreaFilterTypeValues = new List<IAreaFilter>
-        {
-            Map.AreaFilter.All, Map.AreaFilter.Surface, Map.AreaFilter.CavesOrBunkers
-        };
+        AreaFilterTypeValues = [Map.AreaFilter.All, Map.AreaFilter.Surface, Map.AreaFilter.CavesOrBunkers];
 
         AreaFilterTypeValues.AddRange(allAreas.Where(area => !area.IsSurface()).OrderBy(area => area.Name)
             .Select(area => new AreaFilter(area)));

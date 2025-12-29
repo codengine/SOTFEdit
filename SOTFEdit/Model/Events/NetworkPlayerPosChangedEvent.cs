@@ -1,15 +1,8 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class NetworkPlayerPosChangedEvent
+public class NetworkPlayerPosChangedEvent(int instanceId, string? name, Position newPosition)
 {
-    public NetworkPlayerPosChangedEvent(int instanceId, string? name, Position newPosition)
-    {
-        InstanceId = instanceId;
-        Name = name;
-        NewPosition = newPosition;
-    }
-
-    public int InstanceId { get; }
-    public string? Name { get; }
-    public Position NewPosition { get; }
+    public int InstanceId { get; } = instanceId;
+    public string? Name { get; } = name;
+    public Position NewPosition { get; } = newPosition;
 }

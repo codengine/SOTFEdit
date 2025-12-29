@@ -7,19 +7,13 @@ using SOTFEdit.Model.SaveData.Inventory;
 
 namespace SOTFEdit.ViewModel;
 
-public partial class InventoryItem : ObservableObject
+public partial class InventoryItem(ItemBlockModel itemBlock, Item? item, bool isEquipped = false)
+    : ObservableObject
 {
-    public InventoryItem(ItemBlockModel itemBlock, Item? item, bool isEquipped = false)
-    {
-        ItemBlock = itemBlock;
-        Item = item;
-        IsEquipped = isEquipped;
-    }
+    public Item? Item { get; } = item;
+    public bool IsEquipped { get; } = isEquipped;
 
-    public Item? Item { get; }
-    public bool IsEquipped { get; }
-
-    public ItemBlockModel ItemBlock { get; }
+    public ItemBlockModel ItemBlock { get; } = itemBlock;
 
     public string Type => Item?.Type ?? "";
 

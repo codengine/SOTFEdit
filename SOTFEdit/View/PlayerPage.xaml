@@ -70,7 +70,8 @@
                             <Label Style="{StaticResource LabelStyle}"
                                    Content="{infrastructure:Translate 'player.strengthLevel'}" />
                         </StackPanel>
-                        <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Minimum="0" Maximum="100" Interval="1"
+                        <mah:NumericUpDown Style="{StaticResource PlayerNumericUpDownStyle}" Minimum="0" Maximum="100"
+                                           Interval="1"
                                            NumericInputMode="Numbers"
                                            Value="{Binding PlayerState.StrengthLevel, UpdateSourceTrigger=PropertyChanged}" />
 

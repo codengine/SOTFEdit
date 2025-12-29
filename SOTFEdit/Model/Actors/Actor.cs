@@ -21,8 +21,7 @@ public class Actor
     public Spawner? Spawner { get; set; }
     public int State { get; set; }
 
-    [JsonIgnore]
-    public string StatePrintable => TranslationManager.Get("actors.state." + State, $"??? ({State})");
+    [JsonIgnore] public string StatePrintable => TranslationManager.Get("actors.state." + State, $"??? ({State})");
 
     public int VariationId { get; set; }
     public Dictionary<string, float>? Stats { get; set; }
@@ -31,11 +30,9 @@ public class Actor
     public int OutfitId { get; set; }
     public int? GraphMask { get; set; }
 
-    [JsonIgnore]
-    public Color ActorColor => ActorType?.ActorColor ?? Colors.SaddleBrown;
+    [JsonIgnore] public Color ActorColor => ActorType?.ActorColor ?? Colors.SaddleBrown;
 
-    [JsonIgnore]
-    public BitmapImage ActorImage => LoadImage();
+    [JsonIgnore] public BitmapImage ActorImage => LoadImage();
 
     public string PrintableTitle =>
         $"{ActorType?.Name ?? "???"} - UniqueId {UniqueId} - TypeId {TypeId} - FamilyId {FamilyId}";

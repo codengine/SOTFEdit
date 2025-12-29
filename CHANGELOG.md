@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.13.0
+
+Bump to .net 8.0, modernized code
+
 ## v0.12.10
 
 Fix crash due to corrupt storages (caused by ingame bug)

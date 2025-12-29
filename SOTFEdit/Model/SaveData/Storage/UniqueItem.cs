@@ -6,7 +6,7 @@ namespace SOTFEdit.Model.SaveData.Storage;
 
 public class UniqueItem
 {
-    public List<IStorageModule> Modules { get; init; } = new();
+    public List<IStorageModule> Modules { get; init; } = [];
 
     private bool Equals(UniqueItem other)
     {

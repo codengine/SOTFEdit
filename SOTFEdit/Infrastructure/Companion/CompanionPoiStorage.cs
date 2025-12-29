@@ -33,7 +33,7 @@ public class CompanionPoiStorage
         if (File.Exists(_fullFilePath))
         {
             _customPois = JsonConverter.DeserializeFromFile<CustomPois>(_fullFilePath, _serializerSettings) ??
-                          new CustomPois(new List<CustomPoi>());
+                          new CustomPois([]);
             _nextId = FindNextId();
         }
         else
@@ -43,7 +43,7 @@ public class CompanionPoiStorage
                 Directory.CreateDirectory(DirectoryPath);
             }
 
-            _customPois = new CustomPois(new List<CustomPoi>());
+            _customPois = new CustomPois([]);
         }
 
         SetupListeners();
@@ -105,7 +105,7 @@ public class CompanionPoiStorage
         return sanitizedFileName;
     }
 
-    private static string? SaveScreenshot(string title, byte[] screenshotJpeg)
+    private static string? SaveScreenshot(string title, byte[]? screenshotJpeg)
     {
         if (screenshotJpeg == null || screenshotJpeg.Length == 0)
         {

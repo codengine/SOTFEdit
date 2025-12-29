@@ -13,12 +13,12 @@ using static SOTFEdit.Model.Constants.Actors;
 
 namespace SOTFEdit.Model.Savegame;
 
-public class Savegame : ObservableObject
+public partial class Savegame : ObservableObject
 {
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     private readonly string _dirName;
 
-    private readonly Regex _nameFilePattern = new(@"(.*)_\d{2}_\d{2}_\d{2}.name");
+    private readonly Regex _nameFilePattern = NameFilePattern();
 
     public Savegame(string fullPath, string dirName, SavegameStore savegameStore)
     {
@@ -53,12 +53,7 @@ public class Savegame : ObservableObject
                 return "MP";
             }
 
-            if (IsMultiPlayerClient())
-            {
-                return "MP_Client";
-            }
-
-            return TranslationManager.Get("generic.unknown");
+            return IsMultiPlayerClient() ? "MP_Client" : TranslationManager.Get("generic.unknown");
         }
     }
 
@@ -257,4 +252,7 @@ public class Savegame : ObservableObject
     {
         return SavegameStore.GetParentDirectory()?.Name.ToLower().Equals(value) ?? false;
     }
+
+    [GeneratedRegex(@"(.*)_\d{2}_\d{2}_\d{2}.name")]
+    private static partial Regex NameFilePattern();
 }

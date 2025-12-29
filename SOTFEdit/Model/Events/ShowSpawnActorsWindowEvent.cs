@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class ShowSpawnActorsWindowEvent
+public class ShowSpawnActorsWindowEvent(BasePoi poi)
 {
-    public ShowSpawnActorsWindowEvent(BasePoi poi)
-    {
-        Poi = poi;
-    }
-
-    public BasePoi Poi { get; }
+    public BasePoi Poi { get; } = poi;
 }

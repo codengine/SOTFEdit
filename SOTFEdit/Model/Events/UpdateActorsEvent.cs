@@ -5,33 +5,21 @@ using SOTFEdit.ViewModel;
 
 namespace SOTFEdit.Model.Events;
 
-public class UpdateActorsEvent
+public class UpdateActorsEvent(EditActorViewModel viewModel)
 {
-    public UpdateActorsEvent(EditActorViewModel viewModel)
-    {
-        Influences = new List<Influence>(viewModel.Influences);
-        ActorSelection = viewModel.ActorSelection;
-        ModificationMode = viewModel.ModificationMode;
-        ModifyOptions = viewModel.ModifyOptions;
-        SkipKelvin = viewModel.SkipKelvin;
-        SkipVirginia = viewModel.SkipVirginia;
-        Actor = viewModel.Actor;
-        OnlyInSameAreaAsActor = viewModel.OnlyInSameAreaAsActor;
-    }
+    public List<Influence> Influences { get; } = [..viewModel.Influences];
 
-    public List<Influence> Influences { get; }
+    public bool OnlyInSameAreaAsActor { get; } = viewModel.OnlyInSameAreaAsActor;
 
-    public bool OnlyInSameAreaAsActor { get; }
+    public Actor Actor { get; } = viewModel.Actor;
 
-    public Actor Actor { get; }
+    public bool SkipVirginia { get; } = viewModel.SkipVirginia;
 
-    public bool SkipVirginia { get; }
+    public bool SkipKelvin { get; } = viewModel.SkipKelvin;
 
-    public bool SkipKelvin { get; }
+    public ModifyOptions ModifyOptions { get; } = viewModel.ModifyOptions;
 
-    public ModifyOptions ModifyOptions { get; }
+    public ActorModificationMode ModificationMode { get; } = viewModel.ModificationMode;
 
-    public ActorModificationMode ModificationMode { get; }
-
-    public short? ActorSelection { get; }
+    public short? ActorSelection { get; } = viewModel.ActorSelection;
 }

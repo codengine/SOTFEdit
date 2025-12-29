@@ -75,7 +75,7 @@ nothing more, nothing less.
 ## Requirements
 
 - Windows 8+
-- [.net 6.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- [.net 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
 ## Usage
 
@@ -252,7 +252,7 @@ I can not change "IsRobbyDead" or "IsVirginiaDead"
 
 The program does not start
 
-- Make sure that .net 6.0 Desktop Runtime is installed. Also make sure to extract all files from the archive if you
+- Make sure that .net 8.0 Desktop Runtime is installed. Also make sure to extract all files from the archive if you
   downloaded the zip archive manually. Lastly, check if any antivirus is blocking the editor
 
 Antivirus (Windows Defender for example, Smartscreen) is complaining
@@ -262,7 +262,7 @@ Antivirus (Windows Defender for example, Smartscreen) is complaining
 
 "Could not load file or assembly"
 
-- Make sure to have .net 6.0 Desktop Runtime installed (either x86 or x64)
+- Make sure to have .net 8.0 Desktop Runtime installed (either x86 or x64)
 
 My changes are not applied or reverted
 

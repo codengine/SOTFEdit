@@ -7,44 +7,31 @@ namespace SOTFEdit.Model;
 
 public partial class PlayerState : ObservableObject
 {
-    [ObservableProperty]
-    private float _currentHealth;
+    [ObservableProperty] private float _currentHealth;
 
-    [ObservableProperty]
-    private float _fullness;
+    [ObservableProperty] private float _fullness;
 
-    [ObservableProperty]
-    private float _fullnessBuff;
+    [ObservableProperty] private float _fullnessBuff;
 
-    [ObservableProperty]
-    private float _hydration;
+    [ObservableProperty] private float _hydration;
 
-    [ObservableProperty]
-    private float _hydrationBuff;
+    [ObservableProperty] private float _hydrationBuff;
 
-    [ObservableProperty]
-    private float _maxHealth;
+    [ObservableProperty] private float _maxHealth;
 
-    [ObservableProperty]
-    private Position _pos = new(0, 0, 0);
+    [ObservableProperty] private Position _pos = new(0, 0, 0);
 
-    [ObservableProperty]
-    private float _rest;
+    [ObservableProperty] private float _rest;
 
-    [ObservableProperty]
-    private float _restBuff;
+    [ObservableProperty] private float _restBuff;
 
-    [ObservableProperty]
-    private Item? _selectedCloth;
+    [ObservableProperty] private Item? _selectedCloth;
 
-    [ObservableProperty]
-    private float _sickness;
+    [ObservableProperty] private float _sickness;
 
-    [ObservableProperty]
-    private float _stamina;
+    [ObservableProperty] private float _stamina;
 
-    [ObservableProperty]
-    private int _strengthLevel;
+    [ObservableProperty] private int _strengthLevel;
 
     partial void OnMaxHealthChanged(float value)
     {

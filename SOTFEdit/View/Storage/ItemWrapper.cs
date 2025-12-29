@@ -22,7 +22,7 @@ public class ItemWrapper
 
     public string Name => FoodSpoilStorageModuleWrapper?.Name ?? Item.Name;
 
-    public int Max => _maxPerSlot ?? (MaxPerSlotFromItemDefinition() ?? 1);
+    public int Max => _maxPerSlot ?? MaxPerSlotFromItemDefinition() ?? 1;
 
     private int? MaxPerSlotFromItemDefinition()
     {

@@ -1,11 +1,6 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class SelectedSavegameDirChangedEvent
+public class SelectedSavegameDirChangedEvent(string? newPath)
 {
-    public SelectedSavegameDirChangedEvent(string? newPath)
-    {
-        NewPath = newPath;
-    }
-
-    public string? NewPath { get; }
+    public string? NewPath { get; } = newPath;
 }

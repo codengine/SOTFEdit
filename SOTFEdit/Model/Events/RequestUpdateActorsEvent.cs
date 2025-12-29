@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class RequestUpdateActorsEvent
+public class RequestUpdateActorsEvent(EditActorViewModel viewModel)
 {
-    public RequestUpdateActorsEvent(EditActorViewModel viewModel)
-    {
-        ViewModel = viewModel;
-    }
-
-    public EditActorViewModel ViewModel { get; }
+    public EditActorViewModel ViewModel { get; } = viewModel;
 }

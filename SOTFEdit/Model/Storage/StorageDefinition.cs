@@ -4,29 +4,21 @@ using SOTFEdit.Infrastructure;
 namespace SOTFEdit.Model.Storage;
 
 // ReSharper disable once ClassNeverInstantiated.Global
-public sealed class StorageDefinition : IStorageDefinition
+public sealed class StorageDefinition(
+    int id, int slots, int? maxPerSlot = null, bool? preferHolder = null,
+    HashSet<int>? restrictedItemIds = null,
+    StorageType type = StorageType.Items)
+    : IStorageDefinition
 {
-    public StorageDefinition(int id, int slots, int? maxPerSlot = null, bool? preferHolder = null,
-        HashSet<int>? restrictedItemIds = null,
-        StorageType type = StorageType.Items)
-    {
-        Id = id;
-        Slots = slots;
-        MaxPerSlot = maxPerSlot;
-        PreferHolder = preferHolder;
-        RestrictedItemIds = restrictedItemIds;
-        Type = type;
-    }
+    public bool? PreferHolder { get; } = preferHolder;
 
-    public bool? PreferHolder { get; }
-
-    public int Slots { get; }
-    public int? MaxPerSlot { get; }
-    public HashSet<int>? RestrictedItemIds { get; }
+    public int Slots { get; } = slots;
+    public int? MaxPerSlot { get; } = maxPerSlot;
+    public HashSet<int>? RestrictedItemIds { get; } = restrictedItemIds;
     public string Name => TranslationManager.Get("structures.types." + Id);
 
-    public int Id { get; }
-    public StorageType Type { get; }
+    public int Id { get; } = id;
+    public StorageType Type { get; } = type;
 }
 
 public enum StorageType

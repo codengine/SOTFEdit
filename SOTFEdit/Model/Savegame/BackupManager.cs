@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace SOTFEdit.Model.Savegame;
 public static class BackupManager
 {
     private const string ArchiveBaseFn = "SOTFEdit";
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     public static int DeleteAllBackups(string path)
     {
@@ -38,7 +37,7 @@ public static class BackupManager
         FileSystem.DeleteFile(path, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
     }
 
-    private static IEnumerable<FileInfo> GetBackupArchiveFiles(string path)
+    private static FileInfo[] GetBackupArchiveFiles(string path)
     {
         return new DirectoryInfo(path).GetFiles($"{ArchiveBaseFn}*.zip", SearchOption.TopDirectoryOnly);
     }

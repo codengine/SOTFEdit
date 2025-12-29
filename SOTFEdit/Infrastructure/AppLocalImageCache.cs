@@ -64,12 +64,7 @@ public static class AppLocalImageCache
                 return true;
             }
 
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((CacheKey)obj);
+            return obj.GetType() == GetType() && Equals((CacheKey)obj);
         }
 
         public override int GetHashCode()

@@ -8,22 +8,14 @@ using SOTFEdit.View.Storage;
 
 namespace SOTFEdit.ViewModel;
 
-public partial class AdvancedItemStorageViewModel : ObservableObject
+public partial class AdvancedItemStorageViewModel(AdvancedItemsStorage itemsStorage) : ObservableObject
 {
-    [ObservableProperty]
-    private int _count;
+    [ObservableProperty] private int _count;
 
-    [NotifyPropertyChangedFor(nameof(Max))]
-    [NotifyCanExecuteChangedFor(nameof(FillAllCommand))]
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Max))] [NotifyCanExecuteChangedFor(nameof(FillAllCommand))] [ObservableProperty]
     private ItemWrapper? _selectedItemForAll;
 
-    public AdvancedItemStorageViewModel(AdvancedItemsStorage itemsStorage)
-    {
-        ItemsStorage = itemsStorage;
-    }
-
-    public AdvancedItemsStorage ItemsStorage { get; }
+    public AdvancedItemsStorage ItemsStorage { get; } = itemsStorage;
 
     public int Max => SelectedItemForAll?.Max ?? 1000;
 

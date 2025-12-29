@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class CustomPoiAddedEvent
+public class CustomPoiAddedEvent(CustomPoi poi)
 {
-    public CustomPoiAddedEvent(CustomPoi poi)
-    {
-        Poi = poi;
-    }
-
-    public CustomPoi Poi { get; }
+    public CustomPoi Poi { get; } = poi;
 }

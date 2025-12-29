@@ -18,8 +18,7 @@ public partial class RegrowTreesViewModel : ObservableObject
     private int _countHalfChopped;
     private int _countStumps;
 
-    [ObservableProperty]
-    private int _pctRegrow = 100;
+    [ObservableProperty] private int _pctRegrow = 100;
 
     [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     [NotifyPropertyChangedFor(nameof(VegetationStateIsAllSelected))]
@@ -45,12 +44,13 @@ public partial class RegrowTreesViewModel : ObservableObject
 
     public bool VegetationStateIsAllSelected
     {
-        get => VegetationStateSelected.HasFlag(VegetationState.Gone) &&
-               VegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
-               VegetationStateSelected.HasFlag(VegetationState.Stumps);
+        get =>
+            VegetationStateSelected.HasFlag(VegetationState.Gone) &&
+            VegetationStateSelected.HasFlag(VegetationState.HalfChopped) &&
+            VegetationStateSelected.HasFlag(VegetationState.Stumps);
         set
         {
-            var vegetationState = value == false
+            var vegetationState = !value
                 ? VegetationState.None
                 : VegetationState.Gone | VegetationState.HalfChopped | VegetationState.Stumps;
             VegetationStateSelected = vegetationState;
@@ -106,7 +106,7 @@ public partial class RegrowTreesViewModel : ObservableObject
             return;
         }
 
-        var countRegrown = selectedSavegame.RegrowTrees(VegetationStateSelected, _pctRegrow);
+        var countRegrown = selectedSavegame.RegrowTrees(VegetationStateSelected, PctRegrow);
 
         var statesPrintable = new List<string>();
         if ((VegetationStateSelected & VegetationState.Gone) != 0)

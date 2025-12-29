@@ -2,12 +2,7 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class ApplyToAllOfSameTypeEvent
+public class ApplyToAllOfSameTypeEvent(IStorage storage)
 {
-    public ApplyToAllOfSameTypeEvent(IStorage storage)
-    {
-        Storage = storage;
-    }
-
-    public IStorage Storage { get; }
+    public IStorage Storage { get; } = storage;
 }

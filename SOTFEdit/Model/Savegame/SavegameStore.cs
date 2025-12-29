@@ -35,7 +35,7 @@ public class SavegameStore
         ConstructionsSaveData
     }
 
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     private readonly string _path;
 

@@ -1,11 +1,6 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class PlayerPosChangedEvent
+public class PlayerPosChangedEvent(Position newPosition)
 {
-    public PlayerPosChangedEvent(Position newPosition)
-    {
-        NewPosition = newPosition;
-    }
-
-    public Position NewPosition { get; }
+    public Position NewPosition { get; } = newPosition;
 }

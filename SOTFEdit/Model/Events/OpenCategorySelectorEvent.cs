@@ -1,5 +1,3 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class OpenCategorySelectorEvent
-{
-}
+public class OpenCategorySelectorEvent;

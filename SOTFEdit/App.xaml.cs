@@ -32,8 +32,8 @@ namespace SOTFEdit;
 /// </summary>
 public partial class App
 {
-    public const string Version = "0.12.10";
-    private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+    public const string Version = "0.13.0";
+    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
     public App()
     {
@@ -197,6 +197,6 @@ public partial class App
         var assemblyInfo = Assembly.GetExecutingAssembly()
             .GetName();
         assemblyName = assemblyInfo.Name ?? "SOTFEdit";
-        assemblyVersion = SemVersion.FromVersion(assemblyInfo.Version);
+        assemblyVersion = SemVersion.FromVersion(assemblyInfo.Version!);
     }
 }

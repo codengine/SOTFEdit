@@ -1,11 +1,6 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class DeleteCustomPoiEvent
+public class DeleteCustomPoiEvent(int id)
 {
-    public DeleteCustomPoiEvent(int id)
-    {
-        Id = id;
-    }
-
-    public int Id { get; }
+    public int Id { get; } = id;
 }

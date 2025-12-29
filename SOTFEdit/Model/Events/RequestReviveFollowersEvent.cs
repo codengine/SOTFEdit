@@ -2,22 +2,13 @@
 
 namespace SOTFEdit.Model.Events;
 
-public class RequestReviveFollowersEvent
+public class RequestReviveFollowersEvent(
+    Savegame.Savegame selectedSavegame, int typeId,
+    HashSet<int> itemIds, Outfit? outfit, Position pos)
 {
-    public RequestReviveFollowersEvent(Savegame.Savegame selectedSavegame, int typeId,
-        HashSet<int> itemIds, Outfit? outfit, Position pos)
-    {
-        SelectedSavegame = selectedSavegame;
-
-        TypeId = typeId;
-        ItemIds = itemIds;
-        Outfit = outfit;
-        Pos = pos;
-    }
-
-    public Savegame.Savegame SelectedSavegame { get; }
-    public int TypeId { get; }
-    public HashSet<int> ItemIds { get; }
-    public Outfit? Outfit { get; }
-    public Position Pos { get; }
+    public Savegame.Savegame SelectedSavegame { get; } = selectedSavegame;
+    public int TypeId { get; } = typeId;
+    public HashSet<int> ItemIds { get; } = itemIds;
+    public Outfit? Outfit { get; } = outfit;
+    public Position Pos { get; } = pos;
 }

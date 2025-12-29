@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SOTFEdit.Model.SaveData.Storage;
-using SOTFEdit.Model.SaveData.Storage.Module;
 using SOTFEdit.View.Storage;
 
 namespace SOTFEdit.Model.Storage;
@@ -55,7 +54,7 @@ public class ItemsStorage : BaseStorage
         var storageSaveData = new StorageSaveData
         {
             Id = storageDefinition.Id,
-            Storages = new List<StorageBlock>()
+            Storages = []
         };
 
         foreach (var slot in slots)
@@ -84,10 +83,7 @@ public class ItemsStorage : BaseStorage
                     {
                         storageItemBlock.UniqueItems.Add(new UniqueItem
                         {
-                            Modules = new List<IStorageModule>
-                            {
-                                moduleWrapper.FoodSpoilStorageModule
-                            }
+                            Modules = [moduleWrapper.FoodSpoilStorageModule]
                         });
                     }
                 }

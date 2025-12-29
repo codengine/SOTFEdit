@@ -1,14 +1,9 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class ChangeScrewStructureResult
+public class ChangeScrewStructureResult(
+    ScrewStructureWrapper screwStructureWrapper,
+    ScrewStructure? selectedScrewStructure)
 {
-    public ChangeScrewStructureResult(ScrewStructureWrapper screwStructureWrapper,
-        ScrewStructure? selectedScrewStructure)
-    {
-        ScrewStructureWrapper = screwStructureWrapper;
-        SelectedScrewStructure = selectedScrewStructure;
-    }
-
-    public ScrewStructureWrapper ScrewStructureWrapper { get; }
-    public ScrewStructure? SelectedScrewStructure { get; }
+    public ScrewStructureWrapper ScrewStructureWrapper { get; } = screwStructureWrapper;
+    public ScrewStructure? SelectedScrewStructure { get; } = selectedScrewStructure;
 }

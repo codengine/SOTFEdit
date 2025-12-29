@@ -11,16 +11,13 @@ namespace SOTFEdit.Model.Map;
 
 public abstract partial class BasePoi : ObservableObject, IPoi
 {
-    [NotifyPropertyChangedFor(nameof(Visible))]
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Visible))] [ObservableProperty]
     private bool _enabled;
 
-    [NotifyPropertyChangedFor(nameof(Visible))]
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(Visible))] [ObservableProperty]
     private bool _filtered;
 
-    [NotifyPropertyChangedFor(nameof(IconZIndex))]
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IconZIndex))] [ObservableProperty]
     private bool _isSelected;
 
     private float _left;
@@ -37,11 +34,9 @@ public abstract partial class BasePoi : ObservableObject, IPoi
 
     private float _top;
 
-    [ObservableProperty]
-    private float _x;
+    [ObservableProperty] private float _x;
 
-    [ObservableProperty]
-    private float _z;
+    [ObservableProperty] private float _z;
 
     protected BasePoi(Position position)
     {
@@ -92,7 +87,7 @@ public abstract partial class BasePoi : ObservableObject, IPoi
 
     public virtual bool IsUnderground => Position?.Area.IsUnderground() ?? false;
 
-    public bool Visible => _enabled && !Filtered;
+    public bool Visible => Enabled && !Filtered;
 
     public abstract BitmapImage Icon { get; }
 
@@ -108,7 +103,9 @@ public abstract partial class BasePoi : ObservableObject, IPoi
 
     public void SetEnabledNoRefresh(bool value)
     {
+#pragma warning disable MVVMTK0034
         _enabled = value;
+#pragma warning restore MVVMTK0034
     }
 
     public float IconLeft => _left - IconOffset;

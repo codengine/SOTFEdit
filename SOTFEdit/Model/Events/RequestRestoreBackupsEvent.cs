@@ -1,13 +1,7 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-internal class RequestRestoreBackupsEvent
+internal class RequestRestoreBackupsEvent(Savegame.Savegame savegame, bool restoreFromNewest)
 {
-    public RequestRestoreBackupsEvent(Savegame.Savegame savegame, bool restoreFromNewest)
-    {
-        Savegame = savegame;
-        RestoreFromNewest = restoreFromNewest;
-    }
-
-    public Savegame.Savegame Savegame { get; }
-    public bool RestoreFromNewest { get; }
+    public Savegame.Savegame Savegame { get; } = savegame;
+    public bool RestoreFromNewest { get; } = restoreFromNewest;
 }

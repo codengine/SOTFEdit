@@ -1,11 +1,6 @@
 ﻿namespace SOTFEdit.Model.Events;
 
-public class SelectedPoiChangedEvent
+public class SelectedPoiChangedEvent(bool isSelected)
 {
-    public SelectedPoiChangedEvent(bool isSelected)
-    {
-        IsSelected = isSelected;
-    }
-
-    public bool IsSelected { get; }
+    public bool IsSelected { get; } = isSelected;
 }

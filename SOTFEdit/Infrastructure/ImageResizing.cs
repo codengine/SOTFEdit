@@ -52,7 +52,7 @@ public class ImageResizing : IDisposable
     /// <returns></returns>
     public ImageResizing Quality(int quality)
     {
-        // Seems that 75 or less is the magic threshold 
+        // It seems that 75 or less is the magic threshold 
         // for image compression using the JpegEncoder. 
         // Above this value, file size tends to increase 
         // over the original image file size.
@@ -89,7 +89,10 @@ public class ImageResizing : IDisposable
     /// <param name="dispose"></param>
     public void Save(string path, bool dispose = true)
     {
-        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write)) _jpegEncoder.Save(fs);
+        using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+        {
+            _jpegEncoder.Save(fs);
+        }
 
         if (dispose)
         {

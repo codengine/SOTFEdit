@@ -6,8 +6,8 @@ namespace SOTFEdit.Model.SaveData.Armour;
 // ReSharper disable once ClassNeverInstantiated.Global
 public record PlayerArmourSystemModel : SotfBaseModel
 {
-    private static readonly int[] ArmorSlots = { 6, 7, 10, 11, 4, 5, 8, 9, 1, 0 };
-    public List<ArmourPieceModel> ArmourPieces { get; private set; } = new();
+    private static readonly int[] ArmorSlots = [6, 7, 10, 11, 4, 5, 8, 9, 1, 0];
+    public List<ArmourPieceModel> ArmourPieces { get; private set; } = [];
 
     public static bool Merge(PlayerArmourSystemModel armourSystemModel,
         List<ArmourPieceModel> selectedArmorPieces)
@@ -23,7 +23,7 @@ public record PlayerArmourSystemModel : SotfBaseModel
         return hasChanges;
     }
 
-    private static void UpdateSlots(IReadOnlyList<ArmourPieceModel> selectedArmorPieces)
+    private static void UpdateSlots(List<ArmourPieceModel> selectedArmorPieces)
     {
         for (var i = 0; i < selectedArmorPieces.Count; i++)
         {
